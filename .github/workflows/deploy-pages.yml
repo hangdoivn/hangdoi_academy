@@ -1,4 +1,4 @@
-name: Deploy Hang Doi Academy
+name: Publish Hang Doi Academy
 
 on:
   push:
@@ -7,34 +7,13 @@ on:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 concurrency:
-  group: pages
+  group: academy-pages
   cancel-in-progress: true
 
 jobs:
-  probe:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Record workflow execution
-        run: |
-          printf 'Workflow started\nCommit: %s\nRun: %s\n' "$GITHUB_SHA" "$GITHUB_RUN_ID" > WORKFLOW_STARTED.md
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add WORKFLOW_STARTED.md
-          git commit -m 'Record Academy workflow execution [skip ci]' || true
-          git push || true
-
-  deploy:
-    needs: probe
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  publish:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -49,26 +28,10 @@ jobs:
           test -s _site/index.html
           grep -q '</html>' _site/index.html
 
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
+      - name: Publish gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          enablement: true
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-
-      - name: Record successful deployment
-        if: success()
-        run: |
-          printf 'Deployed successfully\nCommit: %s\nRun: %s\nURL: %s\n' "$GITHUB_SHA" "$GITHUB_RUN_ID" "${{ steps.deployment.outputs.page_url }}" > DEPLOY_STATUS.md
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add DEPLOY_STATUS.md
-          git commit -m 'Record successful Academy deployment [skip ci]' || exit 0
-          git push
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
+          publish_branch: gh-pages
+          force_orphan: true
