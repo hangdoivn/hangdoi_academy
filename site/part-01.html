@@ -1,0 +1,153 @@
+rd:nth-child(4) p{color:#bec8c1}
+.adv-icon{width:48px;height:48px;border-radius:16px;background:rgba(16,23,20,.1);display:grid;place-items:center}
+.adv-card:nth-child(2) .adv-icon,.adv-card:nth-child(4) .adv-icon{background:rgba(255,255,255,.12)}
+/* tuition comparison */
+.compare-wrap{border:1px solid var(--line);border-radius:30px;overflow:hidden;background:var(--white)}
+.compare-row{display:grid;grid-template-columns:1.25fr repeat(3,1fr);border-bottom:1px solid var(--line)}
+.compare-row:last-child{border-bottom:0}
+.compare-row>div{padding:20px 22px;border-right:1px solid var(--line)}
+.compare-row>div:last-child{border-right:0}
+.compare-row.header{background:var(--ink);color:white;font-weight:900}
+.compare-row .label{font-weight:800}
+.compare-row small{color:var(--muted)}
+.compare-row.header small{color:#b9c3bc}
+.check{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:rgba(184,243,66,.22);color:#44600c;font-weight:900}
+.compare-mobile{display:none}
+/* faq */
+.faq-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:70px}
+.faq-aside h2{font-size:54px;line-height:1;letter-spacing:-.05em;margin:14px 0 20px}
+.faq-aside p{color:var(--muted);font-size:17px}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{width:100%;border:0;background:transparent;padding:23px 0;display:flex;justify-content:space-between;gap:20px;text-align:left;font-weight:850;cursor:pointer;font-size:18px}
+.faq-q span:last-child{font-size:24px;transition:.25s}
+.faq-a{max-height:0;overflow:hidden;color:var(--muted);transition:max-height .35s ease}
+.faq-a p{margin:0;padding:0 50px 24px 0}
+.faq-item.open .faq-a{max-height:190px}
+.faq-item.open .faq-q span:last-child{transform:rotate(45deg)}
+/* lead */
+.lead-section{padding:56px 0 110px}
+.lead-box{background:var(--green);border-radius:40px;padding:54px;display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center}
+.lead-copy h2{font-size:clamp(42px,5vw,70px);line-height:.95;letter-spacing:-.055em;margin:14px 0 20px}
+.lead-copy p{font-size:17px;max-width:470px}
+.lead-mini{margin-top:32px;display:grid;gap:12px;font-weight:750;font-size:14px}
+.lead-mini span{display:flex;align-items:center;gap:10px}
+.lead-mini i{width:24px;height:24px;border-radius:50%;background:var(--ink);color:white;display:grid;place-items:center;font-style:normal;font-size:12px}
+.lead-form{background:var(--white);border-radius:28px;padding:28px;box-shadow:var(--shadow)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{display:grid;gap:7px}
+.field.full{grid-column:1/-1}
+.field label{font-size:12px;font-weight:850}
+.field input,.field select,.field textarea{
+width:100%;border:1px solid var(--line);background:#f8f7f1;border-radius:14px;padding:14px 15px;outline:none;
+transition:.2s
+}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:#6f921f;box-shadow:0 0 0 3px rgba(184,243,66,.25)}
+.field textarea{min-height:100px;resize:vertical}
+.form-submit{width:100%;margin-top:15px}
+.form-note{font-size:11px;color:var(--muted);text-align:center;margin-top:12px}
+.form-success{display:none;padding:24px;border-radius:18px;background:#eefbd1;margin-top:16px}
+.form-success.show{display:block}
+/* footer */
+footer{background:var(--ink);color:white;padding:68px 0 92px}
+.footer-grid{display:grid;grid-template-columns:1.4fr .6fr .6fr;gap:56px}
+.footer-brand p{color:#aeb9b1;max-width:460px;margin:20px 0}
+.footer-col h4{font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:#9faa9f;margin:0 0 17px}
+.footer-col a{display:block;margin:10px 0;color:#e5ebe7}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:54px;padding-top:22px;display:flex;justify-content:space-between;color:#97a49b;font-size:12px}
+/* modal */
+.modal{
+position:fixed;z-index:100;inset:0;background:rgba(6,10,8,.76);display:none;align-items:center;justify-content:center;padding:24px;
+backdrop-filter:blur(10px)
+}
+.modal.open{display:flex}
+.modal-card{width:min(740px,100%);max-height:88vh;overflow:auto;background:var(--white);border-radius:28px;padding:32px;position:relative}
+.modal-close{position:absolute;right:20px;top:20px;width:42px;height:42px;border-radius:50%;border:0;background:var(--ink);color:white;cursor:pointer}
+.quiz-progress{height:6px;border-radius:999px;background:var(--paper-2);overflow:hidden;margin:26px 0}
+.quiz-progress span{display:block;height:100%;width:33.33%;background:var(--green);transition:.25s}
+.quiz-step{display:none}.quiz-step.active{display:block}
+.quiz-step h3{font-size:32px;letter-spacing:-.04em;margin:0 0 20px}
+.quiz-options{display:grid;gap:10px}
+.quiz-option{border:1px solid var(--line);padding:16px;border-radius:16px;cursor:pointer;font-weight:750;transition:.2s}
+.quiz-option:hover,.quiz-option.selected{background:var(--green-2);border-color:#99c838}
+.quiz-actions{display:flex;justify-content:space-between;margin-top:26px}
+.quiz-result{display:none}.quiz-result.active{display:block}
+.result-box{background:var(--ink);color:white;border-radius:24px;padding:28px}
+.result-box small{color:#b8c2bb}.result-box h3{font-size:38px;margin:8px 0 14px;letter-spacing:-.05em}
+.result-box p{color:#c6d0c9}
+/* mobile sticky */
+.mobile-sticky{display:none}
+@media (max-width:1050px){
+.nav-links{display:none}.menu-btn{display:grid;place-items:center}
+.hero-grid{grid-template-columns:1fr}.hero{padding-top:126px}
+.hero-copy{padding-right:80px}.hero-visual{min-height:560px}
+.section-head{grid-template-columns:1fr;gap:20px}
+.course-grid{grid-template-columns:1fr 1fr}.course-card:last-child{grid-column:1/-1}
+.method-grid{grid-template-columns:1fr}.method-visual{min-height:520px}
+.story-stage{grid-template-columns:1fr}.story-copy{min-height:460px}
+.lead-box{grid-template-columns:1fr}
+.faq-grid{grid-template-columns:1fr;gap:30px}
+}
+@media (max-width:760px){
+.container{width:min(calc(100% - 28px),var(--max))}
+.section{padding:76px 0}
+.nav{height:74px}.nav-actions .btn{display:none}
+.brand-name{font-size:14px}
+.hero{min-height:auto;padding:112px 0 42px}
+.hero-copy{padding:0}
+h1{font-size:58px}
+.hero-desc{font-size:16px;margin:24px 0}
+.hero-actions .btn{width:100%}
+.hero-note{gap:11px;flex-direction:column;margin-top:27px}
+.hero-visual{min-height:460px;margin-top:18px}
+.hero-photo{right:0;border-radius:28px}
+.floating-card.top{right:-6px;top:20px;width:154px;padding:16px}
+.floating-card.bottom{left:-8px;bottom:42px;width:176px;padding:15px}
+.floating-card strong{font-size:28px}.float-icon{margin-bottom:17px}
+.proof-grid{grid-template-columns:1fr 1fr}
+.proof-item{border-bottom:1px solid rgba(16,23,20,.14);padding:18px}
+.proof-item:nth-child(2){border-right:0}
+.proof-item:nth-child(3),.proof-item:nth-child(4){border-bottom:0}
+.section-head h2{font-size:46px}
+.section-head p{font-size:16px}
+.path-grid,.course-grid{grid-template-columns:1fr}
+.course-card:last-child{grid-column:auto}
+.path-card{min-height:260px}
+.course-body>p{min-height:auto}
+.hero-photo{background-image:linear-gradient(180deg,transparent 25%,rgba(7,12,9,.8)),url("https://drive.google.com/thumbnail?id=1z1MovFBEk7fDluCC1n0aCRg37kXKGAeZ&sz=w1600")}
+.work-toolbar{align-items:flex-start;flex-direction:column}
+.work-credit{text-align:left}
+.work-grid{grid-template-columns:1fr}
+.work-card,.work-card.wide{grid-column:auto;min-height:390px}
+.work-card.tall{min-height:500px}
+.story-copy{padding:26px}
+.story-quote{margin:42px 0 28px}
+.story-points{grid-template-columns:1fr 1fr}.story-point:last-child{grid-column:1/-1}
+.story-gallery{grid-template-columns:1fr;grid-template-rows:auto}
+.story-img,.story-img:nth-child(1){grid-row:auto;min-height:300px}
+.adv-grid{display:block}.adv-card{margin-bottom:14px;min-height:260px}
+.compare-wrap{display:none}.compare-mobile{display:grid;gap:14px}
+.compare-card{background:var(--white);border:1px solid var(--line);border-radius:22px;padding:22px}
+.compare-card.featured{background:var(--ink);color:white}
+.compare-card h3{font-size:26px;margin:0 0 6px}.compare-card ul{padding:0;list-style:none;display:grid;gap:10px}
+.compare-card li:before{content:"✓";display:inline-grid;place-items:center;width:22px;height:22px;background:rgba(184,243,66,.22);border-radius:50%;margin-right:8px}
+.lead-box{padding:30px 20px;border-radius:30px}
+.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}
+.footer-grid{grid-template-columns:1fr}
+.footer-bottom{flex-direction:column;gap:8px}
+footer{padding-bottom:116px}
+.mobile-sticky{
+display:grid;grid-template-columns:1fr 1.25fr;gap:8px;position:fixed;z-index:48;left:10px;right:10px;bottom:10px;
+padding:8px;background:rgba(255,254,249,.92);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:20px;
+box-shadow:0 14px 50px rgba(16,23,20,.18)
+}
+.mobile-sticky .btn{min-height:48px;padding:0 12px;font-size:13px}
+.modal-card{padding:26px 20px}
+}
+@media (prefers-reduced-motion:reduce){
+*{scroll-behavior:auto!important;transition:none!important}
+}
+</style></head><body><header class="site-header" id="siteHeader"><div class="container nav"><a class="brand brand-official" href="#top" aria-label="Hang Đôi Academy"><img class="brand-logo" src="https://drive.google.com/thumbnail?id=16Qr3O9xo3uXLLidrM51oY8IUkS7fCUtd&sz=w1000" width="390" height="53" alt="Hang Đôi Academy" fetchpriority="high" /></a><nav class="nav-links" aria-label="Điều hướng chính"><a href="#lo-trinh">Lộ trình</a><a href="#khoa-hoc">Khóa học</a><a href="#du-an-thuc-te">Dự án thật</a><a href="#hoc-vien">Học viên</a><a href="#phuong-phap">Phương pháp</a><a href="#faq">FAQ</a></nav><div class="nav-actions"><button class="btn btn-dark open-quiz">Tìm lộ trình phù hợp</button><button class="menu-btn" id="menuBtn" aria-label="Mở menu"><svg viewBox="0 0 24 24" width="21" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div></div></header><div class="mobile-menu" id="mobileMenu"><a href="#lo-trinh">Lộ trình</a><a href="#khoa-hoc">Khóa học</a><a href="#du-an-thuc-te">Dự án thật</a><a href="#hoc-vien">Học viên</a><a href="#phuong-phap">Phương pháp</a><a href="#tu-van">Nhận tư vấn</a></div><main id="top"><section class="hero"><div class="container hero-grid"><div class="hero-copy"><div class="hero-kicker"><span></span> Đào tạo trực tiếp tại production house ở Đà Nẵng</div><h1>Học nhiếp ảnh để <em>làm được nghề thật.</em></h1><p class="hero-desc">
+Lộ trình cá nhân hóa, học tại studio, thực hành liên tục và hoàn thiện portfolio theo hướng nghề nghiệp bạn muốn theo đuổi.
+</p><div class="hero-actions"><button class="btn btn-primary open-quiz">
+Nhận tư vấn lộ trình
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 14 0M13 6l6 6-6 6"/></svg></button><a class="btn btn-line" href="#khoa-hoc">Xem khóa học</a></div><div class="hero-note"><span><i></i> Học 1:1 hoặc nhóm nhỏ</span><span><i></i> Có thiết bị thực hành</span><span><i></i> Hỗ trợ sau khóa học</span></div></div><div class="hero-visual" aria-label="Hình ảnh trải nghiệm học nhiếp ảnh"><div class="hero-photo"><div class="photo-caption"><div><b>Hospitality campaign thực tế</b><small>Hoiana Resort • Produced by Hang Đôi</small></div><div class="play"><svg viewBox="0 0 24 24" width="22" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div></div><div class="floating-card top"><div class="float-icon"><svg viewBox="0 0 24 24" width="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v14H4z"/><path d="m4 15 4-4 4 4 3-3 5 5"/><circle cx="15.5" cy="8.5" r="1.5"/></svg></div><strong>Portfolio</strong><span>Đầu ra quan trọng hơn chứng chỉ.</span></div><div class="floating-card bottom"><strong>1:1</strong><span>Feedback trực tiếp theo năng lực và mục tiêu của từng học viên.</span></div></div></div></section><section class="proofbar" aria-label="Các điểm nổi bật"><div class="container proof-grid"><div class="proof-item"><strong>Production house thật</strong><span>Học trong môi trường đang làm dự án thương mại</span></div><div class="proof-item"><strong>Lộ trình cá nhân hóa</strong><span>Không ép mọi học viên vào cùng một hướng</span></div><div class="proof-item"><strong>Thực hành liên tục</strong><span>Máy ảnh, ánh sáng, mẫu và bối cảnh thật</span></div><div class="proof-item"><strong>Định hướng đầu ra</strong><span>Portfolio, dự án và cơ hội làm nghề</span></div></div></section><section class="section" id="lo-trinh"><div class="container"><div class="section-head"><div><span class="eyebrow">Chọn theo mục tiêu</span><h2>Bạn không cần biết tên khóa học. Chỉ cần biết mình muốn đi đến đâu.</h2></div><p>Website dẫn người học từ nhu cầu thật đến đúng lộ trình, thay vì bắt họ tự đoán nên học kỹ thuật, ánh sáng hay hậu kỳ trước.</p></div><div class="path-grid"><article class="path-card" data-filter-target="basic"><span class="path-index">01 / MỚI BẮT ĐẦU</span><h3>Làm chủ máy ảnh và tạo được bộ ảnh đầu tiên.</h3><p>Phù hợp khi bạn chưa có nền tảng hoặc đang chụp theo cảm tính.</p><a class="path-link filter-link" href="#khoa-hoc" data-filter="basic"><span>Xem lộ trình cơ bản</span><span>↗</span></a></article><article class="path-card featured" data-filter-target="skill"><span class="path-index">02 / BỔ SUNG KỸ NĂNG</span><h3>Đã biết chụp nhưng còn yếu một mắt xích.</h3><p>Đi sâu vào kỹ thuật, setup ánh sáng, hậu kỳ hoặc một chuyên môn cụ thể.</p><a class="path-link filter-link" href="#khoa-hoc" data-filter="skill"><span>Xem khóa kỹ năng</span><span>↗</span></a></article><article class="path-card" data-filter-target="fullstack"><span class="path-index">03 / THEO NGHỀ</span><h3>Xây năng lực toàn diện và portfolio để bắt đầu làm nghề.</h3><p>Lộ trình đầy đủ từ tư duy hình ảnh đến sản xuất, hậu kỳ và định hướng khách hàng.</p><a class="path-link filter-link" href="#khoa-hoc" data-filter="fullstack"><span>Xem khóa toàn tập</span><span>↗</span></a></article></div></div></section><section class="section courses" id="khoa-hoc"><div class="container"><div class="section-head"><div><span class="eyebrow">Các lộ trình đào tạo</span><h2>Chọn theo đầu ra, không chọn theo số buổi.</h2></div><p>Mỗi khóa đều phải nói rõ phù hợp với ai, học xong làm được gì, thời lượng, học phí và bước tiếp theo.</p></div><div class="course-tabs" role="tablist" aria-label="Lọc khóa học"><button class="course-tab active" data-filter="all">Tất cả</button><button class="course-tab" data-filter="basic">Mới bắt đầu</button><button class="course-tab" data-filter="skill">Kỹ năng chuyên sâu</button><button class="course-tab" data-filter="fullstack">Theo nghề</button></div><div class="course-grid"><article class="course-card" data-category="basic"><div class="course-cover"><img loading="lazy" decoding="async" src="https://drive.google.com/thumbnail?id=1tCU0zuYl3k0h-m-72jDZNGnmMZS6XCMU&sz=w1600" width="2048" height="3070" alt="Ảnh sản phẩm Dustgo do Hang Đôi Production thực hiện" /><span class="course-badge">Phù hợp người mới</span><span class="course-level">PRODUCT / DUSTGO</span></div><div class="course-body"><h3>Nhiếp ảnh cơ bản</h3><p>Làm chủ máy ảnh, ánh sáng tự nhiên, bố cục và quy trình tạo một bộ ảnh hoàn chỉnh.</p><div class="course-meta"><div><small>Thời lượng</small><strong>12 buổi</strong></div><div><small>Hình thức</small><strong>Học kèm 1:1</strong></div></div><div class="course-price"><div><small>Học phí</small><strong>6.680.000đ</strong></div><button class="icon-btn course-detail" data-course="basic" aria-label="Xem chi tiết">→</button></div></div></article><article class="course-card" data-category="skill"><div class="course-cover"><img loading="lazy" decoding="async" src="https://drive.google.com/thumbnail?id=1cEUde-g4HrAluXH9OQ1tRsoHXwB1Og3o&sz=w1600" width="5304" height="7952" alt="Ảnh concept F&B Làng Chài do Hang Đôi Production thực hiện" /><span class="course-badge">Học theo kỹ năng</span><span class="course-level">F&amp;B / LÀNG CHÀI</span></div><div class="course-body"><h3>Kỹ năng chuyên sâu</h3><p>Chọn một hướng cần nâng cấp: kỹ thuật, ánh sáng, hậu kỳ hoặc chuyên môn chụp cụ thể.</p><div class="course-meta"><div><small>Lộ trình</small><strong>Cá nhân hóa</strong></div><div><small>Thực hành</small><strong>Tại studio</strong></div></div><div class="course-price"><div><small>Học phí / kỹ năng</small><strong>18.680.000đ</strong></div><button class="icon-btn course-detail" data-course="skill" aria-label="Xem chi tiết">→</button></div></div></article><article class="course-card premium" data-category="fullstack"><div class="course-cover"><img loading="lazy" decoding="async" src="https://drive.google.com/thumbnail?id=1lonK2-7tURIP_pBboac0AH0Ebs4P84HC&sz=w1600" width="2048" height="3070" alt="Ảnh lifestyle Four Points do Hang Đôi Production thực hiện" /><span class="course-badge">Lộ trình làm nghề</span><span class="course-level">HOSPITALITY / FOUR POINTS</span></div><div class="course-body"><h3>Nhiếp ảnh toàn tập</h3><p>Từ tư duy, kỹ thuật, ánh sáng, hậu kỳ đến sản xuất portfolio và định hướng bắt đầu nhận dự án.</p><div class="course-meta"><div><small>Đầu ra</small><strong>Portfolio cá nhân</strong></div><div><small>Thanh toán</small><strong>Tối đa 3 đợt</strong></div></div><div class="course-price"><div><small>Học phí</small><strong>40.000.000đ</strong></div><button class="icon-btn course-detail" data-course="fullstack" aria-label="Xem chi tiết">→</button></div></div></article></div></div></section><section class="section" id="phuong-phap"><div class="container"><div class="section-head"><div><span class="eyebrow">Phương pháp học</span><h2>Không học để nhớ bài. Học để tự xử lý một buổi chụp.</h2></div><p>Lộ trình đi theo vòng lặp thực hành — feedback — sửa lỗi — hoàn thiện, thay vì dồn lý thuyết rồi mới cầm máy.</p></div><div class="method-grid"><div class="method-visual lazy-bg" data-bg="https://drive.google.com/thumbnail?id=1zTSKZMzUxKDdufFBQOIGPXUZzkgGZcj4&sz=w1600" data-bg-mobile="https://drive.google.com/thumbnail?id=1zTSKZMzUxKDdufFBQOIGPXUZzkgGZcj4&sz=w1600"><div class="method-visual-copy"><strong>Học cách xử lý hình ảnh trong một project thương mại thật.</strong><span>Hình ảnh từ dự án Ho
