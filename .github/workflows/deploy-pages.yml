@@ -7,7 +7,6 @@ on:
 
 permissions:
   contents: write
-  pages: write
 
 concurrency:
   group: academy-pages
@@ -36,37 +35,3 @@ jobs:
           publish_dir: ./_site
           publish_branch: gh-pages
           force_orphan: true
-
-      - name: Enable Pages and custom domain
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          CREATE_CODE=$(curl -L -sS -o /tmp/pages-create.json -w '%{http_code}' \
-            -X POST \
-            -H 'Accept: application/vnd.github+json' \
-            -H "Authorization: Bearer $GH_TOKEN" \
-            -H 'X-GitHub-Api-Version: 2022-11-28' \
-            "https://api.github.com/repos/${GITHUB_REPOSITORY}/pages" \
-            -d '{"source":{"branch":"gh-pages","path":"/"}}')
-
-          UPDATE_CODE=$(curl -L -sS -o /tmp/pages-update.json -w '%{http_code}' \
-            -X PUT \
-            -H 'Accept: application/vnd.github+json' \
-            -H "Authorization: Bearer $GH_TOKEN" \
-            -H 'X-GitHub-Api-Version: 2022-11-28' \
-            "https://api.github.com/repos/${GITHUB_REPOSITORY}/pages" \
-            -d '{"cname":"academy.hangdoistudio.vn","source":{"branch":"gh-pages","path":"/"}}')
-
-          {
-            printf 'Create Pages HTTP: %s\n' "$CREATE_CODE"
-            cat /tmp/pages-create.json || true
-            printf '\nUpdate Pages HTTP: %s\n' "$UPDATE_CODE"
-            cat /tmp/pages-update.json || true
-            printf '\nWorkflow run: %s\n' "$GITHUB_RUN_ID"
-          } > PAGES_API_STATUS.txt
-
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add PAGES_API_STATUS.txt
-          git commit -m 'Record Academy Pages API status [skip ci]' || true
-          git push || true
