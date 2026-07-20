@@ -1,0 +1,151 @@
+href="#du-an-thuc-te">Dự án thương mại</a><a href="#hoc-vien">Hành trình học viên</a><a href="#phuong-phap">Phương pháp đào tạo</a><a href="#faq">Câu hỏi thường gặp</a><a href="#tu-van">Liên hệ tư vấn</a></div></div><div class="footer-bottom"><span>© 2026 Hang Đôi Academy</span><span>Demo redesign — UI/UX & conversion prototype</span></div></div></footer><div class="mobile-sticky"><a class="btn btn-ghost" href="tel:0888445997">Gọi tư vấn</a><button class="btn btn-dark open-quiz">Tìm lộ trình</button></div><div class="modal" id="quizModal" role="dialog" aria-modal="true" aria-labelledby="quizTitle"><div class="modal-card"><button class="modal-close" id="modalClose" aria-label="Đóng">×</button><span class="eyebrow">Bộ chọn lộ trình</span><div class="quiz-progress"><span id="quizProgress"></span></div><div class="quiz-step active" data-step="1"><h3 id="quizTitle">Bạn đang ở mức nào?</h3><div class="quiz-options" data-key="level"><div class="quiz-option" data-value="new">Chưa biết sử dụng máy ảnh hoặc đang chụp theo cảm tính</div><div class="quiz-option" data-value="some">Đã biết chụp cơ bản nhưng chất lượng chưa ổn định</div><div class="quiz-option" data-value="work">Đã từng nhận dự án và muốn nâng cấp chuyên môn</div></div></div><div class="quiz-step" data-step="2"><h3>Mục tiêu chính của bạn là gì?</h3><div class="quiz-options" data-key="goal"><div class="quiz-option" data-value="hobby">Chụp đẹp hơn cho sở thích và cuộc sống</div><div class="quiz-option" data-value="skill">Đi sâu kỹ thuật, ánh sáng hoặc hậu kỳ</div><div class="quiz-option" data-value="career">Xây portfolio và bắt đầu làm nghề</div></div></div><div class="quiz-step" data-step="3"><h3>Bạn muốn đầu tư thời gian ở mức nào?</h3><div class="quiz-options" data-key="time"><div class="quiz-option" data-value="short">Lộ trình ngắn, tập trung nền tảng</div><div class="quiz-option" data-value="focused">Tập trung sâu vào một kỹ năng</div><div class="quiz-option" data-value="long">Lộ trình dài để phát triển toàn diện</div></div></div><div class="quiz-result" id="quizResult"><div class="result-box"><small>Lộ trình được đề xuất</small><h3 id="resultTitle">Nhiếp ảnh cơ bản</h3><p id="resultText">Phù hợp để xây nền tảng và làm chủ máy ảnh trước khi đi sâu vào chuyên môn.</p><a class="btn btn-primary" href="#tu-van" id="resultCTA">Nhận tư vấn chi tiết</a></div></div><div class="quiz-actions" id="quizActions"><button class="btn btn-ghost" id="quizBack" disabled>Quay lại</button><button class="btn btn-dark" id="quizNext" disabled>Tiếp tục</button></div></div></div><script>
+const header = document.getElementById('siteHeader');
+window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 20));
+const menuBtn = document.getElementById('menuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+menuBtn.addEventListener('click', () => {
+mobileMenu.classList.toggle('open');
+document.body.classList.toggle('menu-open');
+});
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+mobileMenu.classList.remove('open');
+document.body.classList.remove('menu-open');
+}));
+const tabs = document.querySelectorAll('.course-tab');
+const cards = document.querySelectorAll('.course-card');
+function setCourseFilter(filter){
+tabs.forEach(t => t.classList.toggle('active', t.dataset.filter === filter));
+cards.forEach(c => c.classList.toggle('hidden', filter !== 'all' && c.dataset.category !== filter));
+}
+tabs.forEach(tab => tab.addEventListener('click', () => setCourseFilter(tab.dataset.filter)));
+document.querySelectorAll('.filter-link').forEach(link => link.addEventListener('click', () => setCourseFilter(link.dataset.filter)));
+document.querySelectorAll('.faq-q').forEach(q => q.addEventListener('click', () => {
+const item = q.closest('.faq-item');
+document.querySelectorAll('.faq-item').forEach(x => { if(x !== item) x.classList.remove('open'); });
+item.classList.toggle('open');
+}));
+document.getElementById('leadForm').addEventListener('submit', e => {
+e.preventDefault();
+document.getElementById('formSuccess').classList.add('show');
+});
+const modal = document.getElementById('quizModal');
+const closeModal = () => { modal.classList.remove('open'); document.body.style.overflow=''; };
+function resetQuiz(){
+step = 1;
+Object.keys(answers).forEach(key => delete answers[key]);
+document.querySelectorAll('.quiz-option').forEach(x => x.classList.remove('selected'));
+document.getElementById('quizResult').classList.remove('active');
+document.getElementById('quizActions').style.display='flex';
+showStep();
+}
+document.querySelectorAll('.open-quiz').forEach(b => b.addEventListener('click', () => {
+resetQuiz();
+modal.classList.add('open'); document.body.style.overflow='hidden';
+}));
+document.getElementById('modalClose').addEventListener('click', closeModal);
+modal.addEventListener('click', e => { if(e.target === modal) closeModal(); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+let step = 1;
+const answers = {};
+const nextBtn = document.getElementById('quizNext');
+const backBtn = document.getElementById('quizBack');
+const progress = document.getElementById('quizProgress');
+document.querySelectorAll('.quiz-option').forEach(opt => opt.addEventListener('click', () => {
+const group = opt.closest('.quiz-options');
+group.querySelectorAll('.quiz-option').forEach(x => x.classList.remove('selected'));
+opt.classList.add('selected');
+answers[group.dataset.key] = opt.dataset.value;
+nextBtn.disabled = false;
+}));
+function showStep(){
+document.querySelectorAll('.quiz-step').forEach(s => s.classList.toggle('active', Number(s.dataset.step) === step));
+backBtn.disabled = step === 1;
+nextBtn.disabled = !answers[document.querySelector('.quiz-step.active .quiz-options').dataset.key];
+nextBtn.textContent = step === 3 ? 'Xem đề xuất' : 'Tiếp tục';
+progress.style.width = (step / 3 * 100) + '%';
+}
+nextBtn.addEventListener('click', () => {
+if(step < 3){ step++; showStep(); return; }
+let type = 'basic';
+if(answers.goal === 'career' || answers.time === 'long') type = 'fullstack';
+else if(answers.goal === 'skill' || answers.level === 'work' || answers.time === 'focused') type = 'skill';
+const data = {
+basic: ['Nhiếp ảnh cơ bản','Phù hợp để xây nền tảng, làm chủ máy ảnh và tạo bộ ảnh đầu tiên trước khi đi sâu vào chuyên môn.'],
+skill: ['Kỹ năng chuyên sâu','Phù hợp khi bạn đã có nền tảng nhưng cần xử lý một mắt xích cụ thể như kỹ thuật, ánh sáng, hậu kỳ hoặc chuyên môn chụp.'],
+fullstack: ['Nhiếp ảnh toàn tập','Phù hợp khi mục tiêu là phát triển toàn diện, hoàn thiện portfolio và chuẩn bị để bắt đầu nhận dự án.']
+};
+document.getElementById('resultTitle').textContent = data[type][0];
+document.getElementById('resultText').textContent = data[type][1];
+document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+document.getElementById('quizResult').classList.add('active');
+document.getElementById('quizActions').style.display='none';
+progress.style.width='100%';
+document.getElementById('resultCTA').onclick = closeModal;
+});
+backBtn.addEventListener('click', () => { if(step > 1){ step--; showStep(); } });
+const lazyBackgrounds=document.querySelectorAll('.lazy-bg');
+const loadBackground=element=>{
+const mobile=window.matchMedia('(max-width:760px)').matches;
+const source=mobile&&element.dataset.bgMobile?element.dataset.bgMobile:element.dataset.bg;
+if(!source)return;
+const image=new Image();
+image.decoding='async';
+image.onload=()=>{
+const gradient=getComputedStyle(element).backgroundImage;
+element.style.backgroundImage=`${gradient}, url("${source}")`;
+element.classList.add('bg-loaded');
+};
+image.src=source;
+};
+if('IntersectionObserver'in window){
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+loadBackground(entry.target);
+observer.unobserve(entry.target);
+}
+});
+},{rootMargin:'300px 0px'});
+lazyBackgrounds.forEach(element=>observer.observe(element));
+}else{
+lazyBackgrounds.forEach(loadBackground);
+}
+const workTabs=document.querySelectorAll('.work-tab');
+const workCards=document.querySelectorAll('.work-card');
+workTabs.forEach(tab=>tab.addEventListener('click',()=>{
+const filter=tab.dataset.workFilter;
+workTabs.forEach(item=>item.classList.toggle('active',item===tab));
+workCards.forEach(card=>{
+const categories=card.dataset.workCategory.split(' ');
+card.classList.toggle('hidden',filter!=='all'&&!categories.includes(filter));
+});
+}));
+const courseData = {
+basic: {
+title:'Nhiếp ảnh cơ bản',
+body:'12 buổi học kèm 1:1, tập trung làm chủ máy ảnh, ánh sáng tự nhiên, bố cục, giao tiếp khi chụp và hoàn thiện bộ ảnh đầu tiên.',
+price:'6.680.000đ'
+},
+skill: {
+title:'Kỹ năng chuyên sâu',
+body:'Lộ trình cá nhân hóa theo kỹ năng đang thiếu. Nội dung cụ thể được chốt sau buổi đánh giá đầu vào để tránh học lại phần đã biết.',
+price:'18.680.000đ / kỹ năng'
+},
+fullstack: {
+title:'Nhiếp ảnh toàn tập',
+body:'Lộ trình phát triển toàn diện từ tư duy, kỹ thuật, ánh sáng, hậu kỳ đến portfolio, trải nghiệm dự án và định hướng bắt đầu làm nghề.',
+price:'40.000.000đ'
+}
+};
+document.querySelectorAll('.course-detail').forEach(btn => btn.addEventListener('click', () => {
+const d = courseData[btn.dataset.course];
+document.getElementById('resultTitle').textContent = d.title;
+document.getElementById('resultText').textContent = d.body + ' Học phí: ' + d.price + '.';
+document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+document.getElementById('quizResult').classList.add('active');
+document.getElementById('quizActions').style.display='none';
+progress.style.width='100%';
+modal.classList.add('open'); document.body.style.overflow='hidden';
+document.getElementById('resultCTA').onclick = closeModal;
+}));
+</script></body></html>
