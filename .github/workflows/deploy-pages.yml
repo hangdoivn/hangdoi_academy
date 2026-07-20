@@ -15,10 +15,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  probe:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -32,6 +29,16 @@ jobs:
           git add WORKFLOW_STARTED.md
           git commit -m 'Record Academy workflow execution [skip ci]' || true
           git push || true
+
+  deploy:
+    needs: probe
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Build static website
         run: |
@@ -60,6 +67,8 @@ jobs:
         if: success()
         run: |
           printf 'Deployed successfully\nCommit: %s\nURL: %s\n' "$GITHUB_SHA" "${{ steps.deployment.outputs.page_url }}" > DEPLOY_STATUS.md
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add DEPLOY_STATUS.md
           git commit -m 'Record successful Academy deployment [skip ci]' || exit 0
           git push
