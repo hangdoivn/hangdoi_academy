@@ -1,0 +1,48 @@
+name: Install Academy blog automation system
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'bootstrap/blog-system.part*'
+      - '.github/workflows/install-blog-system.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: academy-blog-install
+  cancel-in-progress: false
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Expand blog system
+        run: |
+          cat bootstrap/blog-system.part* | base64 --decode > /tmp/blog-system.tar.gz
+          tar -xzf /tmp/blog-system.tar.gz
+          rm -rf bootstrap/blog-system.part* .github/workflows/install-blog-system.yml
+          python -m py_compile scripts/build_blog.py scripts/blog_automation.py
+          rm -rf /tmp/blog-validation-site
+          mkdir -p /tmp/blog-validation-site
+          python scripts/build_blog.py --out /tmp/blog-validation-site --content content/blog
+          test -s /tmp/blog-validation-site/blog/index.html
+          test -s /tmp/blog-validation-site/blog/feed.xml
+          grep -q 'BlogPosting' /tmp/blog-validation-site/blog/chon-may-anh-cho-nguoi-moi/index.html
+
+      - name: Commit installed system
+        run: |
+          git config user.name 'hangdoi-academy-bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add -A
+          git commit -m 'Install Academy blog automation system'
+          git pull --rebase origin main
+          git push origin HEAD:main
