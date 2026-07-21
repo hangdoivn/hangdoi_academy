@@ -17,11 +17,8 @@ img{max-width:100%;height:auto}
 .lead-list li,.lead-list div{color:#f6fbf7!important}
 footer{padding:64px 0 28px!important;min-height:0!important}
 .footer-grid{align-items:start!important;gap:40px!important}
-.footer-brand,.footer-logo,.brand-official{background:transparent!important;box-shadow:none!important;border:0!important;padding:0!important}
+.footer-brand,.footer-logo,.brand-official{box-shadow:none!important;border:0!important}
 .footer-bottom{margin-top:52px!important;padding-top:22px!important;min-height:0!important}
-footer .academy-lockup{background:white;border-radius:18px;padding:18px 22px;color:var(--p2-dark)}
-footer .academy-ring:after{background:white!important}
-footer .academy-lockup-text small{color:#9a7d00!important}
 @media(max-width:980px){.work-card,.work-card.tall{grid-column:span 6!important}.work-card.wide{grid-column:span 12!important}.lead-card h2{font-size:clamp(42px,9vw,76px)!important}}
 @media(max-width:640px){.work-grid{display:grid!important;grid-template-columns:1fr!important}.work-card,.work-card.wide,.work-card.tall{grid-column:1!important;aspect-ratio:4/5!important}.work-card.wide{aspect-ratio:16/11!important}.lead-card{padding:38px 24px!important;border-radius:28px!important}.lead-card h2{font-size:clamp(40px,13vw,58px)!important}.footer-bottom{margin-top:34px!important}}
 /* Standalone pages */
@@ -34,3 +31,11 @@ footer .academy-lockup-text small{color:#9a7d00!important}
 .p2-faq{display:grid;gap:10px}.p2-faq details{background:white;border:1px solid var(--p2-line);border-radius:18px;padding:0 22px}.p2-faq summary{cursor:pointer;font-weight:850;padding:22px 0}.p2-faq p{color:var(--p2-muted);padding-bottom:20px;margin:0}.p2-footer{background:var(--p2-dark);color:white;padding:60px 0 28px}.p2-footer-grid{display:flex;justify-content:space-between;gap:40px}.p2-footer p{color:#cbdad1}.p2-article{max-width:820px}.p2-article h2{font-size:38px;margin-top:52px}.p2-article p,.p2-article li{font-size:18px;color:#43574d}.p2-breadcrumb{font-size:14px;color:var(--p2-muted);margin-top:26px}.p2-breadcrumb a{color:var(--p2-green)}
 @media(max-width:820px){.p2-nav-links{display:none}.p2-hero{padding-top:64px}.p2-facts,.p2-grid{grid-template-columns:1fr 1fr}.p2-fact:nth-child(2){border-right:0}.p2-fact:nth-child(-n+2){border-bottom:1px solid var(--p2-line)}.p2-section-head{grid-template-columns:1fr}.p2-row{grid-template-columns:64px 1fr}.p2-row>span:last-child{grid-column:2}.p2-footer-grid{display:grid}}
 @media(max-width:520px){.p2-wrap{width:min(100% - 28px,1180px)}.p2-facts,.p2-grid{grid-template-columns:1fr}.p2-fact{border-right:0;border-bottom:1px solid var(--p2-line)!important}.p2-fact:last-child{border-bottom:0!important}.p2-hero h1{font-size:46px}.p2-section{padding:62px 0}}
+/* Official Academy white logo */
+:root{--academy-logo:url('https://academy.hangdoistudio.vn/wp-content/uploads/2025/02/Aca-w.png')}
+a.brand-official{display:inline-flex!important;align-items:center!important;width:232px!important;height:48px!important;min-width:232px!important;padding:8px 14px!important;border-radius:12px!important;background-color:var(--p2-dark)!important;background-image:var(--academy-logo)!important;background-repeat:no-repeat!important;background-position:center!important;background-size:202px auto!important}
+a.brand-official>*{opacity:0!important;pointer-events:none!important}
+footer a.brand-official{width:262px!important;height:62px!important;min-width:262px!important;padding:0!important;background-color:transparent!important;background-size:250px auto!important;background-position:left center!important}
+.p2-brand{display:inline-block!important;width:232px!important;height:48px!important;min-width:232px!important;border-radius:12px!important;background-color:var(--p2-dark)!important;background-image:var(--academy-logo)!important;background-repeat:no-repeat!important;background-position:center!important;background-size:202px auto!important;font-size:0!important;line-height:0!important}
+.p2-footer-grid>div:first-child>strong:first-child{display:block!important;width:250px!important;height:60px!important;background-image:var(--academy-logo)!important;background-repeat:no-repeat!important;background-position:left center!important;background-size:240px auto!important;font-size:0!important;line-height:0!important}
+@media(max-width:760px){a.brand-official{width:190px!important;height:42px!important;min-width:190px!important;background-size:164px auto!important}.p2-brand{width:190px!important;height:42px!important;min-width:190px!important;background-size:164px auto!important}footer a.brand-official{width:220px!important;height:54px!important;min-width:220px!important;background-size:210px auto!important}.p2-footer-grid>div:first-child>strong:first-child{width:220px!important;height:54px!important;background-size:210px auto!important}}
