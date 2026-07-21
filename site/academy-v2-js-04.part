@@ -1,0 +1,36 @@
+  </details>
+      <details class="curriculum-item">
+        <summary><span class="curriculum-index">04</span><span class="curriculum-title"><small>KỸ NĂNG CHUYÊN SÂU</small><strong>Chỉnh sửa hình ảnh</strong></span><span class="curriculum-meta">18.680.000đ / kỹ năng</span><span class="curriculum-toggle">+</span></summary>
+        <div class="curriculum-content">
+          <article><b>Đánh giá</b><h3>Quy trình 8 bước</h3><p>Đọc ảnh, xác định vấn đề và định hướng xử lý bằng chỉ số sáng, màu và độ nét.</p></article>
+          <article><b>Cơ bản</b><h3>Đúng sáng, màu, nét</h3><p>So sánh công cụ, làm nổi bật chủ thể và xây workflow không phá hủy dữ liệu.</p></article>
+          <article><b>Nâng cao</b><h3>Retouch & vùng chọn</h3><p>Tạo vùng chọn, high-end retouch và xử lý các lỗi đặc biệt thường gặp.</p></article>
+          <article><b>Hoàn thiện</b><h3>Color grading</h3><p>Thay và chuyển màu, profile màu, calibration, action và quản lý thư mục khoa học.</p></article>
+        </div>
+      </details>
+      <details class="curriculum-item premium-detail">
+        <summary><span class="curriculum-index">05</span><span class="curriculum-title"><small>LỘ TRÌNH LÀM NGHỀ</small><strong>Nhiếp ảnh toàn tập</strong></span><span class="curriculum-meta">40.000.000đ · chia tối đa 3 đợt</span><span class="curriculum-toggle">+</span></summary>
+        <div class="curriculum-content">
+          <article><b>Giai đoạn 1</b><h3>Tư duy & kỹ thuật</h3><p>Xây nền tảng máy ảnh, ngôn ngữ hình ảnh, moodboard và cách triển khai concept.</p></article>
+          <article><b>Giai đoạn 2</b><h3>Ánh sáng & sản xuất</h3><p>Setup studio, xử lý bối cảnh thật, làm việc với mẫu, sản phẩm và ekip.</p></article>
+          <article><b>Giai đoạn 3</b><h3>Hậu kỳ hoàn chỉnh</h3><p>Chọn ảnh, retouch, color grading và kiểm soát chất lượng đầu ra.</p></article>
+          <article><b>Đầu ra</b><h3>Portfolio & định hướng nghề</h3><p>Hoàn thiện portfolio cá nhân, trải nghiệm dự án và định hướng bắt đầu nhận công việc phù hợp.</p></article>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>`);
+  }
+
+  const addNavLink = root => {
+    if (!root || root.querySelector('a[href="#chuong-trinh-chi-tiet"]')) return;
+    const courseLink = root.querySelector('a[href="#khoa-hoc"]');
+    if (!courseLink) return;
+    const link = document.createElement('a');
+    link.href = '#chuong-trinh-chi-tiet';
+    link.textContent = 'Nội dung học';
+    courseLink.insertAdjacentElement('afterend', link);
+  };
+  addNavLink(document.querySelector('.nav-links'));
+  addNavLink(document.querySelector('#mobileMenu'));
+})();
