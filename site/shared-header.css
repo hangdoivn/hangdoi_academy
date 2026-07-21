@@ -1,0 +1,213 @@
+:root{
+  --aca-header-bg:#fffdf7;
+  --aca-header-text:#17382b;
+  --aca-header-muted:#3f5a4d;
+  --aca-header-line:rgba(23,56,43,.14);
+  --aca-header-green:#176b43;
+  --aca-header-green-dark:#0f422d;
+  --aca-header-yellow:#f2d43d;
+  --aca-header-shadow:0 10px 34px rgba(15,66,45,.10);
+}
+
+.aca-global-header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  width:100%;
+  background:rgba(255,253,247,.96);
+  border-bottom:1px solid var(--aca-header-line);
+  box-shadow:var(--aca-header-shadow);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+}
+
+.aca-global-header__inner{
+  width:min(1440px,calc(100% - 48px));
+  min-height:92px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:220px minmax(0,1fr) auto;
+  align-items:center;
+  gap:32px;
+}
+
+.aca-global-header__brand{
+  display:inline-flex;
+  align-items:center;
+  width:210px;
+  min-width:210px;
+  height:46px;
+  background:transparent;
+  border:0;
+  box-shadow:none;
+  text-decoration:none;
+}
+
+.aca-global-header__brand svg,
+.aca-global-header__brand img{
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:46px;
+  object-fit:contain;
+  object-position:left center;
+}
+
+.aca-global-header__nav{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:30px;
+  min-width:0;
+}
+
+.aca-global-header__nav a{
+  position:relative;
+  color:var(--aca-header-text);
+  font-size:15px;
+  font-weight:800;
+  line-height:1;
+  text-decoration:none;
+  white-space:nowrap;
+  padding:12px 0;
+  transition:color .2s ease;
+}
+
+.aca-global-header__nav a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:3px;
+  height:3px;
+  border-radius:999px;
+  background:var(--aca-header-yellow);
+  transform:scaleX(0);
+  transform-origin:center;
+  transition:transform .2s ease;
+}
+
+.aca-global-header__nav a:hover,
+.aca-global-header__nav a:focus-visible,
+.aca-global-header__nav a[aria-current="page"]{
+  color:var(--aca-header-green);
+}
+
+.aca-global-header__nav a:hover::after,
+.aca-global-header__nav a:focus-visible::after,
+.aca-global-header__nav a[aria-current="page"]::after{
+  transform:scaleX(1);
+}
+
+.aca-global-header__cta{
+  display:inline-flex;
+  min-height:50px;
+  align-items:center;
+  justify-content:center;
+  padding:0 24px;
+  border-radius:999px;
+  background:var(--aca-header-green-dark);
+  color:#fff;
+  font-weight:900;
+  text-decoration:none;
+  white-space:nowrap;
+  transition:transform .2s ease,background .2s ease;
+}
+
+.aca-global-header__cta:hover,
+.aca-global-header__cta:focus-visible{
+  background:var(--aca-header-green);
+  transform:translateY(-1px);
+}
+
+.aca-global-header__menu{
+  display:none;
+  width:46px;
+  height:46px;
+  border:1px solid var(--aca-header-line);
+  border-radius:50%;
+  background:#fff;
+  color:var(--aca-header-text);
+  cursor:pointer;
+}
+
+.aca-global-header__mobile{
+  display:none;
+  border-top:1px solid var(--aca-header-line);
+  background:#fffdf7;
+  padding:12px 24px 22px;
+}
+
+.aca-global-header__mobile a{
+  display:flex;
+  min-height:48px;
+  align-items:center;
+  color:var(--aca-header-text);
+  font-weight:800;
+  text-decoration:none;
+  border-bottom:1px solid rgba(23,56,43,.09);
+}
+
+.aca-global-header__mobile .aca-global-header__cta{
+  margin-top:14px;
+  border-bottom:0;
+  color:#fff;
+}
+
+.aca-global-header__menu:focus-visible,
+.aca-global-header a:focus-visible{
+  outline:3px solid rgba(242,212,61,.75);
+  outline-offset:3px;
+}
+
+@media(max-width:1180px){
+  .aca-global-header__inner{
+    grid-template-columns:200px minmax(0,1fr) auto;
+    gap:22px;
+  }
+  .aca-global-header__brand{
+    width:190px;
+    min-width:190px;
+  }
+  .aca-global-header__nav{
+    gap:20px;
+  }
+  .aca-global-header__nav a{
+    font-size:14px;
+  }
+}
+
+@media(max-width:980px){
+  .aca-global-header__inner{
+    min-height:76px;
+    grid-template-columns:1fr auto;
+    width:min(100% - 28px,1440px);
+  }
+  .aca-global-header__brand{
+    width:178px;
+    min-width:178px;
+    height:38px;
+  }
+  .aca-global-header__brand svg,
+  .aca-global-header__brand img{
+    max-height:38px;
+  }
+  .aca-global-header__nav,
+  .aca-global-header__inner>.aca-global-header__cta{
+    display:none;
+  }
+  .aca-global-header__menu{
+    display:grid;
+    place-items:center;
+  }
+  .aca-global-header__mobile.is-open{
+    display:block;
+  }
+}
+
+@media(max-width:480px){
+  .aca-global-header__brand{
+    width:160px;
+    min-width:160px;
+  }
+}
