@@ -1,0 +1,43 @@
+ const heroDesc = document.querySelector('.hero-desc');
+  if (heroDesc) heroDesc.textContent = 'Lộ trình cá nhân hóa từ kỹ thuật, ánh sáng, hậu kỳ đến portfolio. Học trực tiếp tại studio và thực hành trên bối cảnh thật.';
+
+  document.querySelectorAll('a.brand-official').forEach(a => {
+    a.innerHTML = '<span class="academy-lockup"><span class="academy-ring"></span><span class="academy-lockup-text"><strong>HANG ĐÔI</strong><small>ACADEMY</small></span></span>';
+  });
+
+  const gallery = document.querySelector('#hoc-vien .story-gallery');
+  if (gallery) {
+    gallery.outerHTML = `
+      <div class="story-journey" aria-label="Hành trình học của Công Tùng">
+        <article class="journey-step">
+          <span>01 / BẮT ĐẦU</span>
+          <strong>Thích máy ảnh và ánh sáng, nhưng còn ngại giao tiếp.</strong>
+          <p>Không cần có sẵn định hướng hoàn chỉnh. Bắt đầu bằng việc hiểu thiết bị và thử từng dạng bài tập.</p>
+        </article>
+        <article class="journey-step yellow">
+          <span>02 / DUY TRÌ</span>
+          <strong>Từ Đông Giang, đều đặn 3 buổi mỗi tuần.</strong>
+          <p>Nhịp học ổn định giúp kỹ năng được hình thành qua thực hành, feedback và sửa lỗi liên tục.</p>
+        </article>
+        <article class="journey-step">
+          <span>03 / ĐỊNH HƯỚNG</span>
+          <strong>Dần nhận ra hứng thú với chụp sản phẩm.</strong>
+          <p>Qua nhiều bài tập, Công Tùng thấy mình thích làm đẹp cho sản phẩm và tiếp tục thử thêm các hướng mới.</p>
+        </article>
+      </div>`;
+  }
+
+  const courses = document.querySelector('#khoa-hoc');
+  if (courses && !document.querySelector('#chuong-trinh-chi-tiet')) {
+    courses.insertAdjacentHTML('afterend', `
+<section class="section curriculum-section" id="chuong-trinh-chi-tiet">
+  <div class="container">
+    <div class="section-head">
+      <div><span class="eyebrow">Nội dung đào tạo</span><h2>Chi tiết từng lộ trình, không chỉ một danh sách tên khóa học.</h2></div>
+      <p>Nội dung được điều chỉnh theo năng lực đầu vào, nhưng vẫn bám một khung rõ ràng để học viên biết mình sẽ học gì và tạo ra đầu ra nào.</p>
+    </div>
+    <div class="curriculum-list">
+      <details class="curriculum-item" open>
+        <summary><span class="curriculum-index">01</span><span class="curriculum-title"><small>NỀN TẢNG</small><strong>Nhiếp ảnh cơ bản</strong></span><span class="curriculum-meta">12 buổi · 6.680.000đ</span><span class="curriculum-toggle">+</span></summary>
+        <div class="curriculum-content">
+          <article><b>Giai đoạn 1</b><h3>Làm chủ máy ảnh</h3><p>Thông số phơi sáng, lấy nét, tiêu cự, 
