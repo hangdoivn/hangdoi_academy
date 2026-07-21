@@ -23,7 +23,6 @@ jobs:
         run: |
           mkdir -p _site
           cp site/logo-academy.svg _site/logo-academy.svg
-          cp site/logo-inline.js _site/logo-inline.js
           cp site/ui-fixes.js _site/ui-fixes.js
           cat site/part-00.html site/part-01.html site/part-02.html site/part-03.html > _site/index.html
           cat site/academy-v2-css-01.part site/academy-v2-css-02.part site/academy-v2-css-03.part > _site/academy-v2.css
@@ -42,10 +41,50 @@ jobs:
           structured = {'@context':'https://schema.org','@graph':[{'@type':['EducationalOrganization','LocalBusiness'],'@id':'https://academy.hangdoiproduction.com/#organization','name':'Hang Đôi Academy','url':'https://academy.hangdoiproduction.com/','logo':'https://academy.hangdoiproduction.com/logo-academy.svg','telephone':'+84888445997','address':{'@type':'PostalAddress','streetAddress':'98 Điện Biên Phủ','addressLocality':'Đà Nẵng','addressCountry':'VN'},'parentOrganization':{'@type':'Organization','name':'Hang Đôi Production','url':'https://hangdoistudio.vn/'},'areaServed':{'@type':'City','name':'Đà Nẵng'}},{'@type':'WebSite','url':'https://academy.hangdoiproduction.com/','name':'Hang Đôi Academy','inLanguage':'vi-VN'},{'@type':'FAQPage','mainEntity':[{'@type':'Question','name':'Người chưa biết sử dụng máy ảnh có học được không?','acceptedAnswer':{'@type':'Answer','text':'Có. Khóa Nhiếp ảnh cơ bản bắt đầu từ thông số phơi sáng, lấy nét, tiêu cự và cân bằng trắng.'}},{'@type':'Question','name':'Có cần mua máy ảnh trước khi đăng ký không?','acceptedAnswer':{'@type':'Answer','text':'Không bắt buộc. Academy có môi trường studio và thiết bị phục vụ thực hành.'}}]}]}
           head = '<link rel="canonical" href="https://academy.hangdoiproduction.com/"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><meta property="og:type" content="website"><meta property="og:locale" content="vi_VN"><meta property="og:site_name" content="Hang Đôi Academy"><meta property="og:title" content="Khóa học Nhiếp ảnh tại Đà Nẵng | Hang Đôi Academy"><meta property="og:description" content="Học nhiếp ảnh thực hành tại studio, từ kỹ thuật và ánh sáng đến hậu kỳ và portfolio."><meta property="og:url" content="https://academy.hangdoiproduction.com/"><meta name="twitter:card" content="summary_large_image"><link rel="icon" type="image/svg+xml" href="/logo-academy.svg"><link rel="stylesheet" href="academy-v2.css"><link rel="stylesheet" href="phase1-seo.css"><link rel="stylesheet" href="phase2.css"><script type="application/ld+json">' + json.dumps(structured, ensure_ascii=False, separators=(',',':')) + '</script>'
           html = html.replace('</head>', head + '</head>')
-          html = html.replace('</body>', '<script src="academy-v2.js"></script><script src="phase1-seo.js"></script><script src="logo-inline.js"></script><script src="ui-fixes.js"></script></body>')
+          html = html.replace('</body>', '<script src="academy-v2.js"></script><script src="phase1-seo.js"></script><script src="ui-fixes.js"></script></body>')
           page.write_text(html, encoding='utf-8')
           PY
           python /tmp/build_phase2.py
+
+          # Inline the SVG at build time so the header/footer never depend on JavaScript.
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          out = Path('_site')
+          svg = (out / 'logo-academy.svg').read_text(encoding='utf-8')
+          critical = '''<style id="academy-logo-critical">
+          header.site-header,header.site-header.scrolled{background:linear-gradient(90deg,#0f422d,#155338 58%,#1c6143)!important}
+          .brand-official,.p2-brand{display:inline-flex!important;align-items:center!important;width:200px!important;min-width:200px!important;height:40px!important;padding:0!important;border:0!important;background:none!important;background-image:none!important}
+          .brand-official>*{opacity:1!important;visibility:visible!important}
+          .brand-official .academy-logo-svg,.p2-brand .academy-logo-svg{display:block!important;width:200px!important;max-height:40px!important;height:auto!important;opacity:1!important;visibility:visible!important;--logo-primary:#fff;--logo-accent:#f2d43d}
+          footer .brand-official,.p2-footer-logo{width:220px!important;min-width:220px!important;height:48px!important}
+          footer .academy-logo-svg,.p2-footer-logo .academy-logo-svg{display:block!important;width:220px!important;max-height:48px!important;height:auto!important;opacity:1!important;visibility:visible!important;--logo-primary:#fff;--logo-accent:#f2d43d}
+          @media(max-width:760px){.brand-official,.p2-brand{width:170px!important;min-width:170px!important;height:34px!important}.brand-official .academy-logo-svg,.p2-brand .academy-logo-svg{width:170px!important;max-height:34px!important}footer .brand-official,.p2-footer-logo{width:190px!important;min-width:190px!important;height:42px!important}footer .academy-logo-svg,.p2-footer-logo .academy-logo-svg{width:190px!important;max-height:42px!important}}
+          </style>'''
+
+          for page in out.rglob('index.html'):
+              html = page.read_text(encoding='utf-8')
+              html = html.replace('<script defer src="/logo-inline.js"></script>', '')
+              html = html.replace('<script src="logo-inline.js"></script>', '')
+              html = re.sub(
+                  r'(<a[^>]*class="[^"]*\bbrand-official\b[^"]*"[^>]*>).*?(</a>)',
+                  lambda m: m.group(1) + svg + m.group(2),
+                  html,
+                  flags=re.S,
+              )
+              html = re.sub(
+                  r'(<a[^>]*class="[^"]*\bp2-brand\b[^"]*"[^>]*>).*?(</a>)',
+                  lambda m: m.group(1) + svg + m.group(2),
+                  html,
+                  flags=re.S,
+              )
+              html = html.replace('<strong>Hang Đôi Academy</strong>', '<strong class="p2-footer-logo">' + svg + '</strong>')
+              if 'academy-logo-critical' not in html:
+                  html = html.replace('</head>', critical + '</head>')
+              page.write_text(html, encoding='utf-8')
+          PY
+
           printf '%s\n' 'academy.hangdoiproduction.com' > _site/CNAME
           printf '%s\n' 'User-agent: *' 'Allow: /' 'Sitemap: https://academy.hangdoiproduction.com/sitemap.xml' > _site/robots.txt
           cat > _site/llms.txt <<'TXT'
@@ -70,14 +109,14 @@ jobs:
           touch _site/.nojekyll
           test -s _site/index.html
           test -s _site/logo-academy.svg
-          test -s _site/logo-inline.js
           test -s _site/ui-fixes.js
           test -s _site/phase2.css
           test -s _site/khoa-hoc/index.html
           test -s _site/nhiep-anh-co-ban/index.html
-          grep -q 'logo-academy.svg' _site/index.html
-          grep -q 'logo-inline.js' _site/index.html
-          grep -q 'lead-box' _site/phase2.css
+          grep -q 'academy-logo-svg' _site/index.html
+          grep -q 'academy-logo-critical' _site/index.html
+          grep -q -- '--logo-primary:#fff' _site/index.html
+          grep -q 'academy-logo-svg' _site/khoa-hoc/index.html
           grep -q 'Course' _site/nhiep-anh-co-ban/index.html
 
       - name: Publish gh-pages branch
