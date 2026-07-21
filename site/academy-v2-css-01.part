@@ -1,0 +1,38 @@
+/* Academy brand refinement — green, yellow, white */
+:root{--ink:#153d2e;--ink-2:#24533f;--paper:#ffffff;--paper-2:#f6f7f1;--white:#ffffff;--green:#239653;--green-2:#8bc34a;--yellow:#f2d43d;--yellow-2:#ffe783;--muted:#66756d;--line:rgba(21,61,46,.14);--danger:#e86f55}
+body{background:var(--paper);color:var(--ink)}
+.site-header.scrolled{background:rgba(255,255,255,.92);border-color:rgba(21,61,46,.12)}
+.site-header.scrolled .nav-links a{color:var(--ink)}
+.site-header.scrolled .menu-btn{border-color:rgba(21,61,46,.18);color:var(--ink)}
+.hero{background:linear-gradient(135deg,#f7fbf7 0%,#ffffff 57%,#fff7ce 100%);color:var(--ink)}
+.hero:before{background:radial-gradient(circle,rgba(242,212,61,.36),transparent 66%);top:-260px;right:-170px}
+.hero-kicker{color:var(--ink-2)}
+.hero-kicker span{background:var(--yellow);box-shadow:0 0 0 7px rgba(242,212,61,.20)}
+.hero h1{color:var(--ink)}
+.hero h1 em{color:var(--green);position:relative;z-index:1}
+.hero h1 em:after{content:"";position:absolute;left:1%;right:1%;bottom:.05em;height:.15em;background:var(--yellow);z-index:-1;border-radius:999px;transform:rotate(-1deg)}
+.hero-desc{color:var(--muted)}
+.btn-primary{background:var(--green);color:white}
+.btn-primary:hover{box-shadow:0 12px 30px rgba(35,150,83,.24)}
+.btn-line{border-color:rgba(21,61,46,.22);color:var(--ink);background:white}
+.btn-line:hover{background:#f4f9f5}
+.hero-note{color:var(--ink-2)}
+.hero-note i{background:var(--yellow)}
+.hero-photo{box-shadow:0 40px 90px rgba(21,61,46,.20)}
+.floating-card.top{background:var(--yellow);color:var(--ink)}
+.floating-card.bottom{background:white;color:var(--ink);border:1px solid rgba(21,61,46,.12)}
+.proofbar{background:white;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.proof-grid{gap:0}
+.proof-item{background:white}
+.proof-item:nth-child(2),.proof-item:nth-child(4){background:#fff8d6}
+.proof-item strong{color:var(--ink)}
+.eyebrow{color:var(--green)}
+.eyebrow:before{background:var(--yellow)}
+.filter-tab.active,.work-tab.active{background:var(--green);color:white}
+.course-card.premium{background:var(--ink)}
+.course-card.premium .icon-btn{background:var(--yellow);color:var(--ink)}
+.work-section{background:var(--paper-2)}
+.work-note{background:white;border:1px solid var(--line);color:var(--muted)}
+.stories{background:var(--ink)}
+.story-copy{background:#1c4c39}
+.adv-card:nth-child(1){backgro
