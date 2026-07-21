@@ -23,7 +23,7 @@ jobs:
         run: |
           mkdir -p _site
           cat site/part-00.html site/part-01.html site/part-02.html site/part-03.html > _site/index.html
-          printf '%s\n' 'academy.hangdoistudio.vn' > _site/CNAME
+          printf '%s\n' 'academy.hangdoiproduction.com' > _site/CNAME
           touch _site/.nojekyll
           test -s _site/index.html
           grep -q '</html>' _site/index.html
