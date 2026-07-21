@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  workflow_run:
+    workflows: ['Generate scheduled Academy blog article']
+    types: [completed]
 
 permissions:
   contents: write
@@ -14,117 +17,65 @@ concurrency:
 
 jobs:
   publish:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout latest main
         uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Expand blog runtime
+        run: |
+          cat bootstrap/blog-system.part* | base64 --decode > /tmp/blog-system.tar.gz
+          rm -rf /tmp/blog-runtime
+          mkdir -p /tmp/blog-runtime
+          tar -xzf /tmp/blog-system.tar.gz -C /tmp/blog-runtime
+          mkdir -p scripts content/blog
+          cp /tmp/blog-runtime/scripts/build_blog.py scripts/build_blog.py
+          cp /tmp/blog-runtime/scripts/blog_automation.py scripts/blog_automation.py
+          cp /tmp/blog-runtime/site/blog.css site/blog.css
+          cp /tmp/blog-runtime/site/blog.js site/blog.js
+          if [ ! -f content/blog/topics.json ]; then
+            cp -R /tmp/blog-runtime/content/blog/. content/blog/
+          fi
 
       - name: Build static website
         run: |
           mkdir -p _site
-
-          fetch_drive_svg() {
-            local file_id="$1"
-            local output="$2"
-            local url
-            for url in \
-              "https://drive.usercontent.google.com/download?id=${file_id}&export=download&confirm=t" \
-              "https://drive.google.com/uc?export=download&id=${file_id}"
-            do
-              if curl -LfsS --retry 3 --retry-delay 2 "$url" -o "$output" && grep -qi '<svg' "$output"; then
-                return 0
-              fi
-            done
-            echo "Unable to download valid SVG for ${file_id}" >&2
-            return 1
-          }
-
-          # Official assets supplied by the user on Google Drive.
-          fetch_drive_svg '1RWTLLDdFUKLDsCic7PnVTp45H8Lv5Nc3' _site/logo-academy.svg
-          fetch_drive_svg '1RbdnNxV5kOPNP9UUfy1lzFSUYTt8rWVL' _site/favicon.svg
-
+          cp site/logo-academy.svg _site/logo-academy.svg
+          cp site/logo-inline.js _site/logo-inline.js
           cp site/ui-fixes.js _site/ui-fixes.js
+          cp site/blog.css _site/blog.css
+          cp site/blog.js _site/blog.js
           cat site/part-00.html site/part-01.html site/part-02.html site/part-03.html > _site/index.html
-          cat site/academy-v2-css-01.part site/academy-v2-css-02.part site/academy-v2-css-03.part > _site/academy-v2.css
-          cat site/academy-v2-js-01.part site/academy-v2-js-02.part site/academy-v2-js-03.part site/academy-v2-js-04.part > _site/academy-v2.js
-          cp site/phase1-seo.css _site/phase1-seo.css
-          cp site/phase1-seo.js _site/phase1-seo.js
-          cat site/phase2.css site/logo-restore.css > _site/phase2.css
-          cat site/build-phase2-01.part site/build-phase2-02.part site/build-phase2-03.part > /tmp/build_phase2.py
-
+          cat site/academy-v2-css-01.part site/academy-v2-css-02.part�ͥє���������ȵ��̴�̹������6�FR�6FVג�c"�770�6B6�FR�6FVג�c"֧2��'H�]K�X�Y[^K]��Z��L��\��]K�X�Y[^K]��Z��L˜\��]K�X�Y[^K]��Z��L�\����]K�X�Y[^K]������]K�\�LK\�[˘�����]K�\�LK\�[˘����]K�\�LK\�[˚����]K�\�LK\�[˚��]�]K�\�L������]K����\�\�ܙK�������]K�\�L�����]�]K؝Z[\\�L�LK�\��]K؝Z[\\�L�L��\� site/build-phase2-03.part > /tmp/build_phase2.py
           python - <<'PY'
           from pathlib import Path
           import json
-          import re
-
           page = Path('_site/index.html')
           html = page.read_text(encoding='utf-8')
-          html = html.replace('<title>Hang Đôi Academy — Học nhiếp ảnh để làm được nghề thật</title>', '<title>Khóa học Nhiếp ảnh tại Đà Nẵng | Hang Đôi Academy</title>')
-          html = html.replace('content="Hang Đôi Academy — Học nhiếp ảnh để làm được nghề thật. Lộ trình cá nhân hóa, thực hành tại studio và hoàn thiện portfolio."', 'content="Khóa học nhiếp ảnh tại Đà Nẵng từ cơ bản đến chuyên sâu. Thực hành tại studio, học kỹ thuật, ánh sáng, hậu kỳ và hoàn thiện portfolio tại Hang Đôi Academy."')
-          html = html.replace('<meta name="theme-color" content="#101714" />', '<meta name="theme-color" content="#fffef9" />')
-          html = re.sub(r'<link\s+[^>]*rel=["\'](?:shortcut\s+icon|icon)["\'][^>]*>', '', html, flags=re.I)
-
-          structured = {'@context':'https://schema.org','@graph':[{'@type':['EducationalOrganization','LocalBusiness'],'@id':'https://academy.hangdoiproduction.com/#organization','name':'Hang Đôi Academy','url':'https://academy.hangdoiproduction.com/','logo':'https://academy.hangdoiproduction.com/logo-academy.svg','telephone':'+84888445997','address':{'@type':'PostalAddress','streetAddress':'98 Điện Biên Phủ','addressLocality':'Đà Nẵng','addressCountry':'VN'},'parentOrganization':{'@type':'Organization','name':'Hang Đôi Production','url':'https://hangdoistudio.vn/'},'areaServed':{'@type':'City','name':'Đà Nẵng'}},{'@type':'WebSite','url':'https://academy.hangdoiproduction.com/','name':'Hang Đôi Academy','inLanguage':'vi-VN'},{'@type':'FAQPage','mainEntity':[{'@type':'Question','name':'Người chưa biết sử dụng máy ảnh có học được không?','acceptedAnswer':{'@type':'Answer','text':'Có. Khóa Nhiếp ảnh cơ bản bắt đầu từ thông số phơi sáng, lấy nét, tiêu cự và cân bằng trắng.'}},{'@type':'Question','name':'Có cần mua máy ảnh trước khi đăng ký không?','acceptedAnswer':{'@type':'Answer','text':'Không bắt buộc. Academy có môi trường studio và thiết bị phục vụ thực hành.'}}]}]}
-          head = '<link rel="canonical" href="https://academy.hangdoiproduction.com/"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><meta property="og:type" content="website"><meta property="og:locale" content="vi_VN"><meta property="og:site_name" content="Hang Đôi Academy"><meta property="og:title" content="Khóa học Nhiếp ảnh tại Đà Nẵng | Hang Đôi Academy"><meta property="og:description" content="Học nhiếp ảnh thực hành tại studio, từ kỹ thuật và ánh sáng đến hậu kỳ và portfolio."><meta property="og:url" content="https://academy.hangdoiproduction.com/"><meta name="twitter:card" content="summary_large_image"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="stylesheet" href="academy-v2.css"><link rel="stylesheet" href="phase1-seo.css"><link rel="stylesheet" href="phase2.css"><script type="application/ld+json">' + json.dumps(structured, ensure_ascii=False, separators=(',',':')) + '</script>'
+          html = html.replace('<title>Hang Đôi Academy — Cỡc nhiếp ảnh để làm được nghề thật</title>', '<title>Khóa học Nhiếp ảnh tại Đà Nẵng | Hang Đôi Academy</title>')
+          html = html.replace('content="Hang Đôi Academy — Cỡc nhiếp ảnh để làm được nghề thật. Lộ trình cá nhân hóa, thực hành tại studio và hoàn thiện portfolio."', 'content="Khóa học nhiếp ảnh tại Đà Nẵng từ cơ bản đến chuyên sâu. Thực hành tại studio, học kỹ thuật, anh sáng, hậu kỳ và hoàn thiện portfolio tại Hang Đôi Academy."')
+          structured = {'@context':'https://schema.org','@graph':[{'@type':['EducationalOrganization','LocalBusiness'],'@id':'https://academy.hangdoiproduction.com/#organization','name':'Hang Đôi Academy','url':'https://academy.hangdoiproduction.com/','logo':'https://academy.hangdoiproduction.com/logo-academy.svg','telephone':'+84888445997','address':{'@type':'PostalAddress','streetAddress':'98 Điện Biên Phủ','addressLocality':'Đà Nẵng','addressCountry':'VN'},'parentOrganization':{'@type':'Organization','name':'Hang Đôi Production','url':'https://hangdoistudio.vn/'},'areaServed':{'@type':'City','name':'Đà Nẵng'}},{'@type':'WebSite','@id':'https://academy.hangdoiproduction.com/#website','url':'https://academy.hangdoiproduction.com/','name':'Hang Đôi Academy','inLanguage':'vi-VN','publisher':{'@id':'https://academy.hangdoiproduction.com/#organization'}},{'@type':'FAQPage','mainEntity':[{'@type':'Question','name':'Người chưa biết sử dụng máy ảnh có học được không?','acceptedAnswer':{'@type':'Answer','text':'Có. Khóa Nhiếp ảnh cơ bản bắt đầu từ thông số phơi sáng, lấy nét, tiêu cự và cân bằng trắng.'}},{'@type':'Question','name':'Có cần mua máy ảnh trước khi đăng ký không?','acceptedAnswer':{'@type':'Answer','text':'Không bắt buộc. Academy có môi trường studio và thiết bị phục vụ thực hành.'}}]}]}
+          head = '<link rel="canonical" href="https://academy.hangdoiproduction.com/"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><meta property="og:type" content="website"><meta property="og:locale" content="vi_VN"><meta property="og:site_name" content="Hang Đôi Academy"><meta property="og:title" content="Khóa học Nhiếp ảnh tại Đà Nẵng | Hang Đôi Academy"><meta property="og:description" content="Học nhiếp ảnh thực hành tại studio, từ kỹ thuật và ánh sáng đến hậu kỳ và portfolio."><meta property="og:url" content="https://academy.hangdoiproduction.com/"><meta name="twitter:card" content="summary_large_image"><link rel="icon" type="image/svg+xml" href="/logo-academy.svg"><link rel="stylesheet" href="academy-v2.css"><link rel="stylesheet" href="phase1-seo.css"><link rel="stylesheet" href="phase2.css"><script type="application/ld+json">' + json.dumps(structured, ensure_ascii=False, separators=(',',':')) + '</script>'
           html = html.replace('</head>', head + '</head>')
-          html = html.replace('</body>', '<script src="academy-v2.js"></script><script src="phase1-seo.js"></script><script src="ui-fixes.js"></script></body>')
+          html = html.replace('</body>', '<script src="academy-v2.js"></script><script src="phase1-seo.js"></script><script src="logo-inline.js"></script><script src="ui-fixes.js"></script></body>')
           page.write_text(html, encoding='utf-8')
           PY
-
           python /tmp/build_phase2.py
-
-          # Inline the official logo at build time so it is always visible.
-          python - <<'PY'
-          from pathlib import Path
-          import re
-
-          out = Path('_site')
-          svg = (out / 'logo-academy.svg').read_text(encoding='utf-8')
-          svg = re.sub(r'<\?xml[^>]*>\s*', '', svg, count=1).strip()
-          svg = re.sub(r'<svg\b', '<svg class="academy-logo-svg" aria-hidden="true" focusable="false"', svg, count=1)
-
-          critical = '''<style id="academy-logo-critical">
-          header.site-header,header.site-header.scrolled{background:linear-gradient(90deg,#fffef9,#f5f7f1)!important;border-color:rgba(23,56,43,.12)!important}
-          .site-header .nav-links a,.site-header.scrolled .nav-links a{color:#17382b!important}
-          .brand-official,.p2-brand{display:inline-flex!important;align-items:center!important;width:200px!important;min-width:200px!important;height:40px!important;padding:0!important;border:0!important;background:none!important;background-image:none!important}
-          .brand-official>*{opacity:1!important;visibility:visible!important}
-          .brand-official .academy-logo-svg,.p2-brand .academy-logo-svg{display:block!important;width:200px!important;max-height:40px!important;height:auto!important;opacity:1!important;visibility:visible!important}
-          footer .brand-official,.p2-footer-logo{width:220px!important;min-width:220px!important;height:48px!important}
-          footer .academy-logo-svg,.p2-footer-logo .academy-logo-svg{display:block!important;width:220px!important;max-height:48px!important;height:auto!important;opacity:1!important;visibility:visible!important}
-          footer .academy-logo-svg .cls-1,.p2-footer .academy-logo-svg .cls-1{fill:#fff!important}
-          footer .academy-logo-svg .cls-2,.p2-footer .academy-logo-svg .cls-2{fill:#fcb415!important}
-          @media(max-width:760px){.brand-official,.p2-brand{width:170px!important;min-width:170px!important;height:34px!important}.brand-official .academy-logo-svg,.p2-brand .academy-logo-svg{width:170px!important;max-height:34px!important}footer .brand-official,.p2-footer-logo{width:190px!important;min-width:190px!important;height:42px!important}footer .academy-logo-svg,.p2-footer-logo .academy-logo-svg{width:190px!important;max-height:42px!important}}
-          </style>'''
-
-          for page in out.rglob('index.html'):
-              html = page.read_text(encoding='utf-8')
-              html = html.replace('<script defer src="/logo-inline.js"></script>', '')
-              html = html.replace('<script src="logo-inline.js"></script>', '')
-              html = re.sub(r'<link\s+[^>]*rel=["\'](?:shortcut\s+icon|icon)["\'][^>]*>', '', html, flags=re.I)
-              html = re.sub(
-                  r'(<a[^>]*class="[^"]*\bbrand-official\b[^"]*"[^>]*>).*?(</a>)',
-                  lambda m: m.group(1) + svg + m.group(2),
-                  html,
-                  flags=re.S,
-              )
-              html = re.sub(
-                  r'(<a[^>]*class="[^"]*\bp2-brand\b[^"]*"[^>]*>).*?(</a>)',
-                  lambda m: m.group(1) + svg + m.group(2),
-                  html,
-                  flags=re.S,
-              )
-              html = html.replace('<strong>Hang Đôi Academy</strong>', '<strong class="p2-footer-logo">' + svg + '</strong>')
-              additions = '<link rel="icon" type="image/svg+xml" href="/favicon.svg">' + critical
-              if 'academy-logo-critical' not in html:
-                  html = html.replace('</head>', additions + '</head>')
-              else:
-                  html = html.replace('</head>', '<link rel="icon" type="image/svg+xml" href="/favicon.svg"></head>')
-              page.write_text(html, encoding='utf-8')
-          PY
-
+          python scripts/build_blog.py --out _site --content content/blog
           printf '%s\n' 'academy.hangdoiproduction.com' > _site/CNAME
-          printf '%s\n' 'User-agent: *' 'Allow: /' 'Sitemap: https://academy.hangdoiproduction.com/sitemap.xml' > _site/robots.txt
-          cat > _site/llms.txt <<'TXT'
+          cat > _site/robots.txt <<'TXT'
+          User-agent: *
+          Allow: /
+
+          User-agent: OAI-SearchBot
+          Allow: /
+
+          Sitemap: https://academy.hangdoiproduction.com/sitemap.xml
+          TXT
+          cat > _site/llms.txt.tmp <<'TXT'
           # Hang Đôi Academy
           Hang Đôi Academy là đơn vị đào tạo nhiếp ảnh thực hành tại 98 Điện Biên Phủ, Đà Nẵng.
           Website chính: https://academy.hangdoiproduction.com/
@@ -143,21 +94,28 @@ jobs:
           - Hành trình học viên: https://academy.hangdoiproduction.com/hoc-vien/
           - Kiến thức nhiếp ảnh: https://academy.hangdoiproduction.com/blog/
           TXT
+          if [ -f _site/llms.txt ]; then
+            sed -n '/^## Bài viết đã xuất bản/,$p' _site/llms.txt >> _site/llms.txt.tmp || true
+          fi
+          mv _site/lllms.txt.tmp _site/llms.txt
           touch _site/.nojekyll
           test -s _site/index.html
           test -s _site/logo-academy.svg
-          test -s _site/favicon.svg
+          test -s _site/logo-inline.js
           test -s _site/ui-fixes.js
           test -s _site/phase2.css
+          test -s _site/blog.css
+          test -s _site/blog.js
           test -s _site/khoa-hoc/index.html
           test -s _site/nhiep-anh-co-ban/index.html
-          grep -qi '<svg' _site/logo-academy.svg
-          grep -qi '<svg' _site/favicon.svg
-          grep -q 'academy-logo-svg' _site/index.html
-          grep -q 'academy-logo-critical' _site/index.html
-          grep -q '/favicon.svg' _site/index.html
-          grep -q 'academy-logo-svg' _site/khoa-hoc/index.html
+          test -s _site/blog/index.html
+          test -s _site/blog/feed.xml
+          grep -q 'logo-academy.svg' _site/index.html
+          grep -q 'logo-inline.js' _site/index.html
+          grep -q 'lead-box' _site/phase2.css
           grep -q 'Course' _site/nhiep-anh-co-ban/index.html
+          grep -q 'CollectionPage' _site/blog/index.html
+          grep -q 'BlogPosting' _site/blog/chon-may-anh-cho-nguoi-moi/index.html
 
       - name: Publish gh-pages branch
         uses: peaceiris/actions-gh-pages@v4

@@ -1,0 +1,113 @@
+name: Generate scheduled Academy blog article
+
+on:
+  schedule:
+    # 09:00 Asia/Ho_Chi_Minh every Tuesday and Friday.
+    - cron: '0 2 * * 2,5'
+  workflow_dispatch:
+    inputs:
+      content_id:
+        description: 'Optional topic ID, for example BA-01'
+        required: false
+        type: string
+      dry_run:
+        description: 'Generate and score without committing'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+
+concurrency:
+  group: academy-blog-automation
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Expand blog runtime
+        run: |
+          cat bootstrap/blog-system.part* | base64 --decode > /tmp/blog-system.tar.gz
+          rm -rf /tmp/blog-runtime
+          mkdir -p /tmp/blog-runtime
+          tar -xzf /tmp/blog-system.tar.gz -C /tmp/blog-runtime
+          mkdir -p scripts content/blog site
+          cp /tmp/blog-runtime/scripts/build_blog.py scripts/build_blog.py
+          cp /tmp/blog-runtime/scripts/blog_automation.py scripts/blog_automation.py
+          cp /tmp/blog-runtime/site/blog.css site/blog.css
+          cp /tmp/blog-runtime/site/blog.js site/blog.js
+          if [ ! -f content/blog/topics.json ]; then
+            cp -R /tmp/blog-runtime/content/blog/. content/blog/
+          fi
+
+      - name: Install OpenAI SDK
+        run: python -m pip install 'openai>=1.0,<3'
+
+      - name: Check automation secret
+        id: secret_check
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+            echo "### Blog automation paused" >> "$GITHUB_STEP_SUMMARY"
+            echo "Repository secret OPENAI_API_KEY is not configured. No content was generated." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Generate due article
+        if: steps.secret_check.outputs.configured == 'true'
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-5-mini' }}
+          CONTENT_ID: ${{ inputs.content_id }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          args=()
+          if [ -n "$CONTENT_ID" ]; then args+=(--content-id "$CONTENT_ID"); fi
+          if [ "$DRY_RUN" = "true" ]; then args+=(--dry-run); fi
+          python scripts/blog_automation.py "${args[@]}" | tee /tmp/blog-generation.log
+          {
+            echo "### Blog generation result"
+            echo '```'
+            cat /tmp/blog-generation.log
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Validate content and static rendering
+        if: steps.secret_check.outputs.configured == 'true' && inputs.dry_run != true
+        run: |
+          rm -rf /tmp/blog-validation-site
+          mkdir -p /tmp/blog-validation-site
+          python scripts/build_blog.py --out /tmp/blog-validation-site --content content/blog
+          test -s /tmp/blog-validation-site/blog/index.html
+          test -s /tmp/blog-validation-site/blog/feed.xml
+          grep -q 'CollectionPage' /tmp/blog-validation-site/blog/index.html
+
+      - name: Commit generated content
+        if: steps.secret_check.outputs.configured == 'true' && inputs.dry_run != true
+        run: |
+          if git diff --quiet -- content/blog; then
+            echo "No content changes to commit." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          git config user.name "hangdoi-academy-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add content/blog
+          git commit -m "Generate scheduled Academy blog article"
+          git pull --rebase origin main
+          git push origin HEAD:main
