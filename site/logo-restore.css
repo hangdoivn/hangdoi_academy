@@ -1,47 +1,53 @@
-/* Inline SVG logo, header palette and contrast pass */
+/* Official Drive logo, header palette and contrast pass */
 :root{
-  --academy-header-bg:#0f422d;
-  --academy-header-bg-2:#155338;
-  --academy-header-text:#f7fbf8;
-  --academy-yellow:#f2d43d;
+  --academy-header-bg:#fffef9;
+  --academy-header-bg-2:#f5f7f1;
+  --academy-header-text:#17382b;
+  --academy-yellow:#fcb415;
   --academy-ink:#17382b;
   --academy-muted:#43574d;
   --academy-muted-2:#5b6e65;
 }
 
-/* Header */
+/* Header uses a light background so the official dark logo remains unchanged. */
 header.site-header,
 header.site-header.scrolled{
-  background:linear-gradient(90deg,var(--academy-header-bg),var(--academy-header-bg-2) 58%,#1c6143)!important;
-  border-color:rgba(255,255,255,.1)!important;
-  box-shadow:0 10px 34px rgba(8,24,18,.16)!important;
+  background:linear-gradient(90deg,var(--academy-header-bg),var(--academy-header-bg-2))!important;
+  border-color:rgba(23,56,43,.12)!important;
+  box-shadow:0 10px 34px rgba(8,24,18,.08)!important;
 }
 .site-header .nav-links a,.site-header.scrolled .nav-links a,.site-header .menu-btn,.site-header.scrolled .menu-btn{color:var(--academy-header-text)!important}
-.site-header .nav-links a:hover,.site-header .nav-links a:focus-visible,.site-header.scrolled .nav-links a:hover,.site-header.scrolled .nav-links a:focus-visible{color:var(--academy-yellow)!important}
-.site-header .menu-btn,.site-header.scrolled .menu-btn{border-color:rgba(255,255,255,.22)!important;background:rgba(255,255,255,.06)!important}
-.site-header .btn-dark,.site-header.scrolled .btn-dark,.site-header .btn-primary,.site-header.scrolled .btn-primary{background:var(--academy-yellow)!important;color:var(--academy-ink)!important;border-color:transparent!important;box-shadow:none!important}
-.site-header .btn-dark:hover,.site-header .btn-primary:hover{background:#ffe783!important}
+.site-header .nav-links a:hover,.site-header .nav-links a:focus-visible,.site-header.scrolled .nav-links a:hover,.site-header.scrolled .nav-links a:focus-visible{color:#176b43!important}
+.site-header .menu-btn,.site-header.scrolled .menu-btn{border-color:rgba(23,56,43,.2)!important;background:rgba(23,56,43,.04)!important}
+.site-header .btn-dark,.site-header.scrolled .btn-dark,.site-header .btn-primary,.site-header.scrolled .btn-primary{background:#0f422d!important;color:#fff!important;border-color:transparent!important;box-shadow:none!important}
+.site-header .btn-dark:hover,.site-header .btn-primary:hover{background:#176b43!important}
 
-/* Inline SVG logo — always visible, no JS dependency */
+/* Official inline SVG logo. */
 .brand-official,.p2-brand,.academy-logo-host{display:inline-flex!important;align-items:center!important;padding:0!important;border:0!important;border-radius:0!important;background:none!important;background-image:none!important;box-shadow:none!important}
 .brand-official{width:200px!important;min-width:200px!important;height:40px!important}
 .brand-official>img{display:none!important}
 .brand-official>*{opacity:1!important;visibility:visible!important}
 .brand-official>.academy-logo-svg,.p2-brand>.academy-logo-svg,.p2-footer-grid .academy-logo-svg{display:block!important;opacity:1!important;visibility:visible!important;filter:none!important}
-.brand-official .academy-logo-svg,.p2-brand .academy-logo-svg{width:200px!important;height:auto!important;max-height:40px!important;--logo-primary:#fff;--logo-accent:var(--academy-yellow)}
+.brand-official .academy-logo-svg,.p2-brand .academy-logo-svg{width:200px!important;height:auto!important;max-height:40px!important}
 footer .brand-official{width:220px!important;min-width:220px!important;height:48px!important}
-footer .brand-official .academy-logo-svg,.p2-footer-grid .academy-logo-svg{width:220px!important;max-height:48px!important;--logo-primary:#fff;--logo-accent:var(--academy-yellow)}
+footer .brand-official .academy-logo-svg,.p2-footer-grid .academy-logo-svg{width:220px!important;max-height:48px!important}
 .p2-brand{width:200px!important;min-width:200px!important;height:40px!important;font-size:0!important;line-height:0!important}
 .p2-footer-logo{display:block!important;width:220px!important;height:48px!important;font-size:0!important;line-height:0!important}
 .academy-logo-fallback{min-width:200px;min-height:40px;background:url('/logo-academy.svg') left center/contain no-repeat!important}
 
-/* Phase 2 navigation */
-.p2-nav{background:linear-gradient(90deg,var(--academy-header-bg),var(--academy-header-bg-2) 58%,#1c6143)!important;border-bottom-color:rgba(255,255,255,.1)!important}
-.p2-nav-links a{color:var(--academy-header-text)!important}
-.p2-nav-links a:hover,.p2-nav-links a:focus-visible{color:var(--academy-yellow)!important}
-.p2-cta{background:var(--academy-yellow)!important;color:var(--academy-ink)!important}
+/* Recolor the same official SVG only when it sits on the dark footer. */
+footer .academy-logo-svg .cls-1,
+.p2-footer .academy-logo-svg .cls-1{fill:#fff!important}
+footer .academy-logo-svg .cls-2,
+.p2-footer .academy-logo-svg .cls-2{fill:var(--academy-yellow)!important}
 
-/* Consultation block: white text, yellow accents */
+/* Phase 2 navigation */
+.p2-nav{background:linear-gradient(90deg,var(--academy-header-bg),var(--academy-header-bg-2))!important;border-bottom-color:rgba(23,56,43,.12)!important}
+.p2-nav-links a{color:var(--academy-header-text)!important}
+.p2-nav-links a:hover,.p2-nav-links a:focus-visible{color:#176b43!important}
+.p2-cta{background:#0f422d!important;color:#fff!important}
+
+/* Consultation block */
 .lead-box{background:linear-gradient(135deg,#176b43 0%,#239653 100%)!important;color:#fff!important}
 .lead-box .eyebrow{color:#fff4a8!important}
 .lead-box .eyebrow:before{background:var(--academy-yellow)!important}
