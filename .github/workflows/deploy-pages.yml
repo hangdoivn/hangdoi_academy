@@ -25,20 +25,100 @@ jobs:
           cat site/part-00.html site/part-01.html site/part-02.html site/part-03.html > _site/index.html
           cat site/academy-v2-css-01.part site/academy-v2-css-02.part site/academy-v2-css-03.part > _site/academy-v2.css
           cat site/academy-v2-js-01.part site/academy-v2-js-02.part site/academy-v2-js-03.part site/academy-v2-js-04.part > _site/academy-v2.js
+          cp site/phase1-seo.css _site/phase1-seo.css
+          cp site/phase1-seo.js _site/phase1-seo.js
           python - <<'PY'
           from pathlib import Path
+          import json
           page = Path('_site/index.html')
           html = page.read_text(encoding='utf-8')
-          html = html.replace('</head>', '<link rel="stylesheet" href="academy-v2.css"></head>')
-          html = html.replace('</body>', '<script src="academy-v2.js"></script></body>')
+          html = html.replace('<title>Hang Đôi Academy — Học nhiếp ảnh để làm được nghề thật</title>', '<title>Khóa học Nhiếp ảnh tại Đà Nẵng | Hang Đôi Academy</title>')
+          html = html.replace('content="Hang Đôi Academy — Học nhiếp ảnh để làm được nghề thật. Lộ trình cá nhân hóa, thực hành tại studio và hoàn thiện portfolio."', 'content="Khóa học nhiếp ảnh tại Đà Nẵng từ cơ bản đến chuyên sâu. Thực hành tại studio, học kỹ thuật, ánh sáng, hậu kỳ và hoàn thiện portfolio tại Hang Đôi Academy."')
+          structured = {
+            '@context':'https://schema.org',
+            '@graph':[
+              {
+                '@type':['EducationalOrganization','LocalBusiness'],
+                '@id':'https://academy.hangdoiproduction.com/#organization',
+                'name':'Hang Đôi Academy',
+                'url':'https://academy.hangdoiproduction.com/',
+                'telephone':'+84888445997',
+                'address':{'@type':'PostalAddress','streetAddress':'98 Điện Biên Phủ','addressLocality':'Đà Nẵng','addressCountry':'VN'},
+                'parentOrganization':{'@type':'Organization','name':'Hang Đôi Production','url':'https://hangdoistudio.vn/'},
+                'areaServed':{'@type':'City','name':'Đà Nẵng'},
+                'knowsAbout':['Nhiếp ảnh','Ánh sáng studio','Chỉnh sửa hình ảnh','Portfolio nhiếp ảnh','Commercial photography']
+              },
+              {
+                '@type':'WebSite','@id':'https://academy.hangdoiproduction.com/#website','url':'https://academy.hangdoiproduction.com/','name':'Hang Đôi Academy','inLanguage':'vi-VN','publisher':{'@id':'https://academy.hangdoiproduction.com/#organization'}
+              },
+              {
+                '@type':'WebPage','@id':'https://academy.hangdoiproduction.com/#webpage','url':'https://academy.hangdoiproduction.com/','name':'Khóa học Nhiếp ảnh tại Đà Nẵng | Hang Đôi Academy','description':'Khóa học nhiếp ảnh tại Đà Nẵng từ cơ bản đến chuyên sâu, có thực hành studio, ánh sáng, hậu kỳ và portfolio.','isPartOf':{'@id':'https://academy.hangdoiproduction.com/#website'},'about':{'@id':'https://academy.hangdoiproduction.com/#organization'},'inLanguage':'vi-VN'
+              },
+              {
+                '@type':'ItemList','name':'Các khóa học nhiếp ảnh tại Hang Đôi Academy','itemListElement':[
+                  {'@type':'ListItem','position':1,'item':{'@type':'Course','name':'Nhiếp ảnh cơ bản','description':'Khóa học 12 buổi dành cho người mới, tập trung làm chủ máy ảnh, tư duy hình ảnh và bộ ảnh đầu tiên.','provider':{'@id':'https://academy.hangdoiproduction.com/#organization'}}},
+                  {'@type':'ListItem','position':2,'item':{'@type':'Course','name':'Kỹ thuật nhiếp ảnh','description':'Lộ trình chuyên sâu về tư duy hình ảnh, góc máy, pose, giao tiếp và quy trình sản xuất.','provider':{'@id':'https://academy.hangdoiproduction.com/#organization'}}},
+                  {'@type':'ListItem','position':3,'item':{'@type':'Course','name':'Kỹ thuật ánh sáng','description':'Lộ trình chuyên sâu về nguồn sáng, modifier, kiểm soát tương phản và setup studio.','provider':{'@id':'https://academy.hangdoiproduction.com/#organization'}}},
+                  {'@type':'ListItem','position':4,'item':{'@type':'Course','name':'Chỉnh sửa hình ảnh','description':'Lộ trình hậu kỳ từ đánh giá ảnh, retouch đến color grading và quản lý workflow.','provider':{'@id':'https://academy.hangdoiproduction.com/#organization'}}},
+                  {'@type':'ListItem','position':5,'item':{'@type':'Course','name':'Nhiếp ảnh toàn tập','description':'Lộ trình làm nghề toàn diện từ kỹ thuật, ánh sáng và hậu kỳ đến portfolio.','provider':{'@id':'https://academy.hangdoiproduction.com/#organization'}}}
+                ]
+              },
+              {
+                '@type':'FAQPage','mainEntity':[
+                  {'@type':'Question','name':'Người chưa biết sử dụng máy ảnh có học được không?','acceptedAnswer':{'@type':'Answer','text':'Có. Khóa Nhiếp ảnh cơ bản bắt đầu từ thông số phơi sáng, lấy nét, tiêu cự, cân bằng trắng và cách vận hành máy trong từng bối cảnh.'}},
+                  {'@type':'Question','name':'Có cần mua máy ảnh trước khi đăng ký không?','acceptedAnswer':{'@type':'Answer','text':'Không bắt buộc phải sở hữu đầy đủ thiết bị ngay từ đầu. Academy có môi trường studio và thiết bị phục vụ thực hành.'}},
+                  {'@type':'Question','name':'Khóa học nhiếp ảnh cơ bản kéo dài bao lâu?','acceptedAnswer':{'@type':'Answer','text':'Lộ trình cơ bản hiện gồm 12 buổi, tập trung làm chủ máy ảnh, tư duy hình ảnh, thực hành và hoàn thiện bộ ảnh đầu tiên.'}},
+                  {'@type':'Question','name':'Hang Đôi Academy ở đâu?','acceptedAnswer':{'@type':'Answer','text':'Hang Đôi Academy hoạt động tại 98 Điện Biên Phủ, Đà Nẵng.'}}
+                ]
+              }
+            ]
+          }
+          head = '''<link rel="canonical" href="https://academy.hangdoiproduction.com/">
+          <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+          <meta property="og:type" content="website">
+          <meta property="og:locale" content="vi_VN">
+          <meta property="og:site_name" content="Hang Đôi Academy">
+          <meta property="og:title" content="Khóa học Nhiếp ảnh tại Đà Nẵng | Hang Đôi Academy">
+          <meta property="og:description" content="Học nhiếp ảnh thực hành tại studio, từ kỹ thuật và ánh sáng đến hậu kỳ và portfolio.">
+          <meta property="og:url" content="https://academy.hangdoiproduction.com/">
+          <meta name="twitter:card" content="summary_large_image">
+          <link rel="stylesheet" href="academy-v2.css">
+          <link rel="stylesheet" href="phase1-seo.css">
+          <script type="application/ld+json">''' + json.dumps(structured, ensure_ascii=False, separators=(',',':')) + '''</script>'''
+          html = html.replace('</head>', head + '</head>')
+          html = html.replace('</body>', '<script src="academy-v2.js"></script><script src="phase1-seo.js"></script></body>')
           page.write_text(html, encoding='utf-8')
           PY
           printf '%s\n' 'academy.hangdoiproduction.com' > _site/CNAME
+          printf '%s\n' 'User-agent: *' 'Allow: /' 'Sitemap: https://academy.hangdoiproduction.com/sitemap.xml' > _site/robots.txt
+          cat > _site/sitemap.xml <<'XML'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+            <url><loc>https://academy.hangdoiproduction.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+          </urlset>
+          XML
+          cat > _site/llms.txt <<'TXT'
+          # Hang Đôi Academy
+          Hang Đôi Academy là đơn vị đào tạo nhiếp ảnh thực hành tại 98 Điện Biên Phủ, Đà Nẵng.
+          Website chính: https://academy.hangdoiproduction.com/
+          Điện thoại tư vấn: 0888 445 997
+
+          ## Chương trình
+          - Nhiếp ảnh cơ bản: 12 buổi, học phí 6.680.000đ.
+          - Kỹ thuật nhiếp ảnh: 18.680.000đ cho một kỹ năng chuyên sâu.
+          - Kỹ thuật ánh sáng: 18.680.000đ cho một kỹ năng chuyên sâu.
+          - Chỉnh sửa hình ảnh: 18.680.000đ cho một kỹ năng chuyên sâu.
+          - Nhiếp ảnh toàn tập: 40.000.000đ, có thể chia tối đa 3 đợt.
+
+          ## Phương pháp
+          Đánh giá xuất phát điểm, học phần còn thiếu, thực hành tại studio và bối cảnh thật, feedback trực tiếp, hoàn thiện sản phẩm và portfolio.
+          TXT
           touch _site/.nojekyll
           test -s _site/index.html
-          test -s _site/academy-v2.css
-          test -s _site/academy-v2.js
-          grep -q 'chuong-trinh-chi-tiet' _site/academy-v2.js
+          test -s _site/phase1-seo.css
+          test -s _site/phase1-seo.js
+          grep -q 'EducationalOrganization' _site/index.html
+          grep -q 'canonical' _site/index.html
           grep -q '</html>' _site/index.html
 
       - name: Publish gh-pages branch
