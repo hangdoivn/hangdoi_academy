@@ -22,6 +22,9 @@ jobs:
       - name: Build static website
         run: |
           mkdir -p _site
+          cp site/logo-academy.svg _site/logo-academy.svg
+          cp site/logo-inline.js _site/logo-inline.js
+          cp site/ui-fixes.js _site/ui-fixes.js
           cat site/part-00.html site/part-01.html site/part-02.html site/part-03.html > _site/index.html
           cat site/academy-v2-css-01.part site/academy-v2-css-02.part site/academy-v2-css-03.part > _site/academy-v2.css
           cat site/academy-v2-js-01.part site/academy-v2-js-02.part site/academy-v2-js-03.part site/academy-v2-js-04.part > _site/academy-v2.js
@@ -36,10 +39,10 @@ jobs:
           html = page.read_text(encoding='utf-8')
           html = html.replace('<title>Hang Đôi Academy — Học nhiếp ảnh để làm được nghề thật</title>', '<title>Khóa học Nhiếp ảnh tại Đà Nẵng | Hang Đôi Academy</title>')
           html = html.replace('content="Hang Đôi Academy — Học nhiếp ảnh để làm được nghề thật. Lộ trình cá nhân hóa, thực hành tại studio và hoàn thiện portfolio."', 'content="Khóa học nhiếp ảnh tại Đà Nẵng từ cơ bản đến chuyên sâu. Thực hành tại studio, học kỹ thuật, ánh sáng, hậu kỳ và hoàn thiện portfolio tại Hang Đôi Academy."')
-          structured = {'@context':'https://schema.org','@graph':[{'@type':['EducationalOrganization','LocalBusiness'],'@id':'https://academy.hangdoiproduction.com/#organization','name':'Hang Đôi Academy','url':'https://academy.hangdoiproduction.com/','logo':'https://academy.hangdoistudio.vn/wp-content/uploads/2025/02/Aca-w.png','telephone':'+84888445997','address':{'@type':'PostalAddress','streetAddress':'98 Điện Biên Phủ','addressLocality':'Đà Nẵng','addressCountry':'VN'},'parentOrganization':{'@type':'Organization','name':'Hang Đôi Production','url':'https://hangdoistudio.vn/'},'areaServed':{'@type':'City','name':'Đà Nẵng'}},{'@type':'WebSite','url':'https://academy.hangdoiproduction.com/','name':'Hang Đôi Academy','inLanguage':'vi-VN'},{'@type':'FAQPage','mainEntity':[{'@type':'Question','name':'Người chưa biết sử dụng máy ảnh có học được không?','acceptedAnswer':{'@type':'Answer','text':'Có. Khóa Nhiếp ảnh cơ bản bắt đầu từ thông số phơi sáng, lấy nét, tiêu cự và cân bằng trắng.'}},{'@type':'Question','name':'Có cần mua máy ảnh trước khi đăng ký không?','acceptedAnswer':{'@type':'Answer','text':'Không bắt buộc. Academy có môi trường studio và thiết bị phục vụ thực hành.'}}]}]}
-          head = '<link rel="canonical" href="https://academy.hangdoiproduction.com/"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><meta property="og:type" content="website"><meta property="og:locale" content="vi_VN"><meta property="og:site_name" content="Hang Đôi Academy"><meta property="og:title" content="Khóa học Nhiếp ảnh tại Đà Nẵng | Hang Đôi Academy"><meta property="og:description" content="Học nhiếp ảnh thực hành tại studio, từ kỹ thuật và ánh sáng đến hậu kỳ và portfolio."><meta property="og:url" content="https://academy.hangdoiproduction.com/"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="academy-v2.css"><link rel="stylesheet" href="phase1-seo.css"><link rel="stylesheet" href="phase2.css"><script type="application/ld+json">' + json.dumps(structured, ensure_ascii=False, separators=(',',':')) + '</script>'
+          structured = {'@context':'https://schema.org','@graph':[{'@type':['EducationalOrganization','LocalBusiness'],'@id':'https://academy.hangdoiproduction.com/#organization','name':'Hang Đôi Academy','url':'https://academy.hangdoiproduction.com/','logo':'https://academy.hangdoiproduction.com/logo-academy.svg','telephone':'+84888445997','address':{'@type':'PostalAddress','streetAddress':'98 Điện Biên Phủ','addressLocality':'Đà Nẵng','addressCountry':'VN'},'parentOrganization':{'@type':'Organization','name':'Hang Đôi Production','url':'https://hangdoistudio.vn/'},'areaServed':{'@type':'City','name':'Đà Nẵng'}},{'@type':'WebSite','url':'https://academy.hangdoiproduction.com/','name':'Hang Đôi Academy','inLanguage':'vi-VN'},{'@type':'FAQPage','mainEntity':[{'@type':'Question','name':'Người chưa biết sử dụng máy ảnh có học được không?','acceptedAnswer':{'@type':'Answer','text':'Có. Khóa Nhiếp ảnh cơ bản bắt đầu từ thông số phơi sáng, lấy nét, tiêu cự và cân bằng trắng.'}},{'@type':'Question','name':'Có cần mua máy ảnh trước khi đăng ký không?','acceptedAnswer':{'@type':'Answer','text':'Không bắt buộc. Academy có môi trường studio và thiết bị phục vụ thực hành.'}}]}]}
+          head = '<link rel="canonical" href="https://academy.hangdoiproduction.com/"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><meta property="og:type" content="website"><meta property="og:locale" content="vi_VN"><meta property="og:site_name" content="Hang Đôi Academy"><meta property="og:title" content="Khóa học Nhiếp ảnh tại Đà Nẵng | Hang Đôi Academy"><meta property="og:description" content="Học nhiếp ảnh thực hành tại studio, từ kỹ thuật và ánh sáng đến hậu kỳ và portfolio."><meta property="og:url" content="https://academy.hangdoiproduction.com/"><meta name="twitter:card" content="summary_large_image"><link rel="icon" type="image/svg+xml" href="/logo-academy.svg"><link rel="stylesheet" href="academy-v2.css"><link rel="stylesheet" href="phase1-seo.css"><link rel="stylesheet" href="phase2.css"><script type="application/ld+json">' + json.dumps(structured, ensure_ascii=False, separators=(',',':')) + '</script>'
           html = html.replace('</head>', head + '</head>')
-          html = html.replace('</body>', '<script src="academy-v2.js"></script><script src="phase1-seo.js"></script></body>')
+          html = html.replace('</body>', '<script src="academy-v2.js"></script><script src="phase1-seo.js"></script><script src="logo-inline.js"></script><script src="ui-fixes.js"></script></body>')
           page.write_text(html, encoding='utf-8')
           PY
           python /tmp/build_phase2.py
@@ -66,11 +69,15 @@ jobs:
           TXT
           touch _site/.nojekyll
           test -s _site/index.html
+          test -s _site/logo-academy.svg
+          test -s _site/logo-inline.js
+          test -s _site/ui-fixes.js
           test -s _site/phase2.css
           test -s _site/khoa-hoc/index.html
           test -s _site/nhiep-anh-co-ban/index.html
-          grep -q 'Aca-w.png' _site/phase2.css
-          grep -q 'phase2.css' _site/index.html
+          grep -q 'logo-academy.svg' _site/index.html
+          grep -q 'logo-inline.js' _site/index.html
+          grep -q 'lead-box' _site/phase2.css
           grep -q 'Course' _site/nhiep-anh-co-ban/index.html
 
       - name: Publish gh-pages branch
