@@ -1,8 +1,61 @@
-/* Official white Hang Doi Academy logo */
-:root{--academy-logo:url('https://academy.hangdoistudio.vn/wp-content/uploads/2025/02/Aca-w.png')}
-a.brand-official{display:inline-flex!important;align-items:center!important;width:232px!important;height:48px!important;min-width:232px!important;padding:8px 14px!important;border-radius:12px!important;background-color:#0f422d!important;background-image:var(--academy-logo)!important;background-repeat:no-repeat!important;background-position:center!important;background-size:202px auto!important}
-a.brand-official>*{opacity:0!important;pointer-events:none!important}
-footer a.brand-official{width:262px!important;height:62px!important;min-width:262px!important;padding:0!important;background-color:transparent!important;background-position:left center!important;background-size:250px auto!important}
-.p2-brand{display:inline-block!important;width:232px!important;height:48px!important;min-width:232px!important;border-radius:12px!important;background-color:#0f422d!important;background-image:var(--academy-logo)!important;background-repeat:no-repeat!important;background-position:center!important;background-size:202px auto!important;font-size:0!important;line-height:0!important}
-.p2-footer-grid>div:first-child>strong:first-child{display:block!important;width:250px!important;height:60px!important;background-image:var(--academy-logo)!important;background-repeat:no-repeat!important;background-position:left center!important;background-size:240px auto!important;font-size:0!important;line-height:0!important}
-@media(max-width:760px){a.brand-official{width:190px!important;height:42px!important;min-width:190px!important;background-size:164px auto!important}.p2-brand{width:190px!important;height:42px!important;min-width:190px!important;background-size:164px auto!important}footer a.brand-official{width:220px!important;height:54px!important;min-width:220px!important;background-size:210px auto!important}.p2-footer-grid>div:first-child>strong:first-child{width:220px!important;height:54px!important;background-size:210px auto!important}}
+/* Inline SVG logo, header palette and contrast pass */
+:root{
+  --academy-header-bg:#0f422d;
+  --academy-header-bg-2:#155338;
+  --academy-header-text:#f7fbf8;
+  --academy-yellow:#f2d43d;
+  --academy-ink:#17382b;
+  --academy-muted:#43574d;
+  --academy-muted-2:#5b6e65;
+}
+
+/* Header */
+.site-header,.site-header.scrolled{background:linear-gradient(90deg,var(--academy-header-bg),var(--academy-header-bg-2) 58%,#1c6143)!important;border-color:rgba(255,255,255,.1)!important;box-shadow:0 10px 34px rgba(8,24,18,.16)!important}
+.site-header .nav-links a,.site-header.scrolled .nav-links a,.site-header .menu-btn,.site-header.scrolled .menu-btn{color:var(--academy-header-text)!important}
+.site-header .nav-links a:hover,.site-header .nav-links a:focus-visible,.site-header.scrolled .nav-links a:hover,.site-header.scrolled .nav-links a:focus-visible{color:var(--academy-yellow)!important}
+.site-header .menu-btn,.site-header.scrolled .menu-btn{border-color:rgba(255,255,255,.22)!important;background:rgba(255,255,255,.06)!important}
+.site-header .btn-dark,.site-header.scrolled .btn-dark,.site-header .btn-primary,.site-header.scrolled .btn-primary{background:var(--academy-yellow)!important;color:var(--academy-ink)!important;border-color:transparent!important;box-shadow:none!important}
+.site-header .btn-dark:hover,.site-header .btn-primary:hover{background:#ffe783!important}
+
+/* Inline SVG logo */
+.brand-official,.p2-brand,.academy-logo-host{display:inline-flex!important;align-items:center!important;padding:0!important;border:0!important;border-radius:0!important;background:none!important;box-shadow:none!important}
+.brand-official>img{display:none!important}
+.brand-official .academy-logo-svg,.p2-brand .academy-logo-svg{display:block;width:232px;height:auto;--logo-primary:#fff;--logo-accent:var(--academy-yellow)}
+footer .brand-official .academy-logo-svg,.p2-footer-grid .academy-logo-svg{width:250px;--logo-primary:#fff;--logo-accent:var(--academy-yellow)}
+.p2-brand{font-size:0!important;line-height:0!important}
+.academy-logo-fallback{min-width:232px;min-height:48px;background:url('/logo-academy.svg') left center/contain no-repeat!important}
+
+/* Phase 2 navigation */
+.p2-nav{background:linear-gradient(90deg,var(--academy-header-bg),var(--academy-header-bg-2) 58%,#1c6143)!important;border-bottom-color:rgba(255,255,255,.1)!important}
+.p2-nav-links a{color:var(--academy-header-text)!important}
+.p2-nav-links a:hover,.p2-nav-links a:focus-visible{color:var(--academy-yellow)!important}
+.p2-cta{background:var(--academy-yellow)!important;color:var(--academy-ink)!important}
+
+/* Consultation block: white text, yellow accents */
+.lead-box{background:linear-gradient(135deg,#176b43 0%,#239653 100%)!important;color:#fff!important}
+.lead-box .eyebrow{color:#fff4a8!important}
+.lead-box .eyebrow:before{background:var(--academy-yellow)!important}
+.lead-copy h2{color:#fff!important}
+.lead-copy>p,.lead-box .lead-copy>p{color:#eef8f1!important}
+.lead-mini,.lead-mini span{color:#fff!important}
+.lead-mini i{background:var(--academy-yellow)!important;color:var(--academy-ink)!important}
+.lead-form{background:#fff!important;color:var(--academy-ink)!important}
+.lead-form label{color:var(--academy-ink)!important}
+.form-note{color:#52665d!important}
+
+/* General contrast */
+body,.p2-page{color:var(--academy-ink)!important}
+.hero-desc,.section-head p,.course-card p,.work-note,.compare-row p,.p2-lead,.p2-card p,.p2-row span,.p2-faq p,.p2-article p,.p2-article li{color:var(--academy-muted)!important}
+.proof-item span,.course-meta small,.faq-a,.curriculum-content p,.journey-step p{color:var(--academy-muted-2)!important}
+.work-copy{background:linear-gradient(180deg,transparent 28%,rgba(7,22,15,.92) 100%)!important}
+.work-copy strong{color:#fff!important}
+.work-copy small{color:#edf5f0!important}
+.work-type{color:#fff!important;border-color:rgba(255,255,255,.5)!important}
+footer,.p2-footer{background:#0f422d!important;color:#fff!important}
+footer p,.p2-footer p{color:#dce9e1!important}
+
+@media(max-width:760px){
+  .brand-official .academy-logo-svg,.p2-brand .academy-logo-svg{width:184px}
+  footer .brand-official .academy-logo-svg,.p2-footer-grid .academy-logo-svg{width:210px}
+  .academy-logo-fallback{min-width:184px;min-height:34px}
+}
