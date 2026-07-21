@@ -1,0 +1,32 @@
+-detail .curriculum-content{background:#1c4c39;border-color:rgba(255,255,255,.12)}
+.premium-detail .curriculum-content article{border-color:rgba(255,255,255,.12)}
+.premium-detail .curriculum-content b{color:var(--yellow)}
+.premium-detail .curriculum-content p{color:#d4e0d8}
+
+/* Student journey without placeholders */
+.story-journey{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.journey-step{min-height:290px;border-radius:26px;padding:26px;background:white;color:var(--ink);display:flex;flex-direction:column}
+.journey-step.yellow{background:var(--yellow)}
+.journey-step span{font-size:11px;font-weight:900;letter-spacing:.12em;color:var(--green)}
+.journey-step.yellow span{color:var(--ink)}
+.journey-step strong{font-size:26px;line-height:1.08;letter-spacing:-.04em;margin:auto 0 18px}
+.journey-step p{font-size:14px;color:var(--muted);margin:0}
+.journey-step.yellow p{color:#4e502d}
+
+@media(max-width:900px){
+  .curriculum-item summary{grid-template-columns:46px 1fr 38px}.curriculum-meta{grid-column:2/4;white-space:normal}.curriculum-content{grid-template-columns:repeat(2,1fr)}.curriculum-content article:nth-child(2){border-right:0}.curriculum-content article:nth-child(-n+2){border-bottom:1px solid var(--line)}.story-journey{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .curriculum-item summary{padding:20px 18px;gap:12px}.curriculum-title strong{font-size:22px}.curriculum-content{grid-template-columns:1fr}.curriculum-content article{border-right:0;border-bottom:1px solid var(--line)}.curriculum-content article:last-child{border-bottom:0}.hero h1 em:after{height:.11em}
+}
+
+section[id]{scroll-margin-top:96px}
+.academy-lockup{display:inline-flex;align-items:center;gap:11px;color:var(--ink)}
+.academy-ring{width:31px;height:31px;border-radius:50%;background:conic-gradient(var(--green) 0 76%,var(--yellow) 76% 100%);position:relative;flex:none}
+.academy-ring:after{content:"";position:absolute;inset:7px;border-radius:50%;background:white}
+.academy-lockup-text{display:flex;flex-direction:column;line-height:1}
+.academy-lockup-text strong{font-size:13px;letter-spacing:.02em;font-weight:900}
+.academy-lockup-text small{font-size:9px;letter-spacing:.18em;font-weight:850;color:var(--green);margin-top:4px}
+footer .academy-lockup{color:white}
+footer .academy-ring:after{background:var(--ink)}
+footer .academy-lockup-text small{color:var(--yellow)}
