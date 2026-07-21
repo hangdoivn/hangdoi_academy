@@ -1,0 +1,30 @@
+(() => {
+  const replaceText = (from, to) => {
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(node => {
+      if (node.nodeValue && node.nodeValue.includes(from)) {
+        node.nodeValue = node.nodeValue.replace(from, to);
+      }
+    });
+  };
+
+  const copy = new Map([
+    ['Website dẫn người học từ nhu cầu thật đến đúng lộ trình, thay vì bắt họ tự đoán nên học kỹ thuật, ánh sáng hay hậu kỳ trước.', 'Bạn được đánh giá xuất phát điểm, mục tiêu và thời gian trước khi chọn lộ trình. Không cần tự đoán nên học kỹ thuật, ánh sáng hay hậu kỳ trước.'],
+    ['Bạn không cần biết tên khóa học. Chỉ cần biết mình muốn đi đến đâu.', 'Bắt đầu từ mục tiêu, không bắt đầu từ tên khóa học.'],
+    ['Chọn theo đầu ra, không chọn theo số buổi.', 'Chọn theo đầu ra, mức đầu tư và kỹ năng bạn cần.'],
+    ['Mỗi khóa đều phải nói rõ phù hợp với ai, học xong làm được gì, thời lượng, học phí và bước tiếp theo.', 'Mỗi lộ trình đều nói rõ phù hợp với ai, học xong làm được gì, thời lượng, học phí và bước tiếp theo.'],
+    ['Không học để nhớ bài. Học để tự xử lý một buổi chụp.', 'Học bằng cách làm, sửa và làm lại.'],
+    ['Một môi trường học phải cho thấy được tiêu chuẩn nghề nghiệp thật.', 'Tiêu chuẩn nghề nghiệp được nhìn thấy qua dự án thật.'],
+    ['Academy cho người học nhìn thấy hệ hình ảnh Hang Đôi đang sản xuất ở ba nhóm: Hospitality, Product và F&B.', 'Học viên được tiếp cận cách Hang Đôi xây dựng hình ảnh thương mại ở ba nhóm: Hospitality, Product và F&B.'],
+    ['Website phải chứng minh bằng tiến bộ thật, không chỉ bằng lời hứa.', 'Tiến bộ được đo bằng sản phẩm và khả năng tự xử lý buổi chụp.'],
+    ['Case học viên nên cho thấy điểm bắt đầu, quá trình, lỗi đã vượt qua và sản phẩm đầu ra sau một khoảng thời gian cụ thể.', 'Mỗi hành trình bắt đầu từ một điểm khác nhau. Điều quan trọng là duy trì thực hành, nhận feedback và dần xác định hướng phù hợp.'],
+    ['Thông tin cần rõ trước khi khách nhắn tin.', 'Những điều cần biết trước khi bắt đầu.'],
+    ['FAQ tốt giúp loại bỏ rào cản và giảm số câu hỏi lặp lại cho đội tư vấn.', 'Các câu hỏi phổ biến về thiết bị, lịch học, hình thức học, học phí và cơ hội sau khóa.'],
+    ['Demo redesign — UI/UX & conversion prototype', 'Đào tạo nhiếp ảnh thực hành tại Đà Nẵng'],
+    ['Không sử dụng ảnh stock, ảnh AI hoặc ảnh WC. Tất cả được chọn từ các dự án của Hang Đôi.', 'Hình ảnh được chọn từ các dự án thương mại do Hang Đôi Production thực hiện.']
+  ]);
+  copy.forEach((to, from) => replaceText(from, to));
+
+  
