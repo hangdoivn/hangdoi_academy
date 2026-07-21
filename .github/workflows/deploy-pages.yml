@@ -23,9 +23,22 @@ jobs:
         run: |
           mkdir -p _site
           cat site/part-00.html site/part-01.html site/part-02.html site/part-03.html > _site/index.html
+          cat site/academy-v2-css-01.part site/academy-v2-css-02.part site/academy-v2-css-03.part > _site/academy-v2.css
+          cat site/academy-v2-js-01.part site/academy-v2-js-02.part site/academy-v2-js-03.part site/academy-v2-js-04.part > _site/academy-v2.js
+          python - <<'PY'
+          from pathlib import Path
+          page = Path('_site/index.html')
+          html = page.read_text(encoding='utf-8')
+          html = html.replace('</head>', '<link rel="stylesheet" href="academy-v2.css"></head>')
+          html = html.replace('</body>', '<script src="academy-v2.js"></script></body>')
+          page.write_text(html, encoding='utf-8')
+          PY
           printf '%s\n' 'academy.hangdoiproduction.com' > _site/CNAME
           touch _site/.nojekyll
           test -s _site/index.html
+          test -s _site/academy-v2.css
+          test -s _site/academy-v2.js
+          grep -q 'chuong-trinh-chi-tiet' _site/academy-v2.js
           grep -q '</html>' _site/index.html
 
       - name: Publish gh-pages branch
