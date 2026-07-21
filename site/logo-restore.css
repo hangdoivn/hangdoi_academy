@@ -20,7 +20,8 @@
 /* Inline SVG logo */
 .brand-official,.p2-brand,.academy-logo-host{display:inline-flex!important;align-items:center!important;padding:0!important;border:0!important;border-radius:0!important;background:none!important;box-shadow:none!important}
 .brand-official>img{display:none!important}
-.brand-official .academy-logo-svg,.p2-brand .academy-logo-svg{display:block;width:232px;height:auto;--logo-primary:#fff;--logo-accent:var(--academy-yellow)}
+.brand-official>.academy-logo-svg,.p2-brand>.academy-logo-svg,.p2-footer-grid .academy-logo-svg{display:block!important;opacity:1!important;visibility:visible!important;filter:none!important}
+.brand-official .academy-logo-svg,.p2-brand .academy-logo-svg{width:232px;height:auto;--logo-primary:#fff;--logo-accent:var(--academy-yellow)}
 footer .brand-official .academy-logo-svg,.p2-footer-grid .academy-logo-svg{width:250px;--logo-primary:#fff;--logo-accent:var(--academy-yellow)}
 .p2-brand{font-size:0!important;line-height:0!important}
 .academy-logo-fallback{min-width:232px;min-height:48px;background:url('/logo-academy.svg') left center/contain no-repeat!important}
