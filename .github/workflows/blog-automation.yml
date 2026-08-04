@@ -11,7 +11,7 @@ on:
         required: false
         type: string
       dry_run:
-        description: 'Generate and score without committing'
+        description: 'Generate and validate without committing'
         required: false
         default: false
         type: boolean
@@ -64,7 +64,7 @@ jobs:
           if [ -z "$OPENAI_API_KEY" ]; then
             echo "configured=false" >> "$GITHUB_OUTPUT"
             echo "### Blog automation paused" >> "$GITHUB_STEP_SUMMARY"
-            echo "Repository secret OPENAI_API_KEY is not configured. No content was generated." >> "$GITHUB_STEP_SUMMARY"
+            echo "Repository secret OPENAI_API_KEY is not configured. No article was generated or published." >> "$GITHUB_STEP_SUMMARY"
           else
             echo "configured=true" >> "$GITHUB_OUTPUT"
           fi
@@ -88,15 +88,34 @@ jobs:
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Validate content and static rendering
+      - name: Validate content, nested routes and schema
         if: steps.secret_check.outputs.configured == 'true' && inputs.dry_run != true
         run: |
           rm -rf /tmp/blog-validation-site
           mkdir -p /tmp/blog-validation-site
           python scripts/build_blog.py --out /tmp/blog-validation-site --content content/blog
+          python scripts/nest_blog_routes.py \
+            --site /tmp/blog-validation-site \
+            --config config/blog-categories.json
           test -s /tmp/blog-validation-site/blog/index.html
           test -s /tmp/blog-validation-site/blog/feed.xml
+          test -s /tmp/blog-validation-site/blog/routes.json
           grep -q 'CollectionPage' /tmp/blog-validation-site/blog/index.html
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path('/tmp/blog-validation-site')
+          manifest = json.loads((root / 'blog/routes.json').read_text(encoding='utf-8'))
+          assert manifest['articles'], 'No article route was generated'
+          for article in manifest['articles']:
+              page = root / 'blog' / article['category_slug'] / article['article_slug'] / 'index.html'
+              text = page.read_text(encoding='utf-8')
+              assert 'BlogPosting' in text, page
+              assert 'BreadcrumbList' in text, page
+              assert article['url'] in text, page
+          print(f"Validated {len(manifest['articles'])} nested article routes")
+          PY
 
       - name: Commit generated content
         if: steps.secret_check.outputs.configured == 'true' && inputs.dry_run != true
