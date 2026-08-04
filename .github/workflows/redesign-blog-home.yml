@@ -1,0 +1,82 @@
+name: Redesign Academy blog homepage
+
+on:
+  workflow_run:
+    workflows: ['Publish Hang Doi Academy']
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: academy-blog-home-redesign
+  cancel-in-progress: true
+
+jobs:
+  redesign:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: source
+
+      - name: Checkout published website
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: site
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Redesign blog homepage
+        run: |
+          python source/scripts/redesign_blog_home.py \
+            --site site \
+            --config source/config/blog-categories.json \
+            --css source/site/blog-home-v2.css \
+            --js source/site/blog-home-v2.js
+
+      - name: Verify homepage contract
+        run: |
+          test -s site/blog/index.html
+          test -s site/blog-home-v2.css
+          test -s site/blog-home-v2.js
+          grep -q 'data-blog-home-v2="true"' site/blog/index.html
+          grep -q 'Học nhiếp ảnh bắt đầu từ câu hỏi thật' site/blog/index.html
+          grep -q '/blog-home-v2.css' site/blog/index.html
+          grep -q '/blog-home-v2.js' site/blog/index.html
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path('site')
+          homepage = (root / 'blog/index.html').read_text(encoding='utf-8')
+          manifest = json.loads((root / 'blog/routes.json').read_text(encoding='utf-8'))
+          assert manifest['articles'], 'No published articles'
+          for article in manifest['articles']:
+              path = '/' + '/'.join(article['url'].split('/', 3)[3:])
+              assert path in homepage, f'Missing homepage link: {path}'
+          assert homepage.count('abh-article-card') >= len(manifest['articles'])
+          print(f"Verified redesigned homepage with {len(manifest['articles'])} article links")
+          PY
+
+      - name: Publish redesigned homepage
+        run: |
+          cd site
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add blog/index.html blog-home-v2.css blog-home-v2.js
+          if git diff --cached --quiet; then
+            echo 'Homepage already up to date.'
+            exit 0
+          fi
+          git commit -m 'Redesign Academy blog homepage'
+          git push origin HEAD:gh-pages
