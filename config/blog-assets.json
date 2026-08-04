@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "source": "Hang Đôi Academy",
+  "usage_rights_confirmed": true,
+  "default_first_party_status": "missing",
+  "articles": {
+    "chon-may-anh-cho-nguoi-moi": {
+      "category_slug": "may-anh-thiet-bi",
+      "cover": {
+        "label": "MÁY ẢNH & THIẾT BỊ",
+        "title": "Chọn máy theo hệ thống, không chạy theo body",
+        "subtitle": "Nhu cầu → Body → Lens → Phụ kiện",
+        "visual": "camera",
+        "alt": "Minh họa quy trình chọn máy ảnh cho người mới theo nhu cầu, body, ống kính và phụ kiện"
+      },
+      "guide": {
+        "title": "4 bước chọn bộ máy đầu tiên",
+        "steps": [
+          "Xác định loại ảnh muốn chụp",
+          "Chia ngân sách cho toàn bộ hệ thống",
+          "Kiểm tra hệ ống kính và khả năng nâng cấp",
+          "Cầm thử và đánh giá khả năng thực hành đều"
+        ],
+        "alt": "Infographic bốn bước chọn bộ máy ảnh đầu tiên cho người mới"
+      },
+      "first_party_status": "missing",
+      "first_party_needed": "Ảnh học viên thử hai body và được giảng viên tư vấn thiết bị tại Academy"
+    },
+    "lightroom-hay-photoshop": {
+      "category_slug": "hau-ky",
+      "cover": {
+        "label": "HẬU KỲ HÌNH ẢNH",
+        "title": "Lightroom để quản lý bộ ảnh, Photoshop để xử lý chi tiết",
+        "subtitle": "Một workflow — hai vai trò khác nhau",
+        "visual": "software",
+        "alt": "Minh họa so sánh vai trò Lightroom và Photoshop trong quy trình hậu kỳ ảnh"
+      },
+      "guide": {
+        "title": "Chọn công cụ theo tác vụ",
+        "steps": [
+          "Nhập, phân loại và chọn ảnh: Lightroom",
+          "Chỉnh màu đồng loạt: Lightroom",
+          "Retouch và ghép chi tiết: Photoshop",
+          "Xuất file và lưu trữ: quay lại workflow tổng"
+        ],
+        "alt": "Infographic hướng dẫn chọn Lightroom hoặc Photoshop theo từng tác vụ hậu kỳ"
+      },
+      "first_party_status": "missing",
+      "first_party_needed": "Ảnh màn hình workflow hậu kỳ thật tại Academy và giảng viên sửa bài cho học viên"
+    },
+    "hoc-nhiep-anh-mat-bao-lau": {
+      "category_slug": "bat-dau-hoc",
+      "cover": {
+        "label": "BẮT ĐẦU HỌC",
+        "title": "Đo tiến bộ bằng đầu ra, không chỉ bằng số tháng",
+        "subtitle": "Biết máy → Tự chụp → Bộ ảnh → Portfolio",
+        "visual": "timeline",
+        "alt": "Minh họa các mốc học nhiếp ảnh từ biết dùng máy đến xây portfolio"
+      },
+      "guide": {
+        "title": "Chu kỳ thực hành 8 tuần",
+        "steps": [
+          "Tuần 1–2: thông số, lấy nét và chống rung",
+          "Tuần 3–4: ánh sáng và bố cục",
+          "Tuần 5–6: chụp, chọn và hậu kỳ bộ ảnh",
+          "Tuần 7–8: nhận phản hồi, chụp lại và tự đánh giá"
+        ],
+        "alt": "Infographic kế hoạch thực hành nhiếp ảnh tám tuần cho người mới"
+      },
+      "first_party_status": "missing",
+      "first_party_needed": "Bộ ảnh đầu vào và sau chương trình của cùng một học viên, kèm rubric đánh giá"
+    }
+  }
+}
