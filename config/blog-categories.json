@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "categories": [
+    {
+      "slug": "bat-dau-hoc",
+      "label": "Bắt đầu học",
+      "aliases": ["Người mới bắt đầu"]
+    },
+    {
+      "slug": "may-anh-thiet-bi",
+      "label": "Máy ảnh & thiết bị",
+      "aliases": ["Máy ảnh và thiết bị"]
+    },
+    {
+      "slug": "ky-thuat-chup",
+      "label": "Kỹ thuật chụp",
+      "aliases": ["Kỹ thuật nhiếp ảnh"]
+    },
+    {
+      "slug": "anh-sang",
+      "label": "Ánh sáng",
+      "aliases": ["Kỹ thuật ánh sáng"]
+    },
+    {
+      "slug": "hau-ky",
+      "label": "Hậu kỳ",
+      "aliases": ["Hậu kỳ hình ảnh", "Chỉnh sửa hình ảnh"]
+    },
+    {
+      "slug": "lam-nghe",
+      "label": "Làm nghề",
+      "aliases": ["Nghề nhiếp ảnh", "Portfolio & làm nghề"]
+    }
+  ]
+}
