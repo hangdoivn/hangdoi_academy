@@ -36,6 +36,9 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Install visual build dependency
+        run: python -m pip install --disable-pip-version-check pillow==11.3.0
+
       - name: Redesign blog homepage
         run: |
           python source/scripts/redesign_blog_home.py \
@@ -44,15 +47,24 @@ jobs:
             --css source/site/blog-home-v2.css \
             --js source/site/blog-home-v2.js
 
-      - name: Verify homepage contract
+      - name: Generate and inject editorial assets
+        run: |
+          python source/scripts/enrich_blog_assets.py \
+            --site site \
+            --config source/config/blog-assets.json \
+            --css source/site/blog-assets.css
+
+      - name: Verify homepage and asset contract
         run: |
           test -s site/blog/index.html
           test -s site/blog-home-v2.css
           test -s site/blog-home-v2.js
+          test -s site/blog-assets.css
           grep -q 'data-blog-home-v2="true"' site/blog/index.html
           grep -q 'Học nhiếp ảnh bắt đầu từ câu hỏi thật' site/blog/index.html
           grep -q '/blog-home-v2.css' site/blog/index.html
           grep -q '/blog-home-v2.js' site/blog/index.html
+          grep -q '/blog-assets.css' site/blog/index.html
           python - <<'PY'
           import json
           from pathlib import Path
@@ -64,19 +76,33 @@ jobs:
           for article in manifest['articles']:
               path = '/' + '/'.join(article['url'].split('/', 3)[3:])
               assert path in homepage, f'Missing homepage link: {path}'
-          assert homepage.count('abh-article-card') >= len(manifest['articles'])
-          print(f"Verified redesigned homepage with {len(manifest['articles'])} article links")
+              assert f'/blog-assets/{article["category_slug"]}/{article["article_slug"]}/cover.png' in homepage
+              article_dir = root / 'blog' / article['category_slug'] / article['article_slug']
+              article_html = (article_dir / 'index.html').read_text(encoding='utf-8')
+              asset_dir = root / 'blog-assets' / article['category_slug'] / article['article_slug']
+              assert (asset_dir / 'cover.png').stat().st_size > 20000
+              assert (asset_dir / 'social-4x5.png').stat().st_size > 20000
+              assert (asset_dir / 'assets.json').is_file()
+              assert 'blog-visual-cover' in article_html
+              assert 'og:image' in article_html
+              assert '/blog-assets.css' in article_html
+              assert '"image"' in article_html
+              asset_manifest = json.loads((asset_dir / 'assets.json').read_text(encoding='utf-8'))
+              assert asset_manifest['usage_rights_confirmed'] is True
+              assert asset_manifest['first_party_status'] in {'missing', 'ready'}
+          assert homepage.count('abh-card-visual') >= len(manifest['articles'])
+          print(f"Verified {len(manifest['articles'])} article routes with editorial assets")
           PY
 
-      - name: Publish redesigned homepage
+      - name: Publish redesigned homepage and assets
         run: |
           cd site
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add blog/index.html blog-home-v2.css blog-home-v2.js
+          git add blog blog-home-v2.css blog-home-v2.js blog-assets.css blog-assets
           if git diff --cached --quiet; then
-            echo 'Homepage already up to date.'
+            echo 'Blog experience already up to date.'
             exit 0
           fi
-          git commit -m 'Redesign Academy blog homepage'
+          git commit -m 'Add editorial assets to Academy blog'
           git push origin HEAD:gh-pages
