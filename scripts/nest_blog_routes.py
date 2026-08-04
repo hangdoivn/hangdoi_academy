@@ -321,6 +321,8 @@ def validate(site_root: Path, routes: list[ArticleRoute], active: set[str], base
             raise RouteError(f"Missing canonical for {route.article_slug}")
         if "BreadcrumbList" not in content or "BlogPosting" not in content:
             raise RouteError(f"Missing schema for {route.article_slug}")
+        if f"/blog/category/{route.category_slug}/" in content:
+            raise RouteError(f"Legacy category schema remains for {route.article_slug}")
 
 
 def run(site_root: Path, config_path: Path, base_url: str) -> dict[str, object]:
@@ -354,6 +356,8 @@ def run(site_root: Path, config_path: Path, base_url: str) -> dict[str, object]:
         )
 
     replacements = {route.old_path: route.new_path for route in routes}
+    for category_slug in {route.category_slug for route in routes}:
+        replacements[f"/blog/category/{category_slug}/"] = f"/blog/{category_slug}/"
     rewrite_text_files(site_root, replacements)
 
     by_category: dict[str, list[ArticleRoute]] = {}
