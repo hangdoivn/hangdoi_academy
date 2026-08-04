@@ -1,0 +1,84 @@
+name: Validate Academy blog system
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/blog-automation.yml'
+      - '.github/workflows/deploy-pages.yml'
+      - '.github/workflows/validate-blog-system.yml'
+      - 'bootstrap/blog-system.part*'
+      - 'config/blog-categories.json'
+      - 'scripts/nest_blog_routes.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout proposed changes
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Expand blog runtime
+        run: |
+          cat bootstrap/blog-system.part* | base64 --decode > /tmp/blog-system.tar.gz
+          rm -rf /tmp/blog-runtime
+          mkdir -p /tmp/blog-runtime
+          tar -xzf /tmp/blog-system.tar.gz -C /tmp/blog-runtime
+          mkdir -p scripts content/blog site
+          cp /tmp/blog-runtime/scripts/build_blog.py scripts/build_blog.py
+          cp /tmp/blog-runtime/scripts/blog_automation.py scripts/blog_automation.py
+          cp /tmp/blog-runtime/site/blog.css site/blog.css
+          cp /tmp/blog-runtime/site/blog.js site/blog.js
+          if [ ! -f content/blog/topics.json ]; then
+            cp -R /tmp/blog-runtime/content/blog/. content/blog/
+          fi
+
+      - name: Compile Python scripts
+        run: |
+          python -m py_compile \
+            scripts/build_blog.py \
+            scripts/blog_automation.py \
+            scripts/nest_blog_routes.py
+
+      - name: Build and validate nested routes
+        run: |
+          rm -rf /tmp/academy-blog-validation
+          mkdir -p /tmp/academy-blog-validation
+          python scripts/build_blog.py \
+            --out /tmp/academy-blog-validation \
+            --content content/blog
+          python scripts/nest_blog_routes.py \
+            --site /tmp/academy-blog-validation \
+            --config config/blog-categories.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path('/tmp/academy-blog-validation')
+          manifest = json.loads((root / 'blog/routes.json').read_text(encoding='utf-8'))
+          assert manifest['route_pattern'] == '/blog/{category_slug}/{article_slug}/'
+          assert manifest['articles'], 'No article routes generated'
+          index = (root / 'blog/index.html').read_text(encoding='utf-8')
+          for category in manifest['categories']:
+              category_page = root / 'blog' / category['slug'] / 'index.html'
+              assert category_page.is_file(), category_page
+              assert f'href="/blog/{category["slug"]}/"' in index
+          for article in manifest['articles']:
+              nested = root / 'blog' / article['category_slug'] / article['article_slug'] / 'index.html'
+              legacy = root / 'blog' / article['article_slug'] / 'index.html'
+              nested_html = nested.read_text(encoding='utf-8')
+              legacy_html = legacy.read_text(encoding='utf-8')
+              assert article['url'] in nested_html
+              assert 'BlogPosting' in nested_html
+              assert 'BreadcrumbList' in nested_html
+              assert 'noindex,follow' in legacy_html
+          print(f"Validated {len(manifest['articles'])} article routes")
+          PY
