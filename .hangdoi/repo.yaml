@@ -1,0 +1,37 @@
+schema_version: 1
+repo: hangdoivn/hangdoi_academy
+role: academy_public_site
+lifecycle: active
+default_branch: main
+release_control_repo: hangdoivn/hangdoi-vps
+release_registry: config/apps.yaml
+
+app:
+  id: academy
+  name: Hang Đôi Academy
+  kind: public_web
+  production:
+    host: hostinger_vps
+    domain: academy.hangdoiproduction.com
+    runtime_path: pending_vps_audit
+    service: pending_vps_audit
+
+rules:
+  direct_vps_edit: forbidden
+  production_from_feature_branch: forbidden
+  require_pr: true
+  require_ci_before_release: true
+  release_format: "R<number>"
+
+release_metadata_required:
+  - release
+  - commit_sha
+  - build_result
+  - health_check
+  - deployed_at
+
+pending_vps_audit:
+  - confirm_runtime_type
+  - confirm_deploy_path
+  - confirm_service_or_pm2_name
+  - confirm_nginx_mapping
