@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "article_slug": "hoc-nhiep-anh-mat-bao-lau",
+  "category_slug": "bat-dau-hoc",
+  "source": "Hang Đôi Academy",
+  "usage_rights_confirmed": true,
+  "cover": {
+    "file": "cover.png",
+    "alt": "Minh họa các mốc học nhiếp ảnh từ biết dùng máy đến xây portfolio",
+    "type": "editorial"
+  },
+  "social": {
+    "file": "social-4x5.png",
+    "alt": "Minh họa các mốc học nhiếp ảnh từ biết dùng máy đến xây portfolio",
+    "type": "editorial"
+  },
+  "guide": {
+    "file": "guide.png",
+    "alt": "Infographic kế hoạch thực hành nhiếp ảnh tám tuần cho người mới",
+    "type": "editorial"
+  },
+  "first_party_status": "missing",
+  "first_party_needed": "Bộ ảnh đầu vào và sau chương trình của cùng một học viên, kèm rubric đánh giá"
+}
