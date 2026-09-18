@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "article_slug": "lightroom-hay-photoshop",
+  "category_slug": "hau-ky",
+  "source": "Hang Đôi Academy",
+  "usage_rights_confirmed": true,
+  "cover": {
+    "file": "cover.png",
+    "alt": "Minh họa so sánh vai trò Lightroom và Photoshop trong quy trình hậu kỳ ảnh",
+    "type": "editorial"
+  },
+  "social": {
+    "file": "social-4x5.png",
+    "alt": "Minh họa so sánh vai trò Lightroom và Photoshop trong quy trình hậu kỳ ảnh",
+    "type": "editorial"
+  },
+  "guide": {
+    "file": "guide.png",
+    "alt": "Infographic hướng dẫn chọn Lightroom hoặc Photoshop theo từng tác vụ hậu kỳ",
+    "type": "editorial"
+  },
+  "first_party_status": "missing",
+  "first_party_needed": "Ảnh màn hình workflow hậu kỳ thật tại Academy và giảng viên sửa bài cho học viên"
+}
