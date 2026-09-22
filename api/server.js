@@ -73,6 +73,32 @@ async function initDb() {
     VALUES ('01', 10, 'OPEN')
     ON CONFLICT (cohort) DO NOTHING;
 
+    CREATE TABLE IF NOT EXISTS media_career_legal_readiness (
+      cohort TEXT PRIMARY KEY,
+      operating_entity_status TEXT NOT NULL DEFAULT 'PENDING',
+      program_classification_status TEXT NOT NULL DEFAULT 'PENDING',
+      activity_conditions_status TEXT NOT NULL DEFAULT 'PENDING',
+      program_registration_status TEXT NOT NULL DEFAULT 'PENDING',
+      curriculum_standard_status TEXT NOT NULL DEFAULT 'PENDING',
+      certificate_wording_status TEXT NOT NULL DEFAULT 'PENDING',
+      tuition_disclosure_status TEXT NOT NULL DEFAULT 'PENDING',
+      enrollment_agreement_status TEXT NOT NULL DEFAULT 'PENDING',
+      refund_deferral_status TEXT NOT NULL DEFAULT 'PENDING',
+      invoice_tax_status TEXT NOT NULL DEFAULT 'PENDING',
+      production_exposure_status TEXT NOT NULL DEFAULT 'PENDING',
+      employment_separation_status TEXT NOT NULL DEFAULT 'PENDING',
+      privacy_terms_status TEXT NOT NULL DEFAULT 'PENDING',
+      counsel_reference TEXT,
+      authority_reference TEXT,
+      reviewed_by TEXT,
+      reviewed_at TIMESTAMPTZ,
+      notes TEXT,
+      updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    );
+    INSERT INTO media_career_legal_readiness (cohort)
+    VALUES ('01')
+    ON CONFLICT (cohort) DO NOTHING;
+
     CREATE TABLE IF NOT EXISTS media_career_applications (
       id BIGSERIAL PRIMARY KEY,
       candidate_code TEXT NOT NULL UNIQUE,
@@ -232,6 +258,12 @@ function cleanScore(value, max) {
   const number = Number(value);
   if (!Number.isFinite(number) || number < 0 || number > max) return null;
   return Math.round(number * 100) / 100;
+}
+
+const legalChecklistStatuses = new Set(["PENDING", "CONFIRMED", "NOT_APPLICABLE"]);
+function cleanLegalStatus(value) {
+  const status = cleanString(value || "PENDING", 40).toUpperCase();
+  return legalChecklistStatuses.has(status) ? status : null;
 }
 
 function candidateCode(cohort = "01") {
@@ -578,6 +610,112 @@ app.post("/v1/selection/:token/respond", rateLimit(60 * 60 * 1000, 20), async (r
   } finally {
     client.release();
   }
+});
+
+app.get("/v1/admin/legal-readiness/:cohort", requireAdmin, async (req, res) => {
+  const cohort = cleanString(req.params.cohort, 20);
+  const result = await pool.query(`
+    SELECT *
+    FROM media_career_legal_readiness
+    WHERE cohort = $1
+  `, [cohort]);
+  if (!result.rowCount) return res.status(404).json({ ok: false, error: "Legal readiness record not found" });
+
+  const row = result.rows[0];
+  const statusFields = Object.entries(row)
+    .filter(([key]) => key.endsWith("_status"))
+    .map(([, value]) => value);
+  const confirmed = statusFields.filter(value => value === "CONFIRMED" || value === "NOT_APPLICABLE").length;
+  res.json({
+    ok: true,
+    legalReadiness: row,
+    progress: {
+      completed: confirmed,
+      total: statusFields.length,
+      percent: statusFields.length ? Math.round((confirmed / statusFields.length) * 1000) / 10 : 0
+    },
+    admissionSendGate: "BLOCKED_IN_CODE",
+    paymentGate: "BLOCKED_IN_CODE"
+  });
+});
+
+app.patch("/v1/admin/legal-readiness/:cohort", requireAdmin, async (req, res) => {
+  const cohort = cleanString(req.params.cohort, 20);
+  const b = req.body || {};
+  const keys = [
+    "operatingEntityStatus", "programClassificationStatus", "activityConditionsStatus",
+    "programRegistrationStatus", "curriculumStandardStatus", "certificateWordingStatus",
+    "tuitionDisclosureStatus", "enrollmentAgreementStatus", "refundDeferralStatus",
+    "invoiceTaxStatus", "productionExposureStatus", "employmentSeparationStatus",
+    "privacyTermsStatus"
+  ];
+  const statuses = keys.map(key => cleanLegalStatus(b[key]));
+  if (statuses.some(value => value === null)) {
+    return res.status(400).json({ ok: false, error: "Invalid legal checklist status" });
+  }
+  const counselReference = cleanString(b.counselReference, 2000);
+  const authorityReference = cleanString(b.authorityReference, 2000);
+  const reviewedBy = cleanString(b.reviewedBy, 240);
+  const notes = cleanString(b.notes, 10000);
+  const reviewedAt = b.markReviewed === true ? new Date().toISOString() : null;
+
+  const result = await pool.query(`
+    INSERT INTO media_career_legal_readiness (
+      cohort,
+      operating_entity_status, program_classification_status, activity_conditions_status,
+      program_registration_status, curriculum_standard_status, certificate_wording_status,
+      tuition_disclosure_status, enrollment_agreement_status, refund_deferral_status,
+      invoice_tax_status, production_exposure_status, employment_separation_status,
+      privacy_terms_status, counsel_reference, authority_reference, reviewed_by,
+      reviewed_at, notes, updated_at
+    ) VALUES (
+      $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,
+      NULLIF($18,'')::timestamptz,$19,NOW()
+    )
+    ON CONFLICT (cohort)
+    DO UPDATE SET
+      operating_entity_status = EXCLUDED.operating_entity_status,
+      program_classification_status = EXCLUDED.program_classification_status,
+      activity_conditions_status = EXCLUDED.activity_conditions_status,
+      program_registration_status = EXCLUDED.program_registration_status,
+      curriculum_standard_status = EXCLUDED.curriculum_standard_status,
+      certificate_wording_status = EXCLUDED.certificate_wording_status,
+      tuition_disclosure_status = EXCLUDED.tuition_disclosure_status,
+      enrollment_agreement_status = EXCLUDED.enrollment_agreement_status,
+      refund_deferral_status = EXCLUDED.refund_deferral_status,
+      invoice_tax_status = EXCLUDED.invoice_tax_status,
+      production_exposure_status = EXCLUDED.production_exposure_status,
+      employment_separation_status = EXCLUDED.employment_separation_status,
+      privacy_terms_status = EXCLUDED.privacy_terms_status,
+      counsel_reference = EXCLUDED.counsel_reference,
+      authority_reference = EXCLUDED.authority_reference,
+      reviewed_by = EXCLUDED.reviewed_by,
+      reviewed_at = COALESCE(EXCLUDED.reviewed_at, media_career_legal_readiness.reviewed_at),
+      notes = EXCLUDED.notes,
+      updated_at = NOW()
+    RETURNING *
+  `, [
+    cohort, ...statuses, counselReference, authorityReference, reviewedBy,
+    reviewedAt || "", notes
+  ]);
+
+  const row = result.rows[0];
+  const statusFields = Object.entries(row)
+    .filter(([key]) => key.endsWith("_status"))
+    .map(([, value]) => value);
+  const confirmed = statusFields.filter(value => value === "CONFIRMED" || value === "NOT_APPLICABLE").length;
+
+  res.json({
+    ok: true,
+    legalReadiness: row,
+    progress: {
+      completed: confirmed,
+      total: statusFields.length,
+      percent: statusFields.length ? Math.round((confirmed / statusFields.length) * 1000) / 10 : 0
+    },
+    admissionSendGate: "BLOCKED_IN_CODE",
+    paymentGate: "BLOCKED_IN_CODE"
+  });
 });
 
 app.get("/v1/admin/applications", requireAdmin, async (req, res) => {
@@ -1010,7 +1148,7 @@ app.post("/v1/admin/applications/:id/admission-send", requireAdmin, async (_req,
 
 app.get("/v1/admin/dashboard", requireAdmin, async (req, res) => {
   const days = Math.min(Math.max(Number(req.query.days || 30), 1), 365);
-  const [stageRows, sourceRows, contentRows, eventRows, totals, cohortConfig, cohortCounts] = await Promise.all([
+  const [stageRows, sourceRows, contentRows, eventRows, totals, cohortConfig, cohortCounts, legalReadiness] = await Promise.all([
     pool.query(`
       SELECT pipeline_stage AS key, COUNT(*)::int AS count
       FROM media_career_applications
@@ -1063,6 +1201,11 @@ app.get("/v1/admin/dashboard", requireAdmin, async (req, res) => {
         COUNT(*) FILTER (WHERE pipeline_stage = 'ENROLLED')::int AS enrolled
       FROM media_career_applications
       WHERE cohort = '01'
+    `),
+    pool.query(`
+      SELECT *
+      FROM media_career_legal_readiness
+      WHERE cohort = '01'
     `)
   ]);
   const config = cohortConfig.rows[0] || { cohort: "01", target_enrollment: 10, status: "OPEN" };
@@ -1093,7 +1236,10 @@ app.get("/v1/admin/dashboard", requireAdmin, async (req, res) => {
       coverageGap: Math.max(target - coverage, 0),
       enrolledPct: target ? Math.round((enrolled / target) * 1000) / 10 : 0,
       coveragePct: target ? Math.round((coverage / target) * 1000) / 10 : 0
-    }
+    },
+    legalReadiness: legalReadiness.rows[0] || null,
+    admissionSendGate: "BLOCKED_IN_CODE",
+    paymentGate: "BLOCKED_IN_CODE"
   });
 });
 
