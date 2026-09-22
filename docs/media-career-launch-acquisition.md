@@ -2,9 +2,11 @@
 
 ## Current public mode
 
-Until `program_registration_status = CONFIRMED`:
+Current production behavior:
 
 **PUBLIC MODE = INTEREST ONLY**
+
+This remains true even if `program_registration_status = CONFIRMED`. Formal Application requires a separate reviewed unlock/change.
 
 Public CTA:
 
@@ -272,17 +274,21 @@ Do not optimize only for views/reach.
 
 ## Formal Application switch
 
-After `program_registration_status = CONFIRMED`, do not silently keep old messaging.
+`program_registration_status = CONFIRMED` is necessary for the current formal Selection workflow, but it does **not** automatically open public Formal Application.
+
+Formal Application requires a separate reviewed launch change after the applicable legal/readiness conditions are approved.
 
 Required launch-switch review:
 
 1. confirm approved public wording;
-2. update Landing CTA;
-3. update form title/copy;
-4. update confirmation copy;
-5. confirm backend new records enter `APPLICATION_COMPLETED`;
-6. test formal Selection stages;
-7. create new Content IDs for formal recruitment creatives.
+2. confirm Final Legal Approval evidence;
+3. implement an explicit public intake mode change;
+4. update Landing CTA;
+5. create/activate the Formal Application form;
+6. update confirmation copy;
+7. confirm formal records enter `APPLICATION_COMPLETED`;
+8. test Selection stages end-to-end;
+9. create new Content IDs for formal recruitment creatives.
 
 Historical Interest traffic must remain attributable separately.
 
