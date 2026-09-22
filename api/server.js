@@ -416,6 +416,14 @@ app.post("/v1/applications", rateLimit(60 * 60 * 1000, 10), async (req, res) => 
     }
 
     const cohort = "01";
+    const legalMode = await pool.query(
+      "SELECT program_registration_status FROM media_career_legal_readiness WHERE cohort = $1",
+      [cohort]
+    );
+    const publicPipelineStage = legalMode.rows[0]?.program_registration_status === "CONFIRMED"
+      ? "APPLICATION_COMPLETED"
+      : "INTEREST_REGISTERED";
+
     const existing = await pool.query(
       "SELECT candidate_code, phone FROM media_career_applications WHERE cohort = $1 AND email_normalized = $2",
       [cohort, email]
@@ -440,12 +448,12 @@ app.post("/v1/applications", rateLimit(60 * 60 * 1000, 10), async (req, res) => 
     const result = await pool.query(`
       INSERT INTO media_career_applications (
         candidate_code, cohort, full_name, date_of_birth, phone, email, email_normalized,
-        city, current_status, preferred_track, experience_level, portfolio_url,
+        city, current_status, preferred_track, experience_level, portfolio_url, pipeline_stage,
         utm_source, utm_medium, utm_campaign, utm_content, referrer,
         marketing_consent, privacy_consent, payload
       ) VALUES (
-        $1,$2,$3,NULLIF($4,'')::date,$5,$6,$7,$8,$9,$10,$11,$12,
-        $13,$14,$15,$16,$17,$18,$19,$20::jsonb
+        $1,$2,$3,NULLIF($4,'')::date,$5,$6,$7,$8,$9,$10,$11,$12,$13,
+        $14,$15,$16,$17,$18,$19,$20,$21::jsonb
       )
       ON CONFLICT (cohort, email_normalized)
       DO UPDATE SET
@@ -457,6 +465,11 @@ app.post("/v1/applications", rateLimit(60 * 60 * 1000, 10), async (req, res) => 
         preferred_track = EXCLUDED.preferred_track,
         experience_level = EXCLUDED.experience_level,
         portfolio_url = EXCLUDED.portfolio_url,
+        pipeline_stage = CASE
+          WHEN media_career_applications.pipeline_stage = 'INTEREST_REGISTERED'
+            THEN EXCLUDED.pipeline_stage
+          ELSE media_career_applications.pipeline_stage
+        END,
         utm_source = EXCLUDED.utm_source,
         utm_medium = EXCLUDED.utm_medium,
         utm_campaign = EXCLUDED.utm_campaign,
@@ -471,7 +484,7 @@ app.post("/v1/applications", rateLimit(60 * 60 * 1000, 10), async (req, res) => 
     `, [
       code, cohort, fullName, cleanString(b.dateOfBirth, 20), phone, email, email,
       city, currentStatus, cleanString(b.preferredTrack, 100), experienceLevel,
-      cleanString(b.portfolioUrl, 1000),
+      cleanString(b.portfolioUrl, 1000), publicPipelineStage,
       cleanString(b.utmSource, 180), cleanString(b.utmMedium, 180),
       cleanString(b.utmCampaign, 180), cleanString(b.utmContent, 180),
       cleanString(b.referrer, 1000),
@@ -532,7 +545,8 @@ app.post("/v1/applications", rateLimit(60 * 60 * 1000, 10), async (req, res) => 
     res.status(201).json({
       ok: true,
       candidateCode: saved.candidate_code,
-      submittedAt: saved.submitted_at
+      submittedAt: saved.submitted_at,
+      intakeMode: publicPipelineStage === "INTEREST_REGISTERED" ? "INTEREST_ONLY" : "APPLICATION_OPEN"
     });
   } catch (error) {
     console.error("application_submit_failed", error);
@@ -1358,7 +1372,7 @@ app.patch("/v1/admin/notifications/:id/read", requireAdmin, async (req, res) => 
 
 app.patch("/v1/admin/applications/:id/stage", requireAdmin, async (req, res) => {
   const allowed = new Set([
-    "APPLICATION_COMPLETED", "QUALIFIED", "SELECTION_INVITED", "SELECTION_CONFIRMED",
+    "INTEREST_REGISTERED", "APPLICATION_COMPLETED", "QUALIFIED", "SELECTION_INVITED", "SELECTION_CONFIRMED",
     "SELECTION_ATTENDED", "PASS", "WAITLIST", "LOST", "ADMITTED", "ENROLLED"
   ]);
   const stage = cleanString(req.body?.stage, 80);
@@ -1377,6 +1391,22 @@ app.patch("/v1/admin/applications/:id/stage", requireAdmin, async (req, res) => 
       return res.status(404).json({ ok: false, error: "Not found" });
     }
     const prev = previous.rows[0];
+    const gatedStages = new Set([
+      "APPLICATION_COMPLETED", "QUALIFIED", "SELECTION_INVITED", "SELECTION_CONFIRMED",
+      "SELECTION_ATTENDED", "PASS", "WAITLIST", "ADMITTED", "ENROLLED"
+    ]);
+    if (gatedStages.has(stage)) {
+      const legal = await client.query(
+        "SELECT program_registration_status FROM media_career_legal_readiness WHERE cohort = '01'"
+      );
+      if (legal.rows[0]?.program_registration_status !== "CONFIRMED") {
+        await client.query("ROLLBACK");
+        return res.status(423).json({
+          ok: false,
+          error: "Formal recruitment/Selection is locked until program registration is confirmed"
+        });
+      }
+    }
     const result = await client.query(`
       UPDATE media_career_applications
       SET pipeline_stage = $1, updated_at = NOW()
