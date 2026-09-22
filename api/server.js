@@ -34,6 +34,25 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
 app.use(express.json({ limit: "300kb" }));
+app.set("trust proxy", 1);
+
+const rateBuckets = new Map();
+function rateLimit(windowMs, max) {
+  return (req, res, next) => {
+    const now = Date.now();
+    const key = `${req.ip || "unknown"}:${req.path}`;
+    const current = rateBuckets.get(key);
+    if (!current || current.resetAt <= now) {
+      rateBuckets.set(key, { count: 1, resetAt: now + windowMs });
+      return next();
+    }
+    current.count += 1;
+    if (current.count > max) {
+      return res.status(429).json({ ok: false, error: "Too many requests" });
+    }
+    next();
+  };
+}
 
 async function initDb() {
   await pool.query(`
@@ -70,6 +89,25 @@ async function initDb() {
       ON media_career_applications(utm_source);
     CREATE INDEX IF NOT EXISTS idx_mcp_submitted
       ON media_career_applications(submitted_at DESC);
+
+    ALTER TABLE media_career_applications
+      ADD COLUMN IF NOT EXISTS owner TEXT,
+      ADD COLUMN IF NOT EXISTS next_action TEXT,
+      ADD COLUMN IF NOT EXISTS next_action_date DATE,
+      ADD COLUMN IF NOT EXISTS lost_reason TEXT,
+      ADD COLUMN IF NOT EXISTS internal_notes TEXT;
+
+    CREATE TABLE IF NOT EXISTS media_career_stage_history (
+      id BIGSERIAL PRIMARY KEY,
+      application_id BIGINT NOT NULL REFERENCES media_career_applications(id) ON DELETE CASCADE,
+      candidate_code TEXT NOT NULL,
+      from_stage TEXT,
+      to_stage TEXT NOT NULL,
+      changed_by TEXT NOT NULL DEFAULT 'admin',
+      changed_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    );
+    CREATE INDEX IF NOT EXISTS idx_mcp_stage_history_application
+      ON media_career_stage_history(application_id, changed_at DESC);
 
     CREATE TABLE IF NOT EXISTS media_career_events (
       id BIGSERIAL PRIMARY KEY,
@@ -183,7 +221,7 @@ app.get("/health", async (_req, res) => {
   }
 });
 
-app.post("/v1/events", async (req, res) => {
+app.post("/v1/events", rateLimit(10 * 60 * 1000, 200), async (req, res) => {
   try {
     const b = req.body || {};
     await recordEvent({
@@ -205,9 +243,12 @@ app.post("/v1/events", async (req, res) => {
   }
 });
 
-app.post("/v1/applications", async (req, res) => {
+app.post("/v1/applications", rateLimit(60 * 60 * 1000, 10), async (req, res) => {
   try {
     const b = req.body || {};
+    if (cleanString(b.website, 200)) {
+      return res.status(201).json({ ok: true, candidateCode: "MCP01-RECEIVED" });
+    }
     const fullName = cleanString(b.fullName, 160);
     const phone = cleanString(b.phone, 50);
     const email = cleanEmail(b.email);
@@ -375,7 +416,8 @@ app.get("/v1/admin/applications", requireAdmin, async (req, res) => {
   const result = await pool.query(`
     SELECT id, candidate_code, cohort, full_name, phone, email, city,
            current_status, preferred_track, experience_level, portfolio_url,
-           pipeline_stage, utm_source, utm_medium, utm_campaign, utm_content,
+           pipeline_stage, owner, next_action, next_action_date, lost_reason,
+           utm_source, utm_medium, utm_campaign, utm_content,
            marketing_consent, submitted_at, updated_at
     FROM media_career_applications
     ${where}
@@ -389,11 +431,35 @@ app.get("/v1/admin/applications/:id", requireAdmin, async (req, res) => {
   const result = await pool.query(`
     SELECT id, candidate_code, cohort, full_name, date_of_birth, phone, email, city,
            current_status, preferred_track, experience_level, portfolio_url,
-           pipeline_stage, utm_source, utm_medium, utm_campaign, utm_content,
+           pipeline_stage, owner, next_action, next_action_date, lost_reason, internal_notes,
+           utm_source, utm_medium, utm_campaign, utm_content,
            marketing_consent, privacy_consent, payload, submitted_at, updated_at
     FROM media_career_applications
     WHERE id = $1
   `, [req.params.id]);
+  if (!result.rowCount) return res.status(404).json({ ok: false, error: "Not found" });
+  res.json({ ok: true, application: result.rows[0] });
+});
+
+app.patch("/v1/admin/applications/:id/ops", requireAdmin, async (req, res) => {
+  const b = req.body || {};
+  const owner = cleanString(b.owner, 160);
+  const nextAction = cleanString(b.nextAction, 1000);
+  const nextActionDate = cleanString(b.nextActionDate, 20);
+  const lostReason = cleanString(b.lostReason, 160);
+  const internalNotes = cleanString(b.internalNotes, 6000);
+  const result = await pool.query(`
+    UPDATE media_career_applications
+    SET owner = NULLIF($1,''),
+        next_action = NULLIF($2,''),
+        next_action_date = NULLIF($3,'')::date,
+        lost_reason = NULLIF($4,''),
+        internal_notes = NULLIF($5,''),
+        updated_at = NOW()
+    WHERE id = $6
+    RETURNING id, candidate_code, owner, next_action, next_action_date,
+              lost_reason, internal_notes, updated_at
+  `, [owner, nextAction, nextActionDate, lostReason, internalNotes, req.params.id]);
   if (!result.rowCount) return res.status(404).json({ ok: false, error: "Not found" });
   res.json({ ok: true, application: result.rows[0] });
 });
@@ -482,14 +548,40 @@ app.patch("/v1/admin/applications/:id/stage", requireAdmin, async (req, res) => 
   if (!allowed.has(stage)) {
     return res.status(400).json({ ok: false, error: "Invalid stage" });
   }
-  const result = await pool.query(`
-    UPDATE media_career_applications
-    SET pipeline_stage = $1, updated_at = NOW()
-    WHERE id = $2
-    RETURNING id, candidate_code, pipeline_stage, updated_at
-  `, [stage, req.params.id]);
-  if (!result.rowCount) return res.status(404).json({ ok: false, error: "Not found" });
-  res.json({ ok: true, application: result.rows[0] });
+  const client = await pool.connect();
+  try {
+    await client.query("BEGIN");
+    const previous = await client.query(
+      "SELECT id, candidate_code, pipeline_stage FROM media_career_applications WHERE id = $1 FOR UPDATE",
+      [req.params.id]
+    );
+    if (!previous.rowCount) {
+      await client.query("ROLLBACK");
+      return res.status(404).json({ ok: false, error: "Not found" });
+    }
+    const prev = previous.rows[0];
+    const result = await client.query(`
+      UPDATE media_career_applications
+      SET pipeline_stage = $1, updated_at = NOW()
+      WHERE id = $2
+      RETURNING id, candidate_code, pipeline_stage, updated_at
+    `, [stage, req.params.id]);
+    if (prev.pipeline_stage !== stage) {
+      await client.query(`
+        INSERT INTO media_career_stage_history (
+          application_id, candidate_code, from_stage, to_stage, changed_by
+        ) VALUES ($1,$2,$3,$4,'admin')
+      `, [prev.id, prev.candidate_code, prev.pipeline_stage, stage]);
+    }
+    await client.query("COMMIT");
+    res.json({ ok: true, application: result.rows[0] });
+  } catch (error) {
+    await client.query("ROLLBACK");
+    console.error("stage_update_failed", error);
+    res.status(500).json({ ok: false, error: "Unable to update stage" });
+  } finally {
+    client.release();
+  }
 });
 
 initDb()
