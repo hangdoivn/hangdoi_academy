@@ -61,11 +61,14 @@ After program registration is formally confirmed and the reference is stored:
 
 ```
 program_registration_status = CONFIRMED
-→ future new records may enter APPLICATION_COMPLETED
-→ admin may progress Interest records into the formal recruitment/Selection flow
+→ formal Selection prerequisites may be reviewed/unlocked internally
+→ public intake still remains INTEREST_REGISTERED
+→ Formal Application requires a separate reviewed launch change
 ```
 
 This is a risk-control design, not a legal conclusion that every expression-of-interest activity falls outside "tuyển sinh". Counsel/authority should confirm the acceptable boundary.
+
+The public endpoint is intentionally hard-coded to `INTEREST_REGISTERED` in the current production version. Program registration alone does not auto-switch the public funnel into Formal Application.
 
 ## Non-negotiable employment separation
 
