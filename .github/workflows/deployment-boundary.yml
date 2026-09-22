@@ -1,0 +1,68 @@
+name: Academy Deployment Boundary
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+  workflow_run:
+    workflows: ['Publish Hang Doi Academy']
+    types: [completed]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: academy-deployment-boundary-${{ github.event.pull_request.number || github.ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  verify-boundary:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Verify repository deployment contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(tr -d '\r\n' < CNAME)" = "academy.hangdoiproduction.com"
+
+          if rg -n 'academy\.hangdoistudio\.vn' \
+            --glob '!docs/deployment-safety.md' \
+            --glob '!AGENTS.md' .; then
+            echo "Legacy Academy hostname remains in active repository content" >&2
+            exit 1
+          fi
+
+          if rg -n 'HOSTINGER_API_TOKEN|public_html|72\.60\.108\.22|hangdoistudio-dns-cutover' \
+            .github/workflows \
+            --glob '!deployment-boundary.yml'; then
+            echo "Academy workflows cross the Production hosting boundary" >&2
+            exit 1
+          fi
+
+      - name: Verify live domain isolation
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
+          fetch() {
+            local url="$1"
+            curl --fail --silent --show-error --location \
+              --retry 5 --retry-delay 3 --retry-all-errors --max-time 30 "$url"
+          }
+
+          academy="$(fetch https://academy.hangdoiproduction.com/)"
+          grep -Fq 'Hang Đôi Academy' <<<"$academy"
+
+          production="$(fetch https://hangdoistudio.vn/)"
+          grep -Fq '<title>Hang Đôi Production' <<<"$production"
+          grep -Fq 'Sản xuất hình ảnh quảng cáo' <<<"$production"
+
+          echo "Academy and Production domains are isolated"

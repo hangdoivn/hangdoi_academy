@@ -31,11 +31,11 @@ Formal recruitment/Selection remains API-blocked.
 
 Landing:
 
-`https://academy.hangdoistudio.vn/media-career-program/`
+`https://academy.hangdoiproduction.com/media-career-program/`
 
 Interest form:
 
-`https://academy.hangdoistudio.vn/media-career-program/apply/`
+`https://academy.hangdoiproduction.com/media-career-program/apply/`
 
 All distributed links should carry UTM parameters.
 

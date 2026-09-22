@@ -20,7 +20,7 @@ The Academy implementation is isolated from the main Hang Đôi Production websi
 
 Canonical public domain:
 
-`https://academy.hangdoistudio.vn`
+`https://academy.hangdoiproduction.com`
 
 ## Internal route
 

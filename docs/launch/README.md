@@ -22,7 +22,7 @@ Do not use:
 
 Primary CTA:
 
-`Register Interest → academy.hangdoistudio.vn/media-career-program/`
+`Register Interest → academy.hangdoiproduction.com/media-career-program/`
 
 Every distributed asset must use a Campaign Registry Content ID / UTM link.
 

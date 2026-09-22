@@ -32,7 +32,7 @@ footer{padding:64px 0 28px!important;min-height:0!important}
 @media(max-width:820px){.p2-nav-links{display:none}.p2-hero{padding-top:64px}.p2-facts,.p2-grid{grid-template-columns:1fr 1fr}.p2-fact:nth-child(2){border-right:0}.p2-fact:nth-child(-n+2){border-bottom:1px solid var(--p2-line)}.p2-section-head{grid-template-columns:1fr}.p2-row{grid-template-columns:64px 1fr}.p2-row>span:last-child{grid-column:2}.p2-footer-grid{display:grid}}
 @media(max-width:520px){.p2-wrap{width:min(100% - 28px,1180px)}.p2-facts,.p2-grid{grid-template-columns:1fr}.p2-fact{border-right:0;border-bottom:1px solid var(--p2-line)!important}.p2-fact:last-child{border-bottom:0!important}.p2-hero h1{font-size:46px}.p2-section{padding:62px 0}}
 /* Official Academy white logo */
-:root{--academy-logo:url('https://academy.hangdoistudio.vn/wp-content/uploads/2025/02/Aca-w.png')}
+:root{--academy-logo:url('https://academy.hangdoiproduction.com/wp-content/uploads/2025/02/Aca-w.png')}
 a.brand-official{display:inline-flex!important;align-items:center!important;width:232px!important;height:48px!important;min-width:232px!important;padding:8px 14px!important;border-radius:12px!important;background-color:var(--p2-dark)!important;background-image:var(--academy-logo)!important;background-repeat:no-repeat!important;background-position:center!important;background-size:202px auto!important}
 a.brand-official>*{opacity:0!important;pointer-events:none!important}
 footer a.brand-official{width:262px!important;height:62px!important;min-width:262px!important;padding:0!important;background-color:transparent!important;background-size:250px auto!important;background-position:left center!important}

@@ -58,7 +58,7 @@ No-show/cancel handling remains an internal/manual ops decision for now.
 
 Format:
 
-`https://academy.hangdoistudio.vn/media-career-program/selection/?token=<opaque-token>`
+`https://academy.hangdoiproduction.com/media-career-program/selection/?token=<opaque-token>`
 
 The token is random and specific to one Selection appointment.
 

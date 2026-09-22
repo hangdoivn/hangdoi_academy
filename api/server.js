@@ -15,7 +15,6 @@ const pool = new Pool({
 });
 
 const allowedOrigins = new Set([
-  "https://academy.hangdoistudio.vn",
   "https://academy.hangdoiproduction.com",
   "http://localhost:3000",
   "http://127.0.0.1:3000"

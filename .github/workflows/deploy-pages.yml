@@ -293,6 +293,7 @@ jobs:
       - name: Verify build contract
         run: |
           test -s _site/index.html
+          test "$(tr -d '\r\n' < _site/CNAME)" = "academy.hangdoiproduction.com"
           test -s _site/logo-academy.svg
           test -s _site/favicon.svg
           test -s _site/ui-fixes.js
@@ -309,6 +310,10 @@ jobs:
           grep -q 'academy-logo-critical' _site/index.html
           grep -q 'Course' _site/nhiep-anh-co-ban/index.html
           grep -q 'CollectionPage' _site/blog/index.html
+          if rg -n 'academy\.hangdoistudio\.vn' _site; then
+            echo "Legacy Academy hostname found in generated site" >&2
+            exit 1
+          fi
           python - <<'PY'
           import json
           from pathlib import Path
