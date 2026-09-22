@@ -275,7 +275,7 @@ function renderDashboard(){
   const em=Object.fromEntries((dash.events||[]).map(x=>[x.key,n(x.count)]));
   const steps=[
     ["Landing",em.landing_view||0],["Apply page",em.apply_view||0],["Form started",em.form_start||0],
-    ["Application",em.application_received||n(t.applications)],["Qualified+",n(t.qualified_or_beyond)],["Admitted",n(t.admitted_or_enrolled)]
+    ["Interest",em.application_received||n(t.applications)],["Qualified+",n(t.qualified_or_beyond)],["Admitted",n(t.admitted_or_enrolled)]
   ];
   const max=Math.max(...steps.map(x=>x[1]),1);
   $("funnel").innerHTML=steps.map((x,i)=>{const prev=i?steps[i-1][1]:0,pct=i&&prev?Math.round(x[1]/prev*100):null;return '<div class="frow"><div><b>'+esc(x[0])+'</b><div class="bar"><i style="width:'+Math.max(3,Math.round(x[1]/max*100))+'%"></i></div></div><strong>'+x[1]+'</strong><span>'+(pct===null?"—":pct+"%")+'</span></div>'}).join("");
