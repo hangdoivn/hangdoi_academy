@@ -53,6 +53,10 @@ jobs:
           cp site/logo-academy.svg _site/logo-academy.svg
           mkdir -p _site/media-career-program
           cp site/media-career-program.html _site/media-career-program/index.html
+          mkdir -p _site/media-career-program/apply
+          cp site/media-career-apply.html _site/media-career-program/apply/index.html
+          mkdir -p _site/media-career-program/thank-you
+          cp site/media-career-thank-you.html _site/media-career-program/thank-you/index.html
           cp site/logo-academy.svg _site/favicon.svg
           cp site/logo-inline.js _site/logo-inline.js
           cp site/ui-fixes.js _site/ui-fixes.js
