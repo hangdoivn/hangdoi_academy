@@ -51,6 +51,7 @@ jobs:
           mkdir -p _site
 
           cp site/logo-academy.svg _site/logo-academy.svg
+          cp site/academy-tokens.css _site/academy-tokens.css
           mkdir -p _site/media-career-program
           cp site/media-career-program.html _site/media-career-program/index.html
           mkdir -p _site/media-career-program/apply
@@ -295,6 +296,7 @@ jobs:
           test -s _site/index.html
           test "$(tr -d '\r\n' < _site/CNAME)" = "academy.hangdoiproduction.com"
           test -s _site/logo-academy.svg
+          test -s _site/academy-tokens.css
           test -s _site/favicon.svg
           test -s _site/ui-fixes.js
           test -s _site/phase2.css
