@@ -19,7 +19,7 @@
 <div class="login"><input id="token" type="password" placeholder="Admin Access Key"><button id="connect">Connect</button><div class="hint">Access key chỉ được giữ trong session của browser, không nhúng trong source.</div></div>
 
 <div class="metrics">
-<div class="metric"><small>Applications</small><strong id="mAll">0</strong></div>
+<div class="metric"><small>Interest / Applications</small><strong id="mAll">0</strong></div>
 <div class="metric"><small>Qualified+</small><strong id="mQualified">0</strong></div>
 <div class="metric"><small>In Selection</small><strong id="mSelection">0</strong></div>
 <div class="metric"><small>Pass+</small><strong id="mPass">0</strong></div>
@@ -104,6 +104,12 @@ const legalFields=[
   ["privacy_terms_status","privacyTermsStatus","Privacy / marketing terms"]
 ];
 const legalOptions=["PENDING","CONFIRMED","NOT_APPLICABLE"];
+const formalStages=new Set(["APPLICATION_COMPLETED","QUALIFIED","SELECTION_INVITED","SELECTION_CONFIRMED","SELECTION_ATTENDED","PASS","WAITLIST"]);
+function stageOption(stage,current){
+  const formalOpen=dash?.legalReadiness?.program_registration_status==="CONFIRMED";
+  const locked=(stage==="ADMITTED"||stage==="ENROLLED"||(!formalOpen&&formalStages.has(stage)))&&stage!==current;
+  return '<option '+(stage===current?'selected ':'')+(locked?'disabled ':'')+'>'+stage+'</option>';
+}
 async function api(path,options={}){
   const r=await fetch(API+path,{...options,headers:{...auth(),...(options.headers||{})}});
   const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||("HTTP "+r.status));return j;
@@ -215,7 +221,7 @@ function render(){
       '<td>'+esc(x.phone)+'<br>'+esc(x.email)+'</td><td>'+esc(x.current_status||"")+'<br>'+esc(x.experience_level||"")+'</td>'+
       '<td>'+esc(x.preferred_track||"")+'</td><td><span class="source">'+esc(x.utm_source||"direct")+'</span><br>'+esc(x.utm_content||"")+'</td>'+
       '<td><div class="ops-cell"><b>'+esc(x.owner||"Unassigned")+'</b><span>'+esc(x.next_action||"No next action")+(x.next_action_date?' · '+new Date(x.next_action_date).toLocaleDateString("vi-VN"):"")+'</span></div></td>'+
-      '<td>'+new Date(x.submitted_at).toLocaleString("vi-VN")+'</td><td><select class="stage" data-id="'+x.id+'">'+stages.map(s=>'<option '+(s===x.pipeline_stage?'selected':'')+'>'+s+'</option>').join("")+'</select></td>';
+      '<td>'+new Date(x.submitted_at).toLocaleString("vi-VN")+'</td><td><select class="stage" data-id="'+x.id+'">'+stages.map(s=>stageOption(s,x.pipeline_stage)).join("")+'</select></td>';
     rowsEl.appendChild(tr);
   }
   document.querySelectorAll(".stage").forEach(el=>el.addEventListener("change",()=>updateStage(el.dataset.id,el.value,el)));
@@ -229,13 +235,13 @@ async function markRead(id){try{await api("/v1/admin/notifications/"+id+"/read",
 async function openDetail(id){
   if(!detailDialog.open) detailDialog.showModal();$("dName").textContent="Loading…";$("dCode").textContent="";$("detailBody").innerHTML='<div class="loading">Đang tải hồ sơ…</div>';
   try{
-    const j=await api("/v1/admin/applications/"+id),x=j.application,p=x.payload||{},history=j.history||[],a=j.assessment||{},adm=j.admission||{},selApp=j.selection||{},legalGate=j.admissionLegalGate||"BLOCKED";
+    const j=await api("/v1/admin/applications/"+id),x=j.application,p=x.payload||{},history=j.history||[],a=j.assessment||{},adm=j.admission||{},selApp=j.selection||{},legalGate=j.admissionLegalGate||"BLOCKED",formalSelectionOpen=dash?.legalReadiness?.program_registration_status==="CONFIRMED";
     $("dName").textContent=x.full_name;$("dCode").textContent=x.candidate_code;
     const lostOptions=["","Tuition","Schedule","Parents / Family","Location","Career Uncertainty","Chose Job","Another Program","No Response","Failed Qualification","Failed Selection","Not Ready","Other"];
     $("detailBody").innerHTML='<div class="detail-grid">'+
       detail("Email",x.email)+detail("Phone",x.phone)+detail("City",x.city)+detail("Current",x.current_status)+
       detail("Experience",x.experience_level)+detail("Track",x.preferred_track)+detail("Source",(x.utm_source||"direct")+" / "+(x.utm_content||"—"))+detail("Stage",x.pipeline_stage)+'</div>'+
-      '<section class="selection-box"><div class="selection-head"><h3>Selection Scheduling</h3><span class="source">'+esc(selApp.status||"DRAFT")+'</span></div>'+
+      (formalSelectionOpen?'<section class="selection-box"><div class="selection-head"><h3>Selection Scheduling</h3><span class="source">'+esc(selApp.status||"DRAFT")+'</span></div>'+
       '<input id="selToken" type="hidden" value="'+attr(selApp.public_token||"")+'">'+
       '<div class="selection-grid">'+
       '<label>Start time<input id="selStart" type="datetime-local" value="'+attr(toLocalInput(selApp.selection_start))+'"></label>'+
@@ -245,8 +251,8 @@ async function openDetail(id){
       '<label class="wide">Invitation note<textarea id="selInviteNote" placeholder="Thông tin team muốn nhắn cùng lời mời">'+esc(selApp.invitation_note||"")+'</textarea></label>'+
       '<label class="wide">Preparation note<textarea id="selPrepNote" placeholder="Ứng viên cần chuẩn bị gì trước Selection">'+esc(selApp.prep_note||"")+'</textarea></label>'+
       (selApp.candidate_response_note?'<label class="wide">Candidate response<div class="detail"><b>'+esc(selApp.candidate_response_note)+'</b></div></label>':'')+
-      '</div><div class="selection-actions"><button onclick="saveSelection('+x.id+')">Save Schedule</button><button class="secondary" onclick="copySelectionInvite()">Copy Invitation</button><button class="dark" onclick="markSelectionInvited('+x.id+')">Mark Invitation Sent</button><button class="secondary" onclick="markSelectionAttended('+x.id+')">Mark Attended</button></div></section>'+
-      '<section class="assessment"><h3>Selection Assessment</h3><div class="score-grid">'+
+      '</div><div class="selection-actions"><button onclick="saveSelection('+x.id+')">Save Schedule</button><button class="secondary" onclick="copySelectionInvite()">Copy Invitation</button><button class="dark" onclick="markSelectionInvited('+x.id+')">Mark Invitation Sent</button><button class="secondary" onclick="markSelectionAttended('+x.id+')">Mark Attended</button></div></section>':'<section class="selection-box"><div class="selection-head"><h3>Formal Selection Locked</h3><span class="source">LEGAL SAFE MODE</span></div><p class="legal-note">Program registration chưa CONFIRMED. Hồ sơ hiện chỉ ở Register Interest; không được scheduling/invite/assess.</p></section>')+
+      ((x.pipeline_stage==="SELECTION_ATTENDED"||a.updated_at)?'<section class="assessment"><h3>Selection Assessment</h3><div class="score-grid">'+
       scoreInput("Visual Potential","asVisual",a.visual_score,25)+
       scoreInput("Learning","asLearning",a.learning_score,20)+
       scoreInput("Execution","asExecution",a.execution_score,20)+
@@ -257,7 +263,7 @@ async function openDetail(id){
       '<label>Decision<select id="asDecision"><option '+sel(a.decision,"PENDING")+'>PENDING</option><option '+sel(a.decision,"PASS")+'>PASS</option><option '+sel(a.decision,"WAITLIST")+'>WAITLIST</option><option '+sel(a.decision,"LOST")+'>LOST</option></select></label>'+
       '<label class="wide">Selection notes<textarea id="asSelectionNotes">'+esc(a.selection_notes||"")+'</textarea></label>'+
       '<label class="wide">Interview notes<textarea id="asInterviewNotes">'+esc(a.interview_notes||"")+'</textarea></label></div>'+
-      '<button onclick="saveAssessment('+x.id+')">Save Assessment</button></section>'+
+      '<button onclick="saveAssessment('+x.id+')">Save Assessment</button></section>':'')+
       ((x.pipeline_stage==="PASS"||adm.status)?'<section class="admission"><div class="admission-head"><h3>Admission Draft</h3><span class="locked">LEGAL GATE: '+esc(legalGate)+'</span></div>'+
       '<div class="notice" style="margin-bottom:12px">Draft nội bộ. Send Admission và Payment đang bị khóa cho tới khi Legal & Enrollment gate được phê duyệt.</div>'+
       '<div class="admission-grid">'+
