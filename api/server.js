@@ -229,6 +229,13 @@ async function initDb() {
       campaign TEXT NOT NULL DEFAULT 'media_career_cohort01',
       status TEXT NOT NULL DEFAULT 'IDEA',
       owner TEXT,
+      asset_type TEXT,
+      target_publish_date DATE,
+      brief_ready BOOLEAN NOT NULL DEFAULT FALSE,
+      production_ready BOOLEAN NOT NULL DEFAULT FALSE,
+      edit_ready BOOLEAN NOT NULL DEFAULT FALSE,
+      copy_ready BOOLEAN NOT NULL DEFAULT FALSE,
+      qa_ready BOOLEAN NOT NULL DEFAULT FALSE,
       asset_url TEXT,
       publish_url TEXT,
       notes TEXT,
@@ -237,6 +244,14 @@ async function initDb() {
     );
     CREATE INDEX IF NOT EXISTS idx_mcp_campaign_status
       ON media_career_campaigns(status, updated_at DESC);
+    ALTER TABLE media_career_campaigns
+      ADD COLUMN IF NOT EXISTS asset_type TEXT,
+      ADD COLUMN IF NOT EXISTS target_publish_date DATE,
+      ADD COLUMN IF NOT EXISTS brief_ready BOOLEAN NOT NULL DEFAULT FALSE,
+      ADD COLUMN IF NOT EXISTS production_ready BOOLEAN NOT NULL DEFAULT FALSE,
+      ADD COLUMN IF NOT EXISTS edit_ready BOOLEAN NOT NULL DEFAULT FALSE,
+      ADD COLUMN IF NOT EXISTS copy_ready BOOLEAN NOT NULL DEFAULT FALSE,
+      ADD COLUMN IF NOT EXISTS qa_ready BOOLEAN NOT NULL DEFAULT FALSE;
 
     CREATE TABLE IF NOT EXISTS media_career_events (
       id BIGSERIAL PRIMARY KEY,
@@ -1267,7 +1282,9 @@ app.get("/v1/admin/campaigns", requireAdmin, async (req, res) => {
   const result = await pool.query(`
     SELECT
       c.id, c.content_id, c.title, c.source, c.medium, c.campaign, c.status,
-      c.owner, c.asset_url, c.publish_url, c.notes, c.created_at, c.updated_at,
+      c.owner, c.asset_type, c.target_publish_date,
+      c.brief_ready, c.production_ready, c.edit_ready, c.copy_ready, c.qa_ready,
+      c.asset_url, c.publish_url, c.notes, c.created_at, c.updated_at,
       COALESCE(ev.landing_views, 0)::int AS landing_views,
       COALESCE(ev.apply_views, 0)::int AS apply_views,
       COALESCE(ev.form_starts, 0)::int AS form_starts,
@@ -1300,12 +1317,18 @@ app.get("/v1/admin/campaigns", requireAdmin, async (req, res) => {
       END,
       c.updated_at DESC
   `, [days]);
-  const campaigns = result.rows.map(row => ({
-    ...row,
-    landing_to_interest_pct: Number(row.landing_views) > 0
-      ? Math.round((Number(row.interests) / Number(row.landing_views)) * 1000) / 10
-      : 0
-  }));
+  const campaigns = result.rows.map(row => {
+    const readiness = [
+      row.brief_ready, row.production_ready, row.edit_ready, row.copy_ready, row.qa_ready
+    ].filter(Boolean).length;
+    return {
+      ...row,
+      readiness_pct: readiness * 20,
+      landing_to_interest_pct: Number(row.landing_views) > 0
+        ? Math.round((Number(row.interests) / Number(row.landing_views)) * 1000) / 10
+        : 0
+    };
+  });
   res.json({ ok: true, days, campaigns });
 });
 
@@ -1327,8 +1350,13 @@ app.patch("/v1/admin/campaigns/:contentId", requireAdmin, async (req, res) => {
   const result = await pool.query(`
     INSERT INTO media_career_campaigns (
       content_id, title, source, medium, campaign, status,
-      owner, asset_url, publish_url, notes, updated_at
-    ) VALUES ($1,$2,$3,$4,'media_career_cohort01',$5,$6,$7,$8,$9,NOW())
+      owner, asset_type, target_publish_date,
+      brief_ready, production_ready, edit_ready, copy_ready, qa_ready,
+      asset_url, publish_url, notes, updated_at
+    ) VALUES (
+      $1,$2,$3,$4,'media_career_cohort01',$5,$6,$7,NULLIF($8,'')::date,
+      $9,$10,$11,$12,$13,$14,$15,$16,NOW()
+    )
     ON CONFLICT (content_id)
     DO UPDATE SET
       title = EXCLUDED.title,
@@ -1336,6 +1364,13 @@ app.patch("/v1/admin/campaigns/:contentId", requireAdmin, async (req, res) => {
       medium = EXCLUDED.medium,
       status = EXCLUDED.status,
       owner = EXCLUDED.owner,
+      asset_type = EXCLUDED.asset_type,
+      target_publish_date = EXCLUDED.target_publish_date,
+      brief_ready = EXCLUDED.brief_ready,
+      production_ready = EXCLUDED.production_ready,
+      edit_ready = EXCLUDED.edit_ready,
+      copy_ready = EXCLUDED.copy_ready,
+      qa_ready = EXCLUDED.qa_ready,
       asset_url = EXCLUDED.asset_url,
       publish_url = EXCLUDED.publish_url,
       notes = EXCLUDED.notes,
@@ -1348,6 +1383,13 @@ app.patch("/v1/admin/campaigns/:contentId", requireAdmin, async (req, res) => {
     medium,
     status,
     cleanString(b.owner, 160),
+    cleanString(b.assetType, 80),
+    cleanString(b.targetPublishDate, 20),
+    b.briefReady === true,
+    b.productionReady === true,
+    b.editReady === true,
+    b.copyReady === true,
+    b.qaReady === true,
     cleanString(b.assetUrl, 1500),
     cleanString(b.publishUrl, 1500),
     cleanString(b.notes, 5000)
