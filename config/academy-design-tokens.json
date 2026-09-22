@@ -1,40 +1,64 @@
 {
   "meta": {
     "name": "Hang Đôi Academy Design Tokens",
-    "version": "1.0.0",
-    "source": "Current Hang Đôi Academy homepage and Academy subpage styles in hangdoivn/hangdoi_academy",
+    "version": "2.0.0",
+    "concept": "Creative Learning Studio × Editorial Poster × Production Culture",
+    "source": "Reference-led system derived from approved Academy visual references and current Academy brand assets",
     "status": "canonical-design-source-draft",
     "prefix": "aca"
   },
   "color": {
+    "allocation": {
+      "paperNeutral": "60%",
+      "green": "20%",
+      "orangeCobaltCombined": "10%",
+      "yellowAccent": "10%",
+      "rule": "Yellow is a signal color only. Do not use yellow as a dominant full-section background except for intentionally small, high-attention blocks."
+    },
     "primitive": {
+      "ink": {
+        "800": "#24483A",
+        "900": "#17382B",
+        "950": "#101713"
+      },
+      "paper": {
+        "0": "#FFFDF7",
+        "50": "#F8F4EA",
+        "100": "#F2ECDF",
+        "200": "#E8DFD0"
+      },
       "green": {
-        "100": "#EDF7EF",
-        "400": "#8BC34A",
-        "600": "#239653",
-        "700": "#176B43",
-        "800": "#17382B",
-        "900": "#153D2E",
+        "100": "#E8F4DF",
+        "300": "#A7D67B",
+        "500": "#68B96D",
+        "700": "#239653",
+        "800": "#176B43",
+        "900": "#145238",
         "950": "#0F422D"
       },
       "yellow": {
-        "100": "#FFF8D6",
+        "100": "#FFF7CB",
         "300": "#FFE783",
         "500": "#F2D43D",
-        "600": "#D6B91F"
+        "700": "#C9A700"
       },
-      "neutral": {
-        "0": "#FFFFFF",
-        "25": "#FBFCFA",
-        "50": "#F7F8F3",
-        "75": "#F6F7F1",
-        "100": "#EEF1ED",
-        "200": "#D8E1DC",
-        "500": "#66756D",
-        "600": "#52665D"
+      "orange": {
+        "100": "#FFE1D3",
+        "300": "#FF9A72",
+        "500": "#F26A3D",
+        "700": "#C94A22"
       },
-      "red": {
-        "500": "#E86F55"
+      "cobalt": {
+        "100": "#E8ECFF",
+        "300": "#8091ED",
+        "500": "#3450D8",
+        "700": "#2338A8"
+      },
+      "functional": {
+        "red": "#D95C4F",
+        "neutral500": "#6C756F",
+        "neutral300": "#AEB6B0",
+        "neutral200": "#D5DBD6"
       },
       "logo": {
         "primary": "#00031A",
@@ -42,30 +66,65 @@
       }
     },
     "semantic": {
-      "brand": "{color.primitive.green.700}",
-      "brandEmphasis": "{color.primitive.green.600}",
-      "brandStrong": "{color.primitive.green.900}",
-      "brandSubtle": "{color.primitive.green.100}",
-      "accent": "{color.primitive.yellow.500}",
-      "accentSoft": "{color.primitive.yellow.100}",
-      "page": "{color.primitive.neutral.0}",
-      "subtle": "{color.primitive.neutral.50}",
-      "inverse": "{color.primitive.green.950}",
-      "textHeading": "{color.primitive.green.900}",
-      "textPrimary": "{color.primitive.green.800}",
-      "textSecondary": "{color.primitive.neutral.600}",
-      "textMuted": "{color.primitive.neutral.500}",
-      "textInverse": "{color.primitive.neutral.0}",
-      "border": "{color.primitive.neutral.200}",
-      "focus": "{color.primitive.green.600}",
-      "danger": "{color.primitive.red.500}"
+      "bgCanvas": "{color.primitive.paper.50}",
+      "bgPaper": "{color.primitive.paper.0}",
+      "bgSoft": "{color.primitive.paper.100}",
+      "bgDark": "{color.primitive.green.950}",
+      "bgBrand": "{color.primitive.green.800}",
+      "textDisplay": "{color.primitive.ink.950}",
+      "textHeading": "{color.primitive.ink.900}",
+      "textBody": "{color.primitive.ink.800}",
+      "textMuted": "{color.primitive.functional.neutral500}",
+      "textInverse": "{color.primitive.paper.0}",
+      "brand": "{color.primitive.green.800}",
+      "brandActive": "{color.primitive.green.700}",
+      "brandSoft": "{color.primitive.green.100}",
+      "signalYellow": "{color.primitive.yellow.500}",
+      "signalOrange": "{color.primitive.orange.500}",
+      "signalCobalt": "{color.primitive.cobalt.500}",
+      "focus": "{color.primitive.cobalt.500}",
+      "danger": "{color.primitive.functional.red}"
+    },
+    "usageRules": {
+      "yellow": [
+        "CTA accent",
+        "sticker",
+        "eyebrow marker",
+        "step number",
+        "single keyword highlight",
+        "small geometric shape"
+      ],
+      "yellowAvoid": [
+        "full-page background",
+        "multiple adjacent large cards",
+        "long body text background",
+        "more than roughly 10% of a viewport composition"
+      ],
+      "green": [
+        "brand anchor",
+        "dark inverse section",
+        "primary CTA",
+        "navigation emphasis",
+        "large brand shapes"
+      ],
+      "orange": [
+        "energy / event / human / production signal",
+        "one medium block or shape per composition"
+      ],
+      "cobalt": [
+        "learning system / editorial contrast",
+        "secondary signal",
+        "diagram / metadata emphasis"
+      ]
     }
   },
   "typography": {
     "family": {
-      "sans": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
+      "display": "Inter, Helvetica Neue, Arial, sans-serif",
+      "body": "Inter, Helvetica Neue, Arial, sans-serif",
+      "mono": "SFMono-Regular, Consolas, Liberation Mono, monospace"
     },
-    "weight": {
+    "weights": {
       "regular": 400,
       "medium": 500,
       "semibold": 600,
@@ -73,38 +132,49 @@
       "extrabold": 800,
       "black": 900
     },
-    "role": {
-      "display1": {
-        "size": "clamp(56px, 7.2vw, 108px)",
-        "lineHeight": 0.88,
-        "letterSpacing": "-0.065em",
+    "roles": {
+      "posterXL": {
+        "size": "clamp(72px, 10vw, 152px)",
+        "lineHeight": 0.82,
+        "letterSpacing": "-0.075em",
         "weight": 900
       },
-      "display2": {
-        "size": "clamp(38px, 5vw, 72px)",
-        "lineHeight": 0.98,
-        "letterSpacing": "-0.055em",
+      "posterLG": {
+        "size": "clamp(60px, 8vw, 120px)",
+        "lineHeight": 0.84,
+        "letterSpacing": "-0.07em",
         "weight": 900
       },
-      "title1": {
-        "size": "clamp(32px, 3.2vw, 54px)",
+      "display": {
+        "size": "clamp(48px, 6vw, 88px)",
+        "lineHeight": 0.9,
+        "letterSpacing": "-0.06em",
+        "weight": 900
+      },
+      "heading1": {
+        "size": "clamp(36px, 4.5vw, 68px)",
         "lineHeight": 1,
         "letterSpacing": "-0.05em",
         "weight": 900
       },
-      "title2": {
-        "size": "clamp(26px, 2.4vw, 32px)",
-        "lineHeight": 1.05,
+      "heading2": {
+        "size": "clamp(28px, 3vw, 44px)",
+        "lineHeight": 1.02,
         "letterSpacing": "-0.04em",
         "weight": 800
       },
-      "title3": {
-        "size": "23px",
-        "lineHeight": 1.08,
+      "heading3": {
+        "size": "clamp(22px, 2vw, 28px)",
+        "lineHeight": 1.05,
         "letterSpacing": "-0.03em",
         "weight": 800
       },
-      "bodyLg": {
+      "bodyXL": {
+        "size": "20px",
+        "lineHeight": 1.5,
+        "weight": 400
+      },
+      "bodyLG": {
         "size": "18px",
         "lineHeight": 1.55,
         "weight": 400
@@ -114,7 +184,7 @@
         "lineHeight": 1.55,
         "weight": 400
       },
-      "bodySm": {
+      "bodySM": {
         "size": "14px",
         "lineHeight": 1.55,
         "weight": 400
@@ -122,139 +192,270 @@
       "label": {
         "size": "12px",
         "lineHeight": 1.2,
-        "letterSpacing": "0.12em",
-        "weight": 800
-      },
-      "caption": {
-        "size": "11px",
-        "lineHeight": 1.35,
-        "weight": 600
+        "letterSpacing": "0.11em",
+        "weight": 800,
+        "textTransform": "uppercase"
       },
       "micro": {
-        "size": "10px",
+        "size": "11px",
         "lineHeight": 1.3,
         "letterSpacing": "0.08em",
-        "weight": 800
+        "weight": 700
       }
+    },
+    "rules": {
+      "display": "Oversized, compact, high contrast, often broken into 2–4 short lines.",
+      "body": "Neutral and readable. Never use negative tracking.",
+      "labels": "Uppercase only for metadata, tags, step numbers, categories and status.",
+      "maxLineLength": "Body copy should normally stay within 560–760px."
     }
   },
-  "space": {
-    "0": 0,
-    "1": 4,
-    "2": 8,
-    "3": 12,
-    "4": 16,
-    "5": 20,
-    "6": 24,
-    "8": 32,
-    "10": 40,
-    "12": 48,
-    "14": 56,
-    "16": 64,
-    "20": 80,
-    "24": 96,
-    "26": 104,
-    "30": 120
-  },
-  "radius": {
-    "xs": 8,
-    "sm": 10,
-    "md": 14,
-    "lg": 18,
-    "xl": 24,
-    "2xl": 28,
-    "3xl": 34,
-    "4xl": 40,
-    "full": 999
-  },
-  "shadow": {
-    "xs": "0 2px 8px rgba(21,61,46,.06)",
-    "sm": "0 12px 40px rgba(16,23,20,.04)",
-    "md": "0 18px 52px rgba(21,61,46,.08)",
-    "lg": "0 24px 70px rgba(21,61,46,.12)",
-    "xl": "0 40px 90px rgba(21,61,46,.20)",
-    "media": "0 50px 100px rgba(0,0,0,.30)"
+  "spacing": {
+    "base": 4,
+    "scale": [
+      0,
+      4,
+      8,
+      12,
+      16,
+      20,
+      24,
+      32,
+      40,
+      48,
+      56,
+      64,
+      80,
+      96,
+      112,
+      128,
+      160
+    ],
+    "section": {
+      "tight": "clamp(52px, 6vw, 80px)",
+      "normal": "clamp(72px, 8vw, 112px)",
+      "loose": "clamp(92px, 11vw, 160px)"
+    }
   },
   "layout": {
-    "max": 1240,
-    "readable": 820,
-    "copy": 520,
-    "sectionDesktop": 104,
-    "sectionTablet": 84,
-    "sectionMobile": 62,
-    "gridGap": 18,
+    "max": 1280,
+    "wide": 1440,
+    "readable": 760,
+    "copy": 560,
+    "columns": {
+      "desktop": 12,
+      "tablet": 6,
+      "mobile": 4
+    },
+    "gutters": {
+      "desktop": 40,
+      "tablet": 28,
+      "mobile": 16
+    },
+    "gaps": {
+      "xs": 8,
+      "sm": 12,
+      "md": 20,
+      "lg": 32,
+      "xl": 48
+    },
     "breakpoints": {
       "xs": 560,
       "sm": 760,
       "md": 900,
-      "lg": 980,
-      "xl": 1200
+      "lg": 1024,
+      "xl": 1280
+    },
+    "principles": [
+      "Use asymmetry intentionally.",
+      "Allow one dominant block per viewport.",
+      "Use offset alignment and controlled overlap.",
+      "Do not repeat equal card grids section after section.",
+      "Mobile is recomposed, not merely scaled down."
+    ]
+  },
+  "composition": {
+    "archetypes": {
+      "posterHero": {
+        "structure": "Oversized headline + image crop + 1–3 geometric shapes + compact metadata",
+        "dominantArea": "55–70%",
+        "yellowLimit": "<=10%"
+      },
+      "editorialSplit": {
+        "structure": "7/5 or 8/4 asymmetric split",
+        "use": "story, explanation, proof"
+      },
+      "posterGrid": {
+        "structure": "mixed spans across 12-column grid",
+        "use": "course outcomes, learner work, events"
+      },
+      "galleryStrip": {
+        "structure": "edge-to-edge image rhythm with captions",
+        "use": "production/learning proof"
+      },
+      "timeline": {
+        "structure": "large step numbers + offset content columns",
+        "use": "curriculum, process, journey"
+      },
+      "manifesto": {
+        "structure": "large type on dark/green surface with sparse supporting copy",
+        "use": "positioning / philosophy"
+      },
+      "signalBlock": {
+        "structure": "single orange/cobalt/yellow block within neutral composition",
+        "use": "attention reset",
+        "yellowRule": "yellow should be the smallest of signal blocks"
+      }
     }
+  },
+  "shape": {
+    "types": [
+      "circle",
+      "archTop",
+      "archBottom",
+      "capsule",
+      "bar",
+      "sticker",
+      "cropBlock"
+    ],
+    "radii": {
+      "none": 0,
+      "xs": 4,
+      "sm": 8,
+      "md": 12,
+      "lg": 16,
+      "xl": 24,
+      "full": 999
+    },
+    "circleSizes": {
+      "sm": 64,
+      "md": 128,
+      "lg": 240,
+      "xl": 420
+    },
+    "rotation": {
+      "subtleNegative": -2,
+      "subtlePositive": 2,
+      "strongNegative": -4,
+      "strongPositive": 4
+    },
+    "rules": [
+      "Shapes should create hierarchy, crop, or directional movement.",
+      "Do not decorate every section.",
+      "One dominant geometric gesture is preferable to many small icons."
+    ]
+  },
+  "image": {
+    "principles": [
+      "Prefer real Academy learning, Hang Đôi Production, equipment, learner output and commercial work.",
+      "Crop decisively instead of fitting the full image.",
+      "Treat photography as a graphic block.",
+      "Pair image with short caption/metadata when useful.",
+      "Avoid stock imagery when real material exists."
+    ],
+    "radii": {
+      "editorial": 0,
+      "soft": 12,
+      "feature": 24
+    },
+    "aspectRatios": {
+      "portrait": "4/5",
+      "landscape": "3/2",
+      "wide": "16/9",
+      "square": "1/1"
+    },
+    "filters": {
+      "saturation": 1.04,
+      "contrast": 1.02
+    },
+    "overlays": {
+      "dark": "linear-gradient(180deg, rgba(16,23,19,0) 38%, rgba(16,23,19,.78) 100%)",
+      "green": "linear-gradient(135deg, rgba(15,66,45,.14), rgba(15,66,45,0))",
+      "warm": "linear-gradient(135deg, rgba(242,106,61,.16), rgba(242,212,61,.06))"
+    }
+  },
+  "border": {
+    "hairline": 1,
+    "strong": 2,
+    "poster": 3,
+    "color": "{color.primitive.ink.950}"
+  },
+  "shadow": {
+    "printSM": "4px 4px 0 #101713",
+    "printMD": "7px 7px 0 #101713",
+    "printAccent": "7px 7px 0 #F2D43D",
+    "softSM": "0 10px 30px rgba(16,23,19,.06)",
+    "softMD": "0 20px 56px rgba(16,23,19,.10)",
+    "media": "0 30px 80px rgba(16,23,19,.18)"
   },
   "motion": {
     "duration": {
-      "fast": 150,
-      "base": 250,
-      "slow": 350,
-      "media": 550
+      "fast": 140,
+      "base": 220,
+      "slow": 360,
+      "media": 520
     },
     "easing": {
       "standard": "cubic-bezier(.2,.8,.2,1)",
       "enter": "cubic-bezier(.16,1,.3,1)",
       "exit": "cubic-bezier(.4,0,1,1)"
-    }
+    },
+    "hover": {
+      "lift": -3,
+      "mediaScale": 1.025
+    },
+    "rules": [
+      "Use motion to reveal reading order or interaction state.",
+      "No continuous floating decorations.",
+      "No bouncing CTA.",
+      "Respect prefers-reduced-motion."
+    ]
   },
-  "layer": {
-    "base": 0,
-    "raised": 10,
-    "header": 50,
-    "menu": 60,
-    "overlay": 80,
-    "modal": 90,
-    "toast": 100
-  },
-  "component": {
+  "components": {
     "header": {
-      "height": 86,
-      "heightMobile": 68,
-      "blur": 18
+      "heightDesktop": 76,
+      "heightMobile": 64,
+      "blur": 16
     },
     "button": {
-      "heightSm": 44,
-      "heightMd": 52,
+      "heightSm": 42,
+      "heightMd": 50,
       "heightLg": 56,
       "paddingX": 22,
       "radius": 999,
       "fontSize": 14,
       "fontWeight": 800
     },
+    "posterButton": {
+      "radius": 8,
+      "border": 2,
+      "shadow": "4px 4px 0 #101713"
+    },
     "field": {
       "height": 52,
-      "radius": 14,
+      "radius": 8,
       "paddingX": 16
     },
-    "chip": {
-      "height": 36,
-      "paddingX": 12,
+    "tag": {
+      "height": 32,
+      "paddingX": 10,
       "radius": 999,
       "fontSize": 12
     },
     "card": {
-      "radius": 24,
-      "radiusLarge": 28,
-      "padding": 28
+      "radius": 12,
+      "softRadius": 16,
+      "padding": 24,
+      "defaultShadow": "none"
     },
-    "media": {
-      "radius": 30,
-      "radiusHero": 40,
-      "ratioCard": "4/5",
-      "ratioWide": "16/9",
-      "ratioSquare": "1/1"
+    "posterCard": {
+      "radius": 8,
+      "border": 2,
+      "shadow": "4px 4px 0 #101713"
     },
     "accessibility": {
       "hitTargetMin": 44,
-      "focusWidth": 3,
-      "focusOffset": 3
+      "focusWidth": 3
     }
   }
 }
