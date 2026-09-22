@@ -121,7 +121,7 @@ async function updateStage(id,stage,el){
 async function refreshDashboard(){try{dash=await api("/v1/admin/dashboard?days="+$("days").value);renderDashboard()}catch{}}
 async function markRead(id){try{await api("/v1/admin/notifications/"+id+"/read",{method:"PATCH"});const x=notifications.find(n=>String(n.id)===String(id));if(x)x.status="READ";renderNotifications()}catch(e){statusEl.textContent=e.message;statusEl.className="status err"}}
 async function openDetail(id){
-  detailDialog.showModal();$("dName").textContent="Loading…";$("dCode").textContent="";$("detailBody").innerHTML='<div class="loading">Đang tải hồ sơ…</div>';
+  if(!detailDialog.open) detailDialog.showModal();$("dName").textContent="Loading…";$("dCode").textContent="";$("detailBody").innerHTML='<div class="loading">Đang tải hồ sơ…</div>';
   try{
     const j=await api("/v1/admin/applications/"+id),x=j.application,p=x.payload||{},history=j.history||[];
     $("dName").textContent=x.full_name;$("dCode").textContent=x.candidate_code;
