@@ -591,6 +591,13 @@ app.post("/v1/selection/:token/respond", rateLimit(60 * 60 * 1000, 20), async (r
       return res.status(404).json({ ok: false, error: "Selection invitation not found" });
     }
     const row = current.rows[0];
+    const legal = await client.query(
+      "SELECT program_registration_status FROM media_career_legal_readiness WHERE cohort = '01'"
+    );
+    if (legal.rows[0]?.program_registration_status !== "CONFIRMED") {
+      await client.query("ROLLBACK");
+      return res.status(423).json({ ok: false, error: "Formal Selection is temporarily locked" });
+    }
     const responseableStatus = new Set(["INVITED", "CONFIRMED", "DECLINED"]);
     const responseablePipeline = new Set(["SELECTION_INVITED", "SELECTION_CONFIRMED"]);
     if (!responseableStatus.has(row.status) || !responseablePipeline.has(row.pipeline_stage)) {
@@ -889,6 +896,15 @@ app.patch("/v1/admin/applications/:id/selection", requireAdmin, async (req, res)
     [req.params.id]
   );
   if (!application.rowCount) return res.status(404).json({ ok: false, error: "Not found" });
+  const legal = await pool.query(
+    "SELECT program_registration_status FROM media_career_legal_readiness WHERE cohort = '01'"
+  );
+  if (legal.rows[0]?.program_registration_status !== "CONFIRMED") {
+    return res.status(423).json({
+      ok: false,
+      error: "Formal Selection scheduling is locked until program registration is confirmed"
+    });
+  }
   const allowedPipeline = new Set(["QUALIFIED", "SELECTION_INVITED", "SELECTION_CONFIRMED"]);
   if (!allowedPipeline.has(application.rows[0].pipeline_stage)) {
     return res.status(409).json({
@@ -1076,6 +1092,17 @@ app.patch("/v1/admin/applications/:id/assessment", requireAdmin, async (req, res
       return res.status(404).json({ ok: false, error: "Not found" });
     }
     const appData = appRow.rows[0];
+    const existingAssessment = await client.query(
+      "SELECT id FROM media_career_assessments WHERE application_id = $1",
+      [req.params.id]
+    );
+    if (appData.pipeline_stage !== "SELECTION_ATTENDED" && !existingAssessment.rowCount) {
+      await client.query("ROLLBACK");
+      return res.status(423).json({
+        ok: false,
+        error: "Assessment is locked until the candidate has attended Formal Selection"
+      });
+    }
     const saved = await client.query(`
       INSERT INTO media_career_assessments (
         application_id, visual_score, learning_score, execution_score,
@@ -1391,6 +1418,13 @@ app.patch("/v1/admin/applications/:id/stage", requireAdmin, async (req, res) => 
       return res.status(404).json({ ok: false, error: "Not found" });
     }
     const prev = previous.rows[0];
+    if (stage === "ADMITTED" || stage === "ENROLLED") {
+      await client.query("ROLLBACK");
+      return res.status(423).json({
+        ok: false,
+        error: "ADMITTED/ENROLLED are blocked until the reviewed Admission/Enrollment implementation is explicitly unlocked"
+      });
+    }
     const gatedStages = new Set([
       "APPLICATION_COMPLETED", "QUALIFIED", "SELECTION_INVITED", "SELECTION_CONFIRMED",
       "SELECTION_ATTENDED", "PASS", "WAITLIST", "ADMITTED", "ENROLLED"
