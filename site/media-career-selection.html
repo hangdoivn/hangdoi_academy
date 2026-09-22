@@ -56,7 +56,7 @@ async function load(){
     $("duration").textContent=selection.duration_minutes+" phút";$("mode").textContent=selection.mode==="ONLINE"?"Online":"Tại Hang Đôi / Onsite";
     $("location").textContent=selection.location||"Chưa chốt";
     if(selection.invitation_note){$("inviteNote").hidden=false;$("inviteNote").textContent=selection.invitation_note}
-    if(selection.prep_note){$("prepNote").hidden=false;$("prepNote").innerHTML="<b>Chuẩn bị trước Selection</b><br>"+selection.prep_note.replace(/\n/g,"<br>")}
+    if(selection.prep_note){$("prepNote").hidden=false;$("prepNote").textContent="Chuẩn bị trước Selection\n"+selection.prep_note}
     if(["ATTENDED","CANCELLED","NO_SHOW"].includes(selection.status)){$("responseBox").hidden=true}
   }catch(e){$("loading").textContent=e.message}
 }
