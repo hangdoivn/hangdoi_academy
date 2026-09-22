@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Media Career CRM | Hang Đôi Academy</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<style>
+:root{--blue:#152BE8;--yellow:#FDDE58;--ink:#00031A;--mist:#F3F5FF;--line:#D9DDEC;--muted:#646B86;--red:#B42318;--green:#157A55}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--mist)}.wrap{width:min(calc(100% - 28px),1280px);margin:auto}.nav{height:70px;display:flex;align-items:center;justify-content:space-between}.nav img{width:184px}.tag{font-size:12px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}h1{font-size:44px;letter-spacing:-.04em;margin:4px 0 22px}.toolbar{display:grid;grid-template-columns:1.2fr .7fr .7fr auto;gap:10px;margin-bottom:18px}.toolbar input,.toolbar select,.toolbar button,.login input,.login button{font:inherit;border:1px solid var(--line);border-radius:12px;padding:11px 12px;background:#fff}.toolbar button,.login button{background:var(--ink);color:#fff;font-weight:850;cursor:pointer}.login{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;display:grid;grid-template-columns:1fr auto;gap:10px;margin-bottom:18px}.hint{font-size:12px;color:var(--muted);grid-column:1/-1}.metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:18px}.metric{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px}.metric small{color:var(--muted);font-weight:800}.metric strong{display:block;font-size:28px;margin-top:6px}.table-wrap{overflow:auto;background:#fff;border:1px solid var(--line);border-radius:18px}table{width:100%;border-collapse:collapse;min-width:1080px}th,td{padding:13px 12px;border-bottom:1px solid #edf0f7;text-align:left;font-size:13px;vertical-align:top}th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);position:sticky;top:0;background:#fff}td strong{font-size:14px}.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:var(--blue)}.stage{font:inherit;border:1px solid var(--line);border-radius:10px;padding:7px 9px;background:#fff;min-width:170px}.source{display:inline-block;padding:5px 8px;border-radius:999px;background:var(--mist);font-size:11px}.empty{padding:48px;text-align:center;color:var(--muted)}.status{font-size:12px;color:var(--muted);margin:10px 0}.ok{color:var(--green)}.err{color:var(--red)}@media(max-width:900px){.metrics{grid-template-columns:repeat(2,1fr)}.toolbar{grid-template-columns:1fr 1fr}.login{grid-template-columns:1fr}.login button{width:100%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="nav"><a href="/"><img src="/logo-academy.svg" alt="Hang Đôi Academy"></a><div class="tag">Internal · Candidate CRM</div></div>
+<h1>Media Career Pipeline</h1>
+<div class="login"><input id="token" type="password" placeholder="Admin Access Key"><button id="connect">Connect</button><div class="hint">Access key chỉ được giữ trong session của browser, không nhúng trong source.</div></div>
+<div class="metrics">
+<div class="metric"><small>Applications</small><strong id="mAll">0</strong></div>
+<div class="metric"><small>Qualified</small><strong id="mQualified">0</strong></div>
+<div class="metric"><small>Selection</small><strong id="mSelection">0</strong></div>
+<div class="metric"><small>Pass</small><strong id="mPass">0</strong></div>
+<div class="metric"><small>Admitted</small><strong id="mAdmitted">0</strong></div>
+</div>
+<div class="toolbar">
+<input id="search" placeholder="Tìm tên, email, phone, Candidate ID">
+<select id="stageFilter"><option value="">All stages</option></select>
+<select id="sourceFilter"><option value="">All sources</option></select>
+<button id="exportBtn">Export CSV</button>
+</div>
+<div id="status" class="status">Chưa kết nối Candidate API.</div>
+<div class="table-wrap"><table><thead><tr><th>Candidate</th><th>Contact</th><th>Profile</th><th>Track</th><th>Source</th><th>Submitted</th><th>Stage</th></tr></thead><tbody id="rows"></tbody></table><div id="empty" class="empty">Chưa có dữ liệu.</div></div>
+</div>
+<script>
+const API="https://candidate-api-v2-production.up.railway.app";
+const stages=["APPLICATION_COMPLETED","QUALIFIED","SELECTION_INVITED","SELECTION_CONFIRMED","SELECTION_ATTENDED","PASS","WAITLIST","LOST","ADMITTED","ENROLLED"];
+let data=[];
+const tokenEl=document.getElementById("token"),statusEl=document.getElementById("status"),rowsEl=document.getElementById("rows"),emptyEl=document.getElementById("empty");
+tokenEl.value=sessionStorage.getItem("mcp_admin_token")||"";
+const stageFilter=document.getElementById("stageFilter");
+stages.forEach(s=>{const o=document.createElement("option");o.value=s;o.textContent=s;stageFilter.appendChild(o)});
+const auth=()=>({"Authorization":"Bearer "+(sessionStorage.getItem("mcp_admin_token")||"")});
+const esc=v=>String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+async function load(){
+  const token=tokenEl.value.trim(); if(!token){statusEl.textContent="Nhập Admin Access Key.";statusEl.className="status err";return}
+  sessionStorage.setItem("mcp_admin_token",token);
+  statusEl.textContent="Đang tải pipeline…";statusEl.className="status";
+  try{
+    const r=await fetch(API+"/v1/admin/applications?limit=500",{headers:auth()});
+    const j=await r.json(); if(!r.ok) throw new Error(j.error||"Unauthorized");
+    data=j.applications||[]; buildFilters(); render(); statusEl.textContent="Connected · "+data.length+" applications";statusEl.className="status ok";
+  }catch(e){statusEl.textContent="Không kết nối được: "+e.message;statusEl.className="status err"}
+}
+function buildFilters(){
+  const sf=document.getElementById("sourceFilter"); const current=sf.value; sf.innerHTML='<option value="">All sources</option>';
+  [...new Set(data.map(x=>x.utm_source).filter(Boolean))].sort().forEach(s=>{const o=document.createElement("option");o.value=s;o.textContent=s;sf.appendChild(o)});sf.value=current;
+}
+function filtered(){
+  const q=document.getElementById("search").value.trim().toLowerCase(), st=stageFilter.value, src=document.getElementById("sourceFilter").value;
+  return data.filter(x=>{
+    const hay=[x.full_name,x.email,x.phone,x.candidate_code].join(" ").toLowerCase();
+    return (!q||hay.includes(q))&&(!st||x.pipeline_stage===st)&&(!src||x.utm_source===src);
+  });
+}
+function metrics(){
+  document.getElementById("mAll").textContent=data.length;
+  document.getElementById("mQualified").textContent=data.filter(x=>x.pipeline_stage==="QUALIFIED").length;
+  document.getElementById("mSelection").textContent=data.filter(x=>["SELECTION_INVITED","SELECTION_CONFIRMED","SELECTION_ATTENDED"].includes(x.pipeline_stage)).length;
+  document.getElementById("mPass").textContent=data.filter(x=>x.pipeline_stage==="PASS").length;
+  document.getElementById("mAdmitted").textContent=data.filter(x=>["ADMITTED","ENROLLED"].includes(x.pipeline_stage)).length;
+}
+function render(){
+  metrics();const list=filtered();rowsEl.innerHTML="";emptyEl.style.display=list.length?"none":"block";
+  for(const x of list){
+    const tr=document.createElement("tr");
+    tr.innerHTML='<td><strong>'+esc(x.full_name)+'</strong><div class="code">'+esc(x.candidate_code)+'</div></td>'+
+      '<td>'+esc(x.phone)+'<br>'+esc(x.email)+'</td>'+
+      '<td>'+esc(x.current_status||"")+'<br>'+esc(x.experience_level||"")+'</td>'+
+      '<td>'+esc(x.preferred_track||"")+'</td>'+
+      '<td><span class="source">'+esc(x.utm_source||"direct")+'</span><br>'+esc(x.utm_content||"")+'</td>'+
+      '<td>'+new Date(x.submitted_at).toLocaleString("vi-VN")+'</td>'+
+      '<td><select class="stage" data-id="'+x.id+'">'+stages.map(s=>'<option '+(s===x.pipeline_stage?'selected':'')+'>'+s+'</option>').join("")+'</select></td>';
+    rowsEl.appendChild(tr);
+  }
+  document.querySelectorAll(".stage").forEach(el=>el.addEventListener("change",()=>updateStage(el.dataset.id,el.value,el)));
+}
+async function updateStage(id,stage,el){
+  el.disabled=true;
+  try{
+    const r=await fetch(API+"/v1/admin/applications/"+id+"/stage",{method:"PATCH",headers:{...auth(),"Content-Type":"application/json"},body:JSON.stringify({stage})});
+    const j=await r.json();if(!r.ok)throw new Error(j.error||"Update failed");
+    const item=data.find(x=>String(x.id)===String(id));if(item)item.pipeline_stage=stage;metrics();statusEl.textContent="Updated "+j.application.candidate_code+" → "+stage;statusEl.className="status ok";
+  }catch(e){statusEl.textContent="Update lỗi: "+e.message;statusEl.className="status err";load()}finally{el.disabled=false}
+}
+function csv(){
+  const list=filtered(),cols=["candidate_code","full_name","phone","email","city","current_status","preferred_track","experience_level","pipeline_stage","utm_source","utm_medium","utm_campaign","utm_content","submitted_at"];
+  const quote=v=>'"'+String(v??"").replaceAll('"','""')+'"';
+  return [cols.join(","),...list.map(x=>cols.map(c=>quote(x[c])).join(","))].join("\n");
+}
+document.getElementById("connect").onclick=load;
+["search","stageFilter","sourceFilter"].forEach(id=>document.getElementById(id).addEventListener("input",render));
+document.getElementById("exportBtn").onclick=()=>{const b=new Blob([csv()],{type:"text/csv;charset=utf-8"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="media-career-candidates.csv";a.click();URL.revokeObjectURL(a.href)};
+if(tokenEl.value) load();
+</script>
+</body></html>
