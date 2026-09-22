@@ -118,6 +118,17 @@ const params = new URLSearchParams(location.search);
   const v=params.get(k); if(v) sessionStorage.setItem(k,v);
 });
 const checkedValues = id => [...document.querySelectorAll("#"+id+" input:checked")].map(x=>x.value);
+let sid=sessionStorage.getItem("mcp_sid");if(!sid){sid="mcp_"+crypto.randomUUID();sessionStorage.setItem("mcp_sid",sid)}
+const track=(eventName,candidateCode="",metadata={})=>fetch(API+"/v1/events",{
+  method:"POST",headers:{"Content-Type":"application/json"},keepalive:true,
+  body:JSON.stringify({eventName,sessionId:sid,candidateCode,path:location.pathname,
+    utmSource:sessionStorage.getItem("utm_source")||"",utmMedium:sessionStorage.getItem("utm_medium")||"",
+    utmCampaign:sessionStorage.getItem("utm_campaign")||"media_career_cohort01",
+    utmContent:sessionStorage.getItem("utm_content")||"",referrer:document.referrer||"",metadata})
+}).catch(()=>{});
+track("apply_view");
+let formStarted=false;
+form.addEventListener("input",()=>{if(!formStarted){formStarted=true;track("form_start")}}, {passive:true});
 
 form.addEventListener("submit", async (event)=>{
   event.preventDefault();
@@ -170,6 +181,7 @@ form.addEventListener("submit", async (event)=>{
     });
     const data = await response.json().catch(()=>({}));
     if(!response.ok) throw new Error(data.error || "Submit failed");
+    await track("form_submit_client",data.candidateCode,{});
     location.href = "/media-career-program/thank-you/?candidate="+encodeURIComponent(data.candidateCode);
   }catch(error){
     console.error(error);

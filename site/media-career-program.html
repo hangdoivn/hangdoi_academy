@@ -66,5 +66,19 @@ footer{padding:34px 0;background:var(--ink);color:#fff}.foot{display:flex;justif
 
 <footer><div class="wrap foot"><a href="/"><img src="/logo-academy.svg" alt="Hang Đôi Academy"></a><div class="fine">Media Career Program · Cohort 01 · Đà Nẵng<br>Application/Enrollment và Employment là hai quy trình độc lập.</div></div></footer>
 <a class="btn btn-yellow mobile" href="/media-career-program/apply/" rel="noopener">Apply for Selection →</a>
+<script>
+(()=>{
+  const API="https://candidate-api-v2-production.up.railway.app";
+  const p=new URLSearchParams(location.search);
+  ["utm_source","utm_medium","utm_campaign","utm_content"].forEach(k=>{const v=p.get(k);if(v)sessionStorage.setItem(k,v)});
+  let sid=sessionStorage.getItem("mcp_sid");if(!sid){sid="mcp_"+crypto.randomUUID();sessionStorage.setItem("mcp_sid",sid)}
+  fetch(API+"/v1/events",{method:"POST",headers:{"Content-Type":"application/json"},keepalive:true,body:JSON.stringify({
+    eventName:"landing_view",sessionId:sid,path:location.pathname,
+    utmSource:sessionStorage.getItem("utm_source")||"",utmMedium:sessionStorage.getItem("utm_medium")||"",
+    utmCampaign:sessionStorage.getItem("utm_campaign")||"media_career_cohort01",
+    utmContent:sessionStorage.getItem("utm_content")||"",referrer:document.referrer||""
+  })}).catch(()=>{});
+})();
+</script>
 </body>
 </html>
