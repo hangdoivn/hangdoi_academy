@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Apply — Media Career Program | Hang Đôi Academy</title>
-<meta name="description" content="Application form cho Hang Đôi Media Career Program — Cohort 01.">
+<title>Register Interest — Media Career Program | Hang Đôi Academy</title>
+<meta name="description" content="Đăng ký quan tâm Hang Đôi Media Career Program — Cohort 01.">
 <meta name="robots" content="noindex,follow">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <style>
@@ -18,9 +18,9 @@ form{background:white;border:1px solid var(--line);border-radius:28px;padding:30
 <div class="nav"><a href="/"><img src="/logo-academy.svg" alt="Hang Đôi Academy"></a><a class="back" href="/media-career-program/">← Chương trình</a></div>
 <section class="hero">
 <div class="eyebrow">Media Career Program · Cohort 01</div>
-<h1>APPLY FOR<br>SELECTION.</h1>
-<p class="intro">Form này giúp Hang Đôi hiểu về background, cách bạn quan sát hình ảnh, cách bạn học và mức độ nghiêm túc với career Media. Không yêu cầu kinh nghiệm, không bắt buộc portfolio và không cần sở hữu camera.</p>
-<div class="meta"><span class="chip">10–15 phút</span><span class="chip">Không thu phí khi apply</span><span class="chip">10 seats</span></div>
+<h1>REGISTER<br>INTEREST.</h1>
+<p class="intro">Form này ghi nhận mức độ quan tâm và background của bạn để Hang Đôi có thể liên hệ khi Formal Selection của Cohort 01 được mở. Đây chưa phải Admission/Enrollment và không tạo cam kết việc làm. Không yêu cầu kinh nghiệm, không bắt buộc portfolio và không cần sở hữu camera.</p>
+<div class="meta"><span class="chip">10–15 phút</span><span class="chip">Không thu phí</span><span class="chip">10 seats</span></div>
 </section>
 
 <form id="applicationForm"><div class="hp" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
@@ -105,7 +105,7 @@ form{background:white;border:1px solid var(--line);border-radius:28px;padding:30
 <label class="consent"><input id="marketingConsent" type="checkbox"><span>Tôi đồng ý nhận thêm thông tin về workshop, chương trình và hoạt động tương lai của Hang Đôi. <b>Không bắt buộc.</b></span></label>
 </fieldset>
 
-<div class="actions"><div id="formStatus" class="status">Application sẽ được lưu vào hệ thống Candidate của Hang Đôi Academy.</div><button id="submitBtn" type="submit">Submit Application →</button></div>
+<div class="actions"><div id="formStatus" class="status">Interest Registration sẽ được lưu vào hệ thống Candidate của Hang Đôi Academy.</div><button id="submitBtn" type="submit">Register Interest →</button></div>
 </form>
 </div>
 <script>
@@ -183,7 +183,7 @@ form.addEventListener("submit", async (event)=>{
     const data = await response.json().catch(()=>({}));
     if(!response.ok) throw new Error(data.error || "Submit failed");
     await track("form_submit_client",data.candidateCode,{});
-    location.href = "/media-career-program/thank-you/?candidate="+encodeURIComponent(data.candidateCode);
+    location.href = "/media-career-program/thank-you/?candidate="+encodeURIComponent(data.candidateCode)+"&mode="+encodeURIComponent(data.intakeMode||"INTEREST_ONLY");
   }catch(error){
     console.error(error);
     statusEl.className = "status error";
