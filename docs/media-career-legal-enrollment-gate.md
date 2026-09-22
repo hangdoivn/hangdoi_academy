@@ -19,7 +19,10 @@ Primary current instruments:
 3. **Decree No. 361/2026/NĐ-CP**
    - issued/effective 17 September 2026;
    - regulates investment/activity conditions in vocational education, higher education and education quality accreditation.
-4. **Labour Code No. 45/2019/QH14 — Article 61**
+4. **Circular No. 55/2026/TT-BGDĐT**
+   - issued/effective 30 June 2026;
+   - regulates vocational-education training-program standards.
+5. **Labour Code No. 45/2019/QH14 — Article 61**
    - employer apprenticeship/traineeship to work for that employer is a separate legal path;
    - in that path, the employer may not charge tuition.
 
@@ -37,6 +40,32 @@ The law also provides that a learner who completes another vocational training p
 The law states that certificate-granting programs are not subject to vocational-education activity licensing, while entities conducting vocational education must register program information in the specialized vocational-education database before recruitment/training.
 
 These points are a **legal lead**, not a final determination that Hang Đôi may immediately sell/enroll the current 4-month program. The exact program classification, entity conditions, database procedure, certificate authority and disclosure obligations must be confirmed.
+
+## Public intake safe mode
+
+Because Article 20 requires program information to be registered in the specialized vocational-education database **before recruitment/enrollment activity and training**, Hang Đôi should not treat the current public form as Formal Selection while `program_registration_status` remains unresolved.
+
+Current system behavior:
+
+```
+program_registration_status != CONFIRMED
+→ Public CTA = REGISTER INTEREST
+→ New record = INTEREST_REGISTERED
+→ Formal stage advancement is API-blocked
+→ No Selection invitation
+→ No Admission Send
+→ No Payment
+```
+
+After program registration is formally confirmed and the reference is stored:
+
+```
+program_registration_status = CONFIRMED
+→ future new records may enter APPLICATION_COMPLETED
+→ admin may progress Interest records into the formal recruitment/Selection flow
+```
+
+This is a risk-control design, not a legal conclusion that every expression-of-interest activity falls outside "tuyển sinh". Counsel/authority should confirm the acceptable boundary.
 
 ## Non-negotiable employment separation
 
@@ -350,7 +379,23 @@ Payment = BLOCKED_IN_CODE
 
 Even 13/13 confirmed does **not** unlock either feature.
 
-Unlock requires a separate future PR after formal legal signoff.
+The CRM also contains a separate **Final Legal Approval** evidence record:
+
+- decision: `PENDING / APPROVED / REJECTED`;
+- approved by;
+- approval reference;
+- approval timestamp.
+
+The API will not accept `APPROVED` unless:
+
+- every checklist item is `CONFIRMED` or formally `NOT_APPLICABLE`;
+- an approver is named;
+- an approval reference is supplied;
+- a counsel or authority reference is already stored.
+
+Even `Final Legal Approval = APPROVED` still does **not** unlock Admission Send or Payment.
+
+Unlock requires a separate future PR after formal legal signoff and implementation review.
 
 ## Required gate before future unlock PR
 
@@ -381,3 +426,23 @@ PASS
 ```
 
 Payment must remain a separate implementation/review step.
+
+
+## Source validation snapshot — 22 September 2026
+
+Confirmed current instruments used for this gate:
+
+- Law No. 124/2025/QH15 — Law on Vocational Education, effective 01 January 2026.
+- Decree No. 95/2026/NĐ-CP — details provisions of the Law on Vocational Education, effective 31 March 2026.
+- Circular No. 55/2026/TT-BGDĐT — vocational-education training-program standards, effective 30 June 2026.
+- Decree No. 361/2026/NĐ-CP — investment/activity conditions in vocational education, effective 17 September 2026.
+
+Important statutory leads that must still be applied to Hang Đôi's actual entity/program facts:
+
+- enterprises may be entities participating in vocational education and, when qualified, may implement elementary and other vocational training programs;
+- other vocational training programs may lead to a training certificate when program requirements are satisfied;
+- certificate-granting programs are outside the vocational-education activity licensing requirement;
+- program information must be registered in the specialized vocational-education database before recruitment/training;
+- the employer apprenticeship/traineeship route to work for that employer is legally separate and does not permit tuition collection.
+
+Do not convert these leads into a launch decision without counsel/authority review.
