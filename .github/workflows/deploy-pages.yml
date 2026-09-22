@@ -51,6 +51,8 @@ jobs:
           mkdir -p _site
 
           cp site/logo-academy.svg _site/logo-academy.svg
+          mkdir -p _site/media-career-program
+          cp site/media-career-program.html _site/media-career-program/index.html
           cp site/logo-academy.svg _site/favicon.svg
           cp site/logo-inline.js _site/logo-inline.js
           cp site/ui-fixes.js _site/ui-fixes.js
