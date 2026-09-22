@@ -13,6 +13,10 @@ This folder turns the Official Program Document into reviewable appendices for p
 - Appendix E — trainer / mentor roster
 - Appendix F — program appraisal / approval record
 - Appendix G — certificate wording review
+- Appendix H — Safety & Data SOP
+- Appendix I — Capstone rules
+- Appendix J — Program Development evidence
+- Appendix K — Program Registration reference
 
 ## Gate rule
 
