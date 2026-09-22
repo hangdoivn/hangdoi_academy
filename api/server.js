@@ -220,6 +220,24 @@ async function initDb() {
     CREATE INDEX IF NOT EXISTS idx_mcp_selection_status
       ON media_career_selection_appointments(status, updated_at DESC);
 
+    CREATE TABLE IF NOT EXISTS media_career_campaigns (
+      id BIGSERIAL PRIMARY KEY,
+      content_id TEXT NOT NULL UNIQUE,
+      title TEXT,
+      source TEXT NOT NULL,
+      medium TEXT NOT NULL,
+      campaign TEXT NOT NULL DEFAULT 'media_career_cohort01',
+      status TEXT NOT NULL DEFAULT 'IDEA',
+      owner TEXT,
+      asset_url TEXT,
+      publish_url TEXT,
+      notes TEXT,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+      updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    );
+    CREATE INDEX IF NOT EXISTS idx_mcp_campaign_status
+      ON media_career_campaigns(status, updated_at DESC);
+
     CREATE TABLE IF NOT EXISTS media_career_events (
       id BIGSERIAL PRIMARY KEY,
       event_name TEXT NOT NULL,
@@ -1242,6 +1260,99 @@ app.post("/v1/admin/applications/:id/admission-send", requireAdmin, async (_req,
     ok: false,
     error: "Admission sending is blocked until Legal & Enrollment gate is approved"
   });
+});
+
+app.get("/v1/admin/campaigns", requireAdmin, async (req, res) => {
+  const days = Math.min(Math.max(Number(req.query.days || 30), 1), 365);
+  const result = await pool.query(`
+    SELECT
+      c.id, c.content_id, c.title, c.source, c.medium, c.campaign, c.status,
+      c.owner, c.asset_url, c.publish_url, c.notes, c.created_at, c.updated_at,
+      COALESCE(ev.landing_views, 0)::int AS landing_views,
+      COALESCE(ev.apply_views, 0)::int AS apply_views,
+      COALESCE(ev.form_starts, 0)::int AS form_starts,
+      COALESCE(ap.interests, 0)::int AS interests
+    FROM media_career_campaigns c
+    LEFT JOIN (
+      SELECT
+        utm_content,
+        COUNT(DISTINCT session_id) FILTER (WHERE event_name = 'landing_view') AS landing_views,
+        COUNT(DISTINCT session_id) FILTER (WHERE event_name = 'apply_view') AS apply_views,
+        COUNT(DISTINCT session_id) FILTER (WHERE event_name = 'form_start') AS form_starts
+      FROM media_career_events
+      WHERE created_at >= NOW() - ($1::text || ' days')::interval
+      GROUP BY utm_content
+    ) ev ON ev.utm_content = c.content_id
+    LEFT JOIN (
+      SELECT utm_content, COUNT(*) AS interests
+      FROM media_career_applications
+      WHERE submitted_at >= NOW() - ($1::text || ' days')::interval
+      GROUP BY utm_content
+    ) ap ON ap.utm_content = c.content_id
+    ORDER BY
+      CASE c.status
+        WHEN 'PUBLISHED' THEN 1
+        WHEN 'READY' THEN 2
+        WHEN 'DRAFT' THEN 3
+        WHEN 'IDEA' THEN 4
+        WHEN 'PAUSED' THEN 5
+        ELSE 6
+      END,
+      c.updated_at DESC
+  `, [days]);
+  const campaigns = result.rows.map(row => ({
+    ...row,
+    landing_to_interest_pct: Number(row.landing_views) > 0
+      ? Math.round((Number(row.interests) / Number(row.landing_views)) * 1000) / 10
+      : 0
+  }));
+  res.json({ ok: true, days, campaigns });
+});
+
+app.patch("/v1/admin/campaigns/:contentId", requireAdmin, async (req, res) => {
+  const contentId = cleanString(req.params.contentId, 180).toLowerCase();
+  if (!/^[a-z0-9][a-z0-9-]{1,178}[a-z0-9]$/.test(contentId)) {
+    return res.status(400).json({ ok: false, error: "Invalid content ID" });
+  }
+  const b = req.body || {};
+  const source = cleanString(b.source, 80).toLowerCase();
+  const medium = cleanString(b.medium, 80).toLowerCase();
+  const status = cleanString(b.status || "IDEA", 40).toUpperCase();
+  if (!source || !medium) {
+    return res.status(400).json({ ok: false, error: "Source and medium are required" });
+  }
+  if (!new Set(["IDEA","DRAFT","READY","PUBLISHED","PAUSED","ARCHIVED"]).has(status)) {
+    return res.status(400).json({ ok: false, error: "Invalid campaign status" });
+  }
+  const result = await pool.query(`
+    INSERT INTO media_career_campaigns (
+      content_id, title, source, medium, campaign, status,
+      owner, asset_url, publish_url, notes, updated_at
+    ) VALUES ($1,$2,$3,$4,'media_career_cohort01',$5,$6,$7,$8,$9,NOW())
+    ON CONFLICT (content_id)
+    DO UPDATE SET
+      title = EXCLUDED.title,
+      source = EXCLUDED.source,
+      medium = EXCLUDED.medium,
+      status = EXCLUDED.status,
+      owner = EXCLUDED.owner,
+      asset_url = EXCLUDED.asset_url,
+      publish_url = EXCLUDED.publish_url,
+      notes = EXCLUDED.notes,
+      updated_at = NOW()
+    RETURNING *
+  `, [
+    contentId,
+    cleanString(b.title, 240),
+    source,
+    medium,
+    status,
+    cleanString(b.owner, 160),
+    cleanString(b.assetUrl, 1500),
+    cleanString(b.publishUrl, 1500),
+    cleanString(b.notes, 5000)
+  ]);
+  res.json({ ok: true, campaign: result.rows[0] });
 });
 
 app.get("/v1/admin/dashboard", requireAdmin, async (req, res) => {
