@@ -142,7 +142,7 @@ async function openDetail(id){
       '<label class="wide">Interview notes<textarea id="asInterviewNotes">'+esc(a.interview_notes||"")+'</textarea></label></div>'+
       '<button onclick="saveAssessment('+x.id+')">Save Assessment</button></section>'+
       ((x.pipeline_stage==="PASS"||adm.status)?'<section class="admission"><div class="admission-head"><h3>Admission Draft</h3><span class="locked">LEGAL GATE: '+esc(legalGate)+'</span></div>'+
-      '<div class="notice" style="margin-bottom:12px">Draft nội bộ בלבד. Send Admission và Payment đang bị khóa cho tới khi Legal & Enrollment gate được phê duyệt.</div>'+
+      '<div class="notice" style="margin-bottom:12px">Draft nội bộ. Send Admission và Payment đang bị khóa cho tới khi Legal & Enrollment gate được phê duyệt.</div>'+
       '<div class="admission-grid">'+
       '<label>Status<select id="adStatus"><option '+sel(adm.status,"DRAFT")+'>DRAFT</option><option '+sel(adm.status,"READY_FOR_LEGAL")+'>READY_FOR_LEGAL</option></select></label>'+
       '<label>Prepared by<input id="adPreparedBy" value="'+attr(adm.prepared_by||"")+'" placeholder="Người chuẩn bị"></label>'+
@@ -202,6 +202,8 @@ async function copyAdmissionDraft(){
   const text=[
     "HANG ĐÔI MEDIA CAREER PROGRAM — ADMISSION DRAFT",
     "",
+    "Candidate: "+($("dName").textContent||""),
+    "Candidate ID: "+($("dCode").textContent||""),
     "Program: "+$("adProgram").value,
     "Tuition: "+Number($("adTuition").value||0).toLocaleString("vi-VN")+" VNĐ",
     "Payment: "+$("adPaymentPlan").value,
