@@ -63,6 +63,16 @@ function rateLimit(windowMs, max) {
 
 async function initDb() {
   await pool.query(`
+    CREATE TABLE IF NOT EXISTS media_career_cohorts (
+      cohort TEXT PRIMARY KEY,
+      target_enrollment INT NOT NULL DEFAULT 10,
+      status TEXT NOT NULL DEFAULT 'OPEN',
+      updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    );
+    INSERT INTO media_career_cohorts (cohort, target_enrollment, status)
+    VALUES ('01', 10, 'OPEN')
+    ON CONFLICT (cohort) DO NOTHING;
+
     CREATE TABLE IF NOT EXISTS media_career_applications (
       id BIGSERIAL PRIMARY KEY,
       candidate_code TEXT NOT NULL UNIQUE,
@@ -1000,7 +1010,7 @@ app.post("/v1/admin/applications/:id/admission-send", requireAdmin, async (_req,
 
 app.get("/v1/admin/dashboard", requireAdmin, async (req, res) => {
   const days = Math.min(Math.max(Number(req.query.days || 30), 1), 365);
-  const [stageRows, sourceRows, contentRows, eventRows, totals] = await Promise.all([
+  const [stageRows, sourceRows, contentRows, eventRows, totals, cohortConfig, cohortCounts] = await Promise.all([
     pool.query(`
       SELECT pipeline_stage AS key, COUNT(*)::int AS count
       FROM media_career_applications
@@ -1039,8 +1049,29 @@ app.get("/v1/admin/dashboard", requireAdmin, async (req, res) => {
         COUNT(*) FILTER (WHERE pipeline_stage IN ('ADMITTED','ENROLLED'))::int AS admitted_or_enrolled
       FROM media_career_applications
       WHERE submitted_at >= NOW() - ($1::text || ' days')::interval
-    `, [days])
+    `, [days]),
+    pool.query(`
+      SELECT cohort, target_enrollment, status
+      FROM media_career_cohorts
+      WHERE cohort = '01'
+    `),
+    pool.query(`
+      SELECT
+        COUNT(*) FILTER (WHERE pipeline_stage = 'PASS')::int AS pass,
+        COUNT(*) FILTER (WHERE pipeline_stage = 'WAITLIST')::int AS waitlist,
+        COUNT(*) FILTER (WHERE pipeline_stage = 'ADMITTED')::int AS admitted,
+        COUNT(*) FILTER (WHERE pipeline_stage = 'ENROLLED')::int AS enrolled
+      FROM media_career_applications
+      WHERE cohort = '01'
+    `)
   ]);
+  const config = cohortConfig.rows[0] || { cohort: "01", target_enrollment: 10, status: "OPEN" };
+  const counts = cohortCounts.rows[0] || { pass: 0, waitlist: 0, admitted: 0, enrolled: 0 };
+  const target = Number(config.target_enrollment || 10);
+  const enrolled = Number(counts.enrolled || 0);
+  const coverage = Number(counts.pass || 0) + Number(counts.waitlist || 0) +
+    Number(counts.admitted || 0) + enrolled;
+
   res.json({
     ok: true,
     days,
@@ -1048,8 +1079,44 @@ app.get("/v1/admin/dashboard", requireAdmin, async (req, res) => {
     stages: stageRows.rows,
     sources: sourceRows.rows,
     contents: contentRows.rows,
-    events: eventRows.rows
+    events: eventRows.rows,
+    cohort: {
+      cohort: config.cohort,
+      status: config.status,
+      targetEnrollment: target,
+      pass: Number(counts.pass || 0),
+      waitlist: Number(counts.waitlist || 0),
+      admitted: Number(counts.admitted || 0),
+      enrolled,
+      coverage,
+      remainingToEnroll: Math.max(target - enrolled, 0),
+      coverageGap: Math.max(target - coverage, 0),
+      enrolledPct: target ? Math.round((enrolled / target) * 1000) / 10 : 0,
+      coveragePct: target ? Math.round((coverage / target) * 1000) / 10 : 0
+    }
   });
+});
+
+app.patch("/v1/admin/cohort/:cohort", requireAdmin, async (req, res) => {
+  const cohort = cleanString(req.params.cohort, 20);
+  const targetEnrollment = Number(req.body?.targetEnrollment);
+  const status = cleanString(req.body?.status || "OPEN", 40).toUpperCase();
+  if (!Number.isInteger(targetEnrollment) || targetEnrollment < 1 || targetEnrollment > 100) {
+    return res.status(400).json({ ok: false, error: "Invalid target enrollment" });
+  }
+  if (!new Set(["OPEN", "PAUSED", "CLOSED"]).has(status)) {
+    return res.status(400).json({ ok: false, error: "Invalid cohort status" });
+  }
+  const result = await pool.query(`
+    INSERT INTO media_career_cohorts (cohort, target_enrollment, status, updated_at)
+    VALUES ($1,$2,$3,NOW())
+    ON CONFLICT (cohort)
+    DO UPDATE SET target_enrollment = EXCLUDED.target_enrollment,
+                  status = EXCLUDED.status,
+                  updated_at = NOW()
+    RETURNING cohort, target_enrollment, status, updated_at
+  `, [cohort, targetEnrollment, status]);
+  res.json({ ok: true, cohort: result.rows[0] });
 });
 
 app.get("/v1/admin/notifications", requireAdmin, async (req, res) => {
