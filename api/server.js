@@ -134,6 +134,24 @@ async function initDb() {
     CREATE INDEX IF NOT EXISTS idx_mcp_assessment_decision
       ON media_career_assessments(decision, updated_at DESC);
 
+    CREATE TABLE IF NOT EXISTS media_career_admissions (
+      id BIGSERIAL PRIMARY KEY,
+      application_id BIGINT NOT NULL UNIQUE REFERENCES media_career_applications(id) ON DELETE CASCADE,
+      status TEXT NOT NULL DEFAULT 'DRAFT',
+      program_name TEXT NOT NULL DEFAULT 'Hang Đôi Media Career Program',
+      cohort TEXT NOT NULL DEFAULT '01',
+      tuition_amount BIGINT NOT NULL DEFAULT 40000000,
+      payment_plan TEXT NOT NULL DEFAULT '40.000.000 VNĐ một lần hoặc 10.000.000 VNĐ × 4 kỳ',
+      proposed_start_date DATE,
+      response_deadline DATE,
+      schedule_note TEXT,
+      admission_note TEXT,
+      prepared_by TEXT,
+      updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    );
+    CREATE INDEX IF NOT EXISTS idx_mcp_admission_status
+      ON media_career_admissions(status, updated_at DESC);
+
     CREATE TABLE IF NOT EXISTS media_career_events (
       id BIGSERIAL PRIMARY KEY,
       event_name TEXT NOT NULL,
@@ -461,7 +479,8 @@ app.get("/v1/admin/applications", requireAdmin, async (req, res) => {
            utm_source, utm_medium, utm_campaign, utm_content,
            marketing_consent, submitted_at, updated_at,
            (SELECT total_score FROM media_career_assessments ma WHERE ma.application_id = media_career_applications.id) AS selection_score,
-           (SELECT decision FROM media_career_assessments ma WHERE ma.application_id = media_career_applications.id) AS assessment_decision
+           (SELECT decision FROM media_career_assessments ma WHERE ma.application_id = media_career_applications.id) AS assessment_decision,
+           (SELECT status FROM media_career_admissions md WHERE md.application_id = media_career_applications.id) AS admission_status
     FROM media_career_applications
     ${where}
     ORDER BY submitted_at DESC
@@ -481,7 +500,7 @@ app.get("/v1/admin/applications/:id", requireAdmin, async (req, res) => {
     WHERE id = $1
   `, [req.params.id]);
   if (!result.rowCount) return res.status(404).json({ ok: false, error: "Not found" });
-  const [history, assessment] = await Promise.all([
+  const [history, assessment, admission] = await Promise.all([
     pool.query(`
       SELECT from_stage, to_stage, changed_by, changed_at
       FROM media_career_stage_history
@@ -495,13 +514,22 @@ app.get("/v1/admin/applications/:id", requireAdmin, async (req, res) => {
              interview_notes, decision, updated_at
       FROM media_career_assessments
       WHERE application_id = $1
+    `, [req.params.id]),
+    pool.query(`
+      SELECT status, program_name, cohort, tuition_amount, payment_plan,
+             proposed_start_date, response_deadline, schedule_note,
+             admission_note, prepared_by, updated_at
+      FROM media_career_admissions
+      WHERE application_id = $1
     `, [req.params.id])
   ]);
   res.json({
     ok: true,
     application: result.rows[0],
     history: history.rows,
-    assessment: assessment.rows[0] || null
+    assessment: assessment.rows[0] || null,
+    admission: admission.rows[0] || null,
+    admissionLegalGate: "BLOCKED"
   });
 });
 
@@ -594,6 +622,77 @@ app.patch("/v1/admin/applications/:id/assessment", requireAdmin, async (req, res
   }
 });
 
+app.patch("/v1/admin/applications/:id/admission-draft", requireAdmin, async (req, res) => {
+  const application = await pool.query(
+    "SELECT id, candidate_code, full_name, pipeline_stage FROM media_career_applications WHERE id = $1",
+    [req.params.id]
+  );
+  if (!application.rowCount) return res.status(404).json({ ok: false, error: "Not found" });
+  const appData = application.rows[0];
+  if (appData.pipeline_stage !== "PASS") {
+    return res.status(409).json({
+      ok: false,
+      error: "Admission draft is available only after PASS decision"
+    });
+  }
+
+  const b = req.body || {};
+  const status = cleanString(b.status || "DRAFT", 40).toUpperCase();
+  if (!new Set(["DRAFT", "READY_FOR_LEGAL"]).has(status)) {
+    return res.status(400).json({ ok: false, error: "Invalid admission draft status" });
+  }
+  const programName = cleanString(b.programName || "Hang Đôi Media Career Program", 240);
+  const paymentPlan = cleanString(
+    b.paymentPlan || "40.000.000 VNĐ một lần hoặc 10.000.000 VNĐ × 4 kỳ",
+    1000
+  );
+  const proposedStartDate = cleanString(b.proposedStartDate, 20);
+  const responseDeadline = cleanString(b.responseDeadline, 20);
+  const scheduleNote = cleanString(b.scheduleNote, 3000);
+  const admissionNote = cleanString(b.admissionNote, 6000);
+  const preparedBy = cleanString(b.preparedBy, 160);
+  const tuitionAmount = Number(b.tuitionAmount || 40000000);
+  if (!Number.isInteger(tuitionAmount) || tuitionAmount < 0 || tuitionAmount > 1000000000) {
+    return res.status(400).json({ ok: false, error: "Invalid tuition amount" });
+  }
+
+  const result = await pool.query(`
+    INSERT INTO media_career_admissions (
+      application_id, status, program_name, cohort, tuition_amount, payment_plan,
+      proposed_start_date, response_deadline, schedule_note, admission_note,
+      prepared_by, updated_at
+    ) VALUES (
+      $1,$2,$3,'01',$4,$5,NULLIF($6,'')::date,NULLIF($7,'')::date,$8,$9,$10,NOW()
+    )
+    ON CONFLICT (application_id)
+    DO UPDATE SET
+      status = EXCLUDED.status,
+      program_name = EXCLUDED.program_name,
+      tuition_amount = EXCLUDED.tuition_amount,
+      payment_plan = EXCLUDED.payment_plan,
+      proposed_start_date = EXCLUDED.proposed_start_date,
+      response_deadline = EXCLUDED.response_deadline,
+      schedule_note = EXCLUDED.schedule_note,
+      admission_note = EXCLUDED.admission_note,
+      prepared_by = EXCLUDED.prepared_by,
+      updated_at = NOW()
+    RETURNING status, program_name, cohort, tuition_amount, payment_plan,
+              proposed_start_date, response_deadline, schedule_note,
+              admission_note, prepared_by, updated_at
+  `, [
+    req.params.id, status, programName, tuitionAmount, paymentPlan,
+    proposedStartDate, responseDeadline, scheduleNote, admissionNote, preparedBy
+  ]);
+
+  res.json({
+    ok: true,
+    admission: result.rows[0],
+    legalGate: "BLOCKED",
+    sendEnabled: false,
+    paymentEnabled: false
+  });
+});
+
 app.patch("/v1/admin/applications/:id/ops", requireAdmin, async (req, res) => {
   const b = req.body || {};
   const owner = cleanString(b.owner, 160);
@@ -615,6 +714,13 @@ app.patch("/v1/admin/applications/:id/ops", requireAdmin, async (req, res) => {
   `, [owner, nextAction, nextActionDate, lostReason, internalNotes, req.params.id]);
   if (!result.rowCount) return res.status(404).json({ ok: false, error: "Not found" });
   res.json({ ok: true, application: result.rows[0] });
+});
+
+app.post("/v1/admin/applications/:id/admission-send", requireAdmin, async (_req, res) => {
+  res.status(423).json({
+    ok: false,
+    error: "Admission sending is blocked until Legal & Enrollment gate is approved"
+  });
 });
 
 app.get("/v1/admin/dashboard", requireAdmin, async (req, res) => {
