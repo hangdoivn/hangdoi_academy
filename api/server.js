@@ -70,6 +70,39 @@ async function initDb() {
       ON media_career_applications(utm_source);
     CREATE INDEX IF NOT EXISTS idx_mcp_submitted
       ON media_career_applications(submitted_at DESC);
+
+    CREATE TABLE IF NOT EXISTS media_career_events (
+      id BIGSERIAL PRIMARY KEY,
+      event_name TEXT NOT NULL,
+      session_id TEXT,
+      candidate_code TEXT,
+      path TEXT,
+      utm_source TEXT,
+      utm_medium TEXT,
+      utm_campaign TEXT,
+      utm_content TEXT,
+      referrer TEXT,
+      metadata JSONB NOT NULL DEFAULT '{}'::jsonb,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    );
+    CREATE INDEX IF NOT EXISTS idx_mcp_events_name_created
+      ON media_career_events(event_name, created_at DESC);
+    CREATE INDEX IF NOT EXISTS idx_mcp_events_session
+      ON media_career_events(session_id);
+    CREATE INDEX IF NOT EXISTS idx_mcp_events_candidate
+      ON media_career_events(candidate_code);
+
+    CREATE TABLE IF NOT EXISTS media_career_notifications (
+      id BIGSERIAL PRIMARY KEY,
+      candidate_code TEXT,
+      notification_type TEXT NOT NULL,
+      payload JSONB NOT NULL DEFAULT '{}'::jsonb,
+      status TEXT NOT NULL DEFAULT 'UNREAD',
+      created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+      read_at TIMESTAMPTZ
+    );
+    CREATE INDEX IF NOT EXISTS idx_mcp_notifications_status
+      ON media_career_notifications(status, created_at DESC);
   `);
 }
 
@@ -97,12 +130,78 @@ function requireAdmin(req, res, next) {
   next();
 }
 
+async function postWebhook(url, payload) {
+  if (!url) return;
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 5000);
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      signal: controller.signal
+    });
+    clearTimeout(timeout);
+    if (!response.ok) console.error("webhook_failed", response.status);
+  } catch (error) {
+    console.error("webhook_error", error?.message || error);
+  }
+}
+
+async function recordEvent(event) {
+  const allowed = new Set([
+    "landing_view", "apply_view", "form_start", "form_submit_client",
+    "application_received", "thank_you_view"
+  ]);
+  if (!allowed.has(event.eventName)) return;
+  await pool.query(`
+    INSERT INTO media_career_events (
+      event_name, session_id, candidate_code, path,
+      utm_source, utm_medium, utm_campaign, utm_content,
+      referrer, metadata
+    ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10::jsonb)
+  `, [
+    event.eventName,
+    cleanString(event.sessionId, 160),
+    cleanString(event.candidateCode, 160),
+    cleanString(event.path, 500),
+    cleanString(event.utmSource, 180),
+    cleanString(event.utmMedium, 180),
+    cleanString(event.utmCampaign, 180),
+    cleanString(event.utmContent, 180),
+    cleanString(event.referrer, 1000),
+    JSON.stringify(event.metadata || {})
+  ]);
+}
+
 app.get("/health", async (_req, res) => {
   try {
     await pool.query("SELECT 1");
     res.json({ ok: true, service: "hangdoi-academy-candidate-api" });
   } catch {
     res.status(503).json({ ok: false });
+  }
+});
+
+app.post("/v1/events", async (req, res) => {
+  try {
+    const b = req.body || {};
+    await recordEvent({
+      eventName: cleanString(b.eventName, 80),
+      sessionId: b.sessionId,
+      candidateCode: b.candidateCode,
+      path: b.path,
+      utmSource: b.utmSource,
+      utmMedium: b.utmMedium,
+      utmCampaign: b.utmCampaign,
+      utmContent: b.utmContent,
+      referrer: b.referrer,
+      metadata: typeof b.metadata === "object" && b.metadata ? b.metadata : {}
+    });
+    res.status(202).json({ ok: true });
+  } catch (error) {
+    console.error("event_record_failed", error);
+    res.status(202).json({ ok: true });
   }
 });
 
@@ -201,10 +300,61 @@ app.post("/v1/applications", async (req, res) => {
       b.marketingConsent === true, privacyConsent, JSON.stringify(payload)
     ]);
 
+    const saved = result.rows[0];
+    await recordEvent({
+      eventName: "application_received",
+      candidateCode: saved.candidate_code,
+      path: "/media-career-program/apply/",
+      utmSource: b.utmSource,
+      utmMedium: b.utmMedium,
+      utmCampaign: b.utmCampaign,
+      utmContent: b.utmContent,
+      referrer: b.referrer,
+      metadata: { cohort, emailDomain: email.split("@")[1] || "" }
+    });
+
+    await pool.query(`
+      INSERT INTO media_career_notifications (
+        candidate_code, notification_type, payload
+      ) VALUES ($1, 'NEW_APPLICATION', $2::jsonb)
+    `, [
+      saved.candidate_code,
+      JSON.stringify({
+        candidateCode: saved.candidate_code,
+        fullName,
+        email,
+        phone,
+        preferredTrack: cleanString(b.preferredTrack, 100),
+        utmSource: cleanString(b.utmSource, 180),
+        utmContent: cleanString(b.utmContent, 180),
+        submittedAt: saved.submitted_at
+      })
+    ]);
+
+    const webhookPayload = {
+      type: "NEW_APPLICATION",
+      candidateCode: saved.candidate_code,
+      fullName,
+      email,
+      phone,
+      preferredTrack: cleanString(b.preferredTrack, 100),
+      source: cleanString(b.utmSource, 180) || "direct",
+      content: cleanString(b.utmContent, 180),
+      submittedAt: saved.submitted_at
+    };
+    void postWebhook(process.env.NEW_APPLICATION_WEBHOOK_URL, webhookPayload);
+    void postWebhook(process.env.APPLICATION_ACK_WEBHOOK_URL, {
+      type: "APPLICATION_ACK",
+      candidateCode: saved.candidate_code,
+      fullName,
+      email,
+      submittedAt: saved.submitted_at
+    });
+
     res.status(201).json({
       ok: true,
-      candidateCode: result.rows[0].candidate_code,
-      submittedAt: result.rows[0].submitted_at
+      candidateCode: saved.candidate_code,
+      submittedAt: saved.submitted_at
     });
   } catch (error) {
     console.error("application_submit_failed", error);
@@ -233,6 +383,94 @@ app.get("/v1/admin/applications", requireAdmin, async (req, res) => {
     LIMIT $${params.length}
   `, params);
   res.json({ ok: true, applications: result.rows });
+});
+
+app.get("/v1/admin/applications/:id", requireAdmin, async (req, res) => {
+  const result = await pool.query(`
+    SELECT id, candidate_code, cohort, full_name, date_of_birth, phone, email, city,
+           current_status, preferred_track, experience_level, portfolio_url,
+           pipeline_stage, utm_source, utm_medium, utm_campaign, utm_content,
+           marketing_consent, privacy_consent, payload, submitted_at, updated_at
+    FROM media_career_applications
+    WHERE id = $1
+  `, [req.params.id]);
+  if (!result.rowCount) return res.status(404).json({ ok: false, error: "Not found" });
+  res.json({ ok: true, application: result.rows[0] });
+});
+
+app.get("/v1/admin/dashboard", requireAdmin, async (req, res) => {
+  const days = Math.min(Math.max(Number(req.query.days || 30), 1), 365);
+  const [stageRows, sourceRows, contentRows, eventRows, totals] = await Promise.all([
+    pool.query(`
+      SELECT pipeline_stage AS key, COUNT(*)::int AS count
+      FROM media_career_applications
+      WHERE submitted_at >= NOW() - ($1::text || ' days')::interval
+      GROUP BY pipeline_stage ORDER BY count DESC
+    `, [days]),
+    pool.query(`
+      SELECT COALESCE(NULLIF(utm_source,''),'direct') AS key, COUNT(*)::int AS count
+      FROM media_career_applications
+      WHERE submitted_at >= NOW() - ($1::text || ' days')::interval
+      GROUP BY 1 ORDER BY count DESC
+    `, [days]),
+    pool.query(`
+      SELECT COALESCE(NULLIF(utm_content,''),'unattributed') AS key, COUNT(*)::int AS count
+      FROM media_career_applications
+      WHERE submitted_at >= NOW() - ($1::text || ' days')::interval
+      GROUP BY 1 ORDER BY count DESC LIMIT 30
+    `, [days]),
+    pool.query(`
+      SELECT event_name AS key, COUNT(*)::int AS count
+      FROM media_career_events
+      WHERE created_at >= NOW() - ($1::text || ' days')::interval
+      GROUP BY event_name ORDER BY count DESC
+    `, [days]),
+    pool.query(`
+      SELECT
+        COUNT(*)::int AS applications,
+        COUNT(*) FILTER (WHERE pipeline_stage IN (
+          'QUALIFIED','SELECTION_INVITED','SELECTION_CONFIRMED',
+          'SELECTION_ATTENDED','PASS','WAITLIST','ADMITTED','ENROLLED'
+        ))::int AS qualified_or_beyond,
+        COUNT(*) FILTER (WHERE pipeline_stage IN (
+          'SELECTION_INVITED','SELECTION_CONFIRMED','SELECTION_ATTENDED'
+        ))::int AS in_selection,
+        COUNT(*) FILTER (WHERE pipeline_stage IN ('PASS','ADMITTED','ENROLLED'))::int AS passed_or_beyond,
+        COUNT(*) FILTER (WHERE pipeline_stage IN ('ADMITTED','ENROLLED'))::int AS admitted_or_enrolled
+      FROM media_career_applications
+      WHERE submitted_at >= NOW() - ($1::text || ' days')::interval
+    `, [days])
+  ]);
+  res.json({
+    ok: true,
+    days,
+    totals: totals.rows[0],
+    stages: stageRows.rows,
+    sources: sourceRows.rows,
+    contents: contentRows.rows,
+    events: eventRows.rows
+  });
+});
+
+app.get("/v1/admin/notifications", requireAdmin, async (req, res) => {
+  const result = await pool.query(`
+    SELECT id, candidate_code, notification_type, payload, status, created_at, read_at
+    FROM media_career_notifications
+    ORDER BY created_at DESC
+    LIMIT 100
+  `);
+  res.json({ ok: true, notifications: result.rows });
+});
+
+app.patch("/v1/admin/notifications/:id/read", requireAdmin, async (req, res) => {
+  const result = await pool.query(`
+    UPDATE media_career_notifications
+    SET status = 'READ', read_at = NOW()
+    WHERE id = $1
+    RETURNING id, status, read_at
+  `, [req.params.id]);
+  if (!result.rowCount) return res.status(404).json({ ok: false, error: "Not found" });
+  res.json({ ok: true, notification: result.rows[0] });
 });
 
 app.patch("/v1/admin/applications/:id/stage", requireAdmin, async (req, res) => {
