@@ -525,7 +525,9 @@ app.post("/v1/selection/:token/respond", rateLimit(60 * 60 * 1000, 20), async (r
       return res.status(404).json({ ok: false, error: "Selection invitation not found" });
     }
     const row = current.rows[0];
-    if (new Set(["ATTENDED", "CANCELLED", "NO_SHOW"]).has(row.status)) {
+    const responseableStatus = new Set(["INVITED", "CONFIRMED", "DECLINED"]);
+    const responseablePipeline = new Set(["SELECTION_INVITED", "SELECTION_CONFIRMED"]);
+    if (!responseableStatus.has(row.status) || !responseablePipeline.has(row.pipeline_stage)) {
       await client.query("ROLLBACK");
       return res.status(409).json({ ok: false, error: "Selection invitation is closed" });
     }
@@ -655,6 +657,13 @@ app.patch("/v1/admin/applications/:id/selection", requireAdmin, async (req, res)
     [req.params.id]
   );
   if (!application.rowCount) return res.status(404).json({ ok: false, error: "Not found" });
+  const allowedPipeline = new Set(["QUALIFIED", "SELECTION_INVITED", "SELECTION_CONFIRMED"]);
+  if (!allowedPipeline.has(application.rows[0].pipeline_stage)) {
+    return res.status(409).json({
+      ok: false,
+      error: "Selection scheduling is available only for Qualified/Selection candidates"
+    });
+  }
 
   const b = req.body || {};
   const selectionStart = cleanString(b.selectionStart, 60);
@@ -715,6 +724,10 @@ app.post("/v1/admin/applications/:id/selection/mark-invited", requireAdmin, asyn
       return res.status(404).json({ ok: false, error: "Selection draft not found" });
     }
     const row = current.rows[0];
+    if (!new Set(["QUALIFIED", "SELECTION_INVITED", "SELECTION_CONFIRMED"]).has(row.pipeline_stage)) {
+      await client.query("ROLLBACK");
+      return res.status(409).json({ ok: false, error: "Candidate is no longer in Selection scheduling" });
+    }
     if (!row.selection_start) {
       await client.query("ROLLBACK");
       return res.status(409).json({ ok: false, error: "Selection date/time is required" });
@@ -765,6 +778,10 @@ app.post("/v1/admin/applications/:id/selection/attended", requireAdmin, async (r
       return res.status(404).json({ ok: false, error: "Selection appointment not found" });
     }
     const row = current.rows[0];
+    if (!new Set(["SELECTION_INVITED", "SELECTION_CONFIRMED"]).has(row.pipeline_stage)) {
+      await client.query("ROLLBACK");
+      return res.status(409).json({ ok: false, error: "Candidate is no longer awaiting Selection attendance" });
+    }
     await client.query(
       "UPDATE media_career_selection_appointments SET status = 'ATTENDED', attended_at = COALESCE(attended_at, NOW()), updated_at = NOW() WHERE id = $1",
       [row.selection_id]
