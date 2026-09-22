@@ -79,7 +79,7 @@
 
 <script>
 const API="https://candidate-api-v2-production.up.railway.app";
-const stages=["APPLICATION_COMPLETED","QUALIFIED","SELECTION_INVITED","SELECTION_CONFIRMED","SELECTION_ATTENDED","PASS","WAITLIST","LOST","ADMITTED","ENROLLED"];
+const stages=["INTEREST_REGISTERED","APPLICATION_COMPLETED","QUALIFIED","SELECTION_INVITED","SELECTION_CONFIRMED","SELECTION_ATTENDED","PASS","WAITLIST","LOST","ADMITTED","ENROLLED"];
 let data=[],dash=null,notifications=[];
 const $=id=>document.getElementById(id);
 const tokenEl=$("token"),statusEl=$("status"),rowsEl=$("rows"),emptyEl=$("empty"),stageFilter=$("stageFilter"),detailDialog=$("detailDialog");
