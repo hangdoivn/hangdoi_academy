@@ -116,6 +116,24 @@ async function initDb() {
     CREATE INDEX IF NOT EXISTS idx_mcp_stage_history_application
       ON media_career_stage_history(application_id, changed_at DESC);
 
+    CREATE TABLE IF NOT EXISTS media_career_assessments (
+      id BIGSERIAL PRIMARY KEY,
+      application_id BIGINT NOT NULL UNIQUE REFERENCES media_career_applications(id) ON DELETE CASCADE,
+      visual_score NUMERIC(5,2) NOT NULL DEFAULT 0,
+      learning_score NUMERIC(5,2) NOT NULL DEFAULT 0,
+      execution_score NUMERIC(5,2) NOT NULL DEFAULT 0,
+      behaviour_score NUMERIC(5,2) NOT NULL DEFAULT 0,
+      motivation_score NUMERIC(5,2) NOT NULL DEFAULT 0,
+      total_score NUMERIC(5,2) NOT NULL DEFAULT 0,
+      assessor TEXT,
+      selection_notes TEXT,
+      interview_notes TEXT,
+      decision TEXT NOT NULL DEFAULT 'PENDING',
+      updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    );
+    CREATE INDEX IF NOT EXISTS idx_mcp_assessment_decision
+      ON media_career_assessments(decision, updated_at DESC);
+
     CREATE TABLE IF NOT EXISTS media_career_events (
       id BIGSERIAL PRIMARY KEY,
       event_name TEXT NOT NULL,
@@ -158,6 +176,12 @@ function cleanString(value, max = 5000) {
 
 function cleanEmail(value) {
   return cleanString(value, 320).toLowerCase();
+}
+
+function cleanScore(value, max) {
+  const number = Number(value);
+  if (!Number.isFinite(number) || number < 0 || number > max) return null;
+  return Math.round(number * 100) / 100;
 }
 
 function candidateCode(cohort = "01") {
@@ -435,7 +459,9 @@ app.get("/v1/admin/applications", requireAdmin, async (req, res) => {
            current_status, preferred_track, experience_level, portfolio_url,
            pipeline_stage, owner, next_action, next_action_date, lost_reason,
            utm_source, utm_medium, utm_campaign, utm_content,
-           marketing_consent, submitted_at, updated_at
+           marketing_consent, submitted_at, updated_at,
+           (SELECT total_score FROM media_career_assessments ma WHERE ma.application_id = media_career_applications.id) AS selection_score,
+           (SELECT decision FROM media_career_assessments ma WHERE ma.application_id = media_career_applications.id) AS assessment_decision
     FROM media_career_applications
     ${where}
     ORDER BY submitted_at DESC
@@ -455,14 +481,117 @@ app.get("/v1/admin/applications/:id", requireAdmin, async (req, res) => {
     WHERE id = $1
   `, [req.params.id]);
   if (!result.rowCount) return res.status(404).json({ ok: false, error: "Not found" });
-  const history = await pool.query(`
-    SELECT from_stage, to_stage, changed_by, changed_at
-    FROM media_career_stage_history
-    WHERE application_id = $1
-    ORDER BY changed_at DESC
-    LIMIT 100
-  `, [req.params.id]);
-  res.json({ ok: true, application: result.rows[0], history: history.rows });
+  const [history, assessment] = await Promise.all([
+    pool.query(`
+      SELECT from_stage, to_stage, changed_by, changed_at
+      FROM media_career_stage_history
+      WHERE application_id = $1
+      ORDER BY changed_at DESC
+      LIMIT 100
+    `, [req.params.id]),
+    pool.query(`
+      SELECT visual_score, learning_score, execution_score, behaviour_score,
+             motivation_score, total_score, assessor, selection_notes,
+             interview_notes, decision, updated_at
+      FROM media_career_assessments
+      WHERE application_id = $1
+    `, [req.params.id])
+  ]);
+  res.json({
+    ok: true,
+    application: result.rows[0],
+    history: history.rows,
+    assessment: assessment.rows[0] || null
+  });
+});
+
+app.patch("/v1/admin/applications/:id/assessment", requireAdmin, async (req, res) => {
+  const b = req.body || {};
+  const visual = cleanScore(b.visualScore, 25);
+  const learning = cleanScore(b.learningScore, 20);
+  const execution = cleanScore(b.executionScore, 20);
+  const behaviour = cleanScore(b.behaviourScore, 20);
+  const motivation = cleanScore(b.motivationScore, 15);
+  const decision = cleanString(b.decision || "PENDING", 40).toUpperCase();
+  const allowedDecision = new Set(["PENDING", "PASS", "WAITLIST", "LOST"]);
+  if ([visual, learning, execution, behaviour, motivation].some(v => v === null)) {
+    return res.status(400).json({ ok: false, error: "Invalid assessment score" });
+  }
+  if (!allowedDecision.has(decision)) {
+    return res.status(400).json({ ok: false, error: "Invalid assessment decision" });
+  }
+  const total = Math.round((visual + learning + execution + behaviour + motivation) * 100) / 100;
+  const assessor = cleanString(b.assessor, 160);
+  const selectionNotes = cleanString(b.selectionNotes, 6000);
+  const interviewNotes = cleanString(b.interviewNotes, 6000);
+  const targetStage = decision === "PASS" ? "PASS"
+    : decision === "WAITLIST" ? "WAITLIST"
+    : decision === "LOST" ? "LOST"
+    : null;
+
+  const client = await pool.connect();
+  try {
+    await client.query("BEGIN");
+    const appRow = await client.query(
+      "SELECT id, candidate_code, pipeline_stage FROM media_career_applications WHERE id = $1 FOR UPDATE",
+      [req.params.id]
+    );
+    if (!appRow.rowCount) {
+      await client.query("ROLLBACK");
+      return res.status(404).json({ ok: false, error: "Not found" });
+    }
+    const appData = appRow.rows[0];
+    const saved = await client.query(`
+      INSERT INTO media_career_assessments (
+        application_id, visual_score, learning_score, execution_score,
+        behaviour_score, motivation_score, total_score, assessor,
+        selection_notes, interview_notes, decision, updated_at
+      ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,NOW())
+      ON CONFLICT (application_id)
+      DO UPDATE SET
+        visual_score = EXCLUDED.visual_score,
+        learning_score = EXCLUDED.learning_score,
+        execution_score = EXCLUDED.execution_score,
+        behaviour_score = EXCLUDED.behaviour_score,
+        motivation_score = EXCLUDED.motivation_score,
+        total_score = EXCLUDED.total_score,
+        assessor = EXCLUDED.assessor,
+        selection_notes = EXCLUDED.selection_notes,
+        interview_notes = EXCLUDED.interview_notes,
+        decision = EXCLUDED.decision,
+        updated_at = NOW()
+      RETURNING visual_score, learning_score, execution_score, behaviour_score,
+                motivation_score, total_score, assessor, selection_notes,
+                interview_notes, decision, updated_at
+    `, [
+      req.params.id, visual, learning, execution, behaviour, motivation, total,
+      assessor, selectionNotes, interviewNotes, decision
+    ]);
+
+    let pipelineStage = appData.pipeline_stage;
+    if (targetStage && targetStage !== appData.pipeline_stage) {
+      const updated = await client.query(`
+        UPDATE media_career_applications
+        SET pipeline_stage = $1, updated_at = NOW()
+        WHERE id = $2
+        RETURNING pipeline_stage
+      `, [targetStage, req.params.id]);
+      pipelineStage = updated.rows[0].pipeline_stage;
+      await client.query(`
+        INSERT INTO media_career_stage_history (
+          application_id, candidate_code, from_stage, to_stage, changed_by
+        ) VALUES ($1,$2,$3,$4,'assessment')
+      `, [appData.id, appData.candidate_code, appData.pipeline_stage, targetStage]);
+    }
+    await client.query("COMMIT");
+    res.json({ ok: true, assessment: saved.rows[0], pipelineStage });
+  } catch (error) {
+    await client.query("ROLLBACK");
+    console.error("assessment_update_failed", error);
+    res.status(500).json({ ok: false, error: "Unable to save assessment" });
+  } finally {
+    client.release();
+  }
 });
 
 app.patch("/v1/admin/applications/:id/ops", requireAdmin, async (req, res) => {
