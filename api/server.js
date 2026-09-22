@@ -93,11 +93,21 @@ async function initDb() {
       reviewed_by TEXT,
       reviewed_at TIMESTAMPTZ,
       notes TEXT,
+      final_approval_status TEXT NOT NULL DEFAULT 'PENDING',
+      final_approval_reference TEXT,
+      final_approved_by TEXT,
+      final_approved_at TIMESTAMPTZ,
       updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
     );
     INSERT INTO media_career_legal_readiness (cohort)
     VALUES ('01')
     ON CONFLICT (cohort) DO NOTHING;
+
+    ALTER TABLE media_career_legal_readiness
+      ADD COLUMN IF NOT EXISTS final_approval_status TEXT NOT NULL DEFAULT 'PENDING',
+      ADD COLUMN IF NOT EXISTS final_approval_reference TEXT,
+      ADD COLUMN IF NOT EXISTS final_approved_by TEXT,
+      ADD COLUMN IF NOT EXISTS final_approved_at TIMESTAMPTZ;
 
     CREATE TABLE IF NOT EXISTS media_career_applications (
       id BIGSERIAL PRIMARY KEY,
@@ -715,6 +725,66 @@ app.patch("/v1/admin/legal-readiness/:cohort", requireAdmin, async (req, res) =>
     },
     admissionSendGate: "BLOCKED_IN_CODE",
     paymentGate: "BLOCKED_IN_CODE"
+  });
+});
+
+app.patch("/v1/admin/legal-readiness/:cohort/final-approval", requireAdmin, async (req, res) => {
+  const cohort = cleanString(req.params.cohort, 20);
+  const decision = cleanString(req.body?.decision || "PENDING", 40).toUpperCase();
+  const approvedBy = cleanString(req.body?.approvedBy, 240);
+  const approvalReference = cleanString(req.body?.approvalReference, 3000);
+  if (!new Set(["PENDING", "APPROVED", "REJECTED"]).has(decision)) {
+    return res.status(400).json({ ok: false, error: "Invalid final approval decision" });
+  }
+
+  const current = await pool.query(`
+    SELECT *
+    FROM media_career_legal_readiness
+    WHERE cohort = $1
+  `, [cohort]);
+  if (!current.rowCount) {
+    return res.status(404).json({ ok: false, error: "Legal readiness record not found" });
+  }
+  const row = current.rows[0];
+  const statusValues = Object.entries(row)
+    .filter(([key]) => key.endsWith("_status") && key !== "final_approval_status")
+    .map(([, value]) => value);
+  const allComplete = statusValues.length > 0 &&
+    statusValues.every(value => value === "CONFIRMED" || value === "NOT_APPLICABLE");
+
+  if (decision === "APPROVED") {
+    if (!allComplete) {
+      return res.status(409).json({ ok: false, error: "All legal checklist items must be completed before final approval" });
+    }
+    if (!approvedBy) {
+      return res.status(400).json({ ok: false, error: "Approved by is required" });
+    }
+    if (!approvalReference) {
+      return res.status(400).json({ ok: false, error: "Final approval reference is required" });
+    }
+    if (!row.counsel_reference && !row.authority_reference) {
+      return res.status(409).json({ ok: false, error: "Counsel or authority reference must be stored before final approval" });
+    }
+  }
+
+  const result = await pool.query(`
+    UPDATE media_career_legal_readiness
+    SET final_approval_status = $1,
+        final_approval_reference = NULLIF($2,''),
+        final_approved_by = NULLIF($3,''),
+        final_approved_at = CASE WHEN $1 = 'APPROVED' THEN NOW() ELSE NULL END,
+        updated_at = NOW()
+    WHERE cohort = $4
+    RETURNING *
+  `, [decision, approvalReference, approvedBy, cohort]);
+
+  res.json({
+    ok: true,
+    legalReadiness: result.rows[0],
+    finalApproval: decision,
+    admissionSendGate: "BLOCKED_IN_CODE",
+    paymentGate: "BLOCKED_IN_CODE",
+    note: "Final legal approval is evidence for a future reviewed unlock PR; it does not unlock Admission Send or Payment."
   });
 });
 
