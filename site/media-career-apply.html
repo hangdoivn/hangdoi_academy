@@ -89,7 +89,7 @@ form{background:white;border:1px solid var(--line);border-radius:28px;padding:30
 
 <fieldset>
 <legend>07 — Tuition Awareness</legend>
-<div class="notice">Học phí public hiện tại của chương trình là <b>40.000.000 VNĐ / 4 tháng</b>. Application và Selection diễn ra trước Admission; bạn không thanh toán khi gửi form này.</div>
+<div class="notice">Học phí dự kiến public hiện tại của chương trình là <b>40.000.000 VNĐ / 4 tháng</b>. Giai đoạn hiện tại chỉ ghi nhận Register Interest; Formal Selection/Admission chưa mở và bạn không thanh toán khi gửi form này.</div>
 <label class="consent"><input id="tuitionAwareness" type="checkbox" required><span>Tôi đã đọc và hiểu mức học phí public hiện tại của chương trình.</span></label>
 <label for="paymentPreference">Phương án hiện phù hợp nhất</label><select id="paymentPreference" name="paymentPreference"><option>40M một lần</option><option>10M × 4 kỳ</option><option>Cần trao đổi thêm</option><option>Chưa chắc về khả năng tài chính</option></select>
 </fieldset>
@@ -101,7 +101,7 @@ form{background:white;border:1px solid var(--line);border-radius:28px;padding:30
 
 <fieldset>
 <legend>09 — Privacy</legend>
-<label class="consent"><input id="privacyConsent" type="checkbox" required><span>Tôi đồng ý để Hang Đôi thu thập và xử lý thông tin tôi cung cấp nhằm tiếp nhận hồ sơ, đánh giá mức độ phù hợp, liên hệ về Selection và quản lý quá trình ứng tuyển Media Career Program.</span></label>
+<label class="consent"><input id="privacyConsent" type="checkbox" required><span>Tôi đồng ý để Hang Đôi thu thập và xử lý thông tin tôi cung cấp nhằm ghi nhận mức độ quan tâm, đánh giá sơ bộ mức độ phù hợp, liên hệ khi Formal Selection được mở và quản lý quá trình candidate của Media Career Program.</span></label>
 <label class="consent"><input id="marketingConsent" type="checkbox"><span>Tôi đồng ý nhận thêm thông tin về workshop, chương trình và hoạt động tương lai của Hang Đôi. <b>Không bắt buộc.</b></span></label>
 </fieldset>
 
@@ -135,7 +135,7 @@ form.addEventListener("submit", async (event)=>{
   if(!form.reportValidity()) return;
   submitBtn.disabled = true;
   statusEl.className = "status";
-  statusEl.textContent = "Đang gửi Application…";
+  statusEl.textContent = "Đang gửi Interest Registration…";
   const f = new FormData(form);
   const payload = {
     website:f.get("website"),
