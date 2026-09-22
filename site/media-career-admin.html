@@ -105,7 +105,7 @@ function render(){
   const list=filtered();rowsEl.innerHTML="";emptyEl.style.display=list.length?"none":"block";
   for(const x of list){
     const tr=document.createElement("tr");
-    tr.innerHTML='<td><strong data-detail="'+x.id+'">'+esc(x.full_name)+'</strong><div class="code">'+esc(x.candidate_code)+'</div>'+(x.selection_score!==null&&x.selection_score!==undefined?'<div class="source">Score '+esc(x.selection_score)+'/100 · '+esc(x.assessment_decision||"PENDING")+'</div>':'')+'</td>'+
+    tr.innerHTML='<td><strong data-detail="'+x.id+'">'+esc(x.full_name)+'</strong><div class="code">'+esc(x.candidate_code)+'</div>'+(x.selection_score!==null&&x.selection_score!==undefined?'<div class="source">Score '+esc(x.selection_score)+'/100 · '+esc(x.assessment_decision||"PENDING")+'</div>':'')+(x.admission_status?'<div class="source">Admission '+esc(x.admission_status)+'</div>':'')+'</td>'+
       '<td>'+esc(x.phone)+'<br>'+esc(x.email)+'</td><td>'+esc(x.current_status||"")+'<br>'+esc(x.experience_level||"")+'</td>'+
       '<td>'+esc(x.preferred_track||"")+'</td><td><span class="source">'+esc(x.utm_source||"direct")+'</span><br>'+esc(x.utm_content||"")+'</td>'+
       '<td><div class="ops-cell"><b>'+esc(x.owner||"Unassigned")+'</b><span>'+esc(x.next_action||"No next action")+(x.next_action_date?' · '+new Date(x.next_action_date).toLocaleDateString("vi-VN"):"")+'</span></div></td>'+
