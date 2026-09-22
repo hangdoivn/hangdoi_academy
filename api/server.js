@@ -152,6 +152,28 @@ async function initDb() {
     CREATE INDEX IF NOT EXISTS idx_mcp_admission_status
       ON media_career_admissions(status, updated_at DESC);
 
+    CREATE TABLE IF NOT EXISTS media_career_selection_appointments (
+      id BIGSERIAL PRIMARY KEY,
+      application_id BIGINT NOT NULL UNIQUE REFERENCES media_career_applications(id) ON DELETE CASCADE,
+      public_token TEXT NOT NULL UNIQUE,
+      selection_start TIMESTAMPTZ,
+      duration_minutes INT NOT NULL DEFAULT 90,
+      timezone TEXT NOT NULL DEFAULT 'Asia/Ho_Chi_Minh',
+      mode TEXT NOT NULL DEFAULT 'ONSITE',
+      location TEXT,
+      status TEXT NOT NULL DEFAULT 'DRAFT',
+      invitation_note TEXT,
+      prep_note TEXT,
+      candidate_response_note TEXT,
+      confirmed_at TIMESTAMPTZ,
+      declined_at TIMESTAMPTZ,
+      attended_at TIMESTAMPTZ,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+      updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    );
+    CREATE INDEX IF NOT EXISTS idx_mcp_selection_status
+      ON media_career_selection_appointments(status, updated_at DESC);
+
     CREATE TABLE IF NOT EXISTS media_career_events (
       id BIGSERIAL PRIMARY KEY,
       event_name TEXT NOT NULL,
@@ -206,6 +228,10 @@ function candidateCode(cohort = "01") {
   const stamp = Date.now().toString(36).toUpperCase();
   const rand = crypto.randomBytes(3).toString("hex").toUpperCase();
   return `MCP${cohort}-${stamp}-${rand}`;
+}
+
+function selectionToken() {
+  return crypto.randomBytes(24).toString("base64url");
 }
 
 function requireAdmin(req, res, next) {
@@ -462,6 +488,88 @@ app.post("/v1/applications", rateLimit(60 * 60 * 1000, 10), async (req, res) => 
   }
 });
 
+app.get("/v1/selection/:token", rateLimit(10 * 60 * 1000, 100), async (req, res) => {
+  const token = cleanString(req.params.token, 200);
+  const result = await pool.query(`
+    SELECT s.status, s.selection_start, s.duration_minutes, s.timezone, s.mode,
+           s.location, s.invitation_note, s.prep_note, s.candidate_response_note,
+           a.candidate_code, a.full_name
+    FROM media_career_selection_appointments s
+    JOIN media_career_applications a ON a.id = s.application_id
+    WHERE s.public_token = $1
+  `, [token]);
+  if (!result.rowCount) return res.status(404).json({ ok: false, error: "Selection invitation not found" });
+  res.json({ ok: true, selection: result.rows[0] });
+});
+
+app.post("/v1/selection/:token/respond", rateLimit(60 * 60 * 1000, 20), async (req, res) => {
+  const token = cleanString(req.params.token, 200);
+  const response = cleanString(req.body?.response, 40).toUpperCase();
+  const note = cleanString(req.body?.note, 2000);
+  if (!new Set(["CONFIRMED", "DECLINED"]).has(response)) {
+    return res.status(400).json({ ok: false, error: "Invalid response" });
+  }
+
+  const client = await pool.connect();
+  try {
+    await client.query("BEGIN");
+    const current = await client.query(`
+      SELECT s.id, s.application_id, s.status, a.candidate_code, a.pipeline_stage
+      FROM media_career_selection_appointments s
+      JOIN media_career_applications a ON a.id = s.application_id
+      WHERE s.public_token = $1
+      FOR UPDATE OF s, a
+    `, [token]);
+    if (!current.rowCount) {
+      await client.query("ROLLBACK");
+      return res.status(404).json({ ok: false, error: "Selection invitation not found" });
+    }
+    const row = current.rows[0];
+    const responseableStatus = new Set(["INVITED", "CONFIRMED", "DECLINED"]);
+    const responseablePipeline = new Set(["SELECTION_INVITED", "SELECTION_CONFIRMED"]);
+    if (!responseableStatus.has(row.status) || !responseablePipeline.has(row.pipeline_stage)) {
+      await client.query("ROLLBACK");
+      return res.status(409).json({ ok: false, error: "Selection invitation is closed" });
+    }
+
+    if (response === "CONFIRMED") {
+      await client.query(`
+        UPDATE media_career_selection_appointments
+        SET status = 'CONFIRMED', candidate_response_note = $1,
+            confirmed_at = COALESCE(confirmed_at, NOW()), declined_at = NULL, updated_at = NOW()
+        WHERE id = $2
+      `, [note, row.id]);
+      if (row.pipeline_stage !== "SELECTION_CONFIRMED") {
+        await client.query(`
+          UPDATE media_career_applications
+          SET pipeline_stage = 'SELECTION_CONFIRMED', updated_at = NOW()
+          WHERE id = $1
+        `, [row.application_id]);
+        await client.query(`
+          INSERT INTO media_career_stage_history (
+            application_id, candidate_code, from_stage, to_stage, changed_by
+          ) VALUES ($1,$2,$3,'SELECTION_CONFIRMED','candidate')
+        `, [row.application_id, row.candidate_code, row.pipeline_stage]);
+      }
+    } else {
+      await client.query(`
+        UPDATE media_career_selection_appointments
+        SET status = 'DECLINED', candidate_response_note = $1,
+            declined_at = COALESCE(declined_at, NOW()), confirmed_at = NULL, updated_at = NOW()
+        WHERE id = $2
+      `, [note, row.id]);
+    }
+    await client.query("COMMIT");
+    res.json({ ok: true, status: response });
+  } catch (error) {
+    await client.query("ROLLBACK");
+    console.error("selection_response_failed", error);
+    res.status(500).json({ ok: false, error: "Unable to save response" });
+  } finally {
+    client.release();
+  }
+});
+
 app.get("/v1/admin/applications", requireAdmin, async (req, res) => {
   const stage = cleanString(req.query.stage, 80);
   const limit = Math.min(Math.max(Number(req.query.limit || 100), 1), 500);
@@ -480,7 +588,9 @@ app.get("/v1/admin/applications", requireAdmin, async (req, res) => {
            marketing_consent, submitted_at, updated_at,
            (SELECT total_score FROM media_career_assessments ma WHERE ma.application_id = media_career_applications.id) AS selection_score,
            (SELECT decision FROM media_career_assessments ma WHERE ma.application_id = media_career_applications.id) AS assessment_decision,
-           (SELECT status FROM media_career_admissions md WHERE md.application_id = media_career_applications.id) AS admission_status
+           (SELECT status FROM media_career_admissions md WHERE md.application_id = media_career_applications.id) AS admission_status,
+           (SELECT status FROM media_career_selection_appointments ms WHERE ms.application_id = media_career_applications.id) AS selection_appointment_status,
+           (SELECT selection_start FROM media_career_selection_appointments ms WHERE ms.application_id = media_career_applications.id) AS selection_start
     FROM media_career_applications
     ${where}
     ORDER BY submitted_at DESC
@@ -500,7 +610,7 @@ app.get("/v1/admin/applications/:id", requireAdmin, async (req, res) => {
     WHERE id = $1
   `, [req.params.id]);
   if (!result.rowCount) return res.status(404).json({ ok: false, error: "Not found" });
-  const [history, assessment, admission] = await Promise.all([
+  const [history, assessment, admission, selection] = await Promise.all([
     pool.query(`
       SELECT from_stage, to_stage, changed_by, changed_at
       FROM media_career_stage_history
@@ -521,6 +631,13 @@ app.get("/v1/admin/applications/:id", requireAdmin, async (req, res) => {
              admission_note, prepared_by, updated_at
       FROM media_career_admissions
       WHERE application_id = $1
+    `, [req.params.id]),
+    pool.query(`
+      SELECT public_token, selection_start, duration_minutes, timezone, mode,
+             location, status, invitation_note, prep_note, candidate_response_note,
+             confirmed_at, declined_at, attended_at, updated_at
+      FROM media_career_selection_appointments
+      WHERE application_id = $1
     `, [req.params.id])
   ]);
   res.json({
@@ -529,8 +646,166 @@ app.get("/v1/admin/applications/:id", requireAdmin, async (req, res) => {
     history: history.rows,
     assessment: assessment.rows[0] || null,
     admission: admission.rows[0] || null,
+    selection: selection.rows[0] || null,
     admissionLegalGate: "BLOCKED"
   });
+});
+
+app.patch("/v1/admin/applications/:id/selection", requireAdmin, async (req, res) => {
+  const application = await pool.query(
+    "SELECT id, candidate_code, pipeline_stage FROM media_career_applications WHERE id = $1",
+    [req.params.id]
+  );
+  if (!application.rowCount) return res.status(404).json({ ok: false, error: "Not found" });
+  const allowedPipeline = new Set(["QUALIFIED", "SELECTION_INVITED", "SELECTION_CONFIRMED"]);
+  if (!allowedPipeline.has(application.rows[0].pipeline_stage)) {
+    return res.status(409).json({
+      ok: false,
+      error: "Selection scheduling is available only for Qualified/Selection candidates"
+    });
+  }
+
+  const b = req.body || {};
+  const selectionStart = cleanString(b.selectionStart, 60);
+  const durationMinutes = Number(b.durationMinutes || 90);
+  const mode = cleanString(b.mode || "ONSITE", 40).toUpperCase();
+  const location = cleanString(b.location, 1000);
+  const invitationNote = cleanString(b.invitationNote, 4000);
+  const prepNote = cleanString(b.prepNote, 4000);
+  if (selectionStart && Number.isNaN(Date.parse(selectionStart))) {
+    return res.status(400).json({ ok: false, error: "Invalid selection start" });
+  }
+  if (!Number.isInteger(durationMinutes) || durationMinutes < 15 || durationMinutes > 480) {
+    return res.status(400).json({ ok: false, error: "Invalid duration" });
+  }
+  if (!new Set(["ONSITE", "ONLINE"]).has(mode)) {
+    return res.status(400).json({ ok: false, error: "Invalid selection mode" });
+  }
+
+  const token = selectionToken();
+  const result = await pool.query(`
+    INSERT INTO media_career_selection_appointments (
+      application_id, public_token, selection_start, duration_minutes,
+      timezone, mode, location, status, invitation_note, prep_note, updated_at
+    ) VALUES ($1,$2,NULLIF($3,'')::timestamptz,$4,'Asia/Ho_Chi_Minh',$5,$6,'DRAFT',$7,$8,NOW())
+    ON CONFLICT (application_id)
+    DO UPDATE SET
+      selection_start = EXCLUDED.selection_start,
+      duration_minutes = EXCLUDED.duration_minutes,
+      mode = EXCLUDED.mode,
+      location = EXCLUDED.location,
+      invitation_note = EXCLUDED.invitation_note,
+      prep_note = EXCLUDED.prep_note,
+      updated_at = NOW()
+    RETURNING public_token, selection_start, duration_minutes, timezone, mode,
+              location, status, invitation_note, prep_note, candidate_response_note,
+              confirmed_at, declined_at, attended_at, updated_at
+  `, [
+    req.params.id, token, selectionStart, durationMinutes, mode,
+    location, invitationNote, prepNote
+  ]);
+  res.json({ ok: true, selection: result.rows[0] });
+});
+
+app.post("/v1/admin/applications/:id/selection/mark-invited", requireAdmin, async (req, res) => {
+  const client = await pool.connect();
+  try {
+    await client.query("BEGIN");
+    const current = await client.query(`
+      SELECT a.id, a.candidate_code, a.pipeline_stage,
+             s.id AS selection_id, s.selection_start, s.mode, s.location
+      FROM media_career_applications a
+      JOIN media_career_selection_appointments s ON s.application_id = a.id
+      WHERE a.id = $1
+      FOR UPDATE OF a, s
+    `, [req.params.id]);
+    if (!current.rowCount) {
+      await client.query("ROLLBACK");
+      return res.status(404).json({ ok: false, error: "Selection draft not found" });
+    }
+    const row = current.rows[0];
+    if (!new Set(["QUALIFIED", "SELECTION_INVITED", "SELECTION_CONFIRMED"]).has(row.pipeline_stage)) {
+      await client.query("ROLLBACK");
+      return res.status(409).json({ ok: false, error: "Candidate is no longer in Selection scheduling" });
+    }
+    if (!row.selection_start) {
+      await client.query("ROLLBACK");
+      return res.status(409).json({ ok: false, error: "Selection date/time is required" });
+    }
+    if (!row.location) {
+      await client.query("ROLLBACK");
+      return res.status(409).json({ ok: false, error: "Location or meeting link is required" });
+    }
+    await client.query(
+      "UPDATE media_career_selection_appointments SET status = 'INVITED', updated_at = NOW() WHERE id = $1",
+      [row.selection_id]
+    );
+    if (row.pipeline_stage !== "SELECTION_INVITED") {
+      await client.query(
+        "UPDATE media_career_applications SET pipeline_stage = 'SELECTION_INVITED', updated_at = NOW() WHERE id = $1",
+        [row.id]
+      );
+      await client.query(`
+        INSERT INTO media_career_stage_history (
+          application_id, candidate_code, from_stage, to_stage, changed_by
+        ) VALUES ($1,$2,$3,'SELECTION_INVITED','admin')
+      `, [row.id, row.candidate_code, row.pipeline_stage]);
+    }
+    await client.query("COMMIT");
+    res.json({ ok: true, status: "INVITED" });
+  } catch (error) {
+    await client.query("ROLLBACK");
+    console.error("selection_invite_mark_failed", error);
+    res.status(500).json({ ok: false, error: "Unable to mark invitation" });
+  } finally {
+    client.release();
+  }
+});
+
+app.post("/v1/admin/applications/:id/selection/attended", requireAdmin, async (req, res) => {
+  const client = await pool.connect();
+  try {
+    await client.query("BEGIN");
+    const current = await client.query(`
+      SELECT a.id, a.candidate_code, a.pipeline_stage, s.id AS selection_id
+      FROM media_career_applications a
+      JOIN media_career_selection_appointments s ON s.application_id = a.id
+      WHERE a.id = $1
+      FOR UPDATE OF a, s
+    `, [req.params.id]);
+    if (!current.rowCount) {
+      await client.query("ROLLBACK");
+      return res.status(404).json({ ok: false, error: "Selection appointment not found" });
+    }
+    const row = current.rows[0];
+    if (!new Set(["SELECTION_INVITED", "SELECTION_CONFIRMED"]).has(row.pipeline_stage)) {
+      await client.query("ROLLBACK");
+      return res.status(409).json({ ok: false, error: "Candidate is no longer awaiting Selection attendance" });
+    }
+    await client.query(
+      "UPDATE media_career_selection_appointments SET status = 'ATTENDED', attended_at = COALESCE(attended_at, NOW()), updated_at = NOW() WHERE id = $1",
+      [row.selection_id]
+    );
+    if (row.pipeline_stage !== "SELECTION_ATTENDED") {
+      await client.query(
+        "UPDATE media_career_applications SET pipeline_stage = 'SELECTION_ATTENDED', updated_at = NOW() WHERE id = $1",
+        [row.id]
+      );
+      await client.query(`
+        INSERT INTO media_career_stage_history (
+          application_id, candidate_code, from_stage, to_stage, changed_by
+        ) VALUES ($1,$2,$3,'SELECTION_ATTENDED','admin')
+      `, [row.id, row.candidate_code, row.pipeline_stage]);
+    }
+    await client.query("COMMIT");
+    res.json({ ok: true, status: "ATTENDED" });
+  } catch (error) {
+    await client.query("ROLLBACK");
+    console.error("selection_attended_failed", error);
+    res.status(500).json({ ok: false, error: "Unable to mark attended" });
+  } finally {
+    client.release();
+  }
 });
 
 app.patch("/v1/admin/applications/:id/assessment", requireAdmin, async (req, res) => {

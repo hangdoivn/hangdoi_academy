@@ -59,6 +59,8 @@ jobs:
           cp site/media-career-thank-you.html _site/media-career-program/thank-you/index.html
           mkdir -p _site/media-career-program/admin
           cp site/media-career-admin.html _site/media-career-program/admin/index.html
+          mkdir -p _site/media-career-program/selection
+          cp site/media-career-selection.html _site/media-career-program/selection/index.html
           cp site/logo-academy.svg _site/favicon.svg
           cp site/logo-inline.js _site/logo-inline.js
           cp site/ui-fixes.js _site/ui-fixes.js
