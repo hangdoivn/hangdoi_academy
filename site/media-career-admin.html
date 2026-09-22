@@ -129,12 +129,12 @@ function updateAcquisition(){
   const params=new URLSearchParams({utm_source:source,utm_medium:medium,utm_campaign:"media_career_cohort01",utm_content:content});
   $("landingCampaignUrl").value="https://academy.hangdoistudio.vn/media-career-program/?"+params.toString();
   $("registerCampaignUrl").value="https://academy.hangdoistudio.vn/media-career-program/apply/?"+params.toString();
-  const formalOpen=dash?.legalReadiness?.program_registration_status==="CONFIRMED";
+  const formalOpen=dash?.publicIntakeMode==="APPLICATION_OPEN";
   $("publicMode").textContent=formalOpen?"FORMAL APPLICATION OPEN":"INTEREST ONLY";
   $("publicMode").className="mode-pill"+(formalOpen?" open":"");
   $("acqModeNote").textContent=formalOpen
-    ?"Program registration đã CONFIRMED. Có thể chuyển public CTA sang formal Application/Selection theo approved launch wording."
-    :"Legal Safe Mode: chỉ dùng wording Register Interest. Không dùng Apply/Selection/Admission trong CTA public cho tới khi program registration được xác nhận.";
+    ?"Public intake đã được mở Formal Application bằng reviewed launch change."
+    :"Legal Safe Mode: chỉ dùng wording Register Interest. Program registration CONFIRMED riêng lẻ không tự mở Formal Application; cần reviewed unlock riêng.";
 }
 async function copyField(id){
   try{await navigator.clipboard.writeText($(id).value);statusEl.textContent="Đã copy campaign link.";statusEl.className="status ok"}

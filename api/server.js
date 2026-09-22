@@ -400,29 +400,15 @@ app.post("/v1/applications", rateLimit(60 * 60 * 1000, 10), async (req, res) => 
     if (!city) missing.push("city");
     if (!currentStatus) missing.push("currentStatus");
     if (!experienceLevel) missing.push("experienceLevel");
-    if (!visualThinking) missing.push("visualThinking");
     if (!careerWhy) missing.push("careerWhy");
-    if (!career3yr) missing.push("career3yr");
-    if (!currentBarrier) missing.push("currentBarrier");
-    if (!hardSkillStory) missing.push("hardSkillStory");
-    if (!failureStory) missing.push("failureStory");
-    if (!schedule) missing.push("schedule");
-    if (!whyYou) missing.push("whyYou");
     if (!privacyConsent) missing.push("privacyConsent");
-    if (!tuitionAwareness) missing.push("tuitionAwareness");
 
     if (missing.length) {
       return res.status(400).json({ ok: false, error: "Missing required fields", fields: missing });
     }
 
     const cohort = "01";
-    const legalMode = await pool.query(
-      "SELECT program_registration_status FROM media_career_legal_readiness WHERE cohort = $1",
-      [cohort]
-    );
-    const publicPipelineStage = legalMode.rows[0]?.program_registration_status === "CONFIRMED"
-      ? "APPLICATION_COMPLETED"
-      : "INTEREST_REGISTERED";
+    const publicPipelineStage = "INTEREST_REGISTERED";
 
     const existing = await pool.query(
       "SELECT candidate_code, phone FROM media_career_applications WHERE cohort = $1 AND email_normalized = $2",
@@ -546,7 +532,7 @@ app.post("/v1/applications", rateLimit(60 * 60 * 1000, 10), async (req, res) => 
       ok: true,
       candidateCode: saved.candidate_code,
       submittedAt: saved.submitted_at,
-      intakeMode: publicPipelineStage === "INTEREST_REGISTERED" ? "INTEREST_ONLY" : "APPLICATION_OPEN"
+      intakeMode: "INTEREST_ONLY"
     });
   } catch (error) {
     console.error("application_submit_failed", error);
@@ -665,6 +651,7 @@ app.get("/v1/admin/legal-readiness/:cohort", requireAdmin, async (req, res) => {
       total: statusFields.length,
       percent: statusFields.length ? Math.round((confirmed / statusFields.length) * 1000) / 10 : 0
     },
+    publicIntakeMode: "INTEREST_ONLY",
     admissionSendGate: "BLOCKED_IN_CODE",
     paymentGate: "BLOCKED_IN_CODE"
   });

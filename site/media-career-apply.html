@@ -10,7 +10,8 @@
 <style>
 :root{--blue:#152BE8;--yellow:#FDDE58;--ink:#00031A;--mist:#F3F5FF;--line:#D9DDEC;--muted:#646B86;--red:#B42318}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--mist);line-height:1.5}.wrap{width:min(calc(100% - 28px),900px);margin:auto}.nav{height:70px;display:flex;align-items:center;justify-content:space-between}.nav img{width:188px}.back{font-size:14px;font-weight:800;text-decoration:none;color:var(--ink)}.hero{padding:52px 0 28px}.eyebrow{font-size:12px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;color:var(--blue)}h1{font-size:clamp(42px,7vw,72px);line-height:.95;letter-spacing:-.055em;margin:12px 0 18px}.intro{font-size:18px;color:#444b65;max-width:760px}.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}.chip{background:white;border:1px solid var(--line);border-radius:999px;padding:8px 12px;font-size:13px;font-weight:800}
-form{background:white;border:1px solid var(--line);border-radius:28px;padding:30px;margin:18px 0 80px;box-shadow:0 20px 60px rgba(0,3,26,.05)}fieldset{border:0;padding:30px 0;margin:0;border-top:1px solid var(--line)}fieldset:first-of-type{border-top:0;padding-top:0}legend{font-size:13px;font-weight:950;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);padding:0 0 16px}label{display:block;font-weight:800;font-size:14px;margin:18px 0 8px}.req:after{content:" *";color:var(--red)}input,select,textarea{width:100%;font:inherit;color:var(--ink);border:1px solid #cbd1e0;border-radius:14px;padding:13px 14px;background:#fff;outline:none}textarea{min-height:130px;resize:vertical}input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(21,43,232,.09)}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.checks{display:grid;grid-template-columns:1fr 1fr;gap:10px}.check{display:flex;gap:10px;align-items:flex-start;padding:12px;border:1px solid var(--line);border-radius:14px}.check input{width:auto;margin-top:3px}.help{font-size:12px;color:var(--muted);margin-top:6px}.notice{padding:15px;border-radius:16px;background:#FFF8D8;border:1px solid #F2D86A;font-size:14px}.consent{display:flex;gap:10px;align-items:flex-start;margin:14px 0}.consent input{width:auto;margin-top:4px}.actions{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:24px;border-top:1px solid var(--line)}button{border:0;background:var(--ink);color:white;border-radius:999px;padding:14px 22px;font:inherit;font-weight:900;cursor:pointer;min-width:190px}button[disabled]{opacity:.5;cursor:not-allowed}.status{font-size:13px;color:var(--muted)}.error{color:var(--red);font-weight:800}.hp{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}@media(max-width:650px){.grid,.checks{grid-template-columns:1fr}form{padding:20px;border-radius:20px}.actions{align-items:stretch;flex-direction:column}.actions button{width:100%}}
+form{background:white;border:1px solid var(--line);border-radius:28px;padding:30px;margin:18px 0 80px;box-shadow:0 20px 60px rgba(0,3,26,.05);position:relative}fieldset{border:0;padding:30px 0;margin:0;border-top:1px solid var(--line)}fieldset:first-of-type{border-top:0;padding-top:0}legend{font-size:13px;font-weight:950;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);padding:0 0 16px}label{display:block;font-weight:800;font-size:14px;margin:18px 0 8px}.req:after{content:" *";color:var(--red)}input,select,textarea{width:100%;font:inherit;color:var(--ink);border:1px solid #cbd1e0;border-radius:14px;padding:13px 14px;background:#fff;outline:none}textarea{min-height:120px;resize:vertical}input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(21,43,232,.09)}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.checks{display:grid;grid-template-columns:1fr 1fr;gap:10px}.check{display:flex;gap:10px;align-items:flex-start;padding:12px;border:1px solid var(--line);border-radius:14px}.check input{width:auto;margin-top:3px}.help{font-size:12px;color:var(--muted);margin-top:6px}.notice{padding:15px;border-radius:16px;background:#FFF8D8;border:1px solid #F2D86A;font-size:14px}.consent{display:flex;gap:10px;align-items:flex-start;margin:14px 0}.consent input{width:auto;margin-top:4px}.actions{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:24px;border-top:1px solid var(--line)}button{border:0;background:var(--ink);color:white;border-radius:999px;padding:14px 22px;font:inherit;font-weight:900;cursor:pointer;min-width:190px}button[disabled]{opacity:.5;cursor:not-allowed}.status{font-size:13px;color:var(--muted)}.error{color:var(--red);font-weight:800}.hp{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}
+@media(max-width:650px){.grid,.checks{grid-template-columns:1fr}form{padding:20px;border-radius:20px}.actions{align-items:stretch;flex-direction:column}.actions button{width:100%}}
 </style>
 </head>
 <body>
@@ -19,19 +20,19 @@ form{background:white;border:1px solid var(--line);border-radius:28px;padding:30
 <section class="hero">
 <div class="eyebrow">Media Career Program · Cohort 01</div>
 <h1>REGISTER<br>INTEREST.</h1>
-<p class="intro">Form này ghi nhận mức độ quan tâm và background của bạn để Hang Đôi có thể liên hệ khi Formal Selection của Cohort 01 được mở. Đây chưa phải Admission/Enrollment và không tạo cam kết việc làm. Không yêu cầu kinh nghiệm, không bắt buộc portfolio và không cần sở hữu camera.</p>
-<div class="meta"><span class="chip">10–15 phút</span><span class="chip">Không thu phí</span><span class="chip">10 seats</span></div>
+<p class="intro">Form này chỉ ghi nhận mức độ quan tâm và background cơ bản để Hang Đôi có thể liên hệ khi Formal Application/Selection của Cohort 01 được mở. Đây chưa phải Admission/Enrollment và không tạo cam kết việc làm.</p>
+<div class="meta"><span class="chip">3–5 phút</span><span class="chip">Không thu phí</span><span class="chip">Không cần camera</span><span class="chip">Không cần portfolio</span></div>
 </section>
 
-<form id="applicationForm"><div class="hp" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+<form id="interestForm">
+<div class="hp" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+
 <fieldset>
 <legend>01 — About you</legend>
 <div class="grid">
 <div><label class="req" for="fullName">Họ và tên</label><input id="fullName" name="fullName" autocomplete="name" required></div>
-<div><label class="req" for="dateOfBirth">Ngày sinh</label><input id="dateOfBirth" name="dateOfBirth" type="date" required></div>
 <div><label class="req" for="phone">Số điện thoại</label><input id="phone" name="phone" autocomplete="tel" required></div>
 <div><label class="req" for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
-<div><label for="social">Facebook / Instagram</label><input id="social" name="social" placeholder="Link profile"></div>
 <div><label class="req" for="city">Bạn hiện sống ở đâu?</label><input id="city" name="city" required></div>
 <div><label class="req" for="currentStatus">Hiện tại bạn đang</label><select id="currentStatus" name="currentStatus" required><option value="">Chọn</option><option>Sinh viên</option><option>Mới tốt nghiệp</option><option>Đang đi làm</option><option>Freelancer</option><option>Career break / tìm hướng mới</option><option>Khác</option></select></div>
 <div><label for="schoolCompany">Trường / Công ty / Ngành hiện tại</label><input id="schoolCompany" name="schoolCompany"></div>
@@ -39,8 +40,8 @@ form{background:white;border:1px solid var(--line);border-radius:28px;padding:30
 </fieldset>
 
 <fieldset>
-<legend>02 — Current Media Experience</legend>
-<label>Bạn đã từng làm những gì?</label>
+<legend>02 — Media background</legend>
+<label>Bạn đã từng làm những gì? <span class="help">Không bắt buộc phải có kinh nghiệm.</span></label>
 <div class="checks" id="experienceAreas">
 <label class="check"><input type="checkbox" value="Photography">Photography</label>
 <label class="check"><input type="checkbox" value="Video Shooting">Video Shooting</label>
@@ -53,71 +54,40 @@ form{background:white;border:1px solid var(--line);border-radius:28px;padding:30
 </div>
 <label class="req" for="experienceLevel">Mức kinh nghiệm hiện tại</label>
 <select id="experienceLevel" name="experienceLevel" required><option value="">Chọn</option><option>Chưa bắt đầu</option><option>Đang tự học</option><option>Đã làm project cá nhân</option><option>Đã nhận freelance nhỏ</option><option>Đã từng làm ở team/công ty</option><option>Đã từng tham gia commercial production</option></select>
-<label for="tools">Công cụ / phần mềm bạn thường dùng</label><textarea id="tools" name="tools" placeholder="Ví dụ: Lightroom, Premiere, DaVinci, Photoshop..."></textarea>
+<label for="preferredTrack">Bạn đang quan tâm hướng nào nhất?</label>
+<select id="preferredTrack" name="preferredTrack"><option>Chưa biết — muốn khám phá trước</option><option>Photography</option><option>Video / Camera</option><option>Editing / Post-production</option><option>Hybrid Media</option></select>
 <label for="portfolioUrl">Portfolio / Drive / Instagram / Behance / Website</label><input id="portfolioUrl" name="portfolioUrl" type="url" placeholder="Không bắt buộc">
 </fieldset>
 
 <fieldset>
-<legend>03 — Visual Thinking</legend>
-<label class="req" for="visualThinking">Bạn thường chú ý điều gì đầu tiên khi nhìn một hình ảnh hoặc video mà mình thích?</label>
-<textarea id="visualThinking" name="visualThinking" required></textarea>
-<label class="req" for="visualReferences">Gửi 1–3 link hình ảnh/video bạn thấy rất tốt và giải thích vì sao</label>
-<textarea id="visualReferences" name="visualReferences" required placeholder="Không cần là sản phẩm của bạn. Dán link + lý do chọn."></textarea>
+<legend>03 — Career interest</legend>
+<label class="req" for="careerWhy">Vì sao bạn đang quan tâm đến nghề Media?</label><textarea id="careerWhy" name="careerWhy" required></textarea>
+<label for="currentBarrier">Điều gì đang khiến bạn khó bước vào nghề nhất hiện tại?</label><textarea id="currentBarrier" name="currentBarrier"></textarea>
 </fieldset>
 
 <fieldset>
-<legend>04 — Career</legend>
-<label class="req" for="careerWhy">Vì sao bạn muốn theo nghề Media?</label><textarea id="careerWhy" name="careerWhy" required></textarea>
-<label class="req" for="career3yr">Sau 3 năm, bạn muốn mình đang làm công việc gì?</label><textarea id="career3yr" name="career3yr" required></textarea>
-<label for="preferredTrack">Bạn đang quan tâm hướng nào nhất?</label><select id="preferredTrack" name="preferredTrack"><option>Chưa biết — muốn khám phá trước</option><option>Photography</option><option>Video / Camera</option><option>Editing / Post-production</option><option>Hybrid Media</option></select>
-<label class="req" for="currentBarrier">Điều gì đang khiến bạn khó bước vào nghề nhất hiện tại?</label><textarea id="currentBarrier" name="currentBarrier" required></textarea>
+<legend>04 — Program context</legend>
+<div class="notice">Mức học phí đang được Hang Đôi xây dựng cho chương trình là <b>40.000.000 VNĐ / 4 tháng</b>. Hiện Cohort 01 chỉ mở <b>Register Interest</b>; Formal Application/Selection/Admission chưa mở và Hang Đôi không thu tiền ở bước này.</div>
+<label class="consent"><input id="tuitionAwareness" type="checkbox"><span>Tôi đã đọc mức học phí dự kiến hiện tại. <b>Không bắt buộc để gửi Register Interest.</b></span></label>
 </fieldset>
 
 <fieldset>
-<legend>05 — How you work</legend>
-<label class="req" for="feedbackReaction">Khi nhận feedback rằng sản phẩm chưa đạt và phải làm lại</label><select id="feedbackReaction" name="feedbackReaction" required><option value="">Chọn</option><option>Muốn biết cụ thể sai ở đâu để sửa</option><option>Khá khó chịu nhưng vẫn sửa</option><option>Thường mất động lực</option><option>Muốn bảo vệ phương án của mình trước</option><option>Tùy trường hợp</option></select>
-<label class="req" for="hardSkillStory">Bạn đã từng phải học một kỹ năng khó trong thời gian ngắn chưa? Hãy kể một ví dụ.</label><textarea id="hardSkillStory" name="hardSkillStory" required></textarea>
-<label class="req" for="failureStory">Kể về một lần bạn làm sai hoặc thất bại trong một project. Bạn xử lý thế nào?</label><textarea id="failureStory" name="failureStory" required></textarea>
-</fieldset>
-
-<fieldset>
-<legend>06 — Commitment</legend>
-<label class="req" for="commitment">Bạn có thể dành thời gian nghiêm túc trong 4 tháng?</label><select id="commitment" name="commitment" required><option value="">Chọn</option><option>Có</option><option>Cần trao đổi thêm</option></select>
-<label class="req" for="schedule">Khung lịch hiện tại của bạn</label><textarea id="schedule" name="schedule" required></textarea>
-<label for="otherFulltime">Bạn có dự định học/làm full-time nơi khác trong 4 tháng tới?</label><textarea id="otherFulltime" name="otherFulltime"></textarea>
-</fieldset>
-
-<fieldset>
-<legend>07 — Tuition Awareness</legend>
-<div class="notice">Học phí dự kiến public hiện tại của chương trình là <b>40.000.000 VNĐ / 4 tháng</b>. Giai đoạn hiện tại chỉ ghi nhận Register Interest; Formal Selection/Admission chưa mở và bạn không thanh toán khi gửi form này.</div>
-<label class="consent"><input id="tuitionAwareness" type="checkbox" required><span>Tôi đã đọc và hiểu mức học phí public hiện tại của chương trình.</span></label>
-<label for="paymentPreference">Phương án hiện phù hợp nhất</label><select id="paymentPreference" name="paymentPreference"><option>40M một lần</option><option>10M × 4 kỳ</option><option>Cần trao đổi thêm</option><option>Chưa chắc về khả năng tài chính</option></select>
-</fieldset>
-
-<fieldset>
-<legend>08 — Final</legend>
-<label class="req" for="whyYou">Vì sao Hang Đôi nên chọn bạn vào 10 người của Cohort 01?</label><textarea id="whyYou" name="whyYou" required></textarea>
-</fieldset>
-
-<fieldset>
-<legend>09 — Privacy</legend>
-<label class="consent"><input id="privacyConsent" type="checkbox" required><span>Tôi đồng ý để Hang Đôi thu thập và xử lý thông tin tôi cung cấp nhằm ghi nhận mức độ quan tâm, đánh giá sơ bộ mức độ phù hợp, liên hệ khi Formal Selection được mở và quản lý quá trình candidate của Media Career Program.</span></label>
+<legend>05 — Privacy</legend>
+<label class="consent"><input id="privacyConsent" type="checkbox" required><span>Tôi đồng ý để Hang Đôi xử lý thông tin tôi cung cấp nhằm ghi nhận mức độ quan tâm, liên hệ khi có cập nhật chính thức về Media Career Program và quản lý record candidate của tôi.</span></label>
 <label class="consent"><input id="marketingConsent" type="checkbox"><span>Tôi đồng ý nhận thêm thông tin về workshop, chương trình và hoạt động tương lai của Hang Đôi. <b>Không bắt buộc.</b></span></label>
 </fieldset>
 
-<div class="actions"><div id="formStatus" class="status">Interest Registration sẽ được lưu vào hệ thống Candidate của Hang Đôi Academy.</div><button id="submitBtn" type="submit">Register Interest →</button></div>
+<div class="actions"><div id="formStatus" class="status">Register Interest sẽ được lưu vào hệ thống Candidate của Hang Đôi Academy.</div><button id="submitBtn" type="submit">Register Interest →</button></div>
 </form>
 </div>
 <script>
-const API = "https://candidate-api-v2-production.up.railway.app";
-const form = document.getElementById("applicationForm");
-const statusEl = document.getElementById("formStatus");
-const submitBtn = document.getElementById("submitBtn");
-const params = new URLSearchParams(location.search);
-["utm_source","utm_medium","utm_campaign","utm_content"].forEach(k=>{
-  const v=params.get(k); if(v) sessionStorage.setItem(k,v);
-});
-const checkedValues = id => [...document.querySelectorAll("#"+id+" input:checked")].map(x=>x.value);
+const API="https://candidate-api-v2-production.up.railway.app";
+const form=document.getElementById("interestForm");
+const statusEl=document.getElementById("formStatus");
+const submitBtn=document.getElementById("submitBtn");
+const params=new URLSearchParams(location.search);
+["utm_source","utm_medium","utm_campaign","utm_content"].forEach(k=>{const v=params.get(k);if(v)sessionStorage.setItem(k,v)});
+const checkedValues=id=>[...document.querySelectorAll("#"+id+" input:checked")].map(x=>x.value);
 let sid=sessionStorage.getItem("mcp_sid");if(!sid){sid="mcp_"+crypto.randomUUID();sessionStorage.setItem("mcp_sid",sid)}
 const track=(eventName,candidateCode="",metadata={})=>fetch(API+"/v1/events",{
   method:"POST",headers:{"Content-Type":"application/json"},keepalive:true,
@@ -130,65 +100,42 @@ track("apply_view");
 let formStarted=false;
 form.addEventListener("input",()=>{if(!formStarted){formStarted=true;track("form_start")}}, {passive:true});
 
-form.addEventListener("submit", async (event)=>{
+form.addEventListener("submit",async(event)=>{
   event.preventDefault();
-  if(!form.reportValidity()) return;
-  submitBtn.disabled = true;
-  statusEl.className = "status";
-  statusEl.textContent = "Đang gửi Interest Registration…";
-  const f = new FormData(form);
-  const payload = {
+  if(!form.reportValidity())return;
+  submitBtn.disabled=true;statusEl.className="status";statusEl.textContent="Đang ghi nhận thông tin…";
+  const f=new FormData(form);
+  const payload={
     website:f.get("website"),
     fullName:f.get("fullName"),
-    dateOfBirth:f.get("dateOfBirth"),
     phone:f.get("phone"),
     email:f.get("email"),
-    social:f.get("social"),
     city:f.get("city"),
     currentStatus:f.get("currentStatus"),
     schoolCompany:f.get("schoolCompany"),
     experienceAreas:checkedValues("experienceAreas"),
     experienceLevel:f.get("experienceLevel"),
-    tools:f.get("tools"),
-    portfolioUrl:f.get("portfolioUrl"),
-    visualThinking:f.get("visualThinking"),
-    visualReferences:f.get("visualReferences"),
-    careerWhy:f.get("careerWhy"),
-    career3yr:f.get("career3yr"),
     preferredTrack:f.get("preferredTrack"),
+    portfolioUrl:f.get("portfolioUrl"),
+    careerWhy:f.get("careerWhy"),
     currentBarrier:f.get("currentBarrier"),
-    feedbackReaction:f.get("feedbackReaction"),
-    hardSkillStory:f.get("hardSkillStory"),
-    failureStory:f.get("failureStory"),
-    commitment:f.get("commitment"),
-    schedule:f.get("schedule"),
-    otherFulltime:f.get("otherFulltime"),
     tuitionAwareness:document.getElementById("tuitionAwareness").checked,
-    paymentPreference:f.get("paymentPreference"),
-    whyYou:f.get("whyYou"),
     privacyConsent:document.getElementById("privacyConsent").checked,
     marketingConsent:document.getElementById("marketingConsent").checked,
-    utmSource:sessionStorage.getItem("utm_source") || "",
-    utmMedium:sessionStorage.getItem("utm_medium") || "",
-    utmCampaign:sessionStorage.getItem("utm_campaign") || "media_career_cohort01",
-    utmContent:sessionStorage.getItem("utm_content") || "",
-    referrer:document.referrer || ""
+    utmSource:sessionStorage.getItem("utm_source")||"",
+    utmMedium:sessionStorage.getItem("utm_medium")||"",
+    utmCampaign:sessionStorage.getItem("utm_campaign")||"media_career_cohort01",
+    utmContent:sessionStorage.getItem("utm_content")||"",
+    referrer:document.referrer||""
   };
   try{
-    const response = await fetch(API+"/v1/applications",{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify(payload)
-    });
-    const data = await response.json().catch(()=>({}));
-    if(!response.ok) throw new Error(data.error || "Submit failed");
-    await track("form_submit_client",data.candidateCode,{});
-    location.href = "/media-career-program/thank-you/?candidate="+encodeURIComponent(data.candidateCode)+"&mode="+encodeURIComponent(data.intakeMode||"INTEREST_ONLY");
+    const response=await fetch(API+"/v1/applications",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+    const data=await response.json().catch(()=>({}));
+    if(!response.ok)throw new Error(data.error||"Submit failed");
+    await track("form_submit_client",data.candidateCode,{intakeMode:data.intakeMode||"INTEREST_ONLY"});
+    location.href="/media-career-program/thank-you/?candidate="+encodeURIComponent(data.candidateCode)+"&mode="+encodeURIComponent(data.intakeMode||"INTEREST_ONLY");
   }catch(error){
-    console.error(error);
-    statusEl.className = "status error";
-    statusEl.textContent = "Chưa gửi được hồ sơ. Vui lòng kiểm tra kết nối và thử lại.";
-    submitBtn.disabled = false;
+    console.error(error);statusEl.className="status error";statusEl.textContent="Chưa ghi nhận được thông tin. Vui lòng kiểm tra kết nối và thử lại.";submitBtn.disabled=false;
   }
 });
 </script>
