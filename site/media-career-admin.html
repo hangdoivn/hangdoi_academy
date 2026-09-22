@@ -191,7 +191,7 @@ async function saveOps(id){
 const detail=(k,v)=>'<div class="detail"><small>'+esc(k)+'</small><b>'+esc(v||"—")+'</b></div>';
 const answer=(k,v)=>v?'<div class="answer"><b>'+esc(k)+'</b><p>'+esc(v)+'</p></div>':"";
 const attr=v=>esc(v).replaceAll("&#39;","&#39;");
-function csv(){const list=filtered(),cols=["candidate_code","full_name","phone","email","city","current_status","preferred_track","experience_level","pipeline_stage","owner","next_action","next_action_date","lost_reason","utm_source","utm_medium","utm_campaign","utm_content","submitted_at"];const quote=v=>'"'+String(v??"").replaceAll('"','""')+'"';return [cols.join(","),...list.map(x=>cols.map(c=>quote(x[c])).join(","))].join("\n")}
+function csv(){const list=filtered(),cols=["candidate_code","full_name","phone","email","city","current_status","preferred_track","experience_level","selection_score","assessment_decision","pipeline_stage","owner","next_action","next_action_date","lost_reason","utm_source","utm_medium","utm_campaign","utm_content","submitted_at"];const quote=v=>'"'+String(v??"").replaceAll('"','""')+'"';return [cols.join(","),...list.map(x=>cols.map(c=>quote(x[c])).join(","))].join("\n")}
 $("connect").onclick=load;$("days").onchange=load;["search","stageFilter","sourceFilter"].forEach(id=>$(id).addEventListener("input",render));
 $("exportBtn").onclick=()=>{const b=new Blob([csv()],{type:"text/csv;charset=utf-8"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="media-career-candidates.csv";a.click();URL.revokeObjectURL(a.href)};
 if(tokenEl.value)load();
