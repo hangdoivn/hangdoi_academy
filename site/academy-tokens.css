@@ -1,0 +1,331 @@
+/*
+ * Hang Đôi Academy Design Tokens v1
+ * Canonical UI token layer for Academy surfaces.
+ *
+ * Architecture:
+ * 1. Primitive tokens  — raw palette / scale values
+ * 2. Semantic tokens   — meaning in the Academy UI
+ * 3. Component tokens  — stable defaults for common UI patterns
+ * 4. Legacy aliases    — temporary compatibility with current Academy pages
+ */
+
+:root {
+  /* ============================================================
+     1. PRIMITIVES — COLOR
+     ============================================================ */
+
+  /* Academy green */
+  --aca-green-950: #0f422d;
+  --aca-green-900: #153d2e;
+  --aca-green-800: #17382b;
+  --aca-green-700: #176b43;
+  --aca-green-600: #239653;
+  --aca-green-400: #8bc34a;
+  --aca-green-100: #edf7ef;
+
+  /* Academy yellow */
+  --aca-yellow-600: #d6b91f;
+  --aca-yellow-500: #f2d43d;
+  --aca-yellow-300: #ffe783;
+  --aca-yellow-100: #fff8d6;
+
+  /* Neutral */
+  --aca-neutral-0: #ffffff;
+  --aca-neutral-25: #fbfcfa;
+  --aca-neutral-50: #f7f8f3;
+  --aca-neutral-75: #f6f7f1;
+  --aca-neutral-100: #eef1ed;
+  --aca-neutral-200: #d8e1dc;
+  --aca-neutral-500: #66756d;
+  --aca-neutral-600: #52665d;
+
+  /* Feedback */
+  --aca-red-500: #e86f55;
+
+  /* Official SVG logo colors — do not use as the primary UI palette */
+  --aca-logo-primary: #00031a;
+  --aca-logo-accent: #fcb415;
+
+  /* ============================================================
+     2. SEMANTICS — COLOR
+     ============================================================ */
+
+  --aca-color-brand: var(--aca-green-700);
+  --aca-color-brand-emphasis: var(--aca-green-600);
+  --aca-color-brand-strong: var(--aca-green-900);
+  --aca-color-brand-subtle: var(--aca-green-100);
+
+  --aca-color-accent: var(--aca-yellow-500);
+  --aca-color-accent-soft: var(--aca-yellow-100);
+  --aca-color-accent-light: var(--aca-yellow-300);
+
+  --aca-color-bg-page: var(--aca-neutral-0);
+  --aca-color-bg-subtle: var(--aca-neutral-50);
+  --aca-color-bg-soft: var(--aca-neutral-75);
+  --aca-color-bg-inverse: var(--aca-green-950);
+  --aca-color-bg-brand: var(--aca-green-700);
+  --aca-color-bg-highlight: var(--aca-yellow-100);
+
+  --aca-color-surface: var(--aca-neutral-0);
+  --aca-color-surface-raised: var(--aca-neutral-0);
+  --aca-color-surface-muted: var(--aca-neutral-50);
+  --aca-color-surface-inverse: var(--aca-green-950);
+  --aca-color-surface-brand: var(--aca-green-700);
+  --aca-color-surface-accent: var(--aca-yellow-500);
+
+  --aca-color-text-heading: var(--aca-green-900);
+  --aca-color-text-primary: var(--aca-green-800);
+  --aca-color-text-secondary: var(--aca-neutral-600);
+  --aca-color-text-muted: var(--aca-neutral-500);
+  --aca-color-text-inverse: var(--aca-neutral-0);
+  --aca-color-text-on-brand: var(--aca-neutral-0);
+  --aca-color-text-on-accent: var(--aca-green-800);
+  --aca-color-text-link: var(--aca-green-700);
+
+  --aca-color-border: var(--aca-neutral-200);
+  --aca-color-border-subtle: rgba(21, 61, 46, .14);
+  --aca-color-border-emphasis: rgba(35, 150, 83, .30);
+  --aca-color-divider-inverse: rgba(255, 255, 255, .14);
+
+  --aca-color-focus: var(--aca-green-600);
+  --aca-color-danger: var(--aca-red-500);
+
+  --aca-overlay-dark-06: rgba(15, 66, 45, .06);
+  --aca-overlay-dark-10: rgba(15, 66, 45, .10);
+  --aca-overlay-dark-18: rgba(15, 66, 45, .18);
+  --aca-overlay-light-06: rgba(255, 255, 255, .06);
+  --aca-overlay-light-12: rgba(255, 255, 255, .12);
+
+  /* ============================================================
+     3. PRIMITIVES — TYPOGRAPHY
+     ============================================================ */
+
+  --aca-font-sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --aca-font-weight-regular: 400;
+  --aca-font-weight-medium: 500;
+  --aca-font-weight-semibold: 600;
+  --aca-font-weight-bold: 700;
+  --aca-font-weight-extrabold: 800;
+  --aca-font-weight-black: 900;
+
+  --aca-font-size-display-1: clamp(3.5rem, 7.2vw, 6.75rem);   /* 56 → 108 */
+  --aca-font-size-display-2: clamp(2.375rem, 5vw, 4.5rem);   /* 38 → 72 */
+  --aca-font-size-title-1: clamp(2rem, 3.2vw, 3.375rem);     /* 32 → 54 */
+  --aca-font-size-title-2: clamp(1.625rem, 2.4vw, 2rem);     /* 26 → 32 */
+  --aca-font-size-title-3: 1.4375rem;                        /* 23 */
+  --aca-font-size-body-lg: 1.125rem;                         /* 18 */
+  --aca-font-size-body: .9375rem;                            /* 15 */
+  --aca-font-size-body-sm: .875rem;                          /* 14 */
+  --aca-font-size-label: .75rem;                             /* 12 */
+  --aca-font-size-caption: .6875rem;                         /* 11 */
+  --aca-font-size-micro: .625rem;                            /* 10 */
+
+  --aca-line-height-display-tight: .88;
+  --aca-line-height-display: .98;
+  --aca-line-height-title: 1.08;
+  --aca-line-height-body: 1.55;
+  --aca-line-height-relaxed: 1.65;
+
+  --aca-letter-display-1: -.065em;
+  --aca-letter-display-2: -.055em;
+  --aca-letter-title: -.04em;
+  --aca-letter-body: 0;
+  --aca-letter-label: .12em;
+  --aca-letter-micro: .08em;
+
+  /* ============================================================
+     4. PRIMITIVES — SPACE
+     4px base unit. Use the semantic aliases below in components.
+     ============================================================ */
+
+  --aca-space-0: 0;
+  --aca-space-1: 4px;
+  --aca-space-2: 8px;
+  --aca-space-3: 12px;
+  --aca-space-4: 16px;
+  --aca-space-5: 20px;
+  --aca-space-6: 24px;
+  --aca-space-8: 32px;
+  --aca-space-10: 40px;
+  --aca-space-12: 48px;
+  --aca-space-14: 56px;
+  --aca-space-16: 64px;
+  --aca-space-20: 80px;
+  --aca-space-24: 96px;
+  --aca-space-26: 104px;
+  --aca-space-30: 120px;
+
+  /* ============================================================
+     5. RADIUS
+     ============================================================ */
+
+  --aca-radius-xs: 8px;
+  --aca-radius-sm: 10px;
+  --aca-radius-md: 14px;
+  --aca-radius-lg: 18px;
+  --aca-radius-xl: 24px;
+  --aca-radius-2xl: 28px;
+  --aca-radius-3xl: 34px;
+  --aca-radius-4xl: 40px;
+  --aca-radius-full: 999px;
+
+  /* ============================================================
+     6. SHADOW
+     ============================================================ */
+
+  --aca-shadow-xs: 0 2px 8px rgba(21, 61, 46, .06);
+  --aca-shadow-sm: 0 12px 40px rgba(16, 23, 20, .04);
+  --aca-shadow-md: 0 18px 52px rgba(21, 61, 46, .08);
+  --aca-shadow-lg: 0 24px 70px rgba(21, 61, 46, .12);
+  --aca-shadow-xl: 0 40px 90px rgba(21, 61, 46, .20);
+  --aca-shadow-media: 0 50px 100px rgba(0, 0, 0, .30);
+
+  /* ============================================================
+     7. LAYOUT
+     ============================================================ */
+
+  --aca-layout-max: 1240px;
+  --aca-layout-readable: 820px;
+  --aca-layout-copy: 520px;
+  --aca-layout-gutter: clamp(14px, 2vw, 20px);
+
+  --aca-section-y: clamp(62px, 7.2vw, 104px);
+  --aca-section-y-compact: clamp(48px, 5vw, 84px);
+
+  --aca-grid-gap-xs: 10px;
+  --aca-grid-gap-sm: 14px;
+  --aca-grid-gap-md: 18px;
+  --aca-grid-gap-lg: 28px;
+  --aca-grid-gap-xl: 48px;
+
+  /* Reference breakpoints.
+     CSS custom properties cannot be used in @media conditions.
+     xs 560 | sm 760 | md 900 | lg 980 | xl 1200 */
+
+  /* ============================================================
+     8. MOTION
+     ============================================================ */
+
+  --aca-duration-fast: 150ms;
+  --aca-duration-base: 250ms;
+  --aca-duration-slow: 350ms;
+  --aca-duration-media: 550ms;
+
+  --aca-ease-standard: cubic-bezier(.2, .8, .2, 1);
+  --aca-ease-enter: cubic-bezier(.16, 1, .3, 1);
+  --aca-ease-exit: cubic-bezier(.4, 0, 1, 1);
+
+  /* ============================================================
+     9. LAYERS
+     ============================================================ */
+
+  --aca-z-base: 0;
+  --aca-z-raised: 10;
+  --aca-z-header: 50;
+  --aca-z-menu: 60;
+  --aca-z-overlay: 80;
+  --aca-z-modal: 90;
+  --aca-z-toast: 100;
+
+  /* ============================================================
+     10. COMPONENT TOKENS
+     ============================================================ */
+
+  /* Header */
+  --aca-header-height: 86px;
+  --aca-header-height-mobile: 68px;
+  --aca-header-blur: 18px;
+
+  /* Button */
+  --aca-button-height-sm: 44px;
+  --aca-button-height-md: 52px;
+  --aca-button-height-lg: 56px;
+  --aca-button-pad-x: 22px;
+  --aca-button-gap: 10px;
+  --aca-button-radius: var(--aca-radius-full);
+  --aca-button-font-size: var(--aca-font-size-body-sm);
+  --aca-button-font-weight: var(--aca-font-weight-extrabold);
+
+  /* Field */
+  --aca-field-height: 52px;
+  --aca-field-radius: var(--aca-radius-md);
+  --aca-field-pad-x: 16px;
+  --aca-field-border: var(--aca-color-border);
+  --aca-field-bg: var(--aca-color-surface);
+
+  /* Chip / badge / tab */
+  --aca-chip-height: 36px;
+  --aca-chip-pad-x: 12px;
+  --aca-chip-radius: var(--aca-radius-full);
+  --aca-chip-font-size: var(--aca-font-size-label);
+
+  /* Card */
+  --aca-card-radius: var(--aca-radius-xl);
+  --aca-card-radius-large: var(--aca-radius-2xl);
+  --aca-card-padding: 28px;
+  --aca-card-border: var(--aca-color-border-subtle);
+  --aca-card-shadow: var(--aca-shadow-sm);
+
+  /* Media */
+  --aca-media-radius: 30px;
+  --aca-media-radius-hero: 40px;
+  --aca-media-ratio-card: 4 / 5;
+  --aca-media-ratio-wide: 16 / 9;
+  --aca-media-ratio-square: 1 / 1;
+
+  /* Focus / accessibility */
+  --aca-focus-width: 3px;
+  --aca-focus-offset: 3px;
+  --aca-focus-ring: 0 0 0 var(--aca-focus-width) rgba(35, 150, 83, .28);
+  --aca-hit-target-min: 44px;
+
+  /* ============================================================
+     11. LEGACY COMPATIBILITY ALIASES
+     Temporary aliases for the current Academy codebase.
+     New code should consume --aca-* only.
+     ============================================================ */
+
+  --ink: var(--aca-color-text-heading);
+  --ink-2: var(--aca-color-text-primary);
+  --paper: var(--aca-color-bg-page);
+  --paper-2: var(--aca-color-bg-soft);
+  --white: var(--aca-neutral-0);
+  --green: var(--aca-color-brand-emphasis);
+  --green-2: var(--aca-green-400);
+  --yellow: var(--aca-color-accent);
+  --yellow-2: var(--aca-color-accent-light);
+  --muted: var(--aca-color-text-secondary);
+  --line: var(--aca-color-border-subtle);
+  --danger: var(--aca-color-danger);
+  --radius: var(--aca-card-radius);
+  --shadow: var(--aca-shadow-lg);
+  --max: var(--aca-layout-max);
+
+  --p2-green: var(--aca-color-brand);
+  --p2-green-2: var(--aca-color-brand-emphasis);
+  --p2-dark: var(--aca-color-bg-inverse);
+  --p2-yellow: var(--aca-color-accent);
+  --p2-ink: var(--aca-color-text-primary);
+  --p2-muted: var(--aca-color-text-secondary);
+  --p2-bg: var(--aca-color-bg-subtle);
+  --p2-line: var(--aca-color-border);
+
+  --logo-primary: var(--aca-logo-primary);
+  --logo-accent: var(--aca-logo-accent);
+}
+
+/* Canonical accessibility defaults for future Academy surfaces. */
+:where(a, button, input, select, textarea, summary):focus-visible {
+  outline: none;
+  box-shadow: var(--aca-focus-ring);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --aca-duration-fast: 0ms;
+    --aca-duration-base: 0ms;
+    --aca-duration-slow: 0ms;
+    --aca-duration-media: 0ms;
+  }
+}
