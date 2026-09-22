@@ -93,11 +93,21 @@ async function initDb() {
       reviewed_by TEXT,
       reviewed_at TIMESTAMPTZ,
       notes TEXT,
+      final_approval_status TEXT NOT NULL DEFAULT 'PENDING',
+      final_approval_reference TEXT,
+      final_approved_by TEXT,
+      final_approved_at TIMESTAMPTZ,
       updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
     );
     INSERT INTO media_career_legal_readiness (cohort)
     VALUES ('01')
     ON CONFLICT (cohort) DO NOTHING;
+
+    ALTER TABLE media_career_legal_readiness
+      ADD COLUMN IF NOT EXISTS final_approval_status TEXT NOT NULL DEFAULT 'PENDING',
+      ADD COLUMN IF NOT EXISTS final_approval_reference TEXT,
+      ADD COLUMN IF NOT EXISTS final_approved_by TEXT,
+      ADD COLUMN IF NOT EXISTS final_approved_at TIMESTAMPTZ;
 
     CREATE TABLE IF NOT EXISTS media_career_applications (
       id BIGSERIAL PRIMARY KEY,
@@ -406,6 +416,14 @@ app.post("/v1/applications", rateLimit(60 * 60 * 1000, 10), async (req, res) => 
     }
 
     const cohort = "01";
+    const legalMode = await pool.query(
+      "SELECT program_registration_status FROM media_career_legal_readiness WHERE cohort = $1",
+      [cohort]
+    );
+    const publicPipelineStage = legalMode.rows[0]?.program_registration_status === "CONFIRMED"
+      ? "APPLICATION_COMPLETED"
+      : "INTEREST_REGISTERED";
+
     const existing = await pool.query(
       "SELECT candidate_code, phone FROM media_career_applications WHERE cohort = $1 AND email_normalized = $2",
       [cohort, email]
@@ -430,12 +448,12 @@ app.post("/v1/applications", rateLimit(60 * 60 * 1000, 10), async (req, res) => 
     const result = await pool.query(`
       INSERT INTO media_career_applications (
         candidate_code, cohort, full_name, date_of_birth, phone, email, email_normalized,
-        city, current_status, preferred_track, experience_level, portfolio_url,
+        city, current_status, preferred_track, experience_level, portfolio_url, pipeline_stage,
         utm_source, utm_medium, utm_campaign, utm_content, referrer,
         marketing_consent, privacy_consent, payload
       ) VALUES (
-        $1,$2,$3,NULLIF($4,'')::date,$5,$6,$7,$8,$9,$10,$11,$12,
-        $13,$14,$15,$16,$17,$18,$19,$20::jsonb
+        $1,$2,$3,NULLIF($4,'')::date,$5,$6,$7,$8,$9,$10,$11,$12,$13,
+        $14,$15,$16,$17,$18,$19,$20,$21::jsonb
       )
       ON CONFLICT (cohort, email_normalized)
       DO UPDATE SET
@@ -447,6 +465,11 @@ app.post("/v1/applications", rateLimit(60 * 60 * 1000, 10), async (req, res) => 
         preferred_track = EXCLUDED.preferred_track,
         experience_level = EXCLUDED.experience_level,
         portfolio_url = EXCLUDED.portfolio_url,
+        pipeline_stage = CASE
+          WHEN media_career_applications.pipeline_stage = 'INTEREST_REGISTERED'
+            THEN EXCLUDED.pipeline_stage
+          ELSE media_career_applications.pipeline_stage
+        END,
         utm_source = EXCLUDED.utm_source,
         utm_medium = EXCLUDED.utm_medium,
         utm_campaign = EXCLUDED.utm_campaign,
@@ -461,7 +484,7 @@ app.post("/v1/applications", rateLimit(60 * 60 * 1000, 10), async (req, res) => 
     `, [
       code, cohort, fullName, cleanString(b.dateOfBirth, 20), phone, email, email,
       city, currentStatus, cleanString(b.preferredTrack, 100), experienceLevel,
-      cleanString(b.portfolioUrl, 1000),
+      cleanString(b.portfolioUrl, 1000), publicPipelineStage,
       cleanString(b.utmSource, 180), cleanString(b.utmMedium, 180),
       cleanString(b.utmCampaign, 180), cleanString(b.utmContent, 180),
       cleanString(b.referrer, 1000),
@@ -522,7 +545,8 @@ app.post("/v1/applications", rateLimit(60 * 60 * 1000, 10), async (req, res) => 
     res.status(201).json({
       ok: true,
       candidateCode: saved.candidate_code,
-      submittedAt: saved.submitted_at
+      submittedAt: saved.submitted_at,
+      intakeMode: publicPipelineStage === "INTEREST_REGISTERED" ? "INTEREST_ONLY" : "APPLICATION_OPEN"
     });
   } catch (error) {
     console.error("application_submit_failed", error);
@@ -567,6 +591,13 @@ app.post("/v1/selection/:token/respond", rateLimit(60 * 60 * 1000, 20), async (r
       return res.status(404).json({ ok: false, error: "Selection invitation not found" });
     }
     const row = current.rows[0];
+    const legal = await client.query(
+      "SELECT program_registration_status FROM media_career_legal_readiness WHERE cohort = '01'"
+    );
+    if (legal.rows[0]?.program_registration_status !== "CONFIRMED") {
+      await client.query("ROLLBACK");
+      return res.status(423).json({ ok: false, error: "Formal Selection is temporarily locked" });
+    }
     const responseableStatus = new Set(["INVITED", "CONFIRMED", "DECLINED"]);
     const responseablePipeline = new Set(["SELECTION_INVITED", "SELECTION_CONFIRMED"]);
     if (!responseableStatus.has(row.status) || !responseablePipeline.has(row.pipeline_stage)) {
@@ -623,7 +654,7 @@ app.get("/v1/admin/legal-readiness/:cohort", requireAdmin, async (req, res) => {
 
   const row = result.rows[0];
   const statusFields = Object.entries(row)
-    .filter(([key]) => key.endsWith("_status"))
+    .filter(([key]) => key.endsWith("_status") && key !== "final_approval_status")
     .map(([, value]) => value);
   const confirmed = statusFields.filter(value => value === "CONFIRMED" || value === "NOT_APPLICABLE").length;
   res.json({
@@ -701,7 +732,7 @@ app.patch("/v1/admin/legal-readiness/:cohort", requireAdmin, async (req, res) =>
 
   const row = result.rows[0];
   const statusFields = Object.entries(row)
-    .filter(([key]) => key.endsWith("_status"))
+    .filter(([key]) => key.endsWith("_status") && key !== "final_approval_status")
     .map(([, value]) => value);
   const confirmed = statusFields.filter(value => value === "CONFIRMED" || value === "NOT_APPLICABLE").length;
 
@@ -715,6 +746,66 @@ app.patch("/v1/admin/legal-readiness/:cohort", requireAdmin, async (req, res) =>
     },
     admissionSendGate: "BLOCKED_IN_CODE",
     paymentGate: "BLOCKED_IN_CODE"
+  });
+});
+
+app.patch("/v1/admin/legal-readiness/:cohort/final-approval", requireAdmin, async (req, res) => {
+  const cohort = cleanString(req.params.cohort, 20);
+  const decision = cleanString(req.body?.decision || "PENDING", 40).toUpperCase();
+  const approvedBy = cleanString(req.body?.approvedBy, 240);
+  const approvalReference = cleanString(req.body?.approvalReference, 3000);
+  if (!new Set(["PENDING", "APPROVED", "REJECTED"]).has(decision)) {
+    return res.status(400).json({ ok: false, error: "Invalid final approval decision" });
+  }
+
+  const current = await pool.query(`
+    SELECT *
+    FROM media_career_legal_readiness
+    WHERE cohort = $1
+  `, [cohort]);
+  if (!current.rowCount) {
+    return res.status(404).json({ ok: false, error: "Legal readiness record not found" });
+  }
+  const row = current.rows[0];
+  const statusValues = Object.entries(row)
+    .filter(([key]) => key.endsWith("_status") && key !== "final_approval_status")
+    .map(([, value]) => value);
+  const allComplete = statusValues.length > 0 &&
+    statusValues.every(value => value === "CONFIRMED" || value === "NOT_APPLICABLE");
+
+  if (decision === "APPROVED") {
+    if (!allComplete) {
+      return res.status(409).json({ ok: false, error: "All legal checklist items must be completed before final approval" });
+    }
+    if (!approvedBy) {
+      return res.status(400).json({ ok: false, error: "Approved by is required" });
+    }
+    if (!approvalReference) {
+      return res.status(400).json({ ok: false, error: "Final approval reference is required" });
+    }
+    if (!row.counsel_reference && !row.authority_reference) {
+      return res.status(409).json({ ok: false, error: "Counsel or authority reference must be stored before final approval" });
+    }
+  }
+
+  const result = await pool.query(`
+    UPDATE media_career_legal_readiness
+    SET final_approval_status = $1,
+        final_approval_reference = NULLIF($2,''),
+        final_approved_by = NULLIF($3,''),
+        final_approved_at = CASE WHEN $1 = 'APPROVED' THEN NOW() ELSE NULL END,
+        updated_at = NOW()
+    WHERE cohort = $4
+    RETURNING *
+  `, [decision, approvalReference, approvedBy, cohort]);
+
+  res.json({
+    ok: true,
+    legalReadiness: result.rows[0],
+    finalApproval: decision,
+    admissionSendGate: "BLOCKED_IN_CODE",
+    paymentGate: "BLOCKED_IN_CODE",
+    note: "Final legal approval is evidence for a future reviewed unlock PR; it does not unlock Admission Send or Payment."
   });
 });
 
@@ -805,6 +896,15 @@ app.patch("/v1/admin/applications/:id/selection", requireAdmin, async (req, res)
     [req.params.id]
   );
   if (!application.rowCount) return res.status(404).json({ ok: false, error: "Not found" });
+  const legal = await pool.query(
+    "SELECT program_registration_status FROM media_career_legal_readiness WHERE cohort = '01'"
+  );
+  if (legal.rows[0]?.program_registration_status !== "CONFIRMED") {
+    return res.status(423).json({
+      ok: false,
+      error: "Formal Selection scheduling is locked until program registration is confirmed"
+    });
+  }
   const allowedPipeline = new Set(["QUALIFIED", "SELECTION_INVITED", "SELECTION_CONFIRMED"]);
   if (!allowedPipeline.has(application.rows[0].pipeline_stage)) {
     return res.status(409).json({
@@ -992,6 +1092,17 @@ app.patch("/v1/admin/applications/:id/assessment", requireAdmin, async (req, res
       return res.status(404).json({ ok: false, error: "Not found" });
     }
     const appData = appRow.rows[0];
+    const existingAssessment = await client.query(
+      "SELECT id FROM media_career_assessments WHERE application_id = $1",
+      [req.params.id]
+    );
+    if (appData.pipeline_stage !== "SELECTION_ATTENDED" && !existingAssessment.rowCount) {
+      await client.query("ROLLBACK");
+      return res.status(423).json({
+        ok: false,
+        error: "Assessment is locked until the candidate has attended Formal Selection"
+      });
+    }
     const saved = await client.query(`
       INSERT INTO media_career_assessments (
         application_id, visual_score, learning_score, execution_score,
@@ -1288,7 +1399,7 @@ app.patch("/v1/admin/notifications/:id/read", requireAdmin, async (req, res) => 
 
 app.patch("/v1/admin/applications/:id/stage", requireAdmin, async (req, res) => {
   const allowed = new Set([
-    "APPLICATION_COMPLETED", "QUALIFIED", "SELECTION_INVITED", "SELECTION_CONFIRMED",
+    "INTEREST_REGISTERED", "APPLICATION_COMPLETED", "QUALIFIED", "SELECTION_INVITED", "SELECTION_CONFIRMED",
     "SELECTION_ATTENDED", "PASS", "WAITLIST", "LOST", "ADMITTED", "ENROLLED"
   ]);
   const stage = cleanString(req.body?.stage, 80);
@@ -1307,6 +1418,29 @@ app.patch("/v1/admin/applications/:id/stage", requireAdmin, async (req, res) => 
       return res.status(404).json({ ok: false, error: "Not found" });
     }
     const prev = previous.rows[0];
+    if (stage === "ADMITTED" || stage === "ENROLLED") {
+      await client.query("ROLLBACK");
+      return res.status(423).json({
+        ok: false,
+        error: "ADMITTED/ENROLLED are blocked until the reviewed Admission/Enrollment implementation is explicitly unlocked"
+      });
+    }
+    const gatedStages = new Set([
+      "APPLICATION_COMPLETED", "QUALIFIED", "SELECTION_INVITED", "SELECTION_CONFIRMED",
+      "SELECTION_ATTENDED", "PASS", "WAITLIST", "ADMITTED", "ENROLLED"
+    ]);
+    if (gatedStages.has(stage)) {
+      const legal = await client.query(
+        "SELECT program_registration_status FROM media_career_legal_readiness WHERE cohort = '01'"
+      );
+      if (legal.rows[0]?.program_registration_status !== "CONFIRMED") {
+        await client.query("ROLLBACK");
+        return res.status(423).json({
+          ok: false,
+          error: "Formal recruitment/Selection is locked until program registration is confirmed"
+        });
+      }
+    }
     const result = await client.query(`
       UPDATE media_career_applications
       SET pipeline_stage = $1, updated_at = NOW()
