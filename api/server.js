@@ -479,7 +479,8 @@ app.get("/v1/admin/applications", requireAdmin, async (req, res) => {
            utm_source, utm_medium, utm_campaign, utm_content,
            marketing_consent, submitted_at, updated_at,
            (SELECT total_score FROM media_career_assessments ma WHERE ma.application_id = media_career_applications.id) AS selection_score,
-           (SELECT decision FROM media_career_assessments ma WHERE ma.application_id = media_career_applications.id) AS assessment_decision
+           (SELECT decision FROM media_career_assessments ma WHERE ma.application_id = media_career_applications.id) AS assessment_decision,
+           (SELECT status FROM media_career_admissions md WHERE md.application_id = media_career_applications.id) AS admission_status
     FROM media_career_applications
     ${where}
     ORDER BY submitted_at DESC
