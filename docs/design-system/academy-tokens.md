@@ -1,445 +1,777 @@
-# Hang Đôi Academy — Design Token System v1
+# Hang Đôi Academy — Visual System & Design Tokens v2
 
 Status: **canonical design source draft**  
-Scope: all Hang Đôi Academy web surfaces inside `hangdoivn/hangdoi_academy`.
+Concept: **Creative Learning Studio × Editorial Poster × Production Culture**
 
-This system is derived from the current Academy homepage and its refined green / yellow / white visual language. It consolidates the previously separate `--ink/--green/... ` and `--p2-*` token sets into one stable namespace: **`--aca-*`**.
+This document translates the approved Academy visual references into a reusable system for web, landing pages, campaign pages and future Academy products.
 
-## 1. Brand direction
+The intention is not to copy any one reference. It is to extract the shared visual grammar and make it recognizably Hang Đôi Academy.
 
-Academy should feel:
+---
 
-**thực dụng · trẻ · sáng rõ · có nghề · có hệ thống**
+## 1. Concept
 
-It should not look like:
+Academy should feel like a **creative school embedded inside a real production culture**.
 
-- generic EdTech blue;
-- neon gaming UI;
-- corporate HR;
-- luxury black-gold;
-- a Production sub-brand using Production's visual system unchanged.
+The visual language combines three ideas:
 
-The visual hierarchy is:
+### Creative Learning Studio
 
-**Green = Academy / action / capability**  
-**Yellow = highlight / learning signal / emphasis**  
-**White + soft neutral = clarity / breathing room**  
-**Dark forest = depth / premium / inverse sections**
+Learning is active, collaborative and hands-on.
 
-Yellow is an accent, not the page background default.
+Visual cues:
 
-## 2. Token architecture
+- real people;
+- work-in-progress;
+- tools;
+- process;
+- notes;
+- physical/production environments.
 
-Use three levels.
+### Editorial Poster
 
-| Layer | Purpose | Example |
-| --- | --- | --- |
-| Primitive | Raw values | `--aca-green-700` |
-| Semantic | Meaning | `--aca-color-brand` |
-| Component | Stable UI defaults | `--aca-button-height-md` |
+The page should read like a sequence of strong posters/spreads rather than a stack of SaaS cards.
 
-New UI code should consume **semantic or component tokens**. Primitive tokens are mainly for token composition.
+Visual cues:
 
-Do not create new page-local variables such as `--course-green` or `--page-dark` unless a genuinely new semantic need exists.
+- oversized typography;
+- asymmetric grid;
+- hard cropping;
+- short captions;
+- poster blocks;
+- deliberate color fields.
 
-## 3. Core palette
+### Production Culture
 
-| Token | Value | Use |
-| --- | --- | --- |
-| Green 950 | `#0F422D` | inverse surfaces, footer, premium section |
-| Green 900 | `#153D2E` | headings / strong Academy ink |
-| Green 800 | `#17382B` | primary text |
-| Green 700 | `#176B43` | primary brand / CTA |
-| Green 600 | `#239653` | active / emphasis / focus |
-| Green 400 | `#8BC34A` | secondary green only |
-| Green 100 | `#EDF7EF` | subtle branded background |
-| Yellow 500 | `#F2D43D` | primary Academy accent |
-| Yellow 300 | `#FFE783` | light accent |
-| Yellow 100 | `#FFF8D6` | highlight background |
-| White | `#FFFFFF` | default page / card |
-| Neutral 50 | `#F7F8F3` | alternate section |
-| Muted | `#52665D` | secondary text |
-| Border | `#D8E1DC` | structural border |
-| Danger | `#E86F55` | destructive/error only |
+Academy inherits credibility from real commercial production, not from generic school imagery.
 
-### Logo exception
+Visual cues:
 
-The local official Academy SVG currently has:
+- camera/light/edit/data;
+- crew;
+- brief/shot list;
+- before/after;
+- output;
+- real project context.
 
-- primary: `#00031A`;
-- accent: `#FCB415`.
+---
 
-These are **logo asset tokens**, not the main Academy UI palette. Do not shift the entire UI to navy/orange just to match the SVG defaults.
+## 2. Theme
 
-The SVG already exposes `--logo-primary` and `--logo-accent`; the canonical aliases are defined in `academy-tokens.css`.
+Base atmosphere:
 
-## 4. Surface recipes
+**warm paper + dark forest + real photography**
 
-### Default light section
+Signal colors:
 
-- background: `--aca-color-bg-page`
-- heading: `--aca-color-text-heading`
-- body: `--aca-color-text-secondary`
-- border: `--aca-color-border`
+**orange/coral + cobalt + yellow**
 
-### Alternate light section
+The theme should feel:
 
-- background: `--aca-color-bg-subtle`
-- card: white
-- brand marker: `--aca-color-brand`
+- energetic but not neon;
+- playful but not childish;
+- designed but not luxury;
+- artistic but still operational;
+- premium through composition, not through black/gold clichés.
 
-### Dark / premium section
+---
 
-- background: `--aca-color-bg-inverse`
-- heading/body primary: white
-- secondary copy: white at 70–82% opacity
-- primary accent: yellow
-- border: white at 12–14%
+## 3. Color allocation
 
-### Highlight section
+The reference system works because colors are **not distributed equally**.
 
-Use Yellow 100 for a small section/card, not Yellow 500 across large content areas.
+Canonical composition ratio:
 
-## 5. Typography
-
-Canonical family: **Inter**.
-
-The current homepage already uses Inter and its geometry works with the Academy's large editorial headings and dense information cards.
-
-| Role | Size | Weight | Line-height | Tracking |
-| --- | --- | ---: | ---: | ---: |
-| Display 1 | 56 → 108 | 900 | .88 | -.065em |
-| Display 2 | 38 → 72 | 900 | .98 | -.055em |
-| Title 1 | 32 → 54 | 900 | 1.0 | -.05em |
-| Title 2 | 26 → 32 | 800 | 1.05 | -.04em |
-| Title 3 | 23 | 800 | 1.08 | -.03em |
-| Body Large | 18 | 400 | 1.55 | 0 |
-| Body | 15 | 400 | 1.55 | 0 |
-| Small | 14 | 400 | 1.55 | 0 |
-| Label | 12 | 800 | 1.2 | +.12em |
-| Caption | 11 | 600 | 1.35 | 0 |
-| Micro | 10 | 800 | 1.3 | +.08em |
-
-### Rules
-
-- Large headings may use negative tracking.
-- Body copy never uses negative tracking.
-- Uppercase is reserved for eyebrow, metadata, tags, level and status.
-- Keep paragraph measure around **520–820px**, depending on role.
-- Do not use font size below 10px in production UI.
-
-## 6. Spacing
-
-Base unit: **4px**.
-
-Primary scale:
-
-`4 / 8 / 12 / 16 / 20 / 24 / 32 / 40 / 48 / 56 / 64 / 80 / 96 / 104 / 120`
-
-Use:
-
-- 10–18px for local card/grid rhythm;
-- 24–32px for card padding;
-- 40–56px for section internal separation;
-- 62–104px for section vertical rhythm.
-
-Default page section spacing:
-
-`clamp(62px, 7.2vw, 104px)`
-
-## 7. Layout
-
-| Token | Value |
+| Layer | Target share |
 | --- | ---: |
-| Main max-width | 1240px |
-| Readable wide copy | 820px |
-| Normal copy | 520px |
-| Standard grid gap | 18px |
-| Header desktop | 86px |
-| Header mobile | 68px |
+| Warm paper / neutral | ~60% |
+| Green family | ~20% |
+| Orange + cobalt combined | ~10% |
+| **Yellow accent** | **~10%** |
 
-Canonical responsive references:
+### Yellow rule — hard requirement
 
-| Breakpoint | px |
-| --- | ---: |
-| XS | 560 |
-| SM | 760 |
-| MD | 900 |
-| LG | 980 |
-| XL | 1200 |
+Yellow remains an Academy signature, but it is a **signal**, not a canvas.
 
-Recommended grid:
+Use yellow for:
 
-- Desktop: 12 columns.
-- Tablet: 6 columns.
-- Mobile: 4 columns / often single-column composition.
-
-Do not merely shrink desktop layouts on mobile. Recompose priority and reading order.
-
-## 8. Radius
-
-Use radius as hierarchy, not decoration.
-
-| Role | Radius |
-| --- | ---: |
-| small control | 10–14 |
-| normal card | 18–24 |
-| featured card | 28 |
-| media / story | 30–34 |
-| hero media | 40 |
-| pill | 999 |
-
-Avoid mixing 12, 13, 15, 17, 19, 21px on the same surface.
-
-## 9. Elevation
-
-Academy is primarily **border-led**, not shadow-led.
-
-Default card:
-
-- 1px structural border;
-- no shadow or `shadow-sm`.
-
-Use shadow only when there is actual elevation:
-
-- interactive hover;
-- floating information;
-- hero media;
-- modal;
-- sticky layer.
-
-Do not stack border + strong shadow on every card.
-
-## 10. Buttons
-
-### Primary
-
-- background: Green 700;
-- text: white;
-- height: 52px;
-- horizontal padding: 22px;
-- pill radius;
-- weight: 800.
-
-### Dark
-
-- background: Green 950;
-- text: white.
-
-### Accent
-
-- background: Yellow 500;
-- text: Green 800.
-
-### Ghost
-
-- transparent/white;
-- 1px border;
-- text Green 800.
-
-Interaction:
-
-- hover: maximum 2px vertical lift;
-- duration: 250ms;
-- avoid scale animations;
-- minimum pointer target: 44px.
-
-## 11. Cards
-
-Default Academy card:
-
-- white;
-- radius 24px;
-- 1px border;
-- padding 28px;
-- no decorative gradient.
-
-Featured cards may use:
-
-- dark forest;
-- brand green;
-- yellow;
-- photography.
-
-Do not use more than one strong colored card per small visual cluster unless the layout intentionally forms a pattern.
-
-## 12. Images
-
-Academy imagery should prioritize:
-
-1. real learning;
-2. real Hang Đôi production;
-3. learner output;
-4. equipment/workflow;
-5. commercial project evidence.
-
-Avoid stock / AI images when a real Academy or Production asset exists.
-
-Recommended aspect ratios:
-
-- standard card: 4:5;
-- wide editorial: 16:9;
-- square result/product: 1:1.
-
-Hero media may use a 40px radius. Standard media should generally use 24–30px.
-
-## 13. Forms
-
-- control height: 52px;
-- radius: 14px;
-- 1px neutral border;
-- white background;
-- visible label above field;
-- placeholder is not a label;
-- focus uses green ring;
-- minimum touch target: 44px.
-
-Validation:
-
-- error uses Danger;
-- do not use red for ordinary helper text;
-- explain the corrective action, not only the error state.
-
-## 14. Motion
-
-Motion supports comprehension, not decoration.
-
-| Token | Duration |
-| --- | ---: |
-| Fast | 150ms |
-| Base | 250ms |
-| Slow | 350ms |
-| Media | 550ms |
-
-Use cases:
-
-- button/tab state: 150–250ms;
-- accordion/menu: 250–350ms;
-- media zoom: 550ms maximum.
-
-Honor `prefers-reduced-motion`.
+- sticker;
+- CTA accent;
+- step number;
+- marker;
+- single highlighted keyword;
+- small geometric shape;
+- small badge/status;
+- one small high-attention block.
 
 Avoid:
 
-- continuous floating;
-- excessive parallax;
-- bouncing CTA;
-- long entrance animation that delays content.
+- full-page yellow backgrounds;
+- two or more large yellow panels adjacent;
+- yellow behind long body copy;
+- yellow occupying more than roughly 10% of the visible composition.
 
-## 15. Accessibility
+When unsure: **reduce yellow first, never green.**
 
-Minimum baseline:
+---
 
-- interactive hit target ≥ 44px;
-- keyboard focus visible;
-- no information conveyed by green/yellow alone;
-- body text should meet WCAG AA contrast;
-- dark sections use white/light text;
-- reduced-motion support;
-- headings remain hierarchical in DOM, regardless of visual size.
+## 4. Palette
 
-Canonical focus:
+### Warm paper
 
-`0 0 0 3px rgba(35,150,83,.28)`
+| Token | Value | Purpose |
+| --- | --- | --- |
+| Paper 0 | #FFFDF7 | clean paper |
+| Paper 50 | #F8F4EA | primary canvas |
+| Paper 100 | #F2ECDF | alternate section |
+| Paper 200 | #E8DFD0 | warm structural divider |
 
-## 16. Component recipes
+### Forest / Academy green
 
-### Eyebrow
-
-- Label token;
-- uppercase;
-- Green 700;
-- optional 32–42px yellow marker.
-
-### Section heading
-
-- Display 2;
-- max-width 900px;
-- text heading color.
-
-### Course card
-
-- radius 28;
-- white;
-- media 16:9-ish / editorial cover;
-- body padding 26–28;
-- metadata separated by structural line.
-
-### Journey / advantage card
-
-- radius 24–28;
-- 24–28px padding;
-- one dominant message;
-- strong color only when the card is intentionally featured.
-
-### FAQ
-
-- border-led;
-- no full filled card necessary;
-- 18–22px vertical rhythm;
-- answer secondary text.
-
-### Lead / CTA block
-
-- brand or dark surface;
-- display-size heading;
-- one primary CTA;
-- secondary CTA only when it serves a distinct action.
-
-## 17. Legacy migration
-
-The current codebase contains both old base tokens and Phase 2 aliases.
-
-New canonical mapping:
-
-| Legacy | Canonical |
+| Token | Value |
 | --- | --- |
-| `--ink` | `--aca-color-text-heading` |
-| `--ink-2` | `--aca-color-text-primary` |
-| `--paper` | `--aca-color-bg-page` |
-| `--paper-2` | `--aca-color-bg-soft` |
-| `--green` | `--aca-color-brand-emphasis` |
-| `--yellow` | `--aca-color-accent` |
-| `--muted` | `--aca-color-text-secondary` |
-| `--line` | `--aca-color-border-subtle` |
-| `--radius` | `--aca-card-radius` |
-| `--shadow` | `--aca-shadow-lg` |
-| `--max` | `--aca-layout-max` |
-| `--p2-green` | `--aca-color-brand` |
-| `--p2-green-2` | `--aca-color-brand-emphasis` |
-| `--p2-dark` | `--aca-color-bg-inverse` |
-| `--p2-yellow` | `--aca-color-accent` |
-| `--p2-ink` | `--aca-color-text-primary` |
-| `--p2-muted` | `--aca-color-text-secondary` |
-| `--p2-bg` | `--aca-color-bg-subtle` |
-| `--p2-line` | `--aca-color-border` |
+| Green 950 | #0F422D |
+| Green 900 | #145238 |
+| Green 800 | #176B43 |
+| Green 700 | #239653 |
+| Green 500 | #68B96D |
+| Green 300 | #A7D67B |
+| Green 100 | #E8F4DF |
 
-Legacy aliases remain in `site/academy-tokens.css` so migration can happen page-by-page.
+Primary Academy anchor:
 
-## 18. Deprecated visual values
+**Green 800 / #176B43**
 
-Do not use as new UI tokens:
+Dark editorial sections:
 
-- old lime `#B8F342` as the Academy primary;
-- old warm paper `#F4F2EA` as the main page background;
-- page-specific `--p2-*` names;
-- arbitrary local radii;
-- arbitrary green variants.
+**Green 950 / #0F422D**
 
-These may still appear in legacy source until migration is complete.
+### Yellow — 10% signal
 
-## 19. Source of truth
+Primary:
 
-Machine-readable mirror:
+**#F2D43D**
 
-`config/academy-design-tokens.json`
+Secondary:
 
-CSS implementation:
+- #FFE783
+- #FFF7CB
+
+### Orange / coral
+
+Primary:
+
+**#F26A3D**
+
+Purpose:
+
+- human energy;
+- event;
+- production;
+- one medium signal block.
+
+### Cobalt
+
+Primary:
+
+**#3450D8**
+
+Purpose:
+
+- learning system;
+- diagram;
+- digital/editorial contrast;
+- secondary CTA/metadata.
+
+---
+
+## 5. Typography
+
+Canonical type family: **Inter**.
+
+The references rely less on unusual fonts and more on **scale, crop, alignment and weight**.
+
+### Poster XL
+
+72–152px  
+Weight 900  
+Line-height .82  
+Tracking -.075em
+
+Use for:
+
+- hero statements;
+- one-line manifesto;
+- page-defining message.
+
+### Poster Large
+
+60–120px  
+Weight 900  
+Line-height .84
+
+### Display
+
+48–88px  
+Weight 900  
+Line-height .9
+
+### Heading 1
+
+36–68px  
+Weight 900
+
+### Body
+
+15–20px depending on hierarchy.
+
+### Labels
+
+12px  
+Weight 800  
+Uppercase  
+Tracking .11em
+
+### Typography behavior
+
+Do:
+
+- break headline into 2–4 short lines;
+- use extreme scale contrast;
+- let type become a visual object;
+- align type to shapes/images;
+- crop safely at composition edges when intentional.
+
+Do not:
+
+- center every heading;
+- use huge paragraphs;
+- apply uppercase to body copy;
+- repeat the same headline scale in every section.
+
+---
+
+## 6. Grid
+
+Base:
+
+**12-column editorial grid**
+
+Tablet:
+
+6 columns
+
+Mobile:
+
+4 columns
+
+But the system is not a rigid equal-card grid.
+
+Use:
+
+- 7/5;
+- 8/4;
+- 5/3/4;
+- 6/6;
+- 4/8;
+- controlled offset;
+- empty columns;
+- overlap.
+
+The references consistently create interest by leaving **intentional imbalance**.
+
+Rule:
+
+> Every viewport should have one dominant visual block.
+
+---
+
+## 7. Composition archetypes
+
+### A. Poster Hero
+
+Use for:
+
+- home hero;
+- campaign hero;
+- course hero.
+
+Structure:
+
+- oversized headline;
+- one real image block;
+- one dominant geometric shape;
+- 1–2 small metadata groups;
+- one CTA.
+
+Yellow allocation:
+
+small marker/sticker only.
+
+### B. Editorial Split
+
+7/5 or 8/4.
+
+Use:
+
+- philosophy;
+- program explanation;
+- proof;
+- value.
+
+One side carries dominant type; the other carries image/details.
+
+### C. Poster Grid
+
+Mixed column spans.
+
+Use:
+
+- student work;
+- course outcomes;
+- events;
+- project gallery.
+
+Avoid equal 3-card rows repeated across the whole site.
+
+### D. Gallery Strip
+
+Use 3–6 hard-cropped real images.
+
+Can combine:
+
+- portrait;
+- landscape;
+- square;
+- caption.
+
+### E. Timeline
+
+Use:
+
+- oversized number;
+- offset text;
+- thin line;
+- signal shape.
+
+Good for:
+
+- learning journey;
+- curriculum;
+- process;
+- career path.
+
+### F. Manifesto
+
+Dark green field + very large paper-colored text + tiny yellow accent.
+
+Use once per long page maximum.
+
+### G. Signal Block
+
+One orange or cobalt block to reset visual rhythm.
+
+Yellow should be smaller than orange/cobalt blocks.
+
+---
+
+## 8. Shape language
+
+The references repeatedly use simple geometry instead of icon-heavy UI.
+
+Canonical shapes:
+
+### Circle
+
+Use for:
+
+- image crop;
+- numeric badge;
+- composition anchor.
+
+### Arch
+
+Use for:
+
+- portrait crop;
+- program card;
+- editorial frame.
+
+### Capsule
+
+Use for:
+
+- CTA;
+- category;
+- status;
+- short labels.
+
+### Bar
+
+Use for:
+
+- timeline;
+- underline;
+- horizontal structure;
+- decorative crop.
+
+### Sticker
+
+Use for:
+
+- yellow accent;
+- handwritten-feel callout;
+- small CTA.
+
+### Crop block
+
+Rectangular color field that partially masks or supports image/type.
+
+### Rotation
+
+Allowed:
+
+- ±2° normal;
+- ±4° maximum.
+
+Use rotation sparingly. It should feel printed/editorial, not messy.
+
+---
+
+## 9. Image system
+
+Photography is not a card decoration. It is a major graphic element.
+
+Priority:
+
+1. real Academy learning;
+2. Hang Đôi Production BTS;
+3. learner work;
+4. equipment/workflow;
+5. commercial output.
+
+### Crop
+
+Prefer decisive cropping.
+
+A hand, camera, face, monitor or object may intentionally extend outside frame.
+
+### Shapes + images
+
+Recommended:
+
+- circular portrait crop;
+- arch crop;
+- rectangular crop with overlapping circle/bar;
+- full-bleed strip;
+- image partially masked by green/orange block.
+
+### Caption
+
+Small uppercase metadata or 11–13px editorial caption.
+
+### Radius
+
+Editorial image:
+
+0px
+
+Soft image:
+
+12px
+
+Feature image:
+
+24px
+
+Avoid making every image a 28–40px rounded rectangle.
+
+---
+
+## 10. Border & shadow
+
+The reference language is **print-led**, not glassmorphism.
+
+Default:
+
+- 1px or 2px hard border;
+- no shadow.
+
+Poster card:
+
+- 2px ink border;
+- 4px hard offset shadow.
+
+Feature poster:
+
+- 7px hard offset shadow.
+
+Soft shadow is reserved for:
+
+- real elevation;
+- media hover;
+- modal/floating UI.
+
+Avoid:
+
+- blurred shadow on every card;
+- translucent glass panels;
+- gradients as decoration.
+
+---
+
+## 11. Radius
+
+Academy v2 uses less rounding.
+
+| Element | Radius |
+| --- | ---: |
+| editorial image | 0 |
+| small control | 4–8 |
+| field | 8 |
+| normal card | 12 |
+| soft card | 16 |
+| feature image | 24 |
+| chip / CTA capsule | 999 |
+
+Large rounded rectangles should no longer be the default Academy visual grammar.
+
+---
+
+## 12. Buttons
+
+Two button families are allowed.
+
+### System button
+
+Use for product-like surfaces/forms.
+
+- capsule;
+- green or dark;
+- 50px height;
+- clean.
+
+### Poster button
+
+Use for marketing/editorial pages.
+
+- 8px radius;
+- 2px ink border;
+- hard print shadow;
+- yellow/orange/paper surface.
+
+Do not mix both button families randomly in the same cluster.
+
+---
+
+## 13. Cards
+
+### System card
+
+For:
+
+- form;
+- admin;
+- structured information.
+
+12–16px radius, subtle border.
+
+### Poster card
+
+For:
+
+- marketing;
+- program;
+- editorial content.
+
+8px radius or square.
+
+2px border.
+
+Optional hard shadow.
+
+### Image card
+
+May have no visible container at all.
+
+Image + caption + number is often enough.
+
+---
+
+## 14. Section rhythm
+
+A strong Academy page should alternate visual modes.
+
+Recommended long-form sequence:
+
+1. Poster Hero
+2. Editorial Split
+3. Gallery / proof
+4. Dark Manifesto
+5. Timeline
+6. Poster Grid
+7. Orange/Cobalt signal block
+8. Paper information section
+9. CTA
+
+Avoid:
+
+> white cards → white cards → white cards → FAQ → CTA
+
+Each 1.5–2 viewport heights should introduce a compositional reset.
+
+---
+
+## 15. Mobile
+
+Mobile should preserve the poster attitude.
+
+Do:
+
+- keep large type;
+- move shapes behind/beside type;
+- crop images harder;
+- stack asymmetric blocks intentionally;
+- use horizontal overflow only for deliberate gallery/timeline;
+- keep yellow as a small signal.
+
+Do not:
+
+- shrink every element proportionally;
+- turn all editorial compositions into identical rounded cards;
+- center everything.
+
+Mobile dominant headline target:
+
+48–72px depending on word length.
+
+---
+
+## 16. Motion
+
+Motion should feel like editorial assembly.
+
+Use:
+
+- 140–220ms interaction;
+- 360ms reveal;
+- 520ms image crop/scale.
+
+Recommended:
+
+- block reveal;
+- line draw;
+- slight image scale;
+- shape slide of 8–16px;
+- staggered metadata.
+
+Avoid:
+
+- floating circles;
+- bouncing CTA;
+- constant rotation;
+- large parallax;
+- animation that delays reading.
+
+---
+
+## 17. Color recipes
+
+### Standard paper
+
+Paper 50 + Ink + Green.
+
+Yellow <=10%.
+
+### Dark poster
+
+Green 950 + Paper 0 + small Yellow 500.
+
+### Human / event section
+
+Paper 50 + Orange 500 + Green 950.
+
+Yellow tiny or absent.
+
+### Learning system
+
+Paper 0 + Cobalt 500 + Green 800.
+
+Yellow only for step marker.
+
+### Portfolio / work
+
+Paper 50 + photography + Ink.
+
+Use green/yellow only as labels.
+
+---
+
+## 18. Yellow usage examples
+
+Good:
+
+- 32px sticker;
+- 64px circle behind a number;
+- one highlighted word;
+- CTA tag;
+- 4px underline;
+- one small card in a 6-card composition.
+
+Too much:
+
+- full hero yellow;
+- half-screen yellow;
+- 3 yellow cards in a row;
+- yellow section followed immediately by yellow CTA block.
+
+Canonical rule:
+
+> **Yellow should normally occupy about 5–10% of a viewport. 10% is the ceiling target, not the minimum.**
+
+---
+
+## 19. Academy vs Production
+
+Academy is related to Hang Đôi Production but should not visually collapse into it.
+
+### Academy
+
+- warmer;
+- more expressive;
+- more editorial;
+- more playful geometry;
+- learning / experimentation;
+- paper / green / signal colors.
+
+### Production
+
+- more commercial;
+- more restrained;
+- client-facing;
+- project/output-driven.
+
+Shared credibility can come from real production imagery, not identical design tokens.
+
+---
+
+## 20. Source of truth
+
+CSS:
 
 `site/academy-tokens.css`
 
-Design / usage contract:
+Machine-readable tokens:
+
+`config/academy-design-tokens.json`
+
+Design contract:
 
 `docs/design-system/academy-tokens.md`
 
-The canonical URL/domain contract remains separate and is governed by `AGENTS.md` and `docs/deployment-safety.md`.
+These files define the visual system. Individual page CSS should not invent competing palettes, radius scales or layout tokens.
+
+The deployment/domain boundary is governed separately by:
+
+- `AGENTS.md`
+- `docs/deployment-safety.md`
