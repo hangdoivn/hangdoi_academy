@@ -438,7 +438,14 @@ app.get("/v1/admin/applications/:id", requireAdmin, async (req, res) => {
     WHERE id = $1
   `, [req.params.id]);
   if (!result.rowCount) return res.status(404).json({ ok: false, error: "Not found" });
-  res.json({ ok: true, application: result.rows[0] });
+  const history = await pool.query(`
+    SELECT from_stage, to_stage, changed_by, changed_at
+    FROM media_career_stage_history
+    WHERE application_id = $1
+    ORDER BY changed_at DESC
+    LIMIT 100
+  `, [req.params.id]);
+  res.json({ ok: true, application: result.rows[0], history: history.rows });
 });
 
 app.patch("/v1/admin/applications/:id/ops", requireAdmin, async (req, res) => {
