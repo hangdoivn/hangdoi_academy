@@ -654,7 +654,7 @@ app.get("/v1/admin/legal-readiness/:cohort", requireAdmin, async (req, res) => {
 
   const row = result.rows[0];
   const statusFields = Object.entries(row)
-    .filter(([key]) => key.endsWith("_status"))
+    .filter(([key]) => key.endsWith("_status") && key !== "final_approval_status")
     .map(([, value]) => value);
   const confirmed = statusFields.filter(value => value === "CONFIRMED" || value === "NOT_APPLICABLE").length;
   res.json({
@@ -732,7 +732,7 @@ app.patch("/v1/admin/legal-readiness/:cohort", requireAdmin, async (req, res) =>
 
   const row = result.rows[0];
   const statusFields = Object.entries(row)
-    .filter(([key]) => key.endsWith("_status"))
+    .filter(([key]) => key.endsWith("_status") && key !== "final_approval_status")
     .map(([, value]) => value);
   const confirmed = statusFields.filter(value => value === "CONFIRMED" || value === "NOT_APPLICABLE").length;
 
