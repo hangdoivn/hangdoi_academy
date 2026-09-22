@@ -37,6 +37,13 @@ app.use(express.json({ limit: "300kb" }));
 app.set("trust proxy", 1);
 
 const rateBuckets = new Map();
+setInterval(() => {
+  const now = Date.now();
+  for (const [key, value] of rateBuckets.entries()) {
+    if (value.resetAt <= now) rateBuckets.delete(key);
+  }
+}, 60 * 60 * 1000).unref();
+
 function rateLimit(windowMs, max) {
   return (req, res, next) => {
     const now = Date.now();
@@ -289,6 +296,16 @@ app.post("/v1/applications", rateLimit(60 * 60 * 1000, 10), async (req, res) => 
     }
 
     const cohort = "01";
+    const existing = await pool.query(
+      "SELECT candidate_code, phone FROM media_career_applications WHERE cohort = $1 AND email_normalized = $2",
+      [cohort, email]
+    );
+    if (existing.rowCount && cleanString(existing.rows[0].phone, 50) !== phone) {
+      return res.status(409).json({
+        ok: false,
+        error: "An application already exists for this email. Please contact Hang Đôi if you need to update it."
+      });
+    }
     const code = candidateCode(cohort);
     const payload = {
       ...b,
