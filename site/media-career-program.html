@@ -4,283 +4,333 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Media Career Program | Hang Đôi Academy</title>
-<meta name="description" content="Hang Đôi Media Career Program — lộ trình 4 tháng hướng tới Production Ready cho Photo, Video và Post-production. Cohort 01 hiện mở Register Interest.">
+<meta name="description" content="Hang Đôi Media Career Program — 4 tháng xây năng lực Commercial Media theo workflow Production thực tế. Cohort 01 hiện mở Register Interest.">
 <link rel="canonical" href="https://academy.hangdoiproduction.com/media-career-program/">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="vi_VN">
 <meta property="og:site_name" content="Hang Đôi Academy">
 <meta property="og:title" content="Media Career Program | Học Media để đi làm">
-<meta property="og:description" content="4 tháng để đi từ kỹ năng rời rạc đến khả năng tham gia một Commercial Production workflow. Cohort 01 hiện mở Register Interest.">
+<meta property="og:description" content="4 tháng để đi từ kỹ năng rời rạc đến khả năng tham gia một Commercial Production workflow. Cohort 01 hiện chỉ mở Register Interest.">
 <meta property="og:url" content="https://academy.hangdoiproduction.com/media-career-program/">
+<meta name="theme-color" content="#F8F4EA">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=42dot+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/academy-tokens.css">
 <style>
-:root{
-  --ink:#00031A;--blue:#152BE8;--yellow:#FDDE58;--paper:#FBFBFD;--mist:#F4F5FA;
-  --white:#fff;--muted:#69708A;--line:#DCE0EC;--max:1248px;--r:22px;
-}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;font-family:"42dot Sans",Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fff;color:var(--ink);line-height:1.48;text-rendering:optimizeLegibility}
+html{scroll-behavior:smooth;background:var(--aca-color-bg-canvas)}
+body{margin:0;background:var(--aca-color-bg-canvas);color:var(--aca-color-text-body);font-family:var(--aca-font-body);line-height:var(--aca-leading-body);text-rendering:optimizeLegibility;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 button,input{font:inherit}
-.wrap{width:min(calc(100% - 40px),var(--max));margin:auto}
-.eyebrow{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
-.eyebrow.light{color:var(--yellow)}
-section{padding:96px 0}
-h1,h2,h3,p{margin-top:0}
-h1{font-size:clamp(62px,8.7vw,118px);line-height:.84;letter-spacing:-.067em;margin:15px 0 24px}
-h2{font-size:clamp(42px,5.3vw,68px);line-height:.94;letter-spacing:-.055em;margin:10px 0 18px}
-h3{font-size:25px;line-height:1.05;letter-spacing:-.035em;margin-bottom:9px}
-.lead{font-size:18px;color:#4F566F;max-width:760px}
-.muted{color:var(--muted)}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:47px;padding:0 20px;border-radius:999px;border:1px solid var(--line);font-weight:800;font-size:13px;background:#fff;transition:.18s ease}
-.btn:hover{transform:translateY(-1px)}
-.btn-dark{background:var(--ink);border-color:var(--ink);color:#fff}
-.btn-yellow{background:var(--yellow);border-color:var(--yellow);color:var(--ink)}
-.btn-blue{background:var(--blue);border-color:var(--blue);color:#fff}
+img{display:block;max-width:100%}
+::selection{background:var(--aca-color-signal-yellow);color:var(--aca-ink-950)}
+.wrap{width:min(calc(100% - (var(--aca-gutter-desktop)*2)),var(--aca-layout-max));margin-inline:auto}
+.section{padding-block:var(--aca-section-y);position:relative}
+.section-tight{padding-block:var(--aca-section-y-tight)}
+.section-loose{padding-block:var(--aca-section-y-loose)}
+.kicker{display:flex;align-items:center;gap:10px;font-size:var(--aca-type-label);font-weight:var(--aca-weight-extrabold);letter-spacing:var(--aca-tracking-label);text-transform:uppercase}
+.kicker:before{content:"";width:28px;height:4px;background:var(--aca-color-signal-yellow);flex:none}
+.kicker.inverse{color:var(--aca-paper-0)}
+.kicker.cobalt:before{background:var(--aca-color-signal-cobalt)}
+.kicker.orange:before{background:var(--aca-color-signal-orange)}
+.display{font-size:var(--aca-type-display);line-height:var(--aca-leading-display);letter-spacing:var(--aca-tracking-display);font-weight:var(--aca-weight-black);color:var(--aca-color-text-display);margin:0}
+.poster-lg{font-size:var(--aca-type-poster-lg);line-height:var(--aca-leading-poster);letter-spacing:var(--aca-tracking-poster);font-weight:var(--aca-weight-black);margin:0}
+.poster-xl{font-size:var(--aca-type-poster-xl);line-height:var(--aca-leading-poster);letter-spacing:var(--aca-tracking-poster);font-weight:var(--aca-weight-black);margin:0}
+.lead{font-size:var(--aca-type-body-xl);line-height:1.5;max-width:var(--aca-layout-copy);margin:0;color:var(--aca-color-text-body)}
+.meta{font-size:var(--aca-type-micro);font-weight:var(--aca-weight-bold);letter-spacing:var(--aca-tracking-micro);text-transform:uppercase}
+.caption{font-size:var(--aca-type-body-sm);line-height:1.5;color:var(--aca-color-text-muted)}
+.hard-rule{border-top:var(--aca-border-strong) solid var(--aca-border-ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:var(--aca-button-height-md);padding-inline:var(--aca-button-pad-x);border-radius:var(--aca-button-radius);font-size:var(--aca-button-font-size);font-weight:var(--aca-button-font-weight);border:0;cursor:pointer;transition:transform var(--aca-duration-base) var(--aca-ease-standard),background var(--aca-duration-base) var(--aca-ease-standard)}
+.btn:hover{transform:translateY(var(--aca-motion-lift))}
+.btn-primary{background:var(--aca-color-brand);color:var(--aca-paper-0)}
+.btn-primary:hover{background:var(--aca-color-brand-active)}
+.btn-dark{background:var(--aca-green-950);color:var(--aca-paper-0)}
+.btn-paper{background:var(--aca-paper-0);color:var(--aca-ink-950);border:var(--aca-border-strong) solid var(--aca-border-ink)}
+.btn-poster{border-radius:var(--aca-poster-button-radius);border:var(--aca-poster-button-border) solid var(--aca-border-ink);box-shadow:var(--aca-poster-button-shadow);background:var(--aca-paper-0);color:var(--aca-ink-950)}
+.status-chip{display:inline-flex;align-items:center;gap:8px;min-height:34px;padding:0 12px;border:1px solid var(--aca-color-border-strong);border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;background:var(--aca-paper-0)}
+.status-chip:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--aca-color-brand-active)}
+.yellow-mark{background:linear-gradient(transparent 58%,var(--aca-yellow-300) 58% 88%,transparent 88%);padding-inline:.04em}
 
-/* NAV */
-header{position:sticky;top:0;z-index:70;background:rgba(255,255,255,.93);backdrop-filter:blur(16px);border-bottom:1px solid rgba(220,224,236,.82)}
-.nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:22px}
-.brand{font-size:17px;font-weight:800;letter-spacing:.08em}
-.brand span{color:var(--blue)}
-.nav-links{display:flex;align-items:center;gap:27px;font-size:12px;font-weight:700;letter-spacing:.03em}
+/* Header */
+.site-header{position:sticky;top:0;z-index:var(--aca-z-header);background:rgba(248,244,234,.92);backdrop-filter:blur(var(--aca-header-blur));border-bottom:1px solid var(--aca-color-divider)}
+.nav{height:var(--aca-header-height);display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:32px}
+.brand-logo{width:208px;height:auto}
+.nav-links{display:flex;justify-content:center;gap:26px;align-items:center;font-size:12px;font-weight:750;letter-spacing:.04em}
+.nav-links a{position:relative}
+.nav-links a:not(.btn):after{content:"";position:absolute;left:0;right:100%;bottom:-5px;height:2px;background:var(--aca-color-brand);transition:right var(--aca-duration-base) var(--aca-ease-standard)}
+.nav-links a:not(.btn):hover:after{right:0}
 
-/* HERO */
-.hero{padding:76px 0 34px;background:linear-gradient(180deg,#fff 0%,#fafbff 100%)}
-.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-.hero-copy{max-width:600px}
-.hero-copy>p{font-size:20px;line-height:1.48;max-width:550px;color:#333a55}
-.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin:28px 0 13px}
-.micro{font-size:11px;font-weight:650;letter-spacing:.05em;color:var(--muted)}
-.mode{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:9px 12px;border:1px solid #e6d26d;border-radius:999px;background:#fff9d8;font-size:11px;font-weight:800}
-.mode i{width:7px;height:7px;border-radius:50%;background:#a77800}
+/* 01 Hero */
+.hero{padding:clamp(48px,7vw,92px) 0 var(--aca-section-y-tight);overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--aca-grid-gap-md);align-items:center;position:relative}
+.hero-copy{grid-column:1/8;position:relative;z-index:var(--aca-z-content)}
+.hero-copy .poster-xl{max-width:850px;margin:18px 0 28px}
+.hero-copy .lead{margin-bottom:28px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.hero-meta{display:flex;gap:14px 22px;flex-wrap:wrap;margin-top:24px;align-items:center}
+.hero-visual{grid-column:8/13;min-height:690px;position:relative;z-index:var(--aca-z-shape)}
+.hero-main{position:absolute;inset:36px 0 34px 48px;overflow:hidden;border:var(--aca-border-strong) solid var(--aca-border-ink);background:var(--aca-green-950)}
+.hero-main img{width:100%;height:100%;object-fit:cover;filter:saturate(var(--aca-image-saturation-editorial)) contrast(var(--aca-image-contrast-editorial))}
+.hero-main:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 54%,rgba(15,66,45,.18))}
+.hero-arch{position:absolute;width:180px;height:268px;left:-42px;top:0;background:var(--aca-color-brand);border:var(--aca-border-strong) solid var(--aca-border-ink);border-radius:999px 999px 18px 18px}
+.hero-circle{position:absolute;width:170px;height:170px;border-radius:50%;right:-50px;bottom:-2px;background:var(--aca-color-signal-orange);border:var(--aca-border-strong) solid var(--aca-border-ink)}
+.hero-sticker{position:absolute;right:-2px;top:18px;transform:rotate(3deg);z-index:5}
+.hero-index{position:absolute;left:-20px;bottom:30px;z-index:5;width:220px;padding:15px 16px;background:var(--aca-paper-0);border:var(--aca-border-strong) solid var(--aca-border-ink);box-shadow:var(--aca-print-shadow-sm)}
+.hero-index strong{display:block;font-size:22px;letter-spacing:-.04em}
+.hero-index small{display:block;margin-top:5px;font-size:11px;color:var(--aca-color-text-muted)}
+.hero-strip{margin-top:36px;display:grid;grid-template-columns:1.35fr repeat(4,1fr);border-top:var(--aca-border-strong) solid var(--aca-border-ink);border-bottom:var(--aca-border-strong) solid var(--aca-border-ink)}
+.hero-strip>div{padding:15px 18px;border-right:1px solid var(--aca-color-divider)}
+.hero-strip>div:last-child{border-right:0}
+.hero-strip small{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--aca-color-text-muted);font-weight:800}
+.hero-strip b{display:block;font-size:14px;margin-top:4px}
 
-.contact-sheet{background:var(--ink);color:#fff;border-radius:30px;padding:20px;min-height:720px;display:flex;flex-direction:column;gap:12px;overflow:hidden;position:relative}
-.contact-sheet:before{content:"";position:absolute;inset:auto -16% -32% auto;width:340px;height:340px;background:var(--blue);filter:blur(120px);opacity:.5}
-.contact-head{display:flex;justify-content:space-between;gap:14px;font-size:10px;font-weight:800;letter-spacing:.13em;position:relative;z-index:2}
-.contact-head span:last-child{color:var(--yellow)}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;flex:1;position:relative;z-index:2}
-.frame{border-radius:17px;padding:16px;background:rgba(255,255,255,.08);display:flex;flex-direction:column;justify-content:space-between;min-height:185px;border:1px solid rgba(255,255,255,.08);overflow:hidden}
-.frame.blue{background:var(--blue);border-color:var(--blue)}
-.frame.yellow{background:var(--yellow);color:var(--ink);border-color:var(--yellow)}
-.frame-no{font-size:10px;font-weight:800;letter-spacing:.08em;opacity:.82}
-.frame strong{display:block;font-size:22px;letter-spacing:-.04em}
-.frame small{display:block;font-size:10px;margin-top:4px;opacity:.72}
-.contact-foot{font-size:10px;font-weight:700;letter-spacing:.09em;opacity:.66;position:relative;z-index:2}
-.proof-strip{display:grid;grid-template-columns:1.15fr repeat(4,1fr);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-top:28px}
-.proof-cell{min-height:92px;padding:17px 19px;border-right:1px solid var(--line)}
-.proof-cell:last-child{border-right:0}
-.proof-cell small{display:block;font-size:10px;color:var(--muted);font-weight:750;letter-spacing:.1em;text-transform:uppercase}
-.proof-cell b{display:block;margin-top:8px;font-size:14px}
+/* 02 Gap */
+.gap{background:var(--aca-green-950);color:var(--aca-paper-0)}
+.gap-head{display:grid;grid-template-columns:7fr 5fr;gap:var(--aca-grid-gap-xl);align-items:end}
+.gap .display{color:var(--aca-paper-0)}
+.gap-copy{font-size:18px;max-width:540px;color:rgba(255,253,247,.76);margin:0 0 6px}
+.gap-grid{display:grid;grid-template-columns:repeat(5,1fr);margin-top:54px;border-top:1px solid var(--aca-color-divider-inverse);border-left:1px solid var(--aca-color-divider-inverse)}
+.gap-cell{min-height:118px;padding:16px;border-right:1px solid var(--aca-color-divider-inverse);border-bottom:1px solid var(--aca-color-divider-inverse);display:flex;flex-direction:column;justify-content:space-between}
+.gap-cell small{font-size:10px;color:var(--aca-color-signal-yellow);font-weight:800}
+.gap-cell strong{font-size:13px;letter-spacing:.02em}
+.gap-bridge{margin-top:52px;padding-top:28px;border-top:1px solid var(--aca-color-divider-inverse);display:grid;grid-template-columns:8fr 4fr;gap:32px;align-items:end}
+.gap-bridge p{font-size:clamp(28px,3.5vw,50px);line-height:1.02;letter-spacing:-.04em;font-weight:800;margin:0;max-width:920px}
+.gap-bridge strong{color:var(--aca-color-signal-yellow)}
 
-/* GAP */
-.gap-section{background:var(--ink);color:#fff}
-.split{display:grid;grid-template-columns:.92fr 1.08fr;gap:56px;align-items:start}
-.gap-section .lead{color:#b8c0dd}
-.gap-grid{display:grid;grid-template-columns:repeat(5,1fr);margin-top:48px;border-top:1px solid rgba(255,255,255,.16);border-left:1px solid rgba(255,255,255,.16)}
-.gap-cell{padding:16px;min-height:115px;border-right:1px solid rgba(255,255,255,.16);border-bottom:1px solid rgba(255,255,255,.16)}
-.gap-cell small{font-size:10px;color:var(--yellow)}
-.gap-cell b{display:block;margin-top:34px;font-size:13px}
-.bridge{padding:32px 0 72px;background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.14)}
-.bridge-row{display:flex;justify-content:space-between;gap:30px;align-items:end}
-.bridge-copy{font-size:clamp(30px,4vw,52px);line-height:1.04;letter-spacing:-.04em;max-width:880px}
-.bridge-copy strong{color:var(--yellow)}
+/* 03 Production reality */
+.reality{background:var(--aca-paper-0)}
+.reality-head{display:grid;grid-template-columns:7fr 5fr;gap:var(--aca-grid-gap-xl);align-items:start}
+.reality-head .lead{justify-self:end}
+.reality-layout{display:grid;grid-template-columns:7fr 5fr;gap:var(--aca-grid-gap-md);margin-top:48px;align-items:start}
+.timeline{border-top:var(--aca-border-strong) solid var(--aca-border-ink)}
+.time-row{display:grid;grid-template-columns:120px 1fr;gap:20px;padding:16px 0;border-bottom:1px solid var(--aca-color-divider)}
+.time-row time{font-size:12px;font-weight:800;color:var(--aca-color-brand)}
+.time-row strong{font-size:18px;letter-spacing:-.02em}
+.time-row p{margin:3px 0 0;font-size:13px;color:var(--aca-color-text-muted)}
+.reality-gallery{display:grid;grid-template-columns:1fr 1fr;gap:12px;position:sticky;top:105px}
+.media-tile{position:relative;overflow:hidden;border:var(--aca-border-strong) solid var(--aca-border-ink);background:var(--aca-paper-100)}
+.media-tile.tall{grid-row:span 2;min-height:500px}
+.media-tile.short{min-height:244px}
+.media-tile img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform var(--aca-duration-media) var(--aca-ease-standard)}
+.media-tile:hover img{transform:scale(var(--aca-motion-media-scale))}
+.media-caption{position:absolute;left:12px;right:12px;bottom:12px;padding:9px 10px;background:var(--aca-paper-0);border:1px solid var(--aca-border-ink);font-size:10px;font-weight:750;line-height:1.25}
+.proof-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+.proof-block{padding:20px;border:var(--aca-border-strong) solid var(--aca-border-ink);background:var(--aca-paper-50)}
+.proof-block:nth-child(2){background:var(--aca-orange-100)}
+.proof-block:nth-child(3){background:var(--aca-cobalt-100)}
+.proof-block small{font-size:10px;font-weight:800;letter-spacing:.1em;color:var(--aca-color-text-muted)}
+.proof-block b{display:block;font-size:18px;margin:10px 0 6px}
+.proof-block p{margin:0;font-size:13px}
 
-/* PROOF */
-.proof-section{background:#fff}
-.proof-title{max-width:780px}
-.proof-layout{display:grid;grid-template-columns:1.3fr .8fr;gap:16px;margin-top:34px}
-.shoot-board{background:var(--ink);color:#fff;border-radius:26px;padding:26px}
-.shoot-board h3{font-size:38px;max-width:560px}
-.shoot-head{font-size:10px;color:var(--yellow);font-weight:800;letter-spacing:.13em;margin-bottom:26px}
-.shoot-row{display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-top:1px solid rgba(255,255,255,.13)}
-.shoot-row:first-of-type{border-top:0}
-.shoot-row span{font-size:11px;color:#aeb8da}
-.shoot-row b{font-size:14px}
-.proof-side{display:grid;gap:10px}
-.proof-note{border:1px solid var(--line);border-radius:18px;padding:20px;background:var(--paper)}
-.proof-note em{display:block;font-style:normal;font-size:10px;font-weight:800;color:var(--blue);letter-spacing:.1em;margin-bottom:7px}
-.proof-note b{font-size:17px}
-.proof-note p{font-size:12px;margin:7px 0 0;color:#596178}
+/* 04 Curriculum */
+.curriculum{background:var(--aca-paper-50)}
+.curriculum-head{display:grid;grid-template-columns:8fr 4fr;gap:32px;align-items:end}
+.curriculum-note{font-size:14px;color:var(--aca-color-text-muted);max-width:390px;margin:0 0 8px}
+.phase-list{margin-top:44px}
+.phase{display:grid;grid-template-columns:1.3fr 3.2fr 3.2fr 2.3fr;gap:28px;padding:28px 0;border-top:1px solid var(--aca-color-border-strong);position:relative}
+.phase-no{font-size:clamp(54px,6vw,86px);font-weight:900;line-height:.82;letter-spacing:-.07em}
+.phase-main h3{font-size:24px;letter-spacing:-.04em;margin:0 0 6px}
+.phase-main small,.phase-col small{font-size:10px;text-transform:uppercase;letter-spacing:.1em;font-weight:800;color:var(--aca-color-text-muted)}
+.phase-main small{color:var(--aca-color-brand)}
+.phase-col p{font-size:13px;margin:7px 0 0}
+.phase:last-child:after{content:"";position:absolute;right:0;top:24px;width:18px;height:18px;background:var(--aca-color-signal-yellow);border-radius:50%;border:2px solid var(--aca-border-ink)}
+.loop{display:grid;grid-template-columns:repeat(7,1fr);gap:0;margin-top:26px;border:var(--aca-border-strong) solid var(--aca-border-ink)}
+.loop span{padding:12px 8px;text-align:center;border-right:1px solid var(--aca-color-divider);font-size:10px;font-weight:800;letter-spacing:.04em;background:var(--aca-paper-0)}
+.loop span:nth-child(3){background:var(--aca-orange-100)}
+.loop span:nth-child(5){background:var(--aca-yellow-100)}
+.loop span:last-child{border-right:0;background:var(--aca-green-100)}
 
-/* CURRICULUM */
-.curriculum{background:var(--paper)}
-.phase-list{margin-top:34px}
-.phase{display:grid;grid-template-columns:92px 1.05fr .9fr .66fr;gap:28px;padding:22px 0;border-top:1px solid var(--line);align-items:start}
-.phase-no{font-size:44px;font-weight:800;letter-spacing:-.05em}
-.phase:last-child .phase-no{color:var(--blue)}
-.phase-main b{font-size:21px;letter-spacing:-.03em}
-.phase-main small,.phase-col small{display:block;font-size:10px;font-weight:800;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
-.phase-main small{color:var(--blue);margin-top:5px}
-.phase-col p{font-size:13px;line-height:1.55;margin:0}
-.loop{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:28px}
-.loop span{padding:11px 7px;text-align:center;border-radius:10px;background:#eef0f7;font-size:10px;font-weight:800}
+/* 05 Learning loop manifesto */
+.learning-loop{background:var(--aca-green-950);color:var(--aca-paper-0);overflow:hidden}
+.learning-grid{display:grid;grid-template-columns:5fr 7fr;gap:56px;align-items:center}
+.learning-loop .display{color:var(--aca-paper-0)}
+.learning-steps{display:grid;gap:0;border-top:1px solid var(--aca-color-divider-inverse)}
+.learning-step{display:grid;grid-template-columns:52px 1fr auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--aca-color-divider-inverse)}
+.learning-step small{font-size:10px;color:rgba(255,253,247,.55)}
+.learning-step b{font-size:20px}
+.learning-step span{font-size:11px;color:rgba(255,253,247,.6)}
+.learning-step.rework b{color:var(--aca-color-signal-yellow)}
+.learning-note{margin-top:22px;color:rgba(255,253,247,.72);max-width:480px;font-size:14px}
 
-/* ROLES */
-.roles{background:var(--mist)}
-.role-root{display:inline-flex;padding:12px 20px;border-radius:999px;background:var(--ink);color:#fff;font-size:12px;font-weight:800;margin:22px 0 20px}
-.role-map{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.role-col{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px}
-.role-col>strong{font-size:11px;color:var(--blue);letter-spacing:.11em}
-.role-path{margin-top:13px}
-.role-line{display:grid;grid-template-columns:34px 1fr;gap:8px;padding:11px 0;border-top:1px solid #edf0f5;align-items:start}
-.role-line:first-child{border-top:0}
-.role-line small{font-size:9px;color:var(--muted)}
-.role-line span{font-size:13px}
-.role-line:last-child span{font-weight:800;color:var(--blue)}
-.role-note{font-size:11px;color:var(--muted);margin-top:14px}
+/* 06 What you do */
+.practice{background:var(--aca-paper-0)}
+.practice-head{display:grid;grid-template-columns:7fr 5fr;gap:32px;align-items:end}
+.practice-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:140px;gap:12px;margin-top:42px}
+.practice-card{position:relative;overflow:hidden;border:var(--aca-border-strong) solid var(--aca-border-ink);background:var(--aca-paper-100)}
+.practice-card img{width:100%;height:100%;object-fit:cover}
+.practice-card .label{position:absolute;left:10px;top:10px;background:var(--aca-paper-0);border:1px solid var(--aca-border-ink);padding:7px 8px;font-size:10px;font-weight:800;letter-spacing:.06em}
+.practice-card.one{grid-column:span 5;grid-row:span 3}
+.practice-card.two{grid-column:span 3;grid-row:span 2;background:var(--aca-color-brand);color:white}
+.practice-card.three{grid-column:span 4;grid-row:span 2}
+.practice-card.four{grid-column:span 3;grid-row:span 2;background:var(--aca-color-signal-orange)}
+.practice-card.five{grid-column:span 4;grid-row:span 3}
+.practice-card.six{grid-column:span 3;grid-row:span 3;background:var(--aca-color-signal-cobalt);color:white}
+.practice-text{height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:18px}
+.practice-text small{font-size:10px;font-weight:800;letter-spacing:.1em}
+.practice-text strong{font-size:25px;line-height:1.02;letter-spacing:-.04em}
+.practice-text p{font-size:12px;margin:6px 0 0;max-width:220px}
 
-/* OUTPUTS */
-.outputs{background:var(--blue);color:#fff}
-.outputs h2{max-width:820px}
-.output-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:32px}
-.output{min-height:148px;border:1px solid rgba(255,255,255,.18);border-radius:15px;padding:16px;background:rgba(255,255,255,.05);display:flex;flex-direction:column;justify-content:space-between}
-.output small{font-size:10px;color:var(--yellow)}
-.output b{font-size:15px}
-.output p{font-size:11px;margin:4px 0 0;color:#cdd4fb}
+/* 07 Roles */
+.roles{background:var(--aca-paper-100)}
+.roles-layout{display:grid;grid-template-columns:4fr 8fr;gap:48px;align-items:start}
+.roles-intro{position:sticky;top:110px}
+.role-root{display:inline-flex;margin-top:24px;padding:10px 14px;background:var(--aca-green-950);color:var(--aca-paper-0);font-size:11px;font-weight:800;letter-spacing:.08em}
+.role-lanes{display:grid;grid-template-columns:repeat(4,1fr);border-top:var(--aca-border-strong) solid var(--aca-border-ink);border-left:var(--aca-border-strong) solid var(--aca-border-ink)}
+.role-lane{min-height:470px;padding:18px;border-right:var(--aca-border-strong) solid var(--aca-border-ink);border-bottom:var(--aca-border-strong) solid var(--aca-border-ink);background:var(--aca-paper-0)}
+.role-lane:nth-child(2){background:var(--aca-green-100)}
+.role-lane:nth-child(3){background:var(--aca-cobalt-100)}
+.role-lane:nth-child(4){background:var(--aca-orange-100)}
+.role-lane>strong{display:block;font-size:11px;letter-spacing:.11em;color:var(--aca-color-brand)}
+.role-path{margin-top:36px}
+.role-step{padding:12px 0;border-top:1px solid var(--aca-color-divider);font-size:13px}
+.role-step small{display:block;font-size:9px;color:var(--aca-color-text-muted);margin-bottom:4px}
+.role-step:last-child{font-weight:800;font-size:14px}
+.role-note{font-size:11px;color:var(--aca-color-text-muted);margin-top:16px;max-width:700px}
 
-/* CAREER */
-.career{background:var(--ink);color:#fff;padding:70px 0}
-.career-row{display:grid;grid-template-columns:1.25fr repeat(4,.7fr);border:1px solid rgba(255,255,255,.15);border-radius:18px;overflow:hidden}
-.career-head,.career-level{padding:20px;border-right:1px solid rgba(255,255,255,.15)}
-.career-level:last-child{border-right:0}
-.career-head small,.career-level small{font-size:9px;color:#aeb7d7;font-weight:800;letter-spacing:.1em}
-.career-head b{display:block;font-size:18px;margin-top:5px}
-.career-level strong{display:block;font-size:34px;letter-spacing:-.05em;margin-top:4px}
-.career-note{font-size:11px;color:#aeb7d7;margin:12px 0 0}
+/* 08 Outputs */
+.outputs{background:var(--aca-paper-50)}
+.output-head{display:grid;grid-template-columns:8fr 4fr;gap:32px;align-items:end}
+.output-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:135px;gap:12px;margin-top:40px}
+.output-card{border:var(--aca-border-strong) solid var(--aca-border-ink);padding:18px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.output-card small{font-size:10px;font-weight:800}
+.output-card strong{font-size:clamp(21px,2.2vw,32px);line-height:.95;letter-spacing:-.04em}
+.output-card p{font-size:12px;margin:7px 0 0;max-width:280px}
+.output-card.portfolio{grid-column:span 6;grid-row:span 3;background:var(--aca-color-signal-cobalt);color:white}
+.output-card.capstone{grid-column:span 3;grid-row:span 2;background:var(--aca-paper-0)}
+.output-card.profile{grid-column:span 3;grid-row:span 2;background:var(--aca-color-brand);color:white}
+.output-card.ready{grid-column:span 4;grid-row:span 2;background:var(--aca-green-950);color:white}
+.output-card.track{grid-column:span 4;grid-row:span 2;background:var(--aca-orange-100)}
+.output-card.start{grid-column:span 4;grid-row:span 2;background:var(--aca-paper-0)}
+.output-card .dot{position:absolute;right:18px;top:18px;width:18px;height:18px;border-radius:50%;background:var(--aca-color-signal-yellow);border:2px solid var(--aca-border-ink)}
 
-/* TUITION */
-.tuition{background:var(--mist)}
-.tuition-layout{display:grid;grid-template-columns:.72fr 1.28fr;gap:14px;margin-top:34px}
-.price-panel{background:var(--yellow);border-radius:24px;padding:26px;min-height:500px;display:flex;flex-direction:column;justify-content:space-between}
-.price-panel small{font-size:10px;font-weight:800;letter-spacing:.12em}
-.price{font-size:86px;line-height:.9;font-weight:800;letter-spacing:-.07em;margin-top:8px}
-.price-panel p{font-size:12px;margin:0;max-width:350px}
-.value-stack{display:grid;gap:10px}
-.value-no,.value-yes{border-radius:18px;padding:20px}
-.value-no{background:#fff;border:1px solid var(--line)}
-.value-yes{background:var(--ink);color:#fff}
-.value-no small,.value-yes small{display:block;font-size:10px;font-weight:800;letter-spacing:.1em;color:var(--muted);margin-bottom:8px}
-.value-yes small{color:var(--yellow)}
-.value-no b{font-size:20px}
-.value-yes b{display:block;font-size:17px;line-height:1.65}
-.separation{font-size:13px;color:var(--blue);font-weight:800;padding:8px 0}
+/* 09 Career strip */
+.career{background:var(--aca-green-950);color:var(--aca-paper-0);padding-block:54px}
+.career-grid{display:grid;grid-template-columns:4fr repeat(4,2fr);border-top:1px solid var(--aca-color-divider-inverse);border-left:1px solid var(--aca-color-divider-inverse)}
+.career-head,.career-level{padding:18px;border-right:1px solid var(--aca-color-divider-inverse);border-bottom:1px solid var(--aca-color-divider-inverse)}
+.career-head small,.career-level small{font-size:9px;font-weight:800;letter-spacing:.1em;color:rgba(255,253,247,.58)}
+.career-head strong{display:block;margin-top:6px;font-size:18px}
+.career-level strong{display:block;font-size:38px;letter-spacing:-.05em;margin-top:3px}
+.career-note{font-size:11px;color:rgba(255,253,247,.58);margin:12px 0 0}
 
-/* FIT */
-.fit{background:#fff}
-.fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px}
-.fit-panel{border-radius:20px;padding:22px;border:1px solid var(--line)}
-.fit-panel.good{background:var(--ink);color:#fff}
-.fit-panel.bad{background:var(--mist)}
-.fit-panel h3{font-size:18px;color:var(--blue)}
-.fit-panel.good h3{color:var(--yellow)}
-.fit-row{display:grid;grid-template-columns:34px 1fr;gap:8px;padding:9px 0;border-top:1px solid rgba(105,112,138,.18);font-size:13px}
-.fit-panel.good .fit-row{border-top-color:rgba(255,255,255,.12)}
-.fit-row:first-of-type{border-top:0}
-.fit-row small{font-size:9px;color:var(--muted)}
-.fit-panel.good .fit-row small{color:var(--yellow)}
+/* 10 Tuition */
+.tuition{background:var(--aca-paper-50)}
+.tuition-head{display:grid;grid-template-columns:8fr 4fr;gap:32px;align-items:end}
+.tuition-layout{display:grid;grid-template-columns:5fr 7fr;gap:16px;margin-top:40px}
+.price-block{min-height:470px;padding:28px;background:var(--aca-green-950);color:var(--aca-paper-0);border:var(--aca-border-strong) solid var(--aca-border-ink);display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.price-block:after{content:"";position:absolute;width:160px;height:160px;border-radius:50%;background:var(--aca-color-signal-yellow);right:-72px;top:-70px;border:var(--aca-border-strong) solid var(--aca-border-ink)}
+.price-block small{font-size:10px;font-weight:800;letter-spacing:.11em}
+.price{font-size:clamp(76px,8vw,118px);line-height:.78;letter-spacing:-.075em;font-weight:900}
+.price-block p{font-size:13px;color:rgba(255,253,247,.7);max-width:340px;margin:0}
+.value-stack{display:grid;grid-template-rows:auto 1fr auto;gap:12px}
+.value-block{border:var(--aca-border-strong) solid var(--aca-border-ink);padding:22px;background:var(--aca-paper-0)}
+.value-block.no{background:var(--aca-orange-100)}
+.value-block.yes{background:var(--aca-paper-0)}
+.value-block small{font-size:10px;font-weight:800;letter-spacing:.1em;color:var(--aca-color-text-muted)}
+.value-block h3{font-size:25px;line-height:1.05;letter-spacing:-.04em;margin:10px 0 0}
+.value-list{display:grid;grid-template-columns:repeat(2,1fr);gap:0;margin-top:18px;border-top:1px solid var(--aca-color-divider);border-left:1px solid var(--aca-color-divider)}
+.value-list span{padding:10px;border-right:1px solid var(--aca-color-divider);border-bottom:1px solid var(--aca-color-divider);font-size:12px;font-weight:700}
+.tuition-separation{padding:14px 18px;background:var(--aca-color-signal-cobalt);color:white;font-size:13px;font-weight:800;letter-spacing:.03em;border:var(--aca-border-strong) solid var(--aca-border-ink)}
 
-/* CURRENT INTAKE */
-.intake{background:var(--paper)}
-.intake-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:28px}
-.intake-step{border:1px solid var(--line);border-radius:17px;padding:18px;background:#fff;min-height:155px}
-.intake-step.locked{background:#fff9d8;border-color:#e4d06a}
-.intake-step small{font-size:9px;font-weight:800;color:var(--blue)}
-.intake-step.locked small{color:#8b6d00}
-.intake-step b{display:block;margin-top:25px;font-size:15px}
-.intake-step p{font-size:11px;color:#616980;margin:6px 0 0}
+/* 11 Fit */
+.fit{background:var(--aca-paper-0)}
+.fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:38px}
+.fit-panel{border:var(--aca-border-strong) solid var(--aca-border-ink);padding:24px;min-height:390px}
+.fit-panel.good{background:var(--aca-green-950);color:var(--aca-paper-0)}
+.fit-panel.bad{background:var(--aca-orange-100)}
+.fit-panel h3{font-size:24px;letter-spacing:-.04em;margin:0 0 18px}
+.fit-panel.good h3{color:var(--aca-color-signal-yellow)}
+.fit-row{display:grid;grid-template-columns:36px 1fr;gap:8px;padding:10px 0;border-top:1px solid var(--aca-color-divider)}
+.fit-panel.good .fit-row{border-color:var(--aca-color-divider-inverse)}
+.fit-row small{font-size:9px;color:var(--aca-color-text-muted)}
+.fit-panel.good .fit-row small{color:rgba(255,253,247,.52)}
+.fit-row span{font-size:13px}
 
-/* FAQ */
-.faq{background:#fff}
-.faq-inner{max-width:930px}
-.faq details{border-top:1px solid var(--line);padding:18px 0}
-.faq summary{list-style:none;cursor:pointer;font-size:15px;font-weight:800}
+/* 12 Current intake */
+.intake{background:var(--aca-paper-100)}
+.intake-grid{display:grid;grid-template-columns:repeat(4,1fr);margin-top:40px;border-top:var(--aca-border-strong) solid var(--aca-border-ink);border-left:var(--aca-border-strong) solid var(--aca-border-ink)}
+.intake-step{min-height:220px;padding:20px;border-right:var(--aca-border-strong) solid var(--aca-border-ink);border-bottom:var(--aca-border-strong) solid var(--aca-border-ink);background:var(--aca-paper-0);display:flex;flex-direction:column;justify-content:space-between}
+.intake-step.now{background:var(--aca-green-100)}
+.intake-step small{font-size:10px;font-weight:800;letter-spacing:.1em;color:var(--aca-color-text-muted)}
+.intake-step.now small{color:var(--aca-color-brand)}
+.intake-step b{font-size:18px;line-height:1.05}
+.intake-step p{font-size:12px;margin:7px 0 0;color:var(--aca-color-text-muted)}
+.intake-cta{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-top:28px}
+.intake-cta p{font-size:12px;color:var(--aca-color-text-muted);margin:0}
+
+/* 13 FAQ */
+.faq{background:var(--aca-paper-0)}
+.faq-layout{display:grid;grid-template-columns:4fr 8fr;gap:48px;align-items:start}
+.faq-side{position:sticky;top:110px}
+.faq-list{border-top:var(--aca-border-strong) solid var(--aca-border-ink)}
+.faq details{border-bottom:1px solid var(--aca-color-divider);padding:19px 0}
+.faq summary{cursor:pointer;list-style:none;font-size:16px;font-weight:800;display:flex;justify-content:space-between;gap:20px}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary:after{content:"+";float:right;color:var(--blue);font-size:20px}
+.faq summary:after{content:"+";font-size:22px;line-height:1;color:var(--aca-color-brand)}
 .faq details[open] summary:after{content:"–"}
-.faq details p{font-size:13px;color:#576078;max-width:800px;margin:9px 0 0}
+.faq details p{font-size:13px;color:var(--aca-color-text-muted);max-width:720px;margin:10px 0 0}
 
-/* CTA */
-.final{background:var(--blue);color:#fff;padding:80px 0}
-.final-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:end}
-.final h2{font-size:clamp(48px,6vw,82px);max-width:860px}
-.final p{color:#e3e7ff;max-width:650px}
-.final-action{display:flex;justify-content:flex-end}
+/* 14 Final CTA */
+.final-cta{background:var(--aca-green-950);color:var(--aca-paper-0);overflow:hidden}
+.final-grid{display:grid;grid-template-columns:8fr 4fr;gap:44px;align-items:end;position:relative}
+.final-cta .poster-lg{color:var(--aca-paper-0)}
+.final-action{display:flex;flex-direction:column;align-items:flex-start;gap:16px}
+.final-action p{font-size:13px;color:rgba(255,253,247,.65);margin:0;max-width:330px}
+.final-dot{position:absolute;width:86px;height:86px;border-radius:50%;background:var(--aca-color-signal-orange);right:18%;top:-14px;border:var(--aca-border-strong) solid var(--aca-border-ink)}
+.final-sticker{position:absolute;right:0;bottom:-12px;transform:rotate(-3deg)}
 
-/* FOOTER */
-footer{background:var(--ink);color:#fff;padding:34px 0}
-.foot{display:flex;justify-content:space-between;align-items:center;gap:20px}
-.foot-brand{font-size:15px;font-weight:800;letter-spacing:.07em}
-.foot small{font-size:10px;color:#98a2c7;text-align:right}
+footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
+.footer-row{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.footer-logo{width:220px;filter:none}
+.footer-note{font-size:10px;line-height:1.45;color:rgba(255,253,247,.55);text-align:right}
 
-/* MOTION */
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}
+/* Reveal */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity var(--aca-duration-slow) var(--aca-ease-enter),transform var(--aca-duration-slow) var(--aca-ease-enter)}
 .reveal.on{opacity:1;transform:none}
-.frame,.role-col,.output,.proof-note{transition:transform .2s ease,border-color .2s ease}
-.frame:hover,.role-col:hover,.output:hover,.proof-note:hover{transform:translateY(-3px)}
-.phase{position:relative}
-.phase:before{content:"";position:absolute;left:0;top:-1px;width:0;height:1px;background:var(--blue);transition:width .65s ease}
-.phase.on:before{width:100%}
-.mobile-cta{display:none;position:fixed;left:12px;right:12px;bottom:12px;z-index:90}
-.mobile-cta .btn{width:100%;box-shadow:0 16px 40px rgba(0,3,26,.25)}
+.mobile-cta{display:none;position:fixed;z-index:var(--aca-z-toast);left:12px;right:12px;bottom:12px}
+.mobile-cta .btn{width:100%;box-shadow:0 16px 38px rgba(16,23,19,.22)}
 
-@media(max-width:1020px){
-  .hero-grid,.split,.proof-layout,.tuition-layout,.final-grid{grid-template-columns:1fr}
-  .contact-sheet{min-height:650px}
-  .proof-strip{grid-template-columns:1fr 1fr}
-  .proof-cell{border-bottom:1px solid var(--line)}
-  .phase{grid-template-columns:76px 1fr 1fr}
-  .phase .phase-col:last-child{grid-column:2/-1}
-  .role-map{grid-template-columns:1fr 1fr}
-  .output-grid{grid-template-columns:1fr 1fr}
-  .career-row{grid-template-columns:1fr 1fr}
-  .career-head{grid-column:1/-1;border-bottom:1px solid rgba(255,255,255,.15)}
-  .gap-grid{grid-template-columns:repeat(3,1fr)}
-  .loop{grid-template-columns:repeat(4,1fr)}
-  .intake-grid{grid-template-columns:1fr 1fr}
-  .nav-links a:not(.btn){display:none}
-  .final-action{justify-content:flex-start}
+@media(max-width:1024px){
+  .wrap{width:min(calc(100% - (var(--aca-gutter-tablet)*2)),var(--aca-layout-max))}
+  .nav{grid-template-columns:auto 1fr}.nav .btn{display:none}.nav-links{justify-content:end}
+  .hero-copy{grid-column:1/7}.hero-visual{grid-column:7/13;min-height:590px}
+  .hero-main{left:20px}
+  .hero-strip{grid-template-columns:1fr 1fr}
+  .hero-strip>div{border-bottom:1px solid var(--aca-color-divider)}
+  .gap-head,.reality-head,.reality-layout,.curriculum-head,.learning-grid,.practice-head,.roles-layout,.output-head,.tuition-head,.faq-layout,.final-grid{grid-template-columns:1fr}
+  .reality-gallery{position:relative;top:auto;grid-template-columns:2fr 1fr}
+  .phase{grid-template-columns:1fr 3fr 3fr}.phase .phase-col:last-child{grid-column:2/-1}
+  .roles-intro,.faq-side{position:relative;top:auto}
+  .role-lanes{grid-template-columns:1fr 1fr}
+  .output-card.portfolio{grid-column:span 7}.output-card.capstone{grid-column:span 5}.output-card.profile{grid-column:span 5}.output-card.ready{grid-column:span 7}.output-card.track,.output-card.start{grid-column:span 6}
+  .career-grid{grid-template-columns:1fr 1fr}.career-head{grid-column:1/-1}
+  .tuition-layout{grid-template-columns:1fr}.price-block{min-height:360px}
+  .final-action{margin-top:16px}.final-dot{right:8%;top:10px}
 }
-@media(max-width:680px){
-  .wrap{width:min(calc(100% - 28px),var(--max))}
-  section{padding:66px 0}
-  .nav{height:64px}.brand{font-size:14px}.nav-links .btn{display:none}
-  h1{font-size:60px}
-  h2{font-size:43px}
-  .hero{padding:44px 0 24px}
-  .hero-copy>p{font-size:17px}
-  .contact-sheet{min-height:auto;border-radius:24px}
-  .contact-grid{grid-template-columns:1fr}
-  .frame{min-height:126px}
-  .proof-strip{grid-template-columns:1fr}
-  .proof-cell{border-right:0}
-  .gap-grid{grid-template-columns:1fr 1fr}
-  .gap-cell{min-height:92px}
-  .bridge-row{flex-direction:column;align-items:flex-start}
-  .shoot-board h3{font-size:30px}
-  .phase{grid-template-columns:58px 1fr;gap:14px}
-  .phase-col{grid-column:2/-1}
-  .phase-no{font-size:32px}
-  .loop{grid-template-columns:1fr 1fr}
-  .role-map,.output-grid,.fit-grid,.intake-grid{grid-template-columns:1fr}
-  .career-row{grid-template-columns:1fr}
-  .career-head,.career-level{border-right:0;border-bottom:1px solid rgba(255,255,255,.15)}
-  .career-level:last-child{border-bottom:0}
-  .tuition-layout{grid-template-columns:1fr}
-  .price-panel{min-height:390px}
-  .price{font-size:72px}
-  .final-action{justify-content:flex-start}
-  .foot{flex-direction:column;align-items:flex-start}
-  .foot small{text-align:left}
+@media(max-width:760px){
+  .wrap{width:min(calc(100% - (var(--aca-gutter-mobile)*2)),var(--aca-layout-max))}
+  .site-header{position:sticky}.nav{height:var(--aca-header-height-mobile);grid-template-columns:auto 1fr}.brand-logo{width:168px}.nav-links a:not(:last-child){display:none}
+  .hero{padding-top:38px}.hero-grid{display:flex;flex-direction:column;gap:26px;align-items:stretch}.hero-copy,.hero-visual{width:100%}.hero-copy .poster-xl{font-size:clamp(58px,16vw,78px)}.hero-copy .lead{font-size:17px}
+  .hero-visual{min-height:540px}.hero-main{inset:48px 18px 18px 28px}.hero-arch{width:122px;height:196px;left:-4px}.hero-circle{width:118px;height:118px;right:-14px}.hero-index{left:8px;bottom:12px;width:195px}.hero-sticker{right:8px;top:16px}
+  .hero-strip{grid-template-columns:1fr}.hero-strip>div{border-right:0}
+  .gap-grid{grid-template-columns:1fr 1fr}.gap-cell{min-height:92px}.gap-bridge{grid-template-columns:1fr}
+  .reality-gallery{grid-template-columns:1fr 1fr}.media-tile.tall{grid-row:span 1;grid-column:1/-1;min-height:380px}.media-tile.short{min-height:190px}.proof-row{grid-template-columns:1fr}
+  .phase{grid-template-columns:58px 1fr;gap:14px}.phase-col{grid-column:2/-1}.phase-no{font-size:48px}.loop{grid-template-columns:1fr 1fr}.loop span{border-bottom:1px solid var(--aca-color-divider)}
+  .learning-step{grid-template-columns:38px 1fr}.learning-step span{display:none}
+  .practice-grid{grid-template-columns:1fr;grid-auto-rows:auto}.practice-card.one,.practice-card.two,.practice-card.three,.practice-card.four,.practice-card.five,.practice-card.six{grid-column:auto;grid-row:auto;min-height:300px}.practice-card.two,.practice-card.four,.practice-card.six{min-height:220px}
+  .role-lanes{grid-template-columns:1fr}.role-lane{min-height:auto}
+  .output-grid{grid-template-columns:1fr;grid-auto-rows:auto}.output-card.portfolio,.output-card.capstone,.output-card.profile,.output-card.ready,.output-card.track,.output-card.start{grid-column:auto;grid-row:auto;min-height:190px}
+  .career-grid{grid-template-columns:1fr}.career-head{grid-column:auto}
+  .value-list{grid-template-columns:1fr}.fit-grid,.intake-grid{grid-template-columns:1fr}
+  .intake-cta{align-items:flex-start;flex-direction:column}
+  .final-dot{width:64px;height:64px;right:10px;top:4px}.final-sticker{position:relative;right:auto;bottom:auto}
+  .footer-row{align-items:flex-start;flex-direction:column}.footer-note{text-align:left}
   .mobile-cta{display:flex}
 }
 @media(prefers-reduced-motion:reduce){
-  *{scroll-behavior:auto!important;transition:none!important;animation:none!important}
+  html{scroll-behavior:auto}
   .reveal{opacity:1;transform:none}
 }
 </style>
@@ -289,15 +339,15 @@ footer{background:var(--ink);color:#fff;padding:34px 0}
 </script>
 </head>
 <body>
-<header>
+<header class="site-header">
   <div class="wrap nav">
-    <a class="brand" href="/">HANG ĐÔI <span>/ ACADEMY</span></a>
+    <a href="/" aria-label="Hang Đôi Academy"><img class="brand-logo" src="/logo-academy.svg" alt="Hang Đôi Academy"></a>
     <nav class="nav-links">
       <a href="#system">4 THÁNG</a>
       <a href="#roles">CAREER</a>
       <a href="#tuition">40M</a>
       <a href="#faq">FAQ</a>
-      <a class="btn btn-dark" href="/media-career-program/apply/">REGISTER INTEREST →</a>
+      <a class="btn btn-primary" href="/media-career-program/apply/">REGISTER INTEREST →</a>
     </nav>
   </div>
 </header>
@@ -306,273 +356,413 @@ footer{background:var(--ink);color:#fff;padding:34px 0}
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy reveal">
-      <div class="eyebrow">Media Career Program / Cohort 01</div>
-      <h1>HỌC MEDIA<br>ĐỂ ĐI LÀM.</h1>
-      <p>4 tháng để đi từ kỹ năng rời rạc đến khả năng tham gia một <b>Commercial Production workflow.</b></p>
+      <div class="kicker">Hang Đôi Academy / Media Career Program / Cohort 01</div>
+      <h1 class="poster-xl">HỌC MEDIA<br>ĐỂ ĐI LÀM.</h1>
+      <p class="lead">4 tháng để đi từ những kỹ năng rời rạc đến khả năng tham gia một <strong>Commercial Production workflow</strong> thực tế.</p>
       <div class="hero-actions">
-        <a class="btn btn-dark" href="/media-career-program/apply/">REGISTER INTEREST →</a>
-        <a class="btn" href="#system">XEM 4 THÁNG HỌC GÌ</a>
+        <a class="btn btn-primary" href="/media-career-program/apply/">REGISTER INTEREST →</a>
+        <a class="btn btn-paper" href="#system">XEM 4 THÁNG HỌC GÌ</a>
       </div>
-      <div class="micro">ĐÀ NẴNG · TARGET 10 LEARNERS · KHÔNG CẦN CAMERA</div>
-      <div class="mode"><i></i> INTEREST ONLY · CHƯA THU PHÍ</div>
+      <div class="hero-meta">
+        <span class="meta">Đà Nẵng</span>
+        <span class="meta">Target 10 learners</span>
+        <span class="meta">Không cần camera</span>
+        <span class="status-chip">Interest only · chưa thu phí</span>
+      </div>
     </div>
 
-    <div class="contact-sheet reveal" aria-label="Commercial Production workflow">
-      <div class="contact-head"><span>COMMERCIAL PRODUCTION / CONTACT SHEET</span><span>06 FRAMES</span></div>
-      <div class="contact-grid">
-        <div class="frame"><span class="frame-no">01</span><div><strong>BRIEF</strong><small>Client objective / output</small></div></div>
-        <div class="frame blue"><span class="frame-no">02</span><div><strong>LIGHT</strong><small>Setup / control / safety</small></div></div>
-        <div class="frame"><span class="frame-no">03</span><div><strong>CAMERA</strong><small>Coverage / focus / movement</small></div></div>
-        <div class="frame yellow"><span class="frame-no">04</span><div><strong>DATA</strong><small>Ingest / backup / naming</small></div></div>
-        <div class="frame"><span class="frame-no">05</span><div><strong>POST</strong><small>Edit / retouch / colour</small></div></div>
-        <div class="frame blue"><span class="frame-no">06</span><div><strong>FINAL</strong><small>QC / delivery / archive</small></div></div>
+    <div class="hero-visual reveal" aria-label="Commercial Production reference">
+      <div class="hero-arch" aria-hidden="true"></div>
+      <div class="hero-main">
+        <img src="https://drive.google.com/thumbnail?id=1lonK2-7tURIP_pBboac0AH0Ebs4P84HC&sz=w1600" alt="Commercial lifestyle image tại Four Points do Hang Đôi Production thực hiện" fetchpriority="high">
       </div>
-      <div class="contact-foot">BRIEF → PRE → SHOOT → DATA → POST → DELIVERY</div>
+      <div class="hero-circle" aria-hidden="true"></div>
+      <span class="aca-sticker hero-sticker">4 months → Production Ready</span>
+      <div class="hero-index">
+        <span class="meta">Commercial context</span>
+        <strong>Hospitality / Lifestyle</strong>
+        <small>Reference work by Hang Đôi Production</small>
+      </div>
     </div>
   </div>
 
-  <div class="wrap">
-    <div class="proof-strip reveal">
-      <div class="proof-cell"><small>Built from</small><b>Commercial Production workflow</b></div>
-      <div class="proof-cell"><small>Context 01</small><b>F&B / Product</b></div>
-      <div class="proof-cell"><small>Context 02</small><b>Hospitality</b></div>
-      <div class="proof-cell"><small>Context 03</small><b>People / Lifestyle</b></div>
-      <div class="proof-cell"><small>Context 04</small><b>Brand Content</b></div>
-    </div>
+  <div class="wrap hero-strip reveal">
+    <div><small>Built from</small><b>Commercial Production workflow</b></div>
+    <div><small>Context 01</small><b>F&B / Product</b></div>
+    <div><small>Context 02</small><b>Hospitality</b></div>
+    <div><small>Context 03</small><b>People / Lifestyle</b></div>
+    <div><small>Context 04</small><b>Brand Content</b></div>
   </div>
 </section>
 
-<section class="gap-section">
+<section class="section gap">
   <div class="wrap">
-    <div class="split reveal">
+    <div class="gap-head reveal">
       <div>
-        <div class="eyebrow light">The real gap</div>
-        <h2>YOU DON'T HAVE<br>A CAMERA PROBLEM.<br>YOU HAVE A<br>PRODUCTION GAP.</h2>
+        <div class="kicker inverse">The real gap</div>
+        <h2 class="display">BIẾT QUAY<br>CHƯA CÓ NGHĨA<br>LÀ ĐI LÀM ĐƯỢC.</h2>
       </div>
-      <p class="lead">Tutorial dạy từng tool. Công việc thật đòi hỏi brief, pre-production, teamwork, data, feedback, QC và delivery — tất cả phải nối thành một workflow.</p>
+      <p class="gap-copy">Camera, Premiere, Lightroom hay gimbal chỉ là công cụ. Công việc Commercial Media còn đòi hỏi brief, preparation, teamwork, data, feedback, QC và delivery.</p>
     </div>
+
     <div class="gap-grid reveal">
-      <div class="gap-cell"><small>01</small><b>BRIEF</b></div>
-      <div class="gap-cell"><small>02</small><b>PRE-PRODUCTION</b></div>
-      <div class="gap-cell"><small>03</small><b>LIGHT</b></div>
-      <div class="gap-cell"><small>04</small><b>COVERAGE</b></div>
-      <div class="gap-cell"><small>05</small><b>TEAMWORK</b></div>
-      <div class="gap-cell"><small>06</small><b>TALENT</b></div>
-      <div class="gap-cell"><small>07</small><b>DATA</b></div>
-      <div class="gap-cell"><small>08</small><b>POST</b></div>
-      <div class="gap-cell"><small>09</small><b>QC</b></div>
-      <div class="gap-cell"><small>10</small><b>DELIVERY</b></div>
+      <div class="gap-cell"><small>01</small><strong>BRIEF</strong></div>
+      <div class="gap-cell"><small>02</small><strong>PRE-PRODUCTION</strong></div>
+      <div class="gap-cell"><small>03</small><strong>LIGHT</strong></div>
+      <div class="gap-cell"><small>04</small><strong>COVERAGE</strong></div>
+      <div class="gap-cell"><small>05</small><strong>TEAMWORK</strong></div>
+      <div class="gap-cell"><small>06</small><strong>TALENT</strong></div>
+      <div class="gap-cell"><small>07</small><strong>DATA</strong></div>
+      <div class="gap-cell"><small>08</small><strong>POST</strong></div>
+      <div class="gap-cell"><small>09</small><strong>QC</strong></div>
+      <div class="gap-cell"><small>10</small><strong>DELIVERY</strong></div>
+    </div>
+
+    <div class="gap-bridge reveal">
+      <p>Vấn đề không phải bạn chưa biết đủ nhiều tool. Vấn đề là chúng chưa được nối thành một <strong>workflow có thể dùng trong công việc thật.</strong></p>
+      <a class="btn btn-poster" href="#reality">XEM PRODUCTION THẬT ↓</a>
     </div>
   </div>
 </section>
 
-<section class="bridge">
-  <div class="wrap bridge-row reveal">
-    <div class="bridge-copy">Mục tiêu không phải <strong>biết nhiều tool hơn.</strong><br>Mục tiêu là <strong>làm được một phần việc thật trong Production.</strong></div>
-    <a class="btn btn-yellow" href="#system">XEM HỆ 4 THÁNG ↓</a>
-  </div>
-</section>
-
-<section class="proof-section">
+<section id="reality" class="section reality">
   <div class="wrap">
-    <div class="eyebrow">Production proof</div>
-    <h2 class="proof-title reveal">BUILT INSIDE<br>COMMERCIAL PRODUCTION.</h2>
-    <div class="proof-layout">
-      <div class="shoot-board reveal">
-        <div class="shoot-head">A COMMERCIAL SHOOT</div>
-        <h3>Brief không kết thúc ở Camera.</h3>
-        <div class="shoot-row"><span>09:00</span><b>BRIEF</b></div>
-        <div class="shoot-row"><span>10:00</span><b>LIGHT SETUP</b></div>
-        <div class="shoot-row"><span>11:20</span><b>CAMERA READY</b></div>
-        <div class="shoot-row"><span>13:40</span><b>TALENT / COVERAGE</b></div>
-        <div class="shoot-row"><span>16:00</span><b>DATA INGEST</b></div>
-        <div class="shoot-row"><span>NEXT DAY</span><b>EDIT / QC</b></div>
+    <div class="reality-head reveal">
+      <div>
+        <div class="kicker orange">Built from Commercial Production</div>
+        <h2 class="display">MỘT JOB THẬT<br>KHÔNG BẮT ĐẦU<br>VÀ KẾT THÚC Ở CAMERA.</h2>
       </div>
-      <div class="proof-side">
-        <div class="proof-note reveal"><em>HANDS-ON</em><b>Không chỉ xem demo.</b><p>Phải tự làm, nhận feedback và rework.</p></div>
-        <div class="proof-note reveal"><em>EQUIPMENT ACCESS</em><b>Gear là công cụ học.</b><p>Không phải điều kiện đầu vào.</p></div>
-        <div class="proof-note reveal"><em>REAL PRODUCTION EXPOSURE</em><b>Có điều kiện.</b><p>Chỉ triển khai khi phù hợp về client, supervision, IP, safety và legal arrangement.</p></div>
+      <p class="lead">Một production đi qua nhiều quyết định trước, trong và sau lúc bấm máy. Đây là logic chương trình dùng để đào tạo người học.</p>
+    </div>
+
+    <div class="reality-layout">
+      <div class="timeline reveal">
+        <div class="time-row"><time>09:00</time><div><strong>BRIEF</strong><p>Hiểu mục tiêu, deliverable và constraint.</p></div></div>
+        <div class="time-row"><time>10:00</time><div><strong>PRE-PRODUCTION</strong><p>Shot list, equipment, lighting, talent, location.</p></div></div>
+        <div class="time-row"><time>11:20</time><div><strong>CAMERA READY</strong><p>Kiểm tra setup trước khi bắt đầu shoot.</p></div></div>
+        <div class="time-row"><time>13:40</time><div><strong>PRODUCTION</strong><p>Coverage, communication và problem solving.</p></div></div>
+        <div class="time-row"><time>16:00</time><div><strong>DATA</strong><p>Ingest, backup, naming và kiểm tra dữ liệu.</p></div></div>
+        <div class="time-row"><time>NEXT</time><div><strong>POST / QC / DELIVERY</strong><p>Edit, retouch, feedback, versioning và final delivery.</p></div></div>
+
+        <div class="proof-row">
+          <div class="proof-block"><small>HANDS-ON</small><b>Không chỉ xem demo.</b><p>Bạn phải tự thực hiện.</p></div>
+          <div class="proof-block"><small>FEEDBACK</small><b>Output chưa đạt sẽ sửa lại.</b><p>Review → rework → pass.</p></div>
+          <div class="proof-block"><small>STANDARD</small><b>Output phải dùng được.</b><p>Không chỉ “đẹp theo cảm giác”.</p></div>
+        </div>
+      </div>
+
+      <div class="reality-gallery reveal" aria-label="Commercial production reference work">
+        <figure class="media-tile tall">
+          <img src="https://drive.google.com/thumbnail?id=1zXJMZoiocczJf45kePNLG0KhQj1V_XfX&sz=w1600" alt="Lifestyle tại Hoiana Resort do Hang Đôi Production thực hiện" loading="lazy">
+          <figcaption class="media-caption">HOSPITALITY / HOIANA · COMMERCIAL REFERENCE</figcaption>
+        </figure>
+        <figure class="media-tile short">
+          <img src="https://drive.google.com/thumbnail?id=1PyQ-jYphGE3mm59Aqh2MucNIr7A9k-ZD&sz=w1600" alt="F&B concept Làng Chài do Hang Đôi Production thực hiện" loading="lazy">
+          <figcaption class="media-caption">F&B / LÀNG CHÀI</figcaption>
+        </figure>
+        <figure class="media-tile short">
+          <img src="https://drive.google.com/thumbnail?id=1Y7iqjyIfKY2Di6l3JvjOBCWjKCNAoaUG&sz=w1600" alt="Product production Dustgo do Hang Đôi Production thực hiện" loading="lazy">
+          <figcaption class="media-caption">PRODUCT / DUSTGO</figcaption>
+        </figure>
       </div>
     </div>
   </div>
 </section>
 
-<section id="system" class="curriculum">
+<section id="system" class="section curriculum">
   <div class="wrap">
-    <div class="eyebrow">4 months / 384h planning frame</div>
-    <h2 class="reveal">MỘT WORKFLOW.<br>BỐN PHASE.</h2>
+    <div class="curriculum-head reveal">
+      <div>
+        <div class="kicker cobalt">4 months / 4 phases</div>
+        <h2 class="display">MỘT WORKFLOW.<br>BỐN GIAI ĐOẠN.</h2>
+      </div>
+      <p class="curriculum-note">Không đo tiến bộ bằng số buổi đã ngồi trong lớp. Mỗi phase phải tạo được evidence cụ thể.</p>
+    </div>
+
     <div class="phase-list">
-      <div class="phase reveal">
+      <article class="phase reveal">
         <div class="phase-no">01</div>
-        <div class="phase-main"><b>CONTROL THE TOOLS</b><small>Outcome / Technical foundation</small></div>
-        <div class="phase-col"><small>Practice</small><p>Camera · Lens · Light · Audio · Grip · Data</p></div>
-        <div class="phase-col"><small>Evidence</small><p><b>Technical Assignment</b></p></div>
-      </div>
-      <div class="phase reveal">
+        <div class="phase-main"><h3>CONTROL THE TOOLS</h3><small>Outcome / Technical foundation</small></div>
+        <div class="phase-col"><small>Practice</small><p>Camera · Lens · Exposure · Focus · Lighting · Audio · Grip · Gimbal · Data workflow</p></div>
+        <div class="phase-col"><small>Evidence</small><p><strong>Technical Assignment</strong></p></div>
+      </article>
+      <article class="phase reveal">
         <div class="phase-no">02</div>
-        <div class="phase-main"><b>MAKE COMMERCIAL IMAGES</b><small>Outcome / Commercial execution</small></div>
-        <div class="phase-col"><small>Practice</small><p>F&B · Product · Hospitality · People · Video</p></div>
-        <div class="phase-col"><small>Evidence</small><p><b>Commercial Brief</b></p></div>
-      </div>
-      <div class="phase reveal">
+        <div class="phase-main"><h3>MAKE COMMERCIAL IMAGES</h3><small>Outcome / Commercial execution</small></div>
+        <div class="phase-col"><small>Practice</small><p>F&B · Product · Hospitality · People · Lifestyle · Photography · Video · Talent direction</p></div>
+        <div class="phase-col"><small>Evidence</small><p><strong>Commercial Assignment</strong></p></div>
+      </article>
+      <article class="phase reveal">
         <div class="phase-no">03</div>
-        <div class="phase-main"><b>BUILD THE OUTPUT</b><small>Outcome / Post-production</small></div>
-        <div class="phase-col"><small>Practice</small><p>Select · Retouch · Edit · Sound · Colour · QC</p></div>
-        <div class="phase-col"><small>Evidence</small><p><b>Post Assignment</b></p></div>
-      </div>
-      <div class="phase reveal">
+        <div class="phase-main"><h3>BUILD THE OUTPUT</h3><small>Outcome / Post-production</small></div>
+        <div class="phase-col"><small>Practice</small><p>Select · Retouch · Editing · Sound · Colour · Graphics · Versioning · QC · Delivery</p></div>
+        <div class="phase-col"><small>Evidence</small><p><strong>Post-production Assignment</strong></p></div>
+      </article>
+      <article class="phase reveal">
         <div class="phase-no">04</div>
-        <div class="phase-main"><b>WORK LIKE A PROFESSIONAL</b><small>Outcome / Production Ready</small></div>
-        <div class="phase-col"><small>Practice</small><p>Brief · Pre · Simulation · Problem Solving · Capstone</p></div>
-        <div class="phase-col"><small>Evidence</small><p><b>Capstone + Profile</b></p></div>
+        <div class="phase-main"><h3>WORK LIKE A PROFESSIONAL</h3><small>Outcome / Production Ready</small></div>
+        <div class="phase-col"><small>Practice</small><p>Brief · Research · Moodboard · Shot list · Pre-production · Simulation · Problem solving · Capstone</p></div>
+        <div class="phase-col"><small>Evidence</small><p><strong>Capstone + Competency Profile</strong></p></div>
+      </article>
+    </div>
+
+    <div class="loop reveal">
+      <span>LEARN</span><span>PRACTICE</span><span>FAIL</span><span>REVIEW</span><span>REWORK</span><span>PRODUCE</span><span>PASS STANDARD</span>
+    </div>
+  </div>
+</section>
+
+<section class="section learning-loop">
+  <div class="wrap learning-grid">
+    <div class="reveal">
+      <div class="kicker inverse">How you learn</div>
+      <h2 class="display">KHÔNG PHẢI<br>HỌC → THI → XONG.</h2>
+      <p class="learning-note">Trong production, phải sửa lại không đồng nghĩa thất bại. Khả năng biến feedback thành output tốt hơn là một phần của năng lực nghề nghiệp.</p>
+    </div>
+    <div class="learning-steps reveal">
+      <div class="learning-step"><small>01</small><b>LEARN</b><span>Understand</span></div>
+      <div class="learning-step"><small>02</small><b>PRACTICE</b><span>Try it</span></div>
+      <div class="learning-step"><small>03</small><b>FAIL</b><span>See the gap</span></div>
+      <div class="learning-step"><small>04</small><b>REVIEW</b><span>Get feedback</span></div>
+      <div class="learning-step rework"><small>05</small><b>REWORK</b><span>Fix the output</span></div>
+      <div class="learning-step"><small>06</small><b>PRODUCE</b><span>Deliver again</span></div>
+      <div class="learning-step"><small>07</small><b>PASS STANDARD</b><span>Evidence</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section practice">
+  <div class="wrap">
+    <div class="practice-head reveal">
+      <div>
+        <div class="kicker orange">What you actually do</div>
+        <h2 class="display">BẠN KHÔNG CHỈ<br>“ĐƯỢC HỌC”.<br>BẠN PHẢI LÀM.</h2>
       </div>
+      <p class="lead">Brief, setup, coverage, data, post, review và delivery đều là một phần của learning experience.</p>
     </div>
-    <div class="loop reveal"><span>LEARN</span><span>PRACTICE</span><span>FAIL</span><span>REVIEW</span><span>REWORK</span><span>PRODUCE</span><span>PASS STANDARD</span></div>
+
+    <div class="practice-grid reveal">
+      <div class="practice-card one">
+        <img src="https://drive.google.com/thumbnail?id=17wY57k3NEp1c9kYiFIyQ7Dc4D83RJtGl&sz=w1600" alt="Hospitality lifestyle reference by Hang Đôi Production" loading="lazy">
+        <span class="label">01 / BRIEF → SHOOT</span>
+      </div>
+      <div class="practice-card two"><div class="practice-text"><small>02 / PRE</small><div><strong>RESEARCH<br>MOODBOARD<br>SHOT LIST</strong><p>Chuẩn bị trước khi chạm vào camera.</p></div></div></div>
+      <div class="practice-card three">
+        <img src="https://drive.google.com/thumbnail?id=1FZ2aHa-simq1liZxjXLZbzeI-DErFEYE&sz=w1600" alt="F&B production reference by Hang Đôi Production" loading="lazy">
+        <span class="label">03 / COVERAGE</span>
+      </div>
+      <div class="practice-card four"><div class="practice-text"><small>04 / DATA</small><div><strong>INGEST<br>BACKUP<br>NAMING</strong><p>Không để một production tốt chết vì data workflow.</p></div></div></div>
+      <div class="practice-card five">
+        <img src="https://drive.google.com/thumbnail?id=1pXvdCfAIFULtsl9krz9eqfkjQGB66tSm&sz=w1600" alt="F&B lifestyle reference at Hilton Garden Inn by Hang Đôi Production" loading="lazy">
+        <span class="label">05 / POST → FINAL</span>
+      </div>
+      <div class="practice-card six"><div class="practice-text"><small>06 / REVIEW</small><div><strong>FEEDBACK<br>REWORK<br>QC</strong><p>Chất lượng cuối cùng quan trọng hơn lần làm đầu tiên.</p></div></div></div>
+    </div>
   </div>
 </section>
 
-<section id="roles" class="roles">
-  <div class="wrap">
-    <div class="eyebrow">Career / Production role map</div>
-    <h2 class="reveal">BẠN HỌC ĐỂ<br>ĐỨNG Ở ĐÂU TRONG<br>PRODUCTION?</h2>
-    <div class="role-root reveal">MEDIA / COMMON FOUNDATION</div>
-    <div class="role-map">
-      <div class="role-col reveal"><strong>PHOTO</strong><div class="role-path">
-        <div class="role-line"><small>01</small><span>Photo Assistant</span></div><div class="role-line"><small>02</small><span>2nd Photographer</span></div><div class="role-line"><small>03</small><span>Photographer</span></div><div class="role-line"><small>04</small><span>Lead Photographer</span></div><div class="role-line"><small>05</small><span>Senior Commercial Photographer</span></div>
-      </div></div>
-      <div class="role-col reveal"><strong>CAMERA</strong><div class="role-path">
-        <div class="role-line"><small>01</small><span>Camera Assistant</span></div><div class="role-line"><small>02</small><span>Camera B / Gimbal</span></div><div class="role-line"><small>03</small><span>Camera Operator</span></div><div class="role-line"><small>04</small><span>Lead Camera</span></div><div class="role-line"><small>05</small><span>DOP</span></div>
-      </div></div>
-      <div class="role-col reveal"><strong>POST</strong><div class="role-path">
-        <div class="role-line"><small>01</small><span>Edit Assistant</span></div><div class="role-line"><small>02</small><span>Junior Editor</span></div><div class="role-line"><small>03</small><span>Editor</span></div><div class="role-line"><small>04</small><span>Lead Editor</span></div><div class="role-line"><small>05</small><span>Post-production Supervisor</span></div>
-      </div></div>
-      <div class="role-col reveal"><strong>HYBRID</strong><div class="role-path">
-        <div class="role-line"><small>01</small><span>Media Assistant</span></div><div class="role-line"><small>02</small><span>Junior Media</span></div><div class="role-line"><small>03</small><span>Media Specialist</span></div><div class="role-line"><small>04</small><span>Senior Media</span></div><div class="role-line"><small>05</small><span>Media Lead</span></div>
-      </div></div>
+<section id="roles" class="section roles">
+  <div class="wrap roles-layout">
+    <div class="roles-intro reveal">
+      <div class="kicker">Where do you fit in Production?</div>
+      <h2 class="display">MEDIA KHÔNG PHẢI<br>MỘT VỊ TRÍ<br>DUY NHẤT.</h2>
+      <p class="lead">Common Foundation trước. Sau đó xác định Primary Track, Secondary Skill và starting role phù hợp.</p>
+      <div class="role-root">MEDIA / COMMON FOUNDATION</div>
     </div>
-    <div class="role-note">Role thật phụ thuộc competency × responsibility × production complexity. Đây là career map, không phải chức danh tự động sau 4 tháng.</div>
+
+    <div>
+      <div class="role-lanes reveal">
+        <div class="role-lane"><strong>PHOTO</strong><div class="role-path">
+          <div class="role-step"><small>01</small>Photo Assistant</div>
+          <div class="role-step"><small>02</small>2nd Photographer</div>
+          <div class="role-step"><small>03</small>Photographer</div>
+          <div class="role-step"><small>04</small>Lead Photographer</div>
+          <div class="role-step"><small>05</small>Senior Commercial Photographer</div>
+        </div></div>
+        <div class="role-lane"><strong>CAMERA</strong><div class="role-path">
+          <div class="role-step"><small>01</small>Camera Assistant</div>
+          <div class="role-step"><small>02</small>Camera B / Gimbal</div>
+          <div class="role-step"><small>03</small>Camera Operator</div>
+          <div class="role-step"><small>04</small>Lead Camera</div>
+          <div class="role-step"><small>05</small>DOP</div>
+        </div></div>
+        <div class="role-lane"><strong>POST</strong><div class="role-path">
+          <div class="role-step"><small>01</small>Edit Assistant</div>
+          <div class="role-step"><small>02</small>Junior Editor</div>
+          <div class="role-step"><small>03</small>Editor</div>
+          <div class="role-step"><small>04</small>Lead Editor</div>
+          <div class="role-step"><small>05</small>Post-production Supervisor</div>
+        </div></div>
+        <div class="role-lane"><strong>HYBRID</strong><div class="role-path">
+          <div class="role-step"><small>01</small>Media Assistant</div>
+          <div class="role-step"><small>02</small>Junior Media</div>
+          <div class="role-step"><small>03</small>Media Specialist</div>
+          <div class="role-step"><small>04</small>Senior Media</div>
+          <div class="role-step"><small>05</small>Media Lead</div>
+        </div></div>
+      </div>
+      <p class="role-note">Role thực tế phụ thuộc competency, responsibility và độ phức tạp của production. Career map không phải chức danh tự động sau 4 tháng.</p>
+    </div>
   </div>
 </section>
 
-<section class="outputs">
+<section class="section outputs">
   <div class="wrap">
-    <div class="eyebrow light">Output / Evidence</div>
-    <h2 class="reveal">SAU 4 THÁNG,<br>PHẢI CÓ THỨ DÙNG ĐƯỢC.</h2>
-    <div class="output-grid">
-      <div class="output reveal"><small>01</small><div><b>COMMERCIAL PORTFOLIO</b><p>Curated work.</p></div></div>
-      <div class="output reveal"><small>02</small><div><b>CAPSTONE</b><p>Brief → delivery.</p></div></div>
-      <div class="output reveal"><small>03</small><div><b>COMPETENCY PROFILE</b><p>Strength / gap / evidence.</p></div></div>
-      <div class="output reveal"><small>04</small><div><b>PRODUCTION READY RESULT</b><p>Internal competency result.</p></div></div>
-      <div class="output reveal"><small>05</small><div><b>PRIMARY TRACK</b><p>Photo / Video / Post / Hybrid.</p></div></div>
-      <div class="output reveal"><small>06</small><div><b>STARTING ROLE</b><p>Biết nên bắt đầu từ đâu.</p></div></div>
+    <div class="output-head reveal">
+      <div>
+        <div class="kicker cobalt">Output / Evidence</div>
+        <h2 class="display">SAU 4 THÁNG,<br>PHẢI CÓ THỨ<br>DÙNG ĐƯỢC.</h2>
+      </div>
+      <p class="lead">Certificate không phải output chính. Evidence mới cho thấy bạn đã làm được gì.</p>
+    </div>
+
+    <div class="output-grid reveal">
+      <article class="output-card portfolio"><small>01</small><div><strong>COMMERCIAL<br>PORTFOLIO</strong><p>Curated work để bắt đầu bước vào career.</p></div><span class="dot"></span></article>
+      <article class="output-card capstone"><small>02</small><div><strong>CAPSTONE</strong><p>Một project từ brief đến delivery.</p></div></article>
+      <article class="output-card profile"><small>03</small><div><strong>COMPETENCY PROFILE</strong><p>Strength / gap / evidence.</p></div></article>
+      <article class="output-card ready"><small>04</small><div><strong>PRODUCTION READY RESULT</strong><p>Internal competency result theo standard chương trình.</p></div></article>
+      <article class="output-card track"><small>05</small><div><strong>PRIMARY + SECONDARY SKILL</strong><p>Biết track nào nên tập trung phát triển.</p></div></article>
+      <article class="output-card start"><small>06</small><div><strong>CAREER STARTING POINT</strong><p>Biết mình nên bắt đầu ở role nào.</p></div></article>
     </div>
   </div>
 </section>
 
 <section class="career">
   <div class="wrap">
-    <div class="career-row reveal">
-      <div class="career-head"><small>CAREER REFERENCE AT HANG ĐÔI PRODUCTION</small><b>Competency → Responsibility → Performance</b></div>
+    <div class="career-grid reveal">
+      <div class="career-head"><small>CAREER REFERENCE AT HANG ĐÔI PRODUCTION</small><strong>Competency → Responsibility → Performance</strong></div>
       <div class="career-level"><small>FRESHER</small><strong>8M+</strong></div>
       <div class="career-level"><small>JUNIOR</small><strong>12M+</strong></div>
       <div class="career-level"><small>MID</small><strong>20M+</strong></div>
       <div class="career-level"><small>SENIOR</small><strong>30M+</strong></div>
     </div>
-    <p class="career-note">Career-income reference hiện tại của Hang Đôi Production, không phải guaranteed salary và không tự động đạt được sau chương trình.</p>
+    <p class="career-note">Đây là career-income reference hiện tại trong hệ Hang Đôi Production, không phải mức thu nhập cam kết sau chương trình.</p>
   </div>
 </section>
 
-<section id="tuition" class="tuition">
+<section id="tuition" class="section tuition">
   <div class="wrap">
-    <div class="eyebrow">Tuition / Value</div>
-    <h2 class="reveal">40M KHÔNG PHẢI<br>ĐỂ MUA MỘT CÔNG VIỆC.</h2>
+    <div class="tuition-head reveal">
+      <div>
+        <div class="kicker">Tuition / Value</div>
+        <h2 class="display">40M KHÔNG PHẢI<br>ĐỂ MUA MỘT<br>CÔNG VIỆC.</h2>
+      </div>
+      <p class="lead">Nếu mục tiêu chỉ là học Premiere, Lightroom hoặc camera basics, có nhiều lựa chọn rẻ hơn.</p>
+    </div>
+
     <div class="tuition-layout">
-      <div class="price-panel reveal">
-        <div><small>PLANNED TUITION</small><div class="price">40M</div><b>4 THÁNG / 16 TUẦN</b></div>
-        <p><b>Hiện chưa thu phí.</b><br>Formal Enrollment / Payment chỉ mở sau khi legal & enrollment documents được phê duyệt.</p>
+      <div class="price-block reveal">
+        <div><small>PLANNED TUITION</small><div class="price">40M</div><strong>4 THÁNG / 16 TUẦN</strong></div>
+        <p><strong>Hiện chưa thu phí.</strong><br>Formal Enrollment / Payment chỉ mở sau khi điều kiện pháp lý và enrollment được phê duyệt.</p>
       </div>
       <div class="value-stack">
-        <div class="value-no reveal"><small>THIS IS TOO EXPENSIVE IF YOU ONLY NEED</small><b>Premiere tutorial · Camera basics · YouTube learning</b></div>
-        <div class="value-yes reveal"><small>THIS IS WHAT THE 40M IS BUILT FOR</small><b>STRUCTURE / MENTORSHIP / EQUIPMENT / PRACTICE / COMMERCIAL WORKFLOW / FEEDBACK / REWORK / PORTFOLIO / CAPSTONE / CAREER DIRECTION</b></div>
-        <div class="separation reveal">TUITION ≠ PAYMENT FOR A JOB</div>
+        <div class="value-block no reveal">
+          <small>THIS IS TOO EXPENSIVE IF YOU ONLY NEED</small>
+          <h3>Premiere tutorial · Camera basics · YouTube learning · Một vài workshop kỹ thuật.</h3>
+        </div>
+        <div class="value-block yes reveal">
+          <small>THIS IS WHAT THE 40M IS BUILT FOR</small>
+          <div class="value-list">
+            <span>STRUCTURE</span><span>MENTORSHIP</span><span>EQUIPMENT ACCESS</span><span>PRACTICE</span>
+            <span>COMMERCIAL WORKFLOW</span><span>FEEDBACK</span><span>REWORK</span><span>PORTFOLIO</span>
+            <span>CAPSTONE</span><span>CAREER DIRECTION</span>
+          </div>
+        </div>
+        <div class="tuition-separation reveal">TUITION ≠ PAYMENT FOR A JOB</div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="fit">
+<section class="section fit">
   <div class="wrap">
-    <div class="eyebrow">Fit check</div>
-    <h2 class="reveal">KHÔNG PHẢI AI CŨNG<br>CẦN CHƯƠNG TRÌNH NÀY.</h2>
+    <div class="kicker orange">Fit check</div>
+    <h2 class="display reveal">KHÔNG PHẢI AI CŨNG<br>CẦN CHƯƠNG TRÌNH NÀY.</h2>
+
     <div class="fit-grid">
       <div class="fit-panel good reveal">
         <h3>CÓ THỂ PHÙ HỢP NẾU…</h3>
-        <div class="fit-row"><small>01</small><span>Bạn thích visual nhưng chưa biết bắt đầu từ đâu.</span></div>
-        <div class="fit-row"><small>02</small><span>Bạn tự học nhưng kiến thức đang rời rạc.</span></div>
+        <div class="fit-row"><small>01</small><span>Bạn thích visual nhưng chưa biết bắt đầu nghề từ đâu.</span></div>
+        <div class="fit-row"><small>02</small><span>Bạn đã tự học nhưng kiến thức đang rời rạc.</span></div>
         <div class="fit-row"><small>03</small><span>Bạn quay/edit được nhưng thiếu commercial workflow.</span></div>
-        <div class="fit-row"><small>04</small><span>Bạn muốn tìm Photo / Video / Post / Hybrid.</span></div>
-        <div class="fit-row"><small>05</small><span>Bạn chấp nhận feedback và rework.</span></div>
+        <div class="fit-row"><small>04</small><span>Bạn muốn biết mình hợp Photo, Video, Post hay Hybrid.</span></div>
+        <div class="fit-row"><small>05</small><span>Bạn muốn môi trường có feedback và tiêu chuẩn đầu ra.</span></div>
+        <div class="fit-row"><small>06</small><span>Bạn chấp nhận rework để output tốt hơn.</span></div>
       </div>
       <div class="fit-panel bad reveal">
         <h3>CÓ THỂ KHÔNG PHÙ HỢP NẾU…</h3>
-        <div class="fit-row"><small>01</small><span>Bạn chỉ cần software tutorial nhanh.</span></div>
-        <div class="fit-row"><small>02</small><span>Bạn kỳ vọng đóng học phí là được nhận việc.</span></div>
-        <div class="fit-row"><small>03</small><span>Bạn chỉ cần certificate mà không muốn practice.</span></div>
-        <div class="fit-row"><small>04</small><span>Bạn không muốn bị review/rework.</span></div>
-        <div class="fit-row"><small>05</small><span>Bạn muốn một lời hứa thu nhập cố định.</span></div>
+        <div class="fit-row"><small>01</small><span>Bạn chỉ muốn học nhanh một phần mềm.</span></div>
+        <div class="fit-row"><small>02</small><span>Bạn chỉ cần certificate.</span></div>
+        <div class="fit-row"><small>03</small><span>Bạn kỳ vọng đóng học phí đồng nghĩa có việc.</span></div>
+        <div class="fit-row"><small>04</small><span>Bạn không muốn làm việc theo deadline.</span></div>
+        <div class="fit-row"><small>05</small><span>Bạn không thích nhận feedback.</span></div>
+        <div class="fit-row"><small>06</small><span>Bạn kỳ vọng trở thành Senior sau 4 tháng.</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="intake">
+<section class="section intake">
   <div class="wrap">
-    <div class="eyebrow">Current intake</div>
-    <h2 class="reveal">BÂY GIỜ CHỈ CẦN<br>REGISTER INTEREST.</h2>
-    <div class="intake-grid">
-      <div class="intake-step reveal"><small>NOW · 01</small><b>REGISTER INTEREST</b><p>Background cơ bản + career interest. Không thu phí.</p></div>
-      <div class="intake-step locked reveal"><small>LOCKED · 02</small><b>FORMAL APPLICATION</b><p>Chưa mở. Sẽ có thông báo chính thức.</p></div>
-      <div class="intake-step locked reveal"><small>LOCKED · 03</small><b>SELECTION</b><p>Potential, learning, execution, behaviour, career intent.</p></div>
-      <div class="intake-step locked reveal"><small>LOCKED · 04</small><b>ADMISSION / ENROLLMENT</b><p>Chỉ mở sau legal & enrollment approval.</p></div>
+    <div class="kicker">Cohort 01 / Current status</div>
+    <h2 class="display reveal">HIỆN TẠI CHỈ MỞ<br>REGISTER INTEREST.</h2>
+
+    <div class="intake-grid reveal">
+      <div class="intake-step now"><small>NOW · 01</small><div><b>REGISTER INTEREST</b><p>Để lại background và career interest. Không thu phí.</p></div></div>
+      <div class="intake-step"><small>LOCKED · 02</small><div><b>FORMAL APPLICATION</b><p>Chưa mở. Sẽ có thông báo chính thức.</p></div></div>
+      <div class="intake-step"><small>LOCKED · 03</small><div><b>SELECTION</b><p>Chỉ mở khi program/legal readiness được xác nhận.</p></div></div>
+      <div class="intake-step"><small>LOCKED · 04</small><div><b>ADMISSION / ENROLLMENT</b><p>Chưa thu phí hoặc giữ chỗ ở thời điểm này.</p></div></div>
+    </div>
+
+    <div class="intake-cta reveal">
+      <p>Register Interest không phải Formal Application hay Admission.</p>
+      <a class="btn btn-primary" href="/media-career-program/apply/">REGISTER INTEREST →</a>
     </div>
   </div>
 </section>
 
-<section id="faq" class="faq">
-  <div class="wrap faq-inner">
-    <div class="eyebrow">FAQ</div>
-    <h2 class="reveal">NHỮNG CÂU CẦN RÕ<br>TRƯỚC KHI REGISTER INTEREST.</h2>
-
-    <details open><summary>Chưa từng cầm camera có đăng ký quan tâm được không?</summary><p>Có. Register Interest không yêu cầu kinh nghiệm và không yêu cầu sở hữu camera. Formal Selection sau này mới đánh giá mức độ phù hợp khi được mở.</p></details>
-    <details><summary>Có cần portfolio không?</summary><p>Không bắt buộc ở giai đoạn Register Interest. Bạn có thể gửi portfolio nếu đã có để Hang Đôi hiểu background hiện tại.</p></details>
-    <details><summary>Học xong có chắc chắn được nhận vào Hang Đôi Production không?</summary><p>Không. Academy và Production là hai quan hệ riêng. Nếu sau này có tuyển dụng, Production sẽ xét competency, role fit, headcount, conduct và điều kiện tuyển dụng tại thời điểm đó.</p></details>
-    <details><summary>Fresher 8M+, Junior 12M+, Mid 20M+, Senior 30M+ nghĩa là gì?</summary><p>Đây là career-income reference hiện tại trong hệ Production của Hang Đôi để minh họa hướng phát triển. Không phải mức lương cam kết sau chương trình.</p></details>
-    <details><summary>40 triệu đã phải đóng bây giờ chưa?</summary><p>Chưa. Cohort 01 hiện chỉ mở Register Interest và không thu phí ở bước này. Formal Enrollment/Payment chỉ mở sau khi các điều khoản pháp lý, enrollment và payment được phê duyệt.</p></details>
-    <details><summary>Có phải ai có 40 triệu cũng được học?</summary><p>Không nên hiểu như vậy. Khi Formal Application/Selection được mở, chương trình dự kiến vẫn có selection để bảo đảm cohort phù hợp với learning model và production environment.</p></details>
-    <details><summary>Lịch học và ngày bắt đầu khi nào?</summary><p>Chưa công bố chính thức. Register Interest giúp Hang Đôi thông báo khi lịch, Formal Application và Cohort 01 launch được chốt.</p></details>
+<section id="faq" class="section faq">
+  <div class="wrap faq-layout">
+    <div class="faq-side reveal">
+      <div class="kicker cobalt">FAQ</div>
+      <h2 class="display">NHỮNG CÂU<br>CẦN RÕ TRƯỚC.</h2>
+    </div>
+    <div class="faq-list">
+      <details open><summary>Chưa từng học Media có phù hợp không?</summary><p>Có thể. Register Interest không yêu cầu kinh nghiệm chuyên nghiệp. Chương trình được thiết kế cho người muốn nghiêm túc bước vào nghề.</p></details>
+      <details><summary>Không có camera có tham gia được không?</summary><p>Không cần sở hữu camera để Register Interest. Equipment access là một phần được thiết kế trong learning model.</p></details>
+      <details><summary>Có cần portfolio không?</summary><p>Không bắt buộc ở bước Register Interest. Nếu đã có, bạn có thể gửi để team hiểu background hiện tại.</p></details>
+      <details><summary>Học xong có chắc chắn được nhận vào Hang Đôi Production không?</summary><p>Không. Academy và Production là hai quan hệ riêng. Việc tuyển dụng sau này phụ thuộc competency, role fit, nhu cầu nhân sự và điều kiện tuyển dụng tại thời điểm đó.</p></details>
+      <details><summary>40M đã phải đóng bây giờ chưa?</summary><p>Chưa. Cohort 01 hiện chỉ mở Register Interest và chưa thu phí.</p></details>
+      <details><summary>Fresher 8M+, Junior 12M+… có phải thu nhập sau chương trình không?</summary><p>Không. Đây là career reference hiện tại của hệ Production để minh họa đường phát triển nghề nghiệp.</p></details>
+      <details><summary>Khi nào mở Formal Application?</summary><p>Sẽ có thông báo riêng khi chương trình hoàn tất các điều kiện cần thiết để mở tuyển sinh chính thức.</p></details>
+    </div>
   </div>
 </section>
 
-<section class="final">
+<section class="section-loose final-cta">
   <div class="wrap final-grid">
-    <div>
-      <div class="eyebrow light">Cohort 01 / Interest List</div>
-      <h2 class="reveal">NẾU BẠN MUỐN ĐI MEDIA NHƯ MỘT NGHỀ, BẮT ĐẦU BẰNG VIỆC HIỂU MÌNH ĐANG THIẾU GÌ.</h2>
-      <p>Register Interest mất khoảng 3–5 phút. Không thanh toán, không cần camera, không cần portfolio.</p>
+    <span class="final-dot" aria-hidden="true"></span>
+    <div class="reveal">
+      <div class="kicker inverse">Cohort 01 / Interest List</div>
+      <h2 class="poster-lg">NẾU BẠN MUỐN<br>BƯỚC VÀO MEDIA<br>NHƯ MỘT NGHỀ,<br><span class="yellow-mark">BẮT ĐẦU Ở ĐÂY.</span></h2>
     </div>
-    <div class="final-action"><a class="btn btn-yellow" href="/media-career-program/apply/">REGISTER INTEREST →</a></div>
+    <div class="final-action reveal">
+      <p>Register Interest mất khoảng 3–5 phút. Không thanh toán. Không cần camera. Không cần portfolio.</p>
+      <a class="btn btn-poster" href="/media-career-program/apply/">REGISTER INTEREST →</a>
+      <span class="aca-sticker final-sticker">Interest only</span>
+    </div>
   </div>
 </section>
 </main>
 
 <footer>
-  <div class="wrap foot">
-    <div class="foot-brand">HANG ĐÔI / ACADEMY</div>
-    <small>MEDIA CAREER PROGRAM · ĐÀ NẴNG<br>CURRENT PUBLIC MODE: INTEREST ONLY</small>
+  <div class="wrap footer-row">
+    <img class="footer-logo" src="/logo-academy.svg" alt="Hang Đôi Academy">
+    <div class="footer-note">MEDIA CAREER PROGRAM · ĐÀ NẴNG<br>CURRENT PUBLIC MODE: INTEREST ONLY</div>
   </div>
 </footer>
 
-<div class="mobile-cta"><a class="btn btn-yellow" href="/media-career-program/apply/">REGISTER INTEREST →</a></div>
+<div class="mobile-cta"><a class="btn btn-primary" href="/media-career-program/apply/">REGISTER INTEREST →</a></div>
 
 <script>
 (()=>{
@@ -584,7 +774,9 @@ footer{background:var(--ink);color:#fff;padding:34px 0}
   let sid=sessionStorage.getItem("mcp_sid");
   if(!sid){sid="mcp_"+crypto.randomUUID();sessionStorage.setItem("mcp_sid",sid)}
   fetch(API+"/v1/events",{method:"POST",headers:{"Content-Type":"application/json"},keepalive:true,body:JSON.stringify({
-    eventName:"landing_view",sessionId:sid,path:location.pathname,
+    eventName:"landing_view",
+    sessionId:sid,
+    path:location.pathname,
     utmSource:sessionStorage.getItem("utm_source")||"",
     utmMedium:sessionStorage.getItem("utm_medium")||"",
     utmCampaign:sessionStorage.getItem("utm_campaign")||"media_career_cohort01",
@@ -592,16 +784,17 @@ footer{background:var(--ink);color:#fff;padding:34px 0}
     referrer:document.referrer||""
   })}).catch(()=>{});
 
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(reduce){document.querySelectorAll(".reveal").forEach(el=>el.classList.add("on"));return}
   const io=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        e.target.classList.add("on");
-        if(e.target.classList.contains("phase")) e.target.classList.add("on");
-        io.unobserve(e.target);
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add("on");
+        io.unobserve(entry.target);
       }
     });
-  },{threshold:.12,rootMargin:"0px 0px -5% 0px"});
-  document.querySelectorAll(".reveal,.phase").forEach(el=>io.observe(el));
+  },{threshold:.1,rootMargin:"0px 0px -5% 0px"});
+  document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
 })();
 </script>
 </body>
