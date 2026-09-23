@@ -49,6 +49,8 @@ jobs:
         run: |
           rm -rf _site
           mkdir -p _site
+          mkdir -p _site/assets
+          cp -R site/assets/. _site/assets/
 
           cp site/logo-academy.svg _site/logo-academy.svg
           cp site/academy-tokens.css _site/academy-tokens.css
@@ -297,6 +299,10 @@ jobs:
           test "$(tr -d '\r\n' < _site/CNAME)" = "academy.hangdoiproduction.com"
           test -s _site/logo-academy.svg
           test -s _site/academy-tokens.css
+          test -s _site/assets/media-career/roadmap-01-thiet-bi.png
+          test -s _site/assets/media-career/roadmap-02-yeu-cau.png
+          test -s _site/assets/media-career/roadmap-03-san-pham.png
+          test -s _site/assets/media-career/roadmap-04-du-an.png
           test -s _site/favicon.svg
           test -s _site/ui-fixes.js
           test -s _site/phase2.css
