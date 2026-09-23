@@ -352,7 +352,7 @@ img{display:block;max-width:100%}
   font-weight:950;
   line-height:1;
   letter-spacing:-.09em;
-  color:rgba(11,75,45,.045);
+  color:rgba(11,75,45,.035);
   pointer-events:none;
 }
 .reality .wrap{position:relative;z-index:1}
@@ -370,7 +370,7 @@ img{display:block;max-width:100%}
   display:flex;
   align-items:center;
   gap:10px;
-  font-size:11px;
+  font-size:12px;
   font-weight:950;
   line-height:1.35;
   letter-spacing:.11em;
@@ -939,7 +939,7 @@ img{display:block;max-width:100%}
   position:absolute;
   right:-.03em;
   top:-.22em;
-  font-size:clamp(190px,22vw,360px);
+  font-size:clamp(180px,20vw,320px);
   font-weight:950;
   line-height:1;
   letter-spacing:-.09em;
@@ -1039,9 +1039,19 @@ img{display:block;max-width:100%}
 .program4-progress-item:nth-child(2) .program4-progress-dot{background:#edf6ef}
 .program4-progress-item:nth-child(3) .program4-progress-dot{background:#eef1fb}
 .program4-progress-item:nth-child(4) .program4-progress-dot{background:var(--aca-color-signal-yellow)}
+.program4-progress-item strong{
+  display:block;
+  margin-top:2px;
+  font-size:11px;
+  line-height:1.1;
+  font-weight:950;
+  letter-spacing:.06em;
+  color:#0b2418;
+}
 .program4-progress-item span{
   display:block;
-  font-size:9px;
+  margin-top:4px;
+  font-size:8px;
   line-height:1.25;
   font-weight:900;
   letter-spacing:.08em;
@@ -1071,7 +1081,7 @@ img{display:block;max-width:100%}
 }
 .program4-card:nth-child(2){--month-accent:#4edb76}
 .program4-card:nth-child(3){--month-accent:#4969d6}
-.program4-card:nth-child(4){--month-accent:#f2d43d;background:#10281c;color:#fff}
+.program4-card:nth-child(4){--month-accent:#f2d43d;background:#153323;color:#fff}
 .program4-card:hover{
   transform:translateY(-5px);
   box-shadow:0 20px 44px rgba(11,36,24,.09);
@@ -1153,15 +1163,16 @@ img{display:block;max-width:100%}
 .program4-card:nth-child(4) .program4-block p{color:#bfd0c5}
 .program4-proof{
   align-self:start;
-  padding:12px 13px;
+  padding:13px 14px;
+  border:1px solid rgba(11,106,63,.12);
   border-radius:14px;
   background:#eff5ef;
 }
-.program4-card:nth-child(3) .program4-proof{background:#eef1fb}
-.program4-card:nth-child(4) .program4-proof{background:rgba(255,255,255,.08)}
+.program4-card:nth-child(3) .program4-proof{background:#eef1fb;border-color:rgba(73,105,214,.14)}
+.program4-card:nth-child(4) .program4-proof{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.10)}
 .program4-proof strong{
   display:block;
-  font-size:13px;
+  font-size:13.5px;
   line-height:1.28;
   color:#0b2418;
 }
@@ -2069,20 +2080,20 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
   <div class="wrap">
     <div class="program4-head reveal">
       <div class="program4-meta">
-        <div class="program4-kicker">04 · CẤU TRÚC CHƯƠNG TRÌNH</div>
-        <p class="program4-index">4 THÁNG · 4 GIAI ĐOẠN · MỖI GIAI ĐOẠN CÓ MINH CHỨNG</p>
+        <div class="program4-kicker">04 · CHƯƠNG TRÌNH 4 THÁNG</div>
+        <p class="program4-index">4 GIAI ĐOẠN · 4 MINH CHỨNG</p>
       </div>
       <div>
-        <h2 class="program4-title">MỖI THÁNG<br>PHẢI CÓ <span class="accent">MỘT THỨ</span><br>LÀM ĐƯỢC.</h2>
-        <p class="program4-lead">Không đo tiến bộ bằng số buổi đã ngồi trong lớp. <strong>Mỗi giai đoạn phải để lại một đầu ra nhìn thấy được</strong> — từ nền tảng kỹ thuật đến một đồ án hoàn chỉnh.</p>
+        <h2 class="program4-title">MỖI THÁNG,<br>PHẢI LÀM ĐƯỢC<br><span class="accent">MỘT THỨ.</span></h2>
+        <p class="program4-lead">Không đo tiến bộ bằng số buổi học. <strong>Mỗi tháng phải kết thúc bằng một năng lực có thể chứng minh bằng sản phẩm.</strong></p>
       </div>
     </div>
 
     <div class="program4-progress reveal" aria-label="Tiến trình 4 tháng">
-      <div class="program4-progress-item"><span class="program4-progress-dot">01</span><span>Nền tảng</span></div>
-      <div class="program4-progress-item"><span class="program4-progress-dot">02</span><span>Thương mại</span></div>
-      <div class="program4-progress-item"><span class="program4-progress-dot">03</span><span>Hoàn thiện</span></div>
-      <div class="program4-progress-item"><span class="program4-progress-dot">04</span><span>Đi trọn job</span></div>
+      <div class="program4-progress-item"><span class="program4-progress-dot">01</span><strong>TOOL</strong><span>NỀN TẢNG</span></div>
+      <div class="program4-progress-item"><span class="program4-progress-dot">02</span><strong>BRIEF</strong><span>THEO ĐỀ BÀI</span></div>
+      <div class="program4-progress-item"><span class="program4-progress-dot">03</span><strong>OUTPUT</strong><span>HOÀN THIỆN</span></div>
+      <div class="program4-progress-item"><span class="program4-progress-dot">04</span><strong>JOB</strong><span>ĐI TRỌN QUY TRÌNH</span></div>
     </div>
 
     <div class="program4-grid">
@@ -2100,13 +2111,13 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
           </div>
           <div class="program4-block program4-proof">
             <small>Minh chứng</small>
-            <strong>Bài thực hành kỹ thuật</strong>
+            <strong>01 bài thực hành kỹ thuật hoàn chỉnh</strong>
           </div>
         </div>
         <div class="program4-growth">
-          <div><small>Từ</small><b>Biết dùng thiết bị</b></div>
+          <div><small>Trước tháng 01</small><b>Biết dùng thiết bị</b></div>
           <span class="program4-growth-arrow" aria-hidden="true">→</span>
-          <div><small>Mục tiêu</small><b>Tự thiết lập để ghi hình đúng mục tiêu</b></div>
+          <div><small>Sau tháng 01</small><b>Tự thiết lập để ghi hình đúng mục tiêu</b></div>
         </div>
       </article>
 
@@ -2115,7 +2126,7 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
           <span class="program4-month">THÁNG 02 · THƯƠNG MẠI</span>
           <span class="program4-no">02</span>
         </div>
-        <h3>TẠO HÌNH ẢNH THƯƠNG MẠI.</h3>
+        <h3>TẠO ĐẦU RA THEO BRIEF.</h3>
         <span class="program4-result">Kết quả · Thực thi theo đề bài</span>
         <div class="program4-body">
           <div class="program4-block">
@@ -2124,13 +2135,13 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
           </div>
           <div class="program4-block program4-proof">
             <small>Minh chứng</small>
-            <strong>Bài thực hành thương mại</strong>
+            <strong>01 bài thực hành thương mại theo brief</strong>
           </div>
         </div>
         <div class="program4-growth">
-          <div><small>Từ</small><b>Làm từng bài rời rạc</b></div>
+          <div><small>Trước tháng 02</small><b>Làm từng bài rời rạc</b></div>
           <span class="program4-growth-arrow" aria-hidden="true">→</span>
-          <div><small>Mục tiêu</small><b>Tạo đầu ra bám một brief thương mại</b></div>
+          <div><small>Sau tháng 02</small><b>Tạo đầu ra bám một brief thương mại</b></div>
         </div>
       </article>
 
@@ -2148,13 +2159,13 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
           </div>
           <div class="program4-block program4-proof">
             <small>Minh chứng</small>
-            <strong>Bài thực hành hậu kỳ</strong>
+            <strong>01 đầu ra hậu kỳ + bàn giao đúng chuẩn</strong>
           </div>
         </div>
         <div class="program4-growth">
-          <div><small>Từ</small><b>Có ảnh / footage thô</b></div>
+          <div><small>Trước tháng 03</small><b>Có ảnh / footage thô</b></div>
           <span class="program4-growth-arrow" aria-hidden="true">→</span>
-          <div><small>Mục tiêu</small><b>Hoàn thiện, QC và bàn giao đúng phiên bản</b></div>
+          <div><small>Sau tháng 03</small><b>Hoàn thiện, QC và bàn giao đúng phiên bản</b></div>
         </div>
       </article>
 
@@ -2163,7 +2174,7 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
           <span class="program4-month">THÁNG 04 · TÍCH HỢP</span>
           <span class="program4-no">04</span>
         </div>
-        <h3>LÀM VIỆC NHƯ NGƯỜI TRONG NGHỀ.</h3>
+        <h3>ĐI TRỌN MỘT JOB.</h3>
         <span class="program4-result">Kết quả · Sẵn sàng bước vào công việc</span>
         <div class="program4-body">
           <div class="program4-block">
@@ -2176,19 +2187,19 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
           </div>
         </div>
         <div class="program4-growth">
-          <div><small>Từ</small><b>Làm tốt từng phần việc</b></div>
+          <div><small>Trước tháng 04</small><b>Làm tốt từng phần việc</b></div>
           <span class="program4-growth-arrow" aria-hidden="true">→</span>
-          <div><small>Mục tiêu</small><b>Đi qua một quy trình từ brief đến bàn giao</b></div>
+          <div><small>Sau tháng 04</small><b>Đi qua một job từ brief đến bàn giao</b></div>
         </div>
       </article>
     </div>
 
     <div class="program4-proofbar reveal">
       <div>
-        <small>NGUYÊN TẮC CỦA CHƯƠNG TRÌNH</small>
-        <strong>KHÔNG QUA GIAI ĐOẠN CHỈ VÌ ĐÃ NGỒI ĐỦ BUỔI.</strong>
+        <small>NGUYÊN TẮC ĐÁNH GIÁ</small>
+        <strong>KHÔNG ĐO BẰNG SỐ BUỔI. ĐO BẰNG THỨ BẠN LÀM ĐƯỢC.</strong>
       </div>
-      <p>Mỗi giai đoạn phải tạo được minh chứng để nhìn lại, nhận góp ý và tiếp tục làm tốt hơn ở giai đoạn kế tiếp.</p>
+      <p>Mỗi giai đoạn chỉ kết thúc khi có đầu ra để chứng minh, nhận feedback, sửa lại và tiến lên giai đoạn kế tiếp.</p>
     </div>
   </div>
 </section>
