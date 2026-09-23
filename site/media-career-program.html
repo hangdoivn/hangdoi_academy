@@ -88,18 +88,252 @@ img{display:block;max-width:100%}
 .hero-strip small{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--aca-color-text-muted);font-weight:800}
 .hero-strip b{display:block;font-size:14px;margin-top:4px}
 
-/* 02 Gap */
-.gap{background:var(--aca-green-950);color:var(--aca-paper-0)}
-.gap-head{display:grid;grid-template-columns:7fr 5fr;gap:var(--aca-grid-gap-xl);align-items:end}
-.gap .display{color:var(--aca-paper-0)}
-.gap-copy{font-size:18px;max-width:540px;color:rgba(255,253,247,.76);margin:0 0 6px}
-.gap-grid{display:grid;grid-template-columns:repeat(5,1fr);margin-top:54px;border-top:1px solid var(--aca-color-divider-inverse);border-left:1px solid var(--aca-color-divider-inverse)}
-.gap-cell{min-height:118px;padding:16px;border-right:1px solid var(--aca-color-divider-inverse);border-bottom:1px solid var(--aca-color-divider-inverse);display:flex;flex-direction:column;justify-content:space-between}
-.gap-cell small{font-size:10px;color:var(--aca-color-signal-yellow);font-weight:800}
-.gap-cell strong{font-size:13px;letter-spacing:.02em}
-.gap-bridge{margin-top:52px;padding-top:28px;border-top:1px solid var(--aca-color-divider-inverse);display:grid;grid-template-columns:8fr 4fr;gap:32px;align-items:end}
-.gap-bridge p{font-size:clamp(28px,3.5vw,50px);line-height:1.02;letter-spacing:-.04em;font-weight:800;margin:0;max-width:920px}
-.gap-bridge strong{color:var(--aca-color-signal-yellow)}
+/* 02 Gap v2 — problem framing */
+.gap{
+  position:relative;
+  overflow:hidden;
+  color:#f5f7f3;
+  background:
+    radial-gradient(circle at 12% 12%,rgba(47,198,95,.15),transparent 26%),
+    radial-gradient(circle at 88% 82%,rgba(242,212,61,.08),transparent 26%),
+    linear-gradient(180deg,#0a2116 0%,#0b2619 100%);
+}
+.gap:before{
+  content:"";
+  position:absolute;inset:0;pointer-events:none;
+  opacity:.045;
+  background-image:
+    linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);
+  background-size:42px 42px;
+  mask-image:linear-gradient(180deg,rgba(0,0,0,.9),transparent 88%);
+}
+.gap .wrap{position:relative;z-index:1}
+.gap2-head{
+  display:grid;
+  grid-template-columns:minmax(220px,3.2fr) minmax(0,8.8fr);
+  gap:clamp(30px,5vw,74px);
+  align-items:start;
+}
+.gap2-meta{
+  padding-top:8px;
+  position:sticky;
+  top:110px;
+}
+.gap2-kicker{
+  display:flex;align-items:center;gap:10px;
+  font-size:11px;font-weight:900;line-height:1.3;
+  letter-spacing:.12em;text-transform:uppercase;color:#d6e1da;
+}
+.gap2-kicker:before{
+  content:"";
+  width:10px;height:10px;border-radius:50%;
+  background:var(--aca-color-signal-yellow);
+  box-shadow:0 0 18px rgba(242,212,61,.38);
+  flex:0 0 auto;
+}
+.gap2-index{
+  margin:18px 0 0;
+  max-width:210px;
+  color:#82978a;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.08em;
+}
+.gap2-title{
+  margin:0;
+  max-width:1040px;
+  color:#f7f8f4;
+  font-size:clamp(54px,6.25vw,98px);
+  font-weight:950;
+  line-height:.88;
+  letter-spacing:-.067em;
+}
+.gap2-title .accent{
+  color:var(--aca-color-signal-yellow);
+  text-shadow:0 0 24px rgba(242,212,61,.08);
+}
+.gap2-lead{
+  max-width:760px;
+  margin:26px 0 0;
+  color:#b9c8bf;
+  font-size:clamp(16px,1.6vw,20px);
+  line-height:1.55;
+}
+.gap2-lead strong{color:#f4f7f2}
+.gap2-flow{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin-top:clamp(48px,6vw,78px);
+}
+.gap2-stage{
+  --stage-accent:#f2d43d;
+  position:relative;
+  min-height:390px;
+  padding:22px 22px 20px;
+  border:1px solid rgba(255,255,255,.15);
+  border-top:3px solid var(--stage-accent);
+  border-radius:24px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018));
+  overflow:hidden;
+  transition:transform .22s cubic-bezier(.16,1,.3,1),border-color .22s,background .22s;
+}
+.gap2-stage:nth-child(2){--stage-accent:#61ef7b}
+.gap2-stage:nth-child(3){--stage-accent:#f26a3d}
+.gap2-stage:hover{
+  transform:translateY(-5px);
+  border-color:rgba(255,255,255,.28);
+  background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.025));
+}
+.gap2-stage:after{
+  content:"";
+  position:absolute;
+  width:150px;height:150px;border-radius:50%;
+  right:-66px;top:-66px;
+  background:var(--stage-accent);
+  opacity:.055;
+  filter:blur(1px);
+}
+.gap2-stage-top{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:14px;
+  padding-bottom:20px;
+}
+.gap2-stage-label{
+  font-size:11px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--stage-accent);
+}
+.gap2-stage-no{
+  font-size:46px;font-weight:950;line-height:.82;letter-spacing:-.07em;
+  color:rgba(255,255,255,.12);
+}
+.gap2-stage h3{
+  margin:0 0 18px;
+  font-size:clamp(22px,2vw,30px);
+  line-height:1;
+  letter-spacing:-.045em;
+  color:#f7f8f4;
+}
+.gap2-list{list-style:none;margin:0;padding:0}
+.gap2-list li{
+  position:relative;
+  padding:12px 0 12px 20px;
+  border-top:1px solid rgba(255,255,255,.10);
+  color:#c5d1ca;
+  font-size:14px;
+  line-height:1.35;
+}
+.gap2-list li:before{
+  content:"";
+  position:absolute;left:1px;top:18px;
+  width:7px;height:7px;border-radius:2px;
+  background:var(--stage-accent);
+  opacity:.9;
+}
+.gap2-list strong{color:#f7f8f4;font-weight:850}
+.gap2-bridge{
+  margin-top:14px;
+  padding:clamp(24px,3vw,38px);
+  display:grid;
+  grid-template-columns:minmax(0,8fr) minmax(240px,4fr);
+  gap:clamp(26px,4vw,54px);
+  align-items:end;
+  border-radius:26px;
+  background:var(--aca-color-signal-yellow);
+  color:#0c1710;
+  box-shadow:0 18px 56px rgba(0,0,0,.16);
+}
+.gap2-bridge small{
+  display:block;
+  font-size:10px;font-weight:950;letter-spacing:.12em;text-transform:uppercase;
+  color:#33412f;
+}
+.gap2-bridge p{
+  margin:10px 0 0;
+  max-width:900px;
+  font-size:clamp(28px,3.45vw,50px);
+  line-height:1.01;
+  letter-spacing:-.047em;
+  font-weight:900;
+}
+.gap2-bridge p strong{
+  color:#0b4b2d;
+  font-weight:950;
+}
+.gap2-bridge-action{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  align-items:flex-start;
+}
+.gap2-bridge-action>span{
+  max-width:330px;
+  color:#3d4938;
+  font-size:13px;
+  line-height:1.45;
+  font-weight:700;
+}
+.gap2-cta{
+  display:inline-flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:22px;
+  min-height:58px;
+  width:100%;
+  max-width:340px;
+  padding:0 11px 0 20px;
+  border-radius:999px;
+  background:#0b2a1b;
+  color:#f7f8f4;
+  border:1px solid rgba(11,42,27,.18);
+  font-size:12px;
+  font-weight:950;
+  letter-spacing:.04em;
+  transition:transform .2s cubic-bezier(.16,1,.3,1),background .2s,box-shadow .2s;
+}
+.gap2-cta b{
+  display:grid;place-items:center;
+  width:38px;height:38px;border-radius:50%;
+  background:#f7f8f4;
+  color:#0b2a1b;
+  font-size:18px;
+  transition:transform .2s cubic-bezier(.16,1,.3,1);
+}
+.gap2-cta:hover{
+  transform:translateY(-3px);
+  background:#071c12;
+  box-shadow:0 12px 28px rgba(7,28,18,.18);
+}
+.gap2-cta:hover b{transform:translateX(3px)}
+.gap2-cta:focus-visible{outline:3px solid #fffdf7;outline-offset:4px}
+
+@media(max-width:1024px){
+  .gap2-head{grid-template-columns:1fr;gap:22px}
+  .gap2-meta{position:relative;top:auto;padding-top:0}
+  .gap2-index{max-width:none;margin-top:10px}
+  .gap2-flow{grid-template-columns:1fr 1fr}
+  .gap2-stage:nth-child(3){grid-column:1/-1;min-height:300px}
+  .gap2-bridge{grid-template-columns:1fr}
+  .gap2-bridge-action{display:grid;grid-template-columns:1fr auto;align-items:end}
+  .gap2-cta{min-width:300px}
+}
+@media(max-width:760px){
+  .gap2-title{font-size:clamp(48px,14vw,72px);line-height:.9}
+  .gap2-lead{margin-top:20px}
+  .gap2-flow{grid-template-columns:1fr;margin-top:38px}
+  .gap2-stage,.gap2-stage:nth-child(3){grid-column:auto;min-height:auto;padding:19px 18px 16px;border-radius:20px}
+  .gap2-stage-top{padding-bottom:12px}
+  .gap2-stage-no{font-size:38px}
+  .gap2-stage h3{font-size:24px;margin-bottom:12px}
+  .gap2-list li{padding:10px 0 10px 19px;font-size:13px}
+  .gap2-list li:before{top:15px}
+  .gap2-bridge{margin-top:10px;padding:22px 18px 18px;border-radius:20px}
+  .gap2-bridge p{font-size:clamp(27px,8.3vw,38px)}
+  .gap2-bridge-action{display:flex;align-items:stretch}
+  .gap2-bridge-action>span{max-width:none}
+  .gap2-cta{max-width:none;min-width:0;width:100%}
+}
 
 /* 03 Production reality */
 .reality{background:var(--aca-paper-0)}
@@ -718,32 +952,86 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
 </section>
 
 
-<section class="section gap">
+<section class="section gap" id="gap">
   <div class="wrap">
-    <div class="gap-head reveal">
-      <div>
-        <div class="kicker inverse">Khoảng trống thực tế</div>
-        <h2 class="display">BIẾT QUAY<br>CHƯA CÓ NGHĨA<br>LÀ ĐI LÀM ĐƯỢC.</h2>
+    <div class="gap2-head reveal">
+      <div class="gap2-meta">
+        <div class="gap2-kicker">02 · Bạn đang thiếu gì để đi làm?</div>
+        <p class="gap2-index">TOOL ≠ NĂNG LỰC NGHỀ</p>
       </div>
-      <p class="gap-copy">Camera, Premiere, Lightroom hay gimbal chỉ là công cụ. Công việc Media thương mại còn đòi hỏi đề bài, chuẩn bị, phối hợp đội nhóm, dữ liệu, góp ý, kiểm tra chất lượng và bàn giao.</p>
+
+      <div>
+        <h2 class="gap2-title">
+          BIẾT QUAY,<br>
+          BIẾT DỰNG<br>
+          <span class="accent">CHƯA CÓ NGHĨA</span><br>
+          LÀ SẴN SÀNG ĐI LÀM.
+        </h2>
+        <p class="gap2-lead">
+          Tutorial có thể chỉ bạn cách dùng camera hay phần mềm. Nhưng công việc Media thương mại còn cần
+          <strong>quy trình, tiêu chuẩn, phối hợp đội nhóm, feedback và deadline.</strong>
+        </p>
+      </div>
     </div>
 
-    <div class="gap-grid reveal">
-      <div class="gap-cell"><small>01</small><strong>ĐỀ BÀI</strong></div>
-      <div class="gap-cell"><small>02</small><strong>TIỀN KỲ</strong></div>
-      <div class="gap-cell"><small>03</small><strong>ÁNH SÁNG</strong></div>
-      <div class="gap-cell"><small>04</small><strong>GÓC QUAY</strong></div>
-      <div class="gap-cell"><small>05</small><strong>PHỐI HỢP</strong></div>
-      <div class="gap-cell"><small>06</small><strong>NHÂN VẬT</strong></div>
-      <div class="gap-cell"><small>07</small><strong>DỮ LIỆU</strong></div>
-      <div class="gap-cell"><small>08</small><strong>HẬU KỲ</strong></div>
-      <div class="gap-cell"><small>09</small><strong>KIỂM TRA</strong></div>
-      <div class="gap-cell"><small>10</small><strong>BÀN GIAO</strong></div>
+    <div class="gap2-flow reveal" aria-label="Những năng lực cần có trong một quy trình Media thương mại">
+      <article class="gap2-stage">
+        <div class="gap2-stage-top">
+          <span class="gap2-stage-label">Trước sản xuất</span>
+          <span class="gap2-stage-no">01</span>
+        </div>
+        <h3>BIẾT MÌNH<br>ĐANG LÀM GÌ.</h3>
+        <ul class="gap2-list">
+          <li><strong>Hiểu đề bài</strong> và mục tiêu đầu ra</li>
+          <li><strong>Nghiên cứu</strong> trước khi bấm máy</li>
+          <li>Lập <strong>danh sách cảnh</strong> cần có</li>
+          <li><strong>Chuẩn bị thiết bị</strong> đúng nhu cầu</li>
+        </ul>
+      </article>
+
+      <article class="gap2-stage">
+        <div class="gap2-stage-top">
+          <span class="gap2-stage-label">Trong sản xuất</span>
+          <span class="gap2-stage-no">02</span>
+        </div>
+        <h3>BIẾT LÀM VIỆC<br>TRONG MỘT TEAM.</h3>
+        <ul class="gap2-list">
+          <li>Kiểm soát <strong>ánh sáng</strong> có chủ đích</li>
+          <li>Chọn <strong>góc quay</strong> phục vụ câu chuyện</li>
+          <li><strong>Phối hợp đội nhóm</strong> trên set</li>
+          <li><strong>Xử lý tình huống</strong> khi thực tế thay đổi</li>
+        </ul>
+      </article>
+
+      <article class="gap2-stage">
+        <div class="gap2-stage-top">
+          <span class="gap2-stage-label">Sau sản xuất</span>
+          <span class="gap2-stage-no">03</span>
+        </div>
+        <h3>BIẾT ĐƯA JOB<br>ĐẾN ĐÍCH.</h3>
+        <ul class="gap2-list">
+          <li>Quản lý và sao lưu <strong>dữ liệu</strong></li>
+          <li><strong>Hậu kỳ</strong> theo đúng đầu ra</li>
+          <li><strong>Kiểm tra</strong> chất lượng trước khi gửi</li>
+          <li><strong>Bàn giao</strong> đúng phiên bản và deadline</li>
+        </ul>
+      </article>
     </div>
 
-    <div class="gap-bridge reveal">
-      <p>Vấn đề không phải bạn chưa biết đủ nhiều công cụ. Vấn đề là các kỹ năng đó chưa được nối thành một <strong>quy trình có thể dùng trong công việc thật.</strong></p>
-      <a class="btn btn-poster" href="#reality">XEM MỘT QUY TRÌNH THẬT ↓</a>
+    <div class="gap2-bridge reveal">
+      <div>
+        <small>Khoảng thiếu lớn nhất</small>
+        <p>
+          Không phải thêm một phần mềm. Mà là biết cách
+          <strong>biến kỹ năng thành một quy trình làm việc hoàn chỉnh.</strong>
+        </p>
+      </div>
+      <div class="gap2-bridge-action">
+        <span>Đó là phần chương trình tập trung huấn luyện bằng bài tập và quy trình sản xuất thực tế.</span>
+        <a class="gap2-cta" href="#reality">
+          <span>XEM MỘT QUY TRÌNH THẬT</span><b>→</b>
+        </a>
+      </div>
     </div>
   </div>
 </section>
