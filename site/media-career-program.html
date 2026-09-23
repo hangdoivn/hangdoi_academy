@@ -1044,6 +1044,7 @@ img{display:block;max-width:100%}
   stroke-width:1.8;
   stroke-dasharray:10 16;
   stroke-linecap:round;
+  animation:program4RoadFlow 12s linear infinite;
 }
 
 .program4-roadmap-pin{
@@ -1164,6 +1165,13 @@ img{display:block;max-width:100%}
   border-color:var(--pin);
   background:#fffdf7;
 }
+.program4-roadmap-pin.is-active .program4-pin-core{
+  animation:program4PinPulse 2.2s ease-in-out infinite;
+}
+.program4-roadmap-pin.is-active .program4-pin-core svg{
+  animation:program4IconFloat 2.2s ease-in-out infinite;
+}
+
 .program4-roadmap-pin:focus-visible{outline:none}
 .program4-roadmap-pin:focus-visible .program4-pin-label{
   outline:3px solid rgba(57,95,204,.30);
@@ -1185,6 +1193,9 @@ img{display:block;max-width:100%}
   transition:opacity .16s ease,transform .16s ease;
 }
 .program4-detail.is-updating{opacity:.68;transform:translateY(2px)}
+.program4-detail.is-switching{
+  animation:program4DetailSwap .46s cubic-bezier(.16,1,.3,1);
+}
 .program4-detail-copy{
   position:relative;
   min-width:0;
@@ -1268,9 +1279,13 @@ img{display:block;max-width:100%}
   height:100%;
   object-fit:cover;
   display:block;
-  transition:opacity .18s ease,transform .45s cubic-bezier(.16,1,.3,1);
+  transition:opacity .22s ease,transform .65s cubic-bezier(.16,1,.3,1),filter .35s ease;
 }
 .program4-detail:hover .program4-detail-media img{transform:scale(1.02)}
+.program4-detail.is-switching .program4-detail-media img{
+  transform:scale(1.025);
+  filter:saturate(1.04);
+}
 .program4-detail-media:after{
   content:"";
   position:absolute;
@@ -1302,14 +1317,23 @@ img{display:block;max-width:100%}
   margin-top:12px;
 }
 .program4-detail-progress span{
+  position:relative;
   width:30px;height:4px;
+  overflow:hidden;
   border-radius:999px;
   background:rgba(11,36,24,.12);
-  transition:width .2s ease,background .2s ease;
+  transition:width .28s cubic-bezier(.16,1,.3,1);
 }
 .program4-detail-progress span.is-active{
   width:48px;
+}
+.program4-detail-progress span.is-active:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  transform-origin:left center;
   background:#0b6a3f;
+  animation:program4StepTimer 5.2s linear forwards;
 }
 
 /* Compact bridge into Section 5 */
@@ -1354,6 +1378,41 @@ img{display:block;max-width:100%}
   white-space:nowrap;
 }
 .program4-bridge-cta:focus-visible{outline:3px solid #fffdf7;outline-offset:3px}
+
+@keyframes program4PinPulse{
+  0%,100%{box-shadow:0 0 0 10px rgba(98,217,181,.13),0 14px 35px rgba(11,36,24,.08)}
+  50%{box-shadow:0 0 0 17px rgba(98,217,181,.06),0 20px 46px rgba(11,36,24,.14)}
+}
+.program4-roadmap-pin[data-stage="02"].is-active .program4-pin-core{animation-name:program4PinPulseCyan}
+.program4-roadmap-pin[data-stage="03"].is-active .program4-pin-core{animation-name:program4PinPulseBlue}
+.program4-roadmap-pin[data-stage="04"].is-active .program4-pin-core{animation-name:program4PinPulseViolet}
+@keyframes program4PinPulseCyan{
+  0%,100%{box-shadow:0 0 0 10px rgba(95,211,216,.13),0 14px 35px rgba(11,36,24,.08)}
+  50%{box-shadow:0 0 0 17px rgba(95,211,216,.06),0 20px 46px rgba(11,36,24,.14)}
+}
+@keyframes program4PinPulseBlue{
+  0%,100%{box-shadow:0 0 0 10px rgba(91,115,223,.12),0 14px 35px rgba(11,36,24,.08)}
+  50%{box-shadow:0 0 0 17px rgba(91,115,223,.055),0 20px 46px rgba(11,36,24,.14)}
+}
+@keyframes program4PinPulseViolet{
+  0%,100%{box-shadow:0 0 0 10px rgba(122,112,221,.12),0 14px 35px rgba(11,36,24,.08)}
+  50%{box-shadow:0 0 0 17px rgba(122,112,221,.055),0 20px 46px rgba(11,36,24,.14)}
+}
+@keyframes program4IconFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-2px)}
+}
+@keyframes program4DetailSwap{
+  0%{opacity:.58;transform:translateY(8px) scale(.992)}
+  100%{opacity:1;transform:translateY(0) scale(1)}
+}
+@keyframes program4StepTimer{
+  from{transform:scaleX(0)}
+  to{transform:scaleX(1)}
+}
+@keyframes program4RoadFlow{
+  to{stroke-dashoffset:-104}
+}
 
 @media(max-width:1024px){
   .program4-head{grid-template-columns:1fr;gap:22px}
@@ -1431,7 +1490,15 @@ img{display:block;max-width:100%}
   }
 }
 @media(prefers-reduced-motion:reduce){
-  .program4-pin-core,.program4-detail,.program4-detail-media img,.program4-detail-progress span{transition:none!important}
+  .program4-pin-core,
+  .program4-detail,
+  .program4-detail-media img,
+  .program4-detail-progress span{transition:none!important}
+  .program4-roadmap-dash,
+  .program4-roadmap-pin.is-active .program4-pin-core,
+  .program4-roadmap-pin.is-active .program4-pin-core svg,
+  .program4-detail.is-switching,
+  .program4-detail-progress span.is-active:after{animation:none!important}
 }
 
 /* 05 Learning loop — feedback > rework > proof */
@@ -2622,7 +2689,7 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
           <span class="program4-detail-no" id="program4-detail-no" aria-hidden="true">01</span>
         </div>
         <div class="program4-detail-media">
-          <img id="program4-detail-image" src="https://drive.google.com/thumbnail?id=10KlvEAQ2t_gPpzyeX6XWfsO1kvjut-qP&amp;sz=w1600" alt="Học viên thực hành tại Hang Đôi Academy" loading="lazy">
+          <img id="program4-detail-image" src="/assets/media-career/roadmap-01-thiet-bi.png" alt="Học viên thực hành thiết bị tại Hang Đôi Academy" loading="lazy">
           <span class="program4-detail-media-label" id="program4-detail-media-label">BTS HANG ĐÔI ACADEMY · THỰC HÀNH</span>
         </div>
       </article>
@@ -3207,45 +3274,47 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
       desc:"Biết tự setup máy, ánh sáng và âm thanh để quay/chụp đúng mục tiêu.",
       proof:"BẠN CÓ · 01 BÀI THỰC HÀNH KỸ THUẬT",
       focus:"Tập trung: máy ảnh · ánh sáng · âm thanh · gimbal",
-      image:"https://drive.google.com/thumbnail?id=10KlvEAQ2t_gPpzyeX6XWfsO1kvjut-qP&sz=w1600",
-      alt:"Học viên thực hành tại Hang Đôi Academy",
+      image:"/assets/media-career/roadmap-01-thiet-bi.png",
+      alt:"Học viên thực hành thiết bị tại Hang Đôi Academy",
       label:"BTS HANG ĐÔI ACADEMY · THỰC HÀNH"
     },
     "02":{
       kicker:"THÁNG 02 · LÀM QUEN THUẬT NGỮ: BRIEF",
       title:"LÀM THEO YÊU CẦU THẬT.",
-      desc:"Biết đọc yêu cầu và tạo hình ảnh đúng thứ khách hàng cần.",
+      desc:"Biết đọc yêu cầu và bắt đầu làm việc theo mục tiêu rõ ràng.",
       proof:"BẠN CÓ · 01 BÀI THỰC HÀNH THƯƠNG MẠI",
-      focus:"Tập trung: F&B · sản phẩm · khách sạn · con người",
-      image:"https://drive.google.com/thumbnail?id=1FZ2aHa-simq1liZxjXLZbzeI-DErFEYE&sz=w1600",
-      alt:"Hình ảnh thương mại do Hang Đôi Production thực hiện",
-      label:"HÌNH ẢNH THAM CHIẾU · HANG ĐÔI PRODUCTION"
+      focus:"Tập trung: trao đổi · hiểu yêu cầu · phối hợp · định hướng đầu ra",
+      image:"/assets/media-career/roadmap-02-yeu-cau.png",
+      alt:"Học viên trao đổi và làm việc theo yêu cầu tại Hang Đôi Academy",
+      label:"BTS HANG ĐÔI ACADEMY · LÀM VIỆC THEO YÊU CẦU"
     },
     "03":{
       kicker:"THÁNG 03 · LÀM QUEN THUẬT NGỮ: OUTPUT",
       title:"HOÀN THIỆN SẢN PHẨM.",
-      desc:"Biết chọn, chỉnh, dựng và bàn giao một sản phẩm hoàn chỉnh.",
+      desc:"Biết theo dõi hình ảnh trên màn hình, kiểm soát chất lượng và hoàn thiện đầu ra.",
       proof:"BẠN CÓ · 01 SẢN PHẨM HOÀN THIỆN",
-      focus:"Tập trung: chọn lọc · chỉnh sửa · dựng · kiểm tra · bàn giao",
-      image:"https://drive.google.com/thumbnail?id=1lonK2-7tURIP_pBboac0AH0Ebs4P84HC&sz=w1600",
-      alt:"Hình ảnh hoàn thiện do Hang Đôi Production thực hiện",
-      label:"HÌNH ẢNH THAM CHIẾU · HANG ĐÔI PRODUCTION"
+      focus:"Tập trung: kiểm tra hình · chất lượng · hoàn thiện · bàn giao",
+      image:"/assets/media-career/roadmap-03-san-pham.png",
+      alt:"Học viên kiểm soát hình ảnh và đầu ra tại Hang Đôi Academy",
+      label:"BTS HANG ĐÔI ACADEMY · KIỂM SOÁT ĐẦU RA"
     },
     "04":{
       kicker:"THÁNG 04 · LÀM QUEN THUẬT NGỮ: JOB",
       title:"LÀM TRỌN MỘT DỰ ÁN.",
       desc:"Tự đi từ nhận yêu cầu → chuẩn bị → quay/chụp → chỉnh sửa → bàn giao.",
       proof:"BẠN CÓ · ĐỒ ÁN CUỐI KHÓA + HỒ SƠ SẢN PHẨM",
-      focus:"Tập trung: nghiên cứu · chuẩn bị · sản xuất · hậu kỳ · bàn giao",
-      image:"https://drive.google.com/thumbnail?id=1pXvdCfAIFULtsl9krz9eqfkjQGB66tSm&sz=w1600",
-      alt:"Hình ảnh dự án thương mại do Hang Đôi Production thực hiện",
-      label:"HÌNH ẢNH THAM CHIẾU · HANG ĐÔI PRODUCTION"
+      focus:"Tập trung: hoàn thành dự án · chốt đầu ra · sẵn sàng portfolio",
+      image:"/assets/media-career/roadmap-04-du-an.png",
+      alt:"Học viên hoàn thành khóa học tại Hang Đôi Academy",
+      label:"BTS HANG ĐÔI ACADEMY · HOÀN THÀNH CUỐI KHÓA"
     }
   };
 
+  const section=document.getElementById("system");
+  const roadmap=section?.querySelector(".program4-roadmap");
   const pins=Array.from(document.querySelectorAll(".program4-roadmap-pin[data-stage]"));
   const detail=document.getElementById("program4-detail");
-  if(!pins.length||!detail)return;
+  if(!section||!roadmap||!pins.length||!detail)return;
 
   const title=document.getElementById("program4-detail-title");
   const kicker=document.getElementById("program4-detail-kicker");
@@ -3257,22 +3326,59 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
   const label=document.getElementById("program4-detail-media-label");
   const bars=Array.from(document.querySelectorAll(".program4-detail-progress span"));
   const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const finePointer=matchMedia("(pointer:fine)");
+  const finePointer=matchMedia("(pointer:fine)").matches;
+  const STEP_MS=5200;
 
-  const select=(pin)=>{
+  let current=0;
+  let timer=null;
+  let paused=false;
+  let inView=false;
+  let updateTimer=null;
+
+  Object.values(data).forEach(item=>{
+    const preload=new Image();
+    preload.src=item.image;
+  });
+
+  const restartProgress=(index)=>{
+    bars.forEach((bar,i)=>{
+      const active=i===index;
+      bar.classList.toggle("is-active",active);
+      if(active&&!reduce){
+        bar.style.animation="none";
+        void bar.offsetWidth;
+        bar.style.animation="";
+      }
+    });
+  };
+
+  const clearTimer=()=>{
+    if(timer){clearTimeout(timer);timer=null}
+  };
+
+  const schedule=()=>{
+    clearTimer();
+    if(reduce||paused||!inView)return;
+    timer=setTimeout(()=>{
+      const next=(current+1)%pins.length;
+      select(pins[next],{animate:true});
+      schedule();
+    },STEP_MS);
+  };
+
+  const updateDetail=(pin,animate)=>{
     const d=data[pin.dataset.stage];
     if(!d)return;
-    const index=pins.indexOf(pin);
 
-    pins.forEach(item=>{
-      const active=item===pin;
-      item.classList.toggle("is-active",active);
-      item.setAttribute("aria-pressed",active?"true":"false");
-    });
-    bars.forEach((bar,i)=>bar.classList.toggle("is-active",i===index));
+    if(updateTimer)clearTimeout(updateTimer);
+    detail.classList.remove("is-switching");
+    if(animate&&!reduce){
+      void detail.offsetWidth;
+      detail.classList.add("is-switching");
+      image.style.opacity="0";
+    }
 
-    detail.classList.add("is-updating");
-    const update=()=>{
+    const apply=()=>{
       kicker.textContent=d.kicker;
       title.textContent=d.title;
       desc.textContent=d.desc;
@@ -3282,15 +3388,61 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
       label.textContent=d.label;
       image.src=d.image;
       image.alt=d.alt;
-      detail.classList.remove("is-updating");
+      image.style.opacity="1";
+      if(!reduce){
+        setTimeout(()=>detail.classList.remove("is-switching"),480);
+      }
     };
-    if(reduce)update(); else setTimeout(update,90);
+
+    if(animate&&!reduce)updateTimer=setTimeout(apply,110);
+    else apply();
+  };
+
+  function select(pin,{user=false,animate=true}={}){
+    const index=pins.indexOf(pin);
+    if(index<0)return;
+    current=index;
+
+    pins.forEach(item=>{
+      const active=item===pin;
+      item.classList.toggle("is-active",active);
+      item.setAttribute("aria-pressed",active?"true":"false");
+    });
+    restartProgress(index);
+    updateDetail(pin,animate);
+
+    if(user)schedule();
+  }
+
+  const pause=()=>{
+    paused=true;
+    clearTimer();
+  };
+  const resume=()=>{
+    paused=false;
+    schedule();
   };
 
   pins.forEach((pin,index)=>{
-    pin.addEventListener("click",()=>select(pin));
-    pin.addEventListener("focus",()=>select(pin));
-    if(finePointer.matches)pin.addEventListener("pointerenter",()=>select(pin));
+    pin.addEventListener("click",()=>select(pin,{user:true,animate:true}));
+    pin.addEventListener("focus",()=>{
+      pause();
+      select(pin,{animate:true});
+    });
+    pin.addEventListener("blur",()=>{
+      requestAnimationFrame(()=>{
+        if(!roadmap.contains(document.activeElement))resume();
+      });
+    });
+
+    if(finePointer){
+      pin.addEventListener("pointerenter",()=>{
+        pause();
+        select(pin,{animate:true});
+      });
+      pin.addEventListener("pointerleave",resume);
+    }
+
     pin.addEventListener("keydown",(event)=>{
       if(event.key==="ArrowRight"||event.key==="ArrowDown"){
         event.preventDefault();
@@ -3305,6 +3457,31 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
       }
     });
   });
+
+  detail.addEventListener("pointerenter",()=>{
+    if(finePointer)pause();
+  });
+  detail.addEventListener("pointerleave",()=>{
+    if(finePointer)resume();
+  });
+
+  document.addEventListener("visibilitychange",()=>{
+    if(document.hidden)pause();
+    else resume();
+  });
+
+  if("IntersectionObserver" in window){
+    const observer=new IntersectionObserver(entries=>{
+      inView=entries.some(entry=>entry.isIntersecting&&entry.intersectionRatio>=.25);
+      if(inView)schedule(); else clearTimer();
+    },{threshold:[0,.25,.5]});
+    observer.observe(section);
+  }else{
+    inView=true;
+  }
+
+  select(pins[0],{animate:false});
+  schedule();
 })();
 </script>
 </body>
