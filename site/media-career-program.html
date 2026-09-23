@@ -449,21 +449,33 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
   animation:mcv3FadeUp .5s var(--mcv3-ease) .47s forwards;
 }
 .mcv3-cta{
+  position:relative;isolation:isolate;overflow:hidden;
   display:inline-flex;align-items:center;justify-content:center;gap:20px;
-  min-height:58px;padding:0 22px 0 24px;border-radius:999px;
-  background:var(--mcv3-yellow);color:#101713;border:2px solid #101713;
+  min-height:60px;padding:0 12px 0 26px;border-radius:999px;
+  background:var(--mcv3-yellow);color:#11150d;border:1px solid rgba(255,255,255,.58);
   font-size:13px;font-weight:950;letter-spacing:.045em;
-  box-shadow:5px 5px 0 #101713,0 14px 34px rgba(242,212,61,.20);
-  transition:transform .2s var(--mcv3-ease),background .2s,box-shadow .2s;
+  box-shadow:0 14px 34px rgba(242,212,61,.24),0 0 0 1px rgba(242,212,61,.16);
+  transition:transform .22s var(--mcv3-ease),background .22s,box-shadow .22s;
+}
+.mcv3-cta:before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.48) 48%,transparent 66%);
+  transform:translateX(-130%);transition:transform .6s var(--mcv3-ease);
 }
 .mcv3-cta:hover{
-  transform:translate(-2px,-3px);
-  background:#ffe783;
-  box-shadow:7px 8px 0 #101713,0 20px 40px rgba(242,212,61,.26);
+  transform:translateY(-3px) scale(1.015);
+  background:#ffe65a;
+  box-shadow:0 18px 42px rgba(242,212,61,.32),0 0 0 1px rgba(242,212,61,.24);
 }
+.mcv3-cta:hover:before{transform:translateX(130%)}
 .mcv3-cta:focus-visible{outline:3px solid #fffdf7;outline-offset:4px}
-.mcv3-cta .arrow{font-size:20px;transition:transform .2s var(--mcv3-ease)}
-.mcv3-cta:hover .arrow{transform:translateX(4px)}
+.mcv3-cta .arrow{
+  width:40px;height:40px;border-radius:50%;
+  display:grid;place-items:center;flex:0 0 auto;
+  background:#112119;color:#f7dc45;font-size:20px;
+  transition:transform .22s var(--mcv3-ease),background .22s;
+}
+.mcv3-cta:hover .arrow{transform:translateX(3px);background:#08110c}
 .mcv3-link{
   font-size:13px;color:#d3ded7;border-bottom:1px solid rgba(255,255,255,.34);padding-bottom:3px;
 }
@@ -540,25 +552,40 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
   box-shadow:0 0 42px rgba(242,106,61,.15);
 }
 .mcv3-facts{
-  margin-top:8px;
-  display:grid;grid-template-columns:repeat(4,1fr);
-  border-top:1px solid var(--mcv3-line-strong);
-  border-bottom:1px solid var(--mcv3-line);
+  margin-top:34px;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:10px;
   position:relative;
   opacity:0;animation:mcv3FadeUp .52s var(--mcv3-ease) .76s forwards;
 }
 .mcv3-facts:before{
-  content:"";position:absolute;left:0;top:-1px;height:2px;width:0;background:var(--mcv3-green-glow);
-  animation:mcv3Rule .72s var(--mcv3-ease) .84s forwards;
+  content:"ĐIỂM CẦN BIẾT";position:absolute;left:0;top:-24px;
+  font-size:8px;font-weight:950;letter-spacing:.14em;color:#819188;
 }
-.mcv3-fact{padding:19px 22px 20px 0;border-right:1px solid var(--mcv3-line)}
-.mcv3-fact+.mcv3-fact{padding-left:22px}
-.mcv3-fact:last-child{border-right:0}
+.mcv3-fact{
+  position:relative;min-height:96px;padding:16px 18px 15px;
+  border:1px solid rgba(255,255,255,.10);border-radius:18px;
+  background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.018));
+  overflow:hidden;transition:transform .2s var(--mcv3-ease),border-color .2s,background .2s;
+}
+.mcv3-fact:after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:2px;
+  background:var(--mcv3-green);opacity:.25;transform:scaleX(.55);transform-origin:left;
+  transition:transform .25s var(--mcv3-ease),opacity .25s;
+}
+.mcv3-fact:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.20);background:rgba(255,255,255,.055)}
+.mcv3-fact:hover:after{transform:scaleX(1);opacity:.8}
 .mcv3-fact small{
-  display:block;font-size:9px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#819188;
+  display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:20px;padding:0 7px;
+  border-radius:999px;background:rgba(255,255,255,.08);
+  font-size:8px;font-weight:950;letter-spacing:.10em;text-transform:uppercase;color:#a9b7ae;
 }
-.mcv3-fact strong{display:block;margin-top:5px;font-size:20px;letter-spacing:-.04em}
-.mcv3-fact span{display:block;margin-top:4px;font-size:11px;line-height:1.35;color:#92a198}
+.mcv3-fact strong{display:block;margin-top:10px;font-size:20px;line-height:1;letter-spacing:-.045em}
+.mcv3-fact span{display:block;margin-top:6px;font-size:10px;line-height:1.35;color:#92a198}
+.mcv3-fact.is-key{border-color:rgba(242,212,61,.34);background:linear-gradient(180deg,rgba(242,212,61,.10),rgba(242,212,61,.025))}
+.mcv3-fact.is-key:after{background:var(--mcv3-yellow);opacity:.9}
+.mcv3-fact.is-key strong{color:var(--mcv3-yellow)}
+.mcv3-fact.is-practical strong{color:var(--mcv3-green-glow)}
+.mcv3-fact.is-practical:after{background:var(--mcv3-green-glow);opacity:.75}
 @keyframes mcv3Text{to{opacity:1;transform:none}}
 @keyframes mcv3FadeUp{to{opacity:1;transform:none}}
 @keyframes mcv3ImageReveal{to{clip-path:inset(0 0 0 0 round 38px)}}
@@ -592,12 +619,11 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
   .mcv3-case.one{left:0}
   .mcv3-case.two{left:auto;right:0}
   .mcv3-orange{width:76px;height:76px;right:-14px;bottom:124px}
-  .mcv3-facts{grid-template-columns:1fr 1fr;margin-top:18px}
-  .mcv3-fact{padding:16px 12px 16px 0}
-  .mcv3-fact+.mcv3-fact{padding-left:12px}
-  .mcv3-fact:nth-child(2){border-right:0}
-  .mcv3-fact:nth-child(-n+2){border-bottom:1px solid var(--mcv3-line)}
-  .mcv3-fact strong{font-size:16px}
+  .mcv3-facts{grid-template-columns:1fr 1fr;margin-top:36px;gap:8px}
+  .mcv3-facts:before{top:-22px}
+  .mcv3-fact{padding:14px 13px;min-height:90px}
+  .mcv3-fact strong{font-size:16px;line-height:1.05}
+  .mcv3-fact span{font-size:9px}
 }
 @media(prefers-reduced-motion:reduce){
   .mcv3-line>span,.mcv3-description,.mcv3-actions,.mcv3-bts,.mcv3-badge,.mcv3-case,.mcv3-orange,.mcv3-facts{
@@ -683,10 +709,10 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
     </div>
 
     <div class="mcv3-facts" aria-label="Thông tin nhanh">
-      <div class="mcv3-fact"><small>01</small><strong>4 THÁNG</strong><span>Lộ trình nghề</span></div>
-      <div class="mcv3-fact"><small>02</small><strong>10 HỌC VIÊN</strong><span>Quy mô Khóa 01</span></div>
-      <div class="mcv3-fact"><small>03</small><strong>KHÔNG CẦN CAMERA</strong><span>Có thiết bị để thực hành</span></div>
-      <div class="mcv3-fact"><small>04</small><strong>CHƯA THU PHÍ</strong><span>Hiện chỉ đăng ký quan tâm</span></div>
+      <div class="mcv3-fact is-key"><small>01</small><strong>4 THÁNG</strong><span>Lộ trình nghề rõ ràng</span></div>
+      <div class="mcv3-fact"><small>02</small><strong>10 HỌC VIÊN</strong><span>Lớp nhỏ · theo sát hơn</span></div>
+      <div class="mcv3-fact is-practical"><small>03</small><strong>KHÔNG CẦN CAMERA</strong><span>Có thiết bị để thực hành</span></div>
+      <div class="mcv3-fact is-key"><small>04</small><strong>CHƯA THU PHÍ</strong><span>Chỉ đăng ký quan tâm trước</span></div>
     </div>
   </div>
 </section>
