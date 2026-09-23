@@ -530,8 +530,8 @@ img{display:block;max-width:100%}
 .job-side{
   position:sticky;
   top:96px;
-  display:grid;
-  gap:12px;
+  align-self:start;
+  display:block;
 }
 .job-detail-home{min-width:0}
 .job-detail-card{
@@ -770,6 +770,24 @@ img{display:block;max-width:100%}
   letter-spacing:.07em;
 }
 
+.job-academy-wide{
+  margin-top:18px;
+  grid-template-columns:minmax(190px,240px) minmax(0,1fr);
+  min-height:184px;
+}
+.job-academy-wide .job-academy-copy{
+  padding:22px 26px;
+}
+.job-academy-wide .job-academy-copy strong{
+  max-width:760px;
+  font-size:clamp(20px,1.75vw,27px);
+  line-height:1.03;
+}
+.job-academy-wide .job-academy-copy p{
+  max-width:840px;
+  font-size:12px;
+}
+
 .reality-bridge{
   width:100%;
   max-width:100%;
@@ -854,9 +872,9 @@ img{display:block;max-width:100%}
 @media(max-width:1024px){
   .reality-head{grid-template-columns:1fr;gap:22px}
   .reality-layout{grid-template-columns:1fr}
-  .job-side{position:relative;top:auto;grid-template-columns:1.35fr .65fr}
-  .job-academy{grid-template-columns:1fr;min-height:0}
-  .job-academy-media{min-height:150px}
+  .job-side{position:relative;top:auto}
+  .job-academy-wide{grid-template-columns:180px minmax(0,1fr);min-height:170px}
+  .job-academy-media{min-height:0}
   .reality-bridge{grid-template-columns:1fr;align-items:start}
   .reality-bridge-cta{justify-self:start;max-width:380px}
 }
@@ -894,9 +912,12 @@ img{display:block;max-width:100%}
   .job-role-chip{font-size:8.5px;min-height:25px}
   .job-detail-body{padding:15px 14px 16px}
   .job-detail-body h3{font-size:24px}
-  .job-side{grid-template-columns:1fr;margin-top:12px}
+  .job-side{margin-top:12px}
   .job-detail-home:empty{display:none}
-  .job-academy{grid-template-columns:108px 1fr}
+  .job-academy-wide{grid-template-columns:108px minmax(0,1fr);min-height:0;margin-top:12px}
+  .job-academy-wide .job-academy-copy{padding:15px 14px}
+  .job-academy-wide .job-academy-copy strong{font-size:17px;line-height:1.08}
+  .job-academy-wide .job-academy-copy p{font-size:10.5px}
   .job-academy-media{min-height:0}
   .reality-bridge{padding:18px;border-radius:18px;gap:18px}
   .reality-bridge p{font-size:clamp(23px,7.1vw,31px)}
@@ -2026,22 +2047,24 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
           </section>
         </div>
 
-        <div class="job-academy">
-          <div class="job-academy-media">
-            <img src="https://drive.google.com/thumbnail?id=10KlvEAQ2t_gPpzyeX6XWfsO1kvjut-qP&sz=w900" alt="BTS thực hành tại Hang Đôi Academy" loading="lazy">
-          </div>
-          <div class="job-academy-copy">
-            <small>BTS ACADEMY · THỰC HÀNH TRÊN BỐI CẢNH THẬT</small>
-            <strong>Không chỉ xem quy trình. Bạn sẽ tự đi qua từng bước của nó.</strong>
-            <p>Từ nhận brief, chuẩn bị, tham gia set đến hậu kỳ và bàn giao — bài tập được thiết kế để học viên quen với cách một job thực tế vận hành.</p>
-            <div class="job-academy-tags" aria-label="Hình thức thực hành">
-              <span>BRIEF THẬT</span>
-              <span>SET THẬT</span>
-              <span>OUTPUT THẬT</span>
-            </div>
-          </div>
-        </div>
+
       </aside>
+    </div>
+
+    <div class="job-academy job-academy-wide reveal">
+      <div class="job-academy-media">
+        <img src="https://drive.google.com/thumbnail?id=10KlvEAQ2t_gPpzyeX6XWfsO1kvjut-qP&sz=w900" alt="BTS thực hành tại Hang Đôi Academy" loading="lazy">
+      </div>
+      <div class="job-academy-copy">
+        <small>BTS ACADEMY · THỰC HÀNH TRÊN BỐI CẢNH THẬT</small>
+        <strong>Không chỉ xem quy trình. Bạn sẽ tự đi qua từng bước của nó.</strong>
+        <p>Từ nhận brief, chuẩn bị, tham gia set đến hậu kỳ và bàn giao — bài tập được thiết kế để học viên quen với cách một job thực tế vận hành.</p>
+        <div class="job-academy-tags" aria-label="Hình thức thực hành">
+          <span>BRIEF THẬT</span>
+          <span>SET THẬT</span>
+          <span>OUTPUT THẬT</span>
+        </div>
+      </div>
     </div>
 
     <div class="reality-bridge reveal">
