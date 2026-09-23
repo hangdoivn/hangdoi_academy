@@ -906,23 +906,351 @@ img{display:block;max-width:100%}
   .job-step,.job-step-arrow,.job-detail-visual img{transition:none!important}
 }
 
- /* 04 Curriculum */
-.curriculum{background:var(--aca-paper-50)}
-.curriculum-head{display:grid;grid-template-columns:8fr 4fr;gap:32px;align-items:end}
-.curriculum-note{font-size:14px;color:var(--aca-color-text-muted);max-width:390px;margin:0 0 8px}
-.phase-list{margin-top:44px}
-.phase{display:grid;grid-template-columns:1.3fr 3.2fr 3.2fr 2.3fr;gap:28px;padding:28px 0;border-top:1px solid var(--aca-color-border-strong);position:relative}
-.phase-no{font-size:clamp(54px,6vw,86px);font-weight:900;line-height:.82;letter-spacing:-.07em}
-.phase-main h3{font-size:24px;letter-spacing:-.04em;margin:0 0 6px}
-.phase-main small,.phase-col small{font-size:10px;text-transform:uppercase;letter-spacing:.1em;font-weight:800;color:var(--aca-color-text-muted)}
-.phase-main small{color:var(--aca-color-brand)}
-.phase-col p{font-size:13px;margin:7px 0 0}
-.phase:last-child:after{content:"";position:absolute;right:0;top:24px;width:18px;height:18px;background:var(--aca-color-signal-yellow);border-radius:50%;border:2px solid var(--aca-border-ink)}
-.loop{display:grid;grid-template-columns:repeat(7,1fr);gap:0;margin-top:26px;border:var(--aca-border-strong) solid var(--aca-border-ink)}
-.loop span{padding:12px 8px;text-align:center;border-right:1px solid var(--aca-color-divider);font-size:10px;font-weight:800;letter-spacing:.04em;background:var(--aca-paper-0)}
-.loop span:nth-child(3){background:var(--aca-orange-100)}
-.loop span:nth-child(5){background:var(--aca-yellow-100)}
-.loop span:last-child{border-right:0;background:var(--aca-green-100)}
+ /* 04 Curriculum — 4-month capability progression */
+.curriculum{
+  position:relative;
+  overflow:hidden;
+  background:#f3f0e6;
+  color:#0b2418;
+}
+.curriculum:before{
+  content:"04";
+  position:absolute;
+  right:-.03em;
+  top:-.22em;
+  font-size:clamp(190px,22vw,360px);
+  font-weight:950;
+  line-height:1;
+  letter-spacing:-.09em;
+  color:rgba(11,75,45,.045);
+  pointer-events:none;
+}
+.program4 .wrap{position:relative;z-index:1}
+.program4-head{
+  display:grid;
+  grid-template-columns:minmax(210px,3fr) minmax(0,9fr);
+  gap:clamp(28px,4vw,64px);
+  align-items:start;
+}
+.program4-meta{
+  padding-left:18px;
+  border-left:2px solid var(--aca-color-signal-cobalt);
+}
+.program4-kicker{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:11px;
+  font-weight:950;
+  line-height:1.35;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  color:#0b4b2d;
+}
+.program4-kicker:before{
+  content:"";
+  width:9px;height:9px;border-radius:50%;
+  background:var(--aca-color-signal-cobalt);
+  box-shadow:0 0 0 5px rgba(57,95,204,.10);
+  flex:none;
+}
+.program4-index{
+  margin:12px 0 0;
+  max-width:250px;
+  font-size:11px;
+  line-height:1.45;
+  font-weight:800;
+  letter-spacing:.07em;
+  color:#748078;
+}
+.program4-title{
+  margin:0;
+  max-width:1030px;
+  font-size:clamp(50px,5.6vw,88px);
+  line-height:.89;
+  letter-spacing:-.064em;
+  font-weight:950;
+  color:#0b2418;
+}
+.program4-title .accent{color:#0b6a3f}
+.program4-lead{
+  max-width:760px;
+  margin:23px 0 0;
+  font-size:clamp(16px,1.45vw,20px);
+  line-height:1.55;
+  color:#58655d;
+}
+.program4-lead strong{color:#0b2418}
+
+.program4-progress{
+  position:relative;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:0;
+  margin-top:clamp(48px,5.8vw,76px);
+  padding:0 18px;
+}
+.program4-progress:before{
+  content:"";
+  position:absolute;
+  left:calc(12.5% + 9px);
+  right:calc(12.5% + 9px);
+  top:15px;
+  height:2px;
+  background:rgba(11,36,24,.16);
+}
+.program4-progress-item{
+  position:relative;
+  text-align:center;
+  z-index:1;
+}
+.program4-progress-dot{
+  width:31px;height:31px;
+  margin:0 auto 10px;
+  display:grid;place-items:center;
+  border-radius:50%;
+  border:2px solid #0b2418;
+  background:#f3f0e6;
+  color:#0b2418;
+  font-size:9px;
+  font-weight:950;
+}
+.program4-progress-item:nth-child(2) .program4-progress-dot{background:#edf6ef}
+.program4-progress-item:nth-child(3) .program4-progress-dot{background:#eef1fb}
+.program4-progress-item:nth-child(4) .program4-progress-dot{background:var(--aca-color-signal-yellow)}
+.program4-progress-item span{
+  display:block;
+  font-size:9px;
+  line-height:1.25;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:#68766d;
+}
+
+.program4-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+  margin-top:24px;
+}
+.program4-card{
+  --month-accent:#0b6a3f;
+  min-width:0;
+  min-height:390px;
+  display:flex;
+  flex-direction:column;
+  padding:24px;
+  border:1px solid rgba(11,36,24,.18);
+  border-top:4px solid var(--month-accent);
+  border-radius:24px;
+  background:#fffdf7;
+  box-shadow:0 14px 38px rgba(11,36,24,.055);
+  transition:transform .22s cubic-bezier(.16,1,.3,1),box-shadow .22s,border-color .22s;
+}
+.program4-card:nth-child(2){--month-accent:#4edb76}
+.program4-card:nth-child(3){--month-accent:#4969d6}
+.program4-card:nth-child(4){--month-accent:#f2d43d;background:#10281c;color:#fff}
+.program4-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 20px 44px rgba(11,36,24,.09);
+  border-color:rgba(11,36,24,.28);
+}
+.program4-card-top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:18px;
+}
+.program4-month{
+  display:inline-flex;
+  align-items:center;
+  min-height:27px;
+  padding:0 10px;
+  border-radius:999px;
+  background:#edf5ef;
+  color:#0b6a3f;
+  font-size:9px;
+  font-weight:950;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+}
+.program4-card:nth-child(3) .program4-month{background:#eef1fb;color:#3755b9}
+.program4-card:nth-child(4) .program4-month{background:var(--aca-color-signal-yellow);color:#102018}
+.program4-no{
+  font-size:54px;
+  font-weight:950;
+  line-height:.78;
+  letter-spacing:-.07em;
+  color:rgba(11,36,24,.12);
+}
+.program4-card:nth-child(4) .program4-no{color:rgba(255,255,255,.16)}
+.program4-card h3{
+  max-width:530px;
+  margin:24px 0 0;
+  font-size:clamp(27px,2.5vw,38px);
+  line-height:.94;
+  letter-spacing:-.05em;
+  color:#0b2418;
+}
+.program4-card:nth-child(4) h3{color:#fff}
+.program4-result{
+  display:block;
+  margin-top:8px;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  color:var(--month-accent);
+}
+.program4-card:nth-child(4) .program4-result{color:var(--aca-color-signal-yellow)}
+.program4-body{
+  display:grid;
+  grid-template-columns:minmax(0,1.6fr) minmax(150px,.9fr);
+  gap:22px;
+  margin-top:25px;
+  padding-top:20px;
+  border-top:1px solid rgba(11,36,24,.12);
+}
+.program4-card:nth-child(4) .program4-body{border-color:rgba(255,255,255,.14)}
+.program4-block small{
+  display:block;
+  margin-bottom:7px;
+  font-size:9px;
+  font-weight:950;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  color:#7a877f;
+}
+.program4-card:nth-child(4) .program4-block small{color:#8fab9a}
+.program4-block p{
+  margin:0;
+  font-size:12px;
+  line-height:1.52;
+  color:#536159;
+}
+.program4-card:nth-child(4) .program4-block p{color:#bfd0c5}
+.program4-proof{
+  align-self:start;
+  padding:12px 13px;
+  border-radius:14px;
+  background:#eff5ef;
+}
+.program4-card:nth-child(3) .program4-proof{background:#eef1fb}
+.program4-card:nth-child(4) .program4-proof{background:rgba(255,255,255,.08)}
+.program4-proof strong{
+  display:block;
+  font-size:13px;
+  line-height:1.28;
+  color:#0b2418;
+}
+.program4-card:nth-child(4) .program4-proof strong{color:#fff}
+.program4-growth{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+  gap:12px;
+  align-items:center;
+  margin-top:auto;
+  padding-top:22px;
+}
+.program4-growth div{
+  min-width:0;
+  padding:11px 12px;
+  border-radius:13px;
+  background:#f4f3ed;
+}
+.program4-card:nth-child(4) .program4-growth div{background:rgba(255,255,255,.07)}
+.program4-growth small{
+  display:block;
+  margin-bottom:4px;
+  font-size:8px;
+  font-weight:950;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  color:#849087;
+}
+.program4-growth b{
+  display:block;
+  font-size:11px;
+  line-height:1.35;
+  color:#233d2d;
+}
+.program4-card:nth-child(4) .program4-growth b{color:#edf4ef}
+.program4-growth-arrow{
+  width:32px;height:32px;
+  display:grid;place-items:center;
+  border-radius:50%;
+  background:var(--month-accent);
+  color:#fff;
+  font-size:15px;
+  font-weight:900;
+}
+.program4-card:nth-child(4) .program4-growth-arrow{color:#102018}
+
+.program4-proofbar{
+  display:grid;
+  grid-template-columns:minmax(0,1.35fr) minmax(240px,.65fr);
+  gap:26px;
+  align-items:center;
+  margin-top:16px;
+  padding:22px 24px;
+  border-radius:20px;
+  background:#0b2418;
+  color:#fff;
+}
+.program4-proofbar small{
+  display:block;
+  margin-bottom:7px;
+  font-size:9px;
+  font-weight:950;
+  letter-spacing:.1em;
+  color:var(--aca-color-signal-yellow);
+}
+.program4-proofbar strong{
+  display:block;
+  max-width:760px;
+  font-size:clamp(21px,2.2vw,31px);
+  line-height:1.02;
+  letter-spacing:-.035em;
+}
+.program4-proofbar p{
+  margin:0;
+  font-size:12px;
+  line-height:1.5;
+  color:#b7c7bd;
+}
+@media(max-width:1024px){
+  .program4-head{grid-template-columns:1fr;gap:22px}
+  .program4-grid{grid-template-columns:1fr 1fr}
+  .program4-card{min-height:430px}
+  .program4-body{grid-template-columns:1fr}
+  .program4-proofbar{grid-template-columns:1fr}
+}
+@media(max-width:760px){
+  .program4-title{font-size:clamp(43px,12vw,62px);line-height:.91}
+  .program4-lead{margin-top:18px}
+  .program4-progress{
+    grid-template-columns:repeat(4,minmax(72px,1fr));
+    overflow-x:auto;
+    margin-inline:-18px;
+    padding-inline:18px;
+    scrollbar-width:none;
+  }
+  .program4-progress::-webkit-scrollbar{display:none}
+  .program4-progress:before{left:55px;right:55px}
+  .program4-grid{grid-template-columns:1fr;margin-top:20px}
+  .program4-card{min-height:0;padding:19px 18px;border-radius:20px}
+  .program4-card h3{font-size:29px;margin-top:19px}
+  .program4-no{font-size:46px}
+  .program4-body{gap:14px;margin-top:20px;padding-top:16px}
+  .program4-growth{grid-template-columns:1fr 28px 1fr;gap:8px;padding-top:18px}
+  .program4-growth div{padding:10px}
+  .program4-growth-arrow{width:28px;height:28px}
+  .program4-proofbar{padding:18px;border-radius:18px;gap:12px}
+}
+@media(prefers-reduced-motion:reduce){
+  .program4-card{transition:none!important}
+}
 
 /* 05 Learning loop manifesto */
 .learning-loop{background:var(--aca-green-950);color:var(--aca-paper-0);overflow:hidden}
@@ -1730,45 +2058,130 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
   </div>
 </section>
 
-<section id="system" class="section curriculum">
+<section id="system" class="section curriculum program4">
   <div class="wrap">
-    <div class="curriculum-head reveal">
-      <div>
-        <div class="kicker cobalt">4 tháng / 4 giai đoạn</div>
-        <h2 class="display">MỘT QUY TRÌNH.<br>BỐN GIAI ĐOẠN.</h2>
+    <div class="program4-head reveal">
+      <div class="program4-meta">
+        <div class="program4-kicker">04 · CẤU TRÚC CHƯƠNG TRÌNH</div>
+        <p class="program4-index">4 THÁNG · 4 GIAI ĐOẠN · MỖI GIAI ĐOẠN CÓ MINH CHỨNG</p>
       </div>
-      <p class="curriculum-note">Không đo tiến bộ bằng số buổi đã ngồi trong lớp. Mỗi giai đoạn phải tạo được minh chứng cụ thể.</p>
+      <div>
+        <h2 class="program4-title">MỖI THÁNG<br>PHẢI CÓ <span class="accent">MỘT THỨ</span><br>LÀM ĐƯỢC.</h2>
+        <p class="program4-lead">Không đo tiến bộ bằng số buổi đã ngồi trong lớp. <strong>Mỗi giai đoạn phải để lại một đầu ra nhìn thấy được</strong> — từ nền tảng kỹ thuật đến một đồ án hoàn chỉnh.</p>
+      </div>
     </div>
 
-    <div class="phase-list">
-      <article class="phase reveal">
-        <div class="phase-no">01</div>
-        <div class="phase-main"><h3>LÀM CHỦ CÔNG CỤ</h3><small>Kết quả / Nền tảng kỹ thuật</small></div>
-        <div class="phase-col"><small>Thực hành</small><p>Camera · Ống kính · Phơi sáng · Lấy nét · Ánh sáng · Âm thanh · Phụ kiện hỗ trợ · Gimbal · Quy trình dữ liệu</p></div>
-        <div class="phase-col"><small>Minh chứng</small><p><strong>Bài thực hành kỹ thuật</strong></p></div>
+    <div class="program4-progress reveal" aria-label="Tiến trình 4 tháng">
+      <div class="program4-progress-item"><span class="program4-progress-dot">01</span><span>Nền tảng</span></div>
+      <div class="program4-progress-item"><span class="program4-progress-dot">02</span><span>Thương mại</span></div>
+      <div class="program4-progress-item"><span class="program4-progress-dot">03</span><span>Hoàn thiện</span></div>
+      <div class="program4-progress-item"><span class="program4-progress-dot">04</span><span>Đi trọn job</span></div>
+    </div>
+
+    <div class="program4-grid">
+      <article class="program4-card reveal">
+        <div class="program4-card-top">
+          <span class="program4-month">THÁNG 01 · NỀN TẢNG</span>
+          <span class="program4-no">01</span>
+        </div>
+        <h3>LÀM CHỦ CÔNG CỤ.</h3>
+        <span class="program4-result">Kết quả · Nền tảng kỹ thuật</span>
+        <div class="program4-body">
+          <div class="program4-block">
+            <small>Bạn luyện</small>
+            <p>Camera · Ống kính · Phơi sáng · Lấy nét · Ánh sáng · Âm thanh · Phụ kiện hỗ trợ · Gimbal · Quy trình dữ liệu</p>
+          </div>
+          <div class="program4-block program4-proof">
+            <small>Minh chứng</small>
+            <strong>Bài thực hành kỹ thuật</strong>
+          </div>
+        </div>
+        <div class="program4-growth">
+          <div><small>Từ</small><b>Biết dùng thiết bị</b></div>
+          <span class="program4-growth-arrow" aria-hidden="true">→</span>
+          <div><small>Mục tiêu</small><b>Tự thiết lập để ghi hình đúng mục tiêu</b></div>
+        </div>
       </article>
-      <article class="phase reveal">
-        <div class="phase-no">02</div>
-        <div class="phase-main"><h3>TẠO HÌNH ẢNH THƯƠNG MẠI</h3><small>Kết quả / Thực thi thương mại</small></div>
-        <div class="phase-col"><small>Thực hành</small><p>F&B · Sản phẩm · Khách sạn · Con người · Đời sống · Photo · Video · Hướng dẫn nhân vật</p></div>
-        <div class="phase-col"><small>Minh chứng</small><p><strong>Bài thực hành thương mại</strong></p></div>
+
+      <article class="program4-card reveal">
+        <div class="program4-card-top">
+          <span class="program4-month">THÁNG 02 · THƯƠNG MẠI</span>
+          <span class="program4-no">02</span>
+        </div>
+        <h3>TẠO HÌNH ẢNH THƯƠNG MẠI.</h3>
+        <span class="program4-result">Kết quả · Thực thi theo đề bài</span>
+        <div class="program4-body">
+          <div class="program4-block">
+            <small>Bạn luyện</small>
+            <p>F&amp;B · Sản phẩm · Khách sạn · Con người · Đời sống · Photo · Video · Hướng dẫn nhân vật</p>
+          </div>
+          <div class="program4-block program4-proof">
+            <small>Minh chứng</small>
+            <strong>Bài thực hành thương mại</strong>
+          </div>
+        </div>
+        <div class="program4-growth">
+          <div><small>Từ</small><b>Làm từng bài rời rạc</b></div>
+          <span class="program4-growth-arrow" aria-hidden="true">→</span>
+          <div><small>Mục tiêu</small><b>Tạo đầu ra bám một brief thương mại</b></div>
+        </div>
       </article>
-      <article class="phase reveal">
-        <div class="phase-no">03</div>
-        <div class="phase-main"><h3>HOÀN THIỆN ĐẦU RA</h3><small>Kết quả / Hậu kỳ</small></div>
-        <div class="phase-col"><small>Thực hành</small><p>Chọn ảnh · Chỉnh ảnh · Dựng · Âm thanh · Màu sắc · Đồ họa · Phiên bản · Kiểm tra · Bàn giao</p></div>
-        <div class="phase-col"><small>Minh chứng</small><p><strong>Bài thực hành hậu kỳ</strong></p></div>
+
+      <article class="program4-card reveal">
+        <div class="program4-card-top">
+          <span class="program4-month">THÁNG 03 · HOÀN THIỆN</span>
+          <span class="program4-no">03</span>
+        </div>
+        <h3>ĐƯA ĐẦU RA ĐẾN ĐÍCH.</h3>
+        <span class="program4-result">Kết quả · Hậu kỳ &amp; bàn giao</span>
+        <div class="program4-body">
+          <div class="program4-block">
+            <small>Bạn luyện</small>
+            <p>Chọn ảnh · Chỉnh ảnh · Dựng · Âm thanh · Màu sắc · Đồ họa · Phiên bản · Kiểm tra · Bàn giao</p>
+          </div>
+          <div class="program4-block program4-proof">
+            <small>Minh chứng</small>
+            <strong>Bài thực hành hậu kỳ</strong>
+          </div>
+        </div>
+        <div class="program4-growth">
+          <div><small>Từ</small><b>Có ảnh / footage thô</b></div>
+          <span class="program4-growth-arrow" aria-hidden="true">→</span>
+          <div><small>Mục tiêu</small><b>Hoàn thiện, QC và bàn giao đúng phiên bản</b></div>
+        </div>
       </article>
-      <article class="phase reveal">
-        <div class="phase-no">04</div>
-        <div class="phase-main"><h3>LÀM VIỆC NHƯ NGƯỜI TRONG NGHỀ</h3><small>Kết quả / Sẵn sàng đi làm</small></div>
-        <div class="phase-col"><small>Thực hành</small><p>Đề bài · Nghiên cứu · Bảng cảm hứng · Danh sách cảnh · Tiền kỳ · Mô phỏng · Xử lý tình huống · Đồ án cuối khóa</p></div>
-        <div class="phase-col"><small>Minh chứng</small><p><strong>Đồ án cuối khóa + Hồ sơ năng lực</strong></p></div>
+
+      <article class="program4-card reveal">
+        <div class="program4-card-top">
+          <span class="program4-month">THÁNG 04 · TÍCH HỢP</span>
+          <span class="program4-no">04</span>
+        </div>
+        <h3>LÀM VIỆC NHƯ NGƯỜI TRONG NGHỀ.</h3>
+        <span class="program4-result">Kết quả · Sẵn sàng bước vào công việc</span>
+        <div class="program4-body">
+          <div class="program4-block">
+            <small>Bạn luyện</small>
+            <p>Đề bài · Nghiên cứu · Bảng cảm hứng · Danh sách cảnh · Tiền kỳ · Mô phỏng · Xử lý tình huống · Đồ án cuối khóa</p>
+          </div>
+          <div class="program4-block program4-proof">
+            <small>Minh chứng</small>
+            <strong>Đồ án cuối khóa + Hồ sơ năng lực</strong>
+          </div>
+        </div>
+        <div class="program4-growth">
+          <div><small>Từ</small><b>Làm tốt từng phần việc</b></div>
+          <span class="program4-growth-arrow" aria-hidden="true">→</span>
+          <div><small>Mục tiêu</small><b>Đi qua một quy trình từ brief đến bàn giao</b></div>
+        </div>
       </article>
     </div>
 
-    <div class="loop reveal">
-      <span>HỌC</span><span>THỰC HÀNH</span><span>SAI</span><span>GÓP Ý</span><span>LÀM LẠI</span><span>SẢN XUẤT</span><span>ĐẠT TIÊU CHUẨN</span>
+    <div class="program4-proofbar reveal">
+      <div>
+        <small>NGUYÊN TẮC CỦA CHƯƠNG TRÌNH</small>
+        <strong>KHÔNG QUA GIAI ĐOẠN CHỈ VÌ ĐÃ NGỒI ĐỦ BUỔI.</strong>
+      </div>
+      <p>Mỗi giai đoạn phải tạo được minh chứng để nhìn lại, nhận góp ý và tiếp tục làm tốt hơn ở giai đoạn kế tiếp.</p>
     </div>
   </div>
 </section>
