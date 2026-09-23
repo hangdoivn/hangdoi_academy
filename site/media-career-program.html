@@ -336,7 +336,7 @@ img{display:block;max-width:100%}
   .gap2-cta{max-width:none;min-width:0;width:100%}
 }
 
-/* 03 Production reality — job flow */
+/* 03 Production reality — interactive job flow */
 .reality{
   position:relative;
   overflow:hidden;
@@ -412,7 +412,7 @@ img{display:block;max-width:100%}
 
 .reality-layout{
   display:grid;
-  grid-template-columns:minmax(0,7.2fr) minmax(330px,4.8fr);
+  grid-template-columns:minmax(0,7.2fr) minmax(350px,4.8fr);
   gap:clamp(24px,3.6vw,54px);
   margin-top:clamp(52px,6vw,86px);
   align-items:start;
@@ -431,10 +431,18 @@ img{display:block;max-width:100%}
   padding:14px 16px 14px 0;
   border-bottom:1px solid rgba(11,36,24,.18);
   position:relative;
-  transition:background .2s cubic-bezier(.16,1,.3,1),padding-left .2s cubic-bezier(.16,1,.3,1);
+  cursor:pointer;
+  outline:none;
+  transition:background .2s cubic-bezier(.16,1,.3,1),padding-left .2s cubic-bezier(.16,1,.3,1),box-shadow .2s cubic-bezier(.16,1,.3,1);
 }
-.job-step:last-child{border-bottom:0}
+.job-step:last-of-type{border-bottom:0}
 .job-step:hover{background:rgba(11,75,45,.045);padding-left:10px}
+.job-step:focus-visible{outline:3px solid var(--aca-color-signal-cobalt);outline-offset:-3px;z-index:2}
+.job-step.is-active{
+  background:#fffdf7;
+  padding-left:10px;
+  box-shadow:inset 5px 0 0 #0b6a3f;
+}
 .job-step-no{
   font-size:32px;
   line-height:.9;
@@ -472,18 +480,29 @@ img{display:block;max-width:100%}
   display:grid;place-items:center;
   font-size:15px;
   color:#0b4b2d;
+  transition:background .2s,color .2s,border-color .2s,transform .2s;
+}
+.job-step.is-active .job-step-arrow{
+  background:#0b2418;
+  color:#fff;
+  border-color:#0b2418;
+  transform:translateX(2px);
 }
 .job-step.is-camera{
   background:var(--aca-color-signal-yellow);
   padding-left:14px;
 }
 .job-step.is-camera:hover{background:var(--aca-color-signal-yellow);padding-left:20px}
+.job-step.is-camera.is-active{
+  background:var(--aca-color-signal-yellow);
+  padding-left:18px;
+  box-shadow:inset 5px 0 0 #0b2418;
+}
 .job-step.is-camera .job-step-no,
 .job-step.is-camera .job-step-title h3,
 .job-step.is-camera .job-step-copy,
 .job-step.is-camera .job-step-copy strong{color:#102018}
 .job-step.is-camera .job-step-title small{color:#405044}
-.job-step.is-camera .job-step-arrow{background:#102018;color:#fff;border-color:#102018}
 .job-camera-tag{
   position:absolute;
   right:12px;
@@ -514,99 +533,175 @@ img{display:block;max-width:100%}
   display:grid;
   gap:12px;
 }
-.job-proof{
-  padding:18px;
+.job-detail-home{min-width:0}
+.job-detail-card{
+  overflow:hidden;
   border-radius:24px;
   background:#0b2418;
   color:#f6f7f2;
-  box-shadow:0 20px 54px rgba(11,36,24,.12);
+  box-shadow:0 20px 54px rgba(11,36,24,.14);
+  border:1px solid rgba(255,255,255,.06);
 }
-.job-proof-top{
+.job-detail-top{
   display:flex;
   justify-content:space-between;
-  gap:20px;
-  align-items:flex-start;
-  margin-bottom:14px;
+  gap:16px;
+  align-items:center;
+  padding:16px 18px 13px;
+  border-bottom:1px solid rgba(255,255,255,.10);
 }
-.job-proof-top small{
+.job-detail-top small{
   font-size:9px;
   font-weight:950;
   letter-spacing:.11em;
   text-transform:uppercase;
   color:#8fb09d;
 }
-.job-proof-top b{
-  font-size:12px;
-  color:var(--aca-color-signal-yellow);
+.job-detail-counter{
+  display:inline-flex;
+  align-items:center;
+  min-height:26px;
+  padding:0 9px;
+  border-radius:999px;
+  background:var(--aca-color-signal-yellow);
+  color:#102018;
+  font-size:9px;
+  font-weight:950;
+  letter-spacing:.08em;
 }
-.job-proof-main{
+.job-detail-visual{
   position:relative;
-  min-height:330px;
+  min-height:300px;
+  margin:0;
   overflow:hidden;
-  border-radius:16px;
   background:#153322;
 }
-.job-proof-main img,
-.job-proof-thumb img,
-.job-academy img{
+.job-detail-visual img{
+  position:absolute;
+  inset:0;
   width:100%;
   height:100%;
   object-fit:cover;
-  display:block;
-  transition:transform .32s cubic-bezier(.16,1,.3,1);
+  transition:opacity .18s ease,transform .28s cubic-bezier(.16,1,.3,1);
 }
-.job-proof-main:hover img,
-.job-proof-thumb:hover img,
-.job-academy:hover img{transform:scale(1.035)}
-.job-proof-main:after{
+.job-detail-card.is-updating .job-detail-visual img{opacity:.3;transform:scale(1.02)}
+.job-detail-visual:after{
   content:"";
-  position:absolute;inset:0;
-  background:linear-gradient(180deg,transparent 58%,rgba(5,19,12,.72));
-}
-.job-proof-caption{
   position:absolute;
-  left:14px;right:14px;bottom:13px;
+  inset:0;
+  background:linear-gradient(180deg,rgba(6,22,14,.04) 42%,rgba(5,19,12,.78));
+  pointer-events:none;
+}
+.job-detail-caption{
+  position:absolute;
   z-index:1;
+  left:16px;
+  right:16px;
+  bottom:14px;
 }
-.job-proof-caption small{
+.job-detail-caption small{
   display:block;
-  color:#c7d4cc;
+  margin-bottom:5px;
   font-size:9px;
-  font-weight:800;
+  font-weight:850;
   letter-spacing:.09em;
+  color:#d3ded7;
 }
-.job-proof-caption strong{
+.job-detail-caption strong{
   display:block;
-  margin-top:4px;
-  font-size:20px;
-  line-height:1;
+  max-width:470px;
+  font-size:clamp(18px,1.7vw,24px);
+  line-height:1.02;
   letter-spacing:-.035em;
   color:#fff;
 }
-.job-proof-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:10px;
+.job-role-bar{
+  padding:13px 16px 14px;
+  background:#123522;
+  border-top:1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
-.job-proof-thumb{
-  position:relative;
-  min-height:132px;
-  overflow:hidden;
-  border-radius:13px;
-  background:#153322;
-}
-.job-proof-thumb span{
-  position:absolute;
-  left:8px;bottom:8px;
-  padding:5px 7px;
-  background:rgba(10,33,22,.88);
-  color:#fff;
-  border-radius:6px;
+.job-role-bar>small{
+  display:block;
+  margin-bottom:8px;
   font-size:8px;
-  font-weight:850;
-  letter-spacing:.04em;
+  font-weight:950;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  color:#90aa9b;
 }
+.job-role-chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+.job-role-chip{
+  display:inline-flex;
+  align-items:center;
+  min-height:26px;
+  padding:5px 8px;
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:999px;
+  background:rgba(255,255,255,.07);
+  color:#fff;
+  font-size:9px;
+  line-height:1.15;
+  font-weight:800;
+  white-space:normal;
+}
+.job-role-chip:before{
+  content:"";
+  width:5px;height:5px;
+  margin-right:6px;
+  border-radius:50%;
+  background:var(--aca-color-signal-yellow);
+  flex:none;
+}
+.job-detail-body{padding:17px 18px 18px}
+.job-detail-kicker{
+  margin-bottom:7px;
+  font-size:9px;
+  font-weight:950;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  color:var(--aca-color-signal-yellow);
+}
+.job-detail-body h3{
+  margin:0;
+  max-width:520px;
+  font-size:clamp(22px,2.05vw,30px);
+  line-height:.98;
+  letter-spacing:-.045em;
+  color:#fff;
+}
+.job-detail-body p{
+  margin:10px 0 0;
+  font-size:12px;
+  line-height:1.5;
+  color:#b7c5bc;
+}
+.job-output{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:12px;
+  align-items:start;
+  margin-top:14px;
+  padding-top:14px;
+  border-top:1px solid rgba(255,255,255,.12);
+}
+.job-output small{
+  padding-top:2px;
+  font-size:8px;
+  font-weight:950;
+  letter-spacing:.11em;
+  color:#90aa9b;
+}
+.job-output strong{
+  font-size:12px;
+  line-height:1.4;
+  color:#fff;
+}
+
 .job-academy{
   display:grid;
   grid-template-columns:122px 1fr;
@@ -617,6 +712,14 @@ img{display:block;max-width:100%}
   background:#fffdf7;
 }
 .job-academy-media{overflow:hidden}
+.job-academy img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transition:transform .32s cubic-bezier(.16,1,.3,1);
+}
+.job-academy:hover img{transform:scale(1.035)}
 .job-academy-copy{
   padding:15px 16px;
   align-self:center;
@@ -693,25 +796,41 @@ img{display:block;max-width:100%}
     padding:16px 10px 16px 0;
   }
   .job-step:hover{padding-left:0}
+  .job-step.is-active{padding-left:10px}
   .job-step-no{font-size:26px}
   .job-step-title small{margin-bottom:4px}
   .job-step-title h3{font-size:20px}
   .job-step-copy{grid-column:2/4;margin-top:-5px;font-size:12px}
   .job-step.is-camera{padding-left:10px}
   .job-step.is-camera:hover{padding-left:10px}
+  .job-step.is-camera.is-active{padding-left:10px}
   .job-camera-tag{right:9px;top:-9px;font-size:8px}
   .job-step.is-feedback:after{display:none}
-  .job-side{grid-template-columns:1fr}
-  .job-proof{padding:12px;border-radius:20px}
-  .job-proof-main{min-height:280px}
-  .job-proof-thumb{min-height:118px}
+  .job-detail-card{
+    grid-column:1/-1;
+    margin:10px 0 16px;
+    border-radius:18px;
+    box-shadow:0 12px 30px rgba(11,36,24,.12);
+  }
+  .job-detail-top{padding:13px 14px 11px}
+  .job-detail-visual{min-height:250px}
+  .job-detail-caption{left:14px;right:14px;bottom:13px}
+  .job-role-bar{padding:12px 14px 13px}
+  .job-role-chip{font-size:8.5px;min-height:25px}
+  .job-detail-body{padding:15px 14px 16px}
+  .job-detail-body h3{font-size:24px}
+  .job-side{grid-template-columns:1fr;margin-top:12px}
+  .job-detail-home:empty{display:none}
   .job-academy{grid-template-columns:108px 1fr}
   .job-academy-media{min-height:0}
   .reality-bridge{padding:18px;border-radius:18px}
   .reality-bridge p{font-size:clamp(23px,7.1vw,31px)}
 }
+@media(prefers-reduced-motion:reduce){
+  .job-step,.job-step-arrow,.job-detail-visual img{transition:none!important}
+}
 
-/* 04 Curriculum */
+ /* 04 Curriculum */
 .curriculum{background:var(--aca-paper-50)}
 .curriculum-head{display:grid;grid-template-columns:8fr 4fr;gap:32px;align-items:end}
 .curriculum-note{font-size:14px;color:var(--aca-color-text-muted);max-width:390px;margin:0 0 8px}
@@ -1392,7 +1511,7 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
     <div class="reality-head reveal">
       <div class="reality-meta">
         <div class="reality-kicker">03 · Một job thật vận hành thế nào?</div>
-        <p class="reality-index">BRIEF → BÀN GIAO · KHÔNG CHỈ BẤM MÁY</p>
+        <p class="reality-index">BRIEF → BÀN GIAO · BẤM VÀO TỪNG BƯỚC ĐỂ XEM CHI TIẾT</p>
       </div>
 
       <div>
@@ -1402,64 +1521,64 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
         </h2>
         <p class="reality-lead">
           Một job Media thương mại không được tính là xong khi tắt camera.
-          Nó chỉ kết thúc khi <strong>đầu ra được kiểm tra, sửa đúng feedback, đúng phiên bản và bàn giao đúng deadline.</strong>
+          Chọn từng bước để xem <strong>visual hỗ trợ, đầu ra và những vị trí thực sự tham gia vào bước đó.</strong>
         </p>
       </div>
     </div>
 
     <div class="reality-layout">
       <div class="job-flow reveal" aria-label="Quy trình 8 bước của một job Media thương mại">
-        <article class="job-step">
+        <article class="job-step is-active" id="job-step-01" role="button" tabindex="0" aria-pressed="true" aria-controls="job-detail" data-step="01">
           <div class="job-step-no">01</div>
           <div class="job-step-title"><small>Bắt đầu</small><h3>ĐỀ BÀI</h3></div>
           <p class="job-step-copy"><strong>Hiểu mục tiêu</strong>, đầu ra, đối tượng xem và các ràng buộc trước khi nghĩ đến thiết bị.</p>
-          <span class="job-step-arrow">↓</span>
+          <span class="job-step-arrow">→</span>
         </article>
 
-        <article class="job-step">
+        <article class="job-step" id="job-step-02" role="button" tabindex="0" aria-pressed="false" aria-controls="job-detail" data-step="02">
           <div class="job-step-no">02</div>
           <div class="job-step-title"><small>Trước set</small><h3>CHUẨN BỊ</h3></div>
           <p class="job-step-copy">Nghiên cứu · moodboard · shotlist · thiết bị · ánh sáng · nhân sự · địa điểm.</p>
-          <span class="job-step-arrow">↓</span>
+          <span class="job-step-arrow">→</span>
         </article>
 
-        <article class="job-step is-camera">
+        <article class="job-step is-camera" id="job-step-03" role="button" tabindex="0" aria-pressed="false" aria-controls="job-detail" data-step="03">
           <span class="job-camera-tag">CAMERA Ở ĐÂY</span>
           <div class="job-step-no">03</div>
           <div class="job-step-title"><small>Trên set</small><h3>SẢN XUẤT</h3></div>
           <p class="job-step-copy">Ghi hình, kiểm soát ánh sáng, phối hợp đội nhóm và <strong>xử lý những gì thực tế làm lệch kế hoạch.</strong></p>
-          <span class="job-step-arrow">↓</span>
+          <span class="job-step-arrow">→</span>
         </article>
 
-        <article class="job-step">
+        <article class="job-step" id="job-step-04" role="button" tabindex="0" aria-pressed="false" aria-controls="job-detail" data-step="04">
           <div class="job-step-no">04</div>
           <div class="job-step-title"><small>Sau set</small><h3>DỮ LIỆU</h3></div>
           <p class="job-step-copy">Ingest · backup · đặt tên · phân loại · kiểm tra để không biến một buổi quay tốt thành dữ liệu hỗn loạn.</p>
-          <span class="job-step-arrow">↓</span>
+          <span class="job-step-arrow">→</span>
         </article>
 
-        <article class="job-step">
+        <article class="job-step" id="job-step-05" role="button" tabindex="0" aria-pressed="false" aria-controls="job-detail" data-step="05">
           <div class="job-step-no">05</div>
           <div class="job-step-title"><small>Tạo đầu ra</small><h3>HẬU KỲ</h3></div>
           <p class="job-step-copy">Chọn · dựng · chỉnh ảnh · âm thanh · màu sắc · đồ họa theo <strong>đúng mục tiêu của brief.</strong></p>
-          <span class="job-step-arrow">↓</span>
+          <span class="job-step-arrow">→</span>
         </article>
 
-        <article class="job-step is-feedback">
+        <article class="job-step is-feedback" id="job-step-06" role="button" tabindex="0" aria-pressed="false" aria-controls="job-detail" data-step="06">
           <div class="job-step-no">06</div>
           <div class="job-step-title"><small>Revision loop</small><h3>GÓP Ý</h3></div>
           <p class="job-step-copy">Nhận feedback, hiểu lý do cần sửa và xác định thay đổi nào thực sự phục vụ đầu ra.</p>
-          <span class="job-step-arrow">↔</span>
+          <span class="job-step-arrow">→</span>
         </article>
 
-        <article class="job-step is-feedback">
+        <article class="job-step is-feedback" id="job-step-07" role="button" tabindex="0" aria-pressed="false" aria-controls="job-detail" data-step="07">
           <div class="job-step-no">07</div>
           <div class="job-step-title"><small>Revision loop</small><h3>LÀM LẠI</h3></div>
           <p class="job-step-copy">Sửa · quản lý phiên bản · QC lại. <strong>Chưa đạt thì chưa coi là hoàn thành.</strong></p>
-          <span class="job-step-arrow">↓</span>
+          <span class="job-step-arrow">→</span>
         </article>
 
-        <article class="job-step">
+        <article class="job-step" id="job-step-08" role="button" tabindex="0" aria-pressed="false" aria-controls="job-detail" data-step="08">
           <div class="job-step-no">08</div>
           <div class="job-step-title"><small>Kết thúc</small><h3>BÀN GIAO</h3></div>
           <p class="job-step-copy">Đúng file · đúng format · đúng phiên bản · đúng nơi nhận · <strong>đúng deadline.</strong></p>
@@ -1468,30 +1587,39 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
       </div>
 
       <aside class="job-side reveal">
-        <div class="job-proof">
-          <div class="job-proof-top">
-            <small>CASE THƯƠNG MẠI · HANG ĐÔI PRODUCTION</small>
-            <b>JOB THẬT</b>
-          </div>
-
-          <figure class="job-proof-main">
-            <img src="https://drive.google.com/thumbnail?id=1zXJMZoiocczJf45kePNLG0KhQj1V_XfX&sz=w1600" alt="Lifestyle tại Hoiana Resort do Hang Đôi Production thực hiện" loading="lazy">
-            <figcaption class="job-proof-caption">
-              <small>HOSPITALITY / HOIANA</small>
-              <strong>Đầu ra thương mại là kết quả của cả flow.</strong>
-            </figcaption>
-          </figure>
-
-          <div class="job-proof-grid">
-            <figure class="job-proof-thumb">
-              <img src="https://drive.google.com/thumbnail?id=1PyQ-jYphGE3mm59Aqh2MucNIr7A9k-ZD&sz=w1200" alt="F&B Làng Chài do Hang Đôi Production thực hiện" loading="lazy">
-              <span>F&B / LÀNG CHÀI</span>
+        <div class="job-detail-home" id="job-detail-home">
+          <section class="job-detail-card" id="job-detail" role="region" aria-live="polite" aria-labelledby="job-detail-title">
+            <div class="job-detail-top">
+              <small>VISUAL HỖ TRỢ · MỘT JOB THẬT</small>
+              <span class="job-detail-counter" id="job-detail-counter">01 / 08</span>
+            </div>
+            <figure class="job-detail-visual">
+              <img id="job-detail-image" src="https://drive.google.com/thumbnail?id=1lonK2-7tURIP_pBboac0AH0Ebs4P84HC&sz=w1600" alt="Case Four Points do Hang Đôi Production thực hiện" loading="lazy">
+              <figcaption class="job-detail-caption">
+                <small id="job-detail-visual-label">CASE THƯƠNG MẠI / FOUR POINTS</small>
+                <strong id="job-detail-visual-title">Từ yêu cầu thành đầu bài có thể sản xuất.</strong>
+              </figcaption>
             </figure>
-            <figure class="job-proof-thumb">
-              <img src="https://drive.google.com/thumbnail?id=1Y7iqjyIfKY2Di6l3JvjOBCWjKCNAoaUG&sz=w1200" alt="Product Dustgo do Hang Đôi Production thực hiện" loading="lazy">
-              <span>PRODUCT / DUSTGO</span>
-            </figure>
-          </div>
+
+            <div class="job-role-bar">
+              <small>Vị trí liên quan trong bước này</small>
+              <div class="job-role-chips" id="job-role-chips">
+                <span class="job-role-chip">Production Assistant / Owner</span>
+                <span class="job-role-chip">Video Creative</span>
+                <span class="job-role-chip">Creative Leader / Manager / Director</span>
+              </div>
+            </div>
+
+            <div class="job-detail-body">
+              <div class="job-detail-kicker" id="job-detail-kicker">BƯỚC 01 · ĐỀ BÀI</div>
+              <h3 id="job-detail-title">Biến yêu cầu thành đầu bài có thể sản xuất.</h3>
+              <p id="job-detail-copy">Team làm rõ mục tiêu truyền thông, kênh sử dụng, đối tượng xem, format, số lượng đầu ra và các ràng buộc. Chưa rõ đầu bài thì chưa bàn camera.</p>
+              <div class="job-output">
+                <small>OUTPUT</small>
+                <strong id="job-detail-output">Brief đã làm rõ + danh sách đầu ra cần bàn giao.</strong>
+              </div>
+            </div>
+          </section>
         </div>
 
         <div class="job-academy">
@@ -1501,7 +1629,7 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
           <div class="job-academy-copy">
             <small>BTS ACADEMY · TÁCH RIÊNG CASE THƯƠNG MẠI</small>
             <strong>Học viên đi qua cùng logic, ở phạm vi bài tập phù hợp.</strong>
-            <p>Không lấy sản phẩm thương mại để giả thành sản phẩm học viên.</p>
+            <p>Role chip ở đây chỉ giúp nhận diện ai tham gia từng bước. Bản đồ nghề nghiệp được trình bày riêng ở phần sau.</p>
           </div>
         </div>
       </aside>
@@ -1509,10 +1637,9 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
 
     <div class="reality-bridge reveal">
       <p>
-        Vì vậy chương trình không dạy theo kiểu “học thêm tool”.
-        <strong>Lộ trình được xây quanh cách một job thực sự đi đến đích.</strong>
+        Nhìn toàn bộ flow sẽ thấy rõ: <strong>mỗi vị trí chạm vào job ở những thời điểm khác nhau.</strong>
       </p>
-      <span>Tiếp theo: lộ trình 4 tháng biến flow này thành năng lực có thể thực hành và kiểm chứng.</span>
+      <span>Section này chỉ mô tả workflow và vai trò tham gia. Career path, level và hướng phát triển nghề nghiệp được tách riêng.</span>
     </div>
   </div>
 </section>
@@ -1858,6 +1985,207 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
     image.style.transform=`scale(1.02) translate(${x*6}px,${y*5}px)`;
   });
   frame.addEventListener("pointerleave",()=>{ image.style.transform="scale(1)"; });
+})();
+</script>
+<script id="job-flow-interaction">
+(()=>{
+  const details={
+    "01":{
+      kicker:"BƯỚC 01 · ĐỀ BÀI",
+      visualLabel:"CASE THƯƠNG MẠI / FOUR POINTS",
+      visualTitle:"Từ yêu cầu thành đầu bài có thể sản xuất.",
+      title:"Biến yêu cầu thành đầu bài có thể sản xuất.",
+      copy:"Team làm rõ mục tiêu truyền thông, kênh sử dụng, đối tượng xem, format, số lượng đầu ra và các ràng buộc. Chưa rõ đầu bài thì chưa bàn camera.",
+      output:"Brief đã làm rõ + danh sách đầu ra cần bàn giao.",
+      image:"https://drive.google.com/thumbnail?id=1lonK2-7tURIP_pBboac0AH0Ebs4P84HC&sz=w1600",
+      alt:"Case Four Points do Hang Đôi Production thực hiện",
+      roles:["Production Assistant / Owner","Video Creative","Creative Leader / Manager / Director"]
+    },
+    "02":{
+      kicker:"BƯỚC 02 · CHUẨN BỊ",
+      visualLabel:"BTS / CHUẨN BỊ TRƯỚC SET",
+      visualTitle:"Phần lớn quyết định quan trọng được chốt trước khi bấm máy.",
+      title:"Chuẩn bị để ngày quay không trở thành nơi đi tìm câu trả lời.",
+      copy:"Research, moodboard, shotlist, lịch, thiết bị, ánh sáng, nhân sự và địa điểm phải khớp với brief trước ngày sản xuất.",
+      output:"Moodboard + shotlist + kế hoạch nhân sự, thiết bị và lịch sản xuất.",
+      image:"https://drive.google.com/thumbnail?id=10KlvEAQ2t_gPpzyeX6XWfsO1kvjut-qP&sz=w1600",
+      alt:"BTS chuẩn bị sản xuất tại Hang Đôi Academy",
+      roles:["Production Assistant / Owner","Video Creative","Photographer","Videographer","Creative Leader / Manager / Director"]
+    },
+    "03":{
+      kicker:"BƯỚC 03 · SẢN XUẤT",
+      visualLabel:"HOSPITALITY / HOIANA · TRÊN SET",
+      visualTitle:"Camera ở đây — nhưng job chưa bắt đầu và cũng chưa kết thúc ở đây.",
+      title:"Trên set là lúc kế hoạch phải sống được trong thực tế.",
+      copy:"Team vừa ghi hình vừa kiểm soát ánh sáng, góc máy, blocking, continuity, thời gian và những thay đổi thực tế làm lệch kế hoạch.",
+      output:"Footage / ảnh đạt shotlist và đủ dữ liệu cho hậu kỳ.",
+      image:"https://drive.google.com/thumbnail?id=1zXJMZoiocczJf45kePNLG0KhQj1V_XfX&sz=w1600",
+      alt:"Lifestyle Hoiana do Hang Đôi Production thực hiện",
+      roles:["Photographer","Videographer","Video Creative","Production Assistant / Owner","Creative Leader / Manager / Director"]
+    },
+    "04":{
+      kicker:"BƯỚC 04 · DỮ LIỆU",
+      visualLabel:"SAU SET / QUẢN LÝ DỮ LIỆU",
+      visualTitle:"Một set tốt vẫn có thể hỏng nếu dữ liệu hỗn loạn.",
+      title:"Dữ liệu phải được bảo vệ trước khi bắt đầu hậu kỳ.",
+      copy:"Ingest, backup, naming, folder structure và kiểm tra file diễn ra ngay sau set. Kỷ luật dữ liệu là một phần của chất lượng nghề.",
+      output:"Dữ liệu đã kiểm tra, backup và tổ chức theo cấu trúc rõ ràng.",
+      image:"https://drive.google.com/thumbnail?id=10KlvEAQ2t_gPpzyeX6XWfsO1kvjut-qP&sz=w1600",
+      alt:"BTS quy trình sản xuất tại Hang Đôi Academy",
+      roles:["Production Assistant / Owner","Photographer","Videographer","Video Creative"]
+    },
+    "05":{
+      kicker:"BƯỚC 05 · HẬU KỲ",
+      visualLabel:"F&B / LÀNG CHÀI · ĐẦU RA",
+      visualTitle:"Hậu kỳ biến dữ liệu thành đầu ra phục vụ brief.",
+      title:"Đẹp chưa đủ — đầu ra phải đúng mục tiêu sử dụng.",
+      copy:"Chọn, dựng, chỉnh ảnh, âm thanh, màu sắc và đồ họa đều quay lại phục vụ brief ban đầu, thay vì chỉ chạy theo cảm giác thẩm mỹ.",
+      output:"Bản V1 đủ tiêu chuẩn để đưa vào vòng review.",
+      image:"https://drive.google.com/thumbnail?id=1PyQ-jYphGE3mm59Aqh2MucNIr7A9k-ZD&sz=w1600",
+      alt:"F&B Làng Chài do Hang Đôi Production thực hiện",
+      roles:["Video Creative","Photographer","Creative Leader / Manager / Director"]
+    },
+    "06":{
+      kicker:"BƯỚC 06 · GÓP Ý",
+      visualLabel:"HOSPITALITY / REVIEW OUTPUT",
+      visualTitle:"Feedback cần được hiểu trước khi được sửa.",
+      title:"Không biến feedback thành một danh sách thao tác máy móc.",
+      copy:"Team đọc feedback, hiểu mục tiêu đằng sau yêu cầu và xác định thay đổi nào thực sự cần thiết để đầu ra tốt hơn.",
+      output:"Feedback được phân loại + hướng sửa được thống nhất.",
+      image:"https://drive.google.com/thumbnail?id=1pXvdCfAIFULtsl9krz9eqfkjQGB66tSm&sz=w1600",
+      alt:"Hospitality lifestyle reference do Hang Đôi Production thực hiện",
+      roles:["Creative Leader / Manager / Director","Production Assistant / Owner","Video Creative"]
+    },
+    "07":{
+      kicker:"BƯỚC 07 · LÀM LẠI",
+      visualLabel:"PRODUCT / DUSTGO · REVISION",
+      visualTitle:"Revision là một vòng lặp có kiểm soát, không phải sửa vô hạn.",
+      title:"Sửa đúng scope, đúng phiên bản và QC lại trước khi đóng vòng.",
+      copy:"Mỗi lần sửa phải có version rõ, thay đổi được kiểm soát và đầu ra được kiểm tra lại. Chưa đạt thì chưa coi là hoàn thành.",
+      output:"Final candidate đã QC + version rõ ràng.",
+      image:"https://drive.google.com/thumbnail?id=1Y7iqjyIfKY2Di6l3JvjOBCWjKCNAoaUG&sz=w1600",
+      alt:"Product Dustgo do Hang Đôi Production thực hiện",
+      roles:["Video Creative","Photographer","Videographer","Production Assistant / Owner","Creative Leader / Manager / Director"]
+    },
+    "08":{
+      kicker:"BƯỚC 08 · BÀN GIAO",
+      visualLabel:"HOSPITALITY / FINAL DELIVERY",
+      visualTitle:"Chất lượng nghề kết thúc ở cách sản phẩm được bàn giao.",
+      title:"Một sản phẩm đẹp nhưng bàn giao sai vẫn là một job chưa hoàn thành.",
+      copy:"Đúng file, format, naming, version, nơi nhận và deadline. Sau bàn giao còn cần lưu trữ để team có thể truy xuất lại khi cần.",
+      output:"Final delivery + handover / archive rõ ràng.",
+      image:"https://drive.google.com/thumbnail?id=17wY57k3NEp1c9kYiFIyQ7Dc4D83RJtGl&sz=w1600",
+      alt:"Hospitality final output do Hang Đôi Production thực hiện",
+      roles:["Production Assistant / Owner","Video Creative","Creative Leader / Manager / Director"]
+    }
+  };
+
+  const steps=Array.from(document.querySelectorAll(".job-step[data-step]"));
+  const detail=document.getElementById("job-detail");
+  const home=document.getElementById("job-detail-home");
+  if(!steps.length||!detail||!home)return;
+
+  const image=document.getElementById("job-detail-image");
+  const counter=document.getElementById("job-detail-counter");
+  const visualLabel=document.getElementById("job-detail-visual-label");
+  const visualTitle=document.getElementById("job-detail-visual-title");
+  const kicker=document.getElementById("job-detail-kicker");
+  const title=document.getElementById("job-detail-title");
+  const copy=document.getElementById("job-detail-copy");
+  const output=document.getElementById("job-detail-output");
+  const roleWrap=document.getElementById("job-role-chips");
+  const mobile=matchMedia("(max-width:760px)");
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const renderRoles=(roles)=>{
+    roleWrap.replaceChildren();
+    roles.forEach(role=>{
+      const chip=document.createElement("span");
+      chip.className="job-role-chip";
+      chip.textContent=role;
+      roleWrap.appendChild(chip);
+    });
+  };
+
+  const placeDetail=(step)=>{
+    if(mobile.matches){
+      step.insertAdjacentElement("afterend",detail);
+    }else if(detail.parentElement!==home){
+      home.appendChild(detail);
+    }
+  };
+
+  const selectStep=(step,fromUser)=>{
+    const data=details[step.dataset.step];
+    if(!data)return;
+
+    steps.forEach(item=>{
+      const active=item===step;
+      item.classList.toggle("is-active",active);
+      item.setAttribute("aria-pressed",active?"true":"false");
+    });
+
+    detail.classList.add("is-updating");
+    placeDetail(step);
+
+    const update=()=>{
+      counter.textContent=step.dataset.step+" / 08";
+      visualLabel.textContent=data.visualLabel;
+      visualTitle.textContent=data.visualTitle;
+      kicker.textContent=data.kicker;
+      title.textContent=data.title;
+      copy.textContent=data.copy;
+      output.textContent=data.output;
+      renderRoles(data.roles);
+      image.src=data.image;
+      image.alt=data.alt;
+      detail.setAttribute("aria-labelledby","job-detail-title");
+      detail.classList.remove("is-updating");
+    };
+
+    if(reduce){update()}else{setTimeout(update,110)}
+
+    if(fromUser&&mobile.matches){
+      requestAnimationFrame(()=>{
+        detail.scrollIntoView({behavior:reduce?"auto":"smooth",block:"nearest"});
+      });
+    }
+  };
+
+  steps.forEach((step,index)=>{
+    step.addEventListener("click",()=>selectStep(step,true));
+    step.addEventListener("keydown",(event)=>{
+      if(event.key==="Enter"||event.key===" "){
+        event.preventDefault();
+        selectStep(step,true);
+        return;
+      }
+      if(event.key==="ArrowDown"||event.key==="ArrowRight"){
+        event.preventDefault();
+        steps[(index+1)%steps.length].focus();
+      }
+      if(event.key==="ArrowUp"||event.key==="ArrowLeft"){
+        event.preventDefault();
+        steps[(index-1+steps.length)%steps.length].focus();
+      }
+      if(event.key==="Home"){
+        event.preventDefault();
+        steps[0].focus();
+      }
+      if(event.key==="End"){
+        event.preventDefault();
+        steps[steps.length-1].focus();
+      }
+    });
+  });
+
+  const onViewportChange=()=>{
+    const active=steps.find(step=>step.classList.contains("is-active"))||steps[0];
+    placeDetail(active);
+  };
+  if(mobile.addEventListener)mobile.addEventListener("change",onViewportChange);
+  else mobile.addListener(onViewportChange);
+  onViewportChange();
 })();
 </script>
 </body>
