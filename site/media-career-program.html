@@ -5470,6 +5470,44 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
   .final13-cta:hover b{transform:none}
 }
 
+
+/* ===== Mobile QA / final cross-section polish ===== */
+@media(max-width:760px){
+  main,main>*{min-width:0}
+  .section,.career9,.final13-section{isolation:isolate}
+  button,a,summary{
+    -webkit-tap-highlight-color:rgba(11,106,63,.10);
+  }
+  button{min-width:0}
+  .program4-detail-progress span.is-active:after{
+    animation:none!important;
+    transform:scaleX(1)!important;
+  }
+  .gap2-flow,.loop5-nav,.practice6-gallery,.practice6-format-strip,
+  .outputs8-doc-rail,.outputs8-side,.faq12-cats,.job-role-chips{
+    scroll-behavior:smooth;
+  }
+  .mobile-cta .btn:focus-visible{
+    outline:3px solid #fffdf7;
+    outline-offset:3px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .mobile-cta{transition:none!important}
+  .program4-detail-wrap,
+  .job-detail-card{animation:none!important}
+  .career9-mobile .career9-step{
+    opacity:1!important;
+    transform:none!important;
+    animation:none!important;
+  }
+  .gap2-flow,.loop5-nav,.practice6-gallery,.practice6-format-strip,
+  .outputs8-doc-rail,.outputs8-side,.faq12-cats,.job-role-chips{
+    scroll-behavior:auto!important;
+  }
+}
+
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Course","name":"Hang Đôi Media Career Program","description":"Chương trình Media 4 tháng hướng tới Production Ready trong Commercial Production.","provider":{"@type":"EducationalOrganization","name":"Hang Đôi Academy","url":"https://academy.hangdoiproduction.com/"}}
