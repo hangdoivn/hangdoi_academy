@@ -5301,6 +5301,175 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
   .outputs8-doc.a:hover,.outputs8-doc.b:hover,.outputs8-doc.c:hover{transform:none}
 }
 
+
+/* ===== Mobile UX / Sections 11–13 + Footer ===== */
+@media(max-width:760px){
+  /* 11 — fit */
+  .fit11{padding-block:54px 52px}
+  .fit11-no{top:-26px;right:-16px;font-size:150px}
+  .fit11-head{gap:18px}
+  .fit11-meta{padding-left:13px}
+  .fit11-kicker{font-size:9px}
+  .fit11-meta p{margin-top:7px;font-size:8px}
+  .fit11-title{max-width:356px;font-size:clamp(39px,11.2vw,48px);line-height:.91}
+  .fit11-lead{max-width:350px;margin-top:15px;font-size:14px;line-height:1.5}
+  .fit11-wrap{gap:8px;margin-top:30px}
+  .fit11-card{
+    min-height:0;
+    padding:17px 16px;
+    border-radius:18px;
+  }
+  .fit11-card small{font-size:7px}
+  .fit11-card>strong{margin-top:8px;font-size:24px}
+  .fit11-list{gap:8px;margin-top:15px}
+  .fit11-item{grid-template-columns:22px 1fr;gap:8px;font-size:11px}
+  .fit11-item b{width:22px;height:22px;font-size:8px}
+  .fit11-note{margin-top:8px;padding:12px 14px;border-radius:14px;font-size:10px}
+
+  /* 12 — FAQ */
+  .faq12{padding-block:54px 52px}
+  .faq12-no{top:-30px;right:-18px;font-size:150px}
+  .faq12-head{gap:14px}
+  .faq12-kicker{font-size:9px}
+  .faq12-title{max-width:356px;font-size:clamp(39px,11.2vw,48px);line-height:.91}
+  .faq12-lead{max-width:350px;font-size:13px;line-height:1.5}
+  .faq12-cats{
+    flex-wrap:nowrap;
+    gap:6px;
+    margin:24px -16px 0 0;
+    padding:0 16px 12px 0;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+  .faq12-cats::-webkit-scrollbar{display:none}
+  .faq12-cats span{
+    flex:0 0 auto;
+    min-height:31px;
+    padding:0 9px;
+    font-size:7px;
+  }
+  .faq12-list{margin-top:2px}
+  .faq12-item summary{
+    grid-template-columns:30px minmax(0,1fr) 34px;
+    gap:8px;
+    min-height:74px;
+    padding:14px 0;
+  }
+  .faq12-index{font-size:9px}
+  .faq12-question{font-size:16px;line-height:1.12}
+  .faq12-icon{width:34px;height:34px}
+  .faq12-answer{
+    grid-template-columns:1fr;
+    gap:12px;
+    margin:0 0 18px;
+    padding:15px;
+    border-radius:17px;
+  }
+  .faq12-answer-main p{margin-bottom:10px;font-size:11px;line-height:1.55}
+  .faq12-note{padding:12px;border-radius:14px}
+  .faq12-note small{font-size:7px}
+  .faq12-note p,.faq12-note li{font-size:10px}
+
+  /* 13 — final CTA */
+  .final13-section{
+    padding:56px 0 calc(28px + env(safe-area-inset-bottom));
+  }
+  .final13-no{top:-24px;right:-18px;font-size:150px}
+  .final13-top{gap:28px}
+  .final13-kicker{font-size:8px}
+  .final13-title{
+    max-width:356px;
+    margin-top:10px;
+    font-size:clamp(52px,14.8vw,66px);
+    line-height:.86;
+  }
+  .final13-lead{max-width:350px;margin-top:18px;font-size:13px;line-height:1.5}
+  .final13-card{
+    width:100%;
+    max-width:none;
+    padding:16px;
+    border-radius:20px;
+    transform:none;
+  }
+  .final13-card:before,.final13-card:after{width:22px;height:22px}
+  .final13-card:before{left:-11px}.final13-card:after{right:-11px}
+  .final13-card-head{padding-bottom:13px}
+  .final13-card-head small{font-size:7px}
+  .final13-card-head strong{margin-top:5px;font-size:21px}
+  .final13-status{min-height:25px;font-size:7px}
+  .final13-facts{margin-top:13px}
+  .final13-facts div{min-height:70px;padding:10px}
+  .final13-facts small{font-size:6px}
+  .final13-facts strong{font-size:11px}
+  .final13-cta{min-height:54px;margin-top:14px;padding:0 9px 0 16px;font-size:9px}
+  .final13-cta b{width:36px;height:36px}
+  .final13-micro{font-size:8px}
+  .final13-bottom{
+    margin-top:34px;
+    padding-top:14px;
+    gap:14px;
+  }
+  .final13-path{gap:5px}
+  .final13-path span{font-size:7px}
+  .final13-path i{height:14px}
+  .final13-brand{font-size:7px}
+
+  /* Footer — contact first, patronage next, links last. */
+  .academy-footer-v2{padding:28px 0 calc(24px + env(safe-area-inset-bottom))}
+  .footer-v2-main{gap:22px}
+  .footer-v2-brand{order:1}
+  .footer-v2-contact{order:2}
+  .footer-v2-patron{order:3}
+  .footer-v2-links{order:4}
+  .footer-v2-label{margin-bottom:9px;font-size:7px}
+  .footer-v2-brand strong{max-width:330px;font-size:25px}
+  .footer-v2-brand p{margin-top:9px;font-size:10px}
+  .footer-v2-contact{
+    grid-template-columns:1fr 1.35fr;
+    gap:8px;
+  }
+  .footer-v2-contact>div{
+    min-height:78px;
+    padding:13px;
+    border-radius:15px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.07);
+  }
+  .footer-v2-contact span{font-size:7px}
+  .footer-v2-contact a,.footer-v2-contact strong{font-size:12px}
+  .footer-v2-patron{padding:16px;border-radius:17px}
+  .footer-v2-patron strong{margin-top:14px;font-size:22px}
+  .footer-v2-patron p{font-size:9px}
+  .footer-v2-links nav{
+    grid-template-columns:1fr 1fr;
+    gap:0;
+    border-top:1px solid rgba(255,255,255,.08);
+  }
+  .footer-v2-links a{
+    width:auto;
+    min-height:42px;
+    display:flex;
+    align-items:center;
+    padding-right:10px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    font-size:10px;
+  }
+  .footer-v2-bottom{margin-top:22px;padding-top:13px}
+  .footer-v2-bottom span{font-size:7px}
+}
+
+@media(max-width:375px){
+  .fit11,.faq12{padding-block:50px 48px}
+  .fit11-title,.faq12-title{font-size:clamp(37px,10.8vw,43px)}
+  .final13-title{font-size:clamp(48px,14.2vw,60px)}
+  .footer-v2-contact{grid-template-columns:1fr}
+}
+
+@media(hover:none) and (pointer:coarse){
+  .final13-card:hover{transform:none;box-shadow:0 30px 80px rgba(0,0,0,.24)}
+  .final13-cta:hover b{transform:none}
+}
+
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Course","name":"Hang Đôi Media Career Program","description":"Chương trình Media 4 tháng hướng tới Production Ready trong Commercial Production.","provider":{"@type":"EducationalOrganization","name":"Hang Đôi Academy","url":"https://academy.hangdoiproduction.com/"}}
@@ -7263,6 +7432,23 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
       }
     }));
   }
+})();
+</script>
+
+<script id="mobile-sections11-13-ux">
+(()=>{
+  const mobile=matchMedia("(max-width:760px)");
+
+  /* FAQ starts collapsed on phones so users scan questions before opening one. */
+  const faq=document.getElementById("faq");
+  const closeFaq=()=>{
+    if(!faq||!mobile.matches)return;
+    faq.querySelectorAll(".faq12-item[open]").forEach(item=>{item.open=false});
+  };
+  closeFaq();
+  if(mobile.addEventListener)mobile.addEventListener("change",()=>{
+    if(mobile.matches)closeFaq();
+  });
 })();
 </script>
 </body>
