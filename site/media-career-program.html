@@ -2246,22 +2246,367 @@ img{display:block;max-width:100%}
   .practice6-tile img{transition:none!important}
 }
 
-/* 07 Roles */
-.roles{background:var(--aca-paper-100)}
-.roles-layout{display:grid;grid-template-columns:4fr 8fr;gap:48px;align-items:start}
-.roles-intro{position:sticky;top:110px}
-.role-root{display:inline-flex;margin-top:24px;padding:10px 14px;background:var(--aca-green-950);color:var(--aca-paper-0);font-size:11px;font-weight:800;letter-spacing:.08em}
-.role-lanes{display:grid;grid-template-columns:repeat(4,1fr);border-top:var(--aca-border-strong) solid var(--aca-border-ink);border-left:var(--aca-border-strong) solid var(--aca-border-ink)}
-.role-lane{min-height:470px;padding:18px;border-right:var(--aca-border-strong) solid var(--aca-border-ink);border-bottom:var(--aca-border-strong) solid var(--aca-border-ink);background:var(--aca-paper-0)}
-.role-lane:nth-child(2){background:var(--aca-green-100)}
-.role-lane:nth-child(3){background:var(--aca-cobalt-100)}
-.role-lane:nth-child(4){background:var(--aca-orange-100)}
-.role-lane>strong{display:block;font-size:11px;letter-spacing:.11em;color:var(--aca-color-brand)}
-.role-path{margin-top:36px}
-.role-step{padding:12px 0;border-top:1px solid var(--aca-color-divider);font-size:13px}
-.role-step small{display:block;font-size:9px;color:var(--aca-color-text-muted);margin-bottom:4px}
-.role-step:last-child{font-weight:800;font-size:14px}
-.role-note{font-size:11px;color:var(--aca-color-text-muted);margin-top:16px;max-width:700px}
+/* 07 Career directions — interactive, newbie-first */
+.roles{
+  position:relative;
+  overflow:hidden;
+  background:var(--aca-paper-100);
+  color:var(--aca-green-950);
+}
+.roles:before{
+  content:"07";
+  position:absolute;
+  right:-.03em;
+  top:-.20em;
+  font-size:clamp(180px,20vw,320px);
+  line-height:1;
+  font-weight:950;
+  letter-spacing:-.09em;
+  color:rgba(11,36,24,.026);
+  pointer-events:none;
+}
+.roles7{position:relative;z-index:1}
+.roles7-head{
+  display:grid;
+  grid-template-columns:minmax(210px,3fr) minmax(0,9fr);
+  gap:clamp(28px,4vw,64px);
+  align-items:start;
+}
+.roles7-meta{
+  padding-left:18px;
+  border-left:2px solid var(--aca-color-brand);
+}
+.roles7-kicker{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:12px;
+  font-weight:950;
+  line-height:1.35;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  color:var(--aca-color-brand);
+}
+.roles7-kicker:before{
+  content:"";
+  width:9px;height:9px;border-radius:50%;
+  background:var(--aca-color-brand);
+  box-shadow:0 0 0 5px rgba(11,106,63,.10);
+  flex:none;
+}
+.roles7-index{
+  margin:10px 0 0;
+  font-size:11px;
+  line-height:1.45;
+  font-weight:850;
+  letter-spacing:.075em;
+  color:var(--aca-color-text-muted);
+}
+.roles7-title{
+  margin:0;
+  max-width:1040px;
+  font-size:clamp(50px,5.7vw,88px);
+  line-height:.89;
+  letter-spacing:-.064em;
+  font-weight:950;
+  color:var(--aca-green-950);
+}
+.roles7-title .accent{color:var(--aca-color-brand)}
+.roles7-lead{
+  max-width:770px;
+  margin:20px 0 0;
+  font-size:clamp(15px,1.35vw,19px);
+  line-height:1.55;
+  color:var(--aca-color-text-muted);
+}
+.roles7-lead strong{color:var(--aca-green-950)}
+
+.roles7-tabs{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;
+  margin-top:clamp(36px,4.8vw,56px);
+}
+.roles7-tab{
+  --role-accent:var(--aca-color-brand);
+  min-width:0;
+  min-height:128px;
+  padding:17px;
+  border:0;
+  border-radius:20px;
+  background:var(--aca-paper-0);
+  box-shadow:0 8px 26px rgba(11,36,24,.045);
+  color:var(--aca-green-950);
+  text-align:left;
+  cursor:pointer;
+  transition:transform .24s cubic-bezier(.16,1,.3,1),background .2s,box-shadow .2s,color .2s;
+}
+.roles7-tab[data-role="photo"]{--role-accent:var(--aca-color-brand)}
+.roles7-tab[data-role="video"]{--role-accent:var(--aca-color-signal-cobalt)}
+.roles7-tab[data-role="creative"]{--role-accent:var(--aca-color-signal-orange)}
+.roles7-tab[data-role="production"]{--role-accent:var(--aca-color-signal-yellow)}
+.roles7-tab:hover,
+.roles7-tab.is-active{
+  transform:translateY(-3px);
+  box-shadow:0 15px 36px rgba(11,36,24,.08);
+}
+.roles7-tab.is-active{
+  background:var(--aca-green-950);
+  color:#fffdf7;
+}
+.roles7-tab:focus-visible{
+  outline:3px solid rgba(11,106,63,.25);
+  outline-offset:3px;
+}
+.roles7-tab small{
+  display:block;
+  font-size:9px;
+  font-weight:950;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  color:var(--role-accent);
+}
+.roles7-tab strong{
+  display:block;
+  margin-top:26px;
+  font-size:22px;
+  line-height:1;
+  letter-spacing:-.035em;
+}
+.roles7-tab span{
+  display:block;
+  margin-top:7px;
+  font-size:11px;
+  line-height:1.35;
+  color:#7b877f;
+}
+.roles7-tab.is-active span{color:rgba(255,255,255,.55)}
+
+.roles7-detail{
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(340px,.95fr);
+  gap:14px;
+  margin-top:14px;
+}
+.roles7-detail-main{
+  position:relative;
+  min-height:410px;
+  overflow:hidden;
+  padding:32px;
+  border-radius:26px;
+  background:var(--aca-green-950);
+  color:#fffdf7;
+  transition:opacity .18s ease,transform .18s ease;
+}
+.roles7-detail-main.is-switching{
+  animation:roles7Swap .42s cubic-bezier(.16,1,.3,1);
+}
+.roles7-detail-main:after{
+  content:attr(data-index);
+  position:absolute;
+  right:18px;
+  bottom:-24px;
+  font-size:150px;
+  line-height:.8;
+  font-weight:950;
+  letter-spacing:-.08em;
+  color:rgba(255,255,255,.035);
+  pointer-events:none;
+}
+.roles7-detail-kicker{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:10px;
+  font-weight:950;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--aca-color-signal-yellow);
+}
+.roles7-detail-kicker:before{
+  content:"";
+  width:8px;height:8px;border-radius:50%;
+  background:var(--aca-color-signal-yellow);
+}
+.roles7-detail-title{
+  margin:24px 0 0;
+  max-width:700px;
+  font-size:clamp(42px,4.8vw,70px);
+  line-height:.92;
+  letter-spacing:-.06em;
+}
+.roles7-detail-desc{
+  margin:16px 0 0;
+  max-width:680px;
+  font-size:16px;
+  line-height:1.5;
+  color:rgba(255,255,255,.64);
+}
+.roles7-fit{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:26px;
+}
+.roles7-fit span{
+  display:inline-flex;
+  min-height:34px;
+  align-items:center;
+  padding:0 11px;
+  border-radius:999px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.10);
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.055em;
+  text-transform:uppercase;
+}
+
+.roles7-path-card{
+  min-height:410px;
+  padding:28px;
+  border-radius:26px;
+  background:var(--aca-paper-0);
+  box-shadow:0 10px 28px rgba(11,36,24,.05);
+}
+.roles7-path-card>small{
+  display:block;
+  font-size:9px;
+  font-weight:950;
+  letter-spacing:.10em;
+  text-transform:uppercase;
+  color:var(--aca-color-brand);
+}
+.roles7-path-list{
+  display:grid;
+  gap:0;
+  margin-top:28px;
+}
+.roles7-path-step{
+  display:grid;
+  grid-template-columns:42px minmax(0,1fr);
+  gap:12px;
+  align-items:center;
+  padding:14px 0;
+  border-bottom:1px solid var(--aca-color-divider);
+}
+.roles7-path-step:last-child{border-bottom:0}
+.roles7-path-step b{
+  width:42px;height:42px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:var(--aca-green-100);
+  color:var(--aca-color-brand);
+  font-size:10px;
+  font-weight:950;
+}
+.roles7-path-step strong{
+  display:block;
+  font-size:15px;
+  line-height:1.15;
+}
+.roles7-path-step span{
+  display:block;
+  margin-top:4px;
+  font-size:10px;
+  line-height:1.35;
+  color:var(--aca-color-text-muted);
+}
+.roles7-note{
+  margin-top:20px;
+  padding-top:16px;
+  border-top:1px solid var(--aca-color-divider);
+  font-size:11px;
+  line-height:1.45;
+  color:var(--aca-color-text-muted);
+}
+
+.roles7-bridge{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:22px;
+  align-items:center;
+  margin-top:16px;
+  padding:18px 20px;
+  border-radius:20px;
+  background:var(--aca-color-signal-yellow);
+  color:var(--aca-green-950);
+}
+.roles7-bridge small{
+  display:block;
+  margin-bottom:5px;
+  font-size:8px;
+  font-weight:950;
+  letter-spacing:.10em;
+  text-transform:uppercase;
+}
+.roles7-bridge strong{
+  display:block;
+  max-width:800px;
+  font-size:clamp(20px,2vw,30px);
+  line-height:1.05;
+  letter-spacing:-.035em;
+}
+.roles7-bridge a{
+  min-height:44px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 16px;
+  border-radius:999px;
+  background:var(--aca-green-950);
+  color:#fffdf7;
+  text-decoration:none;
+  font-size:9px;
+  font-weight:950;
+  white-space:nowrap;
+}
+.roles7-bridge a:focus-visible{
+  outline:3px solid rgba(11,36,24,.22);
+  outline-offset:3px;
+}
+
+@keyframes roles7Swap{
+  0%{opacity:.60;transform:translateY(7px) scale(.994)}
+  100%{opacity:1;transform:translateY(0) scale(1)}
+}
+
+@media(max-width:1024px){
+  .roles7-head{grid-template-columns:1fr;gap:22px}
+  .roles7-tabs{grid-template-columns:1fr 1fr}
+  .roles7-detail{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  .roles7-title{font-size:clamp(43px,12vw,62px);line-height:.91}
+  .roles7-lead{font-size:15px}
+  .roles7-tabs{
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-top:34px;
+  }
+  .roles7-tab{min-height:112px;padding:14px}
+  .roles7-tab strong{margin-top:20px;font-size:18px}
+  .roles7-tab span{font-size:10px}
+  .roles7-detail-main,
+  .roles7-path-card{
+    padding:22px 18px;
+    border-radius:22px;
+  }
+  .roles7-detail-main{min-height:360px}
+  .roles7-detail-title{font-size:40px}
+  .roles7-detail-desc{font-size:14px}
+  .roles7-bridge{grid-template-columns:1fr}
+  .roles7-bridge a{
+    justify-self:start;
+    white-space:normal;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .roles7-tab,
+  .roles7-detail-main{transition:none!important}
+  .roles7-detail-main.is-switching{animation:none!important}
+}
 
 /* 08 Outputs */
 .outputs{background:var(--aca-paper-50)}
@@ -3259,46 +3604,68 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
 </section>
 
 <section id="roles" class="section roles">
-  <div class="wrap roles-layout">
-    <div class="roles-intro reveal">
-      <div class="kicker">Bạn phù hợp với vị trí nào?</div>
-      <h2 class="display">MEDIA KHÔNG PHẢI<br>MỘT VỊ TRÍ<br>DUY NHẤT.</h2>
-      <p class="lead">Đi qua nền tảng chung trước. Sau đó xác định kỹ năng chính, kỹ năng phụ và vị trí khởi đầu phù hợp.</p>
-      <div class="role-root">MEDIA / NỀN TẢNG CHUNG</div>
+  <div class="wrap roles7">
+    <div class="roles7-head reveal">
+      <div class="roles7-meta">
+        <div class="roles7-kicker">07 · HƯỚNG NGHỀ</div>
+        <p class="roles7-index">PHOTO · VIDEO · VIDEO CREATIVE · PRODUCTION</p>
+      </div>
+      <div>
+        <h2 class="roles7-title">MEDIA KHÔNG CHỈ CÓ<br><span class="accent">MỘT CÔNG VIỆC.</span></h2>
+        <p class="roles7-lead">Bạn không cần chọn nghề ngay từ ngày đầu. <strong>Học nền tảng chung trước, rồi dần nhận ra phần việc mình làm tốt và thích nhất.</strong></p>
+      </div>
     </div>
 
-    <div>
-      <div class="role-lanes reveal">
-        <div class="role-lane"><strong>PHOTO</strong><div class="role-path">
-          <div class="role-step"><small>01</small>Trợ lý nhiếp ảnh</div>
-          <div class="role-step"><small>02</small>Nhiếp ảnh gia phụ</div>
-          <div class="role-step"><small>03</small>Nhiếp ảnh gia</div>
-          <div class="role-step"><small>04</small>Trưởng nhóm nhiếp ảnh</div>
-          <div class="role-step"><small>05</small>Nhiếp ảnh gia thương mại cấp cao</div>
-        </div></div>
-        <div class="role-lane"><strong>CAMERA</strong><div class="role-path">
-          <div class="role-step"><small>01</small>Trợ lý Camera</div>
-          <div class="role-step"><small>02</small>Camera B / Gimbal</div>
-          <div class="role-step"><small>03</small>Quay phim chính</div>
-          <div class="role-step"><small>04</small>Trưởng nhóm quay</div>
-          <div class="role-step"><small>05</small>Đạo diễn hình ảnh (DOP)</div>
-        </div></div>
-        <div class="role-lane"><strong>HẬU KỲ</strong><div class="role-path">
-          <div class="role-step"><small>01</small>Trợ lý dựng</div>
-          <div class="role-step"><small>02</small>Dựng phim cơ bản</div>
-          <div class="role-step"><small>03</small>Dựng phim</div>
-          <div class="role-step"><small>04</small>Trưởng dựng</div>
-          <div class="role-step"><small>05</small>Giám sát hậu kỳ</div>
-        </div></div>
-        <div class="role-lane"><strong>ĐA KỸ NĂNG</strong><div class="role-path">
-          <div class="role-step"><small>01</small>Trợ lý Media</div>
-          <div class="role-step"><small>02</small>Media mới vào nghề</div>
-          <div class="role-step"><small>03</small>Chuyên viên Media</div>
-          <div class="role-step"><small>04</small>Media cấp cao</div>
-          <div class="role-step"><small>05</small>Trưởng nhóm Media</div>
-        </div></div>
+    <div class="roles7-tabs reveal" aria-label="Các hướng nghề Media">
+      <button class="roles7-tab is-active" type="button" data-role="photo" aria-pressed="true">
+        <small>01 · HÌNH ẢNH</small>
+        <strong>PHOTOGRAPHER</strong>
+        <span>Khung hình · ánh sáng · khoảnh khắc</span>
+      </button>
+      <button class="roles7-tab" type="button" data-role="video" aria-pressed="false">
+        <small>02 · CHUYỂN ĐỘNG</small>
+        <strong>VIDEOGRAPHER</strong>
+        <span>Camera · movement · set</span>
+      </button>
+      <button class="roles7-tab" type="button" data-role="creative" aria-pressed="false">
+        <small>03 · CÂU CHUYỆN</small>
+        <strong>VIDEO CREATIVE</strong>
+        <span>Ý tưởng · shotlist · dựng</span>
+      </button>
+      <button class="roles7-tab" type="button" data-role="production" aria-pressed="false">
+        <small>04 · VẬN HÀNH</small>
+        <strong>PRODUCTION</strong>
+        <span>Điều phối · quy trình · team</span>
+      </button>
+    </div>
+
+    <div class="roles7-detail reveal">
+      <article class="roles7-detail-main" id="roles7-detail-main" data-index="01" aria-live="polite">
+        <div class="roles7-detail-kicker" id="roles7-detail-kicker">HƯỚNG 01 · PHOTOGRAPHER</div>
+        <h3 class="roles7-detail-title" id="roles7-detail-title">THÍCH NHÌN MỘT KHUNG HÌNH CHO ĐÚNG.</h3>
+        <p class="roles7-detail-desc" id="roles7-detail-desc">Bạn để ý ánh sáng, bố cục, khoảnh khắc và thường muốn chỉnh từng chi tiết để hình ảnh “đúng cảm giác” hơn.</p>
+        <div class="roles7-fit" id="roles7-fit">
+          <span>ÁNH SÁNG</span><span>BỐ CỤC</span><span>CHI TIẾT</span><span>KHOẢNH KHẮC</span>
+        </div>
+      </article>
+
+      <aside class="roles7-path-card">
+        <small>ĐIỂM BẮT ĐẦU CÓ THỂ LÀ</small>
+        <div class="roles7-path-list" id="roles7-path-list">
+          <div class="roles7-path-step"><b>01</b><div><strong>Trợ lý nhiếp ảnh</strong><span>Hỗ trợ thiết bị, ánh sáng và set.</span></div></div>
+          <div class="roles7-path-step"><b>02</b><div><strong>Photographer</strong><span>Tự thực hiện những bài chụp phù hợp năng lực.</span></div></div>
+          <div class="roles7-path-step"><b>03</b><div><strong>Commercial Photographer</strong><span>Đi sâu vào hình ảnh thương mại và dự án lớn hơn.</span></div></div>
+        </div>
+        <div class="roles7-note">Đây là hướng phát triển tham khảo, không phải chức danh tự động sau 4 tháng.</div>
+      </aside>
+    </div>
+
+    <div class="roles7-bridge reveal">
+      <div>
+        <small>KHÔNG CẦN CHỌN NGAY</small>
+        <strong>4 tháng đầu là để xây nền và có đủ trải nghiệm trước khi nghiêng về một hướng.</strong>
       </div>
-      <p class="role-note">Vị trí thực tế phụ thuộc năng lực, mức trách nhiệm và độ phức tạp của dự án. Lộ trình nghề không phải chức danh tự động sau 4 tháng.</p>
+      <a href="#apply">XEM MÌNH CÓ PHÙ HỢP →</a>
     </div>
   </div>
 </section>
@@ -4105,6 +4472,119 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
 
   select(0,{animate:false});
   schedule();
+})();
+</script>
+<script id="section7-career-directions-interaction">
+(()=>{
+  const section=document.getElementById("roles");
+  if(!section)return;
+
+  const data={
+    photo:{
+      index:"01",
+      kicker:"HƯỚNG 01 · PHOTOGRAPHER",
+      title:"THÍCH NHÌN MỘT KHUNG HÌNH CHO ĐÚNG.",
+      desc:"Bạn để ý ánh sáng, bố cục, khoảnh khắc và thường muốn chỉnh từng chi tiết để hình ảnh “đúng cảm giác” hơn.",
+      fit:["ÁNH SÁNG","BỐ CỤC","CHI TIẾT","KHOẢNH KHẮC"],
+      path:[
+        ["Trợ lý nhiếp ảnh","Hỗ trợ thiết bị, ánh sáng và set."],
+        ["Photographer","Tự thực hiện những bài chụp phù hợp năng lực."],
+        ["Commercial Photographer","Đi sâu vào hình ảnh thương mại và dự án lớn hơn."]
+      ]
+    },
+    video:{
+      index:"02",
+      kicker:"HƯỚNG 02 · VIDEOGRAPHER",
+      title:"THÍCH CAMERA CHUYỂN ĐỘNG VÀ SET ĐANG CHẠY.",
+      desc:"Bạn hứng thú với camera, gimbal, chuyển động và việc bắt đúng khoảnh khắc khi mọi thứ đang diễn ra.",
+      fit:["CAMERA","GIMBAL","MOVEMENT","SET"],
+      path:[
+        ["Camera Assistant","Hỗ trợ camera, lens, pin, thẻ và setup."],
+        ["Videographer","Tự vận hành camera cho những bài quay phù hợp."],
+        ["Lead Camera / DOP","Đi sâu vào ngôn ngữ hình ảnh và dẫn phần camera."]
+      ]
+    },
+    creative:{
+      index:"03",
+      kicker:"HƯỚNG 03 · VIDEO CREATIVE",
+      title:"THÍCH BIẾN Ý TƯỞNG THÀNH MỘT VIDEO CÓ NHỊP.",
+      desc:"Bạn quan tâm đến concept, shotlist, nhịp dựng và cách nhiều cảnh ghép lại thành một câu chuyện dễ xem.",
+      fit:["IDEA","SHOTLIST","EDIT","STORY"],
+      path:[
+        ["Creative / Edit Assistant","Hỗ trợ research, footage và dựng cơ bản."],
+        ["Video Creative","Phát triển ý tưởng và đi cùng video từ đầu đến cuối."],
+        ["Creative Leader","Dẫn concept, định hướng hình ảnh và phối hợp team."]
+      ]
+    },
+    production:{
+      index:"04",
+      kicker:"HƯỚNG 04 · PRODUCTION",
+      title:"THÍCH LÀM CHO CẢ SET CHẠY ĐÚNG.",
+      desc:"Bạn để ý con người, timeline, thiết bị và đầu việc. Thay vì chỉ tập trung vào một khung hình, bạn nhìn toàn bộ quy trình.",
+      fit:["ĐIỀU PHỐI","TIMELINE","TEAM","QUY TRÌNH"],
+      path:[
+        ["Production Assistant","Hỗ trợ set, checklist, thiết bị và vận hành."],
+        ["Production Coordinator / Owner","Chịu trách nhiệm nhiều phần việc hơn của một job."],
+        ["Manager / Director","Phát triển theo hướng quản lý team hoặc creative/production leadership."]
+      ]
+    }
+  };
+
+  const tabs=Array.from(section.querySelectorAll(".roles7-tab[data-role]"));
+  const main=document.getElementById("roles7-detail-main");
+  const kicker=document.getElementById("roles7-detail-kicker");
+  const title=document.getElementById("roles7-detail-title");
+  const desc=document.getElementById("roles7-detail-desc");
+  const fit=document.getElementById("roles7-fit");
+  const path=document.getElementById("roles7-path-list");
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const finePointer=matchMedia("(pointer:fine)").matches;
+
+  const select=(role,{animate=true}={})=>{
+    const d=data[role];
+    if(!d)return;
+
+    tabs.forEach(tab=>{
+      const active=tab.dataset.role===role;
+      tab.classList.toggle("is-active",active);
+      tab.setAttribute("aria-pressed",active?"true":"false");
+    });
+
+    if(animate&&!reduce){
+      main.classList.remove("is-switching");
+      void main.offsetWidth;
+      main.classList.add("is-switching");
+      setTimeout(()=>main.classList.remove("is-switching"),430);
+    }
+
+    main.dataset.index=d.index;
+    kicker.textContent=d.kicker;
+    title.textContent=d.title;
+    desc.textContent=d.desc;
+    fit.innerHTML=d.fit.map(item=>"<span>"+item+"</span>").join("");
+    path.innerHTML=d.path.map((item,index)=>
+      '<div class="roles7-path-step"><b>'+String(index+1).padStart(2,"0")+'</b><div><strong>'+item[0]+'</strong><span>'+item[1]+'</span></div></div>'
+    ).join("");
+  };
+
+  tabs.forEach((tab,index)=>{
+    tab.addEventListener("click",()=>select(tab.dataset.role));
+    tab.addEventListener("focus",()=>select(tab.dataset.role));
+    if(finePointer)tab.addEventListener("pointerenter",()=>select(tab.dataset.role));
+    tab.addEventListener("keydown",(event)=>{
+      if(event.key==="ArrowRight"||event.key==="ArrowDown"){
+        event.preventDefault();
+        tabs[(index+1)%tabs.length].focus();
+      }else if(event.key==="ArrowLeft"||event.key==="ArrowUp"){
+        event.preventDefault();
+        tabs[(index-1+tabs.length)%tabs.length].focus();
+      }else if(event.key==="Home"){
+        event.preventDefault();tabs[0].focus();
+      }else if(event.key==="End"){
+        event.preventDefault();tabs[tabs.length-1].focus();
+      }
+    });
+  });
 })();
 </script>
 </body>
