@@ -3738,6 +3738,222 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
   }
 }
 
+
+/* ===== Section 09 / Income stair ===== */
+.career9{
+  --c9-bg:#07110d;
+  --c9-paper:#f5f1e7;
+  --c9-text:#f7f5ef;
+  --c9-muted:rgba(247,245,239,.68);
+  --c9-muted2:rgba(247,245,239,.45);
+  --c9-yellow:#f4c542;
+  --c9-brand:#0b6a3f;
+  --c9-brand-mid:#22865a;
+  --c9-brand-light:#6fc49a;
+  --c9-brand-pale:#b8dcc8;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 12% 10%,rgba(244,197,66,.08),transparent 24%),
+    radial-gradient(circle at 78% 18%,rgba(11,106,63,.10),transparent 26%),
+    radial-gradient(circle at 60% 80%,rgba(111,196,154,.07),transparent 22%),
+    var(--c9-bg);
+  color:var(--c9-text);
+  padding:72px 0 64px;
+}
+.career9:after{
+  content:"09";
+  position:absolute;right:18px;top:-18px;
+  font-size:clamp(120px,16vw,260px);
+  line-height:.9;font-weight:950;letter-spacing:-.08em;
+  color:rgba(255,255,255,.028);pointer-events:none;
+}
+.career9-wrap{position:relative;z-index:2}
+.career9-head{display:grid;grid-template-columns:260px 1fr;gap:56px;align-items:start}
+.career9-meta{padding-left:18px;border-left:3px solid var(--c9-yellow)}
+.career9-kicker{font-size:13px;font-weight:950;letter-spacing:.12em;text-transform:uppercase;color:var(--c9-yellow)}
+.career9-sub{margin-top:10px;font-size:11px;line-height:1.45;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--c9-muted2)}
+.career9-title{margin:0;max-width:980px;font-size:clamp(48px,5.8vw,86px);line-height:.9;letter-spacing:-.065em;font-weight:950}
+.career9-title span{color:var(--c9-yellow)}
+.career9-lead{margin:18px 0 0;max-width:820px;font-size:18px;line-height:1.58;color:var(--c9-muted)}
+.career9-lead strong{color:var(--c9-text)}
+.career9-area{display:grid;grid-template-columns:minmax(0,1.05fr) 300px;gap:28px;margin-top:42px;align-items:end}
+.career9-stairs{position:relative;min-height:640px;border-radius:32px;background:linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.06);padding:36px 34px 28px;overflow:hidden}
+.career9-intro{max-width:430px;position:absolute;left:34px;top:30px;z-index:3}
+.career9-intro small{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.11em;font-weight:900;color:var(--c9-yellow)}
+.career9-intro h3{margin:12px 0 0;font-size:clamp(28px,3.2vw,46px);line-height:.95;letter-spacing:-.05em}
+.career9-intro p{margin:12px 0 0;font-size:13px;line-height:1.5;color:var(--c9-muted)}
+.career9-svg-wrap{position:relative;margin-top:120px;min-height:470px}
+.career9-svg{width:100%;height:470px;display:block}
+.career9-step{position:absolute;max-width:245px;padding:14px 16px 15px;border-radius:18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(10px);box-shadow:0 14px 28px rgba(0,0,0,.18);opacity:0;transform:translateY(18px) scale(.98)}
+.career9-step small{display:block;font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.career9-money{margin-top:8px;font-size:36px;line-height:.88;font-weight:950;letter-spacing:-.05em}
+.career9-step strong{display:block;margin-top:8px;font-size:15px;line-height:1.08}
+.career9-step p{margin:8px 0 0;font-size:11px;line-height:1.45;color:var(--c9-muted)}
+.career9-step.s1{left:4%;bottom:18px;border-color:rgba(244,197,66,.18)} .career9-step.s1 small{color:var(--c9-yellow)}
+.career9-step.s2{left:24%;bottom:132px;border-color:rgba(184,220,200,.18)} .career9-step.s2 small{color:var(--c9-brand-pale)}
+.career9-step.s3{left:49%;bottom:246px;border-color:rgba(111,196,154,.18)} .career9-step.s3 small{color:var(--c9-brand-light)}
+.career9-step.s4{left:73%;bottom:360px;border-color:rgba(11,106,63,.30)} .career9-step.s4 small{color:#83d4a9}
+.career9-legend{display:grid;gap:12px}
+.career9-legend article{padding:18px;border-radius:22px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.08);min-height:120px;opacity:0;transform:translateY(16px)}
+.career9-legend small{display:block;font-size:9px;font-weight:900;letter-spacing:.09em;color:var(--c9-yellow)}
+.career9-legend strong{display:block;margin-top:8px;font-size:22px;line-height:1}
+.career9-legend p{margin:8px 0 0;font-size:12px;line-height:1.45;color:var(--c9-muted)}
+.career9-note{margin-top:18px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;padding:18px 20px;border-radius:20px;background:var(--c9-paper);color:#0b2418;opacity:0;transform:translateY(16px)}
+.career9-note strong{display:block;font-size:14px;line-height:1.35}
+.career9-note p{margin:6px 0 0;max-width:860px;font-size:11px;line-height:1.45;color:#5f6c66}
+.career9-pill{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 14px;border-radius:999px;background:#e8efe9;color:var(--c9-brand);font-size:9px;font-weight:900;letter-spacing:.08em;white-space:nowrap}
+.career9-mobile{display:none}
+.career9-svg path{stroke-dasharray:1600;stroke-dashoffset:1600;filter:drop-shadow(0 0 8px rgba(11,106,63,.22))}
+.career9.is-active .career9-svg path{animation:c9Draw 1.8s .18s cubic-bezier(.65,0,.35,1) forwards,c9Glow 3.2s 2.1s ease-in-out infinite}
+.career9.is-active .career9-step.s1{animation:c9Reveal .65s .42s cubic-bezier(.22,1,.36,1) forwards}
+.career9.is-active .career9-step.s2{animation:c9Reveal .65s .68s cubic-bezier(.22,1,.36,1) forwards}
+.career9.is-active .career9-step.s3{animation:c9Reveal .65s .94s cubic-bezier(.22,1,.36,1) forwards}
+.career9.is-active .career9-step.s4{animation:c9Reveal .65s 1.2s cubic-bezier(.22,1,.36,1) forwards}
+.career9.is-active .career9-legend article:nth-child(1){animation:c9Reveal .62s .55s cubic-bezier(.22,1,.36,1) forwards}
+.career9.is-active .career9-legend article:nth-child(2){animation:c9Reveal .62s .68s cubic-bezier(.22,1,.36,1) forwards}
+.career9.is-active .career9-legend article:nth-child(3){animation:c9Reveal .62s .81s cubic-bezier(.22,1,.36,1) forwards}
+.career9.is-active .career9-note{animation:c9Reveal .7s .92s cubic-bezier(.22,1,.36,1) forwards}
+@keyframes c9Draw{to{stroke-dashoffset:0}}
+@keyframes c9Reveal{to{opacity:1;transform:none}}
+@keyframes c9Glow{0%,100%{filter:drop-shadow(0 0 6px rgba(11,106,63,.18))}50%{filter:drop-shadow(0 0 14px rgba(244,197,66,.18))}}
+@media(max-width:1240px){
+  .career9-area{grid-template-columns:1fr}
+  .career9-svg-wrap{display:none}
+  .career9-stairs{min-height:auto}
+  .career9-intro{position:relative;left:auto;top:auto}
+  .career9-mobile{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px}
+  .career9-mobile .career9-step{position:relative;left:auto;bottom:auto;max-width:none;opacity:1;transform:none}
+  .career9-legend{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:760px){
+  .career9{padding:48px 0 56px}
+  .career9-head{grid-template-columns:1fr;gap:22px}
+  .career9-title{font-size:clamp(42px,12vw,62px)}
+  .career9-lead{font-size:15px}
+  .career9-mobile,.career9-legend{grid-template-columns:1fr}
+  .career9-note{grid-template-columns:1fr}
+  .career9-pill{justify-self:start;white-space:normal}
+  .career9-stairs{padding:24px 18px}
+}
+
+/* ===== Section 11 / Fit ===== */
+.fit11{position:relative;overflow:hidden;background:var(--aca-paper-0)}
+.fit11-no,.faq12-no,.final13-no{position:absolute;right:-28px;top:-80px;font-size:clamp(190px,20vw,330px);line-height:1;font-weight:950;letter-spacing:-.09em;color:rgba(11,36,24,.026);pointer-events:none}
+.fit11-head{display:grid;grid-template-columns:250px minmax(0,1fr);gap:64px}
+.fit11-meta{padding-left:17px;border-left:3px solid var(--aca-color-signal-orange)}
+.fit11-kicker{font-size:13px;font-weight:950;letter-spacing:.11em;text-transform:uppercase;color:var(--aca-color-brand)}
+.fit11-meta p{margin:9px 0 0;font-size:11px;font-weight:850;letter-spacing:.075em;color:var(--aca-color-text-muted)}
+.fit11-title{margin:0;font-size:clamp(50px,5.8vw,88px);line-height:.89;letter-spacing:-.064em;font-weight:950}
+.fit11-title span{color:var(--aca-color-brand)}
+.fit11-lead{max-width:820px;margin:20px 0 0;font-size:17px;line-height:1.55;color:var(--aca-color-text-muted)}
+.fit11-wrap{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:36px}
+.fit11-card{min-height:270px;padding:22px;border-radius:22px;background:var(--aca-green-950);color:var(--aca-paper-0)}
+.fit11-card.bad{background:var(--aca-orange-100);color:var(--aca-green-950)}
+.fit11-card small{display:block;font-size:9px;font-weight:950;letter-spacing:.09em;color:var(--aca-color-signal-yellow)}
+.fit11-card.bad small{color:#98502c}
+.fit11-card>strong{display:block;margin-top:10px;font-size:clamp(24px,2.4vw,34px);line-height:.98;letter-spacing:-.04em}
+.fit11-list{display:grid;gap:10px;margin-top:20px}
+.fit11-item{display:grid;grid-template-columns:24px 1fr;gap:9px;align-items:start;font-size:12px;line-height:1.4}
+.fit11-item b{width:24px;height:24px;display:grid;place-items:center;border-radius:50%;background:rgba(244,197,66,.12);color:var(--aca-color-signal-yellow);font-size:9px}
+.fit11-card.bad .fit11-item b{background:rgba(11,36,24,.08);color:var(--aca-green-950)}
+.fit11-note{margin-top:12px;padding:14px 16px;border-radius:16px;background:var(--aca-color-signal-yellow);font-size:12px;font-weight:850;line-height:1.4}
+@media(max-width:1024px){.fit11-head{grid-template-columns:1fr;gap:22px}}
+@media(max-width:760px){.fit11-title{font-size:clamp(43px,12vw,62px)}.fit11-wrap{grid-template-columns:1fr}}
+
+/* ===== Section 12 / FAQ ===== */
+.faq12{position:relative;overflow:hidden;background:var(--aca-paper-0)}
+.faq12-head{display:grid;grid-template-columns:minmax(0,8fr) minmax(260px,4fr);gap:40px;align-items:end}
+.faq12-kicker{font-size:12px;font-weight:950;letter-spacing:.11em;text-transform:uppercase;color:var(--aca-color-brand)}
+.faq12-title{margin:14px 0 0;max-width:980px;font-size:clamp(50px,5.8vw,88px);line-height:.89;letter-spacing:-.064em;font-weight:950}
+.faq12-title span{color:var(--aca-color-brand)}
+.faq12-lead{margin:0 0 4px;font-size:15px;line-height:1.55;color:var(--aca-color-text-muted)}
+.faq12-cats{display:flex;flex-wrap:wrap;gap:8px;margin-top:34px;padding-bottom:18px;border-bottom:1px solid var(--aca-color-divider)}
+.faq12-cats span{display:inline-flex;min-height:34px;align-items:center;padding:0 11px;border-radius:999px;background:var(--aca-green-100);color:var(--aca-color-brand);font-size:8px;font-weight:950;letter-spacing:.08em}
+.faq12-list{margin-top:8px}
+.faq12-item{border:0;border-bottom:1px solid var(--aca-color-divider);border-radius:0;background:transparent;overflow:hidden;will-change:height}
+.faq12-item summary{display:grid;grid-template-columns:54px minmax(0,1fr) 42px;gap:18px;align-items:center;min-height:92px;padding:18px 0;list-style:none;cursor:pointer;transition:color .2s ease}
+.faq12-item summary::-webkit-details-marker{display:none}
+.faq12-item[open] summary{color:var(--aca-color-brand)}
+.faq12-index{font-size:11px;font-weight:950;letter-spacing:.07em;color:var(--aca-color-brand)}
+.faq12-question{font-size:clamp(18px,1.8vw,27px);line-height:1.08;letter-spacing:-.03em;font-weight:900}
+.faq12-icon{position:relative;width:38px;height:38px;border-radius:50%;background:var(--aca-paper-100);transition:transform .34s cubic-bezier(.22,1,.36,1),background-color .24s ease}
+.faq12-icon:before,.faq12-icon:after{content:"";position:absolute;left:50%;top:50%;width:14px;height:2px;border-radius:99px;background:var(--aca-green-950);transform:translate(-50%,-50%)}
+.faq12-icon:after{transform:translate(-50%,-50%) rotate(90deg)}
+.faq12-item[open] .faq12-icon{transform:rotate(45deg);background:var(--aca-color-signal-yellow)}
+.faq12-answer{display:grid;grid-template-columns:minmax(0,8fr) minmax(230px,4fr);gap:28px;margin:0 0 28px 72px;padding:22px 24px;border-radius:20px;background:var(--aca-paper-100);transform-origin:top;will-change:opacity,transform}
+.faq12-answer-main p{margin:0 0 12px;max-width:850px;font-size:13px;line-height:1.65;color:var(--aca-color-text-muted)}
+.faq12-answer-main p:last-child{margin-bottom:0}.faq12-answer-main strong{color:var(--aca-green-950)}
+.faq12-note{align-self:start;padding:16px;border-radius:16px;background:var(--aca-paper-0);border:1px solid var(--aca-color-divider)}
+.faq12-note.warning{background:var(--aca-orange-100)}
+.faq12-note small{display:block;font-size:8px;font-weight:950;letter-spacing:.09em;color:var(--aca-color-brand)}
+.faq12-note.warning small{color:#98502c}
+.faq12-note p,.faq12-note li{font-size:11px;line-height:1.45;color:var(--aca-color-text-muted)}
+.faq12-note p{margin:8px 0 0}.faq12-note ul{margin:10px 0 0;padding-left:18px}
+@media(max-width:900px){.faq12-head{grid-template-columns:1fr;gap:18px}.faq12-answer{grid-template-columns:1fr;margin-left:0}}
+@media(max-width:760px){.faq12-title{font-size:clamp(43px,12vw,62px)}.faq12-item summary{grid-template-columns:36px minmax(0,1fr) 38px;gap:10px;min-height:82px}.faq12-question{font-size:18px}.faq12-answer{padding:18px}}
+
+/* ===== Section 13 / Final CTA ===== */
+.final13-section{position:relative;overflow:hidden;background:var(--aca-green-950);color:var(--aca-paper-0);padding:86px 0 34px}
+.final13-section:before{content:"";position:absolute;width:620px;height:620px;right:-180px;top:-240px;border:1px solid rgba(244,197,66,.10);border-radius:50%;box-shadow:0 0 0 70px rgba(244,197,66,.025),0 0 0 140px rgba(244,197,66,.018)}
+.final13-no{color:rgba(255,255,255,.025)}
+.final13-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(330px,430px);gap:clamp(40px,6vw,90px);align-items:end}
+.final13-kicker{font-size:10px;font-weight:950;letter-spacing:.11em;color:var(--aca-color-signal-yellow)}
+.final13-title{margin:14px 0 0;max-width:960px;font-size:clamp(62px,7.6vw,118px);line-height:.84;letter-spacing:-.078em;font-weight:950}
+.final13-title span{color:var(--aca-color-signal-yellow)}
+.final13-lead{max-width:720px;margin:26px 0 0;font-size:15px;line-height:1.6;color:rgba(255,255,255,.58)}.final13-lead strong{color:#fff}
+.final13-card{position:relative;padding:22px;border-radius:26px;background:var(--aca-paper-0);color:var(--aca-green-950);box-shadow:0 30px 80px rgba(0,0,0,.24);transform:rotate(1.2deg);transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s ease}
+.final13-card:hover{transform:rotate(0) translateY(-4px);box-shadow:0 38px 90px rgba(0,0,0,.30)}
+.final13-card:before,.final13-card:after{content:"";position:absolute;top:47%;width:28px;height:28px;border-radius:50%;background:var(--aca-green-950)}
+.final13-card:before{left:-14px}.final13-card:after{right:-14px}
+.final13-card-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;padding-bottom:18px;border-bottom:1px dashed rgba(11,36,24,.22)}
+.final13-card-head small{display:block;font-size:8px;font-weight:950;letter-spacing:.09em;color:var(--aca-color-brand)}
+.final13-card-head strong{display:block;margin-top:6px;font-size:25px;line-height:1}
+.final13-status{display:inline-flex;align-items:center;min-height:28px;padding:0 9px;border-radius:999px;background:var(--aca-green-100);color:var(--aca-color-brand);font-size:8px;font-weight:950}
+.final13-facts{display:grid;grid-template-columns:1fr 1fr;margin-top:18px;border-top:1px solid var(--aca-color-divider);border-left:1px solid var(--aca-color-divider)}
+.final13-facts div{min-height:84px;padding:13px;border-right:1px solid var(--aca-color-divider);border-bottom:1px solid var(--aca-color-divider)}
+.final13-facts small{display:block;font-size:7px;font-weight:950;color:var(--aca-color-text-muted)}
+.final13-facts strong{display:block;margin-top:7px;font-size:13px;line-height:1.15}
+.final13-cta{display:flex;justify-content:space-between;align-items:center;min-height:58px;margin-top:18px;padding:0 18px;border-radius:999px;background:var(--aca-color-signal-yellow);color:var(--aca-green-950);text-decoration:none;font-size:11px;font-weight:950}
+.final13-cta b{width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:var(--aca-green-950);color:#fff;font-size:17px;transition:transform .28s cubic-bezier(.22,1,.36,1)}
+.final13-cta:hover b{transform:translate(3px,-3px)}
+.final13-micro{margin:11px 0 0;text-align:center;font-size:9px;color:var(--aca-color-text-muted)}
+.final13-bottom{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center;margin-top:64px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08)}
+.final13-path{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.30)}
+.final13-path span{font-size:8px;font-weight:900;letter-spacing:.07em;white-space:nowrap}.final13-path .active{color:var(--aca-color-signal-yellow)}
+.final13-path i{width:46px;height:1px;background:rgba(255,255,255,.12)}
+.final13-brand{font-size:8px;font-weight:850;letter-spacing:.075em;color:rgba(255,255,255,.26);white-space:nowrap}
+@media(max-width:1024px){.final13-top{grid-template-columns:1fr;align-items:start}.final13-card{max-width:560px;transform:none}.final13-bottom{grid-template-columns:1fr}.final13-brand{white-space:normal}}
+@media(max-width:760px){.final13-section{padding:64px 0 26px}.final13-title{font-size:clamp(56px,16vw,82px)}.final13-card{padding:18px;border-radius:22px}.final13-bottom{margin-top:44px}.final13-path{align-items:flex-start;flex-direction:column;gap:7px}.final13-path i{width:1px;height:18px;margin-left:5px}}
+
+/* ===== Footer / Academy contact ===== */
+.academy-footer-v2{position:relative;background:#07160f;color:var(--aca-paper-0);padding:34px 0 24px;border-top:1px solid rgba(255,255,255,.08)}
+.footer-v2-main{display:grid;grid-template-columns:minmax(280px,1.25fr) minmax(220px,.8fr) minmax(220px,.8fr) minmax(300px,1.15fr);gap:34px;align-items:start}
+.footer-v2-label{display:block;margin-bottom:12px;font-size:8px;font-weight:950;letter-spacing:.11em;color:rgba(255,255,255,.38)}
+.footer-v2-brand strong{display:block;max-width:390px;font-size:28px;line-height:.95;letter-spacing:-.045em}
+.footer-v2-brand p{max-width:380px;margin:12px 0 0;font-size:11px;line-height:1.55;color:rgba(255,255,255,.48)}
+.footer-v2-contact{display:grid;gap:18px}
+.footer-v2-contact span{display:block;margin-bottom:5px;font-size:8px;font-weight:900;letter-spacing:.08em;color:var(--aca-color-signal-yellow)}
+.footer-v2-contact a,.footer-v2-contact strong{color:#fff;text-decoration:none;font-size:14px;line-height:1.35;font-weight:850}
+.footer-v2-links nav{display:grid;gap:9px}.footer-v2-links a{width:max-content;max-width:100%;color:rgba(255,255,255,.62);text-decoration:none;font-size:11px}.footer-v2-links a:hover,.footer-v2-contact a:hover{color:var(--aca-color-signal-yellow)}
+.footer-v2-patron{position:relative;padding:18px;border-radius:20px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08)}
+.footer-v2-patron:before{content:"";position:absolute;left:18px;top:0;width:54px;height:3px;background:var(--aca-color-signal-yellow)}
+.footer-v2-patron-head{display:flex;align-items:center;justify-content:space-between;gap:12px}.footer-v2-patron-head span{font-size:8px;font-weight:950;letter-spacing:.10em;color:var(--aca-color-signal-yellow)}
+.footer-v2-patron-head b{width:8px;height:8px;border-radius:50%;background:var(--aca-color-signal-yellow);box-shadow:0 0 0 5px rgba(244,197,66,.08)}
+.footer-v2-patron strong{display:block;margin-top:18px;font-size:25px;line-height:.95;letter-spacing:-.04em}
+.footer-v2-patron p{margin:10px 0 0;font-size:10px;line-height:1.5;color:rgba(255,255,255,.48)}
+.footer-v2-patron a{display:inline-flex;margin-top:14px;color:#fff;text-decoration:none;font-size:9px;font-weight:900}.footer-v2-patron a:hover{color:var(--aca-color-signal-yellow)}
+.footer-v2-bottom{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-top:30px;padding-top:16px;border-top:1px solid rgba(255,255,255,.07)}
+.footer-v2-bottom span{font-size:8px;letter-spacing:.06em;color:rgba(255,255,255,.28)}
+@media(max-width:1024px){.footer-v2-main{grid-template-columns:1fr 1fr}}
+@media(max-width:760px){.academy-footer-v2{padding:30px 0 22px}.footer-v2-main{grid-template-columns:1fr;gap:26px}.footer-v2-bottom{align-items:flex-start;flex-direction:column}}
+
+@media(prefers-reduced-motion:reduce){
+  .career9-svg path{animation:none!important;stroke-dasharray:none;stroke-dashoffset:0;filter:none}
+  .career9-step,.career9-legend article,.career9-note{animation:none!important;opacity:1;transform:none}
+  .faq12-item,.faq12-item summary,.faq12-icon,.faq12-answer,.final13-card,.final13-cta b{transition:none!important;animation:none!important}
+}
+
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Course","name":"Hang Đôi Media Career Program","description":"Chương trình Media 4 tháng hướng tới Production Ready trong Commercial Production.","provider":{"@type":"EducationalOrganization","name":"Hang Đôi Academy","url":"https://academy.hangdoiproduction.com/"}}
@@ -4447,16 +4663,57 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
   </div>
 </section>
 
-<section class="career">
-  <div class="wrap">
-    <div class="career-grid reveal">
-      <div class="career-head"><small>THAM CHIẾU NGHỀ NGHIỆP TẠI HANG ĐÔI PRODUCTION</small><strong>Năng lực → Trách nhiệm → Hiệu suất</strong></div>
-      <div class="career-level"><small>FRESHER</small><strong>8M+</strong></div>
-      <div class="career-level"><small>JUNIOR</small><strong>12M+</strong></div>
-      <div class="career-level"><small>MID</small><strong>20M+</strong></div>
-      <div class="career-level"><small>SENIOR</small><strong>30M+</strong></div>
+<section class="career9" id="income">
+  <div class="wrap career9-wrap">
+    <div class="career9-head">
+      <div class="career9-meta">
+        <div class="career9-kicker">09 · THU NHẬP THAM CHIẾU</div>
+        <div class="career9-sub">TẠI HANG ĐÔI PRODUCTION · THEO NĂNG LỰC THỰC TẾ</div>
+      </div>
+      <div>
+        <h2 class="career9-title">NĂNG LỰC TĂNG.<br><span>CƠ HỘI CŨNG TĂNG.</span></h2>
+        <p class="career9-lead">Khi bạn làm được nhiều hơn, tự chủ hơn và tạo ra giá trị rõ hơn, <strong>mức thu nhập cũng có thể tăng theo.</strong></p>
+      </div>
     </div>
-    <p class="career-note">Đây là tham chiếu thu nhập theo cấp độ nghề hiện tại tại Hang Đôi Production, không phải mức thu nhập cam kết sau chương trình.</p>
+
+    <div class="career9-area">
+      <div class="career9-stairs">
+        <div class="career9-intro">
+          <small>LỘ TRÌNH THU NHẬP THAM CHIẾU</small>
+          <h3>ĐI TỪ BẬC ĐẦU TIÊN ĐẾN MỨC CAO HƠN.</h3>
+          <p>Mỗi bậc không chỉ là số tiền cao hơn. Đó là lúc bạn làm được nhiều việc hơn, chịu trách nhiệm lớn hơn và tạo ra kết quả rõ hơn.</p>
+        </div>
+
+        <div class="career9-svg-wrap">
+          <svg class="career9-svg" viewBox="0 0 1100 470" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M90 410 V330 H250 V250 H450 V170 H670 V90 H930" stroke="url(#career9Grad)" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs><linearGradient id="career9Grad" x1="90" y1="410" x2="930" y2="90" gradientUnits="userSpaceOnUse"><stop stop-color="#F4C542"/><stop offset=".34" stop-color="#B8DCC8"/><stop offset=".68" stop-color="#22865A"/><stop offset="1" stop-color="#0B6A3F"/></linearGradient></defs>
+          </svg>
+          <article class="career9-step s1"><small>LEVEL 01 · FRESHER</small><div class="career9-money">8M+</div><strong>Tổng thu nhập / tháng</strong><p>Làm được những phần việc cơ bản, có người hướng dẫn và góp ý.</p></article>
+          <article class="career9-step s2"><small>LEVEL 02 · JUNIOR</small><div class="career9-money">12M+</div><strong>Tổng thu nhập / tháng</strong><p>Tự xử lý nhiều phần việc hơn và chịu trách nhiệm rõ hơn trong một job.</p></article>
+          <article class="career9-step s3"><small>LEVEL 03 · MID</small><div class="career9-money">20M+</div><strong>Tổng thu nhập / tháng</strong><p>Làm độc lập hơn, xử lý bài khó hơn và tạo giá trị rõ cho dự án.</p></article>
+          <article class="career9-step s4"><small>LEVEL 04 · SENIOR</small><div class="career9-money">30M+</div><strong>Tổng thu nhập / tháng</strong><p>Chịu trách nhiệm phần việc lớn, dẫn người khác và chịu trách nhiệm cao hơn với kết quả.</p></article>
+        </div>
+
+        <div class="career9-mobile">
+          <article class="career9-step"><small style="color:#f4c542">LEVEL 01 · FRESHER</small><div class="career9-money">8M+</div><strong>Tổng thu nhập / tháng</strong><p>Làm được những phần việc cơ bản, có người hướng dẫn và góp ý.</p></article>
+          <article class="career9-step"><small style="color:#b8dcc8">LEVEL 02 · JUNIOR</small><div class="career9-money">12M+</div><strong>Tổng thu nhập / tháng</strong><p>Tự xử lý nhiều phần việc hơn và chịu trách nhiệm rõ hơn trong một job.</p></article>
+          <article class="career9-step"><small style="color:#6fc49a">LEVEL 03 · MID</small><div class="career9-money">20M+</div><strong>Tổng thu nhập / tháng</strong><p>Làm độc lập hơn, xử lý bài khó hơn và tạo giá trị rõ cho dự án.</p></article>
+          <article class="career9-step"><small style="color:#83d4a9">LEVEL 04 · SENIOR</small><div class="career9-money">30M+</div><strong>Tổng thu nhập / tháng</strong><p>Chịu trách nhiệm phần việc lớn, dẫn người khác và chịu trách nhiệm cao hơn với kết quả.</p></article>
+        </div>
+      </div>
+
+      <div class="career9-legend">
+        <article><small>01 · NĂNG LỰC</small><strong>Làm được việc gì?</strong><p>Từ việc cơ bản đến những phần việc khó hơn.</p></article>
+        <article><small>02 · TRÁCH NHIỆM</small><strong>Chịu trách nhiệm đến đâu?</strong><p>Từ làm một phần nhỏ đến phụ trách phần việc lớn hơn.</p></article>
+        <article><small>03 · KẾT QUẢ</small><strong>Tạo ra kết quả gì?</strong><p>Kết quả càng rõ, cơ hội và thu nhập càng có thể tăng.</p></article>
+      </div>
+    </div>
+
+    <div class="career9-note">
+      <div><strong>Đây là mức tổng thu nhập tham chiếu theo cấp độ nghề tại Hang Đôi Production — không phải lương cơ bản và không phải mức được đảm bảo sau 4 tháng học.</strong><p>Chương trình giúp bạn xây nền tảng và tạo điểm bắt đầu. Cấp độ và thu nhập thực tế phụ thuộc năng lực, vai trò, hiệu suất và dự án bạn đảm nhận.</p></div>
+      <div class="career9-pill">THU NHẬP ≠ THÂM NIÊN</div>
+    </div>
   </div>
 </section>
 
@@ -4558,91 +4815,133 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
   </div>
 </section>
 
-<section id="fit" class="section fit">
+<section id="fit" class="section fit11">
+  <span class="fit11-no">11</span>
   <div class="wrap">
-    <div class="kicker orange">Mức độ phù hợp</div>
-    <h2 class="display reveal">KHÔNG PHẢI AI CŨNG<br>CẦN CHƯƠNG TRÌNH NÀY.</h2>
-
-    <div class="fit-grid">
-      <div class="fit-panel good reveal">
-        <h3>CÓ THỂ PHÙ HỢP NẾU…</h3>
-        <div class="fit-row"><small>01</small><span>Bạn thích hình ảnh nhưng chưa biết bắt đầu nghề từ đâu.</span></div>
-        <div class="fit-row"><small>02</small><span>Bạn đã tự học nhưng kiến thức đang rời rạc.</span></div>
-        <div class="fit-row"><small>03</small><span>Bạn quay hoặc dựng được nhưng thiếu quy trình thương mại.</span></div>
-        <div class="fit-row"><small>04</small><span>Bạn muốn biết mình hợp Photo, Video, Post hay làm đa kỹ năng.</span></div>
-        <div class="fit-row"><small>05</small><span>Bạn muốn môi trường có góp ý và tiêu chuẩn đầu ra.</span></div>
-        <div class="fit-row"><small>06</small><span>Bạn chấp nhận làm lại để đầu ra tốt hơn.</span></div>
-      </div>
-      <div class="fit-panel bad reveal">
-        <h3>CÓ THỂ KHÔNG PHÙ HỢP NẾU…</h3>
-        <div class="fit-row"><small>01</small><span>Bạn chỉ muốn học nhanh một phần mềm.</span></div>
-        <div class="fit-row"><small>02</small><span>Bạn chỉ cần chứng chỉ.</span></div>
-        <div class="fit-row"><small>03</small><span>Bạn kỳ vọng đóng học phí đồng nghĩa có việc làm.</span></div>
-        <div class="fit-row"><small>04</small><span>Bạn không muốn làm việc theo thời hạn.</span></div>
-        <div class="fit-row"><small>05</small><span>Bạn không thích nhận góp ý.</span></div>
-        <div class="fit-row"><small>06</small><span>Bạn kỳ vọng lên cấp cao sau 4 tháng.</span></div>
-      </div>
+    <div class="fit11-head">
+      <div class="fit11-meta"><div class="fit11-kicker">11 · CÓ HỢP VỚI BẠN KHÔNG?</div><p>TỰ KIỂM TRA NHANH</p></div>
+      <div><h2 class="fit11-title">BẠN CÓ HỢP VỚI<br><span>CHƯƠNG TRÌNH NÀY?</span></h2><p class="fit11-lead">Nhìn nhanh 2 nhóm dưới đây. Nếu phần bên trái giống bạn nhiều hơn, chương trình có thể đáng để tìm hiểu tiếp.</p></div>
     </div>
+    <div class="fit11-wrap">
+      <article class="fit11-card">
+        <small>CÓ THỂ PHÙ HỢP NẾU…</small><strong>BẠN MUỐN HỌC MEDIA ĐỂ DÙNG ĐI LÀM.</strong>
+        <div class="fit11-list">
+          <div class="fit11-item"><b>✓</b><span>Chưa biết bắt đầu từ đâu hoặc tự học còn rời rạc.</span></div>
+          <div class="fit11-item"><b>✓</b><span>Muốn được xem bài, góp ý và sửa lại.</span></div>
+          <div class="fit11-item"><b>✓</b><span>Sẵn sàng học theo thời hạn và làm ra sản phẩm thật.</span></div>
+        </div>
+      </article>
+      <article class="fit11-card bad">
+        <small>CÓ THỂ CHƯA PHÙ HỢP NẾU…</small><strong>BẠN CHỈ CẦN HỌC NHANH MỘT THỨ.</strong>
+        <div class="fit11-list">
+          <div class="fit11-item"><b>×</b><span>Chỉ muốn học một phần mềm hoặc vài kỹ thuật cơ bản.</span></div>
+          <div class="fit11-item"><b>×</b><span>Chỉ cần chứng chỉ hoặc kỳ vọng học xong là có việc ngay.</span></div>
+          <div class="fit11-item"><b>×</b><span>Không muốn nhận góp ý hoặc làm lại bài.</span></div>
+        </div>
+      </article>
+    </div>
+    <div class="fit11-note">Chưa chắc? Bạn vẫn có thể đăng ký quan tâm — hiện chưa thu phí và chưa phải hồ sơ nhập học.</div>
   </div>
 </section>
 
-<section class="section intake">
+<section id="faq" class="section faq12">
+  <span class="faq12-no">12</span>
   <div class="wrap">
-    <div class="kicker">Khóa 01 / Tình trạng hiện tại</div>
-    <h2 class="display reveal">HIỆN TẠI CHỈ MỞ<br>ĐĂNG KÝ QUAN TÂM.</h2>
-
-    <div class="intake-grid reveal">
-      <div class="intake-step now"><small>ĐANG MỞ · 01</small><div><b>ĐĂNG KÝ QUAN TÂM</b><p>Để lại thông tin nền tảng và định hướng nghề. Không thu phí.</p></div></div>
-      <div class="intake-step"><small>CHƯA MỞ · 02</small><div><b>HỒ SƠ CHÍNH THỨC</b><p>Chưa mở. Sẽ có thông báo chính thức.</p></div></div>
-      <div class="intake-step"><small>CHƯA MỞ · 03</small><div><b>TUYỂN CHỌN</b><p>Chỉ mở khi chương trình và điều kiện pháp lý đã sẵn sàng.</p></div></div>
-      <div class="intake-step"><small>CHƯA MỞ · 04</small><div><b>NHẬP HỌC / GHI DANH</b><p>Chưa thu phí hoặc giữ chỗ ở thời điểm này.</p></div></div>
+    <div class="faq12-head">
+      <div><div class="faq12-kicker">12 · CÂU HỎI THƯỜNG GẶP</div><h2 class="faq12-title">NHỮNG ĐIỀU<br><span>CẦN RÕ TRƯỚC.</span></h2></div>
+      <p class="faq12-lead">Không cần đoán. Những câu hỏi quan trọng nhất về việc bắt đầu, cách học, học phí và cơ hội sau chương trình được trả lời rõ ở đây.</p>
     </div>
-
-    <div class="intake-cta reveal">
-      <p>Đăng ký quan tâm không phải hồ sơ chính thức hay thư nhập học.</p>
-      <a class="btn btn-primary" href="/media-career-program/apply/">ĐĂNG KÝ QUAN TÂM →</a>
+    <div class="faq12-cats" aria-label="Nhóm câu hỏi"><span>BẮT ĐẦU</span><span>CÁCH HỌC</span><span>SAU CHƯƠNG TRÌNH</span><span>HỌC PHÍ & GHI DANH</span></div>
+    <div class="faq12-list">
+      <details class="faq12-item" open>
+        <summary><span class="faq12-index">01</span><span class="faq12-question">Chưa từng học Media có đăng ký được không?</span><span class="faq12-icon" aria-hidden="true"></span></summary>
+        <div class="faq12-answer"><div class="faq12-answer-main"><p><strong>Có.</strong> Bạn không cần kinh nghiệm chuyên nghiệp để đăng ký quan tâm. Chương trình được thiết kế cho người mới bắt đầu nhưng muốn học Media theo hướng nghiêm túc và có thể dùng kỹ năng này cho công việc sau này.</p><p>Trong giai đoạn đầu, bạn sẽ được làm quen với thiết bị, thuật ngữ, cách đọc yêu cầu và cách một job Media vận hành. Vì vậy việc chưa biết camera, ánh sáng hay hậu kỳ không phải là vấn đề.</p></div><aside class="faq12-note"><small>BẠN KHÔNG CẦN</small><ul><li>Kinh nghiệm làm nghề trước đó</li><li>Biết sử dụng máy ảnh chuyên nghiệp</li><li>Có portfolio hoàn chỉnh</li></ul></aside></div>
+      </details>
+      <details class="faq12-item">
+        <summary><span class="faq12-index">02</span><span class="faq12-question">Không có camera hoặc thiết bị riêng thì sao?</span><span class="faq12-icon" aria-hidden="true"></span></summary>
+        <div class="faq12-answer"><div class="faq12-answer-main"><p>Bạn <strong>không bắt buộc phải sở hữu camera</strong> để đăng ký quan tâm hoặc bắt đầu chương trình.</p><p>Thiết bị thực hành được tính trong cách chương trình được thiết kế. Mục tiêu là để bạn trực tiếp sử dụng máy, ánh sáng và thiết bị cần thiết trong từng bài thực hành, thay vì phải mua thiết bị ngay từ đầu.</p><p>Sau khi hiểu mình phù hợp hướng nào và thường xuyên dùng loại thiết bị nào, việc đầu tư thiết bị cá nhân mới hợp lý hơn.</p></div><aside class="faq12-note"><small>ƯU TIÊN</small><p>Học cách sử dụng thiết bị đúng mục tiêu trước khi nghĩ đến việc mua nhiều thiết bị.</p></aside></div>
+      </details>
+      <details class="faq12-item">
+        <summary><span class="faq12-index">03</span><span class="faq12-question">Có cần portfolio hoặc sản phẩm trước khi tham gia không?</span><span class="faq12-icon" aria-hidden="true"></span></summary>
+        <div class="faq12-answer"><div class="faq12-answer-main"><p><strong>Không bắt buộc.</strong> Nếu bạn chưa từng làm sản phẩm, chương trình vẫn phù hợp để bắt đầu từ nền tảng.</p><p>Nếu đã có ảnh, video hoặc các bài từng tự làm, bạn nên gửi kèm khi có thể. Những sản phẩm này giúp đội ngũ hiểu nhanh hơn về điểm mạnh, thói quen và mức kỹ năng hiện tại của bạn.</p><p>Portfolio quan trọng hơn ở <strong>đầu ra của chương trình</strong>: sau 4 tháng, bạn cần có những sản phẩm tốt nhất để dùng khi xin thực tập, tìm việc hoặc tham gia dự án.</p></div><aside class="faq12-note"><small>NẾU ĐÃ CÓ SẢN PHẨM</small><ul><li>Ảnh cá nhân</li><li>Video ngắn / reel</li><li>Bài dựng hoặc project cá nhân</li></ul></aside></div>
+      </details>
+      <details class="faq12-item">
+        <summary><span class="faq12-index">04</span><span class="faq12-question">Một tuần sẽ học và thực hành như thế nào?</span><span class="faq12-icon" aria-hidden="true"></span></summary>
+        <div class="faq12-answer"><div class="faq12-answer-main"><p>Chương trình không đi theo kiểu chỉ nghe giảng rồi kết thúc. Mỗi giai đoạn đều cần có <strong>bài thực hành hoặc sản phẩm cụ thể</strong>.</p><p>Cách học cơ bản là: học một phần kiến thức → làm thử → xem lại → nhận góp ý → sửa → giữ phiên bản tốt hơn. Có những bài bạn sẽ phải làm lại nếu sản phẩm chưa đạt mục tiêu.</p><p>Khối lượng từng tuần có thể khác nhau tùy bài, nhưng bạn cần dành thời gian ngoài buổi hướng dẫn để hoàn thiện sản phẩm.</p></div><aside class="faq12-note"><small>CÁCH HỌC</small><ul><li>Học ngắn gọn</li><li>Làm bài thật</li><li>Nhận góp ý</li><li>Sửa và làm lại</li></ul></aside></div>
+      </details>
+      <details class="faq12-item">
+        <summary><span class="faq12-index">05</span><span class="faq12-question">Học xong có chắc chắn được nhận vào Hang Đôi Production không?</span><span class="faq12-icon" aria-hidden="true"></span></summary>
+        <div class="faq12-answer"><div class="faq12-answer-main"><p><strong>Không.</strong> Hang Đôi Academy và Hang Đôi Production là hai quy trình khác nhau. Việc tham gia chương trình không đồng nghĩa với việc được tuyển tự động.</p><p>Nếu sau chương trình có vị trí phù hợp, tuyển dụng vẫn dựa trên năng lực thực tế, portfolio, thái độ làm việc, mức phù hợp với vị trí và nhu cầu nhân sự tại thời điểm đó.</p><p>Mục tiêu của chương trình là giúp bạn có nền tảng và sản phẩm tốt hơn để bước vào thị trường Media — không phải bán một lời hứa việc làm.</p></div><aside class="faq12-note warning"><small>CẦN HIỂU RÕ</small><p>Học phí không phải phí đổi lấy việc làm.</p></aside></div>
+      </details>
+      <details class="faq12-item">
+        <summary><span class="faq12-index">06</span><span class="faq12-question">8M+, 12M+, 20M+, 30M+ có phải mức thu nhập ngay sau khóa không?</span><span class="faq12-icon" aria-hidden="true"></span></summary>
+        <div class="faq12-answer"><div class="faq12-answer-main"><p><strong>Không.</strong> Đây là mức <strong>tổng thu nhập tham chiếu</strong> theo các cấp độ nghề hiện tại tại Hang Đôi Production.</p><p>Mức thực tế phụ thuộc vào năng lực, vai trò, trách nhiệm, hiệu suất và loại dự án mà một người đảm nhận. Việc hoàn thành chương trình 4 tháng không tự động đưa bạn lên bất kỳ cấp độ nào.</p><p>Phần thu nhập trên landing chỉ giúp bạn hình dung một con đường phát triển nghề nghiệp khi năng lực tăng dần theo thời gian.</p></div><aside class="faq12-note"><small>THU NHẬP TĂNG KHI</small><ul><li>Năng lực tăng</li><li>Trách nhiệm tăng</li><li>Kết quả công việc tốt hơn</li></ul></aside></div>
+      </details>
+      <details class="faq12-item">
+        <summary><span class="faq12-index">07</span><span class="faq12-question">40 triệu đóng như thế nào?</span><span class="faq12-icon" aria-hidden="true"></span></summary>
+        <div class="faq12-answer"><div class="faq12-answer-main"><p><strong>Hiện tại chưa thu phí.</strong> Chương trình mới chỉ mở bước đăng ký quan tâm.</p><p>Khi chính thức mở ghi danh, học viên có thể chọn <strong>đóng một lần</strong> hoặc <strong>chia thành 3 lần</strong>. Với phương án chia 3 lần, khoản thanh toán được thực hiện vào <strong>ngày 05 hằng tháng</strong> theo lịch ghi danh của khóa.</p><p>Lịch thanh toán cụ thể sẽ được ghi rõ trong hồ sơ ghi danh trước khi học viên xác nhận tham gia. Việc đăng ký quan tâm hiện tại không yêu cầu đặt cọc, không giữ chỗ và không phát sinh thanh toán.</p></div><aside class="faq12-note"><small>HÌNH THỨC THANH TOÁN</small><ul><li>Đóng 1 lần</li><li>Hoặc chia 3 lần</li><li>Ngày thanh toán: 05 hằng tháng</li></ul></aside></div>
+      </details>
+      <details class="faq12-item">
+        <summary><span class="faq12-index">08</span><span class="faq12-question">Khi nào mở hồ sơ chính thức và ghi danh?</span><span class="faq12-icon" aria-hidden="true"></span></summary>
+        <div class="faq12-answer"><div class="faq12-answer-main"><p>Hang Đôi Academy sẽ có thông báo riêng khi chương trình sẵn sàng nhận hồ sơ chính thức.</p><p>Những người đã đăng ký quan tâm sẽ là nhóm được cập nhật khi có thông tin về lịch mở hồ sơ, quy trình trao đổi, lịch dự kiến và các bước ghi danh.</p><p>Trước thời điểm đó, form hiện tại chỉ giúp Hang Đôi hiểu nhu cầu, nền tảng và hướng nghề mà bạn quan tâm.</p></div><aside class="faq12-note"><small>BƯỚC HIỆN TẠI</small><p>Đăng ký quan tâm → chờ thông báo chính thức khi chương trình sẵn sàng.</p></aside></div>
+      </details>
     </div>
   </div>
 </section>
 
-<section id="faq" class="section faq">
-  <div class="wrap faq-layout">
-    <div class="faq-side reveal">
-      <div class="kicker cobalt">CÂU HỎI THƯỜNG GẶP</div>
-      <h2 class="display">NHỮNG CÂU<br>CẦN RÕ TRƯỚC.</h2>
+<section class="final13-section" id="apply">
+  <span class="final13-no">13</span>
+  <div class="wrap">
+    <div class="final13-top">
+      <div>
+        <div class="final13-kicker">13 · ĐĂNG KÝ QUAN TÂM</div>
+        <h2 class="final13-title">NẾU MUỐN THỬ<br>ĐI MEDIA<br><span>NHƯ MỘT NGHỀ.</span></h2>
+        <p class="final13-lead">Để lại thông tin để Hang Đôi biết bạn đang ở đâu, đã từng làm gì và đang quan tâm hướng nào. <strong>Đây chưa phải ghi danh chính thức.</strong></p>
+      </div>
+      <aside class="final13-card">
+        <div class="final13-card-head"><div><small>BƯỚC 01 · ĐANG MỞ</small><strong>ĐĂNG KÝ QUAN TÂM</strong></div><span class="final13-status">OPEN</span></div>
+        <div class="final13-facts">
+          <div><small>MẤT KHOẢNG</small><strong>3–5 PHÚT</strong></div>
+          <div><small>THANH TOÁN</small><strong>CHƯA CẦN</strong></div>
+          <div><small>CAMERA</small><strong>KHÔNG BẮT BUỘC</strong></div>
+          <div><small>PORTFOLIO</small><strong>KHÔNG BẮT BUỘC</strong></div>
+        </div>
+        <a class="final13-cta" href="/media-career-program/apply/"><span>ĐĂNG KÝ QUAN TÂM</span><b aria-hidden="true">↗</b></a>
+        <p class="final13-micro">Không đặt cọc · Không giữ chỗ · Không cam kết nhập học</p>
+      </aside>
     </div>
-    <div class="faq-list">
-      <details open><summary>Chưa từng học Media có phù hợp không?</summary><p>Có thể. Đăng ký quan tâm không yêu cầu kinh nghiệm chuyên nghiệp. Chương trình được thiết kế cho người muốn nghiêm túc bước vào nghề.</p></details>
-      <details><summary>Không có camera có tham gia được không?</summary><p>Không cần sở hữu camera để đăng ký quan tâm. Quyền sử dụng thiết bị là một phần được thiết kế trong chương trình học.</p></details>
-      <details><summary>Có cần hồ sơ sản phẩm không?</summary><p>Không bắt buộc ở bước đăng ký quan tâm. Nếu đã có, bạn có thể gửi để đội ngũ hiểu nền tảng hiện tại.</p></details>
-      <details><summary>Học xong có chắc chắn được nhận vào Hang Đôi Production không?</summary><p>Không. Việc học tại Hang Đôi Academy và việc tuyển dụng tại Hang Đôi Production là hai quy trình riêng. Việc tuyển dụng sau này phụ thuộc năng lực, mức phù hợp với vị trí, nhu cầu nhân sự và điều kiện tuyển dụng tại thời điểm đó.</p></details>
-      <details><summary>40M đã phải đóng bây giờ chưa?</summary><p>Chưa. Khóa 01 hiện chỉ mở đăng ký quan tâm và chưa thu phí.</p></details>
-      <details><summary>Fresher 8M+, Junior 12M+… có phải thu nhập sau chương trình không?</summary><p>Không. Đây là tham chiếu nghề nghiệp hiện tại của Hang Đôi Production để minh họa đường phát triển nghề nghiệp.</p></details>
-      <details><summary>Khi nào mở hồ sơ chính thức?</summary><p>Sẽ có thông báo riêng khi chương trình hoàn tất các điều kiện cần thiết để mở tuyển sinh chính thức.</p></details>
-    </div>
-  </div>
-</section>
-
-<section class="section-loose final-cta">
-  <div class="wrap final-grid">
-    <span class="final-dot" aria-hidden="true"></span>
-    <div class="reveal">
-      <div class="kicker inverse">Khóa 01 / Danh sách quan tâm</div>
-      <h2 class="poster-lg">NẾU BẠN MUỐN<br>BƯỚC VÀO MEDIA<br>NHƯ MỘT NGHỀ,<br><span class="yellow-mark">BẮT ĐẦU Ở ĐÂY.</span></h2>
-    </div>
-    <div class="final-action reveal">
-      <p>Đăng ký quan tâm mất khoảng 3–5 phút. Không thanh toán. Không cần camera. Không cần hồ sơ sản phẩm.</p>
-      <a class="btn btn-convert" href="/media-career-program/apply/">ĐĂNG KÝ QUAN TÂM →</a>
-      <span class="aca-sticker final-sticker">Chỉ đăng ký quan tâm</span>
+    <div class="final13-bottom">
+      <div class="final13-path"><span class="active">01 · ĐĂNG KÝ QUAN TÂM</span><i></i><span>02 · HỒ SƠ CHÍNH THỨC</span><i></i><span>03 · GHI DANH</span></div>
+      <div class="final13-brand">HANG ĐÔI ACADEMY · MEDIA CAREER PROGRAM · ĐÀ NẴNG</div>
     </div>
   </div>
 </section>
 </main>
 
-<footer>
-  <div class="wrap footer-row">
-    <img class="footer-logo" src="/logo-academy.svg" alt="Hang Đôi Academy">
-    <div class="footer-note">CHƯƠNG TRÌNH NGHỀ MEDIA · ĐÀ NẴNG<br>TRẠNG THÁI HIỆN TẠI: CHỈ ĐĂNG KÝ QUAN TÂM</div>
+<footer class="academy-footer-v2">
+  <div class="wrap">
+    <div class="footer-v2-main">
+      <div class="footer-v2-brand">
+        <span class="footer-v2-label">HANG ĐÔI ACADEMY</span>
+        <strong>HỌC MEDIA. HỌC THẬT. LÀM THẬT.</strong>
+        <p>Media Career Program dành cho người muốn xây nền tảng, làm ra sản phẩm và hiểu cách một công việc Media vận hành trong thực tế.</p>
+      </div>
+      <div class="footer-v2-contact">
+        <div><span>HOTLINE</span><a href="tel:+84888445997">0888 445 997</a></div>
+        <div><span>ĐỊA CHỈ</span><strong>98 Điện Biên Phủ<br>Đà Nẵng</strong></div>
+      </div>
+      <div class="footer-v2-links">
+        <span class="footer-v2-label">ĐI NHANH</span>
+        <nav><a href="#system">Lộ trình 4 tháng</a><a href="#roles">Hướng nghề</a><a href="#tuition">Học phí</a><a href="#faq">Câu hỏi thường gặp</a><a href="/media-career-program/apply/">Đăng ký quan tâm</a></nav>
+      </div>
+      <aside class="footer-v2-patron">
+        <div class="footer-v2-patron-head"><span>BẢO TRỢ BỞI</span><b aria-hidden="true"></b></div>
+        <strong>HANG ĐÔI<br>PRODUCTION.</strong>
+        <p>Môi trường production thực tế, quy trình thương mại và kinh nghiệm sản xuất hình ảnh quảng cáo truyền thông.</p>
+        <a href="https://hangdoistudio.vn/" target="_blank" rel="noopener">HANGDOISTUDIO.VN ↗</a>
+      </aside>
+    </div>
+    <div class="footer-v2-bottom"><span>© 2026 HANG ĐÔI ACADEMY · MEDIA CAREER PROGRAM</span></div>
   </div>
 </footer>
 
@@ -5402,6 +5701,68 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
         event.preventDefault();tabs[0].focus();
       }else if(event.key==="End"){
         event.preventDefault();tabs[tabs.length-1].focus();
+      }
+    });
+  });
+})();
+</script>
+
+<script id="section9-income-animation">
+(()=>{
+  const section=document.querySelector(".career9");
+  if(!section)return;
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches){section.classList.add("is-active");return}
+  if("IntersectionObserver" in window){
+    const obs=new IntersectionObserver(entries=>{
+      if(entries.some(e=>e.isIntersecting&&e.intersectionRatio>=.18)){
+        section.classList.add("is-active");
+        obs.disconnect();
+      }
+    },{threshold:[.18,.3]});
+    obs.observe(section);
+  }else section.classList.add("is-active");
+})();
+</script>
+<script id="section12-faq-animation">
+(()=>{
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)");
+  document.querySelectorAll(".faq12-item").forEach(details=>{
+    const summary=details.querySelector("summary");
+    const answer=details.querySelector(".faq12-answer");
+    if(!summary||!answer)return;
+    let outer=null,inner=null;
+    const stop=()=>{if(outer)outer.cancel();if(inner)inner.cancel();outer=inner=null};
+    const clean=()=>{details.style.height="";details.style.overflow="";answer.style.opacity="";answer.style.transform=""};
+    const closedHeight=()=>{
+      const cs=getComputedStyle(details);
+      return summary.getBoundingClientRect().height+(parseFloat(cs.borderTopWidth)||0)+(parseFloat(cs.borderBottomWidth)||0);
+    };
+    summary.addEventListener("click",event=>{
+      event.preventDefault();
+      stop();
+      if(reduce.matches){details.open=!details.open;clean();return}
+      if(!details.open){
+        const from=closedHeight();
+        details.open=true;
+        details.style.height="auto";
+        const to=details.scrollHeight+(parseFloat(getComputedStyle(details).borderBottomWidth)||0);
+        details.style.height=from+"px";details.style.overflow="hidden";
+        outer=details.animate([{height:from+"px"},{height:to+"px"}],{duration:400,easing:"cubic-bezier(.22,1,.36,1)"});
+        inner=answer.animate([{opacity:0,transform:"translateY(-7px)"},{opacity:1,transform:"translateY(0)"}],{duration:320,delay:45,easing:"cubic-bezier(.22,1,.36,1)",fill:"both"});
+        outer.onfinish=()=>{outer=null;if(inner){inner.cancel();inner=null}clean()};
+      }else{
+        const from=details.getBoundingClientRect().height;
+        const to=closedHeight();
+        details.style.height=from+"px";details.style.overflow="hidden";
+        outer=details.animate([{height:from+"px"},{height:to+"px"}],{duration:340,easing:"cubic-bezier(.4,0,.2,1)"});
+        inner=answer.animate([{opacity:1,transform:"translateY(0)"},{opacity:0,transform:"translateY(-5px)"}],{duration:230,easing:"ease-out",fill:"both"});
+        outer.onfinish=()=>{
+          details.style.height=to+"px";
+          details.open=false;
+          if(inner){inner.cancel();inner=null}
+          requestAnimationFrame(()=>requestAnimationFrame(clean));
+          outer=null;
+        };
       }
     });
   });
