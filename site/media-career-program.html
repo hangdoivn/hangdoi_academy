@@ -4987,6 +4987,320 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
   .loop5-btn.is-active{background:rgba(255,255,255,.07);border-color:rgba(246,216,58,.35)}
 }
 
+
+/* ===== Mobile UX / Sections 07–10 ===== */
+.outputs8-doc-rail{display:contents}
+
+@media(max-width:760px){
+  /* 07 — career directions */
+  .roles{padding-block:54px 52px}
+  .roles7-head{gap:18px}
+  .roles7-meta{padding-left:13px}
+  .roles7-kicker{gap:7px;font-size:9px}
+  .roles7-kicker:before{width:7px;height:7px;box-shadow:0 0 0 4px rgba(11,106,63,.08)}
+  .roles7-index{margin-top:7px;font-size:8px}
+  .roles7-title{max-width:356px;font-size:clamp(39px,11.2vw,48px);line-height:.91}
+  .roles7-lead{max-width:350px;margin-top:15px;font-size:14px;line-height:1.5}
+  .roles7-tabs{gap:7px;margin-top:30px}
+  .roles7-tab{
+    min-height:100px;
+    padding:12px;
+    border-radius:17px;
+  }
+  .roles7-tab small{font-size:7px}
+  .roles7-tab strong{margin-top:15px;font-size:16px}
+  .roles7-tab span{margin-top:5px;font-size:9px}
+  .roles7-tab.is-active{transform:none}
+  .roles7-detail{gap:9px;margin-top:9px}
+  .roles7-detail-main,
+  .roles7-path-card{
+    padding:18px 16px;
+    border-radius:19px;
+  }
+  .roles7-detail-main{min-height:285px}
+  .roles7-detail-kicker{font-size:8px}
+  .roles7-detail-title{margin-top:15px;font-size:32px}
+  .roles7-detail-desc{margin-top:10px;font-size:13px}
+  .roles7-fit{gap:6px;margin-top:16px}
+  .roles7-fit span{min-height:29px;padding:0 9px;font-size:7px}
+  .roles7-path-card{min-height:0}
+  .roles7-path-card>small{font-size:8px}
+  .roles7-path-list{margin-top:14px}
+  .roles7-path-step{
+    grid-template-columns:34px minmax(0,1fr);
+    gap:9px;
+    padding:10px 0;
+  }
+  .roles7-path-step b{width:34px;height:34px;font-size:8px}
+  .roles7-path-step strong{font-size:13px}
+  .roles7-path-step span{font-size:9px}
+  .roles7-note{margin-top:12px;padding-top:12px;font-size:9px}
+  .roles7-bridge{margin-top:10px;padding:15px 16px;border-radius:17px;gap:11px}
+  .roles7-bridge strong{font-size:18px}
+  .roles7-bridge a{width:100%;min-height:50px;font-size:8.5px}
+
+  /* 08 — tangible outputs */
+  .outputs{padding-block:54px 52px}
+  .outputs8-head{gap:18px}
+  .outputs8-meta{padding-left:13px}
+  .outputs8-kicker{gap:7px;font-size:9px}
+  .outputs8-kicker:before{width:7px;height:7px}
+  .outputs8-index{margin-top:7px;font-size:8px}
+  .outputs8-title{max-width:356px;font-size:clamp(39px,11.2vw,48px);line-height:.91}
+  .outputs8-lead{max-width:350px;margin-top:15px;font-size:14px;line-height:1.5}
+  .outputs8-grid{gap:9px;margin-top:30px}
+  .outputs8-pack{
+    min-height:510px;
+    border-radius:20px;
+    overflow:hidden;
+  }
+  .outputs8-pack-copy{left:16px;right:16px;top:17px}
+  .outputs8-pack-copy small{font-size:7px}
+  .outputs8-pack-copy strong{margin-top:7px;max-width:310px;font-size:29px}
+  .outputs8-pack-copy p{margin-top:8px;max-width:310px;font-size:10px}
+
+  .outputs8-doc-rail{
+    position:absolute;
+    z-index:4;
+    left:16px;
+    right:0;
+    top:158px;
+    bottom:14px;
+    display:flex;
+    gap:9px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    padding-right:16px;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+  }
+  .outputs8-doc-rail::-webkit-scrollbar{display:none}
+  .outputs8-doc,
+  .outputs8-doc.a,
+  .outputs8-doc.b,
+  .outputs8-doc.c{
+    position:relative;
+    left:auto;
+    right:auto;
+    bottom:auto;
+    flex:0 0 min(72vw,270px);
+    width:auto;
+    height:100%;
+    aspect-ratio:auto;
+    transform:none;
+    border-radius:17px;
+    scroll-snap-align:start;
+  }
+  .outputs8-doc-cover{height:52%}
+  .outputs8-doc-body{padding:12px}
+  .outputs8-doc-body small{font-size:7px}
+  .outputs8-doc-body strong{margin-top:7px;font-size:17px}
+  .outputs8-doc-body p{margin-top:6px;font-size:9px}
+  .outputs8-doc-source{left:8px;bottom:8px;min-height:21px;padding:0 6px;font-size:6px}
+
+  .outputs8-side{
+    display:flex;
+    gap:8px;
+    margin-right:-16px;
+    padding:0 16px 4px 0;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:none;
+  }
+  .outputs8-side::-webkit-scrollbar{display:none}
+  .outputs8-side-card{
+    flex:0 0 min(76vw,285px);
+    min-height:138px;
+    padding:16px;
+    border-radius:18px;
+    scroll-snap-align:start;
+  }
+  .outputs8-side-card small{font-size:7px}
+  .outputs8-side-card strong{margin-top:18px;font-size:25px}
+  .outputs8-side-card p{font-size:10px}
+  .outputs8-footer{margin-top:10px;padding:15px 16px;border-radius:17px;gap:10px}
+  .outputs8-footer strong{font-size:18px}
+  .outputs8-footer span{min-height:32px;padding:0 10px;font-size:7px}
+
+  /* 09 — preserve the stair concept on mobile */
+  .career9{padding:54px 0 52px}
+  .career9-head{gap:18px}
+  .career9-meta{padding-left:13px}
+  .career9-kicker{font-size:9px}
+  .career9-sub{margin-top:7px;font-size:8px}
+  .career9-title{max-width:356px;font-size:clamp(39px,11.2vw,48px);line-height:.91}
+  .career9-lead{max-width:350px;margin-top:15px;font-size:14px;line-height:1.5}
+  .career9-area{margin-top:30px;gap:12px}
+  .career9-stairs{padding:18px 14px;border-radius:20px}
+  .career9-intro h3{font-size:26px}
+  .career9-intro p{font-size:11px}
+  .career9-mobile{
+    position:relative;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:8px;
+    margin-top:22px;
+    padding-left:0;
+  }
+  .career9-mobile:before{
+    content:"";
+    position:absolute;
+    left:16px;
+    top:16px;
+    bottom:16px;
+    width:3px;
+    border-radius:99px;
+    background:linear-gradient(180deg,#f4c542,#b8dcc8 35%,#22865a 68%,#0b6a3f);
+    opacity:.65;
+  }
+  .career9-mobile .career9-step{
+    position:relative;
+    z-index:1;
+    width:calc(100% - 42px);
+    min-height:118px;
+    max-width:none;
+    padding:14px 14px 13px 18px;
+    border-radius:17px;
+    background:#102018;
+    opacity:0;
+    transform:translateY(12px);
+  }
+  .career9-mobile .career9-step:nth-child(1){margin-left:0}
+  .career9-mobile .career9-step:nth-child(2){margin-left:14px}
+  .career9-mobile .career9-step:nth-child(3){margin-left:28px}
+  .career9-mobile .career9-step:nth-child(4){margin-left:42px}
+  .career9-mobile .career9-step:before{
+    content:"";
+    position:absolute;
+    left:10px;
+    top:18px;
+    width:7px;height:7px;
+    border-radius:50%;
+    background:currentColor;
+    box-shadow:0 0 0 4px rgba(255,255,255,.04);
+  }
+  .career9-mobile .career9-step small{padding-left:12px;font-size:8px}
+  .career9-money{font-size:31px}
+  .career9-mobile .career9-step strong{font-size:13px}
+  .career9-mobile .career9-step p{font-size:10px}
+  .career9.is-active .career9-mobile .career9-step:nth-child(1){animation:c9Reveal .48s .12s cubic-bezier(.22,1,.36,1) forwards}
+  .career9.is-active .career9-mobile .career9-step:nth-child(2){animation:c9Reveal .48s .24s cubic-bezier(.22,1,.36,1) forwards}
+  .career9.is-active .career9-mobile .career9-step:nth-child(3){animation:c9Reveal .48s .36s cubic-bezier(.22,1,.36,1) forwards}
+  .career9.is-active .career9-mobile .career9-step:nth-child(4){animation:c9Reveal .48s .48s cubic-bezier(.22,1,.36,1) forwards}
+  .career9-legend{gap:7px}
+  .career9-legend article{min-height:0;padding:14px;border-radius:17px}
+  .career9-legend strong{font-size:18px}
+  .career9-legend p{font-size:10px}
+  .career9-note{padding:15px 16px;border-radius:17px;gap:10px}
+  .career9-note strong{font-size:12px}
+  .career9-note p{font-size:9px}
+  .career9-pill{min-height:34px;font-size:7px}
+
+  /* 10 — tuition */
+  .tuition{padding-block:54px 52px}
+  .tuition10-head{gap:18px}
+  .tuition10-meta{padding-left:13px}
+  .tuition10-kicker{gap:7px;font-size:9px}
+  .tuition10-kicker:before{width:7px;height:7px}
+  .tuition10-index{margin-top:7px;font-size:8px}
+  .tuition10-title{max-width:356px;font-size:clamp(39px,11.2vw,48px);line-height:.91}
+  .tuition10-lead{max-width:350px;margin-top:15px;font-size:14px;line-height:1.5}
+  .tuition10-layout{gap:9px;margin-top:30px}
+  .tuition10-price{
+    min-height:365px;
+    padding:18px;
+    border-radius:20px;
+  }
+  .tuition10-price-value{margin-top:12px;font-size:84px}
+  .tuition10-price-sub{margin-top:13px;font-size:12px}
+  .tuition10-price-caption{margin-top:6px;font-size:10px}
+  .tuition10-payment{
+    position:relative;
+    z-index:2;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:7px;
+    margin-top:16px;
+  }
+  .tuition10-payment div{
+    min-height:72px;
+    padding:11px;
+    border-radius:14px;
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.10);
+  }
+  .tuition10-payment small{
+    display:block;
+    font-size:6px;
+    font-weight:900;
+    letter-spacing:.08em;
+    color:rgba(255,255,255,.48);
+  }
+  .tuition10-payment strong{display:block;margin-top:6px;font-size:12px}
+  .tuition10-payment span{display:block;margin-top:4px;font-size:8px;color:var(--aca-color-signal-yellow)}
+  .tuition10-legal-chip{min-height:29px;font-size:7px}
+  .tuition10-price-bottom p{margin-top:8px;font-size:9px}
+  .tuition10-value-panel{gap:8px}
+  .tuition10-value-intro{padding:16px;border-radius:17px}
+  .tuition10-value-intro small{font-size:7px}
+  .tuition10-value-intro strong{margin-top:7px;font-size:22px}
+  .tuition10-value-intro p{font-size:9px}
+  .tuition10-receipt{border-radius:19px}
+  .tuition10-receipt-head{padding:16px 16px 13px;gap:6px}
+  .tuition10-receipt-head small{font-size:7px}
+  .tuition10-receipt-head strong{font-size:23px}
+  .tuition10-receipt-head span{font-size:8px}
+  .tuition10-receipt-row{grid-template-columns:32px minmax(0,1fr);gap:9px;padding:11px 14px}
+  .tuition10-num{width:32px;height:32px;font-size:8px}
+  .tuition10-receipt-row strong{font-size:12px}
+  .tuition10-receipt-row p{font-size:9px}
+  .tuition10-not-job{padding:15px 16px;border-radius:17px;gap:9px}
+  .tuition10-not-job strong{font-size:18px}
+  .tuition10-not-job span{min-height:32px;font-size:7px}
+  .tuition10-bridge{margin-top:9px;padding:15px 16px;border-radius:17px;gap:10px}
+  .tuition10-bridge strong{font-size:18px}
+  .tuition10-bridge a{width:100%;min-height:50px;font-size:8.5px}
+}
+
+@media(min-width:761px){
+  .tuition10-payment{
+    position:relative;
+    z-index:2;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    max-width:390px;
+    margin-top:18px;
+  }
+  .tuition10-payment div{
+    padding:12px;
+    border-radius:14px;
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.10);
+  }
+  .tuition10-payment small{display:block;font-size:7px;font-weight:900;letter-spacing:.08em;color:rgba(255,255,255,.48)}
+  .tuition10-payment strong{display:block;margin-top:6px;font-size:13px}
+  .tuition10-payment span{display:block;margin-top:4px;font-size:9px;color:var(--aca-color-signal-yellow)}
+}
+
+@media(max-width:375px){
+  .roles,.outputs,.tuition{padding-block:50px 48px}
+  .roles7-title,.outputs8-title,.career9-title,.tuition10-title{font-size:clamp(37px,10.8vw,43px)}
+  .outputs8-doc,.outputs8-doc.a,.outputs8-doc.b,.outputs8-doc.c{flex-basis:min(76vw,260px)}
+  .career9-mobile .career9-step{width:calc(100% - 34px)}
+  .career9-mobile .career9-step:nth-child(2){margin-left:11px}
+  .career9-mobile .career9-step:nth-child(3){margin-left:22px}
+  .career9-mobile .career9-step:nth-child(4){margin-left:34px}
+  .tuition10-price-value{font-size:78px}
+}
+
+@media(hover:none) and (pointer:coarse){
+  .roles7-tab:hover{transform:none;box-shadow:0 8px 26px rgba(11,36,24,.045)}
+  .outputs8-doc:hover{filter:none}
+  .outputs8-doc.a:hover,.outputs8-doc.b:hover,.outputs8-doc.c:hover{transform:none}
+}
+
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Course","name":"Hang Đôi Media Career Program","description":"Chương trình Media 4 tháng hướng tới Production Ready trong Commercial Production.","provider":{"@type":"EducationalOrganization","name":"Hang Đôi Academy","url":"https://academy.hangdoiproduction.com/"}}
@@ -5640,6 +5954,7 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
           <p>Không chỉ kết thúc bằng việc “học xong”. Bạn có những thứ cụ thể để mở ra, xem lại và dùng tiếp.</p>
         </div>
 
+        <div class="outputs8-doc-rail">
         <article class="outputs8-doc a">
           <div class="outputs8-doc-cover">
             <img src="https://drive.google.com/thumbnail?id=1FZ2aHa-simq1liZxjXLZbzeI-DErFEYE&amp;sz=w1200" alt="Hình ảnh tham chiếu do Hang Đôi Production thực hiện" loading="lazy">
@@ -5675,6 +5990,7 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
             <p>Nhìn lại kỹ năng đã có, phần còn thiếu và hướng nên tiếp tục luyện.</p>
           </div>
         </article>
+        </div>
       </div>
 
       <div class="outputs8-side">
@@ -5780,6 +6096,10 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
           <div class="tuition10-price-value">40M</div>
           <div class="tuition10-price-sub">4 THÁNG · 16 TUẦN</div>
           <p class="tuition10-price-caption">Mức học phí cho toàn bộ 4 tháng học.</p>
+          <div class="tuition10-payment" aria-label="Hình thức thanh toán">
+            <div><small>PHƯƠNG ÁN 01</small><strong>ĐÓNG 1 LẦN</strong></div>
+            <div><small>PHƯƠNG ÁN 02</small><strong>CHIA 3 LẦN</strong><span>Ngày 05 hằng tháng</span></div>
+          </div>
         </div>
 
         <div class="tuition10-price-bottom">
