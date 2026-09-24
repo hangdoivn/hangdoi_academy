@@ -4776,6 +4776,217 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
   .job-detail-card{animation:none!important}
 }
 
+
+/* ===== Mobile UX / Sections 04–06 ===== */
+@media(max-width:760px){
+  /* 04 — roadmap */
+  .program4{
+    padding-block:54px 52px;
+  }
+  .program4-head{gap:18px}
+  .program4-meta{padding-left:13px}
+  .program4-kicker{gap:7px;font-size:9px;letter-spacing:.09em}
+  .program4-kicker:before{width:7px;height:7px;box-shadow:0 0 0 4px rgba(57,95,204,.08)}
+  .program4-index{margin-top:7px;font-size:8px}
+  .program4-title{max-width:356px;font-size:clamp(39px,11.2vw,48px);line-height:.91;letter-spacing:-.058em}
+  .program4-lead{max-width:350px;margin-top:15px;font-size:14px;line-height:1.5}
+
+  .program4-roadmap{
+    margin-top:30px;
+    padding:2px 0 0;
+  }
+  .program4-roadmap:before{
+    left:25px;
+    top:18px;
+    bottom:18px;
+    width:3px;
+  }
+  .program4-roadmap-pin{
+    grid-template-columns:52px minmax(0,1fr);
+    gap:11px;
+    width:100%;
+    min-height:58px;
+    margin-bottom:10px;
+    padding:3px 0;
+    text-align:left;
+  }
+  .program4-pin-core{
+    width:46px;
+    height:46px;
+    box-shadow:0 0 0 5px rgba(98,217,181,.12);
+  }
+  .program4-roadmap-pin[data-stage="02"] .program4-pin-core{box-shadow:0 0 0 5px rgba(95,211,216,.11)}
+  .program4-roadmap-pin[data-stage="03"] .program4-pin-core{box-shadow:0 0 0 5px rgba(91,115,223,.10)}
+  .program4-roadmap-pin[data-stage="04"] .program4-pin-core{box-shadow:0 0 0 5px rgba(122,112,221,.10)}
+  .program4-pin-core svg{width:21px;height:21px}
+  .program4-pin-label{
+    min-width:0;
+    width:max-content;
+    max-width:220px;
+    margin:0;
+    padding:7px 10px 6px;
+  }
+  .program4-roadmap-pin.is-active .program4-pin-core{
+    animation:none;
+    transform:scale(1.04);
+  }
+
+  .program4-detail-wrap{
+    width:100%;
+    margin:4px 0 16px;
+    padding-left:0;
+    animation:program4MobileIn .32s cubic-bezier(.22,1,.36,1) both;
+  }
+  @keyframes program4MobileIn{
+    from{opacity:0;transform:translateY(-5px)}
+    to{opacity:1;transform:none}
+  }
+  .program4-detail{
+    grid-template-columns:1fr;
+    min-height:0;
+    border-radius:20px;
+  }
+  .program4-detail-copy{padding:18px 16px 16px}
+  .program4-detail-kicker{font-size:8px}
+  .program4-detail-title{margin-top:10px;font-size:30px}
+  .program4-detail-desc{margin-top:9px;font-size:13px}
+  .program4-detail-bottom{gap:8px;margin-top:14px}
+  .program4-detail-proof{
+    min-height:32px;
+    padding:0 10px;
+    font-size:7.5px;
+  }
+  .program4-detail-focus{font-size:9px}
+  .program4-detail-no{right:10px;bottom:-8px;font-size:68px}
+  .program4-detail-media{min-height:180px}
+  .program4-detail-media-label{left:12px;bottom:11px;min-height:25px;font-size:7px}
+  .program4-detail-progress{margin-top:8px;gap:6px}
+  .program4-detail-progress span{height:3px}
+  .program4-bridge{margin-top:18px;padding:16px;border-radius:18px;gap:12px}
+  .program4-bridge strong{font-size:18px}
+  .program4-bridge-cta{min-height:50px;font-size:8.5px}
+
+  /* 05 — feedback loop */
+  .learning-loop{padding-block:54px 52px}
+  .loop5-head{gap:18px}
+  .loop5-meta{padding-left:13px}
+  .loop5-kicker{gap:7px;font-size:9px}
+  .loop5-kicker:before{width:7px;height:7px}
+  .loop5-index{margin-top:7px;font-size:8px}
+  .loop5-title{max-width:356px;font-size:clamp(39px,11.2vw,48px);line-height:.91}
+  .loop5-lead{max-width:350px;margin-top:15px;font-size:14px;line-height:1.5}
+  .loop5-stage{display:grid;grid-template-columns:1fr;gap:9px;margin-top:30px}
+  .loop5-panel{
+    min-height:245px;
+    padding:18px 16px;
+    border-radius:20px;
+  }
+  .loop5-step-kicker{font-size:8px}
+  .loop5-step-no{margin-top:auto;font-size:9px}
+  .loop5-step-title{margin-top:8px;font-size:30px}
+  .loop5-step-desc{margin-top:9px;font-size:13px}
+  .loop5-step-proof{min-height:30px;margin-top:14px;padding:0 9px;font-size:7.5px}
+  .loop5-visual{min-height:285px;border-radius:20px}
+  .loop5-version{left:12px;top:12px;min-height:27px;padding:0 8px;font-size:7px}
+  .loop5-comment{max-width:180px;padding:9px 10px;border-radius:12px}
+  .loop5-comment strong{font-size:10px}
+  .loop5-comment-a{right:10px;top:46px}
+  .loop5-comment-b{right:10px;bottom:50px}
+  .loop5-review-chip{left:12px;bottom:11px;min-height:29px;padding:0 9px;font-size:7px}
+
+  .loop5-nav{
+    display:flex;
+    gap:8px;
+    margin:10px -16px 0 0;
+    padding:0 16px 4px 0;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+  }
+  .loop5-nav::-webkit-scrollbar{display:none}
+  .loop5-nav:before{display:none}
+  .loop5-btn{
+    flex:0 0 min(68vw,250px);
+    grid-template-columns:40px minmax(0,1fr);
+    min-height:70px;
+    padding:9px 10px;
+    border-radius:15px;
+    scroll-snap-align:start;
+  }
+  .loop5-nav-no{width:40px;height:40px}
+  .loop5-nav-copy strong{font-size:12px}
+  .loop5-nav-copy small{font-size:7px}
+  .loop5-timer{display:none}
+  .loop5-exit{margin-top:12px;padding:15px 16px;border-radius:17px;gap:12px}
+  .loop5-exit strong{font-size:18px}
+  .loop5-exit-flow{font-size:8px}
+
+  /* 06 — practice gallery */
+  .practice{padding-block:54px 52px}
+  .practice6-head{gap:18px}
+  .practice6-meta{padding-left:13px}
+  .practice6-kicker{font-size:9px}
+  .practice6-index{font-size:8px;margin-top:7px}
+  .practice6-title{max-width:356px;font-size:clamp(39px,11.2vw,48px);line-height:.91}
+  .practice6-lead{max-width:350px;margin-top:15px;font-size:14px;line-height:1.5}
+
+  .practice6-gallery{
+    display:flex;
+    grid-template-columns:none;
+    grid-template-rows:none;
+    gap:9px;
+    margin:30px -16px 0 0;
+    padding:0 16px 4px 0;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+  }
+  .practice6-gallery::-webkit-scrollbar{display:none}
+  .practice6-tile,
+  .practice6-tile.big{
+    flex:0 0 min(84vw,320px);
+    min-height:360px;
+    border-radius:20px;
+    scroll-snap-align:start;
+  }
+  .practice6-tile-copy{left:14px;right:14px;bottom:13px}
+  .practice6-tile h3{font-size:30px}
+  .practice6-source{top:11px;right:11px;font-size:7px}
+
+  .practice6-format-strip{
+    display:flex;
+    gap:8px;
+    margin:10px -16px 0 0;
+    padding:0 16px 4px 0;
+    overflow-x:auto;
+    scrollbar-width:none;
+    scroll-snap-type:x mandatory;
+  }
+  .practice6-format-strip::-webkit-scrollbar{display:none}
+  .practice6-format-card{
+    flex:0 0 min(68vw,250px);
+    min-height:105px;
+    scroll-snap-align:start;
+  }
+  .practice6-bridge{margin-top:12px;padding:15px 16px;border-radius:18px;gap:12px}
+  .practice6-bridge strong{font-size:18px}
+}
+
+@media(max-width:375px){
+  .program4,.learning-loop,.practice{padding-block:50px 48px}
+  .program4-title,.loop5-title,.practice6-title{font-size:clamp(37px,10.8vw,43px)}
+  .loop5-btn{flex-basis:72vw}
+  .practice6-tile,.practice6-tile.big{flex-basis:86vw}
+}
+
+@media(hover:none) and (pointer:coarse){
+  .program4-roadmap-pin:hover .program4-pin-core{transform:none}
+  .loop5-btn:hover{transform:none;background:rgba(255,255,255,.035);border-color:rgba(255,253,247,.14)}
+  .loop5-btn.is-active{background:rgba(255,255,255,.07);border-color:rgba(246,216,58,.35)}
+}
+
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Course","name":"Hang Đôi Media Career Program","description":"Chương trình Media 4 tháng hướng tới Production Ready trong Commercial Production.","provider":{"@type":"EducationalOrganization","name":"Hang Đôi Academy","url":"https://academy.hangdoiproduction.com/"}}
@@ -6089,6 +6300,7 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
   const label=document.getElementById("program4-detail-media-label");
   const bars=Array.from(document.querySelectorAll(".program4-detail-progress span"));
   const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const mobile=matchMedia("(max-width:760px)");
   const finePointer=matchMedia("(pointer:fine)").matches;
   const STEP_MS=5200;
 
@@ -6121,7 +6333,7 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
 
   const schedule=()=>{
     clearTimer();
-    if(reduce||paused||!inView)return;
+    if(reduce||mobile.matches||paused||!inView)return;
     timer=setTimeout(()=>{
       const next=(current+1)%pins.length;
       select(pins[next],{animate:true});
@@ -6295,6 +6507,7 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
   const bars=Array.from(section.querySelectorAll(".loop5-timer span"));
 
   const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const mobile=matchMedia("(max-width:760px)");
   const finePointer=matchMedia("(pointer:fine)").matches;
   const STEP_MS=4800;
   let current=0;
@@ -6348,7 +6561,7 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
 
   const schedule=()=>{
     clearTimer();
-    if(reduce||paused||!inView)return;
+    if(reduce||mobile.matches||paused||!inView)return;
     timer=setTimeout(()=>{
       select((current+1)%steps.length,{animate:true});
       schedule();
@@ -6688,6 +6901,48 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
   },{passive:true});
   addEventListener("resize",sync,{passive:true});
   sync();
+})();
+</script>
+
+<script id="mobile-sections4-6-ux">
+(()=>{
+  const mobile=matchMedia("(max-width:760px)");
+
+  /* Section 04: move the active month detail directly below its node. */
+  const system=document.getElementById("system");
+  if(system){
+    const roadmap=system.querySelector(".program4-roadmap");
+    const pins=Array.from(system.querySelectorAll(".program4-roadmap-pin"));
+    const wrap=system.querySelector(".program4-detail-wrap");
+    const home=wrap?.parentElement;
+    const place=()=>{
+      if(!wrap||!roadmap)return;
+      if(mobile.matches){
+        const active=pins.find(p=>p.classList.contains("is-active"))||pins[0];
+        if(active)active.insertAdjacentElement("afterend",wrap);
+      }else if(home&&wrap.parentElement!==home){
+        const bridge=home.querySelector(".program4-bridge");
+        if(bridge)home.insertBefore(wrap,bridge);
+        else home.appendChild(wrap);
+      }
+    };
+    pins.forEach(pin=>pin.addEventListener("click",()=>requestAnimationFrame(place)));
+    const observer=new MutationObserver(place);
+    pins.forEach(pin=>observer.observe(pin,{attributes:true,attributeFilter:["class"]}));
+    if(mobile.addEventListener)mobile.addEventListener("change",place);
+    place();
+  }
+
+  /* Section 05: when a step is tapped, keep its horizontal tab visible. */
+  const loop=document.getElementById("learning-loop");
+  if(loop){
+    const buttons=Array.from(loop.querySelectorAll(".loop5-btn"));
+    buttons.forEach(btn=>btn.addEventListener("click",()=>{
+      if(mobile.matches){
+        requestAnimationFrame(()=>btn.scrollIntoView({behavior:"smooth",block:"nearest",inline:"center"}));
+      }
+    }));
+  }
 })();
 </script>
 </body>
