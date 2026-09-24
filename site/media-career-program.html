@@ -4419,6 +4419,363 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
   .gap2-cta:hover b{transform:none}
 }
 
+
+/* ===== Mobile UX / Section 03 — Inline job flow ===== */
+.job-mobile-guide{display:none}
+
+@media(max-width:760px){
+  .reality{
+    padding-block:54px 52px;
+  }
+  .reality:before{
+    top:-.08em;
+    font-size:180px;
+  }
+  .reality-head{
+    gap:18px;
+  }
+  .reality-meta{
+    padding-left:13px;
+  }
+  .reality-kicker{
+    gap:7px;
+    font-size:9px;
+    letter-spacing:.09em;
+  }
+  .reality-kicker:before{
+    width:7px;
+    height:7px;
+    box-shadow:0 0 0 4px rgba(242,106,61,.09);
+  }
+  .reality-index{
+    margin-top:7px;
+    font-size:8px;
+    letter-spacing:.055em;
+  }
+  .reality-title{
+    max-width:356px;
+    font-size:clamp(39px,11.2vw,48px);
+    line-height:.91;
+    letter-spacing:-.058em;
+  }
+  .reality-lead{
+    max-width:350px;
+    margin-top:15px;
+    font-size:14px;
+    line-height:1.5;
+  }
+
+  .reality-layout{
+    display:block;
+    margin-top:30px;
+  }
+  .job-mobile-guide{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    min-height:34px;
+    margin-bottom:8px;
+    color:#6c796f;
+    font-size:7px;
+    font-weight:900;
+    letter-spacing:.08em;
+  }
+  .job-mobile-guide b{
+    color:#0b6a3f;
+    font-size:13px;
+    letter-spacing:-.02em;
+  }
+
+  /* Compact vertical timeline. Inactive rows are intentionally terse:
+     the active row owns the detail card immediately below it. */
+  .job-flow{
+    position:relative;
+    border-top:2px solid #0b2418;
+    border-bottom:2px solid #0b2418;
+  }
+  .job-flow:before{
+    content:"";
+    position:absolute;
+    z-index:0;
+    left:19px;
+    top:22px;
+    bottom:22px;
+    width:1px;
+    background:rgba(11,36,24,.15);
+    pointer-events:none;
+  }
+  .job-step{
+    z-index:1;
+    grid-template-columns:40px minmax(0,1fr) 34px;
+    gap:10px;
+    min-height:68px;
+    padding:11px 7px 11px 0;
+    background:#f1efe6;
+    transition:
+      background .2s cubic-bezier(.22,1,.36,1),
+      box-shadow .2s ease,
+      padding-left .2s cubic-bezier(.22,1,.36,1);
+  }
+  .job-step:hover{
+    padding-left:0;
+    background:#f1efe6;
+  }
+  .job-step.is-active{
+    min-height:72px;
+    padding-left:8px;
+    background:#fffdf7;
+    box-shadow:inset 4px 0 0 #0b6a3f;
+  }
+  .job-step-no{
+    position:relative;
+    z-index:1;
+    width:38px;
+    height:38px;
+    display:grid;
+    place-items:center;
+    border-radius:50%;
+    background:#f1efe6;
+    border:1px solid rgba(11,36,24,.14);
+    font-size:17px;
+    line-height:1;
+    letter-spacing:-.04em;
+  }
+  .job-step.is-active .job-step-no{
+    background:#0b6a3f;
+    border-color:#0b6a3f;
+    color:#fff;
+  }
+  .job-step-title small{
+    margin-bottom:3px;
+    font-size:7px;
+    letter-spacing:.09em;
+  }
+  .job-step-title h3{
+    font-size:18px;
+    line-height:1;
+  }
+  .job-step-copy{
+    display:none;
+  }
+  .job-step-arrow{
+    width:32px;
+    height:32px;
+    font-size:14px;
+    background:rgba(255,255,255,.28);
+  }
+  .job-step.is-active .job-step-arrow{
+    transform:rotate(90deg);
+  }
+
+  .job-step.is-camera{
+    padding-left:8px;
+    background:var(--aca-color-signal-yellow);
+  }
+  .job-step.is-camera:hover,
+  .job-step.is-camera.is-active{
+    padding-left:8px;
+    background:var(--aca-color-signal-yellow);
+  }
+  .job-step.is-camera .job-step-no{
+    background:rgba(255,253,247,.64);
+    border-color:rgba(11,36,24,.18);
+  }
+  .job-step.is-camera.is-active .job-step-no{
+    background:#0b2418;
+    border-color:#0b2418;
+    color:#fff;
+  }
+  .job-camera-tag{
+    right:45px;
+    top:7px;
+    padding:4px 7px;
+    font-size:6px;
+    letter-spacing:.06em;
+  }
+  .job-step.is-feedback:after{display:none}
+
+  /* The detail card is physically moved below the selected step by JS.
+     Keep it compact enough that the user retains context of the timeline. */
+  .job-detail-card{
+    position:relative;
+    z-index:3;
+    width:calc(100% - 12px);
+    margin:8px 6px 12px;
+    border-radius:18px;
+    box-shadow:0 14px 32px rgba(11,36,24,.14);
+    animation:jobMobileDetailIn .32s cubic-bezier(.22,1,.36,1) both;
+  }
+  @keyframes jobMobileDetailIn{
+    from{opacity:0;transform:translateY(-6px) scale(.99)}
+    to{opacity:1;transform:none}
+  }
+  .job-detail-top{
+    min-height:40px;
+    padding:10px 12px 9px;
+  }
+  .job-detail-top small{
+    max-width:210px;
+    font-size:7px;
+    line-height:1.25;
+    letter-spacing:.08em;
+  }
+  .job-detail-counter{
+    min-height:23px;
+    padding:0 7px;
+    font-size:7px;
+  }
+  .job-detail-visual{
+    min-height:190px;
+  }
+  .job-detail-caption{
+    left:12px;
+    right:12px;
+    bottom:11px;
+  }
+  .job-detail-caption small{
+    margin-bottom:4px;
+    font-size:7px;
+  }
+  .job-detail-caption strong{
+    max-width:300px;
+    font-size:17px;
+    line-height:1.02;
+  }
+
+  .job-role-bar{
+    padding:10px 12px 11px;
+  }
+  .job-role-bar>small{
+    margin-bottom:7px;
+    font-size:7px;
+  }
+  .job-role-chips{
+    flex-wrap:nowrap;
+    gap:6px;
+    overflow-x:auto;
+    margin-right:-12px;
+    padding-right:12px;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+    overscroll-behavior-x:contain;
+  }
+  .job-role-chips::-webkit-scrollbar{display:none}
+  .job-role-chip{
+    flex:0 0 auto;
+    min-height:24px;
+    max-width:220px;
+    padding:5px 8px;
+    font-size:7.5px;
+    white-space:nowrap;
+  }
+  .job-role-chip:before{
+    width:4px;
+    height:4px;
+    margin-right:5px;
+  }
+
+  .job-detail-body{
+    padding:13px 12px 14px;
+  }
+  .job-detail-kicker{
+    margin-bottom:5px;
+    font-size:7px;
+  }
+  .job-detail-body h3{
+    max-width:310px;
+    font-size:20px;
+    line-height:1;
+  }
+  .job-detail-body p{
+    margin-top:8px;
+    font-size:11px;
+    line-height:1.45;
+  }
+  .job-output{
+    grid-template-columns:50px minmax(0,1fr);
+    gap:8px;
+    margin-top:11px;
+    padding-top:11px;
+  }
+  .job-output small{
+    font-size:7px;
+  }
+  .job-output strong{
+    font-size:10.5px;
+    line-height:1.35;
+  }
+
+  /* The desktop side column becomes only a DOM parking place on mobile. */
+  .job-side{
+    margin-top:0;
+  }
+  .job-detail-home:empty,
+  .job-side:has(.job-detail-home:empty){
+    display:none;
+  }
+
+  .reality-bridge{
+    margin-top:20px;
+    padding:17px 16px 16px;
+    border-radius:18px;
+    gap:14px;
+  }
+  .reality-bridge-copy>small{
+    margin-bottom:6px;
+    font-size:7px;
+  }
+  .reality-bridge p{
+    font-size:clamp(22px,6.6vw,28px);
+    line-height:1.02;
+  }
+  .reality-bridge-copy>span{
+    margin-top:7px;
+    font-size:10px;
+  }
+  .reality-bridge-cta{
+    min-height:52px;
+    padding:8px 8px 8px 15px;
+    font-size:8.5px;
+  }
+  .reality-bridge-cta b{
+    width:34px;
+    height:34px;
+    font-size:16px;
+  }
+
+  .job-step{
+    scroll-margin-top:76px;
+  }
+}
+
+@media(max-width:375px){
+  .reality{padding-block:50px 48px}
+  .reality-title{font-size:clamp(37px,10.8vw,43px)}
+  .job-detail-visual{min-height:178px}
+  .job-detail-body h3{font-size:19px}
+  .job-role-chip{font-size:7px}
+}
+
+@media(hover:none) and (pointer:coarse){
+  .job-step:hover{
+    padding-left:0;
+    background:#f1efe6;
+  }
+  .job-step.is-camera:hover{
+    padding-left:8px;
+    background:var(--aca-color-signal-yellow);
+  }
+  .reality-bridge-cta:hover{
+    transform:none;
+    background:#0b2418;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .job-detail-card{animation:none!important}
+}
+
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Course","name":"Hang Đôi Media Career Program","description":"Chương trình Media 4 tháng hướng tới Production Ready trong Commercial Production.","provider":{"@type":"EducationalOrganization","name":"Hang Đôi Academy","url":"https://academy.hangdoiproduction.com/"}}
@@ -4617,6 +4974,10 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
     </div>
 
     <div class="reality-layout">
+      <div class="job-mobile-guide" aria-hidden="true">
+        <span><b>8</b> BƯỚC CỦA MỘT JOB</span>
+        <span>CHẠM TỪNG BƯỚC ĐỂ XEM ↓</span>
+      </div>
       <div class="job-flow reveal" aria-label="Quy trình 8 bước của một job Media thương mại">
         <article class="job-step is-active" id="job-step-01" role="button" tabindex="0" aria-pressed="true" aria-controls="job-detail" data-step="01">
           <div class="job-step-no">01</div>
@@ -5626,7 +5987,7 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
 
     if(fromUser&&mobile.matches){
       requestAnimationFrame(()=>{
-        detail.scrollIntoView({behavior:reduce?"auto":"smooth",block:"nearest"});
+        step.scrollIntoView({behavior:reduce?"auto":"smooth",block:"start"});
       });
     }
   };
