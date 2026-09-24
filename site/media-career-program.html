@@ -2608,21 +2608,335 @@ img{display:block;max-width:100%}
   .roles7-detail-main.is-switching{animation:none!important}
 }
 
-/* 08 Outputs */
-.outputs{background:var(--aca-paper-50)}
-.output-head{display:grid;grid-template-columns:8fr 4fr;gap:32px;align-items:end}
-.output-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:135px;gap:12px;margin-top:40px}
-.output-card{border:var(--aca-border-strong) solid var(--aca-border-ink);padding:18px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
-.output-card small{font-size:10px;font-weight:800}
-.output-card strong{font-size:clamp(21px,2.2vw,32px);line-height:.95;letter-spacing:-.04em}
-.output-card p{font-size:12px;margin:7px 0 0;max-width:280px}
-.output-card.portfolio{grid-column:span 6;grid-row:span 3;background:var(--aca-color-signal-cobalt);color:white}
-.output-card.capstone{grid-column:span 3;grid-row:span 2;background:var(--aca-paper-0)}
-.output-card.profile{grid-column:span 3;grid-row:span 2;background:var(--aca-color-brand);color:white}
-.output-card.ready{grid-column:span 4;grid-row:span 2;background:var(--aca-green-950);color:white}
-.output-card.track{grid-column:span 4;grid-row:span 2;background:var(--aca-orange-100)}
-.output-card.start{grid-column:span 4;grid-row:span 2;background:var(--aca-paper-0)}
-.output-card .dot{position:absolute;right:18px;top:18px;width:18px;height:18px;border-radius:50%;background:var(--aca-color-signal-yellow);border:2px solid var(--aca-border-ink)}
+/* 08 Outcomes — tangible takeaways */
+.outputs{
+  position:relative;
+  overflow:hidden;
+  background:var(--aca-paper-50);
+  color:var(--aca-green-950);
+}
+.outputs:before{
+  content:"08";
+  position:absolute;
+  right:-.03em;
+  top:-.20em;
+  font-size:clamp(180px,20vw,320px);
+  line-height:1;
+  font-weight:950;
+  letter-spacing:-.09em;
+  color:rgba(11,36,24,.026);
+  pointer-events:none;
+}
+.outputs8{position:relative;z-index:1}
+.outputs8-head{
+  display:grid;
+  grid-template-columns:minmax(210px,3fr) minmax(0,9fr);
+  gap:clamp(28px,4vw,64px);
+  align-items:start;
+}
+.outputs8-meta{
+  padding-left:18px;
+  border-left:2px solid var(--aca-color-signal-cobalt);
+}
+.outputs8-kicker{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:12px;
+  font-weight:950;
+  line-height:1.35;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  color:var(--aca-color-brand);
+}
+.outputs8-kicker:before{
+  content:"";
+  width:9px;height:9px;border-radius:50%;
+  background:var(--aca-color-signal-cobalt);
+  box-shadow:0 0 0 5px rgba(91,115,223,.10);
+  flex:none;
+}
+.outputs8-index{
+  margin:10px 0 0;
+  font-size:11px;
+  line-height:1.45;
+  font-weight:850;
+  letter-spacing:.075em;
+  color:var(--aca-color-text-muted);
+}
+.outputs8-title{
+  margin:0;
+  max-width:1060px;
+  font-size:clamp(50px,5.8vw,90px);
+  line-height:.89;
+  letter-spacing:-.065em;
+  font-weight:950;
+  color:var(--aca-green-950);
+}
+.outputs8-title .accent{color:var(--aca-color-brand)}
+.outputs8-lead{
+  max-width:760px;
+  margin:20px 0 0;
+  font-size:clamp(15px,1.35vw,19px);
+  line-height:1.55;
+  color:var(--aca-color-text-muted);
+}
+.outputs8-lead strong{color:var(--aca-green-950)}
+
+.outputs8-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.12fr) minmax(350px,.88fr);
+  gap:16px;
+  margin-top:clamp(36px,4.8vw,56px);
+}
+.outputs8-pack{
+  position:relative;
+  min-height:590px;
+  overflow:hidden;
+  border-radius:28px;
+  background:var(--aca-green-950);
+  box-shadow:0 22px 60px rgba(11,36,24,.12);
+}
+.outputs8-pack:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 78% 18%,rgba(91,115,223,.18),transparent 25%),
+    radial-gradient(circle at 20% 84%,rgba(245,216,61,.10),transparent 28%);
+  pointer-events:none;
+}
+.outputs8-pack-copy{
+  position:absolute;
+  z-index:5;
+  left:28px;
+  top:26px;
+  max-width:450px;
+  color:#fffdf7;
+}
+.outputs8-pack-copy small{
+  display:block;
+  font-size:9px;
+  font-weight:950;
+  letter-spacing:.10em;
+  text-transform:uppercase;
+  color:var(--aca-color-signal-yellow);
+}
+.outputs8-pack-copy strong{
+  display:block;
+  margin-top:10px;
+  font-size:clamp(32px,3.5vw,52px);
+  line-height:.93;
+  letter-spacing:-.05em;
+}
+.outputs8-pack-copy p{
+  margin:12px 0 0;
+  max-width:400px;
+  font-size:13px;
+  line-height:1.45;
+  color:rgba(255,255,255,.60);
+}
+
+.outputs8-doc{
+  position:absolute;
+  width:48%;
+  aspect-ratio:3/4;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.11);
+  border-radius:20px;
+  box-shadow:0 24px 50px rgba(0,0,0,.24);
+  transition:transform .45s cubic-bezier(.16,1,.3,1),filter .3s ease;
+}
+.outputs8-doc:hover{filter:saturate(1.06)}
+.outputs8-doc.a{
+  left:8%;
+  bottom:-14%;
+  transform:rotate(-8deg);
+  background:#e9ecef;
+}
+.outputs8-doc.b{
+  left:31%;
+  bottom:-7%;
+  transform:rotate(2deg);
+  background:#fff;
+}
+.outputs8-doc.c{
+  right:3%;
+  bottom:-12%;
+  transform:rotate(9deg);
+  background:#eef3ff;
+}
+.outputs8-doc.a:hover{transform:rotate(-5deg) translateY(-12px)}
+.outputs8-doc.b:hover{transform:rotate(0deg) translateY(-14px)}
+.outputs8-doc.c:hover{transform:rotate(6deg) translateY(-12px)}
+.outputs8-doc-cover{
+  position:relative;
+  height:58%;
+  overflow:hidden;
+  background:#dce5df;
+}
+.outputs8-doc-cover img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.outputs8-doc-source{
+  position:absolute;
+  z-index:2;
+  left:10px;
+  bottom:10px;
+  display:inline-flex;
+  min-height:24px;
+  align-items:center;
+  padding:0 8px;
+  border-radius:999px;
+  background:rgba(255,253,247,.88);
+  color:var(--aca-green-950);
+  font-size:7px;
+  font-weight:900;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+}
+.outputs8-doc-body{
+  padding:16px 16px 14px;
+  color:var(--aca-green-950);
+}
+.outputs8-doc-body small{
+  display:block;
+  font-size:8px;
+  font-weight:950;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--aca-color-brand);
+}
+.outputs8-doc-body strong{
+  display:block;
+  margin-top:10px;
+  font-size:20px;
+  line-height:.96;
+  letter-spacing:-.04em;
+}
+.outputs8-doc-body p{
+  margin:8px 0 0;
+  font-size:10px;
+  line-height:1.4;
+  color:#738078;
+}
+
+.outputs8-side{
+  display:grid;
+  grid-template-rows:repeat(3,1fr);
+  gap:12px;
+}
+.outputs8-side-card{
+  min-height:180px;
+  padding:22px;
+  border-radius:22px;
+  background:var(--aca-paper-0);
+  box-shadow:0 10px 28px rgba(11,36,24,.045);
+}
+.outputs8-side-card small{
+  display:block;
+  font-size:9px;
+  font-weight:950;
+  letter-spacing:.10em;
+  text-transform:uppercase;
+  color:var(--aca-color-brand);
+}
+.outputs8-side-card strong{
+  display:block;
+  margin-top:26px;
+  max-width:380px;
+  font-size:clamp(27px,2.5vw,38px);
+  line-height:.95;
+  letter-spacing:-.045em;
+}
+.outputs8-side-card p{
+  margin:9px 0 0;
+  max-width:380px;
+  font-size:12px;
+  line-height:1.45;
+  color:var(--aca-color-text-muted);
+}
+.outputs8-side-card.dark{
+  background:var(--aca-green-950);
+  color:#fffdf7;
+}
+.outputs8-side-card.dark small{color:var(--aca-color-signal-yellow)}
+.outputs8-side-card.dark p{color:rgba(255,255,255,.58)}
+
+.outputs8-footer{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:22px;
+  align-items:center;
+  margin-top:16px;
+  padding:18px 20px;
+  border-radius:20px;
+  background:var(--aca-color-signal-yellow);
+  color:var(--aca-green-950);
+}
+.outputs8-footer small{
+  display:block;
+  margin-bottom:5px;
+  font-size:8px;
+  font-weight:950;
+  letter-spacing:.10em;
+  text-transform:uppercase;
+}
+.outputs8-footer strong{
+  display:block;
+  max-width:840px;
+  font-size:clamp(20px,2vw,30px);
+  line-height:1.05;
+  letter-spacing:-.035em;
+}
+.outputs8-footer span{
+  display:inline-flex;
+  min-height:38px;
+  align-items:center;
+  padding:0 13px;
+  border-radius:999px;
+  background:rgba(11,36,24,.08);
+  font-size:9px;
+  font-weight:950;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+
+@media(max-width:1024px){
+  .outputs8-head{grid-template-columns:1fr;gap:22px}
+  .outputs8-grid{grid-template-columns:1fr}
+  .outputs8-pack{min-height:560px}
+  .outputs8-side{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    grid-template-rows:auto;
+  }
+  .outputs8-side-card{min-height:170px}
+}
+@media(max-width:700px){
+  .outputs8-title{font-size:clamp(43px,12vw,64px);line-height:.91}
+  .outputs8-lead{font-size:15px}
+  .outputs8-grid{margin-top:34px}
+  .outputs8-pack{min-height:510px;border-radius:22px}
+  .outputs8-pack-copy{
+    left:20px;
+    top:20px;
+    right:20px;
+  }
+  .outputs8-doc{width:58%}
+  .outputs8-doc.a{left:-4%;bottom:-7%}
+  .outputs8-doc.b{left:22%;bottom:-1%}
+  .outputs8-doc.c{right:-10%;bottom:-7%}
+  .outputs8-side{grid-template-columns:1fr}
+  .outputs8-side-card{min-height:150px}
+  .outputs8-footer{grid-template-columns:1fr}
+  .outputs8-footer span{justify-self:start}
+}
+@media(prefers-reduced-motion:reduce){
+  .outputs8-doc{transition:none!important}
+}
 
 /* 09 Career strip */
 .career{background:var(--aca-green-950);color:var(--aca-paper-0);padding-block:54px}
@@ -3671,22 +3985,88 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
 </section>
 
 <section class="section outputs">
-  <div class="wrap">
-    <div class="output-head reveal">
-      <div>
-        <div class="kicker cobalt">Đầu ra / Minh chứng</div>
-        <h2 class="display">SAU 4 THÁNG,<br>PHẢI CÓ THỨ<br>DÙNG ĐƯỢC.</h2>
+  <div class="wrap outputs8">
+    <div class="outputs8-head reveal">
+      <div class="outputs8-meta">
+        <div class="outputs8-kicker">08 · SAU 4 THÁNG, BẠN CÓ GÌ?</div>
+        <p class="outputs8-index">SẢN PHẨM · ĐỒ ÁN · ĐỊNH HƯỚNG</p>
       </div>
-      <p class="lead">Chứng chỉ không phải đầu ra chính. Minh chứng mới cho thấy bạn đã làm được gì.</p>
+      <div>
+        <h2 class="outputs8-title">SAU 4 THÁNG,<br>BẠN PHẢI CÓ THỨ<br><span class="accent">ĐỂ MANG ĐI.</span></h2>
+        <p class="outputs8-lead">Không chỉ là học xong một khóa. Quan trọng là <strong>bạn có sản phẩm để cho người khác xem, biết mình làm được gì và nên đi tiếp theo hướng nào.</strong></p>
+      </div>
     </div>
 
-    <div class="output-grid reveal">
-      <article class="output-card portfolio"><small>01</small><div><strong>HỒ SƠ SẢN PHẨM<br>THƯƠNG MẠI</strong><p>Bộ sản phẩm tuyển chọn để bắt đầu bước vào nghề.</p></div><span class="dot"></span></article>
-      <article class="output-card capstone"><small>02</small><div><strong>ĐỒ ÁN CUỐI KHÓA</strong><p>Một dự án đi từ đề bài đến bàn giao.</p></div></article>
-      <article class="output-card profile"><small>03</small><div><strong>HỒ SƠ NĂNG LỰC</strong><p>Điểm mạnh / khoảng thiếu / minh chứng.</p></div></article>
-      <article class="output-card ready"><small>04</small><div><strong>KẾT QUẢ SẴN SÀNG ĐI LÀM</strong><p>Kết quả đánh giá năng lực nội bộ theo tiêu chuẩn chương trình.</p></div></article>
-      <article class="output-card track"><small>05</small><div><strong>KỸ NĂNG CHÍNH + PHỤ</strong><p>Biết hướng nào nên tập trung phát triển.</p></div></article>
-      <article class="output-card start"><small>06</small><div><strong>ĐIỂM BẮT ĐẦU NGHỀ NGHIỆP</strong><p>Biết mình nên bắt đầu ở vị trí nào.</p></div></article>
+    <div class="outputs8-grid reveal">
+      <div class="outputs8-pack">
+        <div class="outputs8-pack-copy">
+          <small>SAU CHƯƠNG TRÌNH</small>
+          <strong>3 THỨ BẠN PHẢI CÓ SAU 4 THÁNG.</strong>
+          <p>Không chỉ kết thúc bằng việc “học xong”. Bạn có những thứ cụ thể để mở ra, xem lại và dùng tiếp.</p>
+        </div>
+
+        <article class="outputs8-doc a">
+          <div class="outputs8-doc-cover">
+            <img src="https://drive.google.com/thumbnail?id=1FZ2aHa-simq1liZxjXLZbzeI-DErFEYE&amp;sz=w1200" alt="Hình ảnh tham chiếu do Hang Đôi Production thực hiện" loading="lazy">
+            <span class="outputs8-doc-source">HÌNH THAM CHIẾU · HANG ĐÔI PRODUCTION</span>
+          </div>
+          <div class="outputs8-doc-body">
+            <small>01 · SẢN PHẨM ĐÃ LÀM · PORTFOLIO</small>
+            <strong>NHỮNG BÀI TỐT NHẤT CỦA BẠN.</strong>
+            <p>Chọn lại những sản phẩm tốt nhất để dùng khi xin thực tập, tìm việc hoặc nhận dự án.</p>
+          </div>
+        </article>
+
+        <article class="outputs8-doc b">
+          <div class="outputs8-doc-cover">
+            <img src="https://drive.google.com/thumbnail?id=17wY57k3NEp1c9kYiFIyQ7Dc4D83RJtGl&amp;sz=w1200" alt="Hình ảnh tham chiếu do Hang Đôi Production thực hiện" loading="lazy">
+            <span class="outputs8-doc-source">HÌNH THAM CHIẾU · HANG ĐÔI PRODUCTION</span>
+          </div>
+          <div class="outputs8-doc-body">
+            <small>02 · ĐỒ ÁN CUỐI KHÓA</small>
+            <strong>MỘT DỰ ÁN BẠN TỰ ĐI TỪ ĐẦU ĐẾN CUỐI.</strong>
+            <p>Từ nhận yêu cầu → chuẩn bị → quay/chụp → chỉnh sửa → bàn giao.</p>
+          </div>
+        </article>
+
+        <article class="outputs8-doc c">
+          <div class="outputs8-doc-cover">
+            <img src="https://drive.google.com/thumbnail?id=1pXvdCfAIFULtsl9krz9eqfkjQGB66tSm&amp;sz=w1200" alt="Hình ảnh tham chiếu do Hang Đôi Production thực hiện" loading="lazy">
+            <span class="outputs8-doc-source">HÌNH THAM CHIẾU · HANG ĐÔI PRODUCTION</span>
+          </div>
+          <div class="outputs8-doc-body">
+            <small>03 · BẢN ĐÁNH GIÁ CÁ NHÂN · SKILL PROFILE</small>
+            <strong>BIẾT MÌNH ĐANG MẠNH VÀ YẾU Ở ĐÂU.</strong>
+            <p>Nhìn lại kỹ năng đã có, phần còn thiếu và hướng nên tiếp tục luyện.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="outputs8-side">
+        <article class="outputs8-side-card">
+          <small>BẠN BIẾT</small>
+          <strong>MÌNH LÀM TỐT PHẦN NÀO.</strong>
+          <p>Không còn chỉ dựa vào cảm giác.</p>
+        </article>
+        <article class="outputs8-side-card">
+          <small>BẠN BIẾT</small>
+          <strong>PHẦN NÀO CẦN LUYỆN THÊM.</strong>
+          <p>Để không học lan man sau khóa.</p>
+        </article>
+        <article class="outputs8-side-card dark">
+          <small>BẠN BIẾT</small>
+          <strong>MÌNH NÊN BẮT ĐẦU TỪ ĐÂU.</strong>
+          <p>Tiếp tục học, xin thực tập, tham gia dự án hoặc tìm vị trí phù hợp.</p>
+        </article>
+      </div>
+    </div>
+
+    <div class="outputs8-footer reveal">
+      <div>
+        <small>ĐÍCH ĐẾN KHÔNG CHỈ LÀ HOÀN THÀNH KHÓA HỌC</small>
+        <strong>MÀ LÀ CÓ THỨ ĐỂ CHO NGƯỜI KHÁC XEM: “ĐÂY LÀ NHỮNG GÌ MÌNH ĐÃ LÀM.”</strong>
+      </div>
+      <span>CÓ SẢN PHẨM · CÓ HƯỚNG ĐI</span>
     </div>
   </div>
 </section>
