@@ -3954,6 +3954,273 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
   .faq12-item,.faq12-item summary,.faq12-icon,.faq12-answer,.final13-card,.final13-cta b{transition:none!important;animation:none!important}
 }
 
+
+/* ===== Mobile UX Foundation v1 + Section 01 Hero ===== */
+@media(max-width:760px){
+  html{
+    scroll-padding-top:72px;
+    -webkit-text-size-adjust:100%;
+  }
+  body{
+    overscroll-behavior-y:none;
+  }
+  section[id]{
+    scroll-margin-top:72px;
+  }
+  .wrap{
+    width:min(calc(100% - 32px),var(--aca-layout-max));
+  }
+  a,button,summary{
+    touch-action:manipulation;
+  }
+
+  /* Compact mobile header. The persistent action lives at the bottom,
+     so the header stays visually quiet. */
+  .site-header{
+    padding-top:env(safe-area-inset-top);
+    background:rgba(248,244,234,.94);
+    border-bottom-color:rgba(11,36,24,.10);
+    box-shadow:0 4px 18px rgba(11,36,24,.045);
+  }
+  .site-header .nav{
+    height:58px;
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+  }
+  .site-header .brand-logo{
+    width:150px;
+  }
+  .site-header .nav-links{
+    display:none;
+  }
+
+  /* Persistent mobile CTA: hidden while the hero CTA is visible and
+     hidden again at the final conversion section/footer. */
+  .mobile-cta{
+    display:flex!important;
+    left:12px;
+    right:12px;
+    bottom:calc(10px + env(safe-area-inset-bottom));
+    opacity:0;
+    pointer-events:none;
+    transform:translateY(calc(100% + 28px));
+    transition:
+      opacity .24s ease,
+      transform .34s cubic-bezier(.22,1,.36,1);
+  }
+  .mobile-cta.is-visible{
+    opacity:1;
+    pointer-events:auto;
+    transform:translateY(0);
+  }
+  .mobile-cta .btn{
+    min-height:56px;
+    border-radius:999px;
+    box-shadow:0 14px 34px rgba(16,23,19,.24);
+  }
+
+  /* Section 01 — mobile-first composition */
+  .career-hero-v3{
+    padding:22px 0 30px;
+  }
+  .mcv3-stage{
+    display:block;
+    min-height:auto;
+  }
+  .mcv3-copy{
+    min-height:0;
+    padding:0;
+  }
+  .mcv3-copy:before{
+    width:310px;
+    height:310px;
+    left:-170px;
+    top:-70px;
+    filter:blur(20px);
+  }
+  .mcv3-copy:after{
+    width:88%;
+    height:104px;
+    left:-8px;
+    top:112px;
+    opacity:.56;
+  }
+  .mcv3-kicker{
+    gap:8px;
+    font-size:10px;
+    letter-spacing:.11em;
+  }
+  .mcv3-kicker i{
+    width:8px;
+    height:8px;
+  }
+  .mcv3-headline{
+    margin-top:12px;
+    max-width:none;
+    font-size:clamp(58px,17.4vw,72px);
+    line-height:.86;
+    letter-spacing:-.066em;
+  }
+  .mcv3-line:nth-child(3){
+    margin-left:16px;
+  }
+  .mcv3-description{
+    max-width:345px;
+    margin-top:18px;
+    font-size:15px;
+    line-height:1.48;
+  }
+  .mcv3-actions{
+    margin-top:18px;
+    gap:8px;
+    align-items:stretch;
+    flex-direction:column;
+  }
+  .mcv3-cta{
+    width:100%;
+    min-height:56px;
+    padding:0 9px 0 20px;
+    justify-content:space-between;
+    font-size:11px;
+  }
+  .mcv3-cta .arrow{
+    width:38px;
+    height:38px;
+    font-size:18px;
+  }
+  .mcv3-link{
+    min-height:40px;
+    display:inline-flex;
+    align-items:center;
+    align-self:flex-start;
+    border-bottom:0;
+    padding:0 2px;
+    font-size:11px;
+    color:#aebdb4;
+  }
+  .mcv3-status{
+    margin-top:10px;
+    gap:7px;
+    font-size:10px;
+  }
+  .mcv3-status:before{
+    width:7px;
+    height:7px;
+  }
+  .mcv3-micro{
+    margin-top:2px;
+    font-size:9px;
+  }
+
+  .mcv3-visual{
+    min-height:430px;
+    margin-top:26px;
+  }
+  .mcv3-bts{
+    inset:0 0 76px 0;
+    border-radius:24px;
+    clip-path:inset(0 100% 0 0 round 24px);
+  }
+  .mcv3-bts-label{
+    left:15px;
+    right:15px;
+    bottom:14px;
+  }
+  .mcv3-bts-label strong{
+    font-size:20px;
+  }
+  .mcv3-bts-label span{
+    display:none;
+  }
+  .mcv3-badge{
+    right:10px;
+    top:12px;
+    min-height:34px;
+    padding:0 11px;
+    font-size:8px;
+  }
+  .mcv3-case{
+    bottom:0;
+    width:calc(50% - 6px);
+    height:112px;
+    border-radius:18px;
+  }
+  .mcv3-case.one{left:0}
+  .mcv3-case.two{left:auto;right:0}
+  .mcv3-case small{
+    left:11px;
+    right:11px;
+    top:10px;
+    font-size:7px;
+  }
+  .mcv3-case b{
+    left:11px;
+    right:11px;
+    bottom:10px;
+    font-size:13px;
+  }
+  .mcv3-orange{
+    width:58px;
+    height:58px;
+    right:-10px;
+    bottom:102px;
+  }
+
+  .mcv3-facts{
+    grid-template-columns:1fr 1fr;
+    gap:7px;
+    margin-top:30px;
+  }
+  .mcv3-facts:before{
+    top:-20px;
+    font-size:7px;
+  }
+  .mcv3-fact{
+    min-height:82px;
+    padding:12px;
+    border-radius:15px;
+  }
+  .mcv3-fact small{
+    min-width:24px;
+    height:18px;
+    padding:0 6px;
+    font-size:7px;
+  }
+  .mcv3-fact strong{
+    margin-top:8px;
+    font-size:15px;
+    line-height:1.05;
+  }
+  .mcv3-fact span{
+    margin-top:4px;
+    font-size:9px;
+    line-height:1.25;
+  }
+}
+
+@media(max-width:375px){
+  .wrap{width:calc(100% - 28px)}
+  .site-header .brand-logo{width:144px}
+  .mcv3-headline{font-size:clamp(56px,17vw,64px)}
+  .mcv3-description{font-size:14px}
+  .mcv3-visual{min-height:410px}
+  .mcv3-case{height:106px}
+  .mcv3-fact{padding:11px 10px}
+  .mcv3-fact strong{font-size:14px}
+}
+
+@media(hover:none) and (pointer:coarse){
+  .btn:hover,
+  .mcv3-cta:hover{
+    transform:none;
+  }
+  .mcv3-cta:hover{
+    background:var(--mcv3-yellow);
+    box-shadow:0 14px 34px rgba(242,212,61,.24),0 0 0 1px rgba(242,212,61,.16);
+  }
+}
+
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Course","name":"Hang Đôi Media Career Program","description":"Chương trình Media 4 tháng hướng tới Production Ready trong Commercial Production.","provider":{"@type":"EducationalOrganization","name":"Hang Đôi Academy","url":"https://academy.hangdoiproduction.com/"}}
@@ -5766,6 +6033,59 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
       }
     });
   });
+})();
+</script>
+
+<script id="mobile-ux-foundation-v1">
+(()=>{
+  const bar=document.querySelector(".mobile-cta");
+  const hero=document.getElementById("hero");
+  const finalSection=document.querySelector(".final13-section");
+  const footer=document.querySelector(".academy-footer-v2");
+  const mobile=matchMedia("(max-width:760px)");
+  if(!bar||!hero)return;
+
+  let heroVisible=true;
+  let endVisible=false;
+
+  const sync=()=>{
+    const show=mobile.matches&&!heroVisible&&!endVisible;
+    bar.classList.toggle("is-visible",show);
+    bar.setAttribute("aria-hidden",show?"false":"true");
+  };
+
+  if("IntersectionObserver" in window){
+    const heroObserver=new IntersectionObserver(entries=>{
+      heroVisible=entries.some(entry=>entry.isIntersecting);
+      sync();
+    },{threshold:0});
+    heroObserver.observe(hero);
+
+    if(finalSection||footer){
+      const endObserver=new IntersectionObserver(entries=>{
+        endVisible=entries.some(entry=>entry.isIntersecting&&entry.intersectionRatio>.08);
+        sync();
+      },{threshold:[0,.08,.2]});
+      if(finalSection)endObserver.observe(finalSection);
+      if(footer)endObserver.observe(footer);
+    }
+  }else{
+    const fallback=()=>{
+      const hr=hero.getBoundingClientRect();
+      const fr=finalSection?finalSection.getBoundingClientRect():null;
+      const ftr=footer?footer.getBoundingClientRect():null;
+      heroVisible=hr.bottom>0&&hr.top<innerHeight;
+      endVisible=(fr&&fr.top<innerHeight*.92&&fr.bottom>0)||(ftr&&ftr.top<innerHeight*.92&&ftr.bottom>0);
+      sync();
+    };
+    addEventListener("scroll",fallback,{passive:true});
+    fallback();
+  }
+
+  const onMediaChange=()=>sync();
+  if(mobile.addEventListener)mobile.addEventListener("change",onMediaChange);
+  else mobile.addListener(onMediaChange);
+  sync();
 })();
 </script>
 </body>
