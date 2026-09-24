@@ -3961,9 +3961,6 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
     scroll-padding-top:72px;
     -webkit-text-size-adjust:100%;
   }
-  body{
-    overscroll-behavior-y:none;
-  }
   section[id]{
     scroll-margin-top:72px;
   }
@@ -6052,6 +6049,7 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
     const show=mobile.matches&&!heroVisible&&!endVisible;
     bar.classList.toggle("is-visible",show);
     bar.setAttribute("aria-hidden",show?"false":"true");
+    bar.inert=!show;
   };
 
   if("IntersectionObserver" in window){
