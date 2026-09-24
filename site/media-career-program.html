@@ -4218,6 +4218,207 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
   }
 }
 
+
+/* ===== Mobile UX / Section 02 — Problem framing ===== */
+@media(max-width:760px){
+  .gap{
+    padding-block:54px 52px;
+  }
+  .gap:before{
+    background-size:34px 34px;
+    opacity:.036;
+  }
+  .gap2-head{
+    gap:18px;
+  }
+  .gap2-meta{
+    padding:0 0 0 13px;
+    border-left-width:2px;
+  }
+  .gap2-kicker{
+    gap:7px;
+    font-size:9px;
+    letter-spacing:.09em;
+  }
+  .gap2-kicker:before{
+    width:7px;
+    height:7px;
+  }
+  .gap2-index{
+    margin-top:7px;
+    font-size:8px;
+    letter-spacing:.07em;
+  }
+  .gap2-title{
+    max-width:355px;
+    font-size:clamp(39px,11.2vw,48px);
+    line-height:.91;
+    letter-spacing:-.058em;
+  }
+  .gap2-lead{
+    max-width:350px;
+    margin-top:15px;
+    font-size:14px;
+    line-height:1.5;
+  }
+
+  /* Horizontal stage rail: keeps all three phases, without tripling page length. */
+  .gap2-flow{
+    display:flex;
+    gap:10px;
+    margin-top:30px;
+    margin-right:-16px;
+    padding:0 16px 4px 0;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    scroll-padding-left:0;
+    -webkit-overflow-scrolling:touch;
+    overscroll-behavior-x:contain;
+    scrollbar-width:none;
+  }
+  .gap2-flow::-webkit-scrollbar{display:none}
+  .gap2-stage,
+  .gap2-stage:nth-child(3){
+    flex:0 0 min(82vw,318px);
+    min-height:330px;
+    padding:17px 16px 15px;
+    border-radius:18px;
+    scroll-snap-align:start;
+    scroll-snap-stop:always;
+  }
+  .gap2-stage-top{
+    padding-bottom:10px;
+  }
+  .gap2-stage-label{
+    font-size:9px;
+  }
+  .gap2-stage-no{
+    font-size:32px;
+  }
+  .gap2-stage h3{
+    min-height:48px;
+    margin-bottom:10px;
+    font-size:22px;
+    line-height:.98;
+  }
+  .gap2-list li{
+    padding:9px 0 9px 17px;
+    font-size:12px;
+    line-height:1.33;
+  }
+  .gap2-list li:before{
+    left:0;
+    top:14px;
+    width:6px;
+    height:6px;
+  }
+
+  .gap2-mobile-progress{
+    display:grid;
+    grid-template-columns:auto 1fr auto;
+    gap:10px;
+    align-items:center;
+    margin-top:12px;
+    min-height:28px;
+  }
+  .gap2-progress-label{
+    min-width:42px;
+    font-size:8px;
+    font-weight:850;
+    letter-spacing:.08em;
+    color:#8fa298;
+  }
+  .gap2-progress-label b{
+    color:#f7f8f4;
+    font-size:10px;
+  }
+  .gap2-progress-dots{
+    display:flex;
+    gap:5px;
+    align-items:center;
+  }
+  .gap2-progress-dots i{
+    display:block;
+    width:18px;
+    height:3px;
+    border-radius:99px;
+    background:rgba(255,255,255,.16);
+    transition:width .24s cubic-bezier(.22,1,.36,1),background .24s ease;
+  }
+  .gap2-progress-dots i.is-active{
+    width:34px;
+    background:var(--aca-color-signal-yellow);
+  }
+  .gap2-progress-hint{
+    font-size:7px;
+    font-weight:900;
+    letter-spacing:.08em;
+    color:#82958a;
+    white-space:nowrap;
+  }
+
+  .gap2-bridge{
+    margin-top:18px;
+    padding:17px 16px 16px;
+    border-radius:18px;
+    gap:15px;
+  }
+  .gap2-bridge small{
+    font-size:8px;
+  }
+  .gap2-bridge p{
+    margin-top:6px;
+    font-size:clamp(24px,6.8vw,30px);
+    line-height:1.01;
+  }
+  .gap2-bridge-action{
+    gap:10px;
+  }
+  .gap2-bridge-action>span{
+    display:none;
+  }
+  .gap2-cta{
+    min-height:52px;
+    padding:0 8px 0 16px;
+    font-size:9px;
+  }
+  .gap2-cta b{
+    width:34px;
+    height:34px;
+    font-size:16px;
+  }
+}
+
+@media(max-width:375px){
+  .gap{padding-block:50px 48px}
+  .gap2-title{font-size:clamp(37px,10.8vw,43px)}
+  .gap2-stage,.gap2-stage:nth-child(3){
+    flex-basis:min(84vw,302px);
+    min-height:322px;
+  }
+  .gap2-progress-hint{display:none}
+  .gap2-mobile-progress{grid-template-columns:auto 1fr}
+}
+
+@media(min-width:761px){
+  .gap2-mobile-progress{display:none}
+}
+
+@media(hover:none) and (pointer:coarse){
+  .gap2-stage:hover{
+    transform:none;
+    border-color:rgba(255,255,255,.15);
+    background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018));
+  }
+  .gap2-cta:hover{
+    transform:none;
+    background:#0b2a1b;
+    box-shadow:none;
+  }
+  .gap2-cta:hover b{transform:none}
+}
+
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Course","name":"Hang Đôi Media Career Program","description":"Chương trình Media 4 tháng hướng tới Production Ready trong Commercial Production.","provider":{"@type":"EducationalOrganization","name":"Hang Đôi Academy","url":"https://academy.hangdoiproduction.com/"}}
@@ -4369,6 +4570,12 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
           <li><strong>Bàn giao</strong> đúng phiên bản và deadline</li>
         </ul>
       </article>
+    </div>
+
+    <div class="gap2-mobile-progress" aria-hidden="true">
+      <span class="gap2-progress-label"><b>01</b> / 03</span>
+      <div class="gap2-progress-dots"><i class="is-active"></i><i></i><i></i></div>
+      <span class="gap2-progress-hint">VUỐT ĐỂ XEM →</span>
     </div>
 
     <div class="gap2-bridge reveal">
@@ -6083,6 +6290,42 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
   const onMediaChange=()=>sync();
   if(mobile.addEventListener)mobile.addEventListener("change",onMediaChange);
   else mobile.addListener(onMediaChange);
+  sync();
+})();
+</script>
+
+<script id="mobile-section2-carousel">
+(()=>{
+  const section=document.getElementById("gap");
+  if(!section)return;
+  const rail=section.querySelector(".gap2-flow");
+  const cards=Array.from(section.querySelectorAll(".gap2-stage"));
+  const progress=section.querySelector(".gap2-mobile-progress");
+  if(!rail||cards.length<2||!progress)return;
+
+  const label=progress.querySelector(".gap2-progress-label b");
+  const dots=Array.from(progress.querySelectorAll(".gap2-progress-dots i"));
+  const mobile=matchMedia("(max-width:760px)");
+  let raf=0;
+
+  const sync=()=>{
+    raf=0;
+    if(!mobile.matches)return;
+    const left=rail.getBoundingClientRect().left;
+    let active=0;
+    let distance=Infinity;
+    cards.forEach((card,index)=>{
+      const d=Math.abs(card.getBoundingClientRect().left-left);
+      if(d<distance){distance=d;active=index}
+    });
+    if(label)label.textContent=String(active+1).padStart(2,"0");
+    dots.forEach((dot,index)=>dot.classList.toggle("is-active",index===active));
+  };
+
+  rail.addEventListener("scroll",()=>{
+    if(!raf)raf=requestAnimationFrame(sync);
+  },{passive:true});
+  addEventListener("resize",sync,{passive:true});
   sync();
 })();
 </script>
