@@ -1501,23 +1501,25 @@ img{display:block;max-width:100%}
   .program4-detail-progress span.is-active:after{animation:none!important}
 }
 
-/* 05 Learning loop — feedback > rework > proof */
+/* 05 Learning loop — visual feedback loop, newbie-first */
 .learning-loop{
   position:relative;
   overflow:hidden;
-  background:var(--aca-green-950);
-  color:var(--aca-paper-0);
+  background:
+    radial-gradient(circle at 80% 18%,rgba(105,223,184,.08),transparent 26%),
+    linear-gradient(180deg,#08291b 0%,#062417 100%);
+  color:#fffdf7;
 }
 .learning-loop:before{
   content:"05";
   position:absolute;
   right:-.03em;
-  top:-.19em;
+  top:-.20em;
   font-size:clamp(180px,20vw,320px);
   font-weight:950;
   line-height:1;
   letter-spacing:-.09em;
-  color:rgba(255,253,247,.035);
+  color:rgba(255,255,255,.026);
   pointer-events:none;
 }
 .loop5{position:relative;z-index:1}
@@ -1554,213 +1556,341 @@ img{display:block;max-width:100%}
   font-size:11px;
   line-height:1.45;
   font-weight:850;
-  letter-spacing:.08em;
-  color:rgba(255,253,247,.50);
+  letter-spacing:.075em;
+  color:rgba(255,253,247,.46);
 }
 .loop5-title{
   margin:0;
-  max-width:1040px;
+  max-width:1020px;
   font-size:clamp(50px,5.55vw,86px);
   line-height:.89;
   letter-spacing:-.064em;
   font-weight:950;
-  color:var(--aca-paper-0);
+  color:#fffdf7;
 }
 .loop5-title .accent{color:var(--aca-color-signal-yellow)}
 .loop5-lead{
-  max-width:790px;
-  margin:23px 0 0;
-  font-size:clamp(16px,1.42vw,20px);
+  max-width:760px;
+  margin:20px 0 0;
+  font-size:clamp(15px,1.35vw,19px);
   line-height:1.55;
-  color:rgba(255,253,247,.66);
+  color:rgba(255,253,247,.64);
 }
 .loop5-lead strong{color:#fffdf7}
 
-.loop5-cycle{
-  position:relative;
+/* Active explanation + real Academy visual */
+.loop5-stage{
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:74px 86px;
-  margin-top:clamp(48px,5.8vw,76px);
-  padding:30px;
-  border:1px solid rgba(255,253,247,.12);
-  border-radius:34px;
-  background:rgba(255,255,255,.025);
+  grid-template-columns:minmax(300px,.78fr) minmax(0,1.22fr);
+  gap:16px;
+  margin-top:clamp(38px,4.8vw,58px);
 }
-.loop5-cycle:before{
-  content:"";
-  position:absolute;
-  inset:49% 10% auto;
-  height:1px;
-  background:linear-gradient(90deg,transparent,rgba(255,253,247,.15),transparent);
-}
-.loop5-cycle:after{
-  content:"";
-  position:absolute;
-  inset:10% auto 10% 50%;
-  width:1px;
-  background:linear-gradient(180deg,transparent,rgba(255,253,247,.15),transparent);
-}
-.loop5-node{
-  position:relative;
-  z-index:2;
-  min-width:0;
-  min-height:220px;
+.loop5-panel{
+  min-height:520px;
   display:flex;
   flex-direction:column;
-  padding:24px;
+  padding:30px;
   border:1px solid rgba(255,253,247,.14);
-  border-radius:24px;
-  background:rgba(255,253,247,.055);
-  transition:transform .22s cubic-bezier(.16,1,.3,1),background .22s,border-color .22s;
+  border-radius:28px;
+  background:rgba(255,255,255,.035);
+  box-shadow:0 22px 70px rgba(0,0,0,.15);
+  transition:opacity .18s ease,transform .18s ease;
 }
-.loop5-node:hover{
-  transform:translateY(-4px);
-  background:rgba(255,253,247,.075);
-  border-color:rgba(255,253,247,.22);
+.loop5-panel.is-switching{
+  animation:loop5PanelSwap .44s cubic-bezier(.16,1,.3,1);
 }
-.loop5-node.rework{
-  border-color:rgba(246,216,58,.34);
-  background:rgba(246,216,58,.07);
-}
-.loop5-node-top{
+.loop5-step-kicker{
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  gap:18px;
-}
-.loop5-no{
-  font-size:12px;
-  line-height:1;
+  gap:9px;
+  color:var(--aca-color-signal-yellow);
+  font-size:10px;
   font-weight:950;
-  letter-spacing:.09em;
-  color:rgba(255,253,247,.46);
+  letter-spacing:.10em;
+  text-transform:uppercase;
 }
-.loop5-arrow{
-  width:38px;height:38px;
-  display:grid;place-items:center;
-  border-radius:50%;
-  border:1px solid rgba(255,253,247,.18);
-  color:rgba(255,253,247,.78);
-  font-size:18px;
-  font-weight:900;
-}
-.loop5-node.rework .loop5-arrow{
-  border-color:rgba(246,216,58,.4);
+.loop5-step-kicker:before{
+  content:"";
+  width:8px;height:8px;border-radius:50%;
   background:var(--aca-color-signal-yellow);
-  color:#0b2418;
 }
-.loop5-node h3{
-  margin:30px 0 0;
-  max-width:460px;
-  font-size:clamp(30px,3vw,45px);
-  line-height:.93;
-  letter-spacing:-.05em;
+.loop5-step-no{
+  margin-top:auto;
+  font-size:12px;
+  font-weight:950;
+  letter-spacing:.10em;
+  color:rgba(255,255,255,.38);
+}
+.loop5-step-title{
+  margin:12px 0 0;
+  max-width:560px;
+  font-size:clamp(36px,3.6vw,56px);
+  line-height:.94;
+  letter-spacing:-.052em;
   color:#fffdf7;
 }
-.loop5-node.rework h3{color:var(--aca-color-signal-yellow)}
-.loop5-node p{
-  margin:12px 0 0;
-  max-width:500px;
-  font-size:13px;
+.loop5-step-desc{
+  margin:14px 0 0;
+  max-width:520px;
+  font-size:16px;
   line-height:1.5;
   color:rgba(255,253,247,.62);
 }
-.loop5-node-foot{
+.loop5-step-proof{
+  display:inline-flex;
+  align-self:flex-start;
+  min-height:36px;
+  margin-top:22px;
+  align-items:center;
+  padding:0 12px;
+  border-radius:999px;
+  background:rgba(246,216,58,.11);
+  border:1px solid rgba(246,216,58,.32);
+  color:var(--aca-color-signal-yellow);
+  font-size:9px;
+  font-weight:950;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+
+.loop5-visual{
+  position:relative;
+  min-height:520px;
+  overflow:hidden;
+  border-radius:28px;
+  background:#0c3422;
+  border:1px solid rgba(255,255,255,.09);
+  box-shadow:0 22px 70px rgba(0,0,0,.18);
+}
+.loop5-visual img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 42%;
+  display:block;
+  transition:transform .8s cubic-bezier(.16,1,.3,1),filter .5s ease;
+}
+.loop5-visual:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(4,24,15,.05) 20%,rgba(4,24,15,.08) 45%,rgba(4,24,15,.72) 100%);
+  pointer-events:none;
+}
+.loop5-visual[data-step="4"] img{
+  transform:scale(1.025);
+  filter:saturate(1.04);
+}
+.loop5-version{
+  position:absolute;
+  z-index:3;
+  left:20px;top:18px;
+  display:inline-flex;
+  min-height:32px;
+  align-items:center;
+  padding:0 11px;
+  border-radius:999px;
+  background:rgba(8,41,27,.78);
+  border:1px solid rgba(255,255,255,.15);
+  backdrop-filter:blur(10px);
+  font-size:9px;
+  font-weight:950;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.loop5-comment{
+  position:absolute;
+  z-index:4;
+  max-width:250px;
+  padding:13px 14px;
+  border-radius:16px;
+  background:rgba(255,253,247,.94);
+  color:#0b2418;
+  box-shadow:0 16px 40px rgba(0,0,0,.18);
+  opacity:0;
+  transform:translateY(10px) scale(.98);
+  transition:opacity .28s ease,transform .28s cubic-bezier(.16,1,.3,1);
+}
+.loop5-comment small{
+  display:block;
+  margin-bottom:4px;
+  font-size:8px;
+  font-weight:950;
+  letter-spacing:.08em;
+  color:#65736a;
+  text-transform:uppercase;
+}
+.loop5-comment strong{
+  display:block;
+  font-size:12px;
+  line-height:1.35;
+}
+.loop5-comment-a{right:24px;top:28px}
+.loop5-comment-b{right:38px;bottom:76px}
+.loop5-visual[data-step="3"] .loop5-comment,
+.loop5-visual[data-step="4"] .loop5-comment{
+  opacity:1;
+  transform:none;
+}
+.loop5-visual[data-step="4"] .loop5-comment-a,
+.loop5-visual[data-step="4"] .loop5-comment-b{
+  transform:translateY(-4px);
+}
+.loop5-review-chip{
+  position:absolute;
+  z-index:4;
+  left:20px;
+  bottom:18px;
   display:flex;
   align-items:center;
   gap:8px;
-  margin-top:auto;
-  padding-top:22px;
+  min-height:36px;
+  padding:0 12px;
+  border-radius:999px;
+  background:rgba(8,41,27,.78);
+  border:1px solid rgba(255,255,255,.15);
+  backdrop-filter:blur(10px);
   font-size:9px;
-  line-height:1.25;
   font-weight:900;
-  letter-spacing:.09em;
+  letter-spacing:.055em;
   text-transform:uppercase;
-  color:rgba(255,253,247,.44);
 }
-.loop5-node-foot:before{
-  content:"";
-  width:7px;height:7px;border-radius:50%;
-  background:currentColor;
-  flex:none;
-}
-.loop5-center{
-  position:absolute;
-  z-index:4;
-  left:50%;
-  top:50%;
-  width:190px;
-  height:190px;
-  transform:translate(-50%,-50%);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  border:1px solid rgba(246,216,58,.42);
+.loop5-review-chip i{
+  width:8px;height:8px;
   border-radius:50%;
-  background:#0d2b1d;
-  box-shadow:0 0 0 14px rgba(13,43,29,.92),0 20px 50px rgba(0,0,0,.18);
-  text-align:center;
-}
-.loop5-center small{
-  font-size:8px;
-  line-height:1.2;
-  font-weight:950;
-  letter-spacing:.12em;
-  color:rgba(255,253,247,.46);
-}
-.loop5-center strong{
-  display:block;
-  margin-top:8px;
-  font-size:22px;
-  line-height:.97;
-  letter-spacing:-.035em;
-  color:var(--aca-color-signal-yellow);
-}
-.loop5-center span{
-  display:block;
-  margin-top:8px;
-  max-width:135px;
-  font-size:9px;
-  line-height:1.35;
-  color:rgba(255,253,247,.60);
+  background:#69dfb8;
+  box-shadow:0 0 0 5px rgba(105,223,184,.13);
 }
 
+/* Four-step loop navigation */
+.loop5-nav{
+  position:relative;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;
+  margin-top:16px;
+}
+.loop5-nav:before{
+  content:"";
+  position:absolute;
+  left:6%;right:6%;top:24px;
+  height:2px;
+  background:rgba(255,255,255,.10);
+}
+.loop5-btn{
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:48px minmax(0,1fr);
+  gap:10px;
+  align-items:center;
+  min-width:0;
+  padding:10px 12px;
+  border:1px solid rgba(255,253,247,.14);
+  border-radius:16px;
+  background:rgba(255,255,255,.035);
+  color:#fffdf7;
+  text-align:left;
+  cursor:pointer;
+  transition:transform .22s ease,background .22s,border-color .22s;
+}
+.loop5-btn:hover,
+.loop5-btn.is-active{
+  background:rgba(255,255,255,.07);
+  border-color:rgba(246,216,58,.35);
+  transform:translateY(-2px);
+}
+.loop5-btn:focus-visible{
+  outline:3px solid rgba(246,216,58,.28);
+  outline-offset:3px;
+}
+.loop5-nav-no{
+  width:48px;height:48px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:#0b2418;
+  border:2px solid rgba(255,255,255,.16);
+  font-size:10px;
+  font-weight:950;
+}
+.loop5-btn.is-active .loop5-nav-no{
+  background:var(--aca-color-signal-yellow);
+  color:#0b2418;
+  border-color:var(--aca-color-signal-yellow);
+  animation:loop5Pulse 2.2s ease-in-out infinite;
+}
+.loop5-nav-copy strong{
+  display:block;
+  font-size:13px;
+  line-height:1.05;
+}
+.loop5-nav-copy small{
+  display:block;
+  margin-top:4px;
+  font-size:8px;
+  line-height:1.2;
+  font-weight:850;
+  letter-spacing:.06em;
+  color:rgba(255,255,255,.44);
+  text-transform:uppercase;
+}
+.loop5-timer{
+  display:flex;
+  gap:8px;
+  margin-top:12px;
+}
+.loop5-timer span{
+  position:relative;
+  width:28px;height:4px;
+  overflow:hidden;
+  border-radius:999px;
+  background:rgba(255,255,255,.12);
+  transition:width .25s ease;
+}
+.loop5-timer span.is-active{width:48px}
+.loop5-timer span.is-active:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:var(--aca-color-signal-yellow);
+  transform-origin:left center;
+  animation:loop5Timer 4.8s linear forwards;
+}
+
+/* Exit: what happens after the loop works */
 .loop5-exit{
   display:grid;
   grid-template-columns:minmax(0,1fr) auto;
-  gap:32px;
+  gap:22px;
   align-items:center;
-  margin-top:18px;
-  padding:24px;
-  border:1px solid rgba(246,216,58,.25);
-  border-radius:22px;
+  margin-top:16px;
+  padding:18px 20px;
+  border-radius:20px;
   background:var(--aca-color-signal-yellow);
   color:#0b2418;
 }
 .loop5-exit small{
   display:block;
-  margin-bottom:7px;
-  font-size:9px;
-  line-height:1.2;
+  margin-bottom:5px;
+  font-size:8px;
   font-weight:950;
-  letter-spacing:.11em;
+  letter-spacing:.10em;
   text-transform:uppercase;
-  color:rgba(11,36,24,.62);
 }
 .loop5-exit strong{
   display:block;
   max-width:760px;
-  font-size:clamp(24px,2.6vw,38px);
-  line-height:.98;
-  letter-spacing:-.045em;
+  font-size:clamp(20px,2vw,30px);
+  line-height:1.05;
+  letter-spacing:-.035em;
 }
 .loop5-exit-flow{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:8px;
   flex-wrap:wrap;
   justify-content:flex-end;
 }
@@ -1768,64 +1898,64 @@ img{display:block;max-width:100%}
   display:inline-flex;
   min-height:34px;
   align-items:center;
-  padding:0 12px;
-  border:1px solid rgba(11,36,24,.18);
+  padding:0 11px;
   border-radius:999px;
-  background:rgba(255,253,247,.46);
-  font-size:9px;
+  border:1px solid rgba(11,36,24,.18);
+  background:rgba(255,255,255,.42);
+  font-size:8px;
   font-weight:950;
-  letter-spacing:.07em;
+  letter-spacing:.06em;
+  text-transform:uppercase;
 }
-.loop5-exit-flow b{font-size:17px}
+
+@keyframes loop5Pulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(246,216,58,0)}
+  50%{box-shadow:0 0 0 8px rgba(246,216,58,.10)}
+}
+@keyframes loop5Timer{
+  from{transform:scaleX(0)}
+  to{transform:scaleX(1)}
+}
+@keyframes loop5PanelSwap{
+  0%{opacity:.58;transform:translateY(7px) scale(.992)}
+  100%{opacity:1;transform:translateY(0) scale(1)}
+}
 
 @media(max-width:1024px){
   .loop5-head{grid-template-columns:1fr;gap:22px}
-  .loop5-cycle{gap:62px 54px;padding:24px}
-  .loop5-center{width:170px;height:170px}
-  .loop5-exit{grid-template-columns:1fr;gap:18px}
+  .loop5-stage{grid-template-columns:1fr}
+  .loop5-panel{min-height:330px}
+  .loop5-visual{min-height:430px}
+  .loop5-nav{grid-template-columns:1fr 1fr}
+  .loop5-nav:before{display:none}
+  .loop5-exit{grid-template-columns:1fr}
   .loop5-exit-flow{justify-content:flex-start}
 }
-@media(max-width:760px){
+@media(max-width:640px){
   .loop5-title{font-size:clamp(43px,12vw,62px);line-height:.91}
-  .loop5-lead{margin-top:18px}
-  .loop5-cycle{
-    grid-template-columns:1fr;
-    gap:12px;
-    margin-top:36px;
-    padding:0;
-    border:0;
-    border-radius:0;
-    background:transparent;
-  }
-  .loop5-cycle:before,.loop5-cycle:after{display:none}
-  .loop5-node:nth-child(3){order:4}
-  .loop5-node:nth-child(4){order:3}
-  .loop5-node{min-height:0;padding:19px 18px;border-radius:20px}
-  .loop5-node h3{margin-top:20px;font-size:29px}
-  .loop5-node p{font-size:12px}
-  .loop5-node .loop5-arrow{font-size:0}
-  .loop5-node .loop5-arrow:after{content:"↓";font-size:17px}
-  .loop5-node.rework .loop5-arrow:after{content:"↺"}
-  .loop5-center{
-    position:relative;
-    left:auto;top:auto;
-    width:auto;height:auto;
-    transform:none;
-    order:5;
-    border-radius:20px;
-    box-shadow:none;
-    align-items:flex-start;
-    text-align:left;
-    padding:18px;
-  }
-  .loop5-center strong{font-size:21px}
-  .loop5-center span{max-width:none}
-  .loop5-exit{padding:18px;border-radius:18px}
-  .loop5-exit-flow{gap:7px}
-  .loop5-exit-flow span{padding:0 10px;font-size:8px}
+  .loop5-lead{font-size:15px}
+  .loop5-stage{margin-top:34px}
+  .loop5-panel{padding:22px 18px;min-height:300px;border-radius:22px}
+  .loop5-step-title{font-size:36px}
+  .loop5-step-desc{font-size:14px}
+  .loop5-visual{min-height:360px;border-radius:22px}
+  .loop5-nav{grid-template-columns:1fr}
+  .loop5-btn{grid-template-columns:44px minmax(0,1fr)}
+  .loop5-nav-no{width:44px;height:44px}
+  .loop5-comment{max-width:190px}
+  .loop5-comment-a{right:14px;top:16px}
+  .loop5-comment-b{right:14px;bottom:68px}
+  .loop5-exit{padding:16px;border-radius:18px}
 }
 @media(prefers-reduced-motion:reduce){
-  .loop5-node{transition:none!important}
+  .loop5-btn,
+  .loop5-panel,
+  .loop5-visual img,
+  .loop5-comment,
+  .loop5-timer span{transition:none!important}
+  .loop5-btn.is-active .loop5-nav-no,
+  .loop5-panel.is-switching,
+  .loop5-timer span.is-active:after{animation:none!important}
 }
 
 /* 06 What you do */
@@ -2713,71 +2843,75 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
     <div class="loop5-head reveal">
       <div class="loop5-meta">
         <div class="loop5-kicker">05 · CÁCH HỌC</div>
-        <p class="loop5-index">FEEDBACK LOOP · REWORK · MINH CHỨNG</p>
+        <p class="loop5-index">LÀM → XEM LẠI → NHẬN GÓP Ý → SỬA</p>
       </div>
       <div>
-        <h2 class="loop5-title">KHÔNG HỌC ĐỂ<br>“XONG BÀI”.<br><span class="accent">HỌC ĐỂ LÀM TỐT HƠN.</span></h2>
-        <p class="loop5-lead">Trong công việc thật, đầu ra hiếm khi đúng ngay lần đầu. <strong>Năng lực nghề nằm ở việc biết nhận feedback, hiểu vì sao cần sửa và biến lần làm tiếp theo thành một phiên bản tốt hơn.</strong></p>
+        <h2 class="loop5-title">KHÔNG CẦN ĐÚNG NGAY.<br><span class="accent">CẦN BIẾT SỬA.</span></h2>
+        <p class="loop5-lead">Đi làm thật hiếm khi đúng ngay lần đầu. <strong>Quan trọng là biết vì sao chưa đạt và làm phiên bản tiếp theo tốt hơn.</strong></p>
       </div>
     </div>
 
-    <div class="loop5-cycle reveal" aria-label="Vòng lặp học và thực hành">
-      <article class="loop5-node">
-        <div class="loop5-node-top">
-          <span class="loop5-no">01 · HIỂU</span>
-          <span class="loop5-arrow" aria-hidden="true">→</span>
-        </div>
-        <h3>HỌC ĐÚNG CÁCH.</h3>
-        <p>Hiểu mục tiêu, nguyên tắc và tiêu chuẩn đầu ra trước khi bắt tay làm.</p>
-        <div class="loop5-node-foot">Biết mình đang cố đạt điều gì</div>
-      </article>
-
-      <article class="loop5-node">
-        <div class="loop5-node-top">
-          <span class="loop5-no">02 · LÀM</span>
-          <span class="loop5-arrow" aria-hidden="true">↓</span>
-        </div>
-        <h3>TẠO RA MỘT OUTPUT.</h3>
-        <p>Không dừng ở xem tutorial. Mỗi kiến thức phải được biến thành bài thực hành có thể nhìn lại.</p>
-        <div class="loop5-node-foot">Có thứ thật để đánh giá</div>
-      </article>
-
-      <article class="loop5-node rework">
-        <div class="loop5-node-top">
-          <span class="loop5-no">04 · REWORK</span>
-          <span class="loop5-arrow" aria-hidden="true">↺</span>
-        </div>
-        <h3>SỬA VÀ LÀM LẠI.</h3>
-        <p>Biến góp ý thành thay đổi cụ thể: sửa kỹ thuật, cách xử lý, phiên bản hoặc toàn bộ hướng tiếp cận nếu cần.</p>
-        <div class="loop5-node-foot">Làm lại không phải thất bại</div>
-      </article>
-
-      <article class="loop5-node">
-        <div class="loop5-node-top">
-          <span class="loop5-no">03 · FEEDBACK</span>
-          <span class="loop5-arrow" aria-hidden="true">←</span>
-        </div>
-        <h3>BIẾT VÌ SAO CHƯA ĐẠT.</h3>
-        <p>Feedback không chỉ nói “đẹp / chưa đẹp”, mà chỉ ra khoảng thiếu so với mục tiêu và tiêu chuẩn của bài.</p>
-        <div class="loop5-node-foot">Biết chính xác cần sửa gì</div>
-      </article>
-
-      <div class="loop5-center">
-        <small>VÒNG LẶP CHÍNH</small>
-        <strong>LÀM → FEEDBACK → SỬA</strong>
-        <span>Lặp lại cho đến khi đầu ra đạt tiêu chuẩn.</span>
+    <div class="loop5-stage reveal">
+      <div class="loop5-panel" id="loop5-panel" aria-live="polite">
+        <div class="loop5-step-kicker" id="loop5-step-kicker">BƯỚC 01 · LÀM</div>
+        <div class="loop5-step-no" id="loop5-step-no">01 / 04</div>
+        <h3 class="loop5-step-title" id="loop5-step-title">LÀM MỘT PHIÊN BẢN.</h3>
+        <p class="loop5-step-desc" id="loop5-step-desc">Biến điều vừa học thành một sản phẩm cụ thể để có thứ thật mà xem lại.</p>
+        <span class="loop5-step-proof" id="loop5-step-proof">CÓ THỨ THẬT ĐỂ ĐÁNH GIÁ</span>
       </div>
+
+      <div class="loop5-visual" id="loop5-visual" data-step="1">
+        <img src="/assets/media-career/roadmap-02-yeu-cau.png" alt="Học viên Hang Đôi Academy cùng xem lại sản phẩm" loading="lazy">
+        <span class="loop5-version" id="loop5-version">VERSION 01 · ĐANG LÀM</span>
+
+        <div class="loop5-comment loop5-comment-a">
+          <small>GÓP Ý</small>
+          <strong>Khung hình này chưa làm rõ chủ thể.</strong>
+        </div>
+        <div class="loop5-comment loop5-comment-b">
+          <small>GIỮ LẠI</small>
+          <strong>Ánh sáng ở shot này đang ổn hơn.</strong>
+        </div>
+
+        <div class="loop5-review-chip">
+          <i aria-hidden="true"></i>
+          <span>BTS HANG ĐÔI ACADEMY · REVIEW CÙNG NHAU</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="loop5-nav reveal" aria-label="Vòng lặp học và thực hành">
+      <button class="loop5-btn is-active" type="button" data-loop-step="0" aria-pressed="true">
+        <span class="loop5-nav-no">01</span>
+        <span class="loop5-nav-copy"><strong>LÀM</strong><small>TẠO PHIÊN BẢN ĐẦU</small></span>
+      </button>
+      <button class="loop5-btn" type="button" data-loop-step="1" aria-pressed="false">
+        <span class="loop5-nav-no">02</span>
+        <span class="loop5-nav-copy"><strong>XEM LẠI</strong><small>SO VỚI MỤC TIÊU</small></span>
+      </button>
+      <button class="loop5-btn" type="button" data-loop-step="2" aria-pressed="false">
+        <span class="loop5-nav-no">03</span>
+        <span class="loop5-nav-copy"><strong>NHẬN GÓP Ý</strong><small>BIẾT CHỖ CẦN SỬA</small></span>
+      </button>
+      <button class="loop5-btn" type="button" data-loop-step="3" aria-pressed="false">
+        <span class="loop5-nav-no">04</span>
+        <span class="loop5-nav-copy"><strong>SỬA &amp; LÀM LẠI</strong><small>TẠO PHIÊN BẢN TỐT HƠN</small></span>
+      </button>
+    </div>
+
+    <div class="loop5-timer" aria-hidden="true">
+      <span class="is-active"></span><span></span><span></span><span></span>
     </div>
 
     <div class="loop5-exit reveal">
       <div>
         <small>KHI ĐẠT TIÊU CHUẨN</small>
-        <strong>GIỮ LẠI LÀM MINH CHỨNG. RỒI MỚI ĐI TIẾP.</strong>
+        <strong>GIỮ LẠI SẢN PHẨM TỐT NHẤT ĐỂ XÂY HỒ SƠ NĂNG LỰC.</strong>
       </div>
-      <div class="loop5-exit-flow" aria-label="Đầu ra sau mỗi vòng học">
-        <span>OUTPUT ĐẠT</span><b aria-hidden="true">→</b>
-        <span>MINH CHỨNG</span><b aria-hidden="true">→</b>
-        <span>GIAI ĐOẠN KẾ</span>
+      <div class="loop5-exit-flow" aria-label="Kết quả sau vòng học">
+        <span>SẢN PHẨM ĐẠT</span><b aria-hidden="true">→</b>
+        <span>GIỮ LẠI</span><b aria-hidden="true">→</b>
+        <span>ĐI TIẾP</span>
       </div>
     </div>
   </div>
@@ -3481,6 +3615,184 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
   }
 
   select(pins[0],{animate:false});
+  schedule();
+})();
+</script>
+<script id="section5-feedback-loop-interaction">
+(()=>{
+  const section=document.getElementById("learning-loop");
+  if(!section)return;
+
+  const steps=[
+    {
+      kicker:"BƯỚC 01 · LÀM",
+      title:"LÀM MỘT PHIÊN BẢN.",
+      desc:"Biến điều vừa học thành một sản phẩm cụ thể để có thứ thật mà xem lại.",
+      proof:"CÓ THỨ THẬT ĐỂ ĐÁNH GIÁ",
+      version:"VERSION 01 · ĐANG LÀM"
+    },
+    {
+      kicker:"BƯỚC 02 · XEM LẠI",
+      title:"XEM LẠI CÙNG NHAU.",
+      desc:"Đặt sản phẩm cạnh mục tiêu ban đầu để nhìn ra điểm đang ổn và điểm còn thiếu.",
+      proof:"BIẾT MÌNH ĐANG Ở ĐÂU",
+      version:"VERSION 01 · ĐANG REVIEW"
+    },
+    {
+      kicker:"BƯỚC 03 · NHẬN GÓP Ý",
+      title:"BIẾT CHỖ NÀO CHƯA ỔN.",
+      desc:"Góp ý phải chỉ rõ điều cần sửa, thay vì chỉ nói “đẹp” hay “chưa đẹp”.",
+      proof:"BIẾT CHÍNH XÁC CẦN SỬA GÌ",
+      version:"REVIEW · CÓ GÓP Ý CỤ THỂ"
+    },
+    {
+      kicker:"BƯỚC 04 · SỬA & LÀM LẠI",
+      title:"LÀM PHIÊN BẢN TỐT HƠN.",
+      desc:"Sửa kỹ thuật, cách xử lý hoặc làm lại nếu cần. Phiên bản sau phải tốt hơn phiên bản trước.",
+      proof:"VERSION 02 > VERSION 01",
+      version:"VERSION 02 · ĐÃ CẢI THIỆN"
+    }
+  ];
+
+  const panel=document.getElementById("loop5-panel");
+  const visual=document.getElementById("loop5-visual");
+  const kicker=document.getElementById("loop5-step-kicker");
+  const number=document.getElementById("loop5-step-no");
+  const title=document.getElementById("loop5-step-title");
+  const desc=document.getElementById("loop5-step-desc");
+  const proof=document.getElementById("loop5-step-proof");
+  const version=document.getElementById("loop5-version");
+  const buttons=Array.from(section.querySelectorAll(".loop5-btn[data-loop-step]"));
+  const bars=Array.from(section.querySelectorAll(".loop5-timer span"));
+
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const finePointer=matchMedia("(pointer:fine)").matches;
+  const STEP_MS=4800;
+  let current=0;
+  let timer=null;
+  let paused=false;
+  let inView=false;
+
+  const clearTimer=()=>{
+    if(timer){clearTimeout(timer);timer=null}
+  };
+
+  const restartTimerBar=(index)=>{
+    bars.forEach((bar,i)=>{
+      const active=i===index;
+      bar.classList.toggle("is-active",active);
+      if(active&&!reduce){
+        bar.style.animation="none";
+        void bar.offsetWidth;
+        bar.style.animation="";
+      }
+    });
+  };
+
+  const select=(index,{animate=true}={})=>{
+    if(index<0||index>=steps.length)return;
+    current=index;
+    const s=steps[index];
+
+    buttons.forEach((button,i)=>{
+      const active=i===index;
+      button.classList.toggle("is-active",active);
+      button.setAttribute("aria-pressed",active?"true":"false");
+    });
+    restartTimerBar(index);
+
+    visual.dataset.step=String(index+1);
+    if(animate&&!reduce){
+      panel.classList.remove("is-switching");
+      void panel.offsetWidth;
+      panel.classList.add("is-switching");
+      setTimeout(()=>panel.classList.remove("is-switching"),460);
+    }
+
+    kicker.textContent=s.kicker;
+    number.textContent=String(index+1).padStart(2,"0")+" / 04";
+    title.textContent=s.title;
+    desc.textContent=s.desc;
+    proof.textContent=s.proof;
+    version.textContent=s.version;
+  };
+
+  const schedule=()=>{
+    clearTimer();
+    if(reduce||paused||!inView)return;
+    timer=setTimeout(()=>{
+      select((current+1)%steps.length,{animate:true});
+      schedule();
+    },STEP_MS);
+  };
+
+  const pause=()=>{
+    paused=true;
+    clearTimer();
+  };
+  const resume=()=>{
+    paused=false;
+    schedule();
+  };
+
+  buttons.forEach((button,index)=>{
+    button.addEventListener("click",()=>{
+      select(index,{animate:true});
+      resume();
+    });
+    button.addEventListener("focus",()=>{
+      pause();
+      select(index,{animate:true});
+    });
+    button.addEventListener("blur",()=>{
+      requestAnimationFrame(()=>{
+        if(!section.contains(document.activeElement))resume();
+      });
+    });
+    if(finePointer){
+      button.addEventListener("pointerenter",()=>{
+        pause();
+        select(index,{animate:true});
+      });
+      button.addEventListener("pointerleave",resume);
+    }
+    button.addEventListener("keydown",(event)=>{
+      if(event.key==="ArrowRight"||event.key==="ArrowDown"){
+        event.preventDefault();
+        buttons[(index+1)%buttons.length].focus();
+      }else if(event.key==="ArrowLeft"||event.key==="ArrowUp"){
+        event.preventDefault();
+        buttons[(index-1+buttons.length)%buttons.length].focus();
+      }else if(event.key==="Home"){
+        event.preventDefault();buttons[0].focus();
+      }else if(event.key==="End"){
+        event.preventDefault();buttons[buttons.length-1].focus();
+      }
+    });
+  });
+
+  const stage=section.querySelector(".loop5-stage");
+  if(finePointer&&stage){
+    stage.addEventListener("pointerenter",pause);
+    stage.addEventListener("pointerleave",resume);
+  }
+
+  document.addEventListener("visibilitychange",()=>{
+    if(document.hidden)pause();
+    else resume();
+  });
+
+  if("IntersectionObserver" in window){
+    const observer=new IntersectionObserver(entries=>{
+      inView=entries.some(entry=>entry.isIntersecting&&entry.intersectionRatio>=.25);
+      if(inView)schedule(); else clearTimer();
+    },{threshold:[0,.25,.5]});
+    observer.observe(section);
+  }else{
+    inView=true;
+  }
+
+  select(0,{animate:false});
   schedule();
 })();
 </script>
