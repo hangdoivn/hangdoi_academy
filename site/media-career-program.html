@@ -2949,23 +2949,399 @@ img{display:block;max-width:100%}
 .career-note{font-size:11px;color:rgba(255,253,247,.58);margin:12px 0 0}
 
 /* 10 Tuition */
-.tuition{background:var(--aca-paper-50)}
-.tuition-head{display:grid;grid-template-columns:8fr 4fr;gap:32px;align-items:end}
-.tuition-layout{display:grid;grid-template-columns:5fr 7fr;gap:16px;margin-top:40px}
-.price-block{min-height:470px;padding:28px;background:var(--aca-green-950);color:var(--aca-paper-0);border:var(--aca-border-strong) solid var(--aca-border-ink);display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
-.price-block:after{content:"";position:absolute;width:160px;height:160px;border-radius:50%;background:var(--aca-color-signal-yellow);right:-72px;top:-70px;border:var(--aca-border-strong) solid var(--aca-border-ink)}
-.price-block small{font-size:10px;font-weight:800;letter-spacing:.11em}
-.price{font-size:clamp(76px,8vw,118px);line-height:.78;letter-spacing:-.075em;font-weight:900;color:var(--aca-color-signal-yellow)}
-.price-block p{font-size:13px;color:rgba(255,253,247,.7);max-width:340px;margin:0}
-.value-stack{display:grid;grid-template-rows:auto 1fr auto;gap:12px}
-.value-block{border:var(--aca-border-strong) solid var(--aca-border-ink);padding:22px;background:var(--aca-paper-0)}
-.value-block.no{background:var(--aca-orange-100)}
-.value-block.yes{background:var(--aca-paper-0)}
-.value-block small{font-size:10px;font-weight:800;letter-spacing:.1em;color:var(--aca-color-text-muted)}
-.value-block h3{font-size:25px;line-height:1.05;letter-spacing:-.04em;margin:10px 0 0}
-.value-list{display:grid;grid-template-columns:repeat(2,1fr);gap:0;margin-top:18px;border-top:1px solid var(--aca-color-divider);border-left:1px solid var(--aca-color-divider)}
-.value-list span{padding:10px;border-right:1px solid var(--aca-color-divider);border-bottom:1px solid var(--aca-color-divider);font-size:12px;font-weight:700}
-.tuition-separation{padding:14px 18px;background:var(--aca-color-signal-cobalt);color:white;font-size:13px;font-weight:800;letter-spacing:.03em;border:var(--aca-border-strong) solid var(--aca-border-ink)}
+.tuition{
+  position:relative;
+  overflow:hidden;
+  background:var(--aca-paper-100);
+  color:var(--aca-green-950);
+}
+.tuition:before{
+  content:"10";
+  position:absolute;
+  right:-.03em;
+  top:-.20em;
+  font-size:clamp(180px,20vw,320px);
+  line-height:1;
+  font-weight:950;
+  letter-spacing:-.09em;
+  color:rgba(11,36,24,.026);
+  pointer-events:none;
+}
+.tuition10{position:relative;z-index:1}
+.tuition10-head{
+  display:grid;
+  grid-template-columns:minmax(210px,3fr) minmax(0,9fr);
+  gap:clamp(28px,4vw,64px);
+  align-items:start;
+}
+.tuition10-meta{
+  padding-left:18px;
+  border-left:2px solid var(--aca-color-signal-yellow);
+}
+.tuition10-kicker{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:12px;
+  font-weight:950;
+  line-height:1.35;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  color:var(--aca-color-brand);
+}
+.tuition10-kicker:before{
+  content:"";
+  width:9px;height:9px;border-radius:50%;
+  background:var(--aca-color-signal-yellow);
+  box-shadow:0 0 0 5px rgba(245,216,61,.10);
+  flex:none;
+}
+.tuition10-index{
+  margin:10px 0 0;
+  font-size:11px;
+  line-height:1.45;
+  font-weight:850;
+  letter-spacing:.075em;
+  color:var(--aca-color-text-muted);
+}
+.tuition10-title{
+  margin:0;
+  max-width:1060px;
+  font-size:clamp(50px,5.8vw,88px);
+  line-height:.89;
+  letter-spacing:-.064em;
+  font-weight:950;
+  color:var(--aca-green-950);
+}
+.tuition10-title .accent{color:var(--aca-color-brand)}
+.tuition10-lead{
+  max-width:840px;
+  margin:20px 0 0;
+  font-size:clamp(15px,1.35vw,19px);
+  line-height:1.55;
+  color:var(--aca-color-text-muted);
+}
+.tuition10-lead strong{color:var(--aca-green-950)}
+
+.tuition10-layout{
+  display:grid;
+  grid-template-columns:minmax(360px,.82fr) minmax(0,1.18fr);
+  gap:16px;
+  margin-top:clamp(36px,4.8vw,56px);
+  align-items:stretch;
+}
+.tuition10-price{
+  position:relative;
+  min-height:580px;
+  overflow:hidden;
+  padding:28px;
+  border-radius:28px;
+  background:var(--aca-green-950);
+  color:#fffdf7;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  box-shadow:0 20px 54px rgba(11,36,24,.12);
+}
+.tuition10-price:before{
+  content:"";
+  position:absolute;
+  right:-80px;
+  top:-76px;
+  width:210px;height:210px;
+  border-radius:50%;
+  background:var(--aca-color-signal-yellow);
+}
+.tuition10-price:after{
+  content:"";
+  position:absolute;
+  left:-70px;
+  bottom:-70px;
+  width:190px;height:190px;
+  border-radius:50%;
+  background:rgba(11,106,63,.28);
+}
+.tuition10-price-top,
+.tuition10-price-bottom{position:relative;z-index:2}
+.tuition10-price-top small{
+  display:block;
+  font-size:10px;
+  font-weight:950;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.58);
+}
+.tuition10-price-value{
+  margin-top:16px;
+  font-size:clamp(86px,9vw,132px);
+  line-height:.76;
+  letter-spacing:-.08em;
+  font-weight:950;
+  color:var(--aca-color-signal-yellow);
+}
+.tuition10-price-sub{
+  margin-top:18px;
+  font-size:14px;
+  font-weight:900;
+  letter-spacing:.02em;
+}
+.tuition10-price-caption{
+  margin:10px 0 0;
+  max-width:330px;
+  font-size:12px;
+  line-height:1.5;
+  color:rgba(255,255,255,.58);
+}
+.tuition10-legal-chip{
+  display:inline-flex;
+  align-items:center;
+  min-height:34px;
+  padding:0 11px;
+  border-radius:999px;
+  background:rgba(245,216,61,.12);
+  color:var(--aca-color-signal-yellow);
+  font-size:9px;
+  font-weight:950;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+}
+.tuition10-price-bottom p{
+  margin:12px 0 0;
+  max-width:340px;
+  font-size:12px;
+  line-height:1.5;
+  color:rgba(255,255,255,.60);
+}
+.tuition10-price-bottom p strong{color:#fffdf7}
+
+.tuition10-value-panel{
+  min-height:580px;
+  display:grid;
+  grid-template-rows:auto 1fr auto;
+  gap:12px;
+}
+.tuition10-value-intro{
+  padding:22px 24px;
+  border-radius:22px;
+  background:var(--aca-orange-100);
+}
+.tuition10-value-intro small{
+  display:block;
+  font-size:9px;
+  font-weight:950;
+  letter-spacing:.10em;
+  text-transform:uppercase;
+  color:#a74d25;
+}
+.tuition10-value-intro strong{
+  display:block;
+  margin-top:10px;
+  font-size:clamp(24px,2.5vw,36px);
+  line-height:1;
+  letter-spacing:-.04em;
+}
+.tuition10-value-intro p{
+  margin:9px 0 0;
+  max-width:760px;
+  font-size:12px;
+  line-height:1.45;
+  color:#7a6258;
+}
+
+.tuition10-receipt{
+  position:relative;
+  overflow:hidden;
+  border-radius:26px;
+  background:var(--aca-paper-0);
+  box-shadow:0 10px 30px rgba(11,36,24,.045);
+}
+.tuition10-receipt-head{
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  align-items:flex-end;
+  padding:23px 24px 18px;
+  border-bottom:1px dashed rgba(11,36,24,.18);
+}
+.tuition10-receipt-head small{
+  display:block;
+  font-size:9px;
+  font-weight:950;
+  letter-spacing:.10em;
+  text-transform:uppercase;
+  color:var(--aca-color-brand);
+}
+.tuition10-receipt-head strong{
+  display:block;
+  margin-top:7px;
+  font-size:30px;
+  line-height:.98;
+  letter-spacing:-.04em;
+}
+.tuition10-receipt-head span{
+  font-size:11px;
+  font-weight:850;
+  color:var(--aca-color-text-muted);
+  white-space:nowrap;
+}
+.tuition10-receipt-list{display:grid}
+.tuition10-receipt-row{
+  display:grid;
+  grid-template-columns:42px minmax(0,1fr) auto;
+  gap:12px;
+  align-items:center;
+  padding:14px 24px;
+  border-bottom:1px solid var(--aca-color-divider);
+}
+.tuition10-receipt-row:last-child{border-bottom:0}
+.tuition10-num{
+  width:42px;height:42px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:var(--aca-green-100);
+  color:var(--aca-color-brand);
+  font-size:10px;
+  font-weight:950;
+}
+.tuition10-receipt-row strong{
+  display:block;
+  font-size:14px;
+  line-height:1.15;
+}
+.tuition10-receipt-row p{
+  margin:4px 0 0;
+  font-size:10px;
+  line-height:1.35;
+  color:var(--aca-color-text-muted);
+}
+.tuition10-check{
+  width:28px;height:28px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:var(--aca-green-950);
+  color:#fffdf7;
+  font-size:13px;
+  font-weight:900;
+}
+
+.tuition10-not-job{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:16px;
+  align-items:center;
+  padding:18px 20px;
+  border-radius:20px;
+  background:var(--aca-color-signal-yellow);
+  color:var(--aca-green-950);
+}
+.tuition10-not-job small{
+  display:block;
+  margin-bottom:5px;
+  font-size:8px;
+  font-weight:950;
+  letter-spacing:.10em;
+  text-transform:uppercase;
+}
+.tuition10-not-job strong{
+  display:block;
+  max-width:760px;
+  font-size:clamp(18px,1.8vw,25px);
+  line-height:1.05;
+  letter-spacing:-.03em;
+}
+.tuition10-not-job span{
+  display:inline-flex;
+  min-height:38px;
+  align-items:center;
+  padding:0 13px;
+  border-radius:999px;
+  background:rgba(11,36,24,.10);
+  font-size:9px;
+  font-weight:950;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+
+.tuition10-bridge{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:22px;
+  align-items:center;
+  margin-top:16px;
+  padding:18px 20px;
+  border-radius:20px;
+  background:var(--aca-color-brand);
+  color:#fffdf7;
+}
+.tuition10-bridge small{
+  display:block;
+  margin-bottom:5px;
+  font-size:8px;
+  font-weight:950;
+  letter-spacing:.10em;
+  text-transform:uppercase;
+  color:var(--aca-color-signal-yellow);
+}
+.tuition10-bridge strong{
+  display:block;
+  max-width:820px;
+  font-size:clamp(20px,2vw,30px);
+  line-height:1.05;
+  letter-spacing:-.035em;
+}
+.tuition10-bridge a{
+  min-height:44px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 16px;
+  border-radius:999px;
+  background:#fffdf7;
+  color:var(--aca-green-950);
+  text-decoration:none;
+  font-size:9px;
+  font-weight:950;
+  white-space:nowrap;
+}
+.tuition10-bridge a:focus-visible{
+  outline:3px solid rgba(245,216,61,.45);
+  outline-offset:3px;
+}
+
+@media(max-width:1024px){
+  .tuition10-head{grid-template-columns:1fr;gap:22px}
+  .tuition10-layout{grid-template-columns:1fr}
+  .tuition10-price{min-height:480px}
+}
+@media(max-width:700px){
+  .tuition10-title{font-size:clamp(43px,12vw,62px);line-height:.91}
+  .tuition10-lead{font-size:15px}
+  .tuition10-layout{margin-top:34px}
+  .tuition10-price{
+    min-height:440px;
+    padding:22px;
+    border-radius:22px;
+  }
+  .tuition10-receipt-head{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+  .tuition10-receipt-row{
+    grid-template-columns:38px minmax(0,1fr);
+    padding:13px 16px;
+  }
+  .tuition10-check{display:none}
+  .tuition10-not-job,
+  .tuition10-bridge{grid-template-columns:1fr}
+  .tuition10-not-job span,
+  .tuition10-bridge a{
+    justify-self:start;
+    white-space:normal;
+  }
+}
 
 /* 11 Fit */
 .fit{background:var(--aca-paper-0)}
@@ -4085,40 +4461,104 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
 </section>
 
 <section id="tuition" class="section tuition">
-  <div class="wrap">
-    <div class="tuition-head reveal">
-      <div>
-        <div class="kicker">Học phí / Giá trị</div>
-        <h2 class="display">40M KHÔNG PHẢI<br>ĐỂ MUA MỘT<br>CÔNG VIỆC.</h2>
+  <div class="wrap tuition10">
+    <div class="tuition10-head reveal">
+      <div class="tuition10-meta">
+        <div class="tuition10-kicker">10 · HỌC PHÍ / GIÁ TRỊ</div>
+        <p class="tuition10-index">4 THÁNG · 16 TUẦN · HỌC THEO LỘ TRÌNH</p>
       </div>
-      <p class="lead">Nếu mục tiêu chỉ là học Premiere, Lightroom hoặc camera cơ bản, có nhiều lựa chọn rẻ hơn.</p>
+      <div>
+        <h2 class="tuition10-title">40 TRIỆU.<br><span class="accent">GỒM NHỮNG GÌ?</span></h2>
+        <p class="tuition10-lead">Khoản này không phải để mua một công việc. Bạn đang trả cho <strong>4 tháng học và thực hành có người hướng dẫn, thiết bị, bài tập, góp ý và sản phẩm cuối khóa.</strong></p>
+      </div>
     </div>
 
-    <div class="tuition-layout">
-      <div class="price-block reveal">
-        <div><small>HỌC PHÍ DỰ KIẾN</small><div class="price">40M</div><strong>4 THÁNG / 16 TUẦN</strong></div>
-        <p><strong>Hiện chưa thu phí.</strong><br>Ghi danh chính thức và thanh toán chỉ mở sau khi các điều kiện pháp lý và hồ sơ ghi danh được phê duyệt.</p>
-      </div>
-      <div class="value-stack">
-        <div class="value-block no reveal">
-          <small>40M LÀ QUÁ CAO NẾU BẠN CHỈ CẦN</small>
-          <h3>Hướng dẫn Premiere · Camera cơ bản · Tự học YouTube · Một vài buổi kỹ thuật.</h3>
+    <div class="tuition10-layout">
+      <article class="tuition10-price reveal">
+        <div class="tuition10-price-top">
+          <small>HỌC PHÍ DỰ KIẾN</small>
+          <div class="tuition10-price-value">40M</div>
+          <div class="tuition10-price-sub">4 THÁNG · 16 TUẦN</div>
+          <p class="tuition10-price-caption">Mức học phí cho toàn bộ 4 tháng học.</p>
         </div>
-        <div class="value-block yes reveal">
-          <small>40M ĐƯỢC XÂY CHO</small>
-          <div class="value-list">
-            <span>LỘ TRÌNH</span><span>NGƯỜI HƯỚNG DẪN</span><span>THIẾT BỊ</span><span>THỰC HÀNH</span>
-            <span>QUY TRÌNH THƯƠNG MẠI</span><span>GÓP Ý</span><span>LÀM LẠI</span><span>HỒ SƠ SẢN PHẨM</span>
-            <span>ĐỒ ÁN CUỐI KHÓA</span><span>ĐỊNH HƯỚNG NGHỀ</span>
+
+        <div class="tuition10-price-bottom">
+          <span class="tuition10-legal-chip">HIỆN CHƯA THU PHÍ</span>
+          <p>Ghi danh chính thức và thanh toán chỉ mở sau khi <strong>các điều kiện pháp lý và hồ sơ ghi danh được phê duyệt.</strong></p>
+        </div>
+      </article>
+
+      <div class="tuition10-value-panel">
+        <div class="tuition10-value-intro reveal">
+          <small>NẾU BẠN CHỈ MUỐN HỌC DÙNG MÁY HOẶC PHẦN MỀM</small>
+          <strong>CÓ NHIỀU CÁCH HỌC RẺ HƠN.</strong>
+          <p>Ví dụ: học Premiere, Lightroom, camera cơ bản hoặc xem hướng dẫn online.</p>
+        </div>
+
+        <div class="tuition10-receipt reveal">
+          <div class="tuition10-receipt-head">
+            <div>
+              <small>40M BAO GỒM</small>
+              <strong>NHỮNG PHẦN NÀY TRONG 4 THÁNG.</strong>
+            </div>
+            <span>BẠN NHẬN ĐƯỢC GÌ</span>
+          </div>
+
+          <div class="tuition10-receipt-list">
+            <div class="tuition10-receipt-row">
+              <div class="tuition10-num">01</div>
+              <div><strong>LỊCH HỌC RÕ RÀNG</strong><p>Biết từng tháng học gì, làm bài gì và cần đạt kết quả nào.</p></div>
+              <div class="tuition10-check">✓</div>
+            </div>
+            <div class="tuition10-receipt-row">
+              <div class="tuition10-num">02</div>
+              <div><strong>CÓ NGƯỜI HƯỚNG DẪN</strong><p>Có người xem bài, chỉ chỗ chưa ổn và hướng dẫn cách sửa.</p></div>
+              <div class="tuition10-check">✓</div>
+            </div>
+            <div class="tuition10-receipt-row">
+              <div class="tuition10-num">03</div>
+              <div><strong>ĐƯỢC DÙNG THIẾT BỊ VÀ THỰC HÀNH</strong><p>Trực tiếp quay, chụp và chỉnh sửa thay vì chỉ nghe lý thuyết.</p></div>
+              <div class="tuition10-check">✓</div>
+            </div>
+            <div class="tuition10-receipt-row">
+              <div class="tuition10-num">04</div>
+              <div><strong>HỌC CÁCH LÀM MỘT JOB THẬT</strong><p>Từ nhận yêu cầu → chuẩn bị → quay/chụp → chỉnh sửa → bàn giao.</p></div>
+              <div class="tuition10-check">✓</div>
+            </div>
+            <div class="tuition10-receipt-row">
+              <div class="tuition10-num">05</div>
+              <div><strong>CÓ SẢN PHẨM ĐỂ MANG ĐI</strong><p>Giữ lại những bài tốt nhất và hoàn thành một đồ án cuối khóa.</p></div>
+              <div class="tuition10-check">✓</div>
+            </div>
+            <div class="tuition10-receipt-row">
+              <div class="tuition10-num">06</div>
+              <div><strong>BIẾT MÌNH NÊN ĐI TIẾP THẾ NÀO</strong><p>Biết mình hợp hướng nào, phần nào còn yếu và cần luyện thêm gì.</p></div>
+              <div class="tuition10-check">✓</div>
+            </div>
           </div>
         </div>
-        <div class="tuition-separation reveal">HỌC PHÍ ≠ PHÍ ĐỔI LẤY VIỆC LÀM</div>
+
+        <div class="tuition10-not-job reveal">
+          <div>
+            <small>LƯU Ý</small>
+            <strong>ĐÓNG HỌC PHÍ KHÔNG CÓ NGHĨA LÀ ĐƯỢC ĐẢM BẢO VIỆC LÀM.</strong>
+          </div>
+          <span>KHÔNG ĐẢM BẢO VIỆC LÀM</span>
+        </div>
       </div>
+    </div>
+
+    <div class="tuition10-bridge reveal">
+      <div>
+        <small>TIẾP THEO · CHƯƠNG TRÌNH CÓ HỢP VỚI BẠN KHÔNG?</small>
+        <strong>Xem nhanh những trường hợp phù hợp và không phù hợp trước khi đăng ký.</strong>
+      </div>
+      <a href="#fit">XEM CHƯƠNG TRÌNH CÓ HỢP VỚI MÌNH →</a>
     </div>
   </div>
 </section>
 
-<section class="section fit">
+<section id="fit" class="section fit">
   <div class="wrap">
     <div class="kicker orange">Mức độ phù hợp</div>
     <h2 class="display reveal">KHÔNG PHẢI AI CŨNG<br>CẦN CHƯƠNG TRÌNH NÀY.</h2>
