@@ -579,6 +579,31 @@ input:user-invalid,select:user-invalid,textarea:user-invalid{border-color:rgba(1
 }
 
 /* Responsive */
+
+/* Desktop height alignment: form panel matches the context panel. */
+@media(min-width:961px){
+  .page{align-items:stretch}
+  .context,
+  .form-panel{
+    min-height:calc(100vh - 126px);
+  }
+  .form-panel{
+    display:flex;
+    flex-direction:column;
+  }
+  .form-panel form{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+  }
+  .form-step{
+    flex:1;
+  }
+  .form-actions{
+    margin-top:auto;
+  }
+}
+
 @media(max-width:960px){
   .page{grid-template-columns:1fr}
   .context{
