@@ -54,6 +54,8 @@ jobs:
 
           cp site/logo-academy.svg _site/logo-academy.svg
           cp site/academy-tokens.css _site/academy-tokens.css
+          mkdir -p _site/assets/media-career
+          cp site/assets/media-career/* _site/assets/media-career/
           mkdir -p _site/media-career-program
           cp site/media-career-program.html _site/media-career-program/index.html
           mkdir -p _site/media-career-program/apply
