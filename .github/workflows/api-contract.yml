@@ -28,6 +28,14 @@ jobs:
         with:
           node-version: "22"
 
+      - name: Install API dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd api
+          npm install --ignore-scripts --omit=dev --no-audit --no-fund
+          node -e 'import("nodemailer").then(()=>console.log("nodemailer import OK"))'
+
       - name: Parse API JavaScript
         shell: bash
         run: |
@@ -47,6 +55,11 @@ jobs:
           grep -Fq '"Idempotency-Key"' api/server-mysql.js
           grep -Fq 'media_career_outbound_deliveries' api/server-mysql.js
           grep -Fq 'media_career_outbound_deliveries' api/db-mysql.js
+          grep -Fq 'const SMTP_DELIVERY_ENDPOINT_KEY = "ACADEMY_SMTP"' api/server-mysql.js
+          grep -Fq 'EMAIL_TEAM_NEW_APPLICATION' api/server-mysql.js
+          grep -Fq 'EMAIL_CANDIDATE_ACK' api/server-mysql.js
+          grep -Fq 'ACADEMY_SMTP_PASS' api/server-mysql.js
+          grep -Fq 'sendEmailDelivery' api/server-mysql.js
           if grep -Fq 'void postWebhook(' api/server-mysql.js; then
             echo "Legacy fire-and-forget webhook call found" >&2
             exit 1
@@ -61,6 +74,6 @@ jobs:
             echo "## Academy API contract"
             echo
             echo "- Node: 22"
-            echo "- Scope: api/*.js syntax + outbound reliability invariants"
+            echo "- Scope: dependency resolution + api/*.js syntax + webhook/SMTP reliability invariants"
             echo "- Revision: $GITHUB_SHA"
           } >> "$GITHUB_STEP_SUMMARY"
