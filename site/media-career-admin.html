@@ -42,6 +42,17 @@ dialog{width:min(calc(100% - 20px),960px);overflow:auto}.drawer{padding:0}.drawe
 .action-metrics.compact{grid-template-columns:repeat(4,1fr)}
 @media(max-width:1040px){.landing-metrics{grid-template-columns:repeat(2,1fr)}.action-metrics.compact{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:650px){.landing-metrics,.action-metrics.compact{grid-template-columns:1fr 1fr}}
+
+.candidate-mail{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:12px}
+.candidate-mail-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:12px}
+.candidate-mail-head h3{margin:0 0 4px}.candidate-mail-head p{margin:0;color:var(--muted);font-size:12px;line-height:1.6}
+.candidate-mail-grid{display:grid;grid-template-columns:1fr;gap:10px}.candidate-mail label{font-size:11px;font-weight:850;color:var(--muted)}
+.candidate-mail select,.candidate-mail textarea{width:100%;margin-top:5px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:10px;font:inherit;color:var(--ink)}
+.candidate-mail textarea{min-height:96px;resize:vertical}.mail-scenario-note{font-size:11px;color:var(--muted);line-height:1.55;margin-top:-2px}
+.candidate-mail-actions{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}
+.candidate-mail-actions button{border:0;background:var(--ink);color:#fff;border-radius:999px;padding:10px 14px;font-weight:850;cursor:pointer}
+.candidate-mail-actions button:disabled{opacity:.45;cursor:not-allowed}.mail-state{font-size:11px;font-weight:850;color:var(--muted)}
+@media(max-width:650px){.candidate-mail-actions{align-items:flex-start;flex-direction:column}.candidate-mail-actions button{width:100%}}
 </style>
 </head>
 <body>
@@ -135,7 +146,7 @@ const assessmentDecisionLabels={PENDING:"Chờ đánh giá",PASS:"Đạt",WAITLI
 const selectionStatusLabels={DRAFT:"Bản nháp",INVITED:"Đã mời",CONFIRMED:"Đã xác nhận",DECLINED:"Từ chối",ATTENDED:"Đã tham gia"};
 const campaignStatusLabels={IDEA:"Ý tưởng",DRAFT:"Bản nháp",READY:"Sẵn sàng",PUBLISHED:"Đã đăng",PAUSED:"Tạm dừng",ARCHIVED:"Lưu trữ"};
 let activeActionFilter="";
-let data=[],dash=null,notifications=[],campaigns=[],outboundDeliveries=[],outboundHealth=null;
+let data=[],dash=null,notifications=[],campaigns=[],outboundDeliveries=[],outboundHealth=null,mailScenarios=[],mailConfigured=false;
 const $=id=>document.getElementById(id);
 const tokenEl=$("token"),statusEl=$("status"),rowsEl=$("rows"),emptyEl=$("empty"),stageFilter=$("stageFilter"),detailDialog=$("detailDialog");
 tokenEl.value=sessionStorage.getItem("mcp_admin_token")||"";
@@ -276,15 +287,17 @@ async function load(){
   sessionStorage.setItem("mcp_admin_token",token);statusEl.textContent="Đang tải dữ liệu tuyển sinh…";statusEl.className="status";
   try{
     const days=$("days").value;
-    const [apps,dashboard,notes,outboundData,outboundStatus]=await Promise.all([
+    const [apps,dashboard,notes,outboundData,outboundStatus,mailData]=await Promise.all([
       api("/v1/admin/applications?limit=500"),
       api("/v1/admin/dashboard?days="+days),
       api("/v1/admin/notifications"),
       api("/v1/admin/outbound"),
-      api("/health/outbound")
+      api("/health/outbound"),
+      api("/v1/admin/mail/scenarios")
     ]);
     data=apps.applications||[];dash=dashboard;notifications=notes.notifications||[];
     outboundDeliveries=outboundData.deliveries||[];outboundHealth=outboundStatus||null;
+    mailScenarios=mailData.scenarios||[];mailConfigured=mailData.emailConfigured===true;
     buildFilters();render();renderDashboard();renderNotifications();renderOutbound();renderActionCenter();updateOverviewStatus();
     statusEl.textContent="Đã kết nối · "+data.length+" ứng viên";statusEl.className="status ok";
   }catch(e){statusEl.textContent="Không kết nối được: "+e.message;statusEl.className="status err"}
@@ -416,7 +429,7 @@ function renderOutbound(){
       :'';
     return '<div class="delivery-row">'+
       '<div><b>'+esc(x.candidate_code||"—")+'</b><small>'+esc(when?new Date(when).toLocaleString("vi-VN"):"—")+'</small></div>'+
-      '<div class="delivery-type">'+esc(({EMAIL_TEAM_NEW_APPLICATION:"Email báo team",EMAIL_CANDIDATE_ACK:"Email xác nhận ứng viên",CONNECTION_TEST_EMAIL:"Kiểm tra email",NEW_APPLICATION_WEBHOOK:"Webhook báo đăng ký",APPLICATION_ACK_WEBHOOK:"Webhook xác nhận",CONNECTION_TEST_NEW_APPLICATION:"Kiểm tra webhook team",CONNECTION_TEST_APPLICATION_ACK:"Kiểm tra webhook ứng viên"})[x.delivery_type]||x.delivery_type||"—")+'</div>'+
+      '<div class="delivery-type">'+esc(deliveryTypeLabel(x.delivery_type))+'</div>'+
       '<div><span class="delivery-status '+esc(x.status||"")+'">'+esc(deliveryStatusLabels[x.status]||x.status||"—")+'</span></div>'+
       '<div class="delivery-attempts">'+n(x.attempt_count)+' / '+n(x.max_attempts||6)+' lần</div>'+
       '<div class="delivery-action">'+action+'</div>'+
@@ -489,6 +502,59 @@ async function updateStage(id,stage,el){
 }
 async function refreshDashboard(){try{dash=await api("/v1/admin/dashboard?days="+$("days").value);renderDashboard();renderActionCenter();updateOverviewStatus()}catch{}}
 async function markRead(id){try{await api("/v1/admin/notifications/"+id+"/read",{method:"PATCH"});const x=notifications.find(n=>String(n.id)===String(id));if(x)x.status="READ";renderNotifications()}catch(e){statusEl.textContent=e.message;statusEl.className="status err"}}
+function deliveryTypeLabel(type){
+  const exact={
+    EMAIL_TEAM_NEW_APPLICATION:"Email báo team",
+    EMAIL_CANDIDATE_ACK:"Email xác nhận đăng ký",
+    EMAIL_TEAM_UNASSIGNED_24H:"Nhắc team: chưa có người phụ trách",
+    CONNECTION_TEST_EMAIL:"Kiểm tra email",
+    NEW_APPLICATION_WEBHOOK:"Webhook báo đăng ký",
+    APPLICATION_ACK_WEBHOOK:"Webhook xác nhận đăng ký"
+  };
+  if(exact[type])return exact[type];
+  if(String(type||"").startsWith("EMAIL_MANUAL_REQUEST_INFO_"))return "Email: yêu cầu bổ sung thông tin";
+  if(String(type||"").startsWith("EMAIL_MANUAL_INTRO_CALL_"))return "Email: mời trao đổi";
+  if(String(type||"").startsWith("EMAIL_MANUAL_FOLLOW_UP_"))return "Email: nhắc phản hồi";
+  if(String(type||"").startsWith("EMAIL_MANUAL_CLOSE_"))return "Email: cảm ơn & kết thúc";
+  return type||"Thông báo hệ thống";
+}
+function renderCandidateMailPanel(applicationId){
+  const options=mailScenarios.map(s=>'<option value="'+esc(s.key)+'">'+esc(s.label)+'</option>').join("");
+  const first=mailScenarios[0];
+  const disabled=!mailConfigured||!mailScenarios.length;
+  return '<section class="candidate-mail">'+
+    '<div class="candidate-mail-head"><div><h3>Gửi email</h3><p>Dùng kịch bản có sẵn để giữ giọng điệu thống nhất. Email chỉ được đưa vào hàng đợi sau khi xác nhận.</p></div><span class="delivery-status '+(mailConfigured?'DELIVERED':'')+'">'+(mailConfigured?'SẴN SÀNG':'CHƯA BẬT MAIL')+'</span></div>'+
+    '<div class="candidate-mail-grid">'+
+      '<label>Kịch bản<select id="mailScenario" onchange="updateMailScenarioDescription()">'+options+'</select></label>'+
+      '<div id="mailScenarioDescription" class="mail-scenario-note">'+esc(first?.description||"Chưa có kịch bản email.")+'</div>'+
+      '<label>Ghi chú thêm <span style="font-weight:500">(không bắt buộc)</span><textarea id="mailNote" placeholder="Ví dụ: cần bổ sung portfolio, thời gian có thể trao đổi, nội dung muốn nhắn riêng..."></textarea></label>'+
+    '</div>'+
+    '<div class="candidate-mail-actions"><span class="mail-state">'+(mailConfigured?'Mail sẽ được gửi từ Hang Đôi Academy và có lưu lịch sử.':'Cần bật SMTP trước khi có thể gửi email.')+'</span><button id="sendCandidateMailButton" '+(disabled?'disabled':'')+' onclick="sendCandidateMail('+applicationId+',this)">Xác nhận & gửi email</button></div>'+
+  '</section>';
+}
+function updateMailScenarioDescription(){
+  const key=$("mailScenario")?.value;
+  const scenario=mailScenarios.find(x=>x.key===key);
+  if($("mailScenarioDescription"))$("mailScenarioDescription").textContent=scenario?.description||"";
+}
+async function sendCandidateMail(applicationId,button){
+  const scenario=$("mailScenario")?.value;
+  const meta=mailScenarios.find(x=>x.key===scenario);
+  if(!scenario||!meta)return;
+  const candidateName=$("dName")?.textContent||"ứng viên";
+  if(!confirm('Gửi "'+meta.label+'" tới '+candidateName+'?'))return;
+  button.disabled=true;button.textContent="Đang đưa vào hàng đợi…";
+  try{
+    const j=await api("/v1/admin/applications/"+applicationId+"/mail",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({scenario,note:$("mailNote")?.value||""})});
+    statusEl.textContent="Đã đưa email vào hàng đợi · "+meta.label;statusEl.className="status ok";
+    await new Promise(resolve=>setTimeout(resolve,600));
+    await refreshOutbound();
+    await openDetail(applicationId);
+  }catch(e){
+    statusEl.textContent="Gửi email lỗi: "+e.message;statusEl.className="status err";
+    button.disabled=false;button.textContent="Xác nhận & gửi email";
+  }
+}
 function renderCandidateOutbound(items,applicationId){
   const configured=n(outboundHealth?.configured?.length)>0;
   if(!items.length){
@@ -499,7 +565,7 @@ function renderCandidateOutbound(items,applicationId){
       const at=x.delivered_at||x.last_attempt_at||x.created_at;
       const retry=x.status==="FAILED"?'<button class="delivery-retry" onclick="retryCandidateDelivery('+x.id+','+applicationId+',this)">Thử lại</button>':'';
       return '<div class="candidate-delivery-row">'+
-        '<div><b>'+esc(({EMAIL_TEAM_NEW_APPLICATION:"Email báo team",EMAIL_CANDIDATE_ACK:"Email xác nhận đăng ký",CONNECTION_TEST_EMAIL:"Kiểm tra email",NEW_APPLICATION_WEBHOOK:"Webhook báo đăng ký",APPLICATION_ACK_WEBHOOK:"Webhook xác nhận đăng ký"})[x.delivery_type]||"Thông báo hệ thống")+'</b><small>'+(at?esc(new Date(at).toLocaleString("vi-VN")):"—")+' · '+n(x.attempt_count)+'/'+n(x.max_attempts||6)+' lần thử</small></div>'+
+        '<div><b>'+esc(deliveryTypeLabel(x.delivery_type))+'</b><small>'+(at?esc(new Date(at).toLocaleString("vi-VN")):"—")+' · '+n(x.attempt_count)+'/'+n(x.max_attempts||6)+' lần thử</small></div>'+
         '<span class="delivery-status '+esc(x.status||"")+'">'+esc(deliveryStatusLabels[x.status]||x.status||"—")+'</span>'+
         retry+
         (x.last_error?'<small class="candidate-delivery-error">'+esc(x.last_error)+'</small>':'')+
@@ -600,7 +666,7 @@ async function openDetail(id){
     const timeline='<section class="timeline"><h3>Lịch sử trạng thái</h3>'+(history.length?history.map(h=>'<div class="titem"><b>'+esc(stageLabels[h.from_stage]||h.from_stage||"—")+' → '+esc(stageLabels[h.to_stage]||h.to_stage)+'</b><br>'+new Date(h.changed_at).toLocaleString("vi-VN")+'</div>').join(""):'<div class="status">Chưa có thay đổi trạng thái.</div>')+'</section>';
 
     $("detailBody").innerHTML=summary+'<div class="drawer-body-wrap">'+tabs+
-      '<div class="detail-pane active" data-detail-pane="overview">'+operations+renderCandidateOutbound(outbound,x.id)+'</div>'+
+      '<div class="detail-pane active" data-detail-pane="overview">'+operations+renderCandidateMailPanel(x.id)+renderCandidateOutbound(outbound,x.id)+'</div>'+
       '<div class="detail-pane" data-detail-pane="profile">'+profile+'</div>'+
       '<div class="detail-pane" data-detail-pane="selection">'+selectionBlock+assessment+admission+'</div>'+
       '<div class="detail-pane" data-detail-pane="history">'+timeline+'</div>'+
