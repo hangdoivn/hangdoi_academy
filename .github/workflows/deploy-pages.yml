@@ -330,6 +330,30 @@ jobs:
           )
           inter.write_text(inter_text, encoding="utf-8")
 
+          # Inline the tiny font-face sheet and Academy design tokens so the
+          # first render does not wait on two extra CSS round trips. The full
+          # program stylesheet remains non-blocking.
+          tokens_text = Path("_site/academy-tokens.css").read_text(encoding="utf-8")
+          inter_link = (
+              '<link rel="stylesheet" '
+              f'href="/assets/media-career/inter.css{suffix}">'
+          )
+          tokens_link = (
+              '<link rel="stylesheet" '
+              f'href="/academy-tokens.css{suffix}">'
+          )
+          if inter_link not in html or tokens_link not in html:
+              raise RuntimeError("Expected Media Career blocking stylesheet links not found")
+          html = html.replace(
+              inter_link,
+              '<style id="media-career-fonts">\n' + inter_text + '\n</style>',
+          )
+          html = html.replace(
+              tokens_link,
+              '<style id="academy-tokens-inline">\n' + tokens_text + '\n</style>',
+          )
+          page.write_text(html, encoding="utf-8")
+
           print("Media Career cache revision:", revision)
           PY
           cp site/logo-academy.svg _site/favicon.svg
@@ -583,6 +607,16 @@ jobs:
           grep -q "program-critical.css?v=$revision" _site/media-career-program/index.html
           grep -q "hero-bts-mobile.webp?v=$revision" _site/media-career-program/index.html
           grep -q "woff2?v=$revision" _site/assets/media-career/inter.css
+          grep -q 'id="media-career-fonts"' _site/media-career-program/index.html
+          grep -q 'id="academy-tokens-inline"' _site/media-career-program/index.html
+          if grep -q 'href="/assets/media-career/inter.css' _site/media-career-program/index.html; then
+            echo "Inter stylesheet should be inline on Media Career landing" >&2
+            exit 1
+          fi
+          if grep -q 'href="/academy-tokens.css' _site/media-career-program/index.html; then
+            echo "Academy tokens should be inline on Media Career landing" >&2
+            exit 1
+          fi
           test -s _site/assets/media-career/optimized/hero-bts.webp
           test -s _site/assets/media-career/optimized/hero-bts-mobile.webp
           test -s _site/assets/media-career/optimized/fourpoints-mobile.webp
