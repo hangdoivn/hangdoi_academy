@@ -46,6 +46,27 @@ Safe activation order:
 
 If `ACADEMY_MAIL_REQUIRED=true` and SMTP becomes unavailable or incomplete, `/health/outbound` returns unhealthy and Academy Ops Monitor opens/updates the normal production incident.
 
+## Kịch bản email
+
+| Kịch bản | Người nhận | Cách chạy | Trigger |
+| --- | --- | --- | --- |
+| Xác nhận đăng ký | Ứng viên | Tự động | Ngay sau khi form được lưu thành công |
+| Báo có đăng ký mới | Team | Tự động | Ngay sau khi form được lưu thành công |
+| Hồ sơ chưa có người phụ trách | Team | Tự động một lần | Sau 24 giờ nếu `owner` vẫn trống |
+| Yêu cầu bổ sung thông tin | Ứng viên | Thủ công | Người phụ trách chọn trong hồ sơ và xác nhận gửi |
+| Mời trao đổi ngắn | Ứng viên | Thủ công | Người phụ trách chọn trong hồ sơ và xác nhận gửi |
+| Nhắc phản hồi | Ứng viên | Thủ công | Người phụ trách chọn trong hồ sơ và xác nhận gửi |
+| Cảm ơn & kết thúc trao đổi | Ứng viên | Thủ công | Người phụ trách chọn trong hồ sơ và xác nhận gửi |
+
+Nguyên tắc:
+
+- Không tự động gửi mail follow-up cho ứng viên ngoài email xác nhận ban đầu.
+- Không tự động gửi Selection / Admission / Payment.
+- Mỗi mail thủ công yêu cầu thao tác xác nhận trong Admin.
+- Ghi chú bổ sung trong mail thủ công là tùy chọn và được đưa vào nội dung email.
+- Mail nội bộ nhắc hồ sơ chưa phân công chỉ gửi một lần cho mỗi Candidate ID.
+- Thời gian nhắc chưa phân công cấu hình bằng `ACADEMY_MAIL_UNASSIGNED_HOURS`, production mặc định `24`.
+
 ## Durable delivery
 
 Email reuses `media_career_outbound_deliveries`.
