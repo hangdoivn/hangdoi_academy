@@ -74,10 +74,15 @@ jobs:
               return source[a:b].strip()
 
           critical = "\n\n".join([
-              source[:source.index("/* 02 Gap v2 — problem framing */")].strip(),
-              segment("/* Reveal */", "/* ===== Media Career Section 01 / Hero v3 ===== */"),
+              # Base primitives + sticky header only. The legacy .hero block is
+              # no longer used by the Media Career v3 hero and must not block paint.
+              source[:source.index("/* 01 Hero */")].strip(),
+              # Current above-the-fold hero.
               segment("/* ===== Media Career Section 01 / Hero v3 ===== */", "/* ===== Section 09 / Income stair ===== */"),
+              # Mobile header + hero composition.
               segment("/* ===== Mobile UX Foundation v1 + Section 01 Hero ===== */", "/* ===== Mobile UX / Section 02 — Problem framing ===== */"),
+              # Final QA carries a few hero/header overrides; keep it until those
+              # selectors are normalized into the hero block.
               segment("/* ===== Mobile QA / final cross-section polish ===== */"),
           ]) + "\n"
 
