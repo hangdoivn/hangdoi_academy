@@ -98,22 +98,201 @@ function requireAdmin(req, res, next) {
   next();
 }
 
-async function postWebhook(url, payload) {
-  if (!url) return;
+const OUTBOUND_DELIVERY_INTERVAL_MS = 30 * 1000;
+const OUTBOUND_DELIVERY_BATCH_SIZE = 10;
+const outboundEndpointKeys = new Set([
+  "NEW_APPLICATION_WEBHOOK_URL",
+  "APPLICATION_ACK_WEBHOOK_URL"
+]);
+let outboundWorkerRunning = false;
+
+function outboundEndpoint(endpointKey) {
+  if (!outboundEndpointKeys.has(endpointKey)) return "";
+  return String(process.env[endpointKey] || "").trim();
+}
+
+function outboundBackoffSeconds(attempt) {
+  const schedule = [30, 120, 600, 1800, 7200, 21600];
+  const index = Math.min(Math.max(Number(attempt || 1) - 1, 0), schedule.length - 1);
+  return schedule[index];
+}
+
+async function sendWebhookRequest(url, payload) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 8000);
   try {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 5000);
     const response = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
       signal: controller.signal
     });
-    clearTimeout(timeout);
-    if (!response.ok) console.error("webhook_failed", response.status);
+    return {
+      ok: response.ok,
+      statusCode: response.status,
+      error: response.ok ? "" : `HTTP ${response.status}`
+    };
   } catch (error) {
-    console.error("webhook_error", error?.message || error);
+    return {
+      ok: false,
+      statusCode: null,
+      error: error?.name === "AbortError"
+        ? "timeout"
+        : cleanString(error?.message || "network_error", 1000)
+    };
+  } finally {
+    clearTimeout(timeout);
   }
+}
+
+function configuredOutboundJobs(webhookPayload, acknowledgementPayload) {
+  const jobs = [];
+  if (outboundEndpoint("NEW_APPLICATION_WEBHOOK_URL")) {
+    jobs.push({
+      deliveryType: "NEW_APPLICATION_WEBHOOK",
+      endpointKey: "NEW_APPLICATION_WEBHOOK_URL",
+      payload: webhookPayload
+    });
+  }
+  if (outboundEndpoint("APPLICATION_ACK_WEBHOOK_URL")) {
+    jobs.push({
+      deliveryType: "APPLICATION_ACK_WEBHOOK",
+      endpointKey: "APPLICATION_ACK_WEBHOOK_URL",
+      payload: acknowledgementPayload
+    });
+  }
+  return jobs;
+}
+
+async function enqueueOutboundJobs(client, candidateCodeValue, jobs) {
+  for (const job of jobs) {
+    await client.query(`
+      INSERT INTO media_career_outbound_deliveries (
+        candidate_code, delivery_type, endpoint_key, payload,
+        status, attempt_count, max_attempts, next_attempt_at
+      ) VALUES (
+        $1,$2,$3,$4::jsonb,'PENDING',0,6,NOW()
+      )
+      ON CONFLICT (candidate_code, delivery_type)
+      DO NOTHING
+    `, [
+      candidateCodeValue,
+      job.deliveryType,
+      job.endpointKey,
+      JSON.stringify(job.payload || {})
+    ]);
+  }
+}
+
+async function processOutboundDeliveries() {
+  if (outboundWorkerRunning) return;
+  outboundWorkerRunning = true;
+  try {
+    await pool.query(`
+      UPDATE media_career_outbound_deliveries
+      SET status = 'RETRY',
+          next_attempt_at = NOW(),
+          last_error = 'worker lease expired',
+          updated_at = NOW()
+      WHERE status = 'PROCESSING'
+        AND delivered_at IS NULL
+        AND last_attempt_at < DATE_SUB(NOW(), INTERVAL 10 MINUTE)
+    `);
+
+    const due = await pool.query(`
+      SELECT id, candidate_code, delivery_type, endpoint_key, payload,
+             attempt_count, max_attempts
+      FROM media_career_outbound_deliveries
+      WHERE status IN ('PENDING','RETRY')
+        AND next_attempt_at <= NOW()
+      ORDER BY next_attempt_at ASC, id ASC
+      LIMIT ${OUTBOUND_DELIVERY_BATCH_SIZE}
+    `);
+
+    for (const row of due.rows) {
+      const claim = await pool.query(`
+        UPDATE media_career_outbound_deliveries
+        SET status = 'PROCESSING',
+            attempt_count = attempt_count + 1,
+            last_attempt_at = NOW(),
+            updated_at = NOW()
+        WHERE id = $1
+          AND status IN ('PENDING','RETRY')
+          AND next_attempt_at <= NOW()
+      `, [row.id]);
+      if (claim.rowCount !== 1) continue;
+
+      const attempt = Number(row.attempt_count || 0) + 1;
+      const maxAttempts = Number(row.max_attempts || 6);
+      const endpoint = outboundEndpoint(row.endpoint_key);
+      const result = endpoint
+        ? await sendWebhookRequest(endpoint, row.payload || {})
+        : { ok: false, statusCode: null, error: "endpoint_not_configured" };
+
+      if (result.ok) {
+        await pool.query(`
+          UPDATE media_career_outbound_deliveries
+          SET status = 'DELIVERED',
+              delivered_at = NOW(),
+              next_attempt_at = NOW(),
+              last_status_code = $1,
+              last_error = NULL,
+              updated_at = NOW()
+          WHERE id = $2
+        `, [result.statusCode, row.id]);
+        continue;
+      }
+
+      if (attempt >= maxAttempts) {
+        await pool.query(`
+          UPDATE media_career_outbound_deliveries
+          SET status = 'FAILED',
+              last_status_code = $1,
+              last_error = $2,
+              updated_at = NOW()
+          WHERE id = $3
+        `, [result.statusCode, cleanString(result.error, 1000), row.id]);
+        console.error("outbound_delivery_failed", {
+          id: row.id,
+          deliveryType: row.delivery_type,
+          attempt
+        });
+        continue;
+      }
+
+      const retrySeconds = outboundBackoffSeconds(attempt);
+      await pool.query(`
+        UPDATE media_career_outbound_deliveries
+        SET status = 'RETRY',
+            next_attempt_at = DATE_ADD(NOW(), INTERVAL $1 SECOND),
+            last_status_code = $2,
+            last_error = $3,
+            updated_at = NOW()
+        WHERE id = $4
+      `, [
+        retrySeconds,
+        result.statusCode,
+        cleanString(result.error, 1000),
+        row.id
+      ]);
+    }
+  } catch (error) {
+    console.error("outbound_worker_failed", error?.message || error);
+  } finally {
+    outboundWorkerRunning = false;
+  }
+}
+
+function startOutboundDeliveryWorker() {
+  const startup = setTimeout(() => void processOutboundDeliveries(), 1000);
+  startup.unref();
+  const interval = setInterval(() => void processOutboundDeliveries(), OUTBOUND_DELIVERY_INTERVAL_MS);
+  interval.unref();
+  console.log("[outbound-delivery] worker_started", {
+    intervalMs: OUTBOUND_DELIVERY_INTERVAL_MS,
+    batchSize: OUTBOUND_DELIVERY_BATCH_SIZE,
+    configured: Array.from(outboundEndpointKeys).filter((key) => Boolean(outboundEndpoint(key)))
+  });
 }
 
 async function recordEvent(event) {
@@ -172,6 +351,11 @@ app.get("/health/intake", async (_req, res) => {
     await pool.query(`
       SELECT candidate_code, status, payload
       FROM media_career_notifications
+      LIMIT 1
+    `);
+    await pool.query(`
+      SELECT candidate_code, delivery_type, endpoint_key, status, attempt_count, next_attempt_at
+      FROM media_career_outbound_deliveries
       LIMIT 1
     `);
     await pool.query("SELECT cohort, target_enrollment, status FROM media_career_cohorts WHERE cohort = $1 LIMIT 1", ["01"]);
@@ -236,6 +420,16 @@ app.post("/health/intake/write", rateLimit(10 * 60 * 1000, 3), async (_req, res)
       )
     `, [probeCode, probePayload]);
 
+    await client.query(`
+      INSERT INTO media_career_outbound_deliveries (
+        candidate_code, delivery_type, endpoint_key, payload,
+        status, attempt_count, max_attempts, next_attempt_at
+      ) VALUES (
+        $1, 'HEALTH_WRITE_PROBE', 'NEW_APPLICATION_WEBHOOK_URL', $2::jsonb,
+        'PENDING', 0, 1, NOW()
+      )
+    `, [probeCode, probePayload]);
+
     const candidateInside = await client.query(
       "SELECT candidate_code FROM media_career_applications WHERE candidate_code = $1",
       [probeCode]
@@ -248,8 +442,17 @@ app.post("/health/intake/write", rateLimit(10 * 60 * 1000, 3), async (_req, res)
       "SELECT candidate_code FROM media_career_notifications WHERE candidate_code = $1 AND notification_type = 'HEALTH_WRITE_PROBE'",
       [probeCode]
     );
+    const outboundInside = await client.query(
+      "SELECT candidate_code FROM media_career_outbound_deliveries WHERE candidate_code = $1 AND delivery_type = 'HEALTH_WRITE_PROBE'",
+      [probeCode]
+    );
 
-    if (candidateInside.rowCount !== 1 || eventInside.rowCount !== 1 || notificationInside.rowCount !== 1) {
+    if (
+      candidateInside.rowCount !== 1
+      || eventInside.rowCount !== 1
+      || notificationInside.rowCount !== 1
+      || outboundInside.rowCount !== 1
+    ) {
       throw new Error("synthetic write verification failed inside transaction");
     }
 
@@ -268,8 +471,12 @@ app.post("/health/intake/write", rateLimit(10 * 60 * 1000, 3), async (_req, res)
       "SELECT candidate_code FROM media_career_notifications WHERE candidate_code = $1",
       [probeCode]
     );
+    const outboundAfter = await pool.query(
+      "SELECT candidate_code FROM media_career_outbound_deliveries WHERE candidate_code = $1",
+      [probeCode]
+    );
 
-    if (candidateAfter.rowCount || eventAfter.rowCount || notificationAfter.rowCount) {
+    if (candidateAfter.rowCount || eventAfter.rowCount || notificationAfter.rowCount || outboundAfter.rowCount) {
       throw new Error("synthetic write rollback verification failed");
     }
 
@@ -281,7 +488,8 @@ app.post("/health/intake/write", rateLimit(10 * 60 * 1000, 3), async (_req, res)
       verifiedTables: [
         "media_career_applications",
         "media_career_events",
-        "media_career_notifications"
+        "media_career_notifications",
+        "media_career_outbound_deliveries"
       ],
       durationMs: Date.now() - startedAt
     });
@@ -301,6 +509,59 @@ app.post("/health/intake/write", rateLimit(10 * 60 * 1000, 3), async (_req, res)
     });
   } finally {
     client.release();
+  }
+});
+
+
+
+app.get("/health/outbound", async (_req, res) => {
+  try {
+    const statusRows = await pool.query(`
+      SELECT status, COUNT(*) AS count
+      FROM media_career_outbound_deliveries
+      GROUP BY status
+    `);
+    const staleRows = await pool.query(`
+      SELECT
+        SUM(CASE WHEN status = 'FAILED' THEN 1 ELSE 0 END) AS failed_open,
+        SUM(CASE WHEN status = 'PROCESSING' AND last_attempt_at < DATE_SUB(NOW(), INTERVAL 10 MINUTE) THEN 1 ELSE 0 END) AS stale_processing,
+        MAX(CASE
+          WHEN status IN ('PENDING','RETRY') AND next_attempt_at < NOW()
+          THEN TIMESTAMPDIFF(SECOND, next_attempt_at, NOW())
+          ELSE 0
+        END) AS max_overdue_seconds
+      FROM media_career_outbound_deliveries
+    `);
+
+    const counts = Object.fromEntries(statusRows.rows.map((row) => [row.status, Number(row.count || 0)]));
+    const stale = staleRows.rows[0] || {};
+    const failedOpen = Number(stale.failed_open || 0);
+    const staleProcessing = Number(stale.stale_processing || 0);
+    const maxOverdueSeconds = Number(stale.max_overdue_seconds || 0);
+    const degraded = failedOpen > 0 || staleProcessing > 0 || maxOverdueSeconds > 600;
+    const configured = Array.from(outboundEndpointKeys).filter((key) => Boolean(outboundEndpoint(key)));
+
+    res.status(degraded ? 503 : 200).json({
+      ok: !degraded,
+      service: "hangdoi-academy-candidate-api",
+      check: "outbound-delivery",
+      configured,
+      counts,
+      failedOpen,
+      staleProcessing,
+      maxOverdueSeconds,
+      worker: {
+        intervalSeconds: OUTBOUND_DELIVERY_INTERVAL_MS / 1000,
+        batchSize: OUTBOUND_DELIVERY_BATCH_SIZE
+      }
+    });
+  } catch (error) {
+    console.error("outbound_health_failed", error?.message || error);
+    res.status(503).json({
+      ok: false,
+      service: "hangdoi-academy-candidate-api",
+      check: "outbound-delivery"
+    });
   }
 });
 
@@ -552,24 +813,16 @@ app.post("/v1/applications", rateLimit(60 * 60 * 1000, 10), async (req, res) => 
       metadata: { cohort, emailDomain: email.split("@")[1] || "" }
     });
 
-    await pool.query(`
-      INSERT INTO media_career_notifications (
-        candidate_code, notification_type, payload
-      ) VALUES ($1, 'NEW_APPLICATION', $2::jsonb)
-    `, [
-      saved.candidate_code,
-      JSON.stringify({
-        candidateCode: saved.candidate_code,
-        fullName,
-        email,
-        phone,
-        preferredTrack: cleanString(b.preferredTrack, 100),
-        utmSource: cleanString(b.utmSource, 180),
-        utmContent: cleanString(b.utmContent, 180),
-        submittedAt: saved.submitted_at
-      })
-    ]);
-
+    const notificationPayload = {
+      candidateCode: saved.candidate_code,
+      fullName,
+      email,
+      phone,
+      preferredTrack: cleanString(b.preferredTrack, 100),
+      utmSource: cleanString(b.utmSource, 180),
+      utmContent: cleanString(b.utmContent, 180),
+      submittedAt: saved.submitted_at
+    };
     const webhookPayload = {
       type: "NEW_APPLICATION",
       candidateCode: saved.candidate_code,
@@ -581,14 +834,32 @@ app.post("/v1/applications", rateLimit(60 * 60 * 1000, 10), async (req, res) => 
       content: cleanString(b.utmContent, 180),
       submittedAt: saved.submitted_at
     };
-    void postWebhook(process.env.NEW_APPLICATION_WEBHOOK_URL, webhookPayload);
-    void postWebhook(process.env.APPLICATION_ACK_WEBHOOK_URL, {
+    const acknowledgementPayload = {
       type: "APPLICATION_ACK",
       candidateCode: saved.candidate_code,
       fullName,
       email,
       submittedAt: saved.submitted_at
-    });
+    };
+    const outboundJobs = configuredOutboundJobs(webhookPayload, acknowledgementPayload);
+    const deliveryClient = await pool.connect();
+    try {
+      await deliveryClient.query("BEGIN");
+      await deliveryClient.query(`
+        INSERT INTO media_career_notifications (
+          candidate_code, notification_type, payload
+        ) VALUES ($1, 'NEW_APPLICATION', $2::jsonb)
+      `, [saved.candidate_code, JSON.stringify(notificationPayload)]);
+      await enqueueOutboundJobs(deliveryClient, saved.candidate_code, outboundJobs);
+      await deliveryClient.query("COMMIT");
+    } catch (deliveryError) {
+      try { await deliveryClient.query("ROLLBACK"); } catch {}
+      throw deliveryError;
+    } finally {
+      deliveryClient.release();
+    }
+
+    if (outboundJobs.length) void processOutboundDeliveries();
 
     res.status(201).json({
       ok: true,
@@ -1566,6 +1837,40 @@ app.patch("/v1/admin/notifications/:id/read", requireAdmin, async (req, res) => 
   res.json({ ok: true, notification: result.rows[0] });
 });
 
+app.get("/v1/admin/outbound", requireAdmin, async (_req, res) => {
+  const result = await pool.query(`
+    SELECT id, candidate_code, delivery_type, endpoint_key, status,
+           attempt_count, max_attempts, next_attempt_at, last_attempt_at,
+           delivered_at, last_status_code, last_error, created_at, updated_at
+    FROM media_career_outbound_deliveries
+    ORDER BY created_at DESC
+    LIMIT 100
+  `);
+  res.json({ ok: true, deliveries: result.rows });
+});
+
+app.post("/v1/admin/outbound/:id/retry", requireAdmin, async (req, res) => {
+  const result = await pool.query(`
+    UPDATE media_career_outbound_deliveries
+    SET status = 'RETRY',
+        attempt_count = 0,
+        next_attempt_at = NOW(),
+        last_attempt_at = NULL,
+        delivered_at = NULL,
+        last_status_code = NULL,
+        last_error = NULL,
+        updated_at = NOW()
+    WHERE id = $1
+      AND status IN ('FAILED','RETRY')
+    RETURNING id, candidate_code, delivery_type, status, next_attempt_at
+  `, [req.params.id]);
+  if (!result.rowCount) {
+    return res.status(409).json({ ok: false, error: "Delivery is not retryable" });
+  }
+  void processOutboundDeliveries();
+  res.json({ ok: true, delivery: result.rows[0] });
+});
+
 app.patch("/v1/admin/applications/:id/stage", requireAdmin, async (req, res) => {
   const allowed = new Set([
     "INTEREST_REGISTERED", "APPLICATION_COMPLETED", "QUALIFIED", "SELECTION_INVITED", "SELECTION_CONFIRMED",
@@ -1697,6 +2002,7 @@ initDb()
   .then(() => app.listen(port, "0.0.0.0", () => {
     console.log(`candidate-api listening on ${port}`);
     startMysqlBackupScheduler(pool);
+    startOutboundDeliveryWorker();
   }))
   .catch((error) => {
     console.error("db_init_failed", error);
