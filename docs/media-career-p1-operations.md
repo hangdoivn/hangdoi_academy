@@ -36,8 +36,11 @@ Railway project:
 
 Production services:
 
-- `Postgres` — persistent candidate/event database
-- `candidate-api-v2` — production Candidate API
+- `candidate-api` — **Academy MySQL 8.4 database service** (legacy service name retained internally)
+  - database: `hangdoi_academy`
+  - persistent Railway volume: `mysql-data` mounted at `/var/lib/mysql`
+- `candidate-api-v2` — production Candidate API, now running on MySQL
+- `Postgres` — retained temporarily as rollback/source archive after the MySQL cutover
 
 The API root directory is:
 
@@ -49,9 +52,14 @@ Healthcheck:
 
 ## Required Railway variables
 
-- `DATABASE_URL` — reference to Postgres service
+- `MYSQL_URL` — reference to the Academy MySQL service
 - `ADMIN_TOKEN` — protects all `/v1/admin/*` routes
 - `NODE_ENV=production`
+
+Temporary rollback/migration variables may remain while Postgres is retained:
+
+- `DATABASE_URL` — legacy Postgres connection, rollback only
+- `MYSQL_SHADOW_URL` — one-time migration reference; not used by the MySQL runtime
 
 Optional outbound integrations:
 
@@ -67,10 +75,11 @@ Landing
 → Apply page
 → Form start
 → Application submit
-→ Postgres
+→ Academy Candidate API
+→ MySQL (`hangdoi_academy`)
 → Candidate ID
 → Thank-you page
-→ CRM screening
+→ Academy operations
 ```
 
 Candidate ID format:
@@ -193,14 +202,23 @@ Before merging infrastructure changes:
 5. deploy Candidate API from latest `main`
 6. confirm Railway healthcheck success
 
-## Current cleanup note
+## Database cutover note
 
-Two temporary Railway services were created during initial testing:
-- `candidate-api`
-- `candidate-api-p1-test`
+On 25/09/2026 the Academy data layer was standardized from PostgreSQL to MySQL.
 
-They have been marked for removal. Railway requires account 2FA confirmation to apply that destructive cleanup. They are not used by the public application flow.
+Cutover verification:
+- MySQL 8.4 service deployed with persistent 500 MB Railway volume
+- schema initialized successfully
+- shadow migration copied and verified all 10 Academy tables
+- migration counts matched exactly at cutover
+- `media_career_events`: 43 → 43
+- `media_career_applications`: 0 → 0
+- Candidate API redeployed from commit `e655829a413d7ed14ba42a004853c0072b75014b`
+- live `/health` returned HTTP 200 after MySQL cutover
+- public selection lookup returned the expected HTTP 404 for a nonexistent token, confirming live MySQL reads
 
-The live service is:
+The live Candidate API remains:
 
 `candidate-api-v2`
+
+Postgres is intentionally retained for rollback until the MySQL cutover is considered stable. Do not delete it during the stabilization window.
