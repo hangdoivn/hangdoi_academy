@@ -111,13 +111,63 @@ function outboundEndpoint(endpointKey) {
   return String(process.env[endpointKey] || "").trim();
 }
 
+const outboundFormats = new Set(["generic", "google_chat", "slack"]);
+function outboundFormat(endpointKey) {
+  const formatKey = endpointKey === "NEW_APPLICATION_WEBHOOK_URL"
+    ? "NEW_APPLICATION_WEBHOOK_FORMAT"
+    : "APPLICATION_ACK_WEBHOOK_FORMAT";
+  const format = String(process.env[formatKey] || "generic").trim().toLowerCase();
+  return outboundFormats.has(format) ? format : "generic";
+}
+
+function outboundText(payload = {}) {
+  if (payload.type === "NEW_APPLICATION") {
+    return [
+      "📥 Hang Đôi Academy · Đăng ký quan tâm mới",
+      payload.fullName ? `Ứng viên: ${payload.fullName}` : "",
+      payload.candidateCode ? `Candidate ID: ${payload.candidateCode}` : "",
+      payload.email ? `Email: ${payload.email}` : "",
+      payload.phone ? `Điện thoại: ${payload.phone}` : "",
+      payload.preferredTrack ? `Hướng quan tâm: ${payload.preferredTrack}` : "",
+      payload.source ? `Nguồn: ${payload.source}${payload.content ? ` / ${payload.content}` : ""}` : "",
+      payload.submittedAt ? `Thời gian: ${new Date(payload.submittedAt).toLocaleString("vi-VN", { timeZone: "Asia/Ho_Chi_Minh" })}` : ""
+    ].filter(Boolean).join("\n");
+  }
+  if (payload.type === "APPLICATION_ACK") {
+    return [
+      "✅ Hang Đôi Academy · Đã ghi nhận đăng ký",
+      payload.fullName ? `Ứng viên: ${payload.fullName}` : "",
+      payload.candidateCode ? `Candidate ID: ${payload.candidateCode}` : "",
+      payload.email ? `Email: ${payload.email}` : "",
+      payload.submittedAt ? `Thời gian: ${new Date(payload.submittedAt).toLocaleString("vi-VN", { timeZone: "Asia/Ho_Chi_Minh" })}` : ""
+    ].filter(Boolean).join("\n");
+  }
+  if (payload.type === "ACADEMY_OUTBOUND_TEST") {
+    return [
+      "🧪 Hang Đôi Academy · Outbound test",
+      payload.endpointKey ? `Endpoint: ${payload.endpointKey}` : "",
+      payload.testCode ? `Test ID: ${payload.testCode}` : "",
+      "Nếu bạn thấy tin này thì kết nối outbound đang hoạt động."
+    ].filter(Boolean).join("\n");
+  }
+  return JSON.stringify(payload);
+}
+
+function formatOutboundPayload(endpointKey, payload) {
+  const format = outboundFormat(endpointKey);
+  if (format === "google_chat" || format === "slack") {
+    return { text: outboundText(payload) };
+  }
+  return payload;
+}
+
 function outboundBackoffSeconds(attempt) {
   const schedule = [30, 120, 600, 1800, 7200, 21600];
   const index = Math.min(Math.max(Number(attempt || 1) - 1, 0), schedule.length - 1);
   return schedule[index];
 }
 
-async function sendWebhookRequest(url, payload, deliveryId) {
+async function sendWebhookRequest(url, payload, deliveryId, endpointKey) {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 8000);
   try {
@@ -128,7 +178,7 @@ async function sendWebhookRequest(url, payload, deliveryId) {
         "Idempotency-Key": `academy-outbound-${deliveryId}`,
         "X-Hangdoi-Delivery-Id": String(deliveryId)
       },
-      body: JSON.stringify(payload),
+      body: JSON.stringify(formatOutboundPayload(endpointKey, payload)),
       signal: controller.signal
     });
     return {
@@ -230,7 +280,7 @@ async function processOutboundDeliveries() {
       const maxAttempts = Number(row.max_attempts || 6);
       const endpoint = outboundEndpoint(row.endpoint_key);
       const result = endpoint
-        ? await sendWebhookRequest(endpoint, row.payload || {}, row.id)
+        ? await sendWebhookRequest(endpoint, row.payload || {}, row.id, row.endpoint_key)
         : { ok: false, statusCode: null, error: "endpoint_not_configured" };
 
       if (result.ok) {
@@ -296,7 +346,8 @@ function startOutboundDeliveryWorker() {
   console.log("[outbound-delivery] worker_started", {
     intervalMs: OUTBOUND_DELIVERY_INTERVAL_MS,
     batchSize: OUTBOUND_DELIVERY_BATCH_SIZE,
-    configured: Array.from(outboundEndpointKeys).filter((key) => Boolean(outboundEndpoint(key)))
+    configured: Array.from(outboundEndpointKeys).filter((key) => Boolean(outboundEndpoint(key))),
+    formats: Object.fromEntries(Array.from(outboundEndpointKeys).map((key) => [key, outboundFormat(key)]))
   });
 }
 
@@ -545,12 +596,15 @@ app.get("/health/outbound", async (_req, res) => {
     const maxOverdueSeconds = Number(stale.max_overdue_seconds || 0);
     const degraded = failedOpen > 0 || staleProcessing > 0 || maxOverdueSeconds > 600;
     const configured = Array.from(outboundEndpointKeys).filter((key) => Boolean(outboundEndpoint(key)));
+    const formats = Object.fromEntries(configured.map((key) => [key, outboundFormat(key)]));
 
     res.status(degraded ? 503 : 200).json({
       ok: !degraded,
       service: "hangdoi-academy-candidate-api",
       check: "outbound-delivery",
       configured,
+      formats,
+      supportedFormats: Array.from(outboundFormats),
       counts,
       failedOpen,
       staleProcessing,
