@@ -377,6 +377,27 @@ export async function initMySqlSchema(pool) {
       created_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
       read_at DATETIME(3) NULL,
       KEY idx_mcp_notifications_status (status,created_at)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
+
+    `CREATE TABLE IF NOT EXISTS media_career_outbound_deliveries (
+      id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+      candidate_code VARCHAR(160) NULL,
+      delivery_type VARCHAR(80) NOT NULL,
+      endpoint_key VARCHAR(120) NOT NULL,
+      payload JSON NOT NULL,
+      status VARCHAR(40) NOT NULL DEFAULT 'PENDING',
+      attempt_count INT NOT NULL DEFAULT 0,
+      max_attempts INT NOT NULL DEFAULT 6,
+      next_attempt_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+      last_attempt_at DATETIME(3) NULL,
+      delivered_at DATETIME(3) NULL,
+      last_status_code INT NULL,
+      last_error VARCHAR(1000) NULL,
+      created_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+      updated_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+      UNIQUE KEY uk_mcp_outbound_candidate_type (candidate_code,delivery_type),
+      KEY idx_mcp_outbound_due (status,next_attempt_at),
+      KEY idx_mcp_outbound_candidate (candidate_code)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`
   ];
 
