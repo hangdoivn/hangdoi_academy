@@ -158,6 +158,158 @@ function htmlEscape(value) {
   }[char]));
 }
 
+const manualMailScenarios = new Map([
+  ["REQUEST_INFO", {
+    key: "REQUEST_INFO",
+    label: "Yêu cầu bổ sung thông tin",
+    description: "Dùng khi hồ sơ còn thiếu thông tin cần thiết để tiếp tục trao đổi.",
+    payloadType: "EMAIL_CANDIDATE_REQUEST_INFO"
+  }],
+  ["INTRO_CALL", {
+    key: "INTRO_CALL",
+    label: "Mời trao đổi ngắn",
+    description: "Dùng khi muốn hẹn một cuộc trao đổi ngắn để hiểu rõ nhu cầu và định hướng.",
+    payloadType: "EMAIL_CANDIDATE_INTRO_CALL"
+  }],
+  ["FOLLOW_UP", {
+    key: "FOLLOW_UP",
+    label: "Nhắc phản hồi",
+    description: "Dùng khi đã liên hệ trước đó nhưng chưa nhận được phản hồi.",
+    payloadType: "EMAIL_CANDIDATE_FOLLOW_UP"
+  }],
+  ["CLOSE", {
+    key: "CLOSE",
+    label: "Cảm ơn & kết thúc trao đổi",
+    description: "Dùng khi không tiếp tục xử lý hồ sơ ở thời điểm hiện tại.",
+    payloadType: "EMAIL_CANDIDATE_CLOSE"
+  }]
+]);
+
+function manualMailScenarioList() {
+  return Array.from(manualMailScenarios.values()).map(({ key, label, description }) => ({
+    key, label, description, mode: "MANUAL", audience: "CANDIDATE"
+  }));
+}
+
+function candidateMailBody(payload, deliveryId) {
+  const cfg = smtpConfig();
+  const name = cleanString(payload.fullName, 160) || "bạn";
+  const code = cleanString(payload.candidateCode, 160);
+  const note = cleanString(payload.note, 4000);
+  const noteText = note ? `\n\nGhi chú từ Hang Đôi:\n${note}` : "";
+  const noteHtml = note
+    ? `<div style="background:#f3f5ff;border-radius:12px;padding:14px;margin:18px 0"><div style="font-size:11px;font-weight:800;color:#646b86;margin-bottom:5px">GHI CHÚ TỪ HANG ĐÔI</div><div style="font-size:14px;line-height:1.7;white-space:pre-wrap">${htmlEscape(note)}</div></div>`
+    : "";
+
+  if (payload.type === "EMAIL_CANDIDATE_REQUEST_INFO") {
+    return {
+      to: cleanEmail(payload.email),
+      replyTo: cfg.replyTo || cfg.from,
+      subject: "Hang Đôi Academy cần bạn bổ sung một số thông tin",
+      text: [
+        `Chào ${name},`,
+        "",
+        "Hang Đôi Academy đang rà soát thông tin bạn đã gửi cho Media Career Program — Khóa 01.",
+        "Bên mình cần bạn bổ sung hoặc xác nhận thêm một số thông tin để có thể tiếp tục trao đổi.",
+        noteText,
+        code ? `Mã đăng ký: ${code}` : "",
+        "",
+        "Bạn có thể trả lời trực tiếp email này.",
+        "Hang Đôi Academy"
+      ].filter(Boolean).join("\n"),
+      html: mailShell("Bổ sung thông tin", `
+        <p style="font-size:15px;line-height:1.7;margin:0 0 14px">Chào <strong>${htmlEscape(name)}</strong>,</p>
+        <p style="font-size:15px;line-height:1.7;margin:0 0 14px">Hang Đôi Academy đang rà soát thông tin bạn đã gửi cho <strong>Media Career Program — Khóa 01</strong>.</p>
+        <p style="font-size:15px;line-height:1.7;margin:0">Bên mình cần bạn bổ sung hoặc xác nhận thêm một số thông tin để có thể tiếp tục trao đổi.</p>
+        ${noteHtml}
+        ${code ? `<p style="font-size:12px;color:#646b86">Mã đăng ký: <strong>${htmlEscape(code)}</strong></p>` : ""}
+        <p style="font-size:14px;line-height:1.7;margin:18px 0 0">Bạn có thể trả lời trực tiếp email này.</p>
+      `),
+      messageId: `<academy-request-info-${deliveryId}@hangdoistudio.vn>`
+    };
+  }
+
+  if (payload.type === "EMAIL_CANDIDATE_INTRO_CALL") {
+    return {
+      to: cleanEmail(payload.email),
+      replyTo: cfg.replyTo || cfg.from,
+      subject: "Hang Đôi Academy mời bạn trao đổi ngắn",
+      text: [
+        `Chào ${name},`,
+        "",
+        "Cảm ơn bạn đã quan tâm Media Career Program — Khóa 01.",
+        "Hang Đôi muốn mời bạn tham gia một buổi trao đổi ngắn để hiểu rõ hơn nhu cầu, nền tảng hiện tại và kỳ vọng của bạn.",
+        noteText,
+        "",
+        "Bạn có thể trả lời trực tiếp email này để xác nhận thời gian phù hợp.",
+        "Hang Đôi Academy"
+      ].filter(Boolean).join("\n"),
+      html: mailShell("Mời bạn trao đổi cùng Hang Đôi", `
+        <p style="font-size:15px;line-height:1.7;margin:0 0 14px">Chào <strong>${htmlEscape(name)}</strong>,</p>
+        <p style="font-size:15px;line-height:1.7;margin:0 0 14px">Cảm ơn bạn đã quan tâm <strong>Media Career Program — Khóa 01</strong>.</p>
+        <p style="font-size:15px;line-height:1.7;margin:0">Hang Đôi muốn mời bạn tham gia một buổi trao đổi ngắn để hiểu rõ hơn nhu cầu, nền tảng hiện tại và kỳ vọng của bạn.</p>
+        ${noteHtml}
+        <p style="font-size:14px;line-height:1.7;margin:18px 0 0">Bạn có thể trả lời trực tiếp email này để xác nhận thời gian phù hợp.</p>
+      `),
+      messageId: `<academy-intro-call-${deliveryId}@hangdoistudio.vn>`
+    };
+  }
+
+  if (payload.type === "EMAIL_CANDIDATE_FOLLOW_UP") {
+    return {
+      to: cleanEmail(payload.email),
+      replyTo: cfg.replyTo || cfg.from,
+      subject: "Hang Đôi Academy nhắc lại thông tin trao đổi",
+      text: [
+        `Chào ${name},`,
+        "",
+        "Hang Đôi gửi lại email này để nhắc về trao đổi trước đó liên quan Media Career Program — Khóa 01.",
+        "Nếu bạn vẫn quan tâm, chỉ cần trả lời email này để bên mình tiếp tục hỗ trợ.",
+        noteText,
+        "",
+        "Hang Đôi Academy"
+      ].filter(Boolean).join("\n"),
+      html: mailShell("Nhắc lại trao đổi", `
+        <p style="font-size:15px;line-height:1.7;margin:0 0 14px">Chào <strong>${htmlEscape(name)}</strong>,</p>
+        <p style="font-size:15px;line-height:1.7;margin:0 0 14px">Hang Đôi gửi lại email này để nhắc về trao đổi trước đó liên quan <strong>Media Career Program — Khóa 01</strong>.</p>
+        <p style="font-size:15px;line-height:1.7;margin:0">Nếu bạn vẫn quan tâm, chỉ cần trả lời email này để bên mình tiếp tục hỗ trợ.</p>
+        ${noteHtml}
+      `),
+      messageId: `<academy-follow-up-${deliveryId}@hangdoistudio.vn>`
+    };
+  }
+
+  if (payload.type === "EMAIL_CANDIDATE_CLOSE") {
+    return {
+      to: cleanEmail(payload.email),
+      replyTo: cfg.replyTo || cfg.from,
+      subject: "Cảm ơn bạn đã quan tâm Hang Đôi Academy",
+      text: [
+        `Chào ${name},`,
+        "",
+        "Cảm ơn bạn đã dành thời gian tìm hiểu Media Career Program — Khóa 01.",
+        "Ở thời điểm hiện tại, Hang Đôi sẽ tạm khép lại trao đổi đối với đăng ký này.",
+        "Nếu sau này định hướng hoặc thời gian của bạn thay đổi, bạn vẫn có thể liên hệ lại với Hang Đôi.",
+        noteText,
+        "",
+        "Cảm ơn bạn và chúc bạn nhiều trải nghiệm tốt trên hành trình làm nghề.",
+        "Hang Đôi Academy"
+      ].filter(Boolean).join("\n"),
+      html: mailShell("Cảm ơn bạn đã quan tâm", `
+        <p style="font-size:15px;line-height:1.7;margin:0 0 14px">Chào <strong>${htmlEscape(name)}</strong>,</p>
+        <p style="font-size:15px;line-height:1.7;margin:0 0 14px">Cảm ơn bạn đã dành thời gian tìm hiểu <strong>Media Career Program — Khóa 01</strong>.</p>
+        <p style="font-size:15px;line-height:1.7;margin:0 0 14px">Ở thời điểm hiện tại, Hang Đôi sẽ tạm khép lại trao đổi đối với đăng ký này.</p>
+        <p style="font-size:15px;line-height:1.7;margin:0">Nếu sau này định hướng hoặc thời gian của bạn thay đổi, bạn vẫn có thể liên hệ lại với Hang Đôi.</p>
+        ${noteHtml}
+        <p style="font-size:14px;line-height:1.7;margin:18px 0 0">Cảm ơn bạn và chúc bạn nhiều trải nghiệm tốt trên hành trình làm nghề.</p>
+      `),
+      messageId: `<academy-close-${deliveryId}@hangdoistudio.vn>`
+    };
+  }
+
+  return null;
+}
+
 function mailShell(title, bodyHtml) {
   return `<!doctype html>
 <html lang="vi">
@@ -252,6 +404,36 @@ function buildEmailMessage(payload = {}, deliveryId) {
       text,
       html,
       messageId: `<academy-ack-${deliveryId}@hangdoistudio.vn>`
+    };
+  }
+
+  const candidateScenarioMessage = candidateMailBody(payload, deliveryId);
+  if (candidateScenarioMessage) return candidateScenarioMessage;
+
+  if (type === "EMAIL_TEAM_UNASSIGNED_24H") {
+    const name = cleanString(payload.fullName, 160) || "Ứng viên chưa phân công";
+    const subject = `[Hang Đôi Academy] Hồ sơ chưa có người phụ trách · ${name}`;
+    const text = [
+      "Một hồ sơ đã tồn tại hơn 24 giờ nhưng chưa có người phụ trách.",
+      "",
+      `Họ tên: ${name}`,
+      payload.phone ? `Số điện thoại: ${payload.phone}` : "",
+      payload.email ? `Email: ${payload.email}` : "",
+      payload.candidateCode ? `Mã ứng viên: ${payload.candidateCode}` : "",
+      "",
+      "Mở trang quản trị: https://academy.hangdoiproduction.com/media-career-program/admin/"
+    ].filter(Boolean).join("\n");
+    return {
+      to: cfg.teamTo,
+      replyTo: cleanEmail(payload.email) || cfg.replyTo || cfg.from,
+      subject,
+      text,
+      html: mailShell("Hồ sơ chưa có người phụ trách", `
+        <p style="font-size:15px;line-height:1.7;margin:0 0 14px">Một hồ sơ đã tồn tại hơn <strong>24 giờ</strong> nhưng chưa có người phụ trách.</p>
+        <p style="font-size:15px;line-height:1.7;margin:0"><strong>${htmlEscape(name)}</strong><br>${htmlEscape(payload.phone || "")}<br>${htmlEscape(payload.email || "")}</p>
+        <p style="margin:22px 0 0"><a href="https://academy.hangdoiproduction.com/media-career-program/admin/" style="display:inline-block;background:#00031a;color:#fff;text-decoration:none;font-weight:700;padding:11px 16px;border-radius:999px">Mở hồ sơ</a></p>
+      `),
+      messageId: `<academy-unassigned-${deliveryId}@hangdoistudio.vn>`
     };
   }
 
@@ -586,6 +768,67 @@ function startOutboundDeliveryWorker() {
     configured: allOutboundChannelKeys().filter((key) => outboundChannelConfigured(key)),
     formats: Object.fromEntries(allOutboundChannelKeys().map((key) => [key, key === SMTP_DELIVERY_ENDPOINT_KEY ? "smtp" : outboundFormat(key)])),
     required: Object.fromEntries(allOutboundChannelKeys().map((key) => [key, key === SMTP_DELIVERY_ENDPOINT_KEY ? smtpConfig().required : outboundRequired(key)]))
+  });
+}
+
+let mailScenarioSweepRunning = false;
+async function enqueueMailScenarioReminders() {
+  if (mailScenarioSweepRunning || !smtpReady()) return;
+  mailScenarioSweepRunning = true;
+  try {
+    const hours = Math.max(1, Math.min(168, Number(process.env.ACADEMY_MAIL_UNASSIGNED_HOURS || 24)));
+    const candidates = await pool.query(`
+      SELECT a.candidate_code, a.full_name, a.phone, a.email, a.submitted_at
+      FROM media_career_applications a
+      WHERE (a.owner IS NULL OR TRIM(a.owner) = '')
+        AND a.pipeline_stage NOT IN ('LOST','ENROLLED')
+        AND a.submitted_at <= DATE_SUB(NOW(), INTERVAL ? HOUR)
+        AND NOT EXISTS (
+          SELECT 1
+          FROM media_career_outbound_deliveries d
+          WHERE d.candidate_code = a.candidate_code
+            AND d.delivery_type = 'EMAIL_TEAM_UNASSIGNED_24H'
+        )
+      ORDER BY a.submitted_at ASC
+      LIMIT 100
+    `, [hours]);
+
+    for (const row of candidates.rows) {
+      await pool.query(`
+        INSERT INTO media_career_outbound_deliveries (
+          candidate_code, delivery_type, endpoint_key, payload,
+          status, attempt_count, max_attempts, next_attempt_at
+        ) VALUES ($1,'EMAIL_TEAM_UNASSIGNED_24H',$2,$3::jsonb,'PENDING',0,6,NOW())
+        ON CONFLICT (candidate_code, delivery_type)
+        DO NOTHING
+      `, [
+        row.candidate_code,
+        SMTP_DELIVERY_ENDPOINT_KEY,
+        JSON.stringify({
+          type: "EMAIL_TEAM_UNASSIGNED_24H",
+          candidateCode: row.candidate_code,
+          fullName: row.full_name,
+          phone: row.phone,
+          email: row.email,
+          submittedAt: row.submitted_at
+        })
+      ]);
+    }
+    if (candidates.rowCount) void processOutboundDeliveries();
+  } catch (error) {
+    console.error("mail_scenario_sweep_failed", error?.message || error);
+  } finally {
+    mailScenarioSweepRunning = false;
+  }
+}
+
+function startMailScenarioScheduler() {
+  const startup = setTimeout(() => void enqueueMailScenarioReminders(), 15000);
+  startup.unref();
+  const interval = setInterval(() => void enqueueMailScenarioReminders(), 30 * 60 * 1000);
+  interval.unref();
+  console.log("[academy-mail] scenario_scheduler_started", {
+    unassignedHours: Math.max(1, Math.min(168, Number(process.env.ACADEMY_MAIL_UNASSIGNED_HOURS || 24)))
   });
 }
 
@@ -2166,6 +2409,58 @@ app.patch("/v1/admin/notifications/:id/read", requireAdmin, async (req, res) => 
   res.json({ ok: true, notification: result.rows[0] });
 });
 
+app.get("/v1/admin/mail/scenarios", requireAdmin, (_req, res) => {
+  res.json({
+    ok: true,
+    emailConfigured: smtpReady(),
+    scenarios: manualMailScenarioList()
+  });
+});
+
+app.post("/v1/admin/applications/:id/mail", requireAdmin, async (req, res) => {
+  if (!smtpReady()) {
+    return res.status(409).json({ ok: false, error: "Academy email is not configured" });
+  }
+  const scenarioKey = cleanString(req.body?.scenario, 80).toUpperCase();
+  const scenario = manualMailScenarios.get(scenarioKey);
+  if (!scenario) {
+    return res.status(400).json({ ok: false, error: "Unsupported email scenario" });
+  }
+  const note = cleanString(req.body?.note, 4000);
+  const candidate = await pool.query(`
+    SELECT candidate_code, full_name, phone, email
+    FROM media_career_applications
+    WHERE id = $1
+  `, [req.params.id]);
+  if (!candidate.rowCount) {
+    return res.status(404).json({ ok: false, error: "Candidate not found" });
+  }
+  const row = candidate.rows[0];
+  const deliveryType = `EMAIL_MANUAL_${scenarioKey}_${Date.now().toString(36).toUpperCase()}`;
+  const result = await pool.query(`
+    INSERT INTO media_career_outbound_deliveries (
+      candidate_code, delivery_type, endpoint_key, payload,
+      status, attempt_count, max_attempts, next_attempt_at
+    ) VALUES ($1,$2,$3,$4::jsonb,'PENDING',0,6,NOW())
+    RETURNING id, candidate_code, delivery_type, status, created_at
+  `, [
+    row.candidate_code,
+    deliveryType,
+    SMTP_DELIVERY_ENDPOINT_KEY,
+    JSON.stringify({
+      type: scenario.payloadType,
+      scenario: scenarioKey,
+      candidateCode: row.candidate_code,
+      fullName: row.full_name,
+      phone: row.phone,
+      email: row.email,
+      note
+    })
+  ]);
+  void processOutboundDeliveries();
+  res.status(202).json({ ok: true, delivery: result.rows[0], scenario: scenarioKey });
+});
+
 app.get("/v1/admin/outbound", requireAdmin, async (_req, res) => {
   const result = await pool.query(`
     SELECT id, candidate_code, delivery_type, endpoint_key, status,
@@ -2397,6 +2692,7 @@ initDb()
     console.log(`candidate-api listening on ${port}`);
     startMysqlBackupScheduler(pool);
     startOutboundDeliveryWorker();
+    startMailScenarioScheduler();
   }))
   .catch((error) => {
     console.error("db_init_failed", error);
