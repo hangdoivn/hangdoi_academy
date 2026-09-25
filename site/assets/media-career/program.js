@@ -68,6 +68,12 @@
       frame.addEventListener("pointerleave",()=>{ image.style.transform="scale(1)"; });
     })();
     
+    // Hydrate the heavier below-the-fold interactions outside the critical render path.
+    let deferredHydrated=false;
+    const hydrateDeferred=()=>{
+      if(deferredHydrated)return;
+      deferredHydrated=true;
+
     /* runtime 03 */
     (()=>{
       const details={
@@ -1005,6 +1011,16 @@
       });
     })();
     
+    };
+
+    const runDeferredHydration=()=>hydrateDeferred();
+    addEventListener("pointerdown",runDeferredHydration,{once:true,capture:true,passive:true});
+    addEventListener("touchstart",runDeferredHydration,{once:true,capture:true,passive:true});
+    if("requestIdleCallback" in window){
+      requestIdleCallback(runDeferredHydration,{timeout:1200});
+    }else{
+      setTimeout(runDeferredHydration,240);
+    }
   };
 
   const styles=document.querySelector('link[data-program-styles]');
