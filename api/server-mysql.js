@@ -1437,6 +1437,7 @@ initDb()
   .then(mysqlRuntimeSmoke)
   .then(() => app.listen(port, "0.0.0.0", () => {
     console.log(`candidate-api listening on ${port}`);
+    startMysqlBackupScheduler(pool);
   }))
   .catch((error) => {
     console.error("db_init_failed", error);
