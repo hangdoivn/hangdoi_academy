@@ -5521,3 +5521,31 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
     transform:scaleX(1)!important;
   }
 }
+
+/* Mobile LCP: do not hide above-the-fold content behind entrance animations.
+   Desktop keeps the editorial reveal; touch/mobile gets immediate first paint. */
+@media(max-width:760px),(hover:none) and (pointer:coarse){
+  .mcv3-copy:after{
+    animation:none!important;
+    clip-path:none!important;
+  }
+  .mcv3-line>span,
+  .mcv3-description,
+  .mcv3-actions,
+  .mcv3-bts,
+  .mcv3-badge,
+  .mcv3-case,
+  .mcv3-orange,
+  .mcv3-facts{
+    opacity:1!important;
+    transform:none!important;
+    animation:none!important;
+  }
+  .mcv3-bts{
+    clip-path:none!important;
+  }
+  .mcv3-bts img{
+    transform:none!important;
+    animation:none!important;
+  }
+}
