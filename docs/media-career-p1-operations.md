@@ -69,8 +69,20 @@ Migration/rollback variables must be attached only when explicitly needed:
 
 Optional outbound integrations:
 
-- `NEW_APPLICATION_WEBHOOK_URL` — receives a JSON event whenever an application is stored
-- `APPLICATION_ACK_WEBHOOK_URL` — receives candidate identity data for an acknowledgement provider
+- `NEW_APPLICATION_WEBHOOK_URL` — destination for the persisted `NEW_APPLICATION_WEBHOOK` delivery job
+- `APPLICATION_ACK_WEBHOOK_URL` — destination for the persisted `APPLICATION_ACK_WEBHOOK` delivery job
+
+Outbound delivery is durable and asynchronous:
+
+- application storage does not wait for the third-party endpoint;
+- configured deliveries are persisted in `media_career_outbound_deliveries`;
+- the worker retries with backoff and moves exhausted jobs to `FAILED`;
+- requests carry a stable `Idempotency-Key` and `X-Hangdoi-Delivery-Id`;
+- webhook URLs stay in Railway environment variables and are not copied into MySQL/backups;
+- `GET /health/outbound` is part of the 15-minute production monitor;
+- failed jobs can be reviewed at `GET /v1/admin/outbound` and retried with `POST /v1/admin/outbound/:id/retry`.
+
+As of 2026-09-25 both webhook variables are intentionally unconfigured, so the delivery subsystem is active but no external job is created until a destination is explicitly connected.
 
 Do not commit any secret value into Git.
 
