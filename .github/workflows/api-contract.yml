@@ -1,0 +1,66 @@
+name: Academy API Contract
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "api/**"
+      - ".github/workflows/api-contract.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: academy-api-contract
+  cancel-in-progress: true
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Parse API JavaScript
+        shell: bash
+        run: |
+          set -euo pipefail
+          while IFS= read -r -d '' file; do
+            echo "node --check $file"
+            node --check "$file"
+          done < <(find api -maxdepth 1 -type f -name '*.js' -print0 | sort -z)
+
+      - name: Verify outbound reliability contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -Fq 'const outboundFormats = new Set(["generic", "google_chat", "slack"])' api/server-mysql.js
+          grep -Fq 'NEW_APPLICATION_WEBHOOK_REQUIRED' api/server-mysql.js
+          grep -Fq 'APPLICATION_ACK_WEBHOOK_REQUIRED' api/server-mysql.js
+          grep -Fq '"Idempotency-Key"' api/server-mysql.js
+          grep -Fq 'media_career_outbound_deliveries' api/server-mysql.js
+          grep -Fq 'media_career_outbound_deliveries' api/db-mysql.js
+          if grep -Fq 'void postWebhook(' api/server-mysql.js; then
+            echo "Legacy fire-and-forget webhook call found" >&2
+            exit 1
+          fi
+          echo "Academy API outbound contract OK"
+
+      - name: Write summary
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "## Academy API contract"
+            echo
+            echo "- Node: 22"
+            echo "- Scope: api/*.js syntax + outbound reliability invariants"
+            echo "- Revision: $GITHUB_SHA"
+          } >> "$GITHUB_STEP_SUMMARY"
