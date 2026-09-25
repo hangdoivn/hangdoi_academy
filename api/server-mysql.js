@@ -119,7 +119,8 @@ async function postWebhook(url, payload) {
 async function recordEvent(event) {
   const allowed = new Set([
     "landing_view", "apply_view", "form_start", "form_submit_client",
-    "application_received", "thank_you_view"
+    "form_submit_error", "application_received", "application_retry_received",
+    "thank_you_view"
   ]);
   if (!allowed.has(event.eventName)) return;
   await pool.query(`
@@ -300,6 +301,69 @@ app.post("/health/intake/write", rateLimit(10 * 60 * 1000, 3), async (_req, res)
     });
   } finally {
     client.release();
+  }
+});
+
+
+app.get("/health/submissions", async (_req, res) => {
+  try {
+    const eventCounts = await pool.query(`
+      SELECT event_name, COUNT(*) AS count
+      FROM media_career_events
+      WHERE created_at >= DATE_SUB(NOW(), INTERVAL 24 HOUR)
+        AND event_name IN ('form_submit_client','form_submit_error','application_received','application_retry_received')
+      GROUP BY event_name
+    `);
+    const errorKinds = await pool.query(`
+      SELECT COALESCE(JSON_UNQUOTE(JSON_EXTRACT(metadata, '$.kind')), 'unknown') AS kind, COUNT(*) AS count
+      FROM media_career_events
+      WHERE created_at >= DATE_SUB(NOW(), INTERVAL 24 HOUR)
+        AND event_name = 'form_submit_error'
+      GROUP BY kind
+    `);
+
+    const counts = Object.fromEntries(eventCounts.rows.map((row) => [row.event_name, Number(row.count || 0)]));
+    const errorsByKind = Object.fromEntries(errorKinds.rows.map((row) => [String(row.kind || "unknown"), Number(row.count || 0)]));
+    const clientSuccess = counts.form_submit_client || 0;
+    const observedErrors = counts.form_submit_error || 0;
+    const systemErrors = Object.entries(errorsByKind).reduce((total, [kind, count]) => {
+      if (kind === "timeout" || kind === "network" || kind === "unknown" || /^http_5\d\d$/.test(kind)) {
+        return total + count;
+      }
+      return total;
+    }, 0);
+    const systemAttempts = clientSuccess + systemErrors;
+    const systemErrorRate = systemAttempts ? systemErrors / systemAttempts : 0;
+    const degraded = systemAttempts >= 5 && systemErrors >= 3 && systemErrorRate >= 0.5;
+
+    res.status(degraded ? 503 : 200).json({
+      ok: !degraded,
+      service: "hangdoi-academy-candidate-api",
+      check: "submission-quality",
+      windowHours: 24,
+      counts: {
+        clientSuccess,
+        observedErrors,
+        applicationReceived: counts.application_received || 0,
+        deduplicatedRetries: counts.application_retry_received || 0
+      },
+      errorsByKind,
+      systemErrors,
+      systemAttempts,
+      systemErrorRate: Math.round(systemErrorRate * 1000) / 1000,
+      threshold: {
+        minimumAttempts: 5,
+        minimumSystemErrors: 3,
+        maximumSystemErrorRate: 0.5
+      }
+    });
+  } catch (error) {
+    console.error("submission_health_failed", error?.message || error);
+    res.status(503).json({
+      ok: false,
+      service: "hangdoi-academy-candidate-api",
+      check: "submission-quality"
+    });
   }
 });
 
