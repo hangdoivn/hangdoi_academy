@@ -2,7 +2,8 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import crypto from "node:crypto";
-import { createMySqlPool, initMySqlSchema } from "./db-mysql.js";\nimport { startMysqlBackupScheduler } from "./backup-mysql.js";
+import { createMySqlPool, initMySqlSchema } from "./db-mysql.js";
+import { startMysqlBackupScheduler } from "./backup-mysql.js";
 
 const app = express();
 const port = Number(process.env.PORT || 3000);
