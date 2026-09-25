@@ -150,7 +150,7 @@ function createQueryAdapter(raw) {
   };
 }
 
-export function createMySqlPool(connectionString = process.env.MYSQL_URL || process.env.DATABASE_URL) {
+export function createMySqlPool(connectionString = process.env.MYSQL_URL) {
   if (!connectionString) throw new Error("MYSQL_URL is required");
   const rawPool = mysql.createPool({
     uri: connectionString,
