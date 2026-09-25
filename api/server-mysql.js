@@ -6,7 +6,7 @@ import { createMySqlPool, initMySqlSchema } from "./db-mysql.js";
 
 const app = express();
 const port = Number(process.env.PORT || 3000);
-const pool = createMySqlPool(process.env.MYSQL_URL || process.env.DATABASE_URL);
+const pool = createMySqlPool(process.env.MYSQL_URL);
 
 const allowedOrigins = new Set([
   "https://academy.hangdoiproduction.com",
