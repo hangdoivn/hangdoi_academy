@@ -155,6 +155,17 @@ It checks:
   - live MySQL dependency answers `SELECT 1`
 - `GET https://candidate-api-v2-production.up.railway.app/health/intake`
   - the tables and columns required by the public intake, event tracking, notifications, cohort state, and legal-readiness read paths exist and are readable
+- `POST https://candidate-api-v2-production.up.railway.app/health/intake/write`
+  - opens a MySQL transaction
+  - writes synthetic rows to applications, events, and notifications
+  - verifies all three rows inside the transaction
+  - rolls the transaction back
+  - verifies from a separate connection that no synthetic row remains
+  - never calls application or acknowledgement webhooks
+- `GET https://candidate-api-v2-production.up.railway.app/health/submissions`
+  - summarizes the last 24 hours of client submit successes, submit errors, accepted applications, and deduplicated retries
+  - returns unhealthy only after at least 5 system-observable attempts, at least 3 system errors, and a system-error rate of at least 50%
+  - offline and expected business-validation errors do not count as infrastructure/system errors
 - `GET https://candidate-api-v2-production.up.railway.app/health/backup`
   - latest logical backup is available and no older than 30 hours
 - `https://academy.hangdoiproduction.com/media-career-program/`
@@ -251,9 +262,37 @@ Production monitor verification after deploying the intake-readiness route:
 
 - `/health`: HTTP 200
 - `/health/intake`: HTTP 200
+- `/health/intake/write`: HTTP 200; transactional application/event/notification write verified and rolled back
+- `/health/submissions`: HTTP 200; 24-hour submission-quality threshold active
 - `/health/backup`: HTTP 200
 - `OPTIONS /v1/applications`: HTTP 204 with the Academy origin allowed
 - Railway deployment serving the verified checks: `3552ad54-beae-45d5-b64f-fcb6d43680c8`
 - source revision: `6515c9ff9f26f70245fd5ed7a1766514c344aa07`
 
 The first monitor run opened GitHub incident #33 because it ran before Railway had finished publishing the new `/health/intake` route. After the deploy reached `SUCCESS`, the next monitor run passed all checks, posted the recovery timestamp, and automatically closed incident #33. The push-trigger race was then removed from the monitor design.
+
+
+### Verified write-path and submission-quality evidence — 2026-09-25
+
+Transactional write probe:
+
+- Railway deployment: `c7943bed-bc4d-4e6e-87f3-c4d72df690d2`
+- source revision: `3c15df179db9d5f5bea79e949f83c7a039838fdd`
+- monitor request: `POST /health/intake/write`
+- result: HTTP 200
+- observed Railway request duration: 107 ms on the first production verification
+- a later production verification after the MySQL JSON decode fix returned HTTP 200 in 64 ms
+- the endpoint returns success only after the transaction has been rolled back and a separate connection confirms that the synthetic application, event, and notification rows no longer exist
+
+Submission observability:
+
+- `form_submit_error` and `application_retry_received` were added to the accepted event telemetry set; before this correction those client/server events were silently discarded
+- `/health/submissions` reports a rolling 24-hour quality window
+- GitHub Actions monitor run `36116742060` completed successfully after the submission-quality check was enabled
+- Railway deployment serving the quality endpoint: `d0efc198-e09f-46cf-8317-426bbdd1b97d`
+- source revision: `c9a6d4a13275edf66171f2796d1b6d0a5b2d30c9`
+
+MySQL JSON decode hardening:
+
+- `mysql2` JSON fields are explicitly read with UTF-8 encoding
+- the previous `JSON column ... interpreted as BINARY` runtime warning no longer appeared in the verification window after deployment `5ba9623a-78ac-4232-b6fa-4ea582b1990f`
