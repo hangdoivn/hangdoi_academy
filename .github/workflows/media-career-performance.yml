@@ -1,12 +1,6 @@
 name: Media Career Performance Audit
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'site/media-career-program.html'
-      - 'site/assets/media-career/**'
-      - '.github/workflows/media-career-performance.yml'
   workflow_dispatch:
   workflow_run:
     workflows: ['Publish Hang Doi Academy']
@@ -44,7 +38,13 @@ jobs:
 
       - name: Run Lighthouse mobile
         run: |
-          npx --yes lighthouse@12             'https://academy.hangdoiproduction.com/media-career-program/'             --only-categories=performance             --form-factor=mobile             --throttling-method=simulate             --chrome-flags='--headless --no-sandbox --disable-dev-shm-usage'             --output=json             --output-path=lighthouse-mobile.json             --quiet
+          cat > lighthouse-headers.json <<'JSON'
+          {
+            "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36",
+            "Accept-Language": "vi-VN,vi;q=0.9,en;q=0.8"
+          }
+          JSON
+          npx --yes lighthouse@12 'https://academy.hangdoiproduction.com/media-career-program/' --only-categories=performance --form-factor=mobile --throttling-method=simulate --extra-headers=lighthouse-headers.json --chrome-flags='--headless --no-sandbox --disable-dev-shm-usage' --output=json --output-path=lighthouse-mobile.json --quiet
 
       - name: Summarize performance metrics
         shell: bash
