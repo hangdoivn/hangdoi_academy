@@ -38,19 +38,19 @@ function targetValue(column, value) {
 }
 
 async function copyTable(source, target, table) {
-  const result = await source.query(`SELECT * FROM \${table} ORDER BY 1`);
+  const result = await source.query(`SELECT * FROM ${table} ORDER BY 1`);
   if (!result.rows.length) return 0;
 
   for (const row of result.rows) {
     const columns = Object.keys(row);
-    const quoted = columns.map(c => `\`\${c}\``).join(",");
+    const quoted = columns.map(c => `\`${c}\``).join(",");
     const placeholders = columns.map(() => "?").join(",");
     const updates = columns
       .filter(c => c !== "id")
-      .map(c => `\`\${c}\` = VALUES(\`\${c}\`)`)
+      .map(c => `\`${c}\` = VALUES(\`${c}\`)`)
       .join(",");
-    const sql = `INSERT INTO \`\${table}\` (\${quoted}) VALUES (\${placeholders})
-      ON DUPLICATE KEY UPDATE \${updates || quoted.split(",")[0] + "=" + quoted.split(",")[0]}`;
+    const sql = `INSERT INTO \`${table}\` (${quoted}) VALUES (${placeholders})
+      ON DUPLICATE KEY UPDATE ${updates || quoted.split(",")[0] + "=" + quoted.split(",")[0]}`;
     const values = columns.map(c => targetValue(c, row[c]));
     await target.query(sql, values);
   }
@@ -58,7 +58,7 @@ async function copyTable(source, target, table) {
   if (Object.prototype.hasOwnProperty.call(result.rows[0], "id")) {
     const maxId = Math.max(...result.rows.map(row => Number(row.id) || 0));
     if (maxId > 0) {
-      await target.query(`ALTER TABLE \`\${table}\` AUTO_INCREMENT = \${maxId + 1}`);
+      await target.query(`ALTER TABLE \`${table}\` AUTO_INCREMENT = ${maxId + 1}`);
     }
   }
   return result.rows.length;
@@ -66,10 +66,10 @@ async function copyTable(source, target, table) {
 
 async function countTable(db, engine, table) {
   if (engine === "pg") {
-    const r = await db.query(`SELECT COUNT(*)::int AS count FROM \${table}`);
+    const r = await db.query(`SELECT COUNT(*)::int AS count FROM ${table}`);
     return Number(r.rows[0].count);
   }
-  const [rows] = await db.query(`SELECT COUNT(*) AS count FROM \`\${table}\``);
+  const [rows] = await db.query(`SELECT COUNT(*) AS count FROM \`${table}\``);
   return Number(rows[0].count);
 }
 
@@ -88,7 +88,7 @@ async function main() {
     for (const table of tables) {
       const copied = await copyTable(source, target, table);
       report.push({ table, copied });
-      console.log(`[copy] \${table}: \${copied}`);
+      console.log(`[copy] ${table}: ${copied}`);
     }
 
     await target.query("SET FOREIGN_KEY_CHECKS = 1");
@@ -106,7 +106,7 @@ async function main() {
     const mismatches = report.filter(item => !item.match);
     console.table(report);
     if (mismatches.length) {
-      throw new Error(`Migration verification failed for: \${mismatches.map(x => x.table).join(", ")}`);
+      throw new Error(`Migration verification failed for: ${mismatches.map(x => x.table).join(", ")}`);
     }
 
     const pgCandidates = await sourcePool.query(
