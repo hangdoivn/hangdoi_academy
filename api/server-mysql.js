@@ -777,12 +777,14 @@ async function enqueueMailScenarioReminders() {
   mailScenarioSweepRunning = true;
   try {
     const hours = Math.max(1, Math.min(168, Number(process.env.ACADEMY_MAIL_UNASSIGNED_HOURS || 24)));
+    const maxAgeDays = Math.max(1, Math.min(30, Number(process.env.ACADEMY_MAIL_UNASSIGNED_MAX_AGE_DAYS || 7)));
     const candidates = await pool.query(`
       SELECT a.candidate_code, a.full_name, a.phone, a.email, a.submitted_at
       FROM media_career_applications a
       WHERE (a.owner IS NULL OR TRIM(a.owner) = '')
         AND a.pipeline_stage NOT IN ('LOST','ENROLLED')
         AND a.submitted_at <= DATE_SUB(NOW(), INTERVAL ? HOUR)
+        AND a.submitted_at >= DATE_SUB(NOW(), INTERVAL ? DAY)
         AND NOT EXISTS (
           SELECT 1
           FROM media_career_outbound_deliveries d
@@ -828,7 +830,8 @@ function startMailScenarioScheduler() {
   const interval = setInterval(() => void enqueueMailScenarioReminders(), 30 * 60 * 1000);
   interval.unref();
   console.log("[academy-mail] scenario_scheduler_started", {
-    unassignedHours: Math.max(1, Math.min(168, Number(process.env.ACADEMY_MAIL_UNASSIGNED_HOURS || 24)))
+    unassignedHours: Math.max(1, Math.min(168, Number(process.env.ACADEMY_MAIL_UNASSIGNED_HOURS || 24))),
+    unassignedMaxAgeDays: Math.max(1, Math.min(30, Number(process.env.ACADEMY_MAIL_UNASSIGNED_MAX_AGE_DAYS || 7)))
   });
 }
 
