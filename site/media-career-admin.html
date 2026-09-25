@@ -80,6 +80,19 @@ dialog{width:min(calc(100% - 20px),960px);overflow:auto}.drawer{padding:0}.drawe
   </div>
 </section>
 
+<section class="admin-view" data-view-panel="candidates">
+  <div class="view-head"><div><span class="view-kicker">Danh sách đăng ký</span><h2>Ứng viên</h2><p>Xem người đã đăng ký và theo dõi việc cần xử lý tiếp theo.</p></div><button class="text-button" id="clearActionFilter" hidden>Xóa bộ lọc công việc</button></div>
+  <div class="toolbar">
+    <input id="search" placeholder="Tìm tên, email, số điện thoại, mã ứng viên">
+    <select id="stageFilter"><option value="">Tất cả trạng thái</option></select>
+    <select id="sourceFilter"><option value="">Tất cả nguồn</option></select>
+    <button id="exportBtn">Xuất CSV</button>
+  </div>
+  <div id="status" class="status">Chưa kết nối dữ liệu ứng viên.</div>
+  <div class="candidate-desktop"><div class="table-wrap"><table><thead><tr><th>Ứng viên</th><th>Trạng thái</th><th>Phụ trách</th><th>Việc tiếp theo</th><th>Hạn xử lý</th><th>Nguồn</th><th>Cập nhật</th></tr></thead><tbody id="rows"></tbody></table><div id="empty" class="empty">Chưa có dữ liệu.</div></div></div>
+  <div id="candidateCards" class="candidate-cards"></div>
+</section>
+
 <section class="admin-view" data-view-panel="system">
   <div class="view-head"><div><span class="view-kicker">Theo dõi vận hành</span><h2>Hệ thống</h2></div></div>
   <section class="delivery-panel">
