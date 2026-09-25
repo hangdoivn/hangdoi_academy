@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import crypto from "node:crypto";
+import nodemailer from "nodemailer";
 import { createMySqlPool, initMySqlSchema } from "./db-mysql.js";
 import { getMysqlBackupStatus, startMysqlBackupScheduler } from "./backup-mysql.js";
 
@@ -104,7 +105,223 @@ const outboundEndpointKeys = new Set([
   "NEW_APPLICATION_WEBHOOK_URL",
   "APPLICATION_ACK_WEBHOOK_URL"
 ]);
+const SMTP_DELIVERY_ENDPOINT_KEY = "ACADEMY_SMTP";
 let outboundWorkerRunning = false;
+let smtpTransport = null;
+let smtpTransportSignature = "";
+
+function boolEnv(name, fallback = false) {
+  const raw = String(process.env[name] ?? "").trim().toLowerCase();
+  if (!raw) return fallback;
+  return raw === "true" || raw === "1" || raw === "yes";
+}
+
+function smtpConfig() {
+  const port = Number(process.env.ACADEMY_SMTP_PORT || 465);
+  return {
+    enabled: boolEnv("ACADEMY_MAIL_ENABLED", false),
+    required: boolEnv("ACADEMY_MAIL_REQUIRED", false),
+    host: String(process.env.ACADEMY_SMTP_HOST || "").trim(),
+    port: Number.isFinite(port) && port > 0 ? port : 465,
+    secure: boolEnv("ACADEMY_SMTP_SECURE", true),
+    user: String(process.env.ACADEMY_SMTP_USER || "").trim(),
+    pass: String(process.env.ACADEMY_SMTP_PASS || ""),
+    from: String(process.env.ACADEMY_MAIL_FROM || "").trim(),
+    replyTo: String(process.env.ACADEMY_MAIL_REPLY_TO || "").trim(),
+    teamTo: String(process.env.ACADEMY_MAIL_TEAM_TO || "").trim()
+  };
+}
+
+function smtpReady() {
+  const cfg = smtpConfig();
+  return Boolean(
+    cfg.enabled && cfg.host && cfg.port && cfg.user && cfg.pass && cfg.from && cfg.teamTo
+  );
+}
+
+function outboundChannelConfigured(key) {
+  if (key === SMTP_DELIVERY_ENDPOINT_KEY) return smtpReady();
+  return Boolean(outboundEndpoint(key));
+}
+
+function allOutboundChannelKeys() {
+  return [...Array.from(outboundEndpointKeys), SMTP_DELIVERY_ENDPOINT_KEY];
+}
+
+function htmlEscape(value) {
+  return String(value ?? "").replace(/[&<>"']/g, (char) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  }[char]));
+}
+
+function mailShell(title, bodyHtml) {
+  return `<!doctype html>
+<html lang="vi">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;background:#f3f5ff;font-family:Arial,Helvetica,sans-serif;color:#00031a">
+  <div style="max-width:640px;margin:0 auto;padding:28px 16px">
+    <div style="background:#fff;border:1px solid #d9ddec;border-radius:20px;padding:26px">
+      <div style="font-size:12px;font-weight:800;letter-spacing:.08em;color:#152be8;margin-bottom:10px">HANG ĐÔI ACADEMY</div>
+      <h1 style="font-size:28px;line-height:1.1;margin:0 0 18px">${htmlEscape(title)}</h1>
+      ${bodyHtml}
+      <div style="border-top:1px solid #edf0f7;margin-top:24px;padding-top:16px;font-size:12px;line-height:1.6;color:#646b86">
+        Hang Đôi Academy · Đà Nẵng<br>
+        Email này được gửi tự động từ hệ thống tuyển sinh.
+      </div>
+    </div>
+  </div>
+</body>
+</html>`;
+}
+
+function buildEmailMessage(payload = {}, deliveryId) {
+  const cfg = smtpConfig();
+  const type = String(payload.type || "");
+  const submitted = payload.submittedAt
+    ? new Date(payload.submittedAt).toLocaleString("vi-VN", { timeZone: "Asia/Ho_Chi_Minh" })
+    : "";
+
+  if (type === "EMAIL_TEAM_NEW_APPLICATION") {
+    const name = cleanString(payload.fullName, 160) || "Ứng viên mới";
+    const subject = `[Hang Đôi Academy] Đăng ký mới · ${name}`;
+    const text = [
+      "Hang Đôi Academy có đăng ký mới.",
+      "",
+      `Họ tên: ${name}`,
+      payload.phone ? `Số điện thoại: ${payload.phone}` : "",
+      payload.email ? `Email: ${payload.email}` : "",
+      payload.candidateCode ? `Mã ứng viên: ${payload.candidateCode}` : "",
+      payload.preferredTrack ? `Hướng quan tâm: ${payload.preferredTrack}` : "",
+      payload.source ? `Nguồn: ${payload.source}${payload.content ? ` / ${payload.content}` : ""}` : "",
+      submitted ? `Thời gian: ${submitted}` : "",
+      "",
+      "Mở trang quản trị: https://academy.hangdoiproduction.com/media-career-program/admin/"
+    ].filter(Boolean).join("\n");
+    const html = mailShell("Có đăng ký mới", `
+      <p style="font-size:15px;line-height:1.7;margin:0 0 18px">Một người vừa gửi biểu mẫu trên landing Media Career Program.</p>
+      <table role="presentation" style="width:100%;border-collapse:collapse;font-size:14px;line-height:1.55">
+        <tr><td style="padding:8px 0;color:#646b86;width:140px">Họ tên</td><td style="padding:8px 0;font-weight:700">${htmlEscape(name)}</td></tr>
+        <tr><td style="padding:8px 0;color:#646b86">Số điện thoại</td><td style="padding:8px 0">${htmlEscape(payload.phone || "—")}</td></tr>
+        <tr><td style="padding:8px 0;color:#646b86">Email</td><td style="padding:8px 0">${htmlEscape(payload.email || "—")}</td></tr>
+        <tr><td style="padding:8px 0;color:#646b86">Mã ứng viên</td><td style="padding:8px 0">${htmlEscape(payload.candidateCode || "—")}</td></tr>
+        <tr><td style="padding:8px 0;color:#646b86">Nguồn</td><td style="padding:8px 0">${htmlEscape(payload.source || "trực tiếp")}${payload.content ? " / " + htmlEscape(payload.content) : ""}</td></tr>
+        <tr><td style="padding:8px 0;color:#646b86">Thời gian</td><td style="padding:8px 0">${htmlEscape(submitted || "—")}</td></tr>
+      </table>
+      <p style="margin:22px 0 0"><a href="https://academy.hangdoiproduction.com/media-career-program/admin/" style="display:inline-block;background:#00031a;color:#fff;text-decoration:none;font-weight:700;padding:11px 16px;border-radius:999px">Mở danh sách đăng ký</a></p>
+    `);
+    return {
+      to: cfg.teamTo,
+      replyTo: cleanEmail(payload.email) || cfg.replyTo || cfg.from,
+      subject,
+      text,
+      html,
+      messageId: `<academy-team-${deliveryId}@hangdoistudio.vn>`
+    };
+  }
+
+  if (type === "EMAIL_CANDIDATE_ACK") {
+    const name = cleanString(payload.fullName, 160) || "bạn";
+    const code = cleanString(payload.candidateCode, 160);
+    const subject = "Hang Đôi Academy đã ghi nhận đăng ký của bạn";
+    const text = [
+      `Chào ${name},`,
+      "",
+      "Hang Đôi Academy đã ghi nhận thông tin bạn gửi cho Media Career Program — Khóa 01.",
+      code ? `Mã đăng ký của bạn: ${code}` : "",
+      "",
+      "Đội ngũ Hang Đôi sẽ liên hệ khi cần thêm thông tin hoặc khi có cập nhật tiếp theo.",
+      "Ở bước này bạn chưa cần thanh toán hay chuẩn bị thiết bị.",
+      "",
+      "Hang Đôi Academy"
+    ].filter(Boolean).join("\n");
+    const html = mailShell("Đã ghi nhận đăng ký của bạn", `
+      <p style="font-size:15px;line-height:1.7;margin:0 0 14px">Chào <strong>${htmlEscape(name)}</strong>,</p>
+      <p style="font-size:15px;line-height:1.7;margin:0 0 14px">Hang Đôi Academy đã ghi nhận thông tin bạn gửi cho <strong>Media Career Program — Khóa 01</strong>.</p>
+      ${code ? `<div style="background:#fdde58;border-radius:12px;padding:12px 14px;margin:18px 0"><div style="font-size:11px;font-weight:800;color:#646b86">MÃ ĐĂNG KÝ</div><div style="font-size:18px;font-weight:800;margin-top:3px">${htmlEscape(code)}</div></div>` : ""}
+      <p style="font-size:15px;line-height:1.7;margin:0 0 14px">Đội ngũ Hang Đôi sẽ liên hệ khi cần thêm thông tin hoặc khi có cập nhật tiếp theo.</p>
+      <p style="font-size:14px;line-height:1.7;margin:0;color:#646b86">Ở bước này bạn chưa cần thanh toán hay chuẩn bị thiết bị.</p>
+    `);
+    return {
+      to: cleanEmail(payload.email),
+      replyTo: cfg.replyTo || cfg.from,
+      subject,
+      text,
+      html,
+      messageId: `<academy-ack-${deliveryId}@hangdoistudio.vn>`
+    };
+  }
+
+  if (type === "ACADEMY_EMAIL_TEST") {
+    return {
+      to: cfg.teamTo,
+      replyTo: cfg.replyTo || cfg.from,
+      subject: "[Hang Đôi Academy] Kiểm tra kết nối email",
+      text: "Kết nối SMTP của Hang Đôi Academy đang hoạt động. Đây là email kiểm tra từ trang quản trị.",
+      html: mailShell("Kết nối email đang hoạt động", '<p style="font-size:15px;line-height:1.7;margin:0">Đây là email kiểm tra từ trang quản trị Hang Đôi Academy. Nếu bạn nhận được email này, luồng SMTP đã kết nối thành công.</p>'),
+      messageId: `<academy-test-${deliveryId}@hangdoistudio.vn>`
+    };
+  }
+
+  return null;
+}
+
+function getSmtpTransport() {
+  const cfg = smtpConfig();
+  const signature = [cfg.host, cfg.port, cfg.secure, cfg.user].join("|");
+  if (!smtpTransport || smtpTransportSignature !== signature) {
+    smtpTransport = nodemailer.createTransport({
+      host: cfg.host,
+      port: cfg.port,
+      secure: cfg.secure,
+      auth: { user: cfg.user, pass: cfg.pass },
+      connectionTimeout: 8000,
+      greetingTimeout: 8000,
+      socketTimeout: 12000
+    });
+    smtpTransportSignature = signature;
+  }
+  return smtpTransport;
+}
+
+async function sendEmailDelivery(payload, deliveryId) {
+  if (!smtpReady()) {
+    return { ok: false, statusCode: null, error: "smtp_not_configured" };
+  }
+  const cfg = smtpConfig();
+  const message = buildEmailMessage(payload, deliveryId);
+  if (!message?.to) {
+    return { ok: false, statusCode: null, error: "email_recipient_missing" };
+  }
+  try {
+    const info = await getSmtpTransport().sendMail({
+      from: cfg.from,
+      to: message.to,
+      replyTo: message.replyTo,
+      subject: message.subject,
+      text: message.text,
+      html: message.html,
+      messageId: message.messageId
+    });
+    const rejected = Array.isArray(info.rejected) ? info.rejected : [];
+    const accepted = Array.isArray(info.accepted) ? info.accepted : [];
+    const ok = accepted.length > 0 && rejected.length === 0;
+    return {
+      ok,
+      statusCode: ok ? 250 : null,
+      error: ok ? "" : cleanString(rejected.length ? `rejected:${rejected.join(",")}` : "smtp_not_accepted", 1000)
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      statusCode: null,
+      error: cleanString(error?.message || "smtp_error", 1000)
+    };
+  }
+}
 
 function outboundEndpoint(endpointKey) {
   if (!outboundEndpointKeys.has(endpointKey)) return "";
@@ -222,6 +439,18 @@ function configuredOutboundJobs(webhookPayload, acknowledgementPayload) {
       payload: acknowledgementPayload
     });
   }
+  if (smtpReady()) {
+    jobs.push({
+      deliveryType: "EMAIL_TEAM_NEW_APPLICATION",
+      endpointKey: SMTP_DELIVERY_ENDPOINT_KEY,
+      payload: { ...webhookPayload, type: "EMAIL_TEAM_NEW_APPLICATION" }
+    });
+    jobs.push({
+      deliveryType: "EMAIL_CANDIDATE_ACK",
+      endpointKey: SMTP_DELIVERY_ENDPOINT_KEY,
+      payload: { ...acknowledgementPayload, type: "EMAIL_CANDIDATE_ACK" }
+    });
+  }
   return jobs;
 }
 
@@ -285,10 +514,11 @@ async function processOutboundDeliveries() {
 
       const attempt = Number(row.attempt_count || 0) + 1;
       const maxAttempts = Number(row.max_attempts || 6);
-      const endpoint = outboundEndpoint(row.endpoint_key);
-      const result = endpoint
-        ? await sendWebhookRequest(endpoint, row.payload || {}, row.id, row.endpoint_key)
-        : { ok: false, statusCode: null, error: "endpoint_not_configured" };
+      const result = row.endpoint_key === SMTP_DELIVERY_ENDPOINT_KEY
+        ? await sendEmailDelivery(row.payload || {}, row.id)
+        : outboundEndpoint(row.endpoint_key)
+          ? await sendWebhookRequest(outboundEndpoint(row.endpoint_key), row.payload || {}, row.id, row.endpoint_key)
+          : { ok: false, statusCode: null, error: "endpoint_not_configured" };
 
       if (result.ok) {
         await pool.query(`
@@ -353,9 +583,9 @@ function startOutboundDeliveryWorker() {
   console.log("[outbound-delivery] worker_started", {
     intervalMs: OUTBOUND_DELIVERY_INTERVAL_MS,
     batchSize: OUTBOUND_DELIVERY_BATCH_SIZE,
-    configured: Array.from(outboundEndpointKeys).filter((key) => Boolean(outboundEndpoint(key))),
-    formats: Object.fromEntries(Array.from(outboundEndpointKeys).map((key) => [key, outboundFormat(key)])),
-    required: Object.fromEntries(Array.from(outboundEndpointKeys).map((key) => [key, outboundRequired(key)]))
+    configured: allOutboundChannelKeys().filter((key) => outboundChannelConfigured(key)),
+    formats: Object.fromEntries(allOutboundChannelKeys().map((key) => [key, key === SMTP_DELIVERY_ENDPOINT_KEY ? "smtp" : outboundFormat(key)])),
+    required: Object.fromEntries(allOutboundChannelKeys().map((key) => [key, key === SMTP_DELIVERY_ENDPOINT_KEY ? smtpConfig().required : outboundRequired(key)]))
   });
 }
 
@@ -603,12 +833,19 @@ app.get("/health/outbound", async (_req, res) => {
     const staleProcessing = Number(stale.stale_processing || 0);
     const maxOverdueSeconds = Number(stale.max_overdue_seconds || 0);
     const degraded = failedOpen > 0 || staleProcessing > 0 || maxOverdueSeconds > 600;
-    const configured = Array.from(outboundEndpointKeys).filter((key) => Boolean(outboundEndpoint(key)));
-    const formats = Object.fromEntries(Array.from(outboundEndpointKeys).map((key) => [key, outboundFormat(key)]));
-    const required = Object.fromEntries(Array.from(outboundEndpointKeys).map((key) => [key, outboundRequired(key)]));
-    const missingRequired = Array.from(outboundEndpointKeys).filter(
-      (key) => outboundRequired(key) && !outboundEndpoint(key)
-    );
+    const configured = allOutboundChannelKeys().filter((key) => outboundChannelConfigured(key));
+    const formats = Object.fromEntries(allOutboundChannelKeys().map((key) => [
+      key,
+      key === SMTP_DELIVERY_ENDPOINT_KEY ? "smtp" : outboundFormat(key)
+    ]));
+    const required = Object.fromEntries(allOutboundChannelKeys().map((key) => [
+      key,
+      key === SMTP_DELIVERY_ENDPOINT_KEY ? smtpConfig().required : outboundRequired(key)
+    ]));
+    const missingRequired = allOutboundChannelKeys().filter((key) => {
+      const isRequired = key === SMTP_DELIVERY_ENDPOINT_KEY ? smtpConfig().required : outboundRequired(key);
+      return isRequired && !outboundChannelConfigured(key);
+    });
     const unhealthy = degraded || missingRequired.length > 0;
 
     res.status(unhealthy ? 503 : 200).json({
@@ -620,6 +857,13 @@ app.get("/health/outbound", async (_req, res) => {
       required,
       missingRequired,
       supportedFormats: Array.from(outboundFormats),
+      email: {
+        enabled: smtpConfig().enabled,
+        configured: smtpReady(),
+        required: smtpConfig().required,
+        senderConfigured: Boolean(smtpConfig().from),
+        teamRecipientConfigured: Boolean(smtpConfig().teamTo)
+      },
       counts,
       failedOpen,
       staleProcessing,
@@ -1958,26 +2202,44 @@ app.post("/v1/admin/outbound/:id/retry", requireAdmin, async (req, res) => {
 
 app.post("/v1/admin/outbound/test", requireAdmin, async (req, res) => {
   const requestedKey = cleanString(req.body?.endpointKey, 120);
-  if (requestedKey && !outboundEndpointKeys.has(requestedKey)) {
-    return res.status(400).json({ ok: false, error: "Unsupported outbound endpoint" });
+  const supportedKeys = new Set(allOutboundChannelKeys());
+  if (requestedKey && !supportedKeys.has(requestedKey)) {
+    return res.status(400).json({ ok: false, error: "Unsupported outbound channel" });
   }
 
   const keys = requestedKey
     ? [requestedKey]
-    : Array.from(outboundEndpointKeys).filter((key) => Boolean(outboundEndpoint(key)));
-  const configuredKeys = keys.filter((key) => Boolean(outboundEndpoint(key)));
+    : allOutboundChannelKeys().filter((key) => outboundChannelConfigured(key));
+  const configuredKeys = keys.filter((key) => outboundChannelConfigured(key));
   if (!configuredKeys.length) {
     return res.status(409).json({
       ok: false,
-      error: "No outbound endpoint is configured"
+      error: "No outbound channel is configured"
     });
   }
 
   const testCode = `SYSTEM-OUTBOUND-${Date.now().toString(36).toUpperCase()}-${crypto.randomBytes(3).toString("hex").toUpperCase()}`;
   for (const endpointKey of configuredKeys) {
-    const deliveryType = endpointKey === "NEW_APPLICATION_WEBHOOK_URL"
-      ? "CONNECTION_TEST_NEW_APPLICATION"
-      : "CONNECTION_TEST_APPLICATION_ACK";
+    const deliveryType = endpointKey === SMTP_DELIVERY_ENDPOINT_KEY
+      ? "CONNECTION_TEST_EMAIL"
+      : endpointKey === "NEW_APPLICATION_WEBHOOK_URL"
+        ? "CONNECTION_TEST_NEW_APPLICATION"
+        : "CONNECTION_TEST_APPLICATION_ACK";
+    const payload = endpointKey === SMTP_DELIVERY_ENDPOINT_KEY
+      ? {
+          type: "ACADEMY_EMAIL_TEST",
+          source: "admin",
+          endpointKey,
+          testCode,
+          createdAt: new Date().toISOString()
+        }
+      : {
+          type: "ACADEMY_OUTBOUND_TEST",
+          source: "admin",
+          endpointKey,
+          testCode,
+          createdAt: new Date().toISOString()
+        };
     await pool.query(`
       INSERT INTO media_career_outbound_deliveries (
         candidate_code, delivery_type, endpoint_key, payload,
@@ -1985,18 +2247,7 @@ app.post("/v1/admin/outbound/test", requireAdmin, async (req, res) => {
       ) VALUES (
         $1,$2,$3,$4::jsonb,'PENDING',0,3,NOW()
       )
-    `, [
-      testCode,
-      deliveryType,
-      endpointKey,
-      JSON.stringify({
-        type: "ACADEMY_OUTBOUND_TEST",
-        source: "admin",
-        endpointKey,
-        testCode,
-        createdAt: new Date().toISOString()
-      })
-    ]);
+    `, [testCode, deliveryType, endpointKey, JSON.stringify(payload)]);
   }
 
   const queued = await pool.query(`
