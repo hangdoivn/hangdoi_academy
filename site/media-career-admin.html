@@ -212,7 +212,7 @@ function renderActionCenter(){
 function updateOverviewStatus(){
   const failed=n(outboundHealth?.counts?.FAILED),missing=(outboundHealth?.missingRequired||[]).length,retrying=n(outboundHealth?.counts?.RETRY)+n(outboundHealth?.counts?.PROCESSING);
   const bad=failed>0||missing>0||outboundHealth?.ok===false;
-  $("overviewSystemState").textContent=bad?"Có lỗi cần xử lý":retrying?"Đang thử gửi lại":"Không có lỗi nghiêm trọng";
+  $("overviewSystemState").textContent=bad?"Có lỗi cần xử lý":retrying?"Đang thử gửi lại":(outboundHealth?.email?.configured?"Email đang hoạt động":"Chưa bật email tự động");
   $("overviewSystemNote").textContent=bad?(failed+" lỗi gửi · "+missing+" kênh bắt buộc bị thiếu"):(retrying+" thông báo đang thử lại");
   $("systemNavDot").hidden=!bad;
 }
@@ -373,10 +373,11 @@ function renderOutbound(){
   $("deliveryDelivered").textContent=delivered;$("deliveryPending").textContent=pending;$("deliveryRetrying").textContent=retrying;$("deliveryFailed").textContent=failed;
 
   const channels=[
-    ["NEW_APPLICATION_WEBHOOK_URL","Thông báo cho đội ngũ"],
-    ["APPLICATION_ACK_WEBHOOK_URL","Xác nhận cho ứng viên"]
+    ["ACADEMY_SMTP","Email tự động"],
+    ["NEW_APPLICATION_WEBHOOK_URL","Thông báo webhook cho đội ngũ"],
+    ["APPLICATION_ACK_WEBHOOK_URL","Webhook xác nhận ứng viên"]
   ];
-  const formatLabel=value=>value==="google_chat"?"Google Chat":value==="slack"?"Slack":"Webhook chung";
+  const formatLabel=value=>value==="smtp"?"SMTP":value==="google_chat"?"Google Chat":value==="slack"?"Slack":"Webhook chung";
   $("deliveryConfig").innerHTML=channels.map(([key,label])=>{
     const isOn=configured.has(key),isRequired=required[key]===true,isMissing=missingRequired.has(key);
     const suffix=isOn
@@ -386,7 +387,7 @@ function renderOutbound(){
   }).join("");
   const testButton=$("deliveryTest");
   testButton.disabled=!configured.size;
-  testButton.textContent=configured.size?"Gửi thử":"Chưa có kênh";
+  testButton.textContent=configured.size?"Gửi thử":"Chưa có kênh gửi";
 
   const state=$("deliveryState"),note=$("deliveryNote");
   if(missingRequired.size){
@@ -415,7 +416,7 @@ function renderOutbound(){
       :'';
     return '<div class="delivery-row">'+
       '<div><b>'+esc(x.candidate_code||"—")+'</b><small>'+esc(when?new Date(when).toLocaleString("vi-VN"):"—")+'</small></div>'+
-      '<div class="delivery-type">'+esc(x.delivery_type||"—")+'</div>'+
+      '<div class="delivery-type">'+esc(({EMAIL_TEAM_NEW_APPLICATION:"Email báo team",EMAIL_CANDIDATE_ACK:"Email xác nhận ứng viên",CONNECTION_TEST_EMAIL:"Kiểm tra email",NEW_APPLICATION_WEBHOOK:"Webhook báo đăng ký",APPLICATION_ACK_WEBHOOK:"Webhook xác nhận",CONNECTION_TEST_NEW_APPLICATION:"Kiểm tra webhook team",CONNECTION_TEST_APPLICATION_ACK:"Kiểm tra webhook ứng viên"})[x.delivery_type]||x.delivery_type||"—")+'</div>'+
       '<div><span class="delivery-status '+esc(x.status||"")+'">'+esc(deliveryStatusLabels[x.status]||x.status||"—")+'</span></div>'+
       '<div class="delivery-attempts">'+n(x.attempt_count)+' / '+n(x.max_attempts||6)+' lần</div>'+
       '<div class="delivery-action">'+action+'</div>'+
@@ -498,7 +499,7 @@ function renderCandidateOutbound(items,applicationId){
       const at=x.delivered_at||x.last_attempt_at||x.created_at;
       const retry=x.status==="FAILED"?'<button class="delivery-retry" onclick="retryCandidateDelivery('+x.id+','+applicationId+',this)">Thử lại</button>':'';
       return '<div class="candidate-delivery-row">'+
-        '<div><b>'+esc(x.delivery_type==="NEW_APPLICATION_WEBHOOK"?"Thông báo đăng ký mới":x.delivery_type==="APPLICATION_ACK_WEBHOOK"?"Xác nhận đăng ký":"Thông báo hệ thống")+'</b><small>'+(at?esc(new Date(at).toLocaleString("vi-VN")):"—")+' · '+n(x.attempt_count)+'/'+n(x.max_attempts||6)+' lần thử</small></div>'+
+        '<div><b>'+esc(({EMAIL_TEAM_NEW_APPLICATION:"Email báo team",EMAIL_CANDIDATE_ACK:"Email xác nhận đăng ký",CONNECTION_TEST_EMAIL:"Kiểm tra email",NEW_APPLICATION_WEBHOOK:"Webhook báo đăng ký",APPLICATION_ACK_WEBHOOK:"Webhook xác nhận đăng ký"})[x.delivery_type]||"Thông báo hệ thống")+'</b><small>'+(at?esc(new Date(at).toLocaleString("vi-VN")):"—")+' · '+n(x.attempt_count)+'/'+n(x.max_attempts||6)+' lần thử</small></div>'+
         '<span class="delivery-status '+esc(x.status||"")+'">'+esc(deliveryStatusLabels[x.status]||x.status||"—")+'</span>'+
         retry+
         (x.last_error?'<small class="candidate-delivery-error">'+esc(x.last_error)+'</small>':'')+
