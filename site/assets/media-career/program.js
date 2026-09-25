@@ -7,7 +7,7 @@
   });
   let sid=sessionStorage.getItem("mcp_sid");
   if(!sid){sid="mcp_"+crypto.randomUUID();sessionStorage.setItem("mcp_sid",sid)}
-  fetch(API+"/v1/events",{method:"POST",headers:{"Content-Type":"application/json"},keepalive:true,body:JSON.stringify({
+  const landingEvent=JSON.stringify({
     eventName:"landing_view",
     sessionId:sid,
     path:location.pathname,
@@ -16,7 +16,24 @@
     utmCampaign:sessionStorage.getItem("utm_campaign")||"media_career_cohort01",
     utmContent:sessionStorage.getItem("utm_content")||"",
     referrer:document.referrer||""
-  })}).catch(()=>{});
+  });
+  let landingSent=false;
+  const sendLanding=()=>{
+    if(landingSent)return;
+    landingSent=true;
+    fetch(API+"/v1/events",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      keepalive:true,
+      body:landingEvent
+    }).catch(()=>{});
+  };
+  if("requestIdleCallback" in window){
+    requestIdleCallback(sendLanding,{timeout:1500});
+  }else{
+    setTimeout(sendLanding,800);
+  }
+  addEventListener("pagehide",sendLanding,{once:true});
 
   const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
   if(reduce){document.querySelectorAll(".reveal").forEach(el=>el.classList.add("on"));return}
