@@ -881,6 +881,73 @@ const checkedValues=function(id){
   return Array.from(document.querySelectorAll("#"+id+" input:checked")).map(function(x){return x.value});
 };
 
+
+const DRAFT_KEY="mcp_interest_draft_v1";
+const DRAFT_FIELDS=[
+  "fullName","phone","email","city","currentStatus","schoolCompany",
+  "experienceLevel","preferredTrack","portfolioUrl","careerWhy","currentBarrier"
+];
+let draftTimer=null;
+let draftRestored=false;
+
+function saveDraft(){
+  try{
+    const values={};
+    DRAFT_FIELDS.forEach(function(name){
+      const field=form.elements[name];
+      if(field)values[name]=field.value;
+    });
+    sessionStorage.setItem(DRAFT_KEY,JSON.stringify({
+      version:1,
+      savedAt:Date.now(),
+      step:currentStep,
+      values:values,
+      experienceAreas:checkedValues("experienceAreas"),
+      tuitionAwareness:document.getElementById("tuitionAwareness").checked,
+      privacyConsent:document.getElementById("privacyConsent").checked,
+      marketingConsent:document.getElementById("marketingConsent").checked
+    }));
+  }catch(_error){}
+}
+
+function scheduleDraftSave(){
+  clearTimeout(draftTimer);
+  draftTimer=setTimeout(saveDraft,180);
+}
+
+function restoreDraft(){
+  try{
+    const raw=sessionStorage.getItem(DRAFT_KEY);
+    if(!raw)return 0;
+    const draft=JSON.parse(raw);
+    if(!draft||draft.version!==1||!draft.values)return 0;
+
+    DRAFT_FIELDS.forEach(function(name){
+      const field=form.elements[name];
+      if(field&&typeof draft.values[name]==="string")field.value=draft.values[name];
+    });
+
+    const selected=new Set(Array.isArray(draft.experienceAreas)?draft.experienceAreas:[]);
+    document.querySelectorAll("#experienceAreas input[type='checkbox']").forEach(function(input){
+      input.checked=selected.has(input.value);
+    });
+    document.getElementById("tuitionAwareness").checked=draft.tuitionAwareness===true;
+    document.getElementById("privacyConsent").checked=draft.privacyConsent===true;
+    document.getElementById("marketingConsent").checked=draft.marketingConsent===true;
+
+    draftRestored=Object.values(draft.values).some(function(value){return String(value||"").trim()!==""})
+      || selected.size>0
+      || draft.tuitionAwareness===true
+      || draft.privacyConsent===true
+      || draft.marketingConsent===true;
+
+    return Number.isInteger(draft.step)?Math.max(0,Math.min(draft.step,steps.length-1)):0;
+  }catch(_error){
+    sessionStorage.removeItem(DRAFT_KEY);
+    return 0;
+  }
+}
+
 let sid=sessionStorage.getItem("mcp_sid");
 if(!sid){
   sid="mcp_"+crypto.randomUUID();
@@ -911,11 +978,13 @@ track("apply_view");
 
 let formStarted=false;
 form.addEventListener("input",function(){
+  scheduleDraftSave();
   if(!formStarted){
     formStarted=true;
     track("form_start");
   }
 },{passive:true});
+form.addEventListener("change",scheduleDraftSave,{passive:true});
 
 function renderStep(index,scroll){
   currentStep=Math.max(0,Math.min(index,steps.length-1));
@@ -934,6 +1003,7 @@ function renderStep(index,scroll){
   statusEl.textContent=currentStep===steps.length-1
     ?"Kiểm tra lại thông tin rồi bấm gửi. Không có khoản thanh toán nào ở bước này."
     :"Thông tin chỉ được gửi khi bạn bấm “Gửi đăng ký quan tâm”.";
+  scheduleDraftSave();
 
   if(scroll){
     document.querySelector(".form-panel").scrollIntoView({
@@ -973,14 +1043,36 @@ form.addEventListener("keydown",function(event){
   }
 });
 
+const SUBMIT_TIMEOUT_MS=15000;
+let submitting=false;
+
+window.addEventListener("offline",function(){
+  statusEl.className="status error";
+  statusEl.textContent="Bạn đang mất kết nối. Nội dung vẫn được giữ trong tab này để gửi lại khi có mạng.";
+});
+window.addEventListener("online",function(){
+  if(submitting)return;
+  statusEl.className="status";
+  statusEl.textContent="Đã kết nối lại. Bạn có thể tiếp tục và gửi đăng ký.";
+});
+
 form.addEventListener("submit",async function(event){
   event.preventDefault();
+  if(submitting)return;
   if(currentStep!==steps.length-1){
     if(validateCurrent())renderStep(currentStep+1,true);
     return;
   }
   if(!validateCurrent())return;
 
+  if(navigator.onLine===false){
+    statusEl.className="status error";
+    statusEl.textContent="Bạn đang mất kết nối. Nội dung đã được giữ trong tab này; hãy thử lại khi có mạng.";
+    track("form_submit_error","",{kind:"offline"});
+    return;
+  }
+
+  submitting=true;
   submitBtn.disabled=true;
   statusEl.className="status";
   statusEl.textContent="Đang ghi nhận thông tin…";
@@ -1010,32 +1102,60 @@ form.addEventListener("submit",async function(event){
     referrer:document.referrer||""
   };
 
+  const controller=new AbortController();
+  const timeoutId=setTimeout(function(){controller.abort()},SUBMIT_TIMEOUT_MS);
+
   try{
     const response=await fetch(API+"/v1/applications",{
       method:"POST",
       headers:{"Content-Type":"application/json"},
-      body:JSON.stringify(payload)
+      body:JSON.stringify(payload),
+      signal:controller.signal
     });
     const data=await response.json().catch(function(){return {}});
     if(!response.ok){
-      if(response.status===409){
-        throw new Error("Email này đã có đăng ký quan tâm. Vui lòng liên hệ Hang Đôi nếu bạn cần cập nhật thông tin.");
-      }
-      throw new Error(data.error||"Chưa gửi được đăng ký.");
+      const error=new Error(response.status===409
+        ?"Email này đã có đăng ký quan tâm. Vui lòng liên hệ Hang Đôi nếu bạn cần cập nhật thông tin."
+        :(data.error||"Chưa gửi được đăng ký."));
+      error.kind="http_"+response.status;
+      throw error;
     }
+
+    sessionStorage.removeItem(DRAFT_KEY);
     await track("form_submit_client",data.candidateCode,{intakeMode:data.intakeMode||"INTEREST_ONLY"});
     location.href="/media-career-program/thank-you/?candidate="+encodeURIComponent(data.candidateCode)+"&mode="+encodeURIComponent(data.intakeMode||"INTEREST_ONLY");
   }catch(error){
     console.error(error);
+    const kind=navigator.onLine===false
+      ?"offline"
+      :(error.name==="AbortError"
+        ?"timeout"
+        :(error.kind||(error.message==="Failed to fetch"?"network":"unknown")));
+    track("form_submit_error","",{kind:kind});
+
     statusEl.className="status error";
-    statusEl.textContent=error.message==="Failed to fetch"
-      ?"Không kết nối được hệ thống. Vui lòng kiểm tra mạng và thử lại."
-      :error.message;
+    if(kind==="offline"){
+      statusEl.textContent="Bạn đang mất kết nối. Nội dung đã được giữ trong tab này; hãy thử lại khi có mạng.";
+    }else if(kind==="timeout"){
+      statusEl.textContent="Kết nối đang chậm nên hệ thống chưa xác nhận được. Nội dung vẫn được giữ; vui lòng thử gửi lại.";
+    }else if(kind==="network"){
+      statusEl.textContent="Không kết nối được hệ thống. Nội dung vẫn được giữ trong tab này; vui lòng thử lại.";
+    }else{
+      statusEl.textContent=error.message;
+    }
     submitBtn.disabled=false;
+    submitting=false;
+  }finally{
+    clearTimeout(timeoutId);
   }
 });
 
-renderStep(0,false);
+const restoredStep=restoreDraft();
+renderStep(restoredStep,false);
+if(draftRestored){
+  statusEl.className="status";
+  statusEl.textContent="Đã khôi phục nội dung bạn đang điền trong tab này.";
+}
 </script>
 </body>
 </html>
