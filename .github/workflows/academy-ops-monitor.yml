@@ -4,7 +4,6 @@ on:
   push:
     branches: [main]
     paths:
-      - "api/**"
       - ".github/workflows/academy-ops-monitor.yml"
   schedule:
     - cron: "*/15 * * * *"
