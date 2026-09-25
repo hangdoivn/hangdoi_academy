@@ -10,107 +10,170 @@
 :root{--blue:#152BE8;--yellow:#FDDE58;--ink:#00031A;--mist:#F3F5FF;--line:#D9DDEC;--muted:#646B86;--red:#B42318;--green:#157A55;--white:#fff}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--mist)}button,input,select{font:inherit}.wrap{width:min(calc(100% - 28px),1380px);margin:auto}.nav{height:70px;display:flex;align-items:center;justify-content:space-between}.nav img{width:184px}.tag{font-size:12px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}h1{font-size:44px;letter-spacing:-.045em;margin:4px 0 22px}.login{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;display:grid;grid-template-columns:1fr auto;gap:10px;margin-bottom:18px}.login input,.login button,.toolbar input,.toolbar select,.toolbar button,.range select{border:1px solid var(--line);border-radius:12px;padding:11px 12px;background:#fff}.login button,.toolbar button{background:var(--ink);color:#fff;font-weight:850;cursor:pointer}.hint{font-size:12px;color:var(--muted);grid-column:1/-1}.topline{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}.range{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}.metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:14px}.metric,.panel{background:#fff;border:1px solid var(--line);border-radius:16px}.metric{padding:16px}.metric small{color:var(--muted);font-weight:800}.metric strong{display:block;font-size:28px;margin-top:6px}.cohort-band{display:grid;grid-template-columns:1.2fr repeat(4,.7fr) auto;gap:10px;align-items:stretch;margin-bottom:14px}.cohort-main,.cohort-stat,.cohort-settings{background:var(--ink);color:#fff;border-radius:16px;padding:16px}.cohort-main small,.cohort-stat small{display:block;color:#bfc6df;font-size:11px;font-weight:800}.cohort-main strong,.cohort-stat strong{display:block;font-size:28px;margin-top:5px}.cohort-main p{margin:6px 0 0;color:#cfd4e6;font-size:12px}.cohort-settings{display:flex;gap:8px;align-items:end;background:#fff;color:var(--ink);border:1px solid var(--line)}.cohort-settings label{display:grid;gap:4px;font-size:10px;color:var(--muted)}.cohort-settings input,.cohort-settings select{width:92px;border:1px solid var(--line);border-radius:9px;padding:8px}.cohort-settings button{border:0;border-radius:999px;background:var(--blue);color:#fff;padding:9px 12px;font-weight:850;cursor:pointer}.coverage-track{height:8px;background:rgba(255,255,255,.16);border-radius:999px;overflow:hidden;margin-top:10px}.coverage-track i{display:block;height:100%;background:var(--yellow);border-radius:999px}.acq{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:14px}.acq-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:14px}.acq-head h2{margin:3px 0 5px;font-size:20px}.mode-pill{padding:7px 10px;border-radius:999px;background:var(--yellow);font-size:11px;font-weight:950;white-space:nowrap}.mode-pill.open{background:#DDF5E8;color:#145A3C}.acq-grid{display:grid;grid-template-columns:1fr 1fr 1.2fr;gap:9px}.acq-grid label{display:grid;gap:5px;font-size:11px;color:var(--muted)}.acq-grid input,.acq-grid select{width:100%;border:1px solid var(--line);border-radius:9px;padding:9px;background:#fff;font:inherit}.acq-links{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:10px}.acq-links input{width:100%;border:1px solid var(--line);border-radius:9px;padding:9px;background:var(--mist);font:inherit}.acq-links button,.preset{border:0;border-radius:999px;background:var(--ink);color:#fff;padding:9px 12px;font-weight:850;cursor:pointer}.preset-row{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.preset{background:#fff;color:var(--ink);border:1px solid var(--line);font-size:12px}.acq-note{font-size:12px;color:var(--muted);margin:8px 0 0}.campaign-editor{display:grid;grid-template-columns:1.2fr .7fr .7fr;gap:9px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}.campaign-editor label{display:grid;gap:5px;font-size:11px;color:var(--muted)}.campaign-editor input,.campaign-editor select,.campaign-editor textarea{width:100%;border:1px solid var(--line);border-radius:9px;padding:9px;background:#fff;font:inherit}.campaign-editor textarea{min-height:76px;resize:vertical}.campaign-editor .wide{grid-column:1/-1}.ready-checks{grid-column:1/-1;display:grid;grid-template-columns:repeat(5,1fr);gap:7px}.ready-check{display:flex!important;align-items:center;gap:7px!important;padding:9px;border:1px solid var(--line);border-radius:10px;background:var(--mist);font-size:11px!important;color:var(--ink)!important}.ready-check input{width:auto!important;margin:0}.readiness{display:inline-flex;align-items:center;gap:6px}.readiness-bar{width:66px;height:6px;background:#E6E8F2;border-radius:999px;overflow:hidden}.readiness-bar i{display:block;height:100%;background:var(--blue);border-radius:999px}.campaign-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.campaign-actions button{border:0;border-radius:999px;background:var(--blue);color:#fff;padding:9px 13px;font-weight:850;cursor:pointer}.campaign-registry{margin-top:16px;border-top:1px solid var(--line);padding-top:14px}.campaign-registry h3{font-size:14px;margin:0 0 10px}.campaign-table{overflow:auto;border:1px solid var(--line);border-radius:12px}.campaign-table table{min-width:980px}.campaign-table td,.campaign-table th{padding:10px}.campaign-table tr[data-content]{cursor:pointer}.campaign-table tr[data-content]:hover{background:var(--mist)}.metric-mini{font-size:11px;color:var(--muted)}.legal-gate{background:#fff;border:2px solid var(--red);border-radius:18px;padding:18px;margin-bottom:14px}.legal-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:14px}.legal-head h2{margin:3px 0 5px;font-size:20px}.gate-pill{background:var(--red);color:#fff;border-radius:999px;padding:7px 10px;font-size:11px;font-weight:950;white-space:nowrap}.legal-progress{height:9px;background:#F1E6E5;border-radius:999px;overflow:hidden;margin:10px 0 16px}.legal-progress i{display:block;height:100%;background:var(--green);border-radius:999px}.legal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.legal-item{display:grid;gap:5px;background:var(--mist);border-radius:12px;padding:10px}.legal-item span{font-size:11px;font-weight:800}.legal-item select,.legal-meta input,.legal-meta textarea{width:100%;border:1px solid var(--line);border-radius:9px;padding:8px 9px;background:#fff;font:inherit;color:var(--ink)}.legal-meta{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}.legal-meta label{display:grid;gap:5px;font-size:11px;color:var(--muted)}.legal-meta .wide{grid-column:1/-1}.legal-meta textarea{min-height:80px;resize:vertical}.legal-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.legal-actions button{border:0;border-radius:999px;padding:10px 14px;background:var(--ink);color:#fff;font-weight:900;cursor:pointer}.legal-actions button.review{background:var(--green)}.legal-note{font-size:12px;color:var(--muted);margin:0}.legal-final{margin-top:14px;padding:14px;border-radius:14px;background:#FFF3F1;border:1px solid #E8B9B4}.legal-final h3{font-size:14px;margin:0 0 10px}.legal-final-grid{display:grid;grid-template-columns:.7fr 1fr 1.4fr;gap:9px}.legal-final label{display:grid;gap:5px;font-size:11px;color:var(--muted)}.legal-final input,.legal-final select{width:100%;border:1px solid var(--line);border-radius:9px;padding:8px 9px;background:#fff;font:inherit}.legal-final button{margin-top:10px;border:0;border-radius:999px;padding:10px 14px;background:var(--red);color:#fff;font-weight:900;cursor:pointer}.legal-final .approval-state{display:inline-block;padding:5px 8px;border-radius:999px;background:#fff;font-size:11px;font-weight:900}.legal-note{font-size:12px;color:var(--muted);margin:0}.insights{display:grid;grid-template-columns:1.1fr .9fr .9fr;gap:12px;margin-bottom:16px}.panel{padding:17px;min-height:230px}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}.panel h2{font-size:15px;margin:0}.badge{padding:5px 8px;border-radius:999px;background:var(--yellow);font-size:11px;font-weight:900}.funnel{display:grid;gap:8px}.frow{display:grid;grid-template-columns:1fr 64px 64px;gap:8px;align-items:center;font-size:12px}.bar{height:8px;background:#edf0f7;border-radius:999px;overflow:hidden;margin-top:4px}.bar i{display:block;height:100%;background:var(--blue);border-radius:999px}.list{display:grid;gap:9px}.list-row{display:grid;grid-template-columns:1fr auto;gap:8px;font-size:12px;padding-bottom:8px;border-bottom:1px solid #edf0f7}.list-row:last-child{border-bottom:0}.list-row b{font-size:13px}.notifications{max-height:188px;overflow:auto}.nitem{padding:9px 0;border-bottom:1px solid #edf0f7;font-size:12px}.nitem:last-child{border-bottom:0}.nitem button{border:0;background:none;color:var(--blue);font-weight:850;cursor:pointer;padding:0;margin-top:5px}.delivery-panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:16px}.delivery-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:14px}.delivery-head h2{font-size:20px;margin:3px 0 5px}.delivery-note{margin:0;color:var(--muted);font-size:12px;line-height:1.45}.delivery-state{padding:7px 10px;border-radius:999px;font-size:11px;font-weight:950;white-space:nowrap;background:var(--yellow)}.delivery-state.ok{background:#DDF5E8;color:#145A3C}.delivery-state.warn{background:#FFF2C2;color:#6B5400}.delivery-state.bad{background:#FDE8E6;color:var(--red)}.delivery-state.busy{background:#E9ECFF;color:var(--blue)}.delivery-head-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}.delivery-test{border:0;border-radius:999px;background:var(--ink);color:#fff;padding:8px 11px;font-size:11px;font-weight:900;cursor:pointer}.delivery-test:disabled{opacity:.4;cursor:not-allowed}.delivery-config{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.delivery-config span{display:inline-flex;align-items:center;gap:6px;padding:7px 9px;border:1px solid var(--line);border-radius:999px;font-size:11px;font-weight:800}.delivery-config i{width:8px;height:8px;border-radius:999px;background:#B8BECE}.delivery-config .on i{background:var(--green)}.delivery-config .delivery-config-missing{border-color:#E4A39D;background:#FFF3F1;color:var(--red)}.delivery-config .delivery-config-missing i{background:var(--red)}.delivery-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}.delivery-metric{background:var(--mist);border-radius:12px;padding:11px}.delivery-metric small{display:block;color:var(--muted);font-size:10px;font-weight:850;text-transform:uppercase;letter-spacing:.05em}.delivery-metric strong{display:block;font-size:22px;margin-top:4px}.delivery-list{border-top:1px solid var(--line)}.delivery-row{display:grid;grid-template-columns:minmax(0,1.3fr) .9fr .7fr .7fr auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid #edf0f7;font-size:12px}.delivery-row:last-child{border-bottom:0}.delivery-row b{display:block;overflow:hidden;text-overflow:ellipsis}.delivery-row small{color:var(--muted)}.delivery-status{display:inline-block;padding:5px 7px;border-radius:999px;background:var(--mist);font-size:10px;font-weight:900}.delivery-status.DELIVERED{background:#DDF5E8;color:#145A3C}.delivery-status.FAILED{background:#FDE8E6;color:var(--red)}.delivery-status.RETRY,.delivery-status.PROCESSING{background:#FFF2C2;color:#6B5400}.delivery-retry{border:0;border-radius:999px;background:var(--ink);color:#fff;padding:7px 10px;font-size:11px;font-weight:850;cursor:pointer}.delivery-retry:disabled{opacity:.45;cursor:wait}.toolbar{display:grid;grid-template-columns:1.25fr .7fr .7fr auto;gap:10px;margin-bottom:10px}.status{font-size:12px;color:var(--muted);margin:10px 0}.ok{color:var(--green)}.err{color:var(--red)}.table-wrap{overflow:auto;background:#fff;border:1px solid var(--line);border-radius:18px;margin-bottom:50px}table{width:100%;border-collapse:collapse;min-width:1080px}th,td{padding:13px 12px;border-bottom:1px solid #edf0f7;text-align:left;font-size:13px;vertical-align:top}th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);position:sticky;top:0;background:#fff}td strong{font-size:14px;cursor:pointer}.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:var(--blue)}.stage{font:inherit;border:1px solid var(--line);border-radius:10px;padding:7px 9px;background:#fff;min-width:170px}.source{display:inline-block;padding:5px 8px;border-radius:999px;background:var(--mist);font-size:11px}.empty{padding:48px;text-align:center;color:var(--muted)}dialog{width:min(calc(100% - 28px),820px);max-height:88vh;border:0;border-radius:24px;padding:0;box-shadow:0 28px 100px rgba(0,3,26,.3)}dialog::backdrop{background:rgba(0,3,26,.48)}.drawer{padding:24px}.drawer-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;border-bottom:1px solid var(--line);padding-bottom:18px}.drawer h2{font-size:28px;letter-spacing:-.03em;margin:3px 0}.close{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 12px;cursor:pointer}.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}.detail{background:var(--mist);border-radius:14px;padding:13px}.detail small{display:block;color:var(--muted);font-size:11px;margin-bottom:4px}.answers{display:grid;gap:12px}.answer{border-top:1px solid var(--line);padding-top:12px}.answer b{display:block;font-size:12px;color:var(--blue);margin-bottom:5px}.answer p{white-space:pre-wrap;margin:0;font-size:14px}.loading{color:var(--muted)}.ops{margin:18px 0;padding:16px;border:1px solid var(--line);border-radius:16px;background:#fff}.ops h3,.timeline h3{font-size:14px;margin:0 0 12px}.ops-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.ops label{display:grid;gap:5px;font-size:11px;color:var(--muted)}.ops input,.ops textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:9px 10px;font:inherit;color:var(--ink);background:#fff}.ops textarea{min-height:90px;resize:vertical}.ops .wide{grid-column:1/-1}.ops button{margin-top:12px;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 14px;font-weight:850;cursor:pointer}.timeline{margin-top:18px}.titem{padding:9px 0;border-top:1px solid var(--line);font-size:12px}.titem b{color:var(--blue)}.candidate-delivery{margin:18px 0;padding:16px;border:1px solid var(--line);border-radius:16px;background:#fff}.candidate-delivery-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}.candidate-delivery h3{font-size:14px;margin:0}.candidate-delivery-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;align-items:start;padding:10px 0;border-top:1px solid var(--line);font-size:12px}.candidate-delivery-row b{display:block}.candidate-delivery-row small{display:block;color:var(--muted);margin-top:3px}.candidate-delivery-row .delivery-retry{align-self:center}.selection-box{margin:18px 0;padding:16px;border:1px solid #BAC2FF;border-radius:16px;background:#EEF0FF}.selection-box h3{font-size:14px;margin:0}.selection-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.selection-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.selection-grid label{display:grid;gap:5px;font-size:11px;color:#4e5682}.selection-grid input,.selection-grid textarea,.selection-grid select{width:100%;border:1px solid #C9CEF3;border-radius:10px;padding:9px 10px;font:inherit;background:#fff;color:var(--ink)}.selection-grid textarea{min-height:82px;resize:vertical}.selection-grid .wide{grid-column:1/-1}.selection-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.selection-actions button{border:0;border-radius:999px;background:var(--blue);color:#fff;padding:10px 14px;font-weight:850;cursor:pointer}.selection-actions button.secondary{background:#fff;color:var(--ink);border:1px solid #C9CEF3}.selection-actions button.dark{background:var(--ink)}.assessment{margin:18px 0;padding:16px;border-radius:16px;background:var(--ink);color:#fff}.assessment h3{font-size:14px;margin:0 0 12px}.score-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.score-grid label{display:grid;gap:5px;font-size:11px;color:#c9d0e5}.score-grid input,.assessment input,.assessment textarea,.assessment select{width:100%;border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:9px 10px;font:inherit;background:rgba(255,255,255,.08);color:#fff}.assessment textarea{min-height:86px;resize:vertical}.assessment select option{color:var(--ink)}.assessment-meta{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.assessment .wide{grid-column:1/-1}.assessment button{margin-top:12px;border:0;border-radius:999px;background:var(--yellow);color:var(--ink);padding:10px 14px;font-weight:900;cursor:pointer}.admission{margin:18px 0;padding:16px;border:1px solid #F0C94F;border-radius:16px;background:#FFF9DA}.admission h3{font-size:14px;margin:0}.admission-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.locked{font-size:11px;font-weight:900;padding:5px 8px;border-radius:999px;background:var(--ink);color:#fff}.admission-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.admission label{display:grid;gap:5px;font-size:11px;color:#6b5b10}.admission input,.admission textarea,.admission select{width:100%;border:1px solid #E5CB66;border-radius:10px;padding:9px 10px;font:inherit;background:#fff;color:var(--ink)}.admission textarea{min-height:82px;resize:vertical}.admission .wide{grid-column:1/-1}.admission-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.admission button{border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 14px;font-weight:850;cursor:pointer}.admission button.secondary{background:#fff;color:var(--ink);border:1px solid #D5BB54}.score-total{font-size:28px;font-weight:950;color:var(--yellow);margin:10px 0}.ops-cell{font-size:12px}.ops-cell b{display:block}.ops-cell span{color:var(--muted)}
 @media(max-width:1040px){.acq-grid{grid-template-columns:1fr 1fr}.legal-grid{grid-template-columns:repeat(2,1fr)}.cohort-band{grid-template-columns:repeat(2,1fr)}.cohort-settings{grid-column:1/-1}.metrics{grid-template-columns:repeat(2,1fr)}.insights{grid-template-columns:1fr}.toolbar{grid-template-columns:1fr 1fr}.delivery-row{grid-template-columns:minmax(0,1.2fr) .8fr .7fr auto}.delivery-row .delivery-error{grid-column:1/-1}}@media(max-width:650px){.ready-checks{grid-template-columns:1fr 1fr}.campaign-editor,.acq-grid,.legal-grid,.legal-meta,.legal-final-grid{grid-template-columns:1fr}.legal-meta .wide{grid-column:auto}.legal-head,.delivery-head{flex-direction:column}.delivery-head-actions{width:100%;justify-content:space-between}.cohort-band{grid-template-columns:1fr}.cohort-settings{grid-column:auto;align-items:stretch;flex-direction:column}.cohort-settings input,.cohort-settings select{width:100%}.score-grid,.assessment-meta,.admission-grid,.selection-grid{grid-template-columns:1fr}.login{grid-template-columns:1fr}.login button{width:100%}.metrics,.toolbar,.detail-grid,.delivery-metrics{grid-template-columns:1fr 1fr}.topline{align-items:flex-start;flex-direction:column}.delivery-row{grid-template-columns:1fr auto;gap:6px}.delivery-row .delivery-type,.delivery-row .delivery-attempts,.delivery-row .delivery-error{grid-column:1/-1}.delivery-row .delivery-action{grid-column:2;grid-row:1}.delivery-state{white-space:normal}.candidate-delivery-row{grid-template-columns:1fr auto}.candidate-delivery-row .candidate-delivery-error{grid-column:1/-1}}
+
+/* ===== Admin IA v2 · P0-P1 ===== */
+.eyebrow,.view-kicker{font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.topline h1{margin:3px 0 0}.admin-tabs{position:sticky;top:0;z-index:20;display:flex;gap:6px;padding:8px;margin:0 0 16px;background:rgba(243,245,255,.94);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:16px;overflow:auto}
+.admin-tab{border:0;background:transparent;color:var(--muted);padding:10px 14px;border-radius:11px;font-weight:850;white-space:nowrap;cursor:pointer;display:inline-flex;gap:7px;align-items:center}
+.admin-tab.active{background:var(--ink);color:#fff}.nav-badge{min-width:20px;height:20px;padding:0 6px;border-radius:999px;background:rgba(255,255,255,.14);display:inline-grid;place-items:center;font-size:10px}.nav-dot{width:8px;height:8px;border-radius:50%;background:var(--red)}
+.admin-view{display:none}.admin-view.active{display:block}.view-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin:8px 2px 14px}.view-head h2{font-size:30px;letter-spacing:-.035em;margin:4px 0}.view-head p{margin:4px 0 0;color:var(--muted);font-size:13px}.text-button{border:0;background:none;color:var(--blue);font-weight:900;cursor:pointer;padding:8px}
+.action-metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:14px}.action-metric{border:1px solid var(--line);background:#fff;text-align:left;border-radius:16px;padding:15px;cursor:pointer;color:var(--ink)}.action-metric:hover{border-color:#AEB7FF}.action-metric small{display:block;color:var(--muted);font-weight:800}.action-metric strong{display:block;font-size:30px;line-height:1;margin:8px 0 5px}.action-metric span{font-size:11px;color:var(--muted)}.action-metric.danger strong{color:var(--red)}
+.overview-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:12px;margin-bottom:12px}.work-panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:17px;min-height:230px}.action-center{display:grid}.action-item{display:grid;grid-template-columns:minmax(0,1.3fr) 1fr auto;gap:10px;align-items:center;padding:10px 0;border-top:1px solid #edf0f7}.action-item:first-child{border-top:0}.action-item b{font-size:13px}.action-item small{display:block;color:var(--muted);margin-top:2px}.action-kind{display:inline-flex;padding:5px 8px;border-radius:999px;background:var(--mist);font-size:10px;font-weight:900}.action-kind.overdue{background:#FDE8E6;color:var(--red)}.action-open{border:0;background:var(--ink);color:#fff;border-radius:999px;padding:7px 10px;font-size:11px;font-weight:850;cursor:pointer}
+.overview-status-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}.status-card{border:1px solid var(--line);background:#fff;border-radius:16px;padding:14px;text-align:left;color:var(--ink);cursor:pointer}.status-card small{color:var(--muted);font-weight:800}.status-card strong{display:block;font-size:16px;margin:5px 0}.status-card span{font-size:12px;color:var(--muted)}
+.candidate-cards{display:none}.candidate-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:9px}.candidate-card-head{display:flex;justify-content:space-between;gap:10px}.candidate-card h3{font-size:16px;margin:0}.candidate-card .code{margin-top:3px}.candidate-card-meta{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}.candidate-card-action{background:var(--mist);border-radius:12px;padding:10px}.candidate-card-action small{display:block;color:var(--muted);font-size:10px}.candidate-card-action b{display:block;margin-top:3px}.candidate-card-footer{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:10px}.candidate-card-footer button{border:0;background:var(--ink);color:#fff;border-radius:999px;padding:8px 11px;font-weight:850}
+.recruitment-insights{grid-template-columns:1.2fr .8fr}.candidate-desktop .table-wrap table{min-width:880px}
+@media(max-width:1040px){.action-metrics{grid-template-columns:repeat(3,1fr)}.overview-grid{grid-template-columns:1fr}.overview-status-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:650px){.wrap{width:min(calc(100% - 20px),1380px)}.nav{height:58px}.nav img{width:158px}.topline h1{font-size:34px}.login{padding:13px}.admin-tabs{margin-left:-2px;margin-right:-2px;padding:6px}.admin-tab{padding:9px 11px}.view-head h2{font-size:26px}.view-head{align-items:flex-start}.action-metrics{grid-template-columns:1fr 1fr}.action-metric:last-child{grid-column:1/-1}.overview-status-grid{grid-template-columns:1fr}.action-item{grid-template-columns:1fr auto}.action-item .action-detail{grid-column:1/-1}.candidate-desktop{display:none}.candidate-cards{display:block}.metrics{grid-template-columns:1fr 1fr}.recruitment-insights{grid-template-columns:1fr}.cohort-band{grid-template-columns:1fr 1fr}.cohort-main,.cohort-settings{grid-column:1/-1}}
 </style>
 </head>
 <body>
 <div class="wrap">
-<div class="nav"><a href="/"><img src="/logo-academy.svg" alt="Hang Đôi Academy"></a><div class="tag">Internal · Candidate CRM</div></div>
-<div class="topline"><h1>Media Career Pipeline</h1><div class="range">Window <select id="days"><option value="7">7 days</option><option value="30" selected>30 days</option><option value="90">90 days</option><option value="365">365 days</option></select></div></div>
-<div class="login"><input id="token" type="password" placeholder="Admin Access Key"><button id="connect">Connect</button><div class="hint">Access key chỉ được giữ trong session của browser, không nhúng trong source.</div></div>
+<div class="nav"><a href="/"><img src="/logo-academy.svg" alt="Hang Đôi Academy"></a><div class="tag">Nội bộ · Quản lý ứng viên</div></div>
+<div class="topline"><div><div class="eyebrow">HANG ĐÔI ACADEMY · NỘI BỘ</div><h1>Quản lý tuyển sinh</h1></div><div class="range">Khoảng thời gian <select id="days"><option value="7">7 ngày</option><option value="30" selected>30 ngày</option><option value="90">90 ngày</option><option value="365">365 ngày</option></select></div></div>
+<div class="login"><input id="token" type="password" placeholder="Khóa truy cập quản trị"><button id="connect">Kết nối</button><div class="hint">Khóa truy cập chỉ được giữ trong phiên trình duyệt hiện tại, không lưu trong mã nguồn.</div></div>
 
-<div class="metrics">
-<div class="metric"><small>Interest / Applications</small><strong id="mAll">0</strong></div>
-<div class="metric"><small>Qualified+</small><strong id="mQualified">0</strong></div>
-<div class="metric"><small>In Selection</small><strong id="mSelection">0</strong></div>
-<div class="metric"><small>Pass+</small><strong id="mPass">0</strong></div>
-<div class="metric"><small>Admitted / Enrolled</small><strong id="mAdmitted">0</strong></div>
+<nav class="admin-tabs" aria-label="Điều hướng quản trị">
+  <button class="admin-tab active" data-view="overview">Tổng quan</button>
+  <button class="admin-tab" data-view="candidates">Ứng viên <span id="candidateNavBadge" class="nav-badge">0</span></button>
+  <button class="admin-tab" data-view="recruitment">Tuyển sinh</button>
+  <button class="admin-tab" data-view="legal">Pháp lý</button>
+  <button class="admin-tab" data-view="system">Hệ thống <span id="systemNavDot" class="nav-dot" hidden></span></button>
+</nav>
+
+<main class="admin-main">
+<section class="admin-view active" data-view-panel="overview">
+  <div class="view-head"><div><span class="view-kicker">Tổng quan hôm nay</span><h2>Việc cần xử lý trước</h2></div><button class="text-button" data-go-view="candidates">Xem tất cả ứng viên →</button></div>
+  <div class="action-metrics">
+    <button class="action-metric" data-action-filter="new"><small>Đăng ký mới</small><strong id="aNew">0</strong><span>chưa đọc</span></button>
+    <button class="action-metric" data-action-filter="unassigned"><small>Chưa phụ trách</small><strong id="aUnassigned">0</strong><span>cần giao người</span></button>
+    <button class="action-metric" data-action-filter="today"><small>Cần xử lý hôm nay</small><strong id="aToday">0</strong><span>theo lịch tiếp theo</span></button>
+    <button class="action-metric danger" data-action-filter="overdue"><small>Quá hạn</small><strong id="aOverdue">0</strong><span>cần ưu tiên</span></button>
+    <button class="action-metric" data-action-filter="selection"><small>Lịch tuyển chọn sắp tới</small><strong id="aSelection">0</strong><span>7 ngày tới</span></button>
+  </div>
+  <div class="overview-grid">
+    <section class="work-panel"><div class="panel-head"><h2>Trung tâm công việc</h2><span id="actionCenterCount" class="badge">0 việc</span></div><div id="actionCenter" class="action-center"><div class="status">Kết nối dữ liệu để xem việc cần xử lý.</div></div></section>
+    <section class="panel"><div class="panel-head"><h2>Đăng ký mới</h2><span id="unreadCount" class="badge">0 chưa đọc</span></div><div id="notifications" class="notifications"></div></section>
+  </div>
+  <div class="overview-status-grid">
+    <button class="status-card" data-go-view="legal"><small>Pháp lý</small><strong id="overviewLegalState">Đang kiểm tra</strong><span id="overviewLegalNote">—</span></button>
+    <button class="status-card" data-go-view="system"><small>Hệ thống thông báo</small><strong id="overviewSystemState">Đang kiểm tra</strong><span id="overviewSystemNote">—</span></button>
+  </div>
+  <div class="cohort-band">
+<section class="cohort-main"><small>KHÓA 01 · MỤC TIÊU NHẬP HỌC</small><strong><span id="cEnrolled">0</span> / <span id="cTarget">10</span></strong><p id="cMessage">Đang tải capacity…</p><div class="coverage-track"><i id="cProgress" style="width:0%"></i></div></section>
+<section class="cohort-stat"><small>Còn thiếu</small><strong id="cRemaining">10</strong></section>
+<section class="cohort-stat"><small>ĐẠT</small><strong id="cPass">0</strong></section>
+<section class="cohort-stat"><small>DỰ BỊ</small><strong id="cWaitlist">0</strong></section>
+<section class="cohort-stat"><small>Độ phủ</small><strong id="cCoverage">0</strong></section>
+<section class="cohort-settings"><label>Mục tiêu<input id="cTargetInput" type="number" min="1" max="100" value="10"></label><label>Status<select id="cStatus"><option value="OPEN">Đang mở</option><option value="PAUSED">Tạm dừng</option><option value="CLOSED">Đã đóng</option></select></label><button id="saveCohort">Lưu</button></section>
 </div>
 
-<div class="cohort-band">
-<section class="cohort-main"><small>COHORT 01 · ENROLLMENT TARGET</small><strong><span id="cEnrolled">0</span> / <span id="cTarget">10</span></strong><p id="cMessage">Đang tải capacity…</p><div class="coverage-track"><i id="cProgress" style="width:0%"></i></div></section>
-<section class="cohort-stat"><small>Remaining to enroll</small><strong id="cRemaining">10</strong></section>
-<section class="cohort-stat"><small>PASS</small><strong id="cPass">0</strong></section>
-<section class="cohort-stat"><small>WAITLIST</small><strong id="cWaitlist">0</strong></section>
-<section class="cohort-stat"><small>Coverage</small><strong id="cCoverage">0</strong></section>
-<section class="cohort-settings"><label>Target<input id="cTargetInput" type="number" min="1" max="100" value="10"></label><label>Status<select id="cStatus"><option>OPEN</option><option>PAUSED</option><option>CLOSED</option></select></label><button id="saveCohort">Save</button></section>
+
+</section>
+
+<section class="admin-view" data-view-panel="candidates">
+  <div class="view-head"><div><span class="view-kicker">Không gian làm việc chính</span><h2>Ứng viên</h2><p>Ưu tiên người phụ trách, việc tiếp theo và hạn xử lý.</p></div><button class="text-button" id="clearActionFilter" hidden>Xóa bộ lọc công việc</button></div>
+  <div class="toolbar">
+<input id="search" placeholder="Tìm tên, email, số điện thoại, mã ứng viên">
+<select id="stageFilter"><option value="">Tất cả trạng thái</option></select>
+<select id="sourceFilter"><option value="">Tất cả nguồn</option></select>
+<button id="exportBtn">Xuất CSV</button>
+</div>
+<div id="status" class="status">Chưa kết nối dữ liệu ứng viên.</div>
+<div class="candidate-desktop"><div class="table-wrap"><table><thead><tr><th>Ứng viên</th><th>Trạng thái</th><th>Phụ trách</th><th>Việc tiếp theo</th><th>Hạn xử lý</th><th>Nguồn</th><th>Cập nhật</th></tr></thead><tbody id="rows"></tbody></table><div id="empty" class="empty">Chưa có dữ liệu.</div></div></div><div id="candidateCards" class="candidate-cards"></div>
+</section>
+
+<section class="admin-view" data-view-panel="recruitment">
+  <div class="view-head"><div><span class="view-kicker">Thu hút & chuyển đổi</span><h2>Tuyển sinh</h2></div></div>
+  <div class="metrics">
+<div class="metric"><small>Đăng ký quan tâm</small><strong id="mAll">0</strong></div>
+<div class="metric"><small>Đủ điều kiện trở lên</small><strong id="mQualified">0</strong></div>
+<div class="metric"><small>Đang trong tuyển chọn</small><strong id="mSelection">0</strong></div>
+<div class="metric"><small>Đạt trở lên</small><strong id="mPass">0</strong></div>
+<div class="metric"><small>Đã nhận / nhập học</small><strong id="mAdmitted">0</strong></div>
 </div>
 
-<section class="acq">
-<div class="acq-head"><div><div class="tag">Launch & Acquisition</div><h2>Campaign Link Builder</h2><p class="acq-note">Mỗi post/reel/partner/referral nên có UTM riêng để biết content nào tạo interest thật.</p></div><span id="publicMode" class="mode-pill">INTEREST ONLY</span></div>
+
+  <section class="acq">
+<div class="acq-head"><div><div class="tag">Thu hút ứng viên</div><h2>Tạo liên kết chiến dịch</h2><p class="acq-note">Mỗi bài đăng, video, đối tác hoặc giới thiệu nên có UTM riêng để biết nội dung nào tạo đăng ký thật.</p></div><span id="publicMode" class="mode-pill">CHỈ GHI NHẬN QUAN TÂM</span></div>
 <div class="acq-grid">
-<label>Source<select id="utmSource"><option value="instagram">instagram</option><option value="facebook">facebook</option><option value="tiktok">tiktok</option><option value="threads">threads</option><option value="zalo">zalo</option><option value="referral">referral</option><option value="partner">partner</option><option value="organic">organic</option><option value="other">other</option></select></label>
-<label>Medium<select id="utmMedium"><option value="organic_social">organic_social</option><option value="paid_social">paid_social</option><option value="referral">referral</option><option value="message">message</option><option value="qr">qr</option><option value="other">other</option></select></label>
-<label>Content ID<input id="utmContent" placeholder="vd: reel01-career-gap"></label>
+<label>Nguồn<select id="utmSource"><option value="instagram">instagram</option><option value="facebook">facebook</option><option value="tiktok">tiktok</option><option value="threads">threads</option><option value="zalo">zalo</option><option value="referral">referral</option><option value="partner">partner</option><option value="organic">organic</option><option value="other">other</option></select></label>
+<label>Hình thức<select id="utmMedium"><option value="organic_social">organic_social</option><option value="paid_social">paid_social</option><option value="referral">referral</option><option value="message">message</option><option value="qr">qr</option><option value="other">other</option></select></label>
+<label>Mã nội dung<input id="utmContent" placeholder="vd: reel01-career-gap"></label>
 </div>
 <div class="preset-row"><button class="preset" data-source="instagram" data-medium="organic_social" data-content="reel01-career-gap">IG Reel 01</button><button class="preset" data-source="facebook" data-medium="organic_social" data-content="post01-career-path">FB Post 01</button><button class="preset" data-source="tiktok" data-medium="organic_social" data-content="video01-production-ready">TikTok 01</button><button class="preset" data-source="zalo" data-medium="message" data-content="direct-outreach-01">Zalo Outreach</button><button class="preset" data-source="referral" data-medium="referral" data-content="student-referral">Referral</button></div>
-<div class="acq-links"><input id="landingCampaignUrl" readonly><button data-copy="landingCampaignUrl">Copy Landing</button></div>
-<div class="acq-links"><input id="registerCampaignUrl" readonly><button data-copy="registerCampaignUrl">Copy Register</button></div>
-<p id="acqModeNote" class="acq-note">Legal Safe Mode: chỉ dùng wording Register Interest. Không dùng Apply/Selection/Admission trong CTA public cho tới khi program registration được xác nhận.</p>
+<div class="acq-links"><input id="landingCampaignUrl" readonly><button data-copy="landingCampaignUrl">Sao chép trang giới thiệu</button></div>
+<div class="acq-links"><input id="registerCampaignUrl" readonly><button data-copy="registerCampaignUrl">Sao chép trang đăng ký</button></div>
+<p id="acqModeNote" class="acq-note">Chế độ an toàn pháp lý: chỉ dùng lời kêu gọi đăng ký quan tâm cho tới khi điều kiện mở tuyển chính thức được xác nhận.</p>
 
 <div class="campaign-editor">
-<label>Title<input id="campaignTitle" placeholder="Tên creative / angle"></label>
-<label>Status<select id="campaignStatus"><option>IDEA</option><option>DRAFT</option><option>READY</option><option>PUBLISHED</option><option>PAUSED</option><option>ARCHIVED</option></select></label>
-<label>Owner<input id="campaignOwner" placeholder="Người phụ trách"></label>
-<label>Asset type<select id="campaignAssetType"><option value="">—</option><option>REEL</option><option>VIDEO</option><option>CAROUSEL</option><option>STATIC</option><option>STORY</option><option>DIRECT_OUTREACH</option><option>PARTNER</option><option>OTHER</option></select></label>
-<label>Target publish<input id="campaignTargetDate" type="date"></label>
-<label>Asset URL<input id="campaignAssetUrl" placeholder="Drive / Figma / asset link"></label>
-<label>Publish URL<input id="campaignPublishUrl" placeholder="Link post/reel sau khi publish"></label>
+<label>Tên nội dung<input id="campaignTitle" placeholder="Tên creative / angle"></label>
+<label>Trạng thái<select id="campaignStatus"><option>IDEA</option><option>DRAFT</option><option>READY</option><option>PUBLISHED</option><option>PAUSED</option><option>ARCHIVED</option></select></label>
+<label>Phụ trách<input id="campaignOwner" placeholder="Người phụ trách"></label>
+<label>Loại nội dung<select id="campaignAssetType"><option value="">—</option><option>REEL</option><option>VIDEO</option><option>CAROUSEL</option><option>STATIC</option><option>STORY</option><option>DIRECT_OUTREACH</option><option>PARTNER</option><option>OTHER</option></select></label>
+<label>Ngày dự kiến đăng<input id="campaignTargetDate" type="date"></label>
+<label>Liên kết tệp<input id="campaignAssetUrl" placeholder="Drive / Figma / asset link"></label>
+<label>Liên kết đã đăng<input id="campaignPublishUrl" placeholder="Link post/reel sau khi publish"></label>
 <div class="ready-checks">
-<label class="ready-check"><input id="readyBrief" type="checkbox">Brief</label>
-<label class="ready-check"><input id="readyProduction" type="checkbox">Production / Design</label>
-<label class="ready-check"><input id="readyEdit" type="checkbox">Edit / Final Asset</label>
-<label class="ready-check"><input id="readyCopy" type="checkbox">Copy / CTA</label>
-<label class="ready-check"><input id="readyQa" type="checkbox">QA / Approval</label>
+<label class="ready-check"><input id="readyBrief" type="checkbox">Đề bài</label>
+<label class="ready-check"><input id="readyProduction" type="checkbox">Sản xuất / Thiết kế</label>
+<label class="ready-check"><input id="readyEdit" type="checkbox">Hậu kỳ / Hoàn thiện</label>
+<label class="ready-check"><input id="readyCopy" type="checkbox">Nội dung / Kêu gọi</label>
+<label class="ready-check"><input id="readyQa" type="checkbox">Kiểm tra / Duyệt</label>
 </div>
-<label class="wide">Notes<textarea id="campaignNotes" placeholder="Hook, angle, CTA, learning, note..."></textarea></label>
+<label class="wide">Ghi chú<textarea id="campaignNotes" placeholder="Hook, angle, CTA, learning, note..."></textarea></label>
 </div>
-<div class="campaign-actions"><button id="saveCampaign">Save to Registry</button></div>
+<div class="campaign-actions"><button id="saveCampaign">Lưu vào danh sách</button></div>
 
 <div class="campaign-registry">
-<h3>Campaign Registry · <span id="campaignWindow">30D</span></h3>
+<h3>Danh sách chiến dịch · <span id="campaignWindow">30D</span></h3>
 <div class="campaign-table"><table><thead><tr><th>Content</th><th>Channel</th><th>Status</th><th>Readiness</th><th>Target</th><th>Owner</th><th>Landing</th><th>Register</th><th>Start</th><th>Interest</th><th>Conv.</th></tr></thead><tbody id="campaignRows"></tbody></table></div>
 </div>
 </section>
 
-<section class="legal-gate">
-<div class="legal-head"><div><div class="tag">Legal & Enrollment Readiness</div><h2>Admission Send / Payment Gate</h2><p class="legal-note"><span id="legalDone">0</span>/<span id="legalTotal">13</span> checkpoints complete · checklist hỗ trợ review, không tự mở khóa hệ thống.</p></div><span class="gate-pill">BLOCKED IN CODE</span></div>
+
+  <div class="insights recruitment-insights"><section class="panel"><div class="panel-head"><h2>Phễu chuyển đổi</h2><span id="funnelWindow" class="badge">30D</span></div><div id="funnel" class="funnel"></div></section><section class="panel"><div class="panel-head"><h2>Nguồn đăng ký</h2></div><div id="sources" class="list"></div><div style="height:12px"></div><div class="panel-head"><h2>Nội dung hiệu quả</h2></div><div id="contents" class="list"></div></section></div>
+</section>
+
+<section class="admin-view" data-view-panel="legal">
+  <div class="view-head"><div><span class="view-kicker">Kiểm soát điều kiện mở tuyển</span><h2>Pháp lý</h2></div></div>
+  <section class="legal-gate">
+<div class="legal-head"><div><div class="tag">Pháp lý & điều kiện tuyển sinh</div><h2>Điều kiện mở thư mời & thanh toán</h2><p class="legal-note"><span id="legalDone">0</span>/<span id="legalTotal">13</span> mục đã hoàn tất · danh sách này hỗ trợ rà soát, không tự mở khóa hệ thống.</p></div><span class="gate-pill">ĐANG KHÓA TRONG HỆ THỐNG</span></div>
 <div class="legal-progress"><i id="legalProgress" style="width:0%"></i></div>
 <div id="legalChecklist" class="legal-grid"></div>
 <div class="legal-meta">
-<label>Legal / counsel reference<input id="legalCounsel" placeholder="Tên luật sư, memo, số văn bản / link hồ sơ"></label>
-<label>Authority reference<input id="legalAuthority" placeholder="Sở GD&ĐT / cơ quan xác nhận / reference"></label>
-<label>Reviewed by<input id="legalReviewedBy" placeholder="Người chịu trách nhiệm review"></label>
-<label>Last reviewed<input id="legalReviewedAt" readonly></label>
-<label class="wide">Notes<textarea id="legalNotes" placeholder="Kết luận, điều kiện còn thiếu, câu hỏi cần xác nhận…"></textarea></label>
+<label>Căn cứ pháp lý / tư vấn<input id="legalCounsel" placeholder="Tên luật sư, memo, số văn bản / link hồ sơ"></label>
+<label>Căn cứ cơ quan quản lý<input id="legalAuthority" placeholder="Sở GD&ĐT / cơ quan xác nhận / reference"></label>
+<label>Người rà soát<input id="legalReviewedBy" placeholder="Người chịu trách nhiệm review"></label>
+<label>Lần rà soát gần nhất<input id="legalReviewedAt" readonly></label>
+<label class="wide">Ghi chú<textarea id="legalNotes" placeholder="Kết luận, điều kiện còn thiếu, câu hỏi cần xác nhận…"></textarea></label>
 </div>
-<div class="legal-actions"><button id="saveLegal">Save Checklist</button><button id="markLegalReviewed" class="review">Save + Mark Reviewed</button></div>
+<div class="legal-actions"><button id="saveLegal">Lưu danh sách</button><button id="markLegalReviewed" class="review">Lưu + đánh dấu đã rà soát</button></div>
 <div class="legal-final">
-<h3>Final Legal Approval <span id="legalFinalState" class="approval-state">PENDING</span></h3>
+<h3>Phê duyệt pháp lý cuối <span id="legalFinalState" class="approval-state">PENDING</span></h3>
 <p class="legal-note">Chỉ dùng sau khi 13/13 checkpoint đã được review và có căn cứ từ counsel/authority. Dù APPROVED, Admission Send/Payment vẫn BLOCKED IN CODE cho tới PR mở khóa riêng.</p>
 <div class="legal-final-grid">
 <label>Decision<select id="legalFinalDecision"><option>PENDING</option><option>APPROVED</option><option>REJECTED</option></select></label>
 <label>Approved by<input id="legalFinalBy" placeholder="Người/pháp nhân phê duyệt"></label>
 <label>Approval reference<input id="legalFinalRef" placeholder="Memo / email / authority reference / version"></label>
 </div>
-<button id="saveLegalFinal">Save Final Approval Evidence</button>
+<button id="saveLegalFinal">Lưu căn cứ phê duyệt</button>
 </div>
 </section>
 
-<div class="insights">
-<section class="panel"><div class="panel-head"><h2>Conversion funnel</h2><span id="funnelWindow" class="badge">30D</span></div><div id="funnel" class="funnel"></div></section>
-<section class="panel"><div class="panel-head"><h2>Application source</h2></div><div id="sources" class="list"></div><div style="height:12px"></div><div class="panel-head"><h2>Top content</h2></div><div id="contents" class="list"></div></section>
-<section class="panel"><div class="panel-head"><h2>New applications</h2><span id="unreadCount" class="badge">0 unread</span></div><div id="notifications" class="notifications"></div></section>
-</div>
 
-<section class="delivery-panel">
+</section>
+
+<section class="admin-view" data-view-panel="system">
+  <div class="view-head"><div><span class="view-kicker">Theo dõi vận hành</span><h2>Hệ thống</h2></div></div>
+  <section class="delivery-panel">
   <div class="delivery-head">
     <div>
-      <div class="tag">Delivery Reliability</div>
-      <h2>Thông báo ra ngoài</h2>
+      <div class="tag">Hệ thống thông báo</div>
+      <h2>Thông báo tự động</h2>
       <p id="deliveryNote" class="delivery-note">Đang chờ kết nối Candidate API…</p>
     </div>
     <div class="delivery-head-actions">
-      <button id="deliveryTest" class="delivery-test" disabled>Gửi test</button>
+      <button id="deliveryTest" class="delivery-test" disabled>Gửi thử</button>
       <span id="deliveryState" class="delivery-state">CHƯA KẾT NỐI</span>
     </div>
   </div>
@@ -118,20 +181,15 @@
   <div class="delivery-metrics">
     <div class="delivery-metric"><small>Đã gửi</small><strong id="deliveryDelivered">0</strong></div>
     <div class="delivery-metric"><small>Đang chờ</small><strong id="deliveryPending">0</strong></div>
-    <div class="delivery-metric"><small>Đang retry</small><strong id="deliveryRetrying">0</strong></div>
+    <div class="delivery-metric"><small>Đang thử lại</small><strong id="deliveryRetrying">0</strong></div>
     <div class="delivery-metric"><small>Lỗi cần xử lý</small><strong id="deliveryFailed">0</strong></div>
   </div>
   <div id="deliveryList" class="delivery-list"><div class="status">Chưa có lịch sử delivery.</div></div>
 </section>
 
-<div class="toolbar">
-<input id="search" placeholder="Tìm tên, email, phone, Candidate ID">
-<select id="stageFilter"><option value="">All stages</option></select>
-<select id="sourceFilter"><option value="">All sources</option></select>
-<button id="exportBtn">Export CSV</button>
-</div>
-<div id="status" class="status">Chưa kết nối Candidate API.</div>
-<div class="table-wrap"><table><thead><tr><th>Candidate</th><th>Contact</th><th>Profile</th><th>Track</th><th>Source</th><th>Owner / Next</th><th>Submitted</th><th>Stage</th></tr></thead><tbody id="rows"></tbody></table><div id="empty" class="empty">Chưa có dữ liệu.</div></div>
+
+</section>
+</main>
 </div>
 
 <dialog id="detailDialog"><div class="drawer"><div class="drawer-head"><div><div class="tag">Candidate detail</div><h2 id="dName">Loading…</h2><div id="dCode" class="code"></div></div><button class="close" onclick="detailDialog.close()">Đóng</button></div><div id="detailBody" class="loading">Đang tải hồ sơ…</div></div></dialog>
@@ -139,6 +197,8 @@
 <script>
 const API="https://candidate-api-v2-production.up.railway.app";
 const stages=["INTEREST_REGISTERED","APPLICATION_COMPLETED","QUALIFIED","SELECTION_INVITED","SELECTION_CONFIRMED","SELECTION_ATTENDED","PASS","WAITLIST","LOST","ADMITTED","ENROLLED"];
+const stageLabels={INTEREST_REGISTERED:"Đã đăng ký quan tâm",APPLICATION_COMPLETED:"Đã hoàn tất hồ sơ",QUALIFIED:"Đủ điều kiện",SELECTION_INVITED:"Đã mời tuyển chọn",SELECTION_CONFIRMED:"Đã xác nhận tuyển chọn",SELECTION_ATTENDED:"Đã tham gia tuyển chọn",PASS:"Đạt",WAITLIST:"Dự bị",LOST:"Dừng",ADMITTED:"Đã nhận",ENROLLED:"Đã nhập học"};
+let activeActionFilter="";
 let data=[],dash=null,notifications=[],campaigns=[],outboundDeliveries=[],outboundHealth=null;
 const $=id=>document.getElementById(id);
 const tokenEl=$("token"),statusEl=$("status"),rowsEl=$("rows"),emptyEl=$("empty"),stageFilter=$("stageFilter"),detailDialog=$("detailDialog");
@@ -167,9 +227,64 @@ const formalStages=new Set(["APPLICATION_COMPLETED","QUALIFIED","SELECTION_INVIT
 function stageOption(stage,current){
   const formalOpen=dash?.legalReadiness?.program_registration_status==="CONFIRMED";
   const locked=(stage==="ADMITTED"||stage==="ENROLLED"||(!formalOpen&&formalStages.has(stage)))&&stage!==current;
-  return '<option '+(stage===current?'selected ':'')+(locked?'disabled ':'')+'>'+stage+'</option>';
+  return '<option value="'+stage+'" '+(stage===current?'selected ':'')+(locked?'disabled ':'')+'>'+esc(stageLabels[stage]||stage)+'</option>';
 }
 
+function setView(view){
+  document.querySelectorAll(".admin-tab").forEach(btn=>btn.classList.toggle("active",btn.dataset.view===view));
+  document.querySelectorAll("[data-view-panel]").forEach(panel=>panel.classList.toggle("active",panel.dataset.viewPanel===view));
+  sessionStorage.setItem("academy_admin_view",view);
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function localDateKey(value){
+  if(!value)return "";
+  const d=new Date(value);if(Number.isNaN(d.getTime()))return String(value).slice(0,10);
+  const pad=n=>String(n).padStart(2,"0");
+  return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
+}
+function todayKey(){return localDateKey(new Date())}
+function isClosedCandidate(x){return ["LOST","ENROLLED"].includes(x.pipeline_stage)}
+function actionMatches(x,type){
+  const today=todayKey(),due=localDateKey(x.next_action_date);
+  if(type==="unassigned")return !isClosedCandidate(x)&&!String(x.owner||"").trim();
+  if(type==="today")return !isClosedCandidate(x)&&due===today;
+  if(type==="overdue")return !isClosedCandidate(x)&&due&&due<today;
+  if(type==="selection"){
+    if(!x.selection_start)return false;
+    const t=new Date(x.selection_start).getTime(),now=Date.now();
+    return t>=now&&t<=now+7*86400000;
+  }
+  if(type==="new")return notifications.some(n=>n.status==="UNREAD"&&String(n.candidate_code)===String(x.candidate_code));
+  return true;
+}
+function renderActionCenter(){
+  const unread=notifications.filter(x=>x.status==="UNREAD");
+  const unassigned=data.filter(x=>actionMatches(x,"unassigned"));
+  const today=data.filter(x=>actionMatches(x,"today"));
+  const overdue=data.filter(x=>actionMatches(x,"overdue"));
+  const selection=data.filter(x=>actionMatches(x,"selection"));
+  $("aNew").textContent=unread.length;$("aUnassigned").textContent=unassigned.length;$("aToday").textContent=today.length;$("aOverdue").textContent=overdue.length;$("aSelection").textContent=selection.length;
+  $("candidateNavBadge").textContent=data.length;
+  const items=[
+    ...overdue.map(x=>({x,kind:"overdue",label:"Quá hạn"})),
+    ...today.map(x=>({x,kind:"today",label:"Hôm nay"})),
+    ...unassigned.slice(0,6).map(x=>({x,kind:"unassigned",label:"Chưa phụ trách"}))
+  ].filter((v,i,a)=>a.findIndex(z=>String(z.x.id)===String(v.x.id))===i).slice(0,10);
+  $("actionCenterCount").textContent=items.length+" việc";
+  $("actionCenter").innerHTML=items.length?items.map(({x,kind,label})=>'<div class="action-item"><div><b>'+esc(x.full_name)+'</b><small>'+esc(x.candidate_code)+' · '+esc(stageLabels[x.pipeline_stage]||x.pipeline_stage)+'</small></div><div class="action-detail"><span class="action-kind '+kind+'">'+label+'</span><small>'+esc(x.next_action||"Chưa có việc tiếp theo")+(x.next_action_date?" · "+new Date(x.next_action_date).toLocaleDateString("vi-VN"):"")+'</small></div><button class="action-open" data-open-candidate="'+x.id+'">Mở</button></div>').join(""):'<div class="status">Không có việc gấp cần xử lý.</div>';
+  document.querySelectorAll("[data-open-candidate]").forEach(btn=>btn.onclick=()=>openDetail(btn.dataset.openCandidate));
+}
+function updateOverviewStatus(){
+  const lr=dash?.legalReadiness||{},complete=legalFields.filter(([db])=>["CONFIRMED","NOT_APPLICABLE"].includes(lr[db])).length;
+  const legalOpen=lr.program_registration_status==="CONFIRMED";
+  $("overviewLegalState").textContent=legalOpen?"Điều kiện tuyển chính thức đã xác nhận":"Tuyển chính thức đang khóa";
+  $("overviewLegalNote").textContent=complete+"/"+legalFields.length+" mục pháp lý đã hoàn tất";
+  const failed=n(outboundHealth?.counts?.FAILED),missing=(outboundHealth?.missingRequired||[]).length,retrying=n(outboundHealth?.counts?.RETRY)+n(outboundHealth?.counts?.PROCESSING);
+  const bad=failed>0||missing>0||outboundHealth?.ok===false;
+  $("overviewSystemState").textContent=bad?"Có lỗi cần xử lý":retrying?"Đang thử gửi lại":"Không có lỗi nghiêm trọng";
+  $("overviewSystemNote").textContent=bad?(failed+" lỗi gửi · "+missing+" kênh bắt buộc bị thiếu"):(retrying+" thông báo đang thử lại");
+  $("systemNavDot").hidden=!bad;
+}
 function updateAcquisition(){
   const source=$("utmSource").value,medium=$("utmMedium").value,content=$("utmContent").value.trim()||"general";
   const params=new URLSearchParams({utm_source:source,utm_medium:medium,utm_campaign:"media_career_cohort01",utm_content:content});
@@ -226,8 +341,8 @@ async function api(path,options={}){
   const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||("HTTP "+r.status));return j;
 }
 async function load(){
-  const token=tokenEl.value.trim();if(!token){statusEl.textContent="Nhập Admin Access Key.";statusEl.className="status err";return}
-  sessionStorage.setItem("mcp_admin_token",token);statusEl.textContent="Đang tải pipeline…";statusEl.className="status";
+  const token=tokenEl.value.trim();if(!token){statusEl.textContent="Nhập khóa truy cập quản trị.";statusEl.className="status err";return}
+  sessionStorage.setItem("mcp_admin_token",token);statusEl.textContent="Đang tải dữ liệu tuyển sinh…";statusEl.className="status";
   try{
     const days=$("days").value;
     const [apps,dashboard,notes,campaignData,outboundData,outboundStatus]=await Promise.all([
@@ -240,8 +355,8 @@ async function load(){
     ]);
     data=apps.applications||[];dash=dashboard;notifications=notes.notifications||[];campaigns=campaignData.campaigns||[];
     outboundDeliveries=outboundData.deliveries||[];outboundHealth=outboundStatus||null;
-    buildFilters();render();renderDashboard();renderNotifications();renderCampaigns();renderOutbound();
-    statusEl.textContent="Connected · "+data.length+" applications";statusEl.className="status ok";
+    buildFilters();render();renderDashboard();renderNotifications();renderCampaigns();renderOutbound();renderActionCenter();updateOverviewStatus();
+    statusEl.textContent="Đã kết nối · "+data.length+" ứng viên";statusEl.className="status ok";
   }catch(e){statusEl.textContent="Không kết nối được: "+e.message;statusEl.className="status err"}
 }
 function renderLegal(){
@@ -295,12 +410,12 @@ async function saveCohort(){
   }catch(e){statusEl.textContent="Cohort update lỗi: "+e.message;statusEl.className="status err"}
 }
 function buildFilters(){
-  const sf=$("sourceFilter"),current=sf.value;sf.innerHTML='<option value="">All sources</option>';
+  const sf=$("sourceFilter"),current=sf.value;sf.innerHTML='<option value="">Tất cả nguồn</option>';
   [...new Set(data.map(x=>x.utm_source||"direct"))].sort().forEach(s=>{const o=document.createElement("option");o.value=s;o.textContent=s;sf.appendChild(o)});sf.value=current;
 }
 function filtered(){
   const q=$("search").value.trim().toLowerCase(),st=stageFilter.value,src=$("sourceFilter").value;
-  return data.filter(x=>{const hay=[x.full_name,x.email,x.phone,x.candidate_code].join(" ").toLowerCase();const sx=x.utm_source||"direct";return(!q||hay.includes(q))&&(!st||x.pipeline_stage===st)&&(!src||sx===src)});
+  return data.filter(x=>{const hay=[x.full_name,x.email,x.phone,x.candidate_code].join(" ").toLowerCase();const sx=x.utm_source||"direct";return(!q||hay.includes(q))&&(!st||x.pipeline_stage===st)&&(!src||sx===src)&&(!activeActionFilter||actionMatches(x,activeActionFilter))});
 }
 function renderDashboard(){
   if(!dash)return;const t=dash.totals||{},co=dash.cohort||{};
@@ -325,8 +440,8 @@ function renderList(id,rows,max){
   const box=$(id),list=rows.slice(0,max);box.innerHTML=list.length?list.map(x=>'<div class="list-row"><span>'+esc(x.key)+'</span><b>'+n(x.count)+'</b></div>').join(""):'<div class="status">Chưa có dữ liệu.</div>';
 }
 function renderNotifications(){
-  const unread=notifications.filter(x=>x.status==="UNREAD");$("unreadCount").textContent=unread.length+" unread";
-  $("notifications").innerHTML=notifications.length?notifications.slice(0,15).map(x=>{const p=x.payload||{};return '<div class="nitem"><b>'+esc(p.fullName||x.candidate_code||"New application")+'</b><br>'+esc(p.email||"")+' · '+esc(p.source||"direct")+'<br><span class="code">'+esc(x.candidate_code||"")+'</span>'+(x.status==="UNREAD"?'<br><button onclick="markRead('+x.id+')">Đánh dấu đã đọc</button>':'')+'</div>'}).join(""):'<div class="status">Chưa có notification.</div>';
+  const unread=notifications.filter(x=>x.status==="UNREAD");$("unreadCount").textContent=unread.length+" chưa đọc";
+  $("notifications").innerHTML=notifications.length?notifications.slice(0,15).map(x=>{const p=x.payload||{};return '<div class="nitem"><b>'+esc(p.fullName||x.candidate_code||"Đăng ký mới")+'</b><br>'+esc(p.email||"")+' · '+esc(p.source||"direct")+'<br><span class="code">'+esc(x.candidate_code||"")+'</span>'+(x.status==="UNREAD"?'<br><button onclick="markRead('+x.id+')">Đánh dấu đã đọc</button>':'')+'</div>'}).join("") :'<div class="status">Chưa có thông báo mới.</div>';
 }
 function renderOutbound(){
   const health=outboundHealth||{},counts=health.counts||{},configured=new Set(health.configured||[]),formats=health.formats||{},required=health.required||{},missingRequired=new Set(health.missingRequired||[]);
@@ -421,21 +536,33 @@ async function retryOutbound(id,button){
 function render(){
   const list=filtered();rowsEl.innerHTML="";emptyEl.style.display=list.length?"none":"block";
   for(const x of list){
+    const due=x.next_action_date?new Date(x.next_action_date).toLocaleDateString("vi-VN"):"—";
+    const updated=x.updated_at||x.submitted_at;
     const tr=document.createElement("tr");
-    tr.innerHTML='<td><strong data-detail="'+x.id+'">'+esc(x.full_name)+'</strong><div class="code">'+esc(x.candidate_code)+'</div>'+(x.selection_score!==null&&x.selection_score!==undefined?'<div class="source">Score '+esc(x.selection_score)+'/100 · '+esc(x.assessment_decision||"PENDING")+'</div>':'')+(x.selection_appointment_status?'<div class="source">Selection '+esc(x.selection_appointment_status)+(x.selection_start?' · '+new Date(x.selection_start).toLocaleString("vi-VN"):'')+'</div>':'')+(x.admission_status?'<div class="source">Admission '+esc(x.admission_status)+'</div>':'')+'</td>'+
-      '<td>'+esc(x.phone)+'<br>'+esc(x.email)+'</td><td>'+esc(x.current_status||"")+'<br>'+esc(x.experience_level||"")+'</td>'+
-      '<td>'+esc(x.preferred_track||"")+'</td><td><span class="source">'+esc(x.utm_source||"direct")+'</span><br>'+esc(x.utm_content||"")+'</td>'+
-      '<td><div class="ops-cell"><b>'+esc(x.owner||"Unassigned")+'</b><span>'+esc(x.next_action||"No next action")+(x.next_action_date?' · '+new Date(x.next_action_date).toLocaleDateString("vi-VN"):"")+'</span></div></td>'+
-      '<td>'+new Date(x.submitted_at).toLocaleString("vi-VN")+'</td><td><select class="stage" data-id="'+x.id+'">'+stages.map(s=>stageOption(s,x.pipeline_stage)).join("")+'</select></td>';
+    tr.innerHTML='<td><strong data-detail="'+x.id+'">'+esc(x.full_name)+'</strong><div class="code">'+esc(x.candidate_code)+'</div></td>'+
+      '<td><select class="stage" data-id="'+x.id+'">'+stages.map(s=>stageOption(s,x.pipeline_stage)).join("")+'</select></td>'+
+      '<td><b>'+esc(x.owner||"Chưa giao")+'</b></td>'+
+      '<td>'+esc(x.next_action||"Chưa có việc tiếp theo")+'</td>'+
+      '<td>'+esc(due)+'</td>'+
+      '<td><span class="source">'+esc(x.utm_source||"trực tiếp")+'</span></td>'+
+      '<td>'+new Date(updated).toLocaleString("vi-VN")+'</td>';
     rowsEl.appendChild(tr);
   }
+  const cards=$("candidateCards");
+  cards.innerHTML=list.length?list.map(x=>{
+    const due=x.next_action_date?new Date(x.next_action_date).toLocaleDateString("vi-VN"):"Chưa đặt hạn";
+    return '<article class="candidate-card"><div class="candidate-card-head"><div><h3>'+esc(x.full_name)+'</h3><div class="code">'+esc(x.candidate_code)+'</div></div><span class="source">'+esc(x.utm_source||"trực tiếp")+'</span></div>'+
+      '<div class="candidate-card-meta"><span class="source">'+esc(stageLabels[x.pipeline_stage]||x.pipeline_stage)+'</span><span class="source">'+esc(x.owner||"Chưa phụ trách")+'</span></div>'+
+      '<div class="candidate-card-action"><small>VIỆC TIẾP THEO</small><b>'+esc(x.next_action||"Chưa có việc tiếp theo")+'</b><small>'+esc(due)+'</small></div>'+
+      '<div class="candidate-card-footer"><span>'+esc(x.phone||x.email||"")+'</span><button data-detail="'+x.id+'">Mở hồ sơ</button></div></article>';
+  }).join(""):'<div class="empty">Không có ứng viên phù hợp bộ lọc.</div>';
   document.querySelectorAll(".stage").forEach(el=>el.addEventListener("change",()=>updateStage(el.dataset.id,el.value,el)));
   document.querySelectorAll("[data-detail]").forEach(el=>el.addEventListener("click",()=>openDetail(el.dataset.detail)));
 }
 async function updateStage(id,stage,el){
   el.disabled=true;try{const j=await api("/v1/admin/applications/"+id+"/stage",{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify({stage})});const item=data.find(x=>String(x.id)===String(id));if(item)item.pipeline_stage=stage;statusEl.textContent="Updated "+j.application.candidate_code+" → "+stage;statusEl.className="status ok";await refreshDashboard()}catch(e){statusEl.textContent="Update lỗi: "+e.message;statusEl.className="status err";await load()}finally{el.disabled=false}
 }
-async function refreshDashboard(){try{dash=await api("/v1/admin/dashboard?days="+$("days").value);renderDashboard()}catch{}}
+async function refreshDashboard(){try{dash=await api("/v1/admin/dashboard?days="+$("days").value);renderDashboard();renderActionCenter();updateOverviewStatus()}catch{}}
 async function markRead(id){try{await api("/v1/admin/notifications/"+id+"/read",{method:"PATCH"});const x=notifications.find(n=>String(n.id)===String(id));if(x)x.status="READ";renderNotifications()}catch(e){statusEl.textContent=e.message;statusEl.className="status err"}}
 function renderCandidateOutbound(items,applicationId){
   const configured=n(outboundHealth?.configured?.length)>0;
@@ -648,7 +775,7 @@ async function saveOps(id){
     const j=await api("/v1/admin/applications/"+id+"/ops",{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
     const item=data.find(x=>String(x.id)===String(id));
     if(item){item.owner=j.application.owner;item.next_action=j.application.next_action;item.next_action_date=j.application.next_action_date;item.lost_reason=j.application.lost_reason}
-    render();statusEl.textContent="Saved operations for "+j.application.candidate_code;statusEl.className="status ok";await openDetail(id);
+    render();renderActionCenter();statusEl.textContent="Đã lưu vận hành cho "+j.application.candidate_code;statusEl.className="status ok";await openDetail(id);
   }catch(e){statusEl.textContent="Save ops lỗi: "+e.message;statusEl.className="status err"}
 }
 const detail=(k,v)=>'<div class="detail"><small>'+esc(k)+'</small><b>'+esc(v||"—")+'</b></div>';
@@ -661,6 +788,11 @@ document.querySelectorAll("[data-copy]").forEach(btn=>btn.addEventListener("clic
 document.querySelectorAll(".preset").forEach(btn=>btn.addEventListener("click",()=>{$("utmSource").value=btn.dataset.source;$("utmMedium").value=btn.dataset.medium;$("utmContent").value=btn.dataset.content;$("campaignTitle").value="";$("campaignStatus").value="IDEA";$("campaignAssetType").value="";$("campaignTargetDate").value="";["readyBrief","readyProduction","readyEdit","readyCopy","readyQa"].forEach(id=>$(id).checked=false);updateAcquisition()}));
 updateAcquisition();$("saveCampaign").onclick=saveCampaign;$("saveLegal").onclick=()=>saveLegal(false);$("markLegalReviewed").onclick=()=>saveLegal(true);["search","stageFilter","sourceFilter"].forEach(id=>$(id).addEventListener("input",render));
 $("exportBtn").onclick=()=>{const b=new Blob([csv()],{type:"text/csv;charset=utf-8"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="media-career-candidates.csv";a.click();URL.revokeObjectURL(a.href)};
+document.querySelectorAll(".admin-tab").forEach(btn=>btn.onclick=()=>setView(btn.dataset.view));
+document.querySelectorAll("[data-go-view]").forEach(btn=>btn.onclick=()=>setView(btn.dataset.goView));
+document.querySelectorAll("[data-action-filter]").forEach(btn=>btn.onclick=()=>{activeActionFilter=btn.dataset.actionFilter;$("clearActionFilter").hidden=false;setView("candidates");render()});
+$("clearActionFilter").onclick=()=>{activeActionFilter="";$("clearActionFilter").hidden=true;render()};
+setView(sessionStorage.getItem("academy_admin_view")||"overview");
 if(tokenEl.value)load();
 </script>
 </body>
