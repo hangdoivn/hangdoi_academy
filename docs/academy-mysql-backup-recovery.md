@@ -338,6 +338,27 @@ Webhook URLs are never stored in the database. Queue rows only store an allowed 
 
 This prevents webhook credentials embedded in URLs from being copied into MySQL backups.
 
+Payload adapters are configured independently from the secret URL:
+
+- `NEW_APPLICATION_WEBHOOK_FORMAT=generic|google_chat|slack`
+- `APPLICATION_ACK_WEBHOOK_FORMAT=generic|google_chat|slack`
+
+`generic` sends the stored JSON payload unchanged. `google_chat` and `slack` send a provider-friendly `{"text":"..."}` body generated from the durable queue payload. The team notification includes Candidate ID, contact details, preferred track, source, and submission time. Connection-test payloads contain no candidate PII.
+
+Required-channel gates are also environment driven:
+
+- `NEW_APPLICATION_WEBHOOK_REQUIRED=true|false`
+- `APPLICATION_ACK_WEBHOOK_REQUIRED=true|false`
+
+When a channel is marked required but its URL is missing, `/health/outbound` returns HTTP 503 and the normal Academy Ops Monitor opens/updates the incident. This should be enabled only after the corresponding production endpoint has been connected and verified with the Admin **Gửi test** action.
+
+Current production defaults:
+
+- `NEW_APPLICATION_WEBHOOK_FORMAT=generic`
+- `APPLICATION_ACK_WEBHOOK_FORMAT=generic`
+- both `*_REQUIRED=false`
+- no webhook URL is currently configured
+
 Operational endpoints:
 
 - `GET /health/outbound` — queue health and delivery counts
