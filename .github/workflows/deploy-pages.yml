@@ -30,6 +30,9 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Install image build dependency
+        run: python -m pip install --disable-pip-version-check --quiet pillow
+
       - name: Expand blog runtime
         run: |
           cat bootstrap/blog-system.part* | base64 --decode > /tmp/blog-system.tar.gz
@@ -56,6 +59,45 @@ jobs:
           cp site/academy-tokens.css _site/academy-tokens.css
           mkdir -p _site/assets/media-career
           cp site/assets/media-career/* _site/assets/media-career/
+
+          # Build optimized Media Career images locally into the Pages artifact.
+          # Public visitors never fetch these images from Google Drive at runtime.
+          echo "Build optimized Media Career images"
+          python - <<'PY'
+          from io import BytesIO
+          from pathlib import Path
+          from urllib.request import Request, urlopen
+          from PIL import Image, ImageOps
+
+          sources = {
+              "hero-bts.webp": "10KlvEAQ2t_gPpzyeX6XWfsO1kvjut-qP",
+              "fourpoints.webp": "1lonK2-7tURIP_pBboac0AH0Ebs4P84HC",
+              "xita.webp": "1zXJMZoiocczJf45kePNLG0KhQj1V_XfX",
+              "fnb-676.webp": "1FZ2aHa-simq1liZxjXLZbzeI-DErFEYE",
+              "floral-1823.webp": "17wY57k3NEp1c9kYiFIyQ7Dc4D83RJtGl",
+              "floral-9532.webp": "1pXvdCfAIFULtsl9krz9eqfkjQGB66tSm",
+              "fnb-805.webp": "1PyQ-jYphGE3mm59Aqh2MucNIr7A9k-ZD",
+              "hd-2988.webp": "1Y7iqjyIfKY2Di6l3JvjOBCWjKCNAoaUG",
+          }
+          out_dir = Path("_site/assets/media-career/optimized")
+          out_dir.mkdir(parents=True, exist_ok=True)
+
+          for filename, file_id in sources.items():
+              url = f"https://drive.google.com/thumbnail?id={file_id}&sz=w1200"
+              req = Request(url, headers={"User-Agent": "Mozilla/5.0"})
+              with urlopen(req, timeout=45) as response:
+                  payload = response.read()
+              if len(payload) < 1024:
+                  raise RuntimeError(f"Image payload too small for {filename}: {len(payload)} bytes")
+              with Image.open(BytesIO(payload)) as source:
+                  image = ImageOps.exif_transpose(source).convert("RGB")
+                  if image.width > 720:
+                      height = round(image.height * 720 / image.width)
+                      image = image.resize((720, height), Image.Resampling.LANCZOS)
+                  image.save(out_dir / filename, "WEBP", quality=76, method=6)
+                  print(filename, image.size, (out_dir / filename).stat().st_size)
+          PY
+
           mkdir -p _site/media-career-program
           cp site/media-career-program.html _site/media-career-program/index.html
           mkdir -p _site/media-career-program/apply
@@ -305,6 +347,18 @@ jobs:
           test -s _site/assets/media-career/roadmap-02-yeu-cau.png
           test -s _site/assets/media-career/roadmap-03-san-pham.png
           test -s _site/assets/media-career/roadmap-04-du-an.png
+          test -s _site/assets/media-career/optimized/hero-bts.webp
+          test -s _site/assets/media-career/optimized/fourpoints.webp
+          test -s _site/assets/media-career/optimized/xita.webp
+          test -s _site/assets/media-career/optimized/fnb-676.webp
+          test -s _site/assets/media-career/optimized/floral-1823.webp
+          test -s _site/assets/media-career/optimized/floral-9532.webp
+          test -s _site/assets/media-career/optimized/fnb-805.webp
+          test -s _site/assets/media-career/optimized/hd-2988.webp
+          if grep -q 'drive.google.com/thumbnail' _site/media-career-program/index.html; then
+            echo "Runtime Google Drive image dependency remains in Media Career landing" >&2
+            exit 1
+          fi
           test -s _site/favicon.svg
           test -s _site/ui-fixes.js
           test -s _site/phase2.css
