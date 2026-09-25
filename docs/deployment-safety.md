@@ -46,3 +46,19 @@ If the Academy deploy succeeds but the Production verification fails, stop all f
 ## Historical failure mode
 
 The Academy `gh-pages` artifact was previously served from the same Hostinger webroot as `hangdoistudio.vn`. Any Academy publish therefore replaced the Production homepage. The Production root domains now resolve to the isolated Production VPS, and the CI boundary check below prevents legacy deployment settings from returning unnoticed.
+
+
+## Build trigger scope
+
+The static Pages pipeline intentionally does **not** rebuild for backend-only or documentation-only changes.
+
+Ignored push paths include:
+
+- `api/**`
+- `docs/**`
+- `AGENTS.md`
+- API/ops-only workflow files
+
+This avoids unnecessary Google Drive image downloads, duplicate `gh-pages` publishes, and deployment-boundary churn when only the Candidate API or runbooks change.
+
+A commit that changes any static-site source outside those ignored paths still triggers the normal Pages build and post-publish boundary verification.
