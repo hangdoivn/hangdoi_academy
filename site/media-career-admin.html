@@ -190,7 +190,7 @@ dialog{width:min(calc(100% - 20px),960px);overflow:auto}.drawer{padding:0}.drawe
   <div class="delivery-metrics">
     <div class="delivery-metric"><small>Đã gửi</small><strong id="deliveryDelivered">0</strong></div>
     <div class="delivery-metric"><small>Đang chờ</small><strong id="deliveryPending">0</strong></div>
-    <div class="delivery-metric"><small>Đang thử lại</small><strong id="deliveryThử lạiing">0</strong></div>
+    <div class="delivery-metric"><small>Đang thử lại</small><strong id="deliveryRetrying">0</strong></div>
     <div class="delivery-metric"><small>Lỗi cần xử lý</small><strong id="deliveryFailed">0</strong></div>
   </div>
   <div id="deliveryList" class="delivery-list"><div class="status">Chưa có lịch sử delivery.</div></div>
@@ -461,7 +461,7 @@ function renderNotifications(){
 function renderOutbound(){
   const health=outboundHealth||{},counts=health.counts||{},configured=new Set(health.configured||[]),formats=health.formats||{},required=health.required||{},missingRequired=new Set(health.missingRequired||[]);
   const delivered=n(counts.DELIVERED),pending=n(counts.PENDING),retrying=n(counts.RETRY)+n(counts.PROCESSING),failed=n(counts.FAILED);
-  $("deliveryDelivered").textContent=delivered;$("deliveryPending").textContent=pending;$("deliveryThử lạiing").textContent=retrying;$("deliveryFailed").textContent=failed;
+  $("deliveryDelivered").textContent=delivered;$("deliveryPending").textContent=pending;$("deliveryRetrying").textContent=retrying;$("deliveryFailed").textContent=failed;
 
   const channels=[
     ["NEW_APPLICATION_WEBHOOK_URL","Thông báo cho đội ngũ"],
@@ -514,7 +514,7 @@ function renderOutbound(){
     '</div>';
   }).join(""):'<div class="status">'+(configured.size?'Chưa có delivery nào.':'Chưa có delivery vì chưa kết nối kênh ngoài.')+'</div>';
 
-  document.querySelectorAll("[data-delivery-retry]").forEach(btn=>btn.addEventListener("click",()=>retryOutbound(btn.dataset.deliveryThử lại,btn)));
+  document.querySelectorAll("[data-delivery-retry]").forEach(btn=>btn.addEventListener("click",()=>retryOutbound(btn.dataset.deliveryRetry,btn)));
 }
 async function sendOutboundTest(){
   const button=$("deliveryTest");
