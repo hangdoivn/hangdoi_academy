@@ -89,6 +89,7 @@ jobs:
               return f'url("/assets/media-career/fonts/{seen[url]}")'
 
           css = re.sub(r"url\((https://fonts\.gstatic\.com/[^)]+\.woff2)\)", localize, css)
+          css = css.replace("font-display: swap;", "font-display: optional;")
           if "fonts.gstatic.com" in css:
               raise RuntimeError("Unlocalized Google font URL remains")
           if "@font-face" not in css or not seen:
