@@ -33,6 +33,15 @@ dialog{width:min(calc(100% - 20px),960px);overflow:auto}.drawer{padding:0}.drawe
 .detail-pane{display:none}.detail-pane.active{display:block}.detail-section-title{font-size:13px;margin:18px 0 8px}.profile-intro{margin:16px 0 4px}.profile-intro h3{font-size:18px;margin:0 0 4px}.profile-intro p{font-size:12px;color:var(--muted);margin:0}
 .system-note{font-size:11px;color:var(--muted);margin-top:4px}
 @media(max-width:650px){dialog{width:calc(100% - 12px);max-height:94vh;border-radius:18px}.drawer-head{padding:15px 14px 12px}.drawer-head h2{font-size:24px}.drawer-body-wrap{padding:0 14px 18px}.candidate-summary{top:76px;grid-template-columns:1fr 1fr;padding:8px 14px}.summary-cell:nth-child(2){grid-column:1/-1;grid-row:2}.detail-tabs{padding-top:10px}.detail-grid{grid-template-columns:1fr}.ops-grid{grid-template-columns:1fr}.ops .wide{grid-column:auto}}
+
+.landing-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.landing-metric{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px}
+.landing-metric small{display:block;color:var(--muted);font-weight:800}
+.landing-metric strong{display:block;font-size:30px;line-height:1;margin:8px 0 5px}
+.landing-metric span{font-size:11px;color:var(--muted)}
+.action-metrics.compact{grid-template-columns:repeat(4,1fr)}
+@media(max-width:1040px){.landing-metrics{grid-template-columns:repeat(2,1fr)}.action-metrics.compact{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){.landing-metrics,.action-metrics.compact{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -44,132 +53,31 @@ dialog{width:min(calc(100% - 20px),960px);overflow:auto}.drawer{padding:0}.drawe
 <nav class="admin-tabs" aria-label="Điều hướng quản trị">
   <button class="admin-tab active" data-view="overview">Tổng quan</button>
   <button class="admin-tab" data-view="candidates">Ứng viên <span id="candidateNavBadge" class="nav-badge">0</span></button>
-  <button class="admin-tab" data-view="recruitment">Tuyển sinh</button>
-  <button class="admin-tab" data-view="legal">Pháp lý</button>
   <button class="admin-tab" data-view="system">Hệ thống <span id="systemNavDot" class="nav-dot" hidden></span></button>
 </nav>
 
 <main class="admin-main">
 <section class="admin-view active" data-view-panel="overview">
-  <div class="view-head"><div><span class="view-kicker">Tổng quan hôm nay</span><h2>Việc cần xử lý trước</h2></div><button class="text-button" data-go-view="candidates">Xem tất cả ứng viên →</button></div>
-  <div class="action-metrics">
+  <div class="view-head"><div><span class="view-kicker">Tổng quan landing</span><h2>Lượt vào trang & đăng ký</h2></div><button class="text-button" data-go-view="candidates">Xem danh sách đăng ký →</button></div>
+  <div class="landing-metrics">
+    <div class="landing-metric"><small>Người vào trang</small><strong id="landingVisits">0</strong><span id="landingWindowLabel">30 ngày gần nhất</span></div>
+    <div class="landing-metric"><small>Người vào trang đăng ký</small><strong id="landingApplyVisits">0</strong><span>đã mở trang đăng ký</span></div>
+    <div class="landing-metric"><small>Đăng ký thành công</small><strong id="landingRegistrations">0</strong><span>đã gửi biểu mẫu</span></div>
+    <div class="landing-metric"><small>Tỷ lệ đăng ký</small><strong id="landingConversion">0%</strong><span>từ landing → đăng ký</span></div>
+  </div>
+  <div class="action-metrics compact">
     <button class="action-metric" data-action-filter="new"><small>Đăng ký mới</small><strong id="aNew">0</strong><span>chưa đọc</span></button>
     <button class="action-metric" data-action-filter="unassigned"><small>Chưa phụ trách</small><strong id="aUnassigned">0</strong><span>cần giao người</span></button>
     <button class="action-metric" data-action-filter="today"><small>Cần xử lý hôm nay</small><strong id="aToday">0</strong><span>theo lịch tiếp theo</span></button>
     <button class="action-metric danger" data-action-filter="overdue"><small>Quá hạn</small><strong id="aOverdue">0</strong><span>cần ưu tiên</span></button>
-    <button class="action-metric" data-action-filter="selection"><small>Lịch tuyển chọn sắp tới</small><strong id="aSelection">0</strong><span>7 ngày tới</span></button>
   </div>
   <div class="overview-grid">
     <section class="work-panel"><div class="panel-head"><h2>Trung tâm công việc</h2><span id="actionCenterCount" class="badge">0 việc</span></div><div id="actionCenter" class="action-center"><div class="status">Kết nối dữ liệu để xem việc cần xử lý.</div></div></section>
     <section class="panel"><div class="panel-head"><h2>Đăng ký mới</h2><span id="unreadCount" class="badge">0 chưa đọc</span></div><div id="notifications" class="notifications"></div></section>
   </div>
   <div class="overview-status-grid">
-    <button class="status-card" data-go-view="legal"><small>Pháp lý</small><strong id="overviewLegalState">Đang kiểm tra</strong><span id="overviewLegalNote">—</span></button>
     <button class="status-card" data-go-view="system"><small>Hệ thống thông báo</small><strong id="overviewSystemState">Đang kiểm tra</strong><span id="overviewSystemNote">—</span></button>
   </div>
-  <div class="cohort-band">
-<section class="cohort-main"><small>KHÓA 01 · MỤC TIÊU NHẬP HỌC</small><strong><span id="cEnrolled">0</span> / <span id="cTarget">10</span></strong><p id="cMessage">Đang tải độ phủ…</p><div class="coverage-track"><i id="cProgress" style="width:0%"></i></div></section>
-<section class="cohort-stat"><small>Còn thiếu</small><strong id="cRemaining">10</strong></section>
-<section class="cohort-stat"><small>ĐẠT</small><strong id="cPass">0</strong></section>
-<section class="cohort-stat"><small>DỰ BỊ</small><strong id="cWaitlist">0</strong></section>
-<section class="cohort-stat"><small>Độ phủ</small><strong id="cCoverage">0</strong></section>
-<section class="cohort-settings"><label>Mục tiêu<input id="cTargetInput" type="number" min="1" max="100" value="10"></label><label>Trạng thái<select id="cStatus"><option value="OPEN">Đang mở</option><option value="PAUSED">Tạm dừng</option><option value="CLOSED">Đã đóng</option></select></label><button id="saveCohort">Lưu</button></section>
-</div>
-
-
-</section>
-
-<section class="admin-view" data-view-panel="candidates">
-  <div class="view-head"><div><span class="view-kicker">Không gian làm việc chính</span><h2>Ứng viên</h2><p>Ưu tiên người phụ trách, việc tiếp theo và hạn xử lý.</p></div><button class="text-button" id="clearActionFilter" hidden>Xóa bộ lọc công việc</button></div>
-  <div class="toolbar">
-<input id="search" placeholder="Tìm tên, email, số điện thoại, mã ứng viên">
-<select id="stageFilter"><option value="">Tất cả trạng thái</option></select>
-<select id="sourceFilter"><option value="">Tất cả nguồn</option></select>
-<button id="exportBtn">Xuất CSV</button>
-</div>
-<div id="status" class="status">Chưa kết nối dữ liệu ứng viên.</div>
-<div class="candidate-desktop"><div class="table-wrap"><table><thead><tr><th>Ứng viên</th><th>Trạng thái</th><th>Phụ trách</th><th>Việc tiếp theo</th><th>Hạn xử lý</th><th>Nguồn</th><th>Cập nhật</th></tr></thead><tbody id="rows"></tbody></table><div id="empty" class="empty">Chưa có dữ liệu.</div></div></div><div id="candidateCards" class="candidate-cards"></div>
-</section>
-
-<section class="admin-view" data-view-panel="recruitment">
-  <div class="view-head"><div><span class="view-kicker">Thu hút & chuyển đổi</span><h2>Tuyển sinh</h2></div></div>
-  <div class="metrics">
-<div class="metric"><small>Đăng ký quan tâm</small><strong id="mAll">0</strong></div>
-<div class="metric"><small>Đủ điều kiện trở lên</small><strong id="mQualified">0</strong></div>
-<div class="metric"><small>Đang trong tuyển chọn</small><strong id="mSelection">0</strong></div>
-<div class="metric"><small>Đạt trở lên</small><strong id="mPass">0</strong></div>
-<div class="metric"><small>Đã nhận / nhập học</small><strong id="mAdmitted">0</strong></div>
-</div>
-
-
-  <section class="acq">
-<div class="acq-head"><div><div class="tag">Thu hút ứng viên</div><h2>Tạo liên kết chiến dịch</h2><p class="acq-note">Mỗi bài đăng, video, đối tác hoặc giới thiệu nên có UTM riêng để biết nội dung nào tạo đăng ký thật.</p></div><span id="publicMode" class="mode-pill">CHỈ GHI NHẬN QUAN TÂM</span></div>
-<div class="acq-grid">
-<label>Nguồn<select id="utmSource"><option value="instagram">Instagram</option><option value="facebook">Facebook</option><option value="tiktok">TikTok</option><option value="threads">Threads</option><option value="zalo">Zalo</option><option value="referral">Giới thiệu</option><option value="partner">Đối tác</option><option value="organic">Tự nhiên</option><option value="other">Khác</option></select></label>
-<label>Hình thức<select id="utmMedium"><option value="organic_social">Mạng xã hội tự nhiên</option><option value="paid_social">Quảng cáo mạng xã hội</option><option value="referral">Giới thiệu</option><option value="message">Tin nhắn</option><option value="qr">Mã QR</option><option value="other">Khác</option></select></label>
-<label>Mã nội dung<input id="utmContent" placeholder="vd: reel01-career-gap"></label>
-</div>
-<div class="preset-row"><button class="preset" data-source="instagram" data-medium="organic_social" data-content="reel01-career-gap">IG Reel 01</button><button class="preset" data-source="facebook" data-medium="organic_social" data-content="post01-career-path">FB Post 01</button><button class="preset" data-source="tiktok" data-medium="organic_social" data-content="video01-production-ready">TikTok 01</button><button class="preset" data-source="zalo" data-medium="message" data-content="direct-outreach-01">Zalo Outreach</button><button class="preset" data-source="referral" data-medium="referral" data-content="student-referral">Referral</button></div>
-<div class="acq-links"><input id="landingCampaignUrl" readonly><button data-copy="landingCampaignUrl">Sao chép trang giới thiệu</button></div>
-<div class="acq-links"><input id="registerCampaignUrl" readonly><button data-copy="registerCampaignUrl">Sao chép trang đăng ký</button></div>
-<p id="acqModeNote" class="acq-note">Chế độ an toàn pháp lý: chỉ dùng lời kêu gọi đăng ký quan tâm cho tới khi điều kiện mở tuyển chính thức được xác nhận.</p>
-
-<div class="campaign-editor">
-<label>Tên nội dung<input id="campaignTitle" placeholder="Tên nội dung / góc tiếp cận"></label>
-<label>Trạng thái<select id="campaignStatus"><option value="IDEA">Ý tưởng</option><option value="DRAFT">Bản nháp</option><option value="READY">Sẵn sàng</option><option value="PUBLISHED">Đã đăng</option><option value="PAUSED">Tạm dừng</option><option value="ARCHIVED">Lưu trữ</option></select></label>
-<label>Phụ trách<input id="campaignOwner" placeholder="Người phụ trách"></label>
-<label>Loại nội dung<select id="campaignAssetType"><option value="">—</option><option value="REEL">Video dọc</option><option value="VIDEO">Video</option><option value="CAROUSEL">Bài nhiều ảnh</option><option value="STATIC">Ảnh tĩnh</option><option value="STORY">Tin</option><option value="DIRECT_OUTREACH">Tiếp cận trực tiếp</option><option value="PARTNER">Đối tác</option><option value="OTHER">Khác</option></select></label>
-<label>Ngày dự kiến đăng<input id="campaignTargetDate" type="date"></label>
-<label>Liên kết tệp<input id="campaignAssetUrl" placeholder="Liên kết Drive / Figma / tệp nội dung"></label>
-<label>Liên kết đã đăng<input id="campaignPublishUrl" placeholder="Liên kết bài đăng sau khi xuất bản"></label>
-<div class="ready-checks">
-<label class="ready-check"><input id="readyBrief" type="checkbox">Đề bài</label>
-<label class="ready-check"><input id="readyProduction" type="checkbox">Sản xuất / Thiết kế</label>
-<label class="ready-check"><input id="readyEdit" type="checkbox">Hậu kỳ / Hoàn thiện</label>
-<label class="ready-check"><input id="readyCopy" type="checkbox">Nội dung / Kêu gọi</label>
-<label class="ready-check"><input id="readyQa" type="checkbox">Kiểm tra / Duyệt</label>
-</div>
-<label class="wide">Ghi chú<textarea id="campaignNotes" placeholder="Mở bài, góc nội dung, lời kêu gọi, bài học, ghi chú..."></textarea></label>
-</div>
-<div class="campaign-actions"><button id="saveCampaign">Lưu vào danh sách</button></div>
-
-<div class="campaign-registry">
-<h3>Danh sách chiến dịch · <span id="campaignWindow">30 ngày</span></h3>
-<div class="campaign-table"><table><thead><tr><th>Nội dung</th><th>Kênh</th><th>Trạng thái</th><th>Sẵn sàng</th><th>Ngày mục tiêu</th><th>Phụ trách</th><th>Trang giới thiệu</th><th>Trang đăng ký</th><th>Bắt đầu</th><th>Quan tâm</th><th>Chuyển đổi</th></tr></thead><tbody id="campaignRows"></tbody></table></div>
-</div>
-</section>
-
-
-  <div class="insights recruitment-insights"><section class="panel"><div class="panel-head"><h2>Phễu chuyển đổi</h2><span id="funnelWindow" class="badge">30D</span></div><div id="funnel" class="funnel"></div></section><section class="panel"><div class="panel-head"><h2>Nguồn đăng ký</h2></div><div id="sources" class="list"></div><div style="height:12px"></div><div class="panel-head"><h2>Nội dung hiệu quả</h2></div><div id="contents" class="list"></div></section></div>
-</section>
-
-<section class="admin-view" data-view-panel="legal">
-  <div class="view-head"><div><span class="view-kicker">Kiểm soát điều kiện mở tuyển</span><h2>Pháp lý</h2></div></div>
-  <section class="legal-gate">
-<div class="legal-head"><div><div class="tag">Pháp lý & điều kiện tuyển sinh</div><h2>Điều kiện mở thư mời & thanh toán</h2><p class="legal-note"><span id="legalDone">0</span>/<span id="legalTotal">13</span> mục đã hoàn tất · danh sách này hỗ trợ rà soát, không tự mở khóa hệ thống.</p></div><span class="gate-pill">ĐANG KHÓA TRONG HỆ THỐNG</span></div>
-<div class="legal-progress"><i id="legalProgress" style="width:0%"></i></div>
-<div id="legalChecklist" class="legal-grid"></div>
-<div class="legal-meta">
-<label>Căn cứ pháp lý / tư vấn<input id="legalCounsel" placeholder="Tên tư vấn, bản ghi nhớ, số văn bản / liên kết hồ sơ"></label>
-<label>Căn cứ cơ quan quản lý<input id="legalAuthority" placeholder="Sở GD&ĐT / cơ quan xác nhận / căn cứ"></label>
-<label>Người rà soát<input id="legalReviewedBy" placeholder="Người chịu trách nhiệm review"></label>
-<label>Lần rà soát gần nhất<input id="legalReviewedAt" readonly></label>
-<label class="wide">Ghi chú<textarea id="legalNotes" placeholder="Kết luận, điều kiện còn thiếu, câu hỏi cần xác nhận…"></textarea></label>
-</div>
-<div class="legal-actions"><button id="saveLegal">Lưu danh sách</button><button id="markLegalReviewed" class="review">Lưu + đánh dấu đã rà soát</button></div>
-<div class="legal-final">
-<h3>Phê duyệt pháp lý cuối <span id="legalFinalState" class="approval-state">CHỜ XỬ LÝ</span></h3>
-<p class="legal-note">Chỉ dùng sau khi 13/13 mục đã được rà soát và có căn cứ từ tư vấn pháp lý hoặc cơ quan có thẩm quyền. Dù đã phê duyệt, gửi thư nhận học và thanh toán vẫn bị khóa trong hệ thống cho tới khi có thay đổi mở khóa riêng.</p>
-<div class="legal-final-grid">
-<label>Quyết định<select id="legalFinalDecision"><option value="PENDING">Chờ xử lý</option><option value="APPROVED">Đã phê duyệt</option><option value="REJECTED">Không phê duyệt</option></select></label>
-<label>Người phê duyệt<input id="legalFinalBy" placeholder="Người/pháp nhân phê duyệt"></label>
-<label>Căn cứ phê duyệt<input id="legalFinalRef" placeholder="Bản ghi nhớ / email / căn cứ cơ quan / phiên bản"></label>
-</div>
-<button id="saveLegalFinal">Lưu căn cứ phê duyệt</button>
-</div>
-</section>
-
-
 </section>
 
 <section class="admin-view" data-view-panel="system">
@@ -278,7 +186,7 @@ function renderActionCenter(){
   const today=data.filter(x=>actionMatches(x,"today"));
   const overdue=data.filter(x=>actionMatches(x,"overdue"));
   const selection=data.filter(x=>actionMatches(x,"selection"));
-  $("aNew").textContent=unread.length;$("aUnassigned").textContent=unassigned.length;$("aToday").textContent=today.length;$("aOverdue").textContent=overdue.length;$("aSelection").textContent=selection.length;
+  $("aNew").textContent=unread.length;$("aUnassigned").textContent=unassigned.length;$("aToday").textContent=today.length;$("aOverdue").textContent=overdue.length;
   $("candidateNavBadge").textContent=data.length;
   const items=[
     ...overdue.map(x=>({x,kind:"overdue",label:"Quá hạn"})),
@@ -290,10 +198,6 @@ function renderActionCenter(){
   document.querySelectorAll("[data-open-candidate]").forEach(btn=>btn.onclick=()=>openDetail(btn.dataset.openCandidate));
 }
 function updateOverviewStatus(){
-  const lr=dash?.legalReadiness||{},complete=legalFields.filter(([db])=>["CONFIRMED","NOT_APPLICABLE"].includes(lr[db])).length;
-  const legalOpen=lr.program_registration_status==="CONFIRMED";
-  $("overviewLegalState").textContent=legalOpen?"Điều kiện tuyển chính thức đã xác nhận":"Tuyển chính thức đang khóa";
-  $("overviewLegalNote").textContent=complete+"/"+legalFields.length+" mục pháp lý đã hoàn tất";
   const failed=n(outboundHealth?.counts?.FAILED),missing=(outboundHealth?.missingRequired||[]).length,retrying=n(outboundHealth?.counts?.RETRY)+n(outboundHealth?.counts?.PROCESSING);
   const bad=failed>0||missing>0||outboundHealth?.ok===false;
   $("overviewSystemState").textContent=bad?"Có lỗi cần xử lý":retrying?"Đang thử gửi lại":"Không có lỗi nghiêm trọng";
@@ -443,6 +347,12 @@ function renderDashboard(){
   $("cMessage").textContent=remaining===0?"Đã đủ mục tiêu nhập học.":coverageGap>0?("Còn thiếu "+remaining+" người nhập học; pipeline cần thêm ít nhất "+coverageGap+" ứng viên để đủ độ phủ mục tiêu."):("Còn thiếu "+remaining+" người nhập học; nhóm đạt/dự bị/đã nhận hiện đã đủ độ phủ theo mục tiêu.");
   $("mAll").textContent=n(t.applications);$("mQualified").textContent=n(t.qualified_or_beyond);$("mSelection").textContent=n(t.in_selection);$("mPass").textContent=n(t.passed_or_beyond);$("mAdmitted").textContent=n(t.admitted_or_enrolled);$("funnelWindow").textContent=dash.days+"D";
   const em=Object.fromEntries((dash.events||[]).map(x=>[x.key,n(x.count)]));
+  const landingViews=em.landing_view||0,applyViews=em.apply_view||0,registrations=em.application_received||n(t.applications);
+  if($("landingVisits"))$("landingVisits").textContent=landingViews;
+  if($("landingApplyVisits"))$("landingApplyVisits").textContent=applyViews;
+  if($("landingRegistrations"))$("landingRegistrations").textContent=registrations;
+  if($("landingConversion"))$("landingConversion").textContent=(landingViews?Math.round(registrations/landingViews*100):0)+"%";
+  if($("landingWindowLabel"))$("landingWindowLabel").textContent=dash.days+" ngày gần nhất";
   const steps=[
     ["Trang giới thiệu",em.landing_view||0],["Trang đăng ký",em.apply_view||0],["Bắt đầu điền",em.form_start||0],
     ["Đăng ký quan tâm",em.application_received||n(t.applications)],["Đủ điều kiện+",n(t.qualified_or_beyond)],["Đã nhận",n(t.admitted_or_enrolled)]
@@ -838,7 +748,7 @@ document.querySelectorAll(".admin-tab").forEach(btn=>btn.onclick=()=>setView(btn
 document.querySelectorAll("[data-go-view]").forEach(btn=>btn.onclick=()=>setView(btn.dataset.goView));
 document.querySelectorAll("[data-action-filter]").forEach(btn=>btn.onclick=()=>{activeActionFilter=btn.dataset.actionFilter;$("clearActionFilter").hidden=false;setView("candidates");render()});
 $("clearActionFilter").onclick=()=>{activeActionFilter="";$("clearActionFilter").hidden=true;render()};
-setView(sessionStorage.getItem("academy_admin_view")||"overview");
+const savedView=sessionStorage.getItem("academy_admin_view");setView(["overview","candidates","system"].includes(savedView)?savedView:"overview");
 if(tokenEl.value)load();
 </script>
 </body>
