@@ -397,6 +397,43 @@ jobs:
           grep -q 'academy-logo-critical' _site/index.html
           grep -q 'Course' _site/nhiep-anh-co-ban/index.html
           grep -q 'CollectionPage' _site/blog/index.html
+
+          # Deterministic performance budget for the Media Career landing.
+          python - <<'PY'
+          from pathlib import Path
+
+          root = Path("_site")
+          html = root / "media-career-program" / "index.html"
+          css = root / "assets" / "media-career" / "program.css"
+          js = root / "assets" / "media-career" / "program.js"
+          image_dir = root / "assets" / "media-career" / "optimized"
+
+          limits = {
+              "HTML": (html.stat().st_size, 90 * 1024),
+              "CSS": (css.stat().st_size, 220 * 1024),
+              "JS": (js.stat().st_size, 60 * 1024),
+          }
+          for label, (size, limit) in limits.items():
+              print(f"{label}: {size} bytes / budget {limit}")
+              if size > limit:
+                  raise SystemExit(f"{label} performance budget exceeded: {size} > {limit}")
+
+          images = [p for p in image_dir.iterdir() if p.is_file()]
+          total = sum(p.stat().st_size for p in images)
+          total_limit = 900 * 1024
+          max_image = 250 * 1024
+          print(f"Optimized images: {total} bytes / budget {total_limit}")
+          if total > total_limit:
+              raise SystemExit(f"Image performance budget exceeded: {total} > {total_limit}")
+          oversized = [(p.name, p.stat().st_size) for p in images if p.stat().st_size > max_image]
+          if oversized:
+              raise SystemExit(f"Image exceeds {max_image}-byte budget: {oversized}")
+
+          landing = html.read_text(encoding="utf-8")
+          if "drive.google.com/thumbnail" in landing:
+              raise SystemExit("Runtime Google Drive image dependency found")
+          print("Media Career performance budget OK")
+          PY
           if rg -n 'academy\.hangdoistudio\.vn' _site; then
             echo "Legacy Academy hostname found in generated site" >&2
             exit 1
