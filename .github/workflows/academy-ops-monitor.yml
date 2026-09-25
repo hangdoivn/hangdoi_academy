@@ -1,0 +1,196 @@
+name: Academy Ops Monitor
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: academy-ops-monitor
+  cancel-in-progress: true
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check Academy production
+        id: checks
+        shell: bash
+        run: |
+          set +e
+          FAILURES=/tmp/academy-monitor-failures.txt
+          : > "$FAILURES"
+
+          fail() {
+            printf '%s\n' "$1" >> "$FAILURES"
+          }
+
+          check_page() {
+            local label="$1"
+            local url="$2"
+            local marker="$3"
+            local body
+            local code
+            body="$(mktemp)"
+            code="$(curl -sS -L --retry 2 --retry-all-errors --connect-timeout 10 --max-time 25 -o "$body" -w '%{http_code}' "$url")"
+            if [ "$code" != "200" ]; then
+              fail "$label returned HTTP $code"
+            elif [ -n "$marker" ] && ! grep -Fq "$marker" "$body"; then
+              fail "$label returned 200 but required marker was missing"
+            fi
+            rm -f "$body"
+          }
+
+          check_json_health() {
+            local label="$1"
+            local url="$2"
+            local body
+            local code
+            body="$(mktemp)"
+            code="$(curl -sS --retry 2 --retry-all-errors --connect-timeout 10 --max-time 25 -o "$body" -w '%{http_code}' "$url")"
+            if [ "$code" != "200" ]; then
+              fail "$label returned HTTP $code"
+            elif ! python - "$body" <<'PY'
+          import json
+          import sys
+
+          with open(sys.argv[1], "r", encoding="utf-8") as handle:
+              data = json.load(handle)
+          if data.get("ok") is not True:
+              raise SystemExit(1)
+          PY
+            then
+              fail "$label returned invalid/unhealthy JSON"
+            fi
+            rm -f "$body"
+          }
+
+          check_cors() {
+            local headers
+            headers="$(mktemp)"
+            curl -sS -D "$headers" -o /dev/null \
+              --retry 2 --retry-all-errors \
+              --connect-timeout 10 --max-time 25 \
+              -X OPTIONS \
+              -H 'Origin: https://academy.hangdoiproduction.com' \
+              -H 'Access-Control-Request-Method: POST' \
+              https://candidate-api-v2-production.up.railway.app/v1/applications
+
+            if ! grep -Eq '^HTTP/[0-9.]+ 20(0|4)' "$headers"; then
+              fail "Application CORS preflight did not return HTTP 200/204"
+            fi
+            if ! grep -Eqi '^access-control-allow-origin:[[:space:]]*https://academy\.hangdoiproduction\.com' "$headers"; then
+              fail "Application CORS preflight is missing the Academy origin"
+            fi
+            rm -f "$headers"
+          }
+
+          check_json_health "Candidate API /health" \
+            "https://candidate-api-v2-production.up.railway.app/health"
+          check_json_health "Candidate API /health/intake" \
+            "https://candidate-api-v2-production.up.railway.app/health/intake"
+          check_json_health "Candidate API /health/backup" \
+            "https://candidate-api-v2-production.up.railway.app/health/backup"
+
+          check_page "Media Career landing" \
+            "https://academy.hangdoiproduction.com/media-career-program/" \
+            "media-career-program"
+          check_page "Media Career apply page" \
+            "https://academy.hangdoiproduction.com/media-career-program/apply/" \
+            'id="interestForm"'
+
+          check_cors
+
+          echo "### Academy production monitor" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Checked at: $(date -u +'%Y-%m-%d %H:%M:%S UTC')" >> "$GITHUB_STEP_SUMMARY"
+
+          if [ -s "$FAILURES" ]; then
+            echo "healthy=false" >> "$GITHUB_OUTPUT"
+            echo "- Status: **UNHEALTHY**" >> "$GITHUB_STEP_SUMMARY"
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "Failures:" >> "$GITHUB_STEP_SUMMARY"
+            sed 's/^/- /' "$FAILURES" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "healthy=true" >> "$GITHUB_OUTPUT"
+            echo "- Status: **HEALTHY**" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Open or update incident
+        if: steps.checks.outputs.healthy != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          LABEL="academy-ops-monitor"
+          TITLE="[Academy Ops] Production health check failed"
+          RUN_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+
+          gh label create "$LABEL" \
+            --repo "$GITHUB_REPOSITORY" \
+            --color "C92A2A" \
+            --description "Automated Hang Doi Academy production health incident" \
+            --force >/dev/null 2>&1 || true
+
+          {
+            echo "Automated production monitor detected a failure."
+            echo
+            echo "**Checked:** $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+            echo "**Run:** $RUN_URL"
+            echo
+            echo "### Failed checks"
+            sed 's/^/- /' /tmp/academy-monitor-failures.txt
+            echo
+            echo "Scope is limited to Academy production only."
+          } > /tmp/academy-incident.md
+
+          issue_number="$(gh issue list \
+            --repo "$GITHUB_REPOSITORY" \
+            --state open \
+            --label "$LABEL" \
+            --json number \
+            --jq '.[0].number // empty')"
+
+          if [ -n "$issue_number" ]; then
+            gh issue comment "$issue_number" \
+              --repo "$GITHUB_REPOSITORY" \
+              --body-file /tmp/academy-incident.md
+          else
+            gh issue create \
+              --repo "$GITHUB_REPOSITORY" \
+              --title "$TITLE" \
+              --label "$LABEL" \
+              --body-file /tmp/academy-incident.md
+          fi
+
+      - name: Close recovered incident
+        if: steps.checks.outputs.healthy == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          LABEL="academy-ops-monitor"
+          issue_number="$(gh issue list \
+            --repo "$GITHUB_REPOSITORY" \
+            --state open \
+            --label "$LABEL" \
+            --json number \
+            --jq '.[0].number // empty')"
+
+          if [ -n "$issue_number" ]; then
+            gh issue comment "$issue_number" \
+              --repo "$GITHUB_REPOSITORY" \
+              --body "Recovered automatically at $(date -u +'%Y-%m-%d %H:%M:%S UTC'). All Academy production checks are healthy."
+            gh issue close "$issue_number" \
+              --repo "$GITHUB_REPOSITORY" \
+              --reason completed
+          fi
+
+      - name: Fail unhealthy run
+        if: steps.checks.outputs.healthy != 'true'
+        run: exit 1
