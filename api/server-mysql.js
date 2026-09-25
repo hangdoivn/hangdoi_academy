@@ -3,7 +3,7 @@ import cors from "cors";
 import helmet from "helmet";
 import crypto from "node:crypto";
 import { createMySqlPool, initMySqlSchema } from "./db-mysql.js";
-import { startMysqlBackupScheduler } from "./backup-mysql.js";
+import { getMysqlBackupStatus, startMysqlBackupScheduler } from "./backup-mysql.js";
 
 const app = express();
 const port = Number(process.env.PORT || 3000);
@@ -149,6 +149,11 @@ app.get("/health", async (_req, res) => {
   } catch {
     res.status(503).json({ ok: false });
   }
+});
+
+app.get("/health/backup", async (_req, res) => {
+  const status = await getMysqlBackupStatus({ maxAgeHours: 30 });
+  res.status(status.ok ? 200 : 503).json(status);
 });
 
 app.post("/v1/events", rateLimit(10 * 60 * 1000, 200), async (req, res) => {
