@@ -33,16 +33,17 @@ jobs:
           set -euo pipefail
           test "$(tr -d '\r\n' < CNAME)" = "academy.hangdoiproduction.com"
 
-          if rg -n 'academy\.hangdoistudio\.vn' \
-            --glob '!docs/deployment-safety.md' \
-            --glob '!AGENTS.md' .; then
+          if grep -RInE 'academy\.hangdoistudio\.vn' . \
+            --exclude='deployment-safety.md' \
+            --exclude='AGENTS.md' \
+            --exclude-dir='.git'; then
             echo "Legacy Academy hostname remains in active repository content" >&2
             exit 1
           fi
 
-          if rg -n 'HOSTINGER_API_TOKEN|public_html|72\.60\.108\.22|hangdoistudio-dns-cutover' \
+          if grep -RInE 'HOSTINGER_API_TOKEN|public_html|72\.60\.108\.22|hangdoistudio-dns-cutover' \
             .github/workflows \
-            --glob '!deployment-boundary.yml'; then
+            --exclude='deployment-boundary.yml'; then
             echo "Academy workflows cross the Production hosting boundary" >&2
             exit 1
           fi
