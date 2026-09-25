@@ -1122,7 +1122,7 @@ form.addEventListener("submit",async function(event){
     }
 
     sessionStorage.removeItem(DRAFT_KEY);
-    await track("form_submit_client",data.candidateCode,{intakeMode:data.intakeMode||"INTEREST_ONLY"});
+    track("form_submit_client",data.candidateCode,{intakeMode:data.intakeMode||"INTEREST_ONLY"});
     location.href="/media-career-program/thank-you/?candidate="+encodeURIComponent(data.candidateCode)+"&mode="+encodeURIComponent(data.intakeMode||"INTEREST_ONLY");
   }catch(error){
     console.error(error);
