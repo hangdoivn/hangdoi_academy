@@ -10,7 +10,9 @@
     "start": "node server-mysql.js",
     "start:mysql": "node server-mysql.js",
     "migrate:mysql": "node migrate-postgres-to-mysql.js",
-    "start:postgres": "node server.js"
+    "start:postgres": "node server.js",
+    "backup:mysql": "node backup-mysql-once.js",
+    "restore:mysql:drill": "node restore-mysql-backup.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
