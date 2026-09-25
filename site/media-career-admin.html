@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Media Career CRM | Hang Đôi Academy</title>
+<title>Quản lý tuyển sinh | Hang Đôi Academy</title>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <style>
 :root{--blue:#152BE8;--yellow:#FDDE58;--ink:#00031A;--mist:#F3F5FF;--line:#D9DDEC;--muted:#646B86;--red:#B42318;--green:#157A55;--white:#fff}
@@ -24,6 +24,15 @@
 .recruitment-insights{grid-template-columns:1.2fr .8fr}.candidate-desktop .table-wrap table{min-width:880px}
 @media(max-width:1040px){.action-metrics{grid-template-columns:repeat(3,1fr)}.overview-grid{grid-template-columns:1fr}.overview-status-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:650px){.wrap{width:min(calc(100% - 20px),1380px)}.nav{height:58px}.nav img{width:158px}.topline h1{font-size:34px}.login{padding:13px}.admin-tabs{margin-left:-2px;margin-right:-2px;padding:6px}.admin-tab{padding:9px 11px}.view-head h2{font-size:26px}.view-head{align-items:flex-start}.action-metrics{grid-template-columns:1fr 1fr}.action-metric:last-child{grid-column:1/-1}.overview-status-grid{grid-template-columns:1fr}.action-item{grid-template-columns:1fr auto}.action-item .action-detail{grid-column:1/-1}.candidate-desktop{display:none}.candidate-cards{display:block}.metrics{grid-template-columns:1fr 1fr}.recruitment-insights{grid-template-columns:1fr}.cohort-band{grid-template-columns:1fr 1fr}.cohort-main,.cohort-settings{grid-column:1/-1}}
+
+/* ===== Candidate detail + Vietnamese UI · P2-P3 ===== */
+dialog{width:min(calc(100% - 20px),960px);overflow:auto}.drawer{padding:0}.drawer-head{position:sticky;top:0;z-index:8;background:#fff;padding:20px 22px 16px}.drawer-body-wrap{padding:0 22px 24px}
+.candidate-summary{position:sticky;top:91px;z-index:7;display:grid;grid-template-columns:1.15fr 1.25fr .8fr 1fr;gap:8px;padding:10px 22px;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.summary-cell{padding:9px 10px;border-radius:11px;background:var(--mist);min-width:0}.summary-cell small{display:block;color:var(--muted);font-size:9px;font-weight:900;letter-spacing:.05em}.summary-cell b{display:block;font-size:12px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.summary-contact{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.summary-contact a{font-size:11px;color:var(--blue);font-weight:850;text-decoration:none}
+.detail-tabs{display:flex;gap:6px;padding:14px 0 10px;border-bottom:1px solid var(--line);overflow:auto}.detail-tab{border:0;background:var(--mist);color:var(--muted);padding:8px 11px;border-radius:999px;font-size:11px;font-weight:900;white-space:nowrap;cursor:pointer}.detail-tab.active{background:var(--ink);color:#fff}
+.detail-pane{display:none}.detail-pane.active{display:block}.detail-section-title{font-size:13px;margin:18px 0 8px}.profile-intro{margin:16px 0 4px}.profile-intro h3{font-size:18px;margin:0 0 4px}.profile-intro p{font-size:12px;color:var(--muted);margin:0}
+.system-note{font-size:11px;color:var(--muted);margin-top:4px}
+@media(max-width:650px){dialog{width:calc(100% - 12px);max-height:94vh;border-radius:18px}.drawer-head{padding:15px 14px 12px}.drawer-head h2{font-size:24px}.drawer-body-wrap{padding:0 14px 18px}.candidate-summary{top:76px;grid-template-columns:1fr 1fr;padding:8px 14px}.summary-cell:nth-child(2){grid-column:1/-1;grid-row:2}.detail-tabs{padding-top:10px}.detail-grid{grid-template-columns:1fr}.ops-grid{grid-template-columns:1fr}.ops .wide{grid-column:auto}}
 </style>
 </head>
 <body>
@@ -107,9 +116,9 @@
 
 <div class="campaign-editor">
 <label>Tên nội dung<input id="campaignTitle" placeholder="Tên creative / angle"></label>
-<label>Trạng thái<select id="campaignStatus"><option>IDEA</option><option>DRAFT</option><option>READY</option><option>PUBLISHED</option><option>PAUSED</option><option>ARCHIVED</option></select></label>
+<label>Trạng thái<select id="campaignStatus"><option value="IDEA">Ý tưởng</option><option value="DRAFT">Bản nháp</option><option value="READY">Sẵn sàng</option><option value="PUBLISHED">Đã đăng</option><option value="PAUSED">Tạm dừng</option><option value="ARCHIVED">Lưu trữ</option></select></label>
 <label>Phụ trách<input id="campaignOwner" placeholder="Người phụ trách"></label>
-<label>Loại nội dung<select id="campaignAssetType"><option value="">—</option><option>REEL</option><option>VIDEO</option><option>CAROUSEL</option><option>STATIC</option><option>STORY</option><option>DIRECT_OUTREACH</option><option>PARTNER</option><option>OTHER</option></select></label>
+<label>Loại nội dung<select id="campaignAssetType"><option value="">—</option><option value="REEL">Video dọc</option><option value="VIDEO">Video</option><option value="CAROUSEL">Bài nhiều ảnh</option><option value="STATIC">Ảnh tĩnh</option><option value="STORY">Tin</option><option value="DIRECT_OUTREACH">Tiếp cận trực tiếp</option><option value="PARTNER">Đối tác</option><option value="OTHER">Khác</option></select></label>
 <label>Ngày dự kiến đăng<input id="campaignTargetDate" type="date"></label>
 <label>Liên kết tệp<input id="campaignAssetUrl" placeholder="Drive / Figma / asset link"></label>
 <label>Liên kết đã đăng<input id="campaignPublishUrl" placeholder="Link post/reel sau khi publish"></label>
@@ -125,8 +134,8 @@
 <div class="campaign-actions"><button id="saveCampaign">Lưu vào danh sách</button></div>
 
 <div class="campaign-registry">
-<h3>Danh sách chiến dịch · <span id="campaignWindow">30D</span></h3>
-<div class="campaign-table"><table><thead><tr><th>Content</th><th>Channel</th><th>Status</th><th>Readiness</th><th>Target</th><th>Owner</th><th>Landing</th><th>Register</th><th>Start</th><th>Interest</th><th>Conv.</th></tr></thead><tbody id="campaignRows"></tbody></table></div>
+<h3>Danh sách chiến dịch · <span id="campaignWindow">30 ngày</span></h3>
+<div class="campaign-table"><table><thead><tr><th>Nội dung</th><th>Kênh</th><th>Trạng thái</th><th>Sẵn sàng</th><th>Ngày mục tiêu</th><th>Phụ trách</th><th>Trang giới thiệu</th><th>Trang đăng ký</th><th>Bắt đầu</th><th>Quan tâm</th><th>Chuyển đổi</th></tr></thead><tbody id="campaignRows"></tbody></table></div>
 </div>
 </section>
 
@@ -149,12 +158,12 @@
 </div>
 <div class="legal-actions"><button id="saveLegal">Lưu danh sách</button><button id="markLegalReviewed" class="review">Lưu + đánh dấu đã rà soát</button></div>
 <div class="legal-final">
-<h3>Phê duyệt pháp lý cuối <span id="legalFinalState" class="approval-state">PENDING</span></h3>
+<h3>Phê duyệt pháp lý cuối <span id="legalFinalState" class="approval-state">CHỜ XỬ LÝ</span></h3>
 <p class="legal-note">Chỉ dùng sau khi 13/13 checkpoint đã được review và có căn cứ từ counsel/authority. Dù APPROVED, Admission Send/Payment vẫn BLOCKED IN CODE cho tới PR mở khóa riêng.</p>
 <div class="legal-final-grid">
-<label>Decision<select id="legalFinalDecision"><option>PENDING</option><option>APPROVED</option><option>REJECTED</option></select></label>
-<label>Approved by<input id="legalFinalBy" placeholder="Người/pháp nhân phê duyệt"></label>
-<label>Approval reference<input id="legalFinalRef" placeholder="Memo / email / authority reference / version"></label>
+<label>Quyết định<select id="legalFinalDecision"><option value="PENDING">Chờ xử lý</option><option value="APPROVED">Đã phê duyệt</option><option value="REJECTED">Không phê duyệt</option></select></label>
+<label>Người phê duyệt<input id="legalFinalBy" placeholder="Người/pháp nhân phê duyệt"></label>
+<label>Căn cứ phê duyệt<input id="legalFinalRef" placeholder="Memo / email / authority reference / version"></label>
 </div>
 <button id="saveLegalFinal">Lưu căn cứ phê duyệt</button>
 </div>
@@ -170,7 +179,7 @@
     <div>
       <div class="tag">Hệ thống thông báo</div>
       <h2>Thông báo tự động</h2>
-      <p id="deliveryNote" class="delivery-note">Đang chờ kết nối Candidate API…</p>
+      <p id="deliveryNote" class="delivery-note">Đang chờ kết nối hệ thống dữ liệu…</p>
     </div>
     <div class="delivery-head-actions">
       <button id="deliveryTest" class="delivery-test" disabled>Gửi thử</button>
@@ -181,7 +190,7 @@
   <div class="delivery-metrics">
     <div class="delivery-metric"><small>Đã gửi</small><strong id="deliveryDelivered">0</strong></div>
     <div class="delivery-metric"><small>Đang chờ</small><strong id="deliveryPending">0</strong></div>
-    <div class="delivery-metric"><small>Đang thử lại</small><strong id="deliveryRetrying">0</strong></div>
+    <div class="delivery-metric"><small>Đang thử lại</small><strong id="deliveryThử lạiing">0</strong></div>
     <div class="delivery-metric"><small>Lỗi cần xử lý</small><strong id="deliveryFailed">0</strong></div>
   </div>
   <div id="deliveryList" class="delivery-list"><div class="status">Chưa có lịch sử delivery.</div></div>
@@ -192,12 +201,18 @@
 </main>
 </div>
 
-<dialog id="detailDialog"><div class="drawer"><div class="drawer-head"><div><div class="tag">Candidate detail</div><h2 id="dName">Loading…</h2><div id="dCode" class="code"></div></div><button class="close" onclick="detailDialog.close()">Đóng</button></div><div id="detailBody" class="loading">Đang tải hồ sơ…</div></div></dialog>
+<dialog id="detailDialog"><div class="drawer"><div class="drawer-head"><div><div class="tag">Hồ sơ ứng viên</div><h2 id="dName">Đang tải…</h2><div id="dCode" class="code"></div></div><button class="close" onclick="detailDialog.close()">Đóng</button></div><div id="detailBody" class="loading">Đang tải hồ sơ…</div></div></dialog>
 
 <script>
 const API="https://candidate-api-v2-production.up.railway.app";
 const stages=["INTEREST_REGISTERED","APPLICATION_COMPLETED","QUALIFIED","SELECTION_INVITED","SELECTION_CONFIRMED","SELECTION_ATTENDED","PASS","WAITLIST","LOST","ADMITTED","ENROLLED"];
 const stageLabels={INTEREST_REGISTERED:"Đã đăng ký quan tâm",APPLICATION_COMPLETED:"Đã hoàn tất hồ sơ",QUALIFIED:"Đủ điều kiện",SELECTION_INVITED:"Đã mời tuyển chọn",SELECTION_CONFIRMED:"Đã xác nhận tuyển chọn",SELECTION_ATTENDED:"Đã tham gia tuyển chọn",PASS:"Đạt",WAITLIST:"Dự bị",LOST:"Dừng",ADMITTED:"Đã nhận",ENROLLED:"Đã nhập học"};
+const legalStatusLabels={PENDING:"Chờ xử lý",CONFIRMED:"Đã xác nhận",NOT_APPLICABLE:"Không áp dụng"};
+const approvalLabels={PENDING:"Chờ xử lý",APPROVED:"Đã phê duyệt",REJECTED:"Không phê duyệt"};
+const deliveryStatusLabels={PENDING:"Đang chờ",PROCESSING:"Đang gửi",RETRY:"Đang thử lại",DELIVERED:"Đã gửi",FAILED:"Lỗi"};
+const assessmentDecisionLabels={PENDING:"Chờ đánh giá",PASS:"Đạt",WAITLIST:"Dự bị",LOST:"Dừng"};
+const selectionStatusLabels={DRAFT:"Bản nháp",INVITED:"Đã mời",CONFIRMED:"Đã xác nhận",DECLINED:"Từ chối",ATTENDED:"Đã tham gia"};
+const campaignStatusLabels={IDEA:"Ý tưởng",DRAFT:"Bản nháp",READY:"Sẵn sàng",PUBLISHED:"Đã đăng",PAUSED:"Tạm dừng",ARCHIVED:"Lưu trữ"};
 let activeActionFilter="";
 let data=[],dash=null,notifications=[],campaigns=[],outboundDeliveries=[],outboundHealth=null;
 const $=id=>document.getElementById(id);
@@ -208,19 +223,19 @@ const auth=()=>({"Authorization":"Bearer "+(sessionStorage.getItem("mcp_admin_to
 const esc=v=>String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
 const n=v=>Number(v||0);
 const legalFields=[
-  ["operating_entity_status","operatingEntityStatus","Operating entity"],
-  ["program_classification_status","programClassificationStatus","Program classification"],
-  ["activity_conditions_status","activityConditionsStatus","Activity conditions · NĐ 361/2026"],
-  ["program_registration_status","programRegistrationStatus","Program registration before recruitment"],
-  ["curriculum_standard_status","curriculumStandardStatus","Curriculum / program standard"],
-  ["certificate_wording_status","certificateWordingStatus","Certificate wording / authority"],
-  ["tuition_disclosure_status","tuitionDisclosureStatus","Tuition disclosure"],
-  ["enrollment_agreement_status","enrollmentAgreementStatus","Enrollment Agreement"],
-  ["refund_deferral_status","refundDeferralStatus","Refund / cancellation / deferral"],
-  ["invoice_tax_status","invoiceTaxStatus","Invoice / tax treatment"],
-  ["production_exposure_status","productionExposureStatus","Real-client production / learner work"],
-  ["employment_separation_status","employmentSeparationStatus","Academy ↔ Production separation"],
-  ["privacy_terms_status","privacyTermsStatus","Privacy / marketing terms"]
+  ["operating_entity_status","operatingEntityStatus","Tư cách đơn vị vận hành"],
+  ["program_classification_status","programClassificationStatus","Phân loại chương trình"],
+  ["activity_conditions_status","activityConditionsStatus","Điều kiện hoạt động · NĐ 361/2026"],
+  ["program_registration_status","programRegistrationStatus","Đăng ký chương trình trước tuyển sinh"],
+  ["curriculum_standard_status","curriculumStandardStatus","Chuẩn chương trình / giáo trình"],
+  ["certificate_wording_status","certificateWordingStatus","Nội dung chứng nhận / thẩm quyền"],
+  ["tuition_disclosure_status","tuitionDisclosureStatus","Công khai học phí"],
+  ["enrollment_agreement_status","enrollmentAgreementStatus","Thỏa thuận nhập học"],
+  ["refund_deferral_status","refundDeferralStatus","Hoàn phí / hủy / bảo lưu"],
+  ["invoice_tax_status","invoiceTaxStatus","Hóa đơn / thuế"],
+  ["production_exposure_status","productionExposureStatus","Thực hành dự án khách hàng thật"],
+  ["employment_separation_status","employmentSeparationStatus","Tách biệt Academy ↔ Production"],
+  ["privacy_terms_status","privacyTermsStatus","Quyền riêng tư / truyền thông"]
 ];
 const legalOptions=["PENDING","CONFIRMED","NOT_APPLICABLE"];
 const formalStages=new Set(["APPLICATION_COMPLETED","QUALIFIED","SELECTION_INVITED","SELECTION_CONFIRMED","SELECTION_ATTENDED","PASS","WAITLIST"]);
@@ -291,21 +306,21 @@ function updateAcquisition(){
   $("landingCampaignUrl").value="https://academy.hangdoiproduction.com/media-career-program/?"+params.toString();
   $("registerCampaignUrl").value="https://academy.hangdoiproduction.com/media-career-program/apply/?"+params.toString();
   const formalOpen=dash?.publicIntakeMode==="APPLICATION_OPEN";
-  $("publicMode").textContent=formalOpen?"FORMAL APPLICATION OPEN":"INTEREST ONLY";
+  $("publicMode").textContent=formalOpen?"ĐÃ MỞ TUYỂN CHÍNH THỨC":"CHỈ GHI NHẬN QUAN TÂM";
   $("publicMode").className="mode-pill"+(formalOpen?" open":"");
   $("acqModeNote").textContent=formalOpen
-    ?"Public intake đã được mở Formal Application bằng reviewed launch change."
-    :"Legal Safe Mode: chỉ dùng wording Register Interest. Program registration CONFIRMED riêng lẻ không tự mở Formal Application; cần reviewed unlock riêng.";
+    ?"Đã mở tiếp nhận hồ sơ chính thức theo thay đổi đã được rà soát."
+    :"Chế độ an toàn pháp lý: chỉ ghi nhận quan tâm. Một mục pháp lý được xác nhận riêng lẻ không tự mở tuyển chính thức; cần thay đổi mở khóa được rà soát riêng.";
 }
 async function copyField(id){
   try{await navigator.clipboard.writeText($(id).value);statusEl.textContent="Đã copy campaign link.";statusEl.className="status ok"}
   catch{statusEl.textContent="Không copy được campaign link.";statusEl.className="status err"}
 }
 function renderCampaigns(){
-  $("campaignWindow").textContent=($("days").value||30)+"D";
+  $("campaignWindow").textContent=($("days").value||30)+" ngày";
   const rows=$("campaignRows");rows.innerHTML=campaigns.length?campaigns.map(x=>
     '<tr data-content="'+esc(x.content_id)+'"><td><b>'+esc(x.content_id)+'</b><div class="metric-mini">'+esc(x.title||"")+(x.asset_type?' · '+esc(x.asset_type):'')+'</div></td>'+
-    '<td>'+esc(x.source)+' / '+esc(x.medium)+'</td><td>'+esc(x.status)+'</td>'+
+    '<td>'+esc(x.source)+' / '+esc(x.medium)+'</td><td>'+esc(campaignStatusLabels[x.status]||x.status)+'</td>'+
     '<td><span class="readiness"><span class="readiness-bar"><i style="width:'+n(x.readiness_pct)+'%"></i></span><b>'+n(x.readiness_pct)+'%</b></span></td>'+
     '<td>'+esc(x.target_publish_date?new Date(x.target_publish_date).toLocaleDateString("vi-VN"):"—")+'</td><td>'+esc(x.owner||"—")+'</td>'+
     '<td>'+n(x.landing_views)+'</td><td>'+n(x.apply_views)+'</td><td>'+n(x.form_starts)+'</td><td><b>'+n(x.interests)+'</b></td><td>'+n(x.landing_to_interest_pct)+'%</td></tr>'
@@ -364,11 +379,11 @@ function renderLegal(){
   const complete=legalFields.filter(([db])=>["CONFIRMED","NOT_APPLICABLE"].includes(lr[db])).length;
   $("legalDone").textContent=complete;$("legalTotal").textContent=legalFields.length;
   $("legalProgress").style.width=(legalFields.length?Math.round(complete/legalFields.length*100):0)+"%";
-  $("legalChecklist").innerHTML=legalFields.map(([db,apiKey,label],i)=>'<label class="legal-item"><span>'+esc(label)+'</span><select id="legal_'+i+'" data-api="'+apiKey+'">'+legalOptions.map(v=>'<option '+((lr[db]||"PENDING")===v?'selected':'')+'>'+v+'</option>').join("")+'</select></label>').join("");
+  $("legalChecklist").innerHTML=legalFields.map(([db,apiKey,label],i)=>'<label class="legal-item"><span>'+esc(label)+'</span><select id="legal_'+i+'" data-api="'+apiKey+'">'+legalOptions.map(v=>'<option value="'+v+'" '+((lr[db]||"PENDING")===v?'selected':'')+'>'+esc(legalStatusLabels[v]||v)+'</option>').join("")+'</select></label>').join("");
   $("legalCounsel").value=lr.counsel_reference||"";$("legalAuthority").value=lr.authority_reference||"";
-  $("legalReviewedBy").value=lr.reviewed_by||"";$("legalReviewedAt").value=lr.reviewed_at?new Date(lr.reviewed_at).toLocaleString("vi-VN"):"Chưa mark reviewed";
+  $("legalReviewedBy").value=lr.reviewed_by||"";$("legalReviewedAt").value=lr.reviewed_at?new Date(lr.reviewed_at).toLocaleString("vi-VN"):"Chưa đánh dấu đã rà soát";
   $("legalNotes").value=lr.notes||"";
-  $("legalFinalState").textContent=lr.final_approval_status||"PENDING";
+  $("legalFinalState").textContent=approvalLabels[lr.final_approval_status||"PENDING"]||"Chờ xử lý";
   $("legalFinalDecision").value=lr.final_approval_status||"PENDING";
   $("legalFinalBy").value=lr.final_approved_by||"";
   $("legalFinalRef").value=lr.final_approval_reference||"";
@@ -385,9 +400,9 @@ async function saveLegal(markReviewed=false){
   });
   try{
     const j=await api("/v1/admin/legal-readiness/01",{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
-    statusEl.textContent="Legal readiness saved · "+j.progress.completed+"/"+j.progress.total+" · Admission/Payment "+j.admissionSendGate;statusEl.className="status ok";
+    statusEl.textContent="Đã lưu tình trạng pháp lý · "+j.progress.completed+"/"+j.progress.total+" · Admission/Payment "+j.admissionSendGate;statusEl.className="status ok";
     await refreshDashboard();
-  }catch(e){statusEl.textContent="Legal readiness lỗi: "+e.message;statusEl.className="status err"}
+  }catch(e){statusEl.textContent="Lưu tình trạng pháp lý lỗi: "+e.message;statusEl.className="status err"}
 }
 async function saveLegalFinal(){
   const body={
@@ -397,25 +412,25 @@ async function saveLegalFinal(){
   };
   try{
     const j=await api("/v1/admin/legal-readiness/01/final-approval",{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
-    statusEl.textContent="Final Legal Approval saved · "+j.finalApproval+" · Admission/Payment vẫn "+j.admissionSendGate;statusEl.className="status ok";
+    statusEl.textContent="Đã lưu phê duyệt pháp lý cuối · "+j.finalApproval+" · Admission/Payment vẫn "+j.admissionSendGate;statusEl.className="status ok";
     await refreshDashboard();
-  }catch(e){statusEl.textContent="Final approval lỗi: "+e.message;statusEl.className="status err"}
+  }catch(e){statusEl.textContent="Lưu phê duyệt cuối lỗi: "+e.message;statusEl.className="status err"}
 }
 async function saveCohort(){
   const targetEnrollment=Number($("cTargetInput").value),status=$("cStatus").value;
   try{
     const j=await api("/v1/admin/cohort/01",{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify({targetEnrollment,status})});
-    statusEl.textContent="Cohort 01 updated · target "+j.cohort.target_enrollment+" · "+j.cohort.status;statusEl.className="status ok";
+    statusEl.textContent="Đã cập nhật Khóa 01 · mục tiêu "+j.cohort.target_enrollment+" · "+j.cohort.status;statusEl.className="status ok";
     await refreshDashboard();
-  }catch(e){statusEl.textContent="Cohort update lỗi: "+e.message;statusEl.className="status err"}
+  }catch(e){statusEl.textContent="Cập nhật khóa học lỗi: "+e.message;statusEl.className="status err"}
 }
 function buildFilters(){
   const sf=$("sourceFilter"),current=sf.value;sf.innerHTML='<option value="">Tất cả nguồn</option>';
-  [...new Set(data.map(x=>x.utm_source||"direct"))].sort().forEach(s=>{const o=document.createElement("option");o.value=s;o.textContent=s;sf.appendChild(o)});sf.value=current;
+  [...new Set(data.map(x=>x.utm_source||"trực tiếp"))].sort().forEach(s=>{const o=document.createElement("option");o.value=s;o.textContent=s;sf.appendChild(o)});sf.value=current;
 }
 function filtered(){
   const q=$("search").value.trim().toLowerCase(),st=stageFilter.value,src=$("sourceFilter").value;
-  return data.filter(x=>{const hay=[x.full_name,x.email,x.phone,x.candidate_code].join(" ").toLowerCase();const sx=x.utm_source||"direct";return(!q||hay.includes(q))&&(!st||x.pipeline_stage===st)&&(!src||sx===src)&&(!activeActionFilter||actionMatches(x,activeActionFilter))});
+  return data.filter(x=>{const hay=[x.full_name,x.email,x.phone,x.candidate_code].join(" ").toLowerCase();const sx=x.utm_source||"trực tiếp";return(!q||hay.includes(q))&&(!st||x.pipeline_stage===st)&&(!src||sx===src)&&(!activeActionFilter||actionMatches(x,activeActionFilter))});
 }
 function renderDashboard(){
   if(!dash)return;const t=dash.totals||{},co=dash.cohort||{};
@@ -425,12 +440,12 @@ function renderDashboard(){
   $("cProgress").style.width=Math.min(100,n(co.enrolledPct))+"%";
   renderLegal();updateAcquisition();
   const coverageGap=n(co.coverageGap),remaining=n(co.remainingToEnroll);
-  $("cMessage").textContent=remaining===0?"Target đã đủ ENROLLED.":coverageGap>0?("Còn thiếu "+remaining+" ENROLLED; pipeline hiện còn thiếu ít nhất "+coverageGap+" candidate coverage để đủ target."):("Còn thiếu "+remaining+" ENROLLED; PASS/WAITLIST/ADMITTED hiện đã phủ đủ target về số lượng.");
+  $("cMessage").textContent=remaining===0?"Đã đủ mục tiêu nhập học.":coverageGap>0?("Còn thiếu "+remaining+" người nhập học; pipeline cần thêm ít nhất "+coverageGap+" ứng viên để đủ độ phủ mục tiêu."):("Còn thiếu "+remaining+" người nhập học; nhóm đạt/dự bị/đã nhận hiện đã đủ độ phủ theo mục tiêu.");
   $("mAll").textContent=n(t.applications);$("mQualified").textContent=n(t.qualified_or_beyond);$("mSelection").textContent=n(t.in_selection);$("mPass").textContent=n(t.passed_or_beyond);$("mAdmitted").textContent=n(t.admitted_or_enrolled);$("funnelWindow").textContent=dash.days+"D";
   const em=Object.fromEntries((dash.events||[]).map(x=>[x.key,n(x.count)]));
   const steps=[
-    ["Landing",em.landing_view||0],["Apply page",em.apply_view||0],["Form started",em.form_start||0],
-    ["Interest",em.application_received||n(t.applications)],["Qualified+",n(t.qualified_or_beyond)],["Admitted",n(t.admitted_or_enrolled)]
+    ["Trang giới thiệu",em.landing_view||0],["Trang đăng ký",em.apply_view||0],["Bắt đầu điền",em.form_start||0],
+    ["Đăng ký quan tâm",em.application_received||n(t.applications)],["Đủ điều kiện+",n(t.qualified_or_beyond)],["Đã nhận",n(t.admitted_or_enrolled)]
   ];
   const max=Math.max(...steps.map(x=>x[1]),1);
   $("funnel").innerHTML=steps.map((x,i)=>{const prev=i?steps[i-1][1]:0,pct=i&&prev?Math.round(x[1]/prev*100):null;return '<div class="frow"><div><b>'+esc(x[0])+'</b><div class="bar"><i style="width:'+Math.max(3,Math.round(x[1]/max*100))+'%"></i></div></div><strong>'+x[1]+'</strong><span>'+(pct===null?"—":pct+"%")+'</span></div>'}).join("");
@@ -441,45 +456,45 @@ function renderList(id,rows,max){
 }
 function renderNotifications(){
   const unread=notifications.filter(x=>x.status==="UNREAD");$("unreadCount").textContent=unread.length+" chưa đọc";
-  $("notifications").innerHTML=notifications.length?notifications.slice(0,15).map(x=>{const p=x.payload||{};return '<div class="nitem"><b>'+esc(p.fullName||x.candidate_code||"Đăng ký mới")+'</b><br>'+esc(p.email||"")+' · '+esc(p.source||"direct")+'<br><span class="code">'+esc(x.candidate_code||"")+'</span>'+(x.status==="UNREAD"?'<br><button onclick="markRead('+x.id+')">Đánh dấu đã đọc</button>':'')+'</div>'}).join("") :'<div class="status">Chưa có thông báo mới.</div>';
+  $("notifications").innerHTML=notifications.length?notifications.slice(0,15).map(x=>{const p=x.payload||{};return '<div class="nitem"><b>'+esc(p.fullName||x.candidate_code||"Đăng ký mới")+'</b><br>'+esc(p.email||"")+' · '+esc(p.source||"trực tiếp")+'<br><span class="code">'+esc(x.candidate_code||"")+'</span>'+(x.status==="UNREAD"?'<br><button onclick="markRead('+x.id+')">Đánh dấu đã đọc</button>':'')+'</div>'}).join("") :'<div class="status">Chưa có thông báo mới.</div>';
 }
 function renderOutbound(){
   const health=outboundHealth||{},counts=health.counts||{},configured=new Set(health.configured||[]),formats=health.formats||{},required=health.required||{},missingRequired=new Set(health.missingRequired||[]);
   const delivered=n(counts.DELIVERED),pending=n(counts.PENDING),retrying=n(counts.RETRY)+n(counts.PROCESSING),failed=n(counts.FAILED);
-  $("deliveryDelivered").textContent=delivered;$("deliveryPending").textContent=pending;$("deliveryRetrying").textContent=retrying;$("deliveryFailed").textContent=failed;
+  $("deliveryDelivered").textContent=delivered;$("deliveryPending").textContent=pending;$("deliveryThử lạiing").textContent=retrying;$("deliveryFailed").textContent=failed;
 
   const channels=[
-    ["NEW_APPLICATION_WEBHOOK_URL","Thông báo nội bộ / team"],
+    ["NEW_APPLICATION_WEBHOOK_URL","Thông báo cho đội ngũ"],
     ["APPLICATION_ACK_WEBHOOK_URL","Xác nhận cho ứng viên"]
   ];
-  const formatLabel=value=>value==="google_chat"?"Google Chat":value==="slack"?"Slack":"Generic webhook";
+  const formatLabel=value=>value==="google_chat"?"Google Chat":value==="slack"?"Slack":"Webhook chung";
   $("deliveryConfig").innerHTML=channels.map(([key,label])=>{
     const isOn=configured.has(key),isRequired=required[key]===true,isMissing=missingRequired.has(key);
     const suffix=isOn
       ?("Đã kết nối · "+formatLabel(formats[key]))
-      :(isRequired?"THIẾU ENDPOINT BẮT BUỘC":"Chưa kết nối · "+formatLabel(formats[key]));
+      :(isRequired?"THIẾU KÊNH BẮT BUỘC":"Chưa kết nối · "+formatLabel(formats[key]));
     return '<span class="'+(isOn?'on ':'')+(isMissing?'delivery-config-missing':'')+'"><i></i>'+esc(label)+' · '+esc(suffix)+'</span>';
   }).join("");
   const testButton=$("deliveryTest");
   testButton.disabled=!configured.size;
-  testButton.textContent=configured.size?"Gửi test":"Chưa có endpoint";
+  testButton.textContent=configured.size?"Gửi thử":"Chưa có kênh";
 
   const state=$("deliveryState"),note=$("deliveryNote");
   if(missingRequired.size){
     state.textContent="THIẾU KÊNH BẮT BUỘC";state.className="delivery-state bad";
-    note.textContent="Một kênh đã được đánh dấu bắt buộc nhưng endpoint không còn cấu hình. Monitor production sẽ giữ trạng thái unhealthy cho tới khi khôi phục URL hoặc bỏ cờ required.";
+    note.textContent="Một kênh bắt buộc đã mất cấu hình. Hệ thống giám sát sẽ giữ trạng thái lỗi cho tới khi khôi phục liên kết hoặc bỏ yêu cầu bắt buộc.";
   }else if(failed>0||health.ok===false){
     state.textContent="CẦN XỬ LÝ";state.className="delivery-state bad";
-    note.textContent="Có delivery lỗi hoặc queue bị trễ. Kiểm tra job bên dưới và retry sau khi xác nhận endpoint hoạt động.";
+    note.textContent="Có thông báo gửi lỗi hoặc hàng đợi bị trễ. Kiểm tra mục bên dưới và thử lại sau khi xác nhận kênh hoạt động.";
   }else if(!configured.size){
     state.textContent="CHƯA KẾT NỐI";state.className="delivery-state warn";
-    note.textContent="Queue và retry worker đang hoạt động, nhưng chưa cấu hình kênh thông báo ngoài trên Railway.";
+    note.textContent="Hàng đợi và cơ chế thử lại đang hoạt động, nhưng chưa cấu hình kênh thông báo ngoài.";
   }else if(pending+retrying>0){
     state.textContent="ĐANG GỬI";state.className="delivery-state busy";
-    note.textContent="Có delivery đang chờ hoặc đang retry tự động. Worker kiểm tra queue mỗi 30 giây.";
+    note.textContent="Có thông báo đang chờ hoặc đang được thử gửi lại. Hệ thống kiểm tra hàng đợi mỗi 30 giây.";
   }else{
     state.textContent="ỔN ĐỊNH";state.className="delivery-state ok";
-    note.textContent="Kênh ngoài đã kết nối và hiện không có delivery tồn đọng.";
+    note.textContent="Kênh ngoài đã kết nối và hiện không có thông báo tồn đọng.";
   }
 
   const list=outboundDeliveries.slice(0,8);
@@ -487,19 +502,19 @@ function renderOutbound(){
     const when=x.delivered_at||x.last_attempt_at||x.created_at;
     const error=x.last_error?'<small class="delivery-error">'+esc(x.last_error)+'</small>':'<small class="delivery-error">Không có lỗi</small>';
     const action=x.status==="FAILED"
-      ?'<button class="delivery-retry" data-delivery-retry="'+x.id+'">Retry</button>'
+      ?'<button class="delivery-retry" data-delivery-retry="'+x.id+'">Thử lại</button>'
       :'';
     return '<div class="delivery-row">'+
       '<div><b>'+esc(x.candidate_code||"—")+'</b><small>'+esc(when?new Date(when).toLocaleString("vi-VN"):"—")+'</small></div>'+
       '<div class="delivery-type">'+esc(x.delivery_type||"—")+'</div>'+
-      '<div><span class="delivery-status '+esc(x.status||"")+'">'+esc(x.status||"—")+'</span></div>'+
+      '<div><span class="delivery-status '+esc(x.status||"")+'">'+esc(deliveryStatusLabels[x.status]||x.status||"—")+'</span></div>'+
       '<div class="delivery-attempts">'+n(x.attempt_count)+' / '+n(x.max_attempts||6)+' lần</div>'+
       '<div class="delivery-action">'+action+'</div>'+
       error+
     '</div>';
   }).join(""):'<div class="status">'+(configured.size?'Chưa có delivery nào.':'Chưa có delivery vì chưa kết nối kênh ngoài.')+'</div>';
 
-  document.querySelectorAll("[data-delivery-retry]").forEach(btn=>btn.addEventListener("click",()=>retryOutbound(btn.dataset.deliveryRetry,btn)));
+  document.querySelectorAll("[data-delivery-retry]").forEach(btn=>btn.addEventListener("click",()=>retryOutbound(btn.dataset.deliveryThử lại,btn)));
 }
 async function sendOutboundTest(){
   const button=$("deliveryTest");
@@ -519,18 +534,18 @@ async function refreshOutbound(){
   try{
     const [outboundData,outboundStatus]=await Promise.all([api("/v1/admin/outbound"),api("/health/outbound")]);
     outboundDeliveries=outboundData.deliveries||[];outboundHealth=outboundStatus||null;renderOutbound();
-  }catch(e){statusEl.textContent="Không tải được delivery queue: "+e.message;statusEl.className="status err"}
+  }catch(e){statusEl.textContent="Không tải được hàng đợi thông báo: "+e.message;statusEl.className="status err"}
 }
 async function retryOutbound(id,button){
-  button.disabled=true;button.textContent="Đang retry…";
+  button.disabled=true;button.textContent="Đang thử lại…";
   try{
     await api("/v1/admin/outbound/"+id+"/retry",{method:"POST"});
-    statusEl.textContent="Đã đưa delivery #"+id+" vào retry ngay.";statusEl.className="status ok";
+    statusEl.textContent="Đã đưa lượt gửi #"+id+" vào hàng đợi thử lại.";statusEl.className="status ok";
     await new Promise(resolve=>setTimeout(resolve,700));
     await refreshOutbound();
   }catch(e){
-    statusEl.textContent="Retry delivery lỗi: "+e.message;statusEl.className="status err";
-    button.disabled=false;button.textContent="Retry";
+    statusEl.textContent="Thử lại thông báo lỗi: "+e.message;statusEl.className="status err";
+    button.disabled=false;button.textContent="Thử lại";
   }
 }
 function render(){
@@ -560,22 +575,22 @@ function render(){
   document.querySelectorAll("[data-detail]").forEach(el=>el.addEventListener("click",()=>openDetail(el.dataset.detail)));
 }
 async function updateStage(id,stage,el){
-  el.disabled=true;try{const j=await api("/v1/admin/applications/"+id+"/stage",{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify({stage})});const item=data.find(x=>String(x.id)===String(id));if(item)item.pipeline_stage=stage;statusEl.textContent="Updated "+j.application.candidate_code+" → "+stage;statusEl.className="status ok";await refreshDashboard()}catch(e){statusEl.textContent="Update lỗi: "+e.message;statusEl.className="status err";await load()}finally{el.disabled=false}
+  el.disabled=true;try{const j=await api("/v1/admin/applications/"+id+"/stage",{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify({stage})});const item=data.find(x=>String(x.id)===String(id));if(item)item.pipeline_stage=stage;statusEl.textContent="Đã cập nhật "+j.application.candidate_code+" → "+stage;statusEl.className="status ok";await refreshDashboard()}catch(e){statusEl.textContent="Cập nhật lỗi: "+e.message;statusEl.className="status err";await load()}finally{el.disabled=false}
 }
 async function refreshDashboard(){try{dash=await api("/v1/admin/dashboard?days="+$("days").value);renderDashboard();renderActionCenter();updateOverviewStatus()}catch{}}
 async function markRead(id){try{await api("/v1/admin/notifications/"+id+"/read",{method:"PATCH"});const x=notifications.find(n=>String(n.id)===String(id));if(x)x.status="READ";renderNotifications()}catch(e){statusEl.textContent=e.message;statusEl.className="status err"}}
 function renderCandidateOutbound(items,applicationId){
   const configured=n(outboundHealth?.configured?.length)>0;
   if(!items.length){
-    return '<section class="candidate-delivery"><div class="candidate-delivery-head"><h3>Thông báo ra ngoài</h3><span class="delivery-status">'+(configured?'CHƯA CÓ DELIVERY':'CHƯA KẾT NỐI')+'</span></div><div class="status">'+(configured?'Ứng viên này chưa phát sinh delivery ra ngoài.':'Queue đã sẵn sàng nhưng chưa cấu hình kênh thông báo ngoài.')+'</div></section>';
+    return '<section class="candidate-delivery"><div class="candidate-delivery-head"><h3>Thông báo tự động</h3><span class="delivery-status">'+(configured?'CHƯA CÓ LƯỢT GỬI':'CHƯA KẾT NỐI')+'</span></div><div class="status">'+(configured?'Ứng viên này chưa phát sinh thông báo tự động.':'Hàng đợi đã sẵn sàng nhưng chưa cấu hình kênh thông báo ngoài.')+'</div></section>';
   }
-  return '<section class="candidate-delivery"><div class="candidate-delivery-head"><h3>Thông báo ra ngoài</h3><span class="source">'+items.length+' delivery</span></div>'+
+  return '<section class="candidate-delivery"><div class="candidate-delivery-head"><h3>Thông báo tự động</h3><span class="source">'+items.length+' lượt gửi</span></div>'+
     items.map(x=>{
       const at=x.delivered_at||x.last_attempt_at||x.created_at;
-      const retry=x.status==="FAILED"?'<button class="delivery-retry" onclick="retryCandidateDelivery('+x.id+','+applicationId+',this)">Retry</button>':'';
+      const retry=x.status==="FAILED"?'<button class="delivery-retry" onclick="retryCandidateDelivery('+x.id+','+applicationId+',this)">Thử lại</button>':'';
       return '<div class="candidate-delivery-row">'+
-        '<div><b>'+esc(x.delivery_type||"—")+'</b><small>'+(at?esc(new Date(at).toLocaleString("vi-VN")):"—")+' · '+n(x.attempt_count)+'/'+n(x.max_attempts||6)+' lần thử</small></div>'+
-        '<span class="delivery-status '+esc(x.status||"")+'">'+esc(x.status||"—")+'</span>'+
+        '<div><b>'+esc(x.delivery_type==="NEW_APPLICATION_WEBHOOK"?"Thông báo đăng ký mới":x.delivery_type==="APPLICATION_ACK_WEBHOOK"?"Xác nhận đăng ký":"Thông báo hệ thống")+'</b><small>'+(at?esc(new Date(at).toLocaleString("vi-VN")):"—")+' · '+n(x.attempt_count)+'/'+n(x.max_attempts||6)+' lần thử</small></div>'+
+        '<span class="delivery-status '+esc(x.status||"")+'">'+esc(deliveryStatusLabels[x.status]||x.status||"—")+'</span>'+
         retry+
         (x.last_error?'<small class="candidate-delivery-error">'+esc(x.last_error)+'</small>':'')+
       '</div>';
@@ -586,71 +601,102 @@ async function retryCandidateDelivery(deliveryId,applicationId,button){
   button.disabled=true;button.textContent="Đang retry…";
   try{
     await api("/v1/admin/outbound/"+deliveryId+"/retry",{method:"POST"});
-    statusEl.textContent="Đã retry delivery #"+deliveryId+".";statusEl.className="status ok";
+    statusEl.textContent="Đã thử lại lượt gửi #"+deliveryId+".";statusEl.className="status ok";
     await new Promise(resolve=>setTimeout(resolve,700));
     await refreshOutbound();
     await openDetail(applicationId);
   }catch(e){
-    statusEl.textContent="Retry delivery lỗi: "+e.message;statusEl.className="status err";
-    button.disabled=false;button.textContent="Retry";
+    statusEl.textContent="Thử lại thông báo lỗi: "+e.message;statusEl.className="status err";
+    button.disabled=false;button.textContent="Thử lại";
   }
 }
+function detailTabButton(key,label,active=false){return '<button class="detail-tab'+(active?' active':'')+'" data-detail-tab="'+key+'">'+label+'</button>'}
+function bindDetailTabs(){
+  document.querySelectorAll("[data-detail-tab]").forEach(btn=>btn.onclick=()=>{
+    document.querySelectorAll("[data-detail-tab]").forEach(x=>x.classList.toggle("active",x===btn));
+    document.querySelectorAll("[data-detail-pane]").forEach(x=>x.classList.toggle("active",x.dataset.detailPane===btn.dataset.detailTab));
+  });
+}
 async function openDetail(id){
-  if(!detailDialog.open) detailDialog.showModal();$("dName").textContent="Loading…";$("dCode").textContent="";$("detailBody").innerHTML='<div class="loading">Đang tải hồ sơ…</div>';
+  if(!detailDialog.open) detailDialog.showModal();
+  $("dName").textContent="Đang tải…";$("dCode").textContent="";$("detailBody").innerHTML='<div class="loading">Đang tải hồ sơ…</div>';
   try{
     const j=await api("/v1/admin/applications/"+id),x=j.application,p=x.payload||{},history=j.history||[],a=j.assessment||{},adm=j.admission||{},selApp=j.selection||{},outbound=j.outboundDeliveries||[],legalGate=j.admissionLegalGate||"BLOCKED",formalSelectionOpen=dash?.legalReadiness?.program_registration_status==="CONFIRMED";
     $("dName").textContent=x.full_name;$("dCode").textContent=x.candidate_code;
-    const lostOptions=["","Tuition","Schedule","Parents / Family","Location","Career Uncertainty","Chose Job","Another Program","No Response","Failed Qualification","Failed Selection","Not Ready","Other"];
-    $("detailBody").innerHTML='<div class="detail-grid">'+
-      detail("Email",x.email)+detail("Phone",x.phone)+detail("City",x.city)+detail("Current",x.current_status)+
-      detail("Experience",x.experience_level)+detail("Track",x.preferred_track)+detail("Source",(x.utm_source||"direct")+" / "+(x.utm_content||"—"))+detail("Stage",x.pipeline_stage)+'</div>'+
-      renderCandidateOutbound(outbound,x.id)+
-      (formalSelectionOpen?'<section class="selection-box"><div class="selection-head"><h3>Selection Scheduling</h3><span class="source">'+esc(selApp.status||"DRAFT")+'</span></div>'+
+    const lostOptions=[
+      ["","—"],["Tuition","Học phí"],["Schedule","Lịch học"],["Parents / Family","Gia đình"],["Location","Địa điểm"],
+      ["Career Uncertainty","Chưa chắc định hướng nghề"],["Chose Job","Chọn đi làm"],["Another Program","Chọn chương trình khác"],
+      ["No Response","Không phản hồi"],["Failed Qualification","Không đạt điều kiện"],["Failed Selection","Không đạt tuyển chọn"],
+      ["Not Ready","Chưa sẵn sàng"],["Other","Khác"]
+    ];
+    const summary='<div class="candidate-summary">'+
+      '<div class="summary-cell"><small>TRẠNG THÁI</small><b>'+esc(stageLabels[x.pipeline_stage]||x.pipeline_stage)+'</b></div>'+
+      '<div class="summary-cell"><small>VIỆC TIẾP THEO</small><b>'+esc(x.next_action||"Chưa có việc tiếp theo")+'</b></div>'+
+      '<div class="summary-cell"><small>HẠN XỬ LÝ</small><b>'+esc(x.next_action_date?new Date(x.next_action_date).toLocaleDateString("vi-VN"):"Chưa đặt")+'</b></div>'+
+      '<div class="summary-cell"><small>PHỤ TRÁCH / LIÊN HỆ</small><b>'+esc(x.owner||"Chưa giao")+'</b><div class="summary-contact">'+(x.phone?'<a href="tel:'+attr(x.phone)+'">'+esc(x.phone)+'</a>':'')+(x.email?'<a href="mailto:'+attr(x.email)+'">Email</a>':'')+'</div></div>'+
+    '</div>';
+    const tabs='<div class="detail-tabs">'+detailTabButton("overview","Tổng quan",true)+detailTabButton("profile","Hồ sơ")+detailTabButton("selection","Tuyển chọn")+detailTabButton("history","Lịch sử")+'</div>';
+
+    const operations='<section class="ops"><h3>Vận hành ứng viên</h3><div class="ops-grid">'+
+      '<label>Người phụ trách<input id="opOwner" value="'+attr(x.owner||"")+'" placeholder="Tên người phụ trách"></label>'+
+      '<label>Hạn xử lý<input id="opNextDate" type="date" value="'+attr((x.next_action_date||"").slice(0,10))+'"></label>'+
+      '<label class="wide">Việc tiếp theo<input id="opNextAction" value="'+attr(x.next_action||"")+'" placeholder="Việc cần làm tiếp theo"></label>'+
+      '<label>Lý do dừng<select id="opLostReason">'+lostOptions.map(([v,label])=>'<option value="'+attr(v)+'" '+(v===(x.lost_reason||"")?'selected':'')+'>'+esc(label)+'</option>').join("")+'</select></label>'+
+      '<label class="wide">Ghi chú nội bộ<textarea id="opNotes" placeholder="Ghi chú nội bộ">'+esc(x.internal_notes||"")+'</textarea></label>'+
+      '</div><button onclick="saveOps('+x.id+')">Lưu vận hành</button></section>';
+
+    const profile='<div class="profile-intro"><h3>Thông tin ứng viên</h3><p>Thông tin liên hệ, nền tảng hiện tại và câu trả lời trong biểu mẫu.</p></div>'+
+      '<div class="detail-grid">'+
+      detail("Email",x.email)+detail("Số điện thoại",x.phone)+detail("Thành phố",x.city)+detail("Hiện trạng",x.current_status)+
+      detail("Kinh nghiệm",x.experience_level)+detail("Hướng quan tâm",x.preferred_track)+detail("Nguồn",(x.utm_source||"trực tiếp")+" / "+(x.utm_content||"—"))+detail("Trạng thái",stageLabels[x.pipeline_stage]||x.pipeline_stage)+'</div>'+
+      '<div class="answers">'+answer("Cách nhìn hình ảnh",p.visualThinking)+answer("Tham chiếu hình ảnh",p.visualReferences)+answer("Vì sao chọn Media",p.careerWhy)+answer("Định hướng 3 năm",p.career3yr)+answer("Rào cản hiện tại",p.currentBarrier)+answer("Câu chuyện học kỹ năng",p.hardSkillStory)+answer("Thất bại / cách phục hồi",p.failureStory)+answer("Lịch hiện tại",p.schedule)+answer("Vì sao phù hợp",p.whyYou)+'</div>';
+
+    const selectionBlock=formalSelectionOpen?'<section class="selection-box"><div class="selection-head"><h3>Lịch tuyển chọn</h3><span class="source">'+esc(selectionStatusLabels[selApp.status]||selApp.status||"Bản nháp")+'</span></div>'+
       '<input id="selToken" type="hidden" value="'+attr(selApp.public_token||"")+'">'+
       '<div class="selection-grid">'+
-      '<label>Start time<input id="selStart" type="datetime-local" value="'+attr(toLocalInput(selApp.selection_start))+'"></label>'+
-      '<label>Duration (minutes)<input id="selDuration" type="number" min="15" max="480" step="15" value="'+attr(selApp.duration_minutes||90)+'"></label>'+
-      '<label>Mode<select id="selMode"><option value="ONSITE" '+sel(selApp.mode,"ONSITE")+'>ONSITE</option><option value="ONLINE" '+sel(selApp.mode,"ONLINE")+'>ONLINE</option></select></label>'+
-      '<label>Location / meeting link<input id="selLocation" value="'+attr(selApp.location||"")+'" placeholder="Địa chỉ hoặc meeting link"></label>'+
-      '<label class="wide">Invitation note<textarea id="selInviteNote" placeholder="Thông tin team muốn nhắn cùng lời mời">'+esc(selApp.invitation_note||"")+'</textarea></label>'+
-      '<label class="wide">Preparation note<textarea id="selPrepNote" placeholder="Ứng viên cần chuẩn bị gì trước Selection">'+esc(selApp.prep_note||"")+'</textarea></label>'+
-      (selApp.candidate_response_note?'<label class="wide">Candidate response<div class="detail"><b>'+esc(selApp.candidate_response_note)+'</b></div></label>':'')+
-      '</div><div class="selection-actions"><button onclick="saveSelection('+x.id+')">Save Schedule</button><button class="secondary" onclick="copySelectionInvite()">Copy Invitation</button><button class="dark" onclick="markSelectionInvited('+x.id+')">Mark Invitation Sent</button><button class="secondary" onclick="markSelectionAttended('+x.id+')">Mark Attended</button></div></section>':'<section class="selection-box"><div class="selection-head"><h3>Formal Selection Locked</h3><span class="source">LEGAL SAFE MODE</span></div><p class="legal-note">Program registration chưa CONFIRMED. Hồ sơ hiện chỉ ở Register Interest; không được scheduling/invite/assess.</p></section>')+
-      ((x.pipeline_stage==="SELECTION_ATTENDED"||a.updated_at)?'<section class="assessment"><h3>Selection Assessment</h3><div class="score-grid">'+
-      scoreInput("Visual Potential","asVisual",a.visual_score,25)+
-      scoreInput("Learning","asLearning",a.learning_score,20)+
-      scoreInput("Execution","asExecution",a.execution_score,20)+
-      scoreInput("Behaviour","asBehaviour",a.behaviour_score,20)+
-      scoreInput("Motivation","asMotivation",a.motivation_score,15)+
-      '</div><div class="score-total">Total <span id="asTotal">'+assessmentTotal(a)+'</span>/100</div>'+
-      '<div class="assessment-meta"><label>Assessor<input id="asAssessor" value="'+attr(a.assessor||"")+'" placeholder="Người chấm"></label>'+
-      '<label>Decision<select id="asDecision"><option '+sel(a.decision,"PENDING")+'>PENDING</option><option '+sel(a.decision,"PASS")+'>PASS</option><option '+sel(a.decision,"WAITLIST")+'>WAITLIST</option><option '+sel(a.decision,"LOST")+'>LOST</option></select></label>'+
-      '<label class="wide">Selection notes<textarea id="asSelectionNotes">'+esc(a.selection_notes||"")+'</textarea></label>'+
-      '<label class="wide">Interview notes<textarea id="asInterviewNotes">'+esc(a.interview_notes||"")+'</textarea></label></div>'+
-      '<button onclick="saveAssessment('+x.id+')">Save Assessment</button></section>':'')+
-      ((x.pipeline_stage==="PASS"||adm.status)?'<section class="admission"><div class="admission-head"><h3>Admission Draft</h3><span class="locked">LEGAL GATE: '+esc(legalGate)+'</span></div>'+
-      '<div class="notice" style="margin-bottom:12px">Draft nội bộ. Send Admission và Payment đang bị khóa cho tới khi Legal & Enrollment gate được phê duyệt.</div>'+
+      '<label>Thời gian bắt đầu<input id="selStart" type="datetime-local" value="'+attr(toLocalInput(selApp.selection_start))+'"></label>'+
+      '<label>Thời lượng (phút)<input id="selDuration" type="number" min="15" max="480" step="15" value="'+attr(selApp.duration_minutes||90)+'"></label>'+
+      '<label>Hình thức<select id="selMode"><option value="ONSITE" '+sel(selApp.mode,"ONSITE")+'>Tại chỗ</option><option value="ONLINE" '+sel(selApp.mode,"ONLINE")+'>Trực tuyến</option></select></label>'+
+      '<label>Địa điểm / liên kết họp<input id="selLocation" value="'+attr(selApp.location||"")+'" placeholder="Địa chỉ hoặc liên kết họp"></label>'+
+      '<label class="wide">Ghi chú lời mời<textarea id="selInviteNote" placeholder="Thông tin muốn gửi cùng lời mời">'+esc(selApp.invitation_note||"")+'</textarea></label>'+
+      '<label class="wide">Ghi chú chuẩn bị<textarea id="selPrepNote" placeholder="Ứng viên cần chuẩn bị gì trước buổi tuyển chọn">'+esc(selApp.prep_note||"")+'</textarea></label>'+
+      (selApp.candidate_response_note?'<label class="wide">Phản hồi của ứng viên<div class="detail"><b>'+esc(selApp.candidate_response_note)+'</b></div></label>':'')+
+      '</div><div class="selection-actions"><button onclick="saveSelection('+x.id+')">Lưu lịch</button><button class="secondary" onclick="copySelectionInvite()">Sao chép lời mời</button><button class="dark" onclick="markSelectionInvited('+x.id+')">Đánh dấu đã gửi lời mời</button><button class="secondary" onclick="markSelectionAttended('+x.id+')">Đánh dấu đã tham gia</button></div></section>':
+      '<section class="selection-box"><div class="selection-head"><h3>Tuyển chọn chính thức đang khóa</h3><span class="source">CHẾ ĐỘ AN TOÀN PHÁP LÝ</span></div><p class="legal-note">Điều kiện đăng ký chương trình chưa được xác nhận. Hồ sơ hiện chỉ ở giai đoạn ghi nhận quan tâm; chưa được lên lịch, gửi lời mời hoặc chấm tuyển chọn.</p></section>';
+
+    const assessment=(x.pipeline_stage==="SELECTION_ATTENDED"||a.updated_at)?'<section class="assessment"><h3>Đánh giá tuyển chọn</h3><div class="score-grid">'+
+      scoreInput("Tiềm năng hình ảnh","asVisual",a.visual_score,25)+scoreInput("Khả năng học","asLearning",a.learning_score,20)+scoreInput("Khả năng thực thi","asExecution",a.execution_score,20)+scoreInput("Thái độ","asBehaviour",a.behaviour_score,20)+scoreInput("Động lực","asMotivation",a.motivation_score,15)+
+      '</div><div class="score-total">Tổng <span id="asTotal">'+assessmentTotal(a)+'</span>/100</div>'+
+      '<div class="assessment-meta"><label>Người đánh giá<input id="asAssessor" value="'+attr(a.assessor||"")+'" placeholder="Người chấm"></label>'+
+      '<label>Kết quả<select id="asDecision"><option value="PENDING" '+sel(a.decision,"PENDING")+'>Chờ đánh giá</option><option value="PASS" '+sel(a.decision,"PASS")+'>Đạt</option><option value="WAITLIST" '+sel(a.decision,"WAITLIST")+'>Dự bị</option><option value="LOST" '+sel(a.decision,"LOST")+'>Dừng</option></select></label>'+
+      '<label class="wide">Ghi chú tuyển chọn<textarea id="asSelectionNotes">'+esc(a.selection_notes||"")+'</textarea></label>'+
+      '<label class="wide">Ghi chú phỏng vấn<textarea id="asInterviewNotes">'+esc(a.interview_notes||"")+'</textarea></label></div>'+
+      '<button onclick="saveAssessment('+x.id+')">Lưu đánh giá</button></section>':'';
+
+    const admission=(x.pipeline_stage==="PASS"||adm.status)?'<section class="admission"><div class="admission-head"><h3>Bản nháp thư nhận học</h3><span class="locked">CỔNG PHÁP LÝ: '+esc(legalGate==="BLOCKED"?"ĐANG KHÓA":legalGate)+'</span></div>'+
+      '<div class="notice" style="margin-bottom:12px">Bản nháp nội bộ. Gửi thư nhận học và thanh toán vẫn bị khóa cho tới khi cổng Pháp lý & Tuyển sinh được phê duyệt.</div>'+
       '<div class="admission-grid">'+
-      '<label>Status<select id="adStatus"><option '+sel(adm.status,"DRAFT")+'>DRAFT</option><option '+sel(adm.status,"READY_FOR_LEGAL")+'>READY_FOR_LEGAL</option></select></label>'+
-      '<label>Prepared by<input id="adPreparedBy" value="'+attr(adm.prepared_by||"")+'" placeholder="Người chuẩn bị"></label>'+
-      '<label class="wide">Program<input id="adProgram" value="'+attr(adm.program_name||"Hang Đôi Media Career Program")+'"></label>'+
-      '<label>Tuition (VND)<input id="adTuition" type="number" min="0" step="1000000" value="'+attr(adm.tuition_amount||40000000)+'"></label>'+
-      '<label>Proposed start<input id="adStart" type="date" value="'+attr((adm.proposed_start_date||"").slice(0,10))+'"></label>'+
-      '<label>Response deadline<input id="adDeadline" type="date" value="'+attr((adm.response_deadline||"").slice(0,10))+'"></label>'+
-      '<label class="wide">Payment plan<input id="adPaymentPlan" value="'+attr(adm.payment_plan||"40.000.000 VNĐ một lần hoặc 10.000.000 VNĐ × 4 kỳ")+'"></label>'+
-      '<label class="wide">Schedule note<textarea id="adScheduleNote">'+esc(adm.schedule_note||"")+'</textarea></label>'+
-      '<label class="wide">Admission note<textarea id="adAdmissionNote">'+esc(adm.admission_note||"")+'</textarea></label>'+
-      '</div><div class="admission-actions"><button onclick="saveAdmissionDraft('+x.id+')">Save Draft</button><button class="secondary" onclick="copyAdmissionDraft()">Copy Draft Text</button></div></section>':'')+
-      '<section class="ops"><h3>Candidate Operations</h3><div class="ops-grid">'+
-      '<label>Owner<input id="opOwner" value="'+attr(x.owner||"")+'" placeholder="Tên người phụ trách"></label>'+
-      '<label>Next date<input id="opNextDate" type="date" value="'+attr((x.next_action_date||"").slice(0,10))+'"></label>'+
-      '<label class="wide">Next action<input id="opNextAction" value="'+attr(x.next_action||"")+'" placeholder="Việc cần làm tiếp theo"></label>'+
-      '<label>Lost reason<select id="opLostReason">'+lostOptions.map(v=>'<option value="'+attr(v)+'" '+(v===(x.lost_reason||"")?'selected':'')+'>'+esc(v||"—")+'</option>').join("")+'</select></label>'+
-      '<label class="wide">Internal notes<textarea id="opNotes" placeholder="Ghi chú nội bộ">'+esc(x.internal_notes||"")+'</textarea></label>'+
-      '</div><button onclick="saveOps('+x.id+')">Save Operations</button></section>'+
-      '<div class="answers">'+answer("Visual thinking",p.visualThinking)+answer("Visual references",p.visualReferences)+answer("Why Media",p.careerWhy)+answer("3-year direction",p.career3yr)+answer("Current barrier",p.currentBarrier)+answer("Learning story",p.hardSkillStory)+answer("Failure / recovery",p.failureStory)+answer("Current schedule",p.schedule)+answer("Why this candidate",p.whyYou)+'</div>'+
-      '<section class="timeline"><h3>Stage History</h3>'+(history.length?history.map(h=>'<div class="titem"><b>'+esc(h.from_stage||"—")+' → '+esc(h.to_stage)+'</b><br>'+new Date(h.changed_at).toLocaleString("vi-VN")+'</div>').join(""):'<div class="status">Chưa có stage change.</div>')+'</section>';
-  }catch(e){$("detailBody").innerHTML='<div class="err">'+esc(e.message)+'</div>'}
+      '<label>Trạng thái<select id="adStatus"><option value="DRAFT" '+sel(adm.status,"DRAFT")+'>Bản nháp</option><option value="READY_FOR_LEGAL" '+sel(adm.status,"READY_FOR_LEGAL")+'>Sẵn sàng rà soát pháp lý</option></select></label>'+
+      '<label>Người chuẩn bị<input id="adPreparedBy" value="'+attr(adm.prepared_by||"")+'" placeholder="Người chuẩn bị"></label>'+
+      '<label class="wide">Chương trình<input id="adProgram" value="'+attr(adm.program_name||"Hang Đôi Media Career Program")+'"></label>'+
+      '<label>Học phí (VNĐ)<input id="adTuition" type="number" min="0" step="1000000" value="'+attr(adm.tuition_amount||40000000)+'"></label>'+
+      '<label>Ngày dự kiến bắt đầu<input id="adStart" type="date" value="'+attr((adm.proposed_start_date||"").slice(0,10))+'"></label>'+
+      '<label>Hạn phản hồi<input id="adDeadline" type="date" value="'+attr((adm.response_deadline||"").slice(0,10))+'"></label>'+
+      '<label class="wide">Kế hoạch thanh toán<input id="adPaymentPlan" value="'+attr(adm.payment_plan||"40.000.000 VNĐ một lần hoặc 10.000.000 VNĐ × 4 kỳ")+'"></label>'+
+      '<label class="wide">Ghi chú lịch học<textarea id="adScheduleNote">'+esc(adm.schedule_note||"")+'</textarea></label>'+
+      '<label class="wide">Ghi chú nhận học<textarea id="adAdmissionNote">'+esc(adm.admission_note||"")+'</textarea></label>'+
+      '</div><div class="admission-actions"><button onclick="saveAdmissionDraft('+x.id+')">Lưu bản nháp</button><button class="secondary" onclick="copyAdmissionDraft()">Sao chép nội dung</button></div></section>':'';
+
+    const timeline='<section class="timeline"><h3>Lịch sử trạng thái</h3>'+(history.length?history.map(h=>'<div class="titem"><b>'+esc(stageLabels[h.from_stage]||h.from_stage||"—")+' → '+esc(stageLabels[h.to_stage]||h.to_stage)+'</b><br>'+new Date(h.changed_at).toLocaleString("vi-VN")+'</div>').join(""):'<div class="status">Chưa có thay đổi trạng thái.</div>')+'</section>';
+
+    $("detailBody").innerHTML=summary+'<div class="drawer-body-wrap">'+tabs+
+      '<div class="detail-pane active" data-detail-pane="overview">'+operations+renderCandidateOutbound(outbound,x.id)+'</div>'+
+      '<div class="detail-pane" data-detail-pane="profile">'+profile+'</div>'+
+      '<div class="detail-pane" data-detail-pane="selection">'+selectionBlock+assessment+admission+'</div>'+
+      '<div class="detail-pane" data-detail-pane="history">'+timeline+'</div>'+
+    '</div>';
+    bindDetailTabs();
+  }catch(e){$("detailBody").innerHTML='<div class="drawer-body-wrap"><div class="err">'+esc(e.message)+'</div></div>'}
 }
 function toLocalInput(iso){
   if(!iso)return "";
@@ -668,39 +714,39 @@ async function saveSelection(id,refresh=true){
   try{
     const j=await api("/v1/admin/applications/"+id+"/selection",{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
     $("selToken").value=j.selection.public_token||"";
-    statusEl.textContent="Selection schedule saved · "+j.selection.status;statusEl.className="status ok";
+    statusEl.textContent="Đã lưu lịch tuyển chọn · "+j.selection.status;statusEl.className="status ok";
     if(refresh)await openDetail(id);
     return j.selection;
-  }catch(e){statusEl.textContent="Selection schedule lỗi: "+e.message;statusEl.className="status err";throw e}
+  }catch(e){statusEl.textContent="Lưu lịch tuyển chọn lỗi: "+e.message;statusEl.className="status err";throw e}
 }
 async function markSelectionInvited(id){
   try{
     await saveSelection(id,false);
     const j=await api("/v1/admin/applications/"+id+"/selection/mark-invited",{method:"POST"});
     const item=data.find(x=>String(x.id)===String(id));if(item){item.pipeline_stage="SELECTION_INVITED";item.selection_appointment_status="INVITED"}
-    render();await refreshDashboard();statusEl.textContent="Marked Invitation Sent → SELECTION_INVITED";statusEl.className="status ok";await openDetail(id);
-  }catch(e){if(!String(e.message).includes("Selection schedule")){statusEl.textContent="Mark invited lỗi: "+e.message;statusEl.className="status err"}}
+    render();await refreshDashboard();statusEl.textContent="Đã đánh dấu gửi lời mời → Đã mời tuyển chọn";statusEl.className="status ok";await openDetail(id);
+  }catch(e){if(!String(e.message).includes("Selection schedule")){statusEl.textContent="Đánh dấu lời mời lỗi: "+e.message;statusEl.className="status err"}}
 }
 async function markSelectionAttended(id){
   try{
     const j=await api("/v1/admin/applications/"+id+"/selection/attended",{method:"POST"});
     const item=data.find(x=>String(x.id)===String(id));if(item){item.pipeline_stage="SELECTION_ATTENDED";item.selection_appointment_status="ATTENDED"}
-    render();await refreshDashboard();statusEl.textContent="Marked Attended → SELECTION_ATTENDED";statusEl.className="status ok";await openDetail(id);
-  }catch(e){statusEl.textContent="Mark attended lỗi: "+e.message;statusEl.className="status err"}
+    render();await refreshDashboard();statusEl.textContent="Đã đánh dấu tham gia → Đã tham gia tuyển chọn";statusEl.className="status ok";await openDetail(id);
+  }catch(e){statusEl.textContent="Đánh dấu tham gia lỗi: "+e.message;statusEl.className="status err"}
 }
 async function copySelectionInvite(){
   const token=$("selToken").value;
-  if(!token){statusEl.textContent="Save Schedule trước để tạo confirmation link.";statusEl.className="status err";return}
+  if(!token){statusEl.textContent="Hãy lưu lịch trước để tạo liên kết xác nhận.";statusEl.className="status err";return}
   const dt=$("selStart").value?new Date($("selStart").value):null;
   const time=dt?new Intl.DateTimeFormat("vi-VN",{dateStyle:"full",timeStyle:"short"}).format(dt):"[chưa chốt]";
   const link="https://academy.hangdoiproduction.com/media-career-program/selection/?token="+encodeURIComponent(token);
   const text=[
     "Xin chào "+($("dName").textContent||"")+",",
     "",
-    "Hang Đôi mời bạn tham gia Selection của Media Career Program — Cohort 01.",
+    "Hang Đôi mời bạn tham gia buổi tuyển chọn của Chương trình Media Career — Khóa 01.",
     "Thời gian: "+time,
-    "Hình thức: "+($("selMode").value==="ONLINE"?"Online":"Onsite"),
-    "Địa điểm / Link: "+($("selLocation").value||"[chưa chốt]"),
+    "Hình thức: "+($("selMode").value==="ONLINE"?"Trực tuyến":"Tại chỗ"),
+    "Địa điểm / liên kết: "+($("selLocation").value||"[chưa chốt]"),
     "Thời lượng dự kiến: "+($("selDuration").value||90)+" phút",
     $("selInviteNote").value,
     "",
@@ -709,7 +755,7 @@ async function copySelectionInvite(){
     "",
     $("selPrepNote").value
   ].filter(Boolean).join("\n");
-  try{await navigator.clipboard.writeText(text);statusEl.textContent="Đã copy Selection Invitation.";statusEl.className="status ok"}catch{statusEl.textContent="Không copy được invitation.";statusEl.className="status err"}
+  try{await navigator.clipboard.writeText(text);statusEl.textContent="Đã sao chép lời mời tuyển chọn.";statusEl.className="status ok"}catch{statusEl.textContent="Không sao chép được lời mời.";statusEl.className="status err"}
 }
 const scoreInput=(label,id,value,max)=>'<label>'+esc(label)+'<input id="'+id+'" type="number" min="0" max="'+max+'" step="0.5" value="'+attr(value??0)+'" oninput="recalcAssessment()"></label>';
 const sel=(value,target)=>(String(value||"PENDING").toUpperCase()===target?'selected':'');
@@ -729,8 +775,8 @@ async function saveAssessment(id){
     const j=await api("/v1/admin/applications/"+id+"/assessment",{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
     const item=data.find(x=>String(x.id)===String(id));
     if(item){item.selection_score=j.assessment.total_score;item.assessment_decision=j.assessment.decision;item.pipeline_stage=j.pipelineStage}
-    render();await refreshDashboard();statusEl.textContent="Assessment saved · "+j.assessment.total_score+"/100 · "+j.assessment.decision;statusEl.className="status ok";await openDetail(id);
-  }catch(e){statusEl.textContent="Assessment lỗi: "+e.message;statusEl.className="status err"}
+    render();await refreshDashboard();statusEl.textContent="Đã lưu đánh giá · "+j.assessment.total_score+"/100 · "+j.assessment.decision;statusEl.className="status ok";await openDetail(id);
+  }catch(e){statusEl.textContent="Lưu đánh giá lỗi: "+e.message;statusEl.className="status err"}
 }
 async function saveAdmissionDraft(id){
   const body={
@@ -741,8 +787,8 @@ async function saveAdmissionDraft(id){
   };
   try{
     const j=await api("/v1/admin/applications/"+id+"/admission-draft",{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
-    statusEl.textContent="Admission draft saved · "+j.admission.status+" · Legal gate "+j.legalGate;statusEl.className="status ok";await openDetail(id);
-  }catch(e){statusEl.textContent="Admission draft lỗi: "+e.message;statusEl.className="status err"}
+    statusEl.textContent="Đã lưu bản nháp nhận học · "+j.admission.status+" · Legal gate "+j.legalGate;statusEl.className="status ok";await openDetail(id);
+  }catch(e){statusEl.textContent="Lưu bản nháp nhận học lỗi: "+e.message;statusEl.className="status err"}
 }
 async function copyAdmissionDraft(){
   const text=[
@@ -761,7 +807,7 @@ async function copyAdmissionDraft(){
     "",
     "DRAFT — NOT FOR SENDING / PAYMENT"
   ].filter(Boolean).join("\n");
-  try{await navigator.clipboard.writeText(text);statusEl.textContent="Đã copy Admission Draft.";statusEl.className="status ok"}catch{statusEl.textContent="Không copy được draft.";statusEl.className="status err"}
+  try{await navigator.clipboard.writeText(text);statusEl.textContent="Đã sao chép bản nháp nhận học.";statusEl.className="status ok"}catch{statusEl.textContent="Không sao chép được bản nháp.";statusEl.className="status err"}
 }
 async function saveOps(id){
   const body={
@@ -776,7 +822,7 @@ async function saveOps(id){
     const item=data.find(x=>String(x.id)===String(id));
     if(item){item.owner=j.application.owner;item.next_action=j.application.next_action;item.next_action_date=j.application.next_action_date;item.lost_reason=j.application.lost_reason}
     render();renderActionCenter();statusEl.textContent="Đã lưu vận hành cho "+j.application.candidate_code;statusEl.className="status ok";await openDetail(id);
-  }catch(e){statusEl.textContent="Save ops lỗi: "+e.message;statusEl.className="status err"}
+  }catch(e){statusEl.textContent="Lưu vận hành lỗi: "+e.message;statusEl.className="status err"}
 }
 const detail=(k,v)=>'<div class="detail"><small>'+esc(k)+'</small><b>'+esc(v||"—")+'</b></div>';
 const answer=(k,v)=>v?'<div class="answer"><b>'+esc(k)+'</b><p>'+esc(v)+'</p></div>':"";
