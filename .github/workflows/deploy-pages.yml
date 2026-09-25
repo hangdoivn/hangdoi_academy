@@ -3,6 +3,13 @@ name: Publish Hang Doi Academy
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - "api/**"
+      - "docs/**"
+      - "AGENTS.md"
+      - ".github/workflows/api-contract.yml"
+      - ".github/workflows/academy-ops-monitor.yml"
+      - ".github/workflows/availability-probe.yml"
   workflow_dispatch:
   workflow_run:
     workflows: ['Generate scheduled Academy blog article']
