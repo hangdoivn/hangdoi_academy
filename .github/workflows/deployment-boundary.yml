@@ -3,6 +3,13 @@ name: Academy Deployment Boundary
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - "api/**"
+      - "docs/**"
+      - "AGENTS.md"
+      - ".github/workflows/api-contract.yml"
+      - ".github/workflows/academy-ops-monitor.yml"
+      - ".github/workflows/availability-probe.yml"
   pull_request:
     branches: [main]
   workflow_dispatch:
