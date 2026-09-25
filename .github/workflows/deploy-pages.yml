@@ -60,6 +60,34 @@ jobs:
           mkdir -p _site/assets/media-career
           cp site/assets/media-career/* _site/assets/media-career/
 
+          # Build Media Career critical CSS from the canonical stylesheet.
+          # The full stylesheet stays intact and is loaded non-blocking.
+          echo "Build Media Career critical CSS"
+          python - <<'PY'
+          from pathlib import Path
+
+          source = Path("site/assets/media-career/program.css").read_text(encoding="utf-8")
+
+          def segment(start, end=None):
+              a = source.index(start)
+              b = source.index(end, a) if end else len(source)
+              return source[a:b].strip()
+
+          critical = "\n\n".join([
+              source[:source.index("/* 02 Gap v2 — problem framing */")].strip(),
+              segment("/* Reveal */", "/* ===== Media Career Section 01 / Hero v3 ===== */"),
+              segment("/* ===== Media Career Section 01 / Hero v3 ===== */", "/* ===== Section 09 / Income stair ===== */"),
+              segment("/* ===== Mobile UX Foundation v1 + Section 01 Hero ===== */", "/* ===== Mobile UX / Section 02 — Problem framing ===== */"),
+              segment("/* ===== Mobile QA / final cross-section polish ===== */"),
+          ]) + "\n"
+
+          if ".career-hero-v3" not in critical or ".site-header" not in critical:
+              raise RuntimeError("Critical stylesheet is missing header/hero selectors")
+          Path("_site/assets/media-career/program-critical.css").write_text(critical, encoding="utf-8")
+          print("program-critical.css", len(critical.encode("utf-8")), "bytes")
+          PY
+
+
           # Build local Inter font assets so public visitors stay on the Academy origin.
           echo "Build local Inter font assets"
           python - <<'PY'
@@ -419,6 +447,9 @@ jobs:
           test -s _site/assets/media-career/roadmap-04-du-an.png
           test -s _site/assets/media-career/inter.css
           test "$(find _site/assets/media-career/fonts -type f -name 'inter-*.woff2' | wc -l)" -ge 1
+          test -s _site/assets/media-career/program-critical.css
+          grep -q 'program-critical.css' _site/media-career-program/index.html
+          grep -q 'data-program-styles' _site/media-career-program/index.html
           test -s _site/assets/media-career/optimized/hero-bts.webp
           test -s _site/assets/media-career/optimized/hero-bts-mobile.webp
           test -s _site/assets/media-career/optimized/fourpoints-mobile.webp
@@ -469,12 +500,14 @@ jobs:
           root = Path("_site")
           html = root / "media-career-program" / "index.html"
           css = root / "assets" / "media-career" / "program.css"
+          critical_css = root / "assets" / "media-career" / "program-critical.css"
           js = root / "assets" / "media-career" / "program.js"
           image_dir = root / "assets" / "media-career" / "optimized"
 
           limits = {
               "HTML": (html.stat().st_size, 90 * 1024),
               "CSS": (css.stat().st_size, 220 * 1024),
+              "Critical CSS": (critical_css.stat().st_size, 50 * 1024),
               "JS": (js.stat().st_size, 60 * 1024),
           }
           for label, (size, limit) in limits.items():

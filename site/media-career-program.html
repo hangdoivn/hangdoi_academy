@@ -16,9 +16,12 @@
 <meta name="theme-color" content="#F8F4EA">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="stylesheet" href="/assets/media-career/inter.css">
-<link rel="preload" as="image" href="/assets/media-career/optimized/hero-bts.webp" imagesrcset="/assets/media-career/optimized/hero-bts-mobile.webp 640w, /assets/media-career/optimized/hero-bts.webp 720w" imagesizes="(max-width:760px) calc(100vw - 24px), 42vw" fetchpriority="high">
+<link rel="preload" as="image" href="/assets/media-career/optimized/hero-bts-mobile.webp" media="(max-width:760px)" fetchpriority="high">
+<link rel="preload" as="image" href="/assets/media-career/optimized/hero-bts.webp" media="(min-width:761px)" fetchpriority="high">
 <link rel="stylesheet" href="/academy-tokens.css">
-<link rel="stylesheet" href="/assets/media-career/program.css">
+<link rel="stylesheet" href="/assets/media-career/program-critical.css">
+<link rel="stylesheet" href="/assets/media-career/program.css" media="print" onload="this.media='all'" data-program-styles>
+<noscript><link rel="stylesheet" href="/assets/media-career/program.css"></noscript>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Course","name":"Hang Đôi Media Career Program","description":"Chương trình Media 4 tháng hướng tới Production Ready trong Commercial Production.","provider":{"@type":"EducationalOrganization","name":"Hang Đôi Academy","url":"https://academy.hangdoiproduction.com/"}}
 </script>
@@ -70,13 +73,14 @@
 
       <div class="mcv3-visual">
         <figure class="mcv3-bts" id="mcv3-bts">
-          <img
-            src="/assets/media-career/optimized/hero-bts.webp"
-            srcset="/assets/media-career/optimized/hero-bts-mobile.webp 640w, /assets/media-career/optimized/hero-bts.webp 720w"
-            sizes="(max-width:760px) calc(100vw - 24px), 42vw"
-            alt="BTS Hang Đôi Academy"
-            fetchpriority="high"
-            width="800" height="1200">
+          <picture>
+            <source media="(max-width:760px)" srcset="/assets/media-career/optimized/hero-bts-mobile.webp">
+            <img
+              src="/assets/media-career/optimized/hero-bts.webp"
+              alt="BTS Hang Đôi Academy"
+              fetchpriority="high"
+              width="800" height="1200">
+          </picture>
           <figcaption class="mcv3-bts-label">
             <strong>BTS ACADEMY</strong>
             <span>Thực hành · thiết bị · môi trường làm nghề</span>
