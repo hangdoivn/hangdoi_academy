@@ -158,6 +158,7 @@ jobs:
           python - <<'PY'
           from io import BytesIO
           from pathlib import Path
+          from time import sleep
           from urllib.request import Request, urlopen
           from PIL import Image, ImageOps
 
@@ -183,13 +184,43 @@ jobs:
               "xita.webp": ("xita-mobile.webp", 360, None),
           }
 
-          for filename, file_id in sources.items():
+          def download_image(filename, file_id):
               url = f"https://drive.google.com/thumbnail?id={file_id}&sz=w1200"
-              req = Request(url, headers={"User-Agent": "Mozilla/5.0"})
-              with urlopen(req, timeout=45) as response:
-                  payload = response.read()
-              if len(payload) < 1024:
-                  raise RuntimeError(f"Image payload too small for {filename}: {len(payload)} bytes")
+              last_error = None
+              for attempt in range(1, 5):
+                  try:
+                      req = Request(
+                          url,
+                          headers={
+                              "User-Agent": "Mozilla/5.0",
+                              "Cache-Control": "no-cache",
+                          },
+                      )
+                      with urlopen(req, timeout=60) as response:
+                          payload = response.read()
+                      if len(payload) < 1024:
+                          raise RuntimeError(
+                              f"Image payload too small for {filename}: {len(payload)} bytes"
+                          )
+                      if attempt > 1:
+                          print(f"{filename}: recovered on attempt {attempt}")
+                      return payload
+                  except Exception as exc:
+                      last_error = exc
+                      if attempt == 4:
+                          break
+                      delay = attempt * 3
+                      print(
+                          f"{filename}: download attempt {attempt}/4 failed "
+                          f"({type(exc).__name__}: {exc}); retrying in {delay}s"
+                      )
+                      sleep(delay)
+              raise RuntimeError(
+                  f"Unable to download {filename} after 4 attempts: {last_error}"
+              )
+
+          for filename, file_id in sources.items():
+              payload = download_image(filename, file_id)
               with Image.open(BytesIO(payload)) as source:
                   original = ImageOps.exif_transpose(source).convert("RGB")
                   image = original
