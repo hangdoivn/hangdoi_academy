@@ -1383,20 +1383,44 @@ async function mysqlRuntimeSmoke() {
     await client.query("BEGIN");
     const result = await client.query(`
       INSERT INTO media_career_applications (
-        candidate_code, cohort, full_name, phone, email, email_normalized,
-        pipeline_stage, privacy_consent, payload
+        candidate_code, cohort, full_name, date_of_birth, phone, email, email_normalized,
+        city, current_status, preferred_track, experience_level, portfolio_url, pipeline_stage,
+        utm_source, utm_medium, utm_campaign, utm_content, referrer,
+        marketing_consent, privacy_consent, payload
       ) VALUES (
-        $1,'00','MySQL Runtime Smoke','000',$2,$2,'INTEREST_REGISTERED',TRUE,$3::jsonb
+        $1,$2,$3,NULLIF($4,'')::date,$5,$6,$7,$8,$9,$10,$11,$12,$13,
+        $14,$15,$16,$17,$18,$19,$20,$21::jsonb
       )
       ON CONFLICT (cohort, email_normalized)
       DO UPDATE SET
         full_name = EXCLUDED.full_name,
+        date_of_birth = EXCLUDED.date_of_birth,
+        phone = EXCLUDED.phone,
+        city = EXCLUDED.city,
+        current_status = EXCLUDED.current_status,
+        preferred_track = EXCLUDED.preferred_track,
+        experience_level = EXCLUDED.experience_level,
+        portfolio_url = EXCLUDED.portfolio_url,
+        pipeline_stage = EXCLUDED.pipeline_stage,
+        utm_source = EXCLUDED.utm_source,
+        utm_medium = EXCLUDED.utm_medium,
+        utm_campaign = EXCLUDED.utm_campaign,
+        utm_content = EXCLUDED.utm_content,
+        referrer = EXCLUDED.referrer,
+        marketing_consent = EXCLUDED.marketing_consent,
+        privacy_consent = EXCLUDED.privacy_consent,
+        payload = EXCLUDED.payload,
+        submitted_at = NOW(),
         updated_at = NOW()
-      RETURNING id, candidate_code, email_normalized
-    `, [code, email, JSON.stringify({ smoke: true })]);
+      RETURNING id, candidate_code, submitted_at
+    `, [
+      code, "00", "MySQL Runtime Smoke", "", "000", email, email,
+      "Smoke", "Smoke", "", "Smoke", "", "INTEREST_REGISTERED",
+      "", "", "", "", "", false, true, JSON.stringify({ smoke: true })
+    ]);
 
     if (!result.rowCount || result.rows[0]?.candidate_code !== code) {
-      throw new Error("MySQL runtime insert/read smoke check failed");
+      throw new Error("MySQL runtime application insert/read smoke check failed");
     }
     await client.query("ROLLBACK");
     console.log("[mysql-runtime] smoke_ok");
