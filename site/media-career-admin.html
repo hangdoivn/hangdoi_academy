@@ -324,7 +324,7 @@ function renderCampaigns(){
     '<td><span class="readiness"><span class="readiness-bar"><i style="width:'+n(x.readiness_pct)+'%"></i></span><b>'+n(x.readiness_pct)+'%</b></span></td>'+
     '<td>'+esc(x.target_publish_date?new Date(x.target_publish_date).toLocaleDateString("vi-VN"):"—")+'</td><td>'+esc(x.owner||"—")+'</td>'+
     '<td>'+n(x.landing_views)+'</td><td>'+n(x.apply_views)+'</td><td>'+n(x.form_starts)+'</td><td><b>'+n(x.interests)+'</b></td><td>'+n(x.landing_to_interest_pct)+'%</td></tr>'
-  ).join(""):'<tr><td colspan="11" class="empty">Chưa có campaign trong registry.</td></tr>';
+  ).join(""):'<tr><td colspan="11" class="empty">Chưa có chiến dịch trong danh sách.</td></tr>';
   rows.querySelectorAll("[data-content]").forEach(row=>row.addEventListener("click",()=>loadCampaignIntoEditor(row.dataset.content)));
 }
 function loadCampaignIntoEditor(contentId){
