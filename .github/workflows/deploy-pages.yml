@@ -96,6 +96,21 @@ jobs:
                       image = image.resize((720, height), Image.Resampling.LANCZOS)
                   image.save(out_dir / filename, "WEBP", quality=76, method=6)
                   print(filename, image.size, (out_dir / filename).stat().st_size)
+
+          local_sources = {
+              "roadmap-01-thiet-bi.webp": Path("_site/assets/media-career/roadmap-01-thiet-bi.png"),
+              "roadmap-02-yeu-cau.webp": Path("_site/assets/media-career/roadmap-02-yeu-cau.png"),
+              "roadmap-03-san-pham.webp": Path("_site/assets/media-career/roadmap-03-san-pham.png"),
+              "roadmap-04-du-an.webp": Path("_site/assets/media-career/roadmap-04-du-an.png"),
+          }
+          for filename, source_path in local_sources.items():
+              with Image.open(source_path) as source:
+                  image = ImageOps.exif_transpose(source).convert("RGB")
+                  if image.width > 720:
+                      height = round(image.height * 720 / image.width)
+                      image = image.resize((720, height), Image.Resampling.LANCZOS)
+                  image.save(out_dir / filename, "WEBP", quality=76, method=6)
+                  print(filename, image.size, (out_dir / filename).stat().st_size)
           PY
 
           mkdir -p _site/media-career-program
@@ -355,8 +370,16 @@ jobs:
           test -s _site/assets/media-career/optimized/floral-9532.webp
           test -s _site/assets/media-career/optimized/fnb-805.webp
           test -s _site/assets/media-career/optimized/hd-2988.webp
+          test -s _site/assets/media-career/optimized/roadmap-01-thiet-bi.webp
+          test -s _site/assets/media-career/optimized/roadmap-02-yeu-cau.webp
+          test -s _site/assets/media-career/optimized/roadmap-03-san-pham.webp
+          test -s _site/assets/media-career/optimized/roadmap-04-du-an.webp
           if grep -q 'drive.google.com/thumbnail' _site/media-career-program/index.html; then
             echo "Runtime Google Drive image dependency remains in Media Career landing" >&2
+            exit 1
+          fi
+          if grep -Eq '/assets/media-career/roadmap-0[1-4][^"[:space:]]*\.(png|jpg)' _site/media-career-program/index.html; then
+            echo "Runtime large roadmap image dependency remains in Media Career landing" >&2
             exit 1
           fi
           test -s _site/favicon.svg
