@@ -166,6 +166,10 @@ It checks:
   - summarizes the last 24 hours of client submit successes, submit errors, accepted applications, and deduplicated retries
   - returns unhealthy only after at least 5 system-observable attempts, at least 3 system errors, and a system-error rate of at least 50%
   - offline and expected business-validation errors do not count as infrastructure/system errors
+- `GET https://candidate-api-v2-production.up.railway.app/health/outbound`
+  - verifies the persistent outbound queue is readable
+  - reports pending/retry/processing/delivered/failed counts without exposing webhook URLs
+  - returns unhealthy when a delivery reaches `FAILED`, a worker lease is stale for more than 10 minutes, or a due delivery remains unclaimed for more than 10 minutes
 - `GET https://candidate-api-v2-production.up.railway.app/health/backup`
   - latest logical backup is available and no older than 30 hours
 - `https://academy.hangdoiproduction.com/media-career-program/`
@@ -296,3 +300,69 @@ MySQL JSON decode hardening:
 
 - `mysql2` JSON fields are explicitly read with UTF-8 encoding
 - the previous `JSON column ... interpreted as BINARY` runtime warning no longer appeared in the verification window after deployment `5ba9623a-78ac-4232-b6fa-4ea582b1990f`
+
+
+## Durable outbound delivery queue
+
+Candidate persistence and outbound integrations are deliberately separated.
+
+When an application is accepted:
+
+1. the candidate record is stored in MySQL;
+2. the in-app `NEW_APPLICATION` notification and any configured outbound delivery jobs are committed atomically;
+3. the HTTP response can succeed without waiting for a third-party webhook;
+4. the background worker claims due delivery jobs and attempts delivery;
+5. successful jobs become `DELIVERED`;
+6. failures move through `RETRY` with backoff and eventually become `FAILED` after six attempts.
+
+Retry schedule:
+
+- 30 seconds
+- 2 minutes
+- 10 minutes
+- 30 minutes
+- 2 hours
+- 6 hours
+
+Delivery semantics are **at-least-once**, not exactly-once. Each outbound request includes:
+
+- `Idempotency-Key: academy-outbound-<delivery-id>`
+- `X-Hangdoi-Delivery-Id: <delivery-id>`
+
+A downstream provider should honor the idempotency key when possible, because a network failure can occur after the receiver has processed a request but before Academy receives the response.
+
+Webhook URLs are never stored in the database. Queue rows only store an allowed environment-variable key:
+
+- `NEW_APPLICATION_WEBHOOK_URL`
+- `APPLICATION_ACK_WEBHOOK_URL`
+
+This prevents webhook credentials embedded in URLs from being copied into MySQL backups.
+
+Operational endpoints:
+
+- `GET /health/outbound` — queue health and delivery counts
+- `GET /v1/admin/outbound` — recent delivery jobs, authenticated with `ADMIN_TOKEN`
+- `POST /v1/admin/outbound/:id/retry` — resets a failed/retrying job and immediately asks the worker to process it
+
+The worker runs every 30 seconds in batches of 10. Jobs left in `PROCESSING` for more than 10 minutes are automatically returned to `RETRY`.
+
+Current production configuration as of 2026-09-25:
+
+- delivery queue runtime: active
+- `NEW_APPLICATION_WEBHOOK_URL`: not configured
+- `APPLICATION_ACK_WEBHOOK_URL`: not configured
+- therefore no external delivery job is created until a destination is intentionally configured
+
+The logical MySQL backup enumerates all base tables dynamically, so `media_career_outbound_deliveries` is automatically included in backups taken after this schema change.
+
+### Verified outbound reliability evidence — 2026-09-25
+
+- schema commit: `3ea76e219df6ee14afe987d948f0133340cb52e6`
+- durable worker commit: `cda8129544eadb8dc8356a5650b2dd2be6f6dfa0`
+- retry/idempotency hardening commit: `0a21c6872e869a1f0a4535ff7d0a625a1100b2b1`
+- production deployment: `59f47769-7410-4524-b269-ec635a3605a5` — `SUCCESS`
+- worker startup: interval 30 seconds, batch size 10
+- production monitor run `36117571048`: `success`
+- `GET /health/outbound`: HTTP 200
+- `POST /health/intake/write`: HTTP 200 in 67 ms and verifies rollback across applications, events, notifications, and outbound-delivery queue
+- no outbound worker/schema runtime errors were observed in the verification window
