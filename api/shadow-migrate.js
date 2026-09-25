@@ -24,20 +24,20 @@ function targetValue(column, value) {
 }
 
 async function copyTable(source, target, table) {
-  const result = await source.query(`SELECT * FROM \${table} ORDER BY 1`);
+  const result = await source.query(`SELECT * FROM ${table} ORDER BY 1`);
   if (!result.rows.length) return 0;
 
   for (const row of result.rows) {
     const columns = Object.keys(row);
-    const quoted = columns.map(c => `\`\${c}\``).join(",");
+    const quoted = columns.map(c => `\`${c}\``).join(",");
     const placeholders = columns.map(() => "?").join(",");
     const updates = columns
       .filter(c => c !== "id")
-      .map(c => `\`\${c}\` = VALUES(\`\${c}\`)`)
+      .map(c => `\`${c}\` = VALUES(\`${c}\`)`)
       .join(",");
     const first = quoted.split(",")[0];
-    const sql = `INSERT INTO \`\${table}\` (\${quoted}) VALUES (\${placeholders})
-      ON DUPLICATE KEY UPDATE \${updates || first + "=" + first}`;
+    const sql = `INSERT INTO \`${table}\` (${quoted}) VALUES (${placeholders})
+      ON DUPLICATE KEY UPDATE ${updates || first + "=" + first}`;
     const values = columns.map(c => targetValue(c, row[c]));
     await target.query(sql, values);
   }
@@ -45,19 +45,19 @@ async function copyTable(source, target, table) {
   if (Object.prototype.hasOwnProperty.call(result.rows[0], "id")) {
     const maxId = Math.max(...result.rows.map(row => Number(row.id) || 0));
     if (maxId > 0) {
-      await target.query(`ALTER TABLE \`\${table}\` AUTO_INCREMENT = \${maxId + 1}`);
+      await target.query(`ALTER TABLE \`${table}\` AUTO_INCREMENT = ${maxId + 1}`);
     }
   }
   return result.rows.length;
 }
 
 async function countPg(db, table) {
-  const r = await db.query(`SELECT COUNT(*)::int AS count FROM \${table}`);
+  const r = await db.query(`SELECT COUNT(*)::int AS count FROM ${table}`);
   return Number(r.rows[0].count);
 }
 
 async function countMySql(db, table) {
-  const [rows] = await db.query(`SELECT COUNT(*) AS count FROM \`\${table}\``);
+  const [rows] = await db.query(`SELECT COUNT(*) AS count FROM \`${table}\``);
   return Number(rows[0].count);
 }
 
@@ -79,7 +79,7 @@ export async function migratePostgresToMysql(pgPool, mysqlUrl, { logger = consol
     for (const table of TABLES) {
       const copied = await copyTable(source, target, table);
       report.push({ table, copied });
-      logger.info?.(`[mysql-shadow] copied \${table}: \${copied}`);
+      logger.info?.(`[mysql-shadow] copied ${table}: ${copied}`);
     }
 
     await target.query("SET FOREIGN_KEY_CHECKS = 1");
@@ -106,7 +106,7 @@ export async function migratePostgresToMysql(pgPool, mysqlUrl, { logger = consol
     const mismatches = report.filter(item => !item.match);
     if (mismatches.length || !candidateMatch) {
       const names = mismatches.map(item => item.table).join(", ") || "candidate identity check";
-      throw new Error(`MySQL shadow verification failed: \${names}`);
+      throw new Error(`MySQL shadow verification failed: ${names}`);
     }
 
     logger.info?.("[mysql-shadow] MIGRATION_OK");
