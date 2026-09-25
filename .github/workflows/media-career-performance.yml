@@ -19,21 +19,41 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
-      - name: Wait for live landing revision
+      - name: Wait for exact live revision
         shell: bash
+        env:
+          EXPECTED_SHA: ${{ github.event.workflow_run.head_sha }}
         run: |
           set -euo pipefail
           URL='https://academy.hangdoiproduction.com/media-career-program/'
-          for attempt in {1..12}; do
-            if body="$(curl -fsSL --max-time 15 "$URL")" &&
-               grep -q '/assets/media-career/program.js' <<<"$body" &&
+          REVISION_URL='https://academy.hangdoiproduction.com/build-revision.txt'
+          for attempt in {1..24}; do
+            body="$(curl -fsSL --max-time 15 "$URL" || true)"
+            live_sha="$(curl -fsSL --max-time 15 "$REVISION_URL?expected=$EXPECTED_SHA" 2>/dev/null | tr -d '\r\n' || true)"
+
+            contract_ok=false
+            if grep -q '/assets/media-career/program.js' <<<"$body" &&
                grep -q '/assets/media-career/program.css' <<<"$body"; then
-              echo "Live landing is ready for audit."
+              contract_ok=true
+            fi
+
+            revision_ok=false
+            if [ -z "$EXPECTED_SHA" ]; then
+              revision_ok=true
+            elif [ "$live_sha" = "$EXPECTED_SHA" ]; then
+              revision_ok=true
+            fi
+
+            if [ "$contract_ok" = true ] && [ "$revision_ok" = true ]; then
+              echo "Live Academy revision is ready: ${live_sha:-manual-run}"
               exit 0
             fi
+
+            echo "Waiting for live revision (attempt $attempt/24): expected=${EXPECTED_SHA:-manual} live=${live_sha:-unavailable}"
             sleep 5
           done
-          echo "Live landing did not expose the current asset contract." >&2
+
+          echo "Live Academy did not reach the expected revision: expected=${EXPECTED_SHA:-manual}" >&2
           exit 1
 
       - name: Run Lighthouse mobile x3

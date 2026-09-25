@@ -227,6 +227,8 @@ jobs:
                   print(filename, image.size, (out_dir / filename).stat().st_size)
           PY
 
+          printf '%s\n' "$GITHUB_SHA" > _site/build-revision.txt
+
           mkdir -p _site/media-career-program
           cp site/media-career-program.html _site/media-career-program/index.html
           mkdir -p _site/media-career-program/apply
@@ -476,6 +478,8 @@ jobs:
           test -s _site/assets/media-career/roadmap-02-yeu-cau.png
           test -s _site/assets/media-career/roadmap-03-san-pham.png
           test -s _site/assets/media-career/roadmap-04-du-an.png
+          test -s _site/build-revision.txt
+          grep -qx "$GITHUB_SHA" _site/build-revision.txt
           test -s _site/assets/media-career/inter.css
           test "$(find _site/assets/media-career/fonts -type f -name 'inter-*.woff2' | wc -l)" -ge 1
           test -s _site/assets/media-career/program-critical.css
