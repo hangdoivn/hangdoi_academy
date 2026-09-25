@@ -117,13 +117,17 @@ function outboundBackoffSeconds(attempt) {
   return schedule[index];
 }
 
-async function sendWebhookRequest(url, payload) {
+async function sendWebhookRequest(url, payload, deliveryId) {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 8000);
   try {
     const response = await fetch(url, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "Idempotency-Key": `academy-outbound-${deliveryId}`,
+        "X-Hangdoi-Delivery-Id": String(deliveryId)
+      },
       body: JSON.stringify(payload),
       signal: controller.signal
     });
@@ -226,7 +230,7 @@ async function processOutboundDeliveries() {
       const maxAttempts = Number(row.max_attempts || 6);
       const endpoint = outboundEndpoint(row.endpoint_key);
       const result = endpoint
-        ? await sendWebhookRequest(endpoint, row.payload || {})
+        ? await sendWebhookRequest(endpoint, row.payload || {}, row.id)
         : { ok: false, statusCode: null, error: "endpoint_not_configured" };
 
       if (result.ok) {
@@ -261,16 +265,17 @@ async function processOutboundDeliveries() {
       }
 
       const retrySeconds = outboundBackoffSeconds(attempt);
+      const nextAttemptAt = new Date(Date.now() + retrySeconds * 1000);
       await pool.query(`
         UPDATE media_career_outbound_deliveries
         SET status = 'RETRY',
-            next_attempt_at = DATE_ADD(NOW(), INTERVAL $1 SECOND),
+            next_attempt_at = $1,
             last_status_code = $2,
             last_error = $3,
             updated_at = NOW()
         WHERE id = $4
       `, [
-        retrySeconds,
+        nextAttemptAt,
         result.statusCode,
         cleanString(result.error, 1000),
         row.id
