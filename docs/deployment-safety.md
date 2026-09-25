@@ -61,4 +61,6 @@ Ignored push paths include:
 
 This avoids unnecessary Google Drive image downloads, duplicate `gh-pages` publishes, and deployment-boundary churn when only the Candidate API or runbooks change.
 
+The push-triggered deployment-boundary workflow uses the same backend/docs ignore scope. The stronger post-publish boundary verification still runs after every actual Pages publish.
+
 A commit that changes any static-site source outside those ignored paths still triggers the normal Pages build and post-publish boundary verification.
