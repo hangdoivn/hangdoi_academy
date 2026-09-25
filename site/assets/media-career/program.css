@@ -5503,3 +5503,21 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
     contain-intrinsic-size:auto 1000px;
   }
 }
+
+/* Mobile performance: avoid continuous GPU work while users scroll/touch. */
+@media(max-width:760px),(hover:none) and (pointer:coarse){
+  .site-header{
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
+    background:rgba(248,244,234,.985)!important;
+  }
+  .program4-roadmap-dash,
+  .program4-roadmap-pin.is-active .program4-pin-core svg,
+  .loop5-btn.is-active .loop5-nav-no,
+  .loop5-timer span.is-active:after{
+    animation:none!important;
+  }
+  .loop5-timer span.is-active:after{
+    transform:scaleX(1)!important;
+  }
+}
