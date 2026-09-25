@@ -293,7 +293,7 @@ async function load(){
       api("/v1/admin/notifications"),
       api("/v1/admin/outbound"),
       api("/health/outbound"),
-      api("/v1/admin/mail/scenarios")
+      api("/v1/admin/mail/scenarios").catch(()=>({scenarios:[],emailConfigured:false}))
     ]);
     data=apps.applications||[];dash=dashboard;notifications=notes.notifications||[];
     outboundDeliveries=outboundData.deliveries||[];outboundHealth=outboundStatus||null;
