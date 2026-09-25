@@ -38,7 +38,7 @@ function restoreValue(value) {
     return Buffer.from(value.base64, "base64");
   }
   if (value && typeof value === "object") return JSON.stringify(value);
-  if (typeof value === "string" && /^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?Z$/.test(value)) {
+  if (typeof value === "string" && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z$/.test(value)) {
     const parsed = new Date(value);
     if (!Number.isNaN(parsed.getTime())) return parsed;
   }
