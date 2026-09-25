@@ -884,27 +884,45 @@
   const label=progress.querySelector(".gap2-progress-label b");
   const dots=Array.from(progress.querySelectorAll(".gap2-progress-dots i"));
   const mobile=matchMedia("(max-width:760px)");
-  let raf=0;
-
-  const sync=()=>{
-    raf=0;
+  const setActive=(active)=>{
     if(!mobile.matches)return;
-    const left=rail.getBoundingClientRect().left;
-    let active=0;
-    let distance=Infinity;
-    cards.forEach((card,index)=>{
-      const d=Math.abs(card.getBoundingClientRect().left-left);
-      if(d<distance){distance=d;active=index}
-    });
     if(label)label.textContent=String(active+1).padStart(2,"0");
     dots.forEach((dot,index)=>dot.classList.toggle("is-active",index===active));
   };
 
-  rail.addEventListener("scroll",()=>{
-    if(!raf)raf=requestAnimationFrame(sync);
-  },{passive:true});
-  addEventListener("resize",sync,{passive:true});
-  sync();
+  if("IntersectionObserver" in window){
+    const ratios=new Map(cards.map(card=>[card,0]));
+    const observer=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>ratios.set(entry.target,entry.intersectionRatio));
+      let active=0;
+      let best=-1;
+      cards.forEach((card,index)=>{
+        const ratio=ratios.get(card)||0;
+        if(ratio>best){best=ratio;active=index}
+      });
+      setActive(active);
+    },{
+      root:rail,
+      threshold:[0,.25,.5,.75,1]
+    });
+    cards.forEach(card=>observer.observe(card));
+  }else{
+    let raf=0;
+    const sync=()=>{
+      raf=0;
+      if(!mobile.matches)return;
+      const active=Math.max(0,Math.min(cards.length-1,Math.round(
+        rail.scrollLeft/Math.max(1,cards[0].getBoundingClientRect().width)
+      )));
+      setActive(active);
+    };
+    rail.addEventListener("scroll",()=>{
+      if(!raf)raf=requestAnimationFrame(sync);
+    },{passive:true});
+    sync();
+  }
+
+  setActive(0);
 })();
 
 /* runtime 11 */
