@@ -99,6 +99,26 @@ jobs:
           ua = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36"
           req = Request(css_url, headers={"User-Agent": ua})
           css = urlopen(req, timeout=30).read().decode("utf-8")
+
+          # The landing is Vietnamese/Latin only. Google's generated CSS has
+          # overlapping latin-ext ranges that make browsers download an extra
+          # ~85 KB font subset even though the page does not need it.
+          blocks = re.findall(
+              r"/\*\s*([^*]+?)\s*\*/\s*(@font-face\s*\{.*?\})",
+              css,
+              flags=re.S,
+          )
+          keep = {"vietnamese", "latin"}
+          css = "\n".join(
+              f"/* {label.strip()} */\n{block}"
+              for label, block in blocks
+              if label.strip() in keep
+          )
+          if "/* vietnamese */" not in css or "/* latin */" not in css:
+              raise RuntimeError("Expected Vietnamese and Latin Inter subsets were not found")
+          if "latin-ext" in css or "cyrillic" in css or "greek" in css:
+              raise RuntimeError("Unexpected Inter subset remains in runtime CSS")
+
           font_dir = Path("_site/assets/media-career/fonts")
           font_dir.mkdir(parents=True, exist_ok=True)
           seen = {}
