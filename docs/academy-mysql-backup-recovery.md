@@ -184,3 +184,41 @@ Do not delete the retained Postgres service until all conditions are true:
 8. The stabilization window is explicitly closed.
 
 Postgres deletion is a separate destructive action and must not be bundled into unrelated deployment work.
+
+
+## Verified recovery evidence — 2026-09-25
+
+The first production logical backup and restore drill have been verified.
+
+Backup evidence:
+
+- object: `mysql/daily/2026/09/25/hangdoi-academy-2026-09-25T04-59-23-459Z.json.gz`
+- compressed size: 3,469 bytes
+- tables captured: 10
+- SHA-256: `a3cf2133732c5c2bdf0761542403147d7620d66bbab508f131d76b0c5a3bcf83`
+- backup reason: startup
+- runtime result: `[mysql-backup] uploaded`
+
+Restore drill evidence:
+
+- shadow database: `hangdoi_academy_restore_20260925`
+- restore result: `[mysql-restore] verified`
+- table count verified: 10
+- verified row counts:
+  - `media_career_admissions`: 0
+  - `media_career_applications`: 0
+  - `media_career_assessments`: 0
+  - `media_career_campaigns`: 0
+  - `media_career_cohorts`: 1
+  - `media_career_events`: 43
+  - `media_career_legal_readiness`: 1
+  - `media_career_notifications`: 0
+  - `media_career_selection_appointments`: 0
+  - `media_career_stage_history`: 0
+- shadow database cleanup result: `[mysql-restore] cleaned`
+- runtime restore itself completed in under 1 second at the current small dataset size
+- full disposable runner deployment completed in under 1 minute
+
+The operational recovery target remains **RTO <= 30 minutes** to allow for incident diagnosis, backup selection, restore verification, and deliberate cutover. The technical restore time above is not a guarantee for future larger datasets.
+
+The restore drill initially exposed an ISO timestamp conversion defect. It was corrected before the successful drill; the successful evidence above is from the corrected restore path.
