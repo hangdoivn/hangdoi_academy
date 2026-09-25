@@ -17,7 +17,7 @@ jobs:
   lighthouse-mobile:
     if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 12
     steps:
       - name: Wait for live landing revision
         shell: bash
@@ -36,7 +36,7 @@ jobs:
           echo "Live landing did not expose the current asset contract." >&2
           exit 1
 
-      - name: Run Lighthouse mobile
+      - name: Run Lighthouse mobile x3
         run: |
           cat > lighthouse-headers.json <<'JSON'
           {
@@ -44,48 +44,87 @@ jobs:
             "Accept-Language": "vi-VN,vi;q=0.9,en;q=0.8"
           }
           JSON
-          npx --yes lighthouse@12 'https://academy.hangdoiproduction.com/media-career-program/' --only-categories=performance --form-factor=mobile --throttling-method=simulate --extra-headers=lighthouse-headers.json --chrome-flags='--headless --no-sandbox --disable-dev-shm-usage' --output=json --output-path=lighthouse-mobile.json --quiet
+          for run in 1 2 3; do
+            echo "Lighthouse mobile run $run/3"
+            npx --yes lighthouse@12 'https://academy.hangdoiproduction.com/media-career-program/' \
+              --only-categories=performance \
+              --form-factor=mobile \
+              --throttling-method=simulate \
+              --extra-headers=lighthouse-headers.json \
+              --chrome-flags='--headless --no-sandbox --disable-dev-shm-usage' \
+              --output=json \
+              --output-path="lighthouse-mobile-$run.json" \
+              --quiet
+          done
 
-      - name: Summarize performance metrics
+      - name: Summarize median performance metrics
         shell: bash
         run: |
           node <<'NODE'
           const fs = require('fs');
-          const report = JSON.parse(fs.readFileSync('lighthouse-mobile.json','utf8'));
-          const a = report.audits;
-          const score = Math.round((report.categories.performance.score || 0) * 100);
-          const metrics = {
-            'Performance': score,
-            'FCP': a['first-contentful-paint']?.displayValue || 'n/a',
-            'LCP': a['largest-contentful-paint']?.displayValue || 'n/a',
-            'Speed Index': a['speed-index']?.displayValue || 'n/a',
-            'TBT': a['total-blocking-time']?.displayValue || 'n/a',
-            'CLS': a['cumulative-layout-shift']?.displayValue || 'n/a',
+          const reports = [1,2,3].map(i => JSON.parse(fs.readFileSync(`lighthouse-mobile-${i}.json`, 'utf8')));
+          const median = values => [...values].sort((a,b)=>a-b)[1];
+          const values = reports.map(report => {
+            const a = report.audits;
+            return {
+              performance: Math.round((report.categories.performance.score || 0) * 100),
+              fcp: a['first-contentful-paint']?.numericValue ?? Infinity,
+              lcp: a['largest-contentful-paint']?.numericValue ?? Infinity,
+              speedIndex: a['speed-index']?.numericValue ?? Infinity,
+              tbt: a['total-blocking-time']?.numericValue ?? Infinity,
+              cls: a['cumulative-layout-shift']?.numericValue ?? Infinity,
+            };
+          });
+          const m = {
+            performance: median(values.map(v=>v.performance)),
+            fcp: median(values.map(v=>v.fcp)),
+            lcp: median(values.map(v=>v.lcp)),
+            speedIndex: median(values.map(v=>v.speedIndex)),
+            tbt: median(values.map(v=>v.tbt)),
+            cls: median(values.map(v=>v.cls)),
           };
+          const sec = ms => `${(ms/1000).toFixed(1)} s`;
+          const metrics = {
+            'Performance': m.performance,
+            'FCP': sec(m.fcp),
+            'LCP': sec(m.lcp),
+            'Speed Index': sec(m.speedIndex),
+            'TBT': `${Math.round(m.tbt)} ms`,
+            'CLS': m.cls.toFixed(3),
+          };
+          const runRows = values.map((v,i) =>
+            `| Run ${i+1} | ${v.performance} | ${sec(v.fcp)} | ${sec(v.lcp)} | ${Math.round(v.tbt)} ms | ${v.cls.toFixed(3)} |`
+          );
           const md = [
             '# Media Career mobile Lighthouse',
             '',
-            '| Metric | Result |',
+            '### Median of 3 runs',
+            '',
+            '| Metric | Median |',
             '| --- | ---: |',
             ...Object.entries(metrics).map(([k,v]) => `| ${k} | ${v} |`),
             '',
-            '> Lighthouse is a synthetic diagnostic. It is reported for visibility and is not a deploy gate.',
+            '### Individual runs',
+            '',
+            '| Run | Performance | FCP | LCP | TBT | CLS |',
+            '| --- | ---: | ---: | ---: | ---: | ---: |',
+            ...runRows,
+            '',
+            '> Lighthouse is a synthetic diagnostic. Median-of-three reduces runner/network outliers and is not a deploy gate.',
           ].join('\n');
           fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, md + '\n');
-          console.log(metrics);
+          console.log('Median', metrics);
+          console.log('Runs', values);
 
-          const lcp = a['largest-contentful-paint']?.numericValue ?? Infinity;
-          const cls = a['cumulative-layout-shift']?.numericValue ?? Infinity;
-          const tbt = a['total-blocking-time']?.numericValue ?? Infinity;
-          if (score < 75) console.log('::warning::Mobile Lighthouse performance score is below 75.');
-          if (lcp > 4000) console.log('::warning::Mobile LCP is above 4.0s.');
-          if (cls > 0.15) console.log('::warning::CLS is above 0.15.');
-          if (tbt > 500) console.log('::warning::TBT is above 500ms.');
+          if (m.performance < 75) console.log('::warning::Median mobile Lighthouse performance score is below 75.');
+          if (m.lcp > 4000) console.log('::warning::Median mobile LCP is above 4.0s.');
+          if (m.cls > 0.15) console.log('::warning::Median CLS is above 0.15.');
+          if (m.tbt > 500) console.log('::warning::Median TBT is above 500ms.');
           NODE
 
       - name: Upload Lighthouse report
         uses: actions/upload-artifact@v4
         with:
           name: media-career-lighthouse-mobile
-          path: lighthouse-mobile.json
+          path: lighthouse-mobile-*.json
           retention-days: 14
