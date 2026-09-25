@@ -68,12 +68,12 @@ dialog{width:min(calc(100% - 20px),960px);overflow:auto}.drawer{padding:0}.drawe
     <button class="status-card" data-go-view="system"><small>Hệ thống thông báo</small><strong id="overviewSystemState">Đang kiểm tra</strong><span id="overviewSystemNote">—</span></button>
   </div>
   <div class="cohort-band">
-<section class="cohort-main"><small>KHÓA 01 · MỤC TIÊU NHẬP HỌC</small><strong><span id="cEnrolled">0</span> / <span id="cTarget">10</span></strong><p id="cMessage">Đang tải capacity…</p><div class="coverage-track"><i id="cProgress" style="width:0%"></i></div></section>
+<section class="cohort-main"><small>KHÓA 01 · MỤC TIÊU NHẬP HỌC</small><strong><span id="cEnrolled">0</span> / <span id="cTarget">10</span></strong><p id="cMessage">Đang tải độ phủ…</p><div class="coverage-track"><i id="cProgress" style="width:0%"></i></div></section>
 <section class="cohort-stat"><small>Còn thiếu</small><strong id="cRemaining">10</strong></section>
 <section class="cohort-stat"><small>ĐẠT</small><strong id="cPass">0</strong></section>
 <section class="cohort-stat"><small>DỰ BỊ</small><strong id="cWaitlist">0</strong></section>
 <section class="cohort-stat"><small>Độ phủ</small><strong id="cCoverage">0</strong></section>
-<section class="cohort-settings"><label>Mục tiêu<input id="cTargetInput" type="number" min="1" max="100" value="10"></label><label>Status<select id="cStatus"><option value="OPEN">Đang mở</option><option value="PAUSED">Tạm dừng</option><option value="CLOSED">Đã đóng</option></select></label><button id="saveCohort">Lưu</button></section>
+<section class="cohort-settings"><label>Mục tiêu<input id="cTargetInput" type="number" min="1" max="100" value="10"></label><label>Trạng thái<select id="cStatus"><option value="OPEN">Đang mở</option><option value="PAUSED">Tạm dừng</option><option value="CLOSED">Đã đóng</option></select></label><button id="saveCohort">Lưu</button></section>
 </div>
 
 
@@ -105,8 +105,8 @@ dialog{width:min(calc(100% - 20px),960px);overflow:auto}.drawer{padding:0}.drawe
   <section class="acq">
 <div class="acq-head"><div><div class="tag">Thu hút ứng viên</div><h2>Tạo liên kết chiến dịch</h2><p class="acq-note">Mỗi bài đăng, video, đối tác hoặc giới thiệu nên có UTM riêng để biết nội dung nào tạo đăng ký thật.</p></div><span id="publicMode" class="mode-pill">CHỈ GHI NHẬN QUAN TÂM</span></div>
 <div class="acq-grid">
-<label>Nguồn<select id="utmSource"><option value="instagram">instagram</option><option value="facebook">facebook</option><option value="tiktok">tiktok</option><option value="threads">threads</option><option value="zalo">zalo</option><option value="referral">referral</option><option value="partner">partner</option><option value="organic">organic</option><option value="other">other</option></select></label>
-<label>Hình thức<select id="utmMedium"><option value="organic_social">organic_social</option><option value="paid_social">paid_social</option><option value="referral">referral</option><option value="message">message</option><option value="qr">qr</option><option value="other">other</option></select></label>
+<label>Nguồn<select id="utmSource"><option value="instagram">Instagram</option><option value="facebook">Facebook</option><option value="tiktok">TikTok</option><option value="threads">Threads</option><option value="zalo">Zalo</option><option value="referral">Giới thiệu</option><option value="partner">Đối tác</option><option value="organic">Tự nhiên</option><option value="other">Khác</option></select></label>
+<label>Hình thức<select id="utmMedium"><option value="organic_social">Mạng xã hội tự nhiên</option><option value="paid_social">Quảng cáo mạng xã hội</option><option value="referral">Giới thiệu</option><option value="message">Tin nhắn</option><option value="qr">Mã QR</option><option value="other">Khác</option></select></label>
 <label>Mã nội dung<input id="utmContent" placeholder="vd: reel01-career-gap"></label>
 </div>
 <div class="preset-row"><button class="preset" data-source="instagram" data-medium="organic_social" data-content="reel01-career-gap">IG Reel 01</button><button class="preset" data-source="facebook" data-medium="organic_social" data-content="post01-career-path">FB Post 01</button><button class="preset" data-source="tiktok" data-medium="organic_social" data-content="video01-production-ready">TikTok 01</button><button class="preset" data-source="zalo" data-medium="message" data-content="direct-outreach-01">Zalo Outreach</button><button class="preset" data-source="referral" data-medium="referral" data-content="student-referral">Referral</button></div>
@@ -115,13 +115,13 @@ dialog{width:min(calc(100% - 20px),960px);overflow:auto}.drawer{padding:0}.drawe
 <p id="acqModeNote" class="acq-note">Chế độ an toàn pháp lý: chỉ dùng lời kêu gọi đăng ký quan tâm cho tới khi điều kiện mở tuyển chính thức được xác nhận.</p>
 
 <div class="campaign-editor">
-<label>Tên nội dung<input id="campaignTitle" placeholder="Tên creative / angle"></label>
+<label>Tên nội dung<input id="campaignTitle" placeholder="Tên nội dung / góc tiếp cận"></label>
 <label>Trạng thái<select id="campaignStatus"><option value="IDEA">Ý tưởng</option><option value="DRAFT">Bản nháp</option><option value="READY">Sẵn sàng</option><option value="PUBLISHED">Đã đăng</option><option value="PAUSED">Tạm dừng</option><option value="ARCHIVED">Lưu trữ</option></select></label>
 <label>Phụ trách<input id="campaignOwner" placeholder="Người phụ trách"></label>
 <label>Loại nội dung<select id="campaignAssetType"><option value="">—</option><option value="REEL">Video dọc</option><option value="VIDEO">Video</option><option value="CAROUSEL">Bài nhiều ảnh</option><option value="STATIC">Ảnh tĩnh</option><option value="STORY">Tin</option><option value="DIRECT_OUTREACH">Tiếp cận trực tiếp</option><option value="PARTNER">Đối tác</option><option value="OTHER">Khác</option></select></label>
 <label>Ngày dự kiến đăng<input id="campaignTargetDate" type="date"></label>
-<label>Liên kết tệp<input id="campaignAssetUrl" placeholder="Drive / Figma / asset link"></label>
-<label>Liên kết đã đăng<input id="campaignPublishUrl" placeholder="Link post/reel sau khi publish"></label>
+<label>Liên kết tệp<input id="campaignAssetUrl" placeholder="Liên kết Drive / Figma / tệp nội dung"></label>
+<label>Liên kết đã đăng<input id="campaignPublishUrl" placeholder="Liên kết bài đăng sau khi xuất bản"></label>
 <div class="ready-checks">
 <label class="ready-check"><input id="readyBrief" type="checkbox">Đề bài</label>
 <label class="ready-check"><input id="readyProduction" type="checkbox">Sản xuất / Thiết kế</label>
@@ -129,7 +129,7 @@ dialog{width:min(calc(100% - 20px),960px);overflow:auto}.drawer{padding:0}.drawe
 <label class="ready-check"><input id="readyCopy" type="checkbox">Nội dung / Kêu gọi</label>
 <label class="ready-check"><input id="readyQa" type="checkbox">Kiểm tra / Duyệt</label>
 </div>
-<label class="wide">Ghi chú<textarea id="campaignNotes" placeholder="Hook, angle, CTA, learning, note..."></textarea></label>
+<label class="wide">Ghi chú<textarea id="campaignNotes" placeholder="Mở bài, góc nội dung, lời kêu gọi, bài học, ghi chú..."></textarea></label>
 </div>
 <div class="campaign-actions"><button id="saveCampaign">Lưu vào danh sách</button></div>
 
@@ -150,8 +150,8 @@ dialog{width:min(calc(100% - 20px),960px);overflow:auto}.drawer{padding:0}.drawe
 <div class="legal-progress"><i id="legalProgress" style="width:0%"></i></div>
 <div id="legalChecklist" class="legal-grid"></div>
 <div class="legal-meta">
-<label>Căn cứ pháp lý / tư vấn<input id="legalCounsel" placeholder="Tên luật sư, memo, số văn bản / link hồ sơ"></label>
-<label>Căn cứ cơ quan quản lý<input id="legalAuthority" placeholder="Sở GD&ĐT / cơ quan xác nhận / reference"></label>
+<label>Căn cứ pháp lý / tư vấn<input id="legalCounsel" placeholder="Tên tư vấn, bản ghi nhớ, số văn bản / liên kết hồ sơ"></label>
+<label>Căn cứ cơ quan quản lý<input id="legalAuthority" placeholder="Sở GD&ĐT / cơ quan xác nhận / căn cứ"></label>
 <label>Người rà soát<input id="legalReviewedBy" placeholder="Người chịu trách nhiệm review"></label>
 <label>Lần rà soát gần nhất<input id="legalReviewedAt" readonly></label>
 <label class="wide">Ghi chú<textarea id="legalNotes" placeholder="Kết luận, điều kiện còn thiếu, câu hỏi cần xác nhận…"></textarea></label>
@@ -159,11 +159,11 @@ dialog{width:min(calc(100% - 20px),960px);overflow:auto}.drawer{padding:0}.drawe
 <div class="legal-actions"><button id="saveLegal">Lưu danh sách</button><button id="markLegalReviewed" class="review">Lưu + đánh dấu đã rà soát</button></div>
 <div class="legal-final">
 <h3>Phê duyệt pháp lý cuối <span id="legalFinalState" class="approval-state">CHỜ XỬ LÝ</span></h3>
-<p class="legal-note">Chỉ dùng sau khi 13/13 checkpoint đã được review và có căn cứ từ counsel/authority. Dù APPROVED, Admission Send/Payment vẫn BLOCKED IN CODE cho tới PR mở khóa riêng.</p>
+<p class="legal-note">Chỉ dùng sau khi 13/13 mục đã được rà soát và có căn cứ từ tư vấn pháp lý hoặc cơ quan có thẩm quyền. Dù đã phê duyệt, gửi thư nhận học và thanh toán vẫn bị khóa trong hệ thống cho tới khi có thay đổi mở khóa riêng.</p>
 <div class="legal-final-grid">
 <label>Quyết định<select id="legalFinalDecision"><option value="PENDING">Chờ xử lý</option><option value="APPROVED">Đã phê duyệt</option><option value="REJECTED">Không phê duyệt</option></select></label>
 <label>Người phê duyệt<input id="legalFinalBy" placeholder="Người/pháp nhân phê duyệt"></label>
-<label>Căn cứ phê duyệt<input id="legalFinalRef" placeholder="Memo / email / authority reference / version"></label>
+<label>Căn cứ phê duyệt<input id="legalFinalRef" placeholder="Bản ghi nhớ / email / căn cứ cơ quan / phiên bản"></label>
 </div>
 <button id="saveLegalFinal">Lưu căn cứ phê duyệt</button>
 </div>
@@ -193,7 +193,7 @@ dialog{width:min(calc(100% - 20px),960px);overflow:auto}.drawer{padding:0}.drawe
     <div class="delivery-metric"><small>Đang thử lại</small><strong id="deliveryRetrying">0</strong></div>
     <div class="delivery-metric"><small>Lỗi cần xử lý</small><strong id="deliveryFailed">0</strong></div>
   </div>
-  <div id="deliveryList" class="delivery-list"><div class="status">Chưa có lịch sử delivery.</div></div>
+  <div id="deliveryList" class="delivery-list"><div class="status">Chưa có lịch sử gửi thông báo.</div></div>
 </section>
 
 
@@ -313,8 +313,8 @@ function updateAcquisition(){
     :"Chế độ an toàn pháp lý: chỉ ghi nhận quan tâm. Một mục pháp lý được xác nhận riêng lẻ không tự mở tuyển chính thức; cần thay đổi mở khóa được rà soát riêng.";
 }
 async function copyField(id){
-  try{await navigator.clipboard.writeText($(id).value);statusEl.textContent="Đã copy campaign link.";statusEl.className="status ok"}
-  catch{statusEl.textContent="Không copy được campaign link.";statusEl.className="status err"}
+  try{await navigator.clipboard.writeText($(id).value);statusEl.textContent="Đã sao chép liên kết chiến dịch.";statusEl.className="status ok"}
+  catch{statusEl.textContent="Không sao chép được liên kết chiến dịch.";statusEl.className="status err"}
 }
 function renderCampaigns(){
   $("campaignWindow").textContent=($("days").value||30)+" ngày";
@@ -338,7 +338,7 @@ function loadCampaignIntoEditor(contentId){
 }
 async function saveCampaign(){
   const contentId=$("utmContent").value.trim().toLowerCase();
-  if(!contentId){statusEl.textContent="Nhập Content ID trước khi lưu campaign.";statusEl.className="status err";return}
+  if(!contentId){statusEl.textContent="Nhập mã nội dung trước khi lưu chiến dịch.";statusEl.className="status err";return}
   const body={
     title:$("campaignTitle").value,source:$("utmSource").value,medium:$("utmMedium").value,status:$("campaignStatus").value,
     owner:$("campaignOwner").value,assetType:$("campaignAssetType").value,targetPublishDate:$("campaignTargetDate").value,
@@ -347,9 +347,9 @@ async function saveCampaign(){
   };
   try{
     const j=await api("/v1/admin/campaigns/"+encodeURIComponent(contentId),{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
-    statusEl.textContent="Campaign saved · "+j.campaign.content_id+" · "+j.campaign.status;statusEl.className="status ok";
+    statusEl.textContent="Đã lưu chiến dịch · "+j.campaign.content_id+" · "+(campaignStatusLabels[j.campaign.status]||j.campaign.status);statusEl.className="status ok";
     const refreshed=await api("/v1/admin/campaigns?days="+$("days").value);campaigns=refreshed.campaigns||[];renderCampaigns();
-  }catch(e){statusEl.textContent="Campaign save lỗi: "+e.message;statusEl.className="status err"}
+  }catch(e){statusEl.textContent="Lưu chiến dịch lỗi: "+e.message;statusEl.className="status err"}
 }
 async function api(path,options={}){
   const r=await fetch(API+path,{...options,headers:{...auth(),...(options.headers||{})}});
@@ -400,7 +400,7 @@ async function saveLegal(markReviewed=false){
   });
   try{
     const j=await api("/v1/admin/legal-readiness/01",{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
-    statusEl.textContent="Đã lưu tình trạng pháp lý · "+j.progress.completed+"/"+j.progress.total+" · Admission/Payment "+j.admissionSendGate;statusEl.className="status ok";
+    statusEl.textContent="Đã lưu tình trạng pháp lý · "+j.progress.completed+"/"+j.progress.total+" · Cổng nhận học/thanh toán: "+(j.admissionSendGate==="BLOCKED"?"Đang khóa":j.admissionSendGate);statusEl.className="status ok";
     await refreshDashboard();
   }catch(e){statusEl.textContent="Lưu tình trạng pháp lý lỗi: "+e.message;statusEl.className="status err"}
 }
@@ -412,7 +412,7 @@ async function saveLegalFinal(){
   };
   try{
     const j=await api("/v1/admin/legal-readiness/01/final-approval",{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
-    statusEl.textContent="Đã lưu phê duyệt pháp lý cuối · "+j.finalApproval+" · Admission/Payment vẫn "+j.admissionSendGate;statusEl.className="status ok";
+    statusEl.textContent="Đã lưu phê duyệt pháp lý cuối · "+(approvalLabels[j.finalApproval]||j.finalApproval)+" · Cổng nhận học/thanh toán vẫn "+(j.admissionSendGate==="BLOCKED"?"đang khóa":j.admissionSendGate);statusEl.className="status ok";
     await refreshDashboard();
   }catch(e){statusEl.textContent="Lưu phê duyệt cuối lỗi: "+e.message;statusEl.className="status err"}
 }
@@ -420,7 +420,7 @@ async function saveCohort(){
   const targetEnrollment=Number($("cTargetInput").value),status=$("cStatus").value;
   try{
     const j=await api("/v1/admin/cohort/01",{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify({targetEnrollment,status})});
-    statusEl.textContent="Đã cập nhật Khóa 01 · mục tiêu "+j.cohort.target_enrollment+" · "+j.cohort.status;statusEl.className="status ok";
+    statusEl.textContent="Đã cập nhật Khóa 01 · mục tiêu "+j.cohort.target_enrollment+" · "+({OPEN:"Đang mở",PAUSED:"Tạm dừng",CLOSED:"Đã đóng"}[j.cohort.status]||j.cohort.status);statusEl.className="status ok";
     await refreshDashboard();
   }catch(e){statusEl.textContent="Cập nhật khóa học lỗi: "+e.message;statusEl.className="status err"}
 }
@@ -512,22 +512,22 @@ function renderOutbound(){
       '<div class="delivery-action">'+action+'</div>'+
       error+
     '</div>';
-  }).join(""):'<div class="status">'+(configured.size?'Chưa có delivery nào.':'Chưa có delivery vì chưa kết nối kênh ngoài.')+'</div>';
+  }).join(""):'<div class="status">'+(configured.size?'Chưa có lượt gửi nào.':'Chưa có lượt gửi vì chưa kết nối kênh ngoài.')+'</div>';
 
   document.querySelectorAll("[data-delivery-retry]").forEach(btn=>btn.addEventListener("click",()=>retryOutbound(btn.dataset.deliveryRetry,btn)));
 }
 async function sendOutboundTest(){
   const button=$("deliveryTest");
   if(button.disabled)return;
-  button.disabled=true;button.textContent="Đang gửi test…";
+  button.disabled=true;button.textContent="Đang gửi thử…";
   try{
     const j=await api("/v1/admin/outbound/test",{method:"POST",headers:{"Content-Type":"application/json"},body:"{}"});
-    statusEl.textContent="Đã tạo "+n(j.queued?.length)+" delivery test · "+esc(j.testCode||"");statusEl.className="status ok";
+    statusEl.textContent="Đã tạo "+n(j.queued?.length)+" lượt gửi thử · "+esc(j.testCode||"");statusEl.className="status ok";
     await new Promise(resolve=>setTimeout(resolve,900));
     await refreshOutbound();
   }catch(e){
-    statusEl.textContent="Gửi test lỗi: "+e.message;statusEl.className="status err";
-    button.disabled=false;button.textContent="Gửi test";
+    statusEl.textContent="Gửi thử lỗi: "+e.message;statusEl.className="status err";
+    button.disabled=false;button.textContent="Gửi thử";
   }
 }
 async function refreshOutbound(){
@@ -598,10 +598,10 @@ function renderCandidateOutbound(items,applicationId){
   '</section>';
 }
 async function retryCandidateDelivery(deliveryId,applicationId,button){
-  button.disabled=true;button.textContent="Đang retry…";
+  button.disabled=true;button.textContent="Đang thử lại…";
   try{
     await api("/v1/admin/outbound/"+deliveryId+"/retry",{method:"POST"});
-    statusEl.textContent="Đã thử lại lượt gửi #"+deliveryId+".";statusEl.className="status ok";
+    statusEl.textContent="Đã đưa lượt gửi #"+deliveryId+" vào thử lại.";statusEl.className="status ok";
     await new Promise(resolve=>setTimeout(resolve,700));
     await refreshOutbound();
     await openDetail(applicationId);
@@ -792,20 +792,20 @@ async function saveAdmissionDraft(id){
 }
 async function copyAdmissionDraft(){
   const text=[
-    "HANG ĐÔI MEDIA CAREER PROGRAM — ADMISSION DRAFT",
+    "HANG ĐÔI MEDIA CAREER — BẢN NHÁP NHẬN HỌC",
     "",
-    "Candidate: "+($("dName").textContent||""),
-    "Candidate ID: "+($("dCode").textContent||""),
-    "Program: "+$("adProgram").value,
-    "Tuition: "+Number($("adTuition").value||0).toLocaleString("vi-VN")+" VNĐ",
-    "Payment: "+$("adPaymentPlan").value,
-    "Proposed start: "+($("adStart").value||"[chưa chốt]"),
-    "Response deadline: "+($("adDeadline").value||"[chưa chốt]"),
+    "Ứng viên: "+($("dName").textContent||""),
+    "Mã ứng viên: "+($("dCode").textContent||""),
+    "Chương trình: "+$("adProgram").value,
+    "Học phí: "+Number($("adTuition").value||0).toLocaleString("vi-VN")+" VNĐ",
+    "Thanh toán: "+$("adPaymentPlan").value,
+    "Ngày dự kiến bắt đầu: "+($("adStart").value||"[chưa chốt]"),
+    "Hạn phản hồi: "+($("adDeadline").value||"[chưa chốt]"),
     "",
     $("adScheduleNote").value,
     $("adAdmissionNote").value,
     "",
-    "DRAFT — NOT FOR SENDING / PAYMENT"
+    "BẢN NHÁP NỘI BỘ — CHƯA DÙNG ĐỂ GỬI / THU TIỀN"
   ].filter(Boolean).join("\n");
   try{await navigator.clipboard.writeText(text);statusEl.textContent="Đã sao chép bản nháp nhận học.";statusEl.className="status ok"}catch{statusEl.textContent="Không sao chép được bản nháp.";statusEl.className="status err"}
 }
