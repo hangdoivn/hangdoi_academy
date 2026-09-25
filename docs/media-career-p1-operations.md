@@ -39,8 +39,10 @@ Production services:
 - `candidate-api` — **Academy MySQL 8.4 database service** (legacy service name retained internally)
   - database: `hangdoi_academy`
   - persistent Railway volume: `mysql-data` mounted at `/var/lib/mysql`
-- `candidate-api-v2` — production Candidate API, now running on MySQL
-- `Postgres` — retained temporarily as rollback/source archive after the MySQL cutover
+- `candidate-api-v2` — production Candidate API, MySQL-only runtime
+- `candidate-api-p1-test` — P1 test API, MySQL-only runtime
+- `candidate-api-p3-legal-test` — legal-readiness test API, MySQL-only runtime
+- `Postgres` — retained temporarily as a rollback/source archive after the MySQL cutover; no current API service references it
 
 The API root directory is:
 
@@ -52,14 +54,18 @@ Healthcheck:
 
 ## Required Railway variables
 
+For `candidate-api-v2`, `candidate-api-p1-test`, and `candidate-api-p3-legal-test`:
+
 - `MYSQL_URL` — reference to the Academy MySQL service
 - `ADMIN_TOKEN` — protects all `/v1/admin/*` routes
 - `NODE_ENV=production`
 
-Temporary rollback/migration variables may remain while Postgres is retained:
+The MySQL runtime intentionally does **not** keep a `DATABASE_URL` fallback. A missing `MYSQL_URL` must fail closed instead of silently reconnecting to PostgreSQL.
 
-- `DATABASE_URL` — legacy Postgres connection, rollback only
-- `MYSQL_SHADOW_URL` — one-time migration reference; not used by the MySQL runtime
+Migration/rollback variables must be attached only when explicitly needed:
+
+- `DATABASE_URL` — legacy Postgres connection for an intentional rollback or migration task only
+- `MYSQL_SHADOW_URL` — one-time migration reference; not used by the live MySQL runtime
 
 Optional outbound integrations:
 
@@ -201,6 +207,7 @@ Before merging infrastructure changes:
 4. confirm GitHub Pages workflow success
 5. deploy Candidate API from latest `main`
 6. confirm Railway healthcheck success
+7. confirm `Academy Deployment Boundary` passes
 
 ## Database cutover note
 
@@ -213,8 +220,10 @@ Cutover verification:
 - migration counts matched exactly at cutover
 - `media_career_events`: 43 → 43
 - `media_career_applications`: 0 → 0
-- Candidate API MySQL cutover completed on commit `486b4e3ca569e9995d3b7385664ae56c187e9a7f`
-- transactional startup smoke test exercises the production application INSERT/UPSERT path and rolls back; deployment logged `[mysql-runtime] smoke_ok`
+- production Candidate API completed application-level INSERT/UPSERT smoke verification
+- production runtime was hardened on commit `d7160a0020e77defe435dabce1229acf528091cf` to require `MYSQL_URL` with no Postgres fallback
+- `candidate-api-v2`, `candidate-api-p1-test`, and `candidate-api-p3-legal-test` all redeployed successfully on the hardened MySQL runtime
+- each current API deployment logged `[mysql-runtime] smoke_ok`
 - live `/health` returned HTTP 200 after MySQL cutover
 - public selection lookup returned the expected HTTP 404 for a nonexistent token, confirming live MySQL reads
 
@@ -222,7 +231,7 @@ The live Candidate API remains:
 
 `candidate-api-v2`
 
-Postgres is intentionally retained for rollback until the MySQL cutover is considered stable. Do not delete it during the stabilization window.
+Postgres is intentionally retained as a rollback/source archive during the stabilization window, but it is disconnected from all current API runtimes. Do not delete it until the stabilization window is explicitly closed.
 
 ### Runtime commands
 
@@ -234,10 +243,11 @@ Postgres is intentionally retained for rollback until the MySQL cutover is consi
 
 If a MySQL-specific production issue is confirmed during the stabilization window:
 
-1. change `candidate-api-v2` start command to `npm run start:postgres`
-2. keep the existing `DATABASE_URL` Postgres reference unchanged
-3. redeploy the same application code
+1. explicitly restore `DATABASE_URL` on `candidate-api-v2` as a reference to the retained `Postgres.DATABASE_URL`
+2. change `candidate-api-v2` start command to `npm run start:postgres`
+3. redeploy the same application commit
 4. verify `/health` and the required read/write path
-5. investigate MySQL without deleting either database
+5. keep MySQL and Postgres intact while the incident is investigated
+6. after recovery, remove `DATABASE_URL` again before returning to the MySQL runtime
 
 Do not perform dual writes during this stabilization phase.
