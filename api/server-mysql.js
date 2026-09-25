@@ -1876,6 +1876,64 @@ app.post("/v1/admin/outbound/:id/retry", requireAdmin, async (req, res) => {
   res.json({ ok: true, delivery: result.rows[0] });
 });
 
+app.post("/v1/admin/outbound/test", requireAdmin, async (req, res) => {
+  const requestedKey = cleanString(req.body?.endpointKey, 120);
+  if (requestedKey && !outboundEndpointKeys.has(requestedKey)) {
+    return res.status(400).json({ ok: false, error: "Unsupported outbound endpoint" });
+  }
+
+  const keys = requestedKey
+    ? [requestedKey]
+    : Array.from(outboundEndpointKeys).filter((key) => Boolean(outboundEndpoint(key)));
+  const configuredKeys = keys.filter((key) => Boolean(outboundEndpoint(key)));
+  if (!configuredKeys.length) {
+    return res.status(409).json({
+      ok: false,
+      error: "No outbound endpoint is configured"
+    });
+  }
+
+  const testCode = `SYSTEM-OUTBOUND-${Date.now().toString(36).toUpperCase()}-${crypto.randomBytes(3).toString("hex").toUpperCase()}`;
+  for (const endpointKey of configuredKeys) {
+    const deliveryType = endpointKey === "NEW_APPLICATION_WEBHOOK_URL"
+      ? "CONNECTION_TEST_NEW_APPLICATION"
+      : "CONNECTION_TEST_APPLICATION_ACK";
+    await pool.query(`
+      INSERT INTO media_career_outbound_deliveries (
+        candidate_code, delivery_type, endpoint_key, payload,
+        status, attempt_count, max_attempts, next_attempt_at
+      ) VALUES (
+        $1,$2,$3,$4::jsonb,'PENDING',0,3,NOW()
+      )
+    `, [
+      testCode,
+      deliveryType,
+      endpointKey,
+      JSON.stringify({
+        type: "ACADEMY_OUTBOUND_TEST",
+        source: "admin",
+        endpointKey,
+        testCode,
+        createdAt: new Date().toISOString()
+      })
+    ]);
+  }
+
+  const queued = await pool.query(`
+    SELECT id, candidate_code, delivery_type, endpoint_key, status, created_at
+    FROM media_career_outbound_deliveries
+    WHERE candidate_code = $1
+    ORDER BY id
+  `, [testCode]);
+
+  void processOutboundDeliveries();
+  res.status(202).json({
+    ok: true,
+    testCode,
+    queued: queued.rows
+  });
+});
+
 app.patch("/v1/admin/applications/:id/stage", requireAdmin, async (req, res) => {
   const allowed = new Set([
     "INTEREST_REGISTERED", "APPLICATION_COMPLETED", "QUALIFIED", "SELECTION_INVITED", "SELECTION_CONFIRMED",
