@@ -10,6 +10,7 @@ on:
       - ".github/workflows/api-contract.yml"
       - ".github/workflows/academy-ops-monitor.yml"
       - ".github/workflows/availability-probe.yml"
+      - ".github/workflows/deployment-boundary.yml"
   workflow_dispatch:
   workflow_run:
     workflows: ['Generate scheduled Academy blog article']
