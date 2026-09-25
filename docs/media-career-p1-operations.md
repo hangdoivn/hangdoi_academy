@@ -251,3 +251,14 @@ If a MySQL-specific production issue is confirmed during the stabilization windo
 6. after recovery, remove `DATABASE_URL` again before returning to the MySQL runtime
 
 Do not perform dual writes during this stabilization phase.
+
+
+## Backup & recovery
+
+Railway native backups are enabled on the Academy MySQL volume `mysql-data` with Daily, Weekly, and Monthly schedules.
+
+Operational restore steps, recovery objectives, monitoring expectations, and the Postgres retirement gate are defined in:
+
+`docs/academy-mysql-backup-recovery.md`
+
+Do not delete the retained Postgres service until the retirement gate in that runbook is fully satisfied.
