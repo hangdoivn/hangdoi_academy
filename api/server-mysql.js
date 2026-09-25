@@ -328,7 +328,21 @@ app.post("/v1/applications", rateLimit(60 * 60 * 1000, 10), async (req, res) => 
       && Date.now() - previousSubmittedAt >= 0
       && Date.now() - previousSubmittedAt <= 10 * 60 * 1000;
 
+    let completedRecentRetry = false;
     if (recentRetry) {
+      const priorNotification = await pool.query(
+        `SELECT id
+         FROM media_career_notifications
+         WHERE candidate_code = $1
+           AND notification_type = 'NEW_APPLICATION'
+         ORDER BY created_at DESC
+         LIMIT 1`,
+        [saved.candidate_code]
+      );
+      completedRecentRetry = priorNotification.rowCount > 0;
+    }
+
+    if (completedRecentRetry) {
       await recordEvent({
         eventName: "application_retry_received",
         candidateCode: saved.candidate_code,
@@ -338,7 +352,7 @@ app.post("/v1/applications", rateLimit(60 * 60 * 1000, 10), async (req, res) => 
         utmCampaign: b.utmCampaign,
         utmContent: b.utmContent,
         referrer: b.referrer,
-        metadata: { cohort, retryWindowMinutes: 10 }
+        metadata: { cohort, retryWindowMinutes: 10, priorNotification: true }
       });
 
       return res.status(200).json({
