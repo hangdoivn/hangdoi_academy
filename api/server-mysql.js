@@ -1374,7 +1374,42 @@ app.patch("/v1/admin/applications/:id/stage", requireAdmin, async (req, res) => 
   }
 });
 
+async function mysqlRuntimeSmoke() {
+  const client = await pool.connect();
+  const suffix = crypto.randomBytes(6).toString("hex");
+  const email = `mysql-smoke-${suffix}@example.invalid`;
+  const code = `MYSQL-SMOKE-${suffix}`;
+  try {
+    await client.query("BEGIN");
+    const result = await client.query(`
+      INSERT INTO media_career_applications (
+        candidate_code, cohort, full_name, phone, email, email_normalized,
+        pipeline_stage, privacy_consent, payload
+      ) VALUES (
+        $1,'00','MySQL Runtime Smoke','000',$2,$2,'INTEREST_REGISTERED',TRUE,$3::jsonb
+      )
+      ON CONFLICT (cohort, email_normalized)
+      DO UPDATE SET
+        full_name = EXCLUDED.full_name,
+        updated_at = NOW()
+      RETURNING id, candidate_code, email_normalized
+    `, [code, email, JSON.stringify({ smoke: true })]);
+
+    if (!result.rowCount || result.rows[0]?.candidate_code !== code) {
+      throw new Error("MySQL runtime insert/read smoke check failed");
+    }
+    await client.query("ROLLBACK");
+    console.log("[mysql-runtime] smoke_ok");
+  } catch (error) {
+    try { await client.query("ROLLBACK"); } catch {}
+    throw error;
+  } finally {
+    client.release();
+  }
+}
+
 initDb()
+  .then(mysqlRuntimeSmoke)
   .then(() => app.listen(port, "0.0.0.0", () => {
     console.log(`candidate-api listening on ${port}`);
   }))
