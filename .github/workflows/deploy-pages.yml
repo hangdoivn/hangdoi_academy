@@ -244,6 +244,63 @@ jobs:
           cp site/media-career-admin.html _site/media-career-program/admin/index.html
           mkdir -p _site/media-career-program/selection
           cp site/media-career-selection.html _site/media-career-program/selection/index.html
+
+          # Version Media Career runtime URLs with the exact deploy revision.
+          # GitHub Pages/CDN can otherwise serve a new HTML shell with older CSS,
+          # fonts or hero images for a short period, which creates Lighthouse
+          # variance and can reintroduce font/layout shifts.
+          REVISION="$GITHUB_SHA" python - <<'PY'
+          from pathlib import Path
+          import os
+          import re
+
+          revision = os.environ["REVISION"][:12]
+          suffix = f"?v={revision}"
+
+          page = Path("_site/media-career-program/index.html")
+          html = page.read_text(encoding="utf-8")
+
+          top_level = [
+              "/assets/media-career/inter.css",
+              "/assets/media-career/program-critical.css",
+              "/assets/media-career/program.css",
+              "/assets/media-career/program.js",
+              "/academy-tokens.css",
+              "/logo-academy.svg",
+          ]
+          for asset in top_level:
+              html = html.replace(asset, asset + suffix)
+
+          html = re.sub(
+              r'(/assets/media-career/optimized/[A-Za-z0-9._-]+\.webp)(?!\?v=)',
+              lambda match: match.group(1) + suffix,
+              html,
+          )
+          page.write_text(html, encoding="utf-8")
+
+          # Dynamic images are selected from program.js after initial render.
+          runtime = Path("_site/assets/media-career/program.js")
+          runtime_text = runtime.read_text(encoding="utf-8")
+          runtime_text = re.sub(
+              r'(/assets/media-career/optimized/[A-Za-z0-9._-]+\.webp)(?!\?v=)',
+              lambda match: match.group(1) + suffix,
+              runtime_text,
+          )
+          runtime.write_text(runtime_text, encoding="utf-8")
+
+          # Font files referenced by generated inter.css need the same revision
+          # key; this is the asset family that was observed stale in live audits.
+          inter = Path("_site/assets/media-career/inter.css")
+          inter_text = inter.read_text(encoding="utf-8")
+          inter_text = re.sub(
+              r'(/assets/media-career/fonts/[A-Za-z0-9._-]+\.woff2)(?!\?v=)',
+              lambda match: match.group(1) + suffix,
+              inter_text,
+          )
+          inter.write_text(inter_text, encoding="utf-8")
+
+          print("Media Career cache revision:", revision)
+          PY
           cp site/logo-academy.svg _site/favicon.svg
           cp site/logo-inline.js _site/logo-inline.js
           cp site/ui-fixes.js _site/ui-fixes.js
@@ -490,6 +547,11 @@ jobs:
           test -s _site/assets/media-career/program-critical.css
           grep -q 'program-critical.css' _site/media-career-program/index.html
           grep -q 'data-program-styles' _site/media-career-program/index.html
+          revision="${GITHUB_SHA:0:12}"
+          grep -q "program.js?v=$revision" _site/media-career-program/index.html
+          grep -q "program-critical.css?v=$revision" _site/media-career-program/index.html
+          grep -q "hero-bts-mobile.webp?v=$revision" _site/media-career-program/index.html
+          grep -q "woff2?v=$revision" _site/assets/media-career/inter.css
           test -s _site/assets/media-career/optimized/hero-bts.webp
           test -s _site/assets/media-career/optimized/hero-bts-mobile.webp
           test -s _site/assets/media-career/optimized/fourpoints-mobile.webp
