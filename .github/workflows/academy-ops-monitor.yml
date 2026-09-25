@@ -99,6 +99,7 @@ jobs:
             "https://candidate-api-v2-production.up.railway.app/health"
           check_json_health "Candidate API /health/intake" \
             "https://candidate-api-v2-production.up.railway.app/health/intake"
+          # Transactional probe writes to intake tables and verifies rollback before returning 200.
           check_json_health "Candidate API /health/intake/write" \
             "https://candidate-api-v2-production.up.railway.app/health/intake/write" \
             "POST"
