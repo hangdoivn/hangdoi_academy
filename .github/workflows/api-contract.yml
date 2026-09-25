@@ -60,6 +60,14 @@ jobs:
           grep -Fq 'EMAIL_CANDIDATE_ACK' api/server-mysql.js
           grep -Fq 'ACADEMY_SMTP_PASS' api/server-mysql.js
           grep -Fq 'sendEmailDelivery' api/server-mysql.js
+          grep -Fq 'EMAIL_TEAM_UNASSIGNED_24H' api/server-mysql.js
+          grep -Fq 'EMAIL_CANDIDATE_REQUEST_INFO' api/server-mysql.js
+          grep -Fq 'EMAIL_CANDIDATE_INTRO_CALL' api/server-mysql.js
+          grep -Fq 'EMAIL_CANDIDATE_FOLLOW_UP' api/server-mysql.js
+          grep -Fq 'EMAIL_CANDIDATE_CLOSE' api/server-mysql.js
+          grep -Fq '/v1/admin/mail/scenarios' api/server-mysql.js
+          grep -Fq '/v1/admin/applications/:id/mail' api/server-mysql.js
+          grep -Fq 'startMailScenarioScheduler' api/server-mysql.js
           if grep -Fq 'void postWebhook(' api/server-mysql.js; then
             echo "Legacy fire-and-forget webhook call found" >&2
             exit 1
