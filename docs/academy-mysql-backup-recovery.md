@@ -6,118 +6,181 @@ This runbook applies only to the Hang Đôi Academy candidate data layer in Rail
 
 Production data path:
 
-`candidate-api-v2 -> MySQL 8.4 service candidate-api -> volume mysql-data:/var/lib/mysql`
+`candidate-api-v2 -> MySQL 8.4 service candidate-api -> mysql-data:/var/lib/mysql`
+
+Backup data path:
+
+`candidate-api-v2 -> private Railway Storage Bucket academy-mysql-backups`
 
 The Academy data layer is isolated from Hang Đôi Production.
 
-## Current backup policy
+## Railway plan constraint
 
-Railway native volume backups are enabled on `mysql-data` for all three schedules:
+The current Railway workspace is on the Hobby plan.
 
-- Daily — every 24 hours, retained for 6 days
-- Weekly — every 7 days, retained for 27 days
-- Monthly — every 30 days, retained for 89 days
+For this workspace Railway reports:
 
-Railway volume backups are incremental / copy-on-write.
+- volume size limit: 500 MB
+- native volume backup limit: `maxBackupsCount = 0`
 
-The volume is currently 500 MB. Do not wipe or replace the volume as part of routine maintenance because wiping a volume also deletes its backups.
+Therefore **Railway native volume snapshots are not a valid backup mechanism on the current plan**. Do not treat a staged Daily/Weekly/Monthly volume backup schedule as evidence that a snapshot exists.
+
+## Active backup design
+
+The application implements a logical MySQL backup to the private Railway Storage Bucket `academy-mysql-backups`.
+
+Production-only runtime variables:
+
+- `BACKUP_BUCKET`
+- `BACKUP_REGION`
+- `BACKUP_ENDPOINT`
+- `BACKUP_ACCESS_KEY_ID`
+- `BACKUP_SECRET_ACCESS_KEY`
+- `BACKUP_UTC_HOUR=18`
+- `BACKUP_UTC_MINUTE=15`
+
+The credential values are Railway variable references from the bucket. Secrets must never be committed to Git.
+
+Backup behavior:
+
+- scheduler runs in `candidate-api-v2`
+- normal target time: 18:15 UTC / 01:15 Asia/Ho_Chi_Minh
+- after a process start, the scheduler checks whether a backup already exists for the current UTC date
+- if no daily backup exists, it creates one after startup
+- backup failures are logged and must not crash the Candidate API
+- retention: 90 days
+- bucket is private and encrypted at rest by the storage provider
+
+## Backup consistency and format
+
+Backup code:
+
+- `api/backup-mysql.js`
+- one-off command: `npm run backup:mysql`
+
+Each backup:
+
+1. Opens one MySQL connection.
+2. Starts `REPEATABLE READ` with `START TRANSACTION WITH CONSISTENT SNAPSHOT`.
+3. Enumerates all base tables in the active Academy database.
+4. Captures each table's `SHOW CREATE TABLE` statement.
+5. Captures all rows from the same consistent snapshot.
+6. Rolls back the read-only snapshot transaction.
+7. Serializes the snapshot as JSON.
+8. Compresses it with gzip.
+9. Calculates a SHA-256 checksum.
+10. Uploads it to the private bucket.
+11. Updates `mysql/latest.json` with the latest verified object metadata.
+12. Prunes backup objects older than 90 days.
+
+Object layout:
+
+`mysql/daily/YYYY/MM/DD/hangdoi-academy-<timestamp>.json.gz`
+
+Latest manifest:
+
+`mysql/latest.json`
+
+The log line for a successful backup starts with:
+
+`[mysql-backup] uploaded`
 
 ## Recovery objectives
 
-Operational objectives for the current Academy workload:
+After the first successful production backup is verified:
 
-- RPO objective: <= 24 hours, bounded by the daily Railway volume backup schedule
-- RTO objective: <= 30 minutes for a straightforward volume restore + API verification
+- RPO objective: <= 24 hours
+- RTO: must be measured by the first restore drill before a formal target is declared
 
-These are internal operating targets, not provider guarantees.
+These are internal operating objectives, not provider guarantees.
 
-## Restore gate
+## Safe restore drill
 
-Do not restore a snapshot merely because an API request fails.
+Restore code:
 
-Before restore:
+`api/restore-mysql-backup.js`
 
-1. Confirm the incident is data/storage related.
-2. Check `candidate-api-v2` deployment and runtime logs.
-3. Check MySQL service health and resource usage.
-4. Confirm the required recovery point from the Railway Backups tab.
-5. Record the incident timestamp and selected backup timestamp.
-6. Do not delete the current volume or the retained Postgres archive.
+Command:
 
-## Railway volume restore procedure
+`npm run restore:mysql:drill`
 
-Railway volume restores are performed from the MySQL service Backups tab.
+Required gate:
 
-1. Select service `candidate-api` (MySQL 8.4).
-2. Open **Backups**.
-3. Select the required dated backup.
-4. Click **Restore**.
-5. Railway stages a replacement volume mounted at `/var/lib/mysql`.
-6. Review staged changes before deployment.
-7. Confirm the old volume remains retained and is not being deleted.
-8. Deploy the staged restore.
-9. Wait for MySQL to become healthy.
-10. Verify `candidate-api-v2` returns HTTP 200 from `GET /health`.
-11. Verify an application-level read path.
-12. Verify one reversible write/read smoke transaction or the runtime smoke log.
-13. Confirm Academy landing/apply pages remain reachable.
-14. Record the restored backup timestamp and recovery completion time.
+`RESTORE_CONFIRM=ACADEMY_RESTORE_DRILL`
 
-A restored Railway volume keeps backups up to and including the restored point. Newer backups remain attached to the previous retained volume.
+Restore is deliberately restricted to database names matching:
 
-## Roll-forward / rollback after restore
+`hangdoi_academy_restore_*`
 
-If the restored snapshot is correct:
+This prevents the drill script from replacing the production database.
 
-- keep the previous volume temporarily until the incident is closed;
-- keep the Postgres archive untouched;
-- resume normal MySQL runtime;
-- document any data that must be replayed between the backup timestamp and incident time.
+The drill:
 
-If the restored snapshot is not correct:
+1. Resolves `BACKUP_KEY` or reads `mysql/latest.json`.
+2. Downloads the backup from the private bucket.
+3. Verifies the object SHA-256 when metadata is available.
+4. Creates a fresh shadow restore database.
+5. Recreates tables from captured DDL.
+6. Restores all rows with foreign-key checks temporarily disabled.
+7. Re-enables foreign-key checks.
+8. Verifies row counts for every restored table.
+9. Emits `[mysql-restore] verified` only if all counts match.
 
-- do not destroy either volume;
-- stop further writes if data divergence is possible;
-- inspect the previously mounted volume and choose the correct recovery point.
+## Production recovery gate
+
+Do **not** overwrite the production database directly from a backup.
+
+For a real data-loss incident:
+
+1. Freeze or minimize writes if divergence is possible.
+2. Identify the correct backup object.
+3. Restore and verify it in a shadow database first.
+4. Compare row counts and critical candidate records.
+5. Record the backup timestamp and data-loss window.
+6. Prepare a deliberate cutover from production DB to the verified restored database.
+7. Keep the original MySQL database and retained Postgres archive until the incident is closed.
+
+A production promotion/cutover must be treated as a separate incident action.
+
+## Continuous health monitoring
+
+Railway's configured HTTP healthcheck is deploy-time only; it is not continuous monitoring.
+
+Current continuous watch checks:
+
+- `https://candidate-api-v2-production.up.railway.app/health`
+- `https://academy.hangdoiproduction.com/media-career-program/`
+
+The API health route performs a MySQL `SELECT 1`, so it detects both API unavailability and loss of the live DB dependency.
+
+The current Railway Hobby plan does not include native Observability threshold monitors.
+
+Operational thresholds to review manually:
+
+- MySQL disk > 70% of 500 MB: plan storage action
+- MySQL disk > 85%: urgent remediation
+- MySQL memory sustained > 80% of the 1 GB plan limit: investigate
+- repeated crash/restart events: investigate
 
 ## Legacy Postgres archive
 
 The `Postgres` service is not referenced by any live Candidate API runtime.
 
-It is retained only as a short-term cutover archive / rollback source.
+It remains only as a temporary cutover archive / emergency rollback source.
 
 Do not re-enable Postgres as a runtime dependency unless a confirmed MySQL-specific incident requires the documented rollback path.
-
-## Continuous health monitoring
-
-Railway's HTTP healthcheck is deploy-time only; it is not a continuous uptime monitor.
-
-Current continuous watch should check:
-
-- `https://candidate-api-v2-production.up.railway.app/health`
-- `https://academy.hangdoiproduction.com/media-career-program/`
-
-Alert only on a meaningful availability failure. The API health endpoint already performs a MySQL `SELECT 1`, so an API health failure covers loss of the database dependency as well as API availability.
-
-Recommended incident thresholds:
-
-- HTTP health endpoint non-200: immediate investigation
-- repeated service crash/restart: investigate
-- disk usage > 70%: plan volume growth
-- disk usage > 85%: urgent remediation
-- memory sustained near service limit: investigate before scaling
 
 ## Postgres retirement gate
 
 Do not delete the retained Postgres service until all conditions are true:
 
 1. MySQL-only production runtime has remained stable for at least 7 calendar days.
-2. At least one successful daily Railway volume backup exists.
-3. A restore procedure has been reviewed against a real available backup.
+2. At least one production bucket backup has completed successfully.
+3. A restore drill from a real bucket backup has emitted `[mysql-restore] verified`.
 4. Candidate API health and Academy page monitoring are active.
 5. No runtime service contains `DATABASE_URL`.
-6. MySQL row counts / core business data remain consistent.
-7. No unresolved migration or data-integrity incident exists.
+6. MySQL core business data remains consistent.
+7. No unresolved migration, backup, or data-integrity incident exists.
 8. The stabilization window is explicitly closed.
 
 Postgres deletion is a separate destructive action and must not be bundled into unrelated deployment work.
