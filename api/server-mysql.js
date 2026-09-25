@@ -156,6 +156,42 @@ app.get("/health/backup", async (_req, res) => {
   res.status(status.ok ? 200 : 503).json(status);
 });
 
+app.get("/health/intake", async (_req, res) => {
+  try {
+    await pool.query(`
+      SELECT candidate_code, email_normalized, privacy_consent, pipeline_stage, payload
+      FROM media_career_applications
+      LIMIT 1
+    `);
+    await pool.query(`
+      SELECT event_name, session_id, candidate_code, metadata
+      FROM media_career_events
+      LIMIT 1
+    `);
+    await pool.query(`
+      SELECT candidate_code, status, payload
+      FROM media_career_notifications
+      LIMIT 1
+    `);
+    await pool.query("SELECT cohort, target_enrollment, status FROM media_career_cohorts WHERE cohort = $1 LIMIT 1", ["01"]);
+    await pool.query("SELECT cohort, program_registration_status FROM media_career_legal_readiness WHERE cohort = $1 LIMIT 1", ["01"]);
+
+    res.json({
+      ok: true,
+      service: "hangdoi-academy-candidate-api",
+      check: "intake-readiness"
+    });
+  } catch (error) {
+    console.error("intake_health_failed", error?.message || error);
+    res.status(503).json({
+      ok: false,
+      service: "hangdoi-academy-candidate-api",
+      check: "intake-readiness"
+    });
+  }
+});
+
+
 app.post("/v1/events", rateLimit(10 * 60 * 1000, 200), async (req, res) => {
   try {
     const b = req.body || {};
