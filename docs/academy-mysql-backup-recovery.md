@@ -146,12 +146,33 @@ A production promotion/cutover must be treated as a separate incident action.
 
 Railway's configured HTTP healthcheck is deploy-time only; it is not continuous monitoring.
 
-Current continuous watch checks:
+The repository workflow `.github/workflows/academy-ops-monitor.yml` runs every 15 minutes and can also be started manually.
 
-- `https://candidate-api-v2-production.up.railway.app/health`
+It checks:
+
+- `GET https://candidate-api-v2-production.up.railway.app/health`
+  - API process is reachable
+  - live MySQL dependency answers `SELECT 1`
+- `GET https://candidate-api-v2-production.up.railway.app/health/intake`
+  - the tables and columns required by the public intake, event tracking, notifications, cohort state, and legal-readiness read paths exist and are readable
+- `GET https://candidate-api-v2-production.up.railway.app/health/backup`
+  - latest logical backup is available and no older than 30 hours
 - `https://academy.hangdoiproduction.com/media-career-program/`
+  - landing returns HTTP 200 and the expected Media Career marker
+- `https://academy.hangdoiproduction.com/media-career-program/apply/`
+  - apply page returns HTTP 200 and contains `interestForm`
+- CORS preflight for `POST /v1/applications`
+  - returns HTTP 200/204
+  - explicitly permits `https://academy.hangdoiproduction.com`
 
-The API health route performs a MySQL `SELECT 1`, so it detects both API unavailability and loss of the live DB dependency.
+Failure behavior:
+
+1. The workflow records all failed checks in its Actions summary.
+2. It creates one deduplicated GitHub incident labeled `academy-ops-monitor`, or appends to the existing open incident.
+3. The workflow run fails so normal GitHub Actions failure notifications can surface the incident.
+4. On a later healthy run, the workflow comments the recovery time and closes the incident automatically.
+
+The monitor deliberately does **not** run immediately on every `api/**` push. A first implementation did so and produced a deploy-race false alarm while Railway was still replacing the old revision. Railway's deploy-time `/health` gate covers the deployment itself; the independent 15-minute monitor covers post-deploy availability without alerting during expected rollout propagation.
 
 The current Railway Hobby plan does not include native Observability threshold monitors.
 
@@ -222,3 +243,17 @@ Restore drill evidence:
 The operational recovery target remains **RTO <= 30 minutes** to allow for incident diagnosis, backup selection, restore verification, and deliberate cutover. The technical restore time above is not a guarantee for future larger datasets.
 
 The restore drill initially exposed an ISO timestamp conversion defect. It was corrected before the successful drill; the successful evidence above is from the corrected restore path.
+
+
+## Verified monitoring evidence — 2026-09-25
+
+Production monitor verification after deploying the intake-readiness route:
+
+- `/health`: HTTP 200
+- `/health/intake`: HTTP 200
+- `/health/backup`: HTTP 200
+- `OPTIONS /v1/applications`: HTTP 204 with the Academy origin allowed
+- Railway deployment serving the verified checks: `3552ad54-beae-45d5-b64f-fcb6d43680c8`
+- source revision: `6515c9ff9f26f70245fd5ed7a1766514c344aa07`
+
+The first monitor run opened GitHub incident #33 because it ran before Railway had finished publishing the new `/health/intake` route. After the deploy reached `SUCCESS`, the next monitor run passed all checks, posted the recovery timestamp, and automatically closed incident #33. The push-trigger race was then removed from the monitor design.
