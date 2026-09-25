@@ -7,9 +7,10 @@
     "node": ">=20"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "node server-mysql.js",
     "start:mysql": "node server-mysql.js",
-    "migrate:mysql": "node migrate-postgres-to-mysql.js"
+    "migrate:mysql": "node migrate-postgres-to-mysql.js",
+    "start:postgres": "node server.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
