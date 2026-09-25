@@ -150,9 +150,12 @@ jobs:
           out_dir.mkdir(parents=True, exist_ok=True)
 
           mobile_variants = {
-              "hero-bts.webp": ("hero-bts-mobile.webp", 640),
-              "fourpoints.webp": ("fourpoints-mobile.webp", 360),
-              "xita.webp": ("xita-mobile.webp", 360),
+              # Hero is rendered close to 1.074:1 on phones. Pre-crop it to the
+              # actual visible frame instead of downloading portrait pixels
+              # that object-fit:cover immediately discards.
+              "hero-bts.webp": ("hero-bts-mobile.webp", 640, 596),
+              "fourpoints.webp": ("fourpoints-mobile.webp", 360, None),
+              "xita.webp": ("xita-mobile.webp", 360, None),
           }
 
           for filename, file_id in sources.items():
@@ -172,11 +175,19 @@ jobs:
                   print(filename, image.size, (out_dir / filename).stat().st_size)
 
                   if filename in mobile_variants:
-                      mobile_name, mobile_width = mobile_variants[filename]
-                      mobile = original
-                      if mobile.width > mobile_width:
-                          mobile_height = round(mobile.height * mobile_width / mobile.width)
-                          mobile = mobile.resize((mobile_width, mobile_height), Image.Resampling.LANCZOS)
+                      mobile_name, mobile_width, mobile_height = mobile_variants[filename]
+                      if mobile_height:
+                          mobile = ImageOps.fit(
+                              original,
+                              (mobile_width, mobile_height),
+                              method=Image.Resampling.LANCZOS,
+                              centering=(0.5, 0.5),
+                          )
+                      else:
+                          mobile = original
+                          if mobile.width > mobile_width:
+                              scaled_height = round(mobile.height * mobile_width / mobile.width)
+                              mobile = mobile.resize((mobile_width, scaled_height), Image.Resampling.LANCZOS)
                       mobile.save(out_dir / mobile_name, "WEBP", quality=72, method=6)
                       print(mobile_name, mobile.size, (out_dir / mobile_name).stat().st_size)
 
