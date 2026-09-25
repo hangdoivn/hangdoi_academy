@@ -103,6 +103,8 @@ jobs:
           check_json_health "Candidate API /health/intake/write" \
             "https://candidate-api-v2-production.up.railway.app/health/intake/write" \
             "POST"
+          check_json_health "Candidate API /health/submissions" \
+            "https://candidate-api-v2-production.up.railway.app/health/submissions"
           check_json_health "Candidate API /health/backup" \
             "https://candidate-api-v2-production.up.railway.app/health/backup"
 
