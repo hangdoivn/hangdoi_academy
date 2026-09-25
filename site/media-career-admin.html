@@ -185,7 +185,6 @@ function renderActionCenter(){
   const unassigned=data.filter(x=>actionMatches(x,"unassigned"));
   const today=data.filter(x=>actionMatches(x,"today"));
   const overdue=data.filter(x=>actionMatches(x,"overdue"));
-  const selection=data.filter(x=>actionMatches(x,"selection"));
   $("aNew").textContent=unread.length;$("aUnassigned").textContent=unassigned.length;$("aToday").textContent=today.length;$("aOverdue").textContent=overdue.length;
   $("candidateNavBadge").textContent=data.length;
   const items=[
@@ -264,17 +263,16 @@ async function load(){
   sessionStorage.setItem("mcp_admin_token",token);statusEl.textContent="Đang tải dữ liệu tuyển sinh…";statusEl.className="status";
   try{
     const days=$("days").value;
-    const [apps,dashboard,notes,campaignData,outboundData,outboundStatus]=await Promise.all([
+    const [apps,dashboard,notes,outboundData,outboundStatus]=await Promise.all([
       api("/v1/admin/applications?limit=500"),
       api("/v1/admin/dashboard?days="+days),
       api("/v1/admin/notifications"),
-      api("/v1/admin/campaigns?days="+days),
       api("/v1/admin/outbound"),
       api("/health/outbound")
     ]);
-    data=apps.applications||[];dash=dashboard;notifications=notes.notifications||[];campaigns=campaignData.campaigns||[];
+    data=apps.applications||[];dash=dashboard;notifications=notes.notifications||[];
     outboundDeliveries=outboundData.deliveries||[];outboundHealth=outboundStatus||null;
-    buildFilters();render();renderDashboard();renderNotifications();renderCampaigns();renderOutbound();renderActionCenter();updateOverviewStatus();
+    buildFilters();render();renderDashboard();renderNotifications();renderOutbound();renderActionCenter();updateOverviewStatus();
     statusEl.textContent="Đã kết nối · "+data.length+" ứng viên";statusEl.className="status ok";
   }catch(e){statusEl.textContent="Không kết nối được: "+e.message;statusEl.className="status err"}
 }
@@ -337,29 +335,17 @@ function filtered(){
   return data.filter(x=>{const hay=[x.full_name,x.email,x.phone,x.candidate_code].join(" ").toLowerCase();const sx=x.utm_source||"trực tiếp";return(!q||hay.includes(q))&&(!st||x.pipeline_stage===st)&&(!src||sx===src)&&(!activeActionFilter||actionMatches(x,activeActionFilter))});
 }
 function renderDashboard(){
-  if(!dash)return;const t=dash.totals||{},co=dash.cohort||{};
-  $("cEnrolled").textContent=n(co.enrolled);$("cTarget").textContent=n(co.targetEnrollment||10);$("cRemaining").textContent=n(co.remainingToEnroll);
-  $("cPass").textContent=n(co.pass);$("cWaitlist").textContent=n(co.waitlist);$("cCoverage").textContent=n(co.coverage);
-  $("cTargetInput").value=n(co.targetEnrollment||10);$("cStatus").value=co.status||"OPEN";
-  $("cProgress").style.width=Math.min(100,n(co.enrolledPct))+"%";
-  renderLegal();updateAcquisition();
-  const coverageGap=n(co.coverageGap),remaining=n(co.remainingToEnroll);
-  $("cMessage").textContent=remaining===0?"Đã đủ mục tiêu nhập học.":coverageGap>0?("Còn thiếu "+remaining+" người nhập học; pipeline cần thêm ít nhất "+coverageGap+" ứng viên để đủ độ phủ mục tiêu."):("Còn thiếu "+remaining+" người nhập học; nhóm đạt/dự bị/đã nhận hiện đã đủ độ phủ theo mục tiêu.");
-  $("mAll").textContent=n(t.applications);$("mQualified").textContent=n(t.qualified_or_beyond);$("mSelection").textContent=n(t.in_selection);$("mPass").textContent=n(t.passed_or_beyond);$("mAdmitted").textContent=n(t.admitted_or_enrolled);$("funnelWindow").textContent=dash.days+"D";
+  if(!dash)return;
+  const t=dash.totals||{};
   const em=Object.fromEntries((dash.events||[]).map(x=>[x.key,n(x.count)]));
-  const landingViews=em.landing_view||0,applyViews=em.apply_view||0,registrations=em.application_received||n(t.applications);
+  const landingViews=em.landing_view||0;
+  const applyViews=em.apply_view||0;
+  const registrations=em.application_received||n(t.applications);
   if($("landingVisits"))$("landingVisits").textContent=landingViews;
   if($("landingApplyVisits"))$("landingApplyVisits").textContent=applyViews;
   if($("landingRegistrations"))$("landingRegistrations").textContent=registrations;
   if($("landingConversion"))$("landingConversion").textContent=(landingViews?Math.round(registrations/landingViews*100):0)+"%";
   if($("landingWindowLabel"))$("landingWindowLabel").textContent=dash.days+" ngày gần nhất";
-  const steps=[
-    ["Trang giới thiệu",em.landing_view||0],["Trang đăng ký",em.apply_view||0],["Bắt đầu điền",em.form_start||0],
-    ["Đăng ký quan tâm",em.application_received||n(t.applications)],["Đủ điều kiện+",n(t.qualified_or_beyond)],["Đã nhận",n(t.admitted_or_enrolled)]
-  ];
-  const max=Math.max(...steps.map(x=>x[1]),1);
-  $("funnel").innerHTML=steps.map((x,i)=>{const prev=i?steps[i-1][1]:0,pct=i&&prev?Math.round(x[1]/prev*100):null;return '<div class="frow"><div><b>'+esc(x[0])+'</b><div class="bar"><i style="width:'+Math.max(3,Math.round(x[1]/max*100))+'%"></i></div></div><strong>'+x[1]+'</strong><span>'+(pct===null?"—":pct+"%")+'</span></div>'}).join("");
-  renderList("sources",dash.sources||[],8);renderList("contents",dash.contents||[],6);
 }
 function renderList(id,rows,max){
   const box=$(id),list=rows.slice(0,max);box.innerHTML=list.length?list.map(x=>'<div class="list-row"><span>'+esc(x.key)+'</span><b>'+n(x.count)+'</b></div>').join(""):'<div class="status">Chưa có dữ liệu.</div>';
@@ -738,11 +724,8 @@ const detail=(k,v)=>'<div class="detail"><small>'+esc(k)+'</small><b>'+esc(v||"�
 const answer=(k,v)=>v?'<div class="answer"><b>'+esc(k)+'</b><p>'+esc(v)+'</p></div>':"";
 const attr=v=>esc(v).replaceAll("&#39;","&#39;");
 function csv(){const list=filtered(),cols=["candidate_code","full_name","phone","email","city","current_status","preferred_track","experience_level","selection_score","assessment_decision","pipeline_stage","owner","next_action","next_action_date","lost_reason","utm_source","utm_medium","utm_campaign","utm_content","submitted_at"];const quote=v=>'"'+String(v??"").replaceAll('"','""')+'"';return [cols.join(","),...list.map(x=>cols.map(c=>quote(x[c])).join(","))].join("\n")}
-$("connect").onclick=load;$("days").onchange=load;$("saveCohort").onclick=saveCohort;$("saveLegalFinal").onclick=saveLegalFinal;$("deliveryTest").onclick=sendOutboundTest;
-["utmSource","utmMedium","utmContent"].forEach(id=>$(id).addEventListener("input",updateAcquisition));
-document.querySelectorAll("[data-copy]").forEach(btn=>btn.addEventListener("click",()=>copyField(btn.dataset.copy)));
-document.querySelectorAll(".preset").forEach(btn=>btn.addEventListener("click",()=>{$("utmSource").value=btn.dataset.source;$("utmMedium").value=btn.dataset.medium;$("utmContent").value=btn.dataset.content;$("campaignTitle").value="";$("campaignStatus").value="IDEA";$("campaignAssetType").value="";$("campaignTargetDate").value="";["readyBrief","readyProduction","readyEdit","readyCopy","readyQa"].forEach(id=>$(id).checked=false);updateAcquisition()}));
-updateAcquisition();$("saveCampaign").onclick=saveCampaign;$("saveLegal").onclick=()=>saveLegal(false);$("markLegalReviewed").onclick=()=>saveLegal(true);["search","stageFilter","sourceFilter"].forEach(id=>$(id).addEventListener("input",render));
+$("connect").onclick=load;$("days").onchange=load;$("deliveryTest").onclick=sendOutboundTest;
+["search","stageFilter","sourceFilter"].forEach(id=>$(id).addEventListener("input",render));
 $("exportBtn").onclick=()=>{const b=new Blob([csv()],{type:"text/csv;charset=utf-8"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="media-career-candidates.csv";a.click();URL.revokeObjectURL(a.href)};
 document.querySelectorAll(".admin-tab").forEach(btn=>btn.onclick=()=>setView(btn.dataset.view));
 document.querySelectorAll("[data-go-view]").forEach(btn=>btn.onclick=()=>setView(btn.dataset.goView));
