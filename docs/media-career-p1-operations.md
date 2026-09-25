@@ -255,7 +255,7 @@ Do not perform dual writes during this stabilization phase.
 
 ## Backup & recovery
 
-Railway native backups are enabled on the Academy MySQL volume `mysql-data` with Daily, Weekly, and Monthly schedules.
+The current Railway Hobby plan does not provide usable native volume backups (`maxBackupsCount = 0`). Academy recovery therefore uses logical MySQL backups to the private Railway Storage Bucket `academy-mysql-backups`.
 
 Operational restore steps, recovery objectives, monitoring expectations, and the Postgres retirement gate are defined in:
 
