@@ -255,7 +255,7 @@ app.post("/v1/applications", rateLimit(60 * 60 * 1000, 10), async (req, res) => 
     const publicPipelineStage = "INTEREST_REGISTERED";
 
     const existing = await pool.query(
-      "SELECT candidate_code, phone FROM media_career_applications WHERE cohort = $1 AND email_normalized = $2",
+      "SELECT candidate_code, phone, submitted_at FROM media_career_applications WHERE cohort = $1 AND email_normalized = $2",
       [cohort, email]
     );
     if (existing.rowCount && cleanString(existing.rows[0].phone, 50) !== phone) {
@@ -322,6 +322,34 @@ app.post("/v1/applications", rateLimit(60 * 60 * 1000, 10), async (req, res) => 
     ]);
 
     const saved = result.rows[0];
+    const previousSubmittedAt = existing.rowCount ? new Date(existing.rows[0].submitted_at).getTime() : 0;
+    const recentRetry = existing.rowCount > 0
+      && Number.isFinite(previousSubmittedAt)
+      && Date.now() - previousSubmittedAt >= 0
+      && Date.now() - previousSubmittedAt <= 10 * 60 * 1000;
+
+    if (recentRetry) {
+      await recordEvent({
+        eventName: "application_retry_received",
+        candidateCode: saved.candidate_code,
+        path: "/media-career-program/apply/",
+        utmSource: b.utmSource,
+        utmMedium: b.utmMedium,
+        utmCampaign: b.utmCampaign,
+        utmContent: b.utmContent,
+        referrer: b.referrer,
+        metadata: { cohort, retryWindowMinutes: 10 }
+      });
+
+      return res.status(200).json({
+        ok: true,
+        candidateCode: saved.candidate_code,
+        submittedAt: saved.submitted_at,
+        intakeMode: "INTEREST_ONLY",
+        deduplicatedRetry: true
+      });
+    }
+
     await recordEvent({
       eventName: "application_received",
       candidateCode: saved.candidate_code,
