@@ -223,3 +223,21 @@ The live Candidate API remains:
 `candidate-api-v2`
 
 Postgres is intentionally retained for rollback until the MySQL cutover is considered stable. Do not delete it during the stabilization window.
+
+### Runtime commands
+
+- production MySQL runtime: `npm run start:mysql`
+- legacy Postgres rollback runtime: `npm run start:postgres`
+- default `npm start` also points to MySQL
+
+### Rollback procedure
+
+If a MySQL-specific production issue is confirmed during the stabilization window:
+
+1. change `candidate-api-v2` start command to `npm run start:postgres`
+2. keep the existing `DATABASE_URL` Postgres reference unchanged
+3. redeploy the same application code
+4. verify `/health` and the required read/write path
+5. investigate MySQL without deleting either database
+
+Do not perform dual writes during this stabilization phase.
