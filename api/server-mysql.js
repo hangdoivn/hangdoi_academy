@@ -192,6 +192,118 @@ app.get("/health/intake", async (_req, res) => {
 });
 
 
+app.post("/health/intake/write", rateLimit(10 * 60 * 1000, 3), async (_req, res) => {
+  const probeCode = `MCP-HC-${Date.now().toString(36).toUpperCase()}-${crypto.randomBytes(4).toString("hex").toUpperCase()}`;
+  const probeEmail = `${probeCode.toLowerCase()}@health.invalid`;
+  const probePayload = JSON.stringify({
+    synthetic: true,
+    check: "intake-write-readiness"
+  });
+  const startedAt = Date.now();
+  const client = await pool.connect();
+  let transactionOpen = false;
+
+  try {
+    await client.query("BEGIN");
+    transactionOpen = true;
+
+    await client.query(`
+      INSERT INTO media_career_applications (
+        candidate_code, cohort, full_name, phone, email, email_normalized,
+        city, current_status, experience_level, pipeline_stage,
+        marketing_consent, privacy_consent, payload
+      ) VALUES (
+        $1, '01', 'Academy Health Probe', '0000000000', $2, $2,
+        'Synthetic', 'HEALTHCHECK', 'HEALTHCHECK', 'INTEREST_REGISTERED',
+        FALSE, TRUE, $3::jsonb
+      )
+    `, [probeCode, probeEmail, probePayload]);
+
+    await client.query(`
+      INSERT INTO media_career_events (
+        event_name, session_id, candidate_code, path, metadata
+      ) VALUES (
+        'health_write_probe', $1, $1, '/health/intake/write', $2::jsonb
+      )
+    `, [probeCode, probePayload]);
+
+    await client.query(`
+      INSERT INTO media_career_notifications (
+        candidate_code, notification_type, payload
+      ) VALUES (
+        $1, 'HEALTH_WRITE_PROBE', $2::jsonb
+      )
+    `, [probeCode, probePayload]);
+
+    const candidateInside = await client.query(
+      "SELECT candidate_code FROM media_career_applications WHERE candidate_code = $1",
+      [probeCode]
+    );
+    const eventInside = await client.query(
+      "SELECT candidate_code FROM media_career_events WHERE candidate_code = $1 AND event_name = 'health_write_probe'",
+      [probeCode]
+    );
+    const notificationInside = await client.query(
+      "SELECT candidate_code FROM media_career_notifications WHERE candidate_code = $1 AND notification_type = 'HEALTH_WRITE_PROBE'",
+      [probeCode]
+    );
+
+    if (candidateInside.rowCount !== 1 || eventInside.rowCount !== 1 || notificationInside.rowCount !== 1) {
+      throw new Error("synthetic write verification failed inside transaction");
+    }
+
+    await client.query("ROLLBACK");
+    transactionOpen = false;
+
+    const candidateAfter = await pool.query(
+      "SELECT candidate_code FROM media_career_applications WHERE candidate_code = $1",
+      [probeCode]
+    );
+    const eventAfter = await pool.query(
+      "SELECT candidate_code FROM media_career_events WHERE candidate_code = $1",
+      [probeCode]
+    );
+    const notificationAfter = await pool.query(
+      "SELECT candidate_code FROM media_career_notifications WHERE candidate_code = $1",
+      [probeCode]
+    );
+
+    if (candidateAfter.rowCount || eventAfter.rowCount || notificationAfter.rowCount) {
+      throw new Error("synthetic write rollback verification failed");
+    }
+
+    res.json({
+      ok: true,
+      service: "hangdoi-academy-candidate-api",
+      check: "intake-write-readiness",
+      transaction: "rolled-back",
+      verifiedTables: [
+        "media_career_applications",
+        "media_career_events",
+        "media_career_notifications"
+      ],
+      durationMs: Date.now() - startedAt
+    });
+  } catch (error) {
+    if (transactionOpen) {
+      try {
+        await client.query("ROLLBACK");
+      } catch (rollbackError) {
+        console.error("intake_write_health_rollback_failed", rollbackError?.message || rollbackError);
+      }
+    }
+    console.error("intake_write_health_failed", error?.message || error);
+    res.status(503).json({
+      ok: false,
+      service: "hangdoi-academy-candidate-api",
+      check: "intake-write-readiness"
+    });
+  } finally {
+    client.release();
+  }
+});
+
+
 app.post("/v1/events", rateLimit(10 * 60 * 1000, 200), async (req, res) => {
   try {
     const b = req.body || {};
