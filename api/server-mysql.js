@@ -1174,7 +1174,8 @@ app.get("/v1/admin/applications/:id", requireAdmin, async (req, res) => {
     WHERE id = $1
   `, [req.params.id]);
   if (!result.rowCount) return res.status(404).json({ ok: false, error: "Not found" });
-  const [history, assessment, admission, selection] = await Promise.all([
+  const candidate = result.rows[0];
+  const [history, assessment, admission, selection, outbound] = await Promise.all([
     pool.query(`
       SELECT from_stage, to_stage, changed_by, changed_at
       FROM media_career_stage_history
@@ -1202,15 +1203,25 @@ app.get("/v1/admin/applications/:id", requireAdmin, async (req, res) => {
              confirmed_at, declined_at, attended_at, updated_at
       FROM media_career_selection_appointments
       WHERE application_id = $1
-    `, [req.params.id])
+    `, [req.params.id]),
+    pool.query(`
+      SELECT id, delivery_type, endpoint_key, status, attempt_count, max_attempts,
+             next_attempt_at, last_attempt_at, delivered_at,
+             last_status_code, last_error, created_at, updated_at
+      FROM media_career_outbound_deliveries
+      WHERE candidate_code = $1
+      ORDER BY created_at DESC
+      LIMIT 20
+    `, [candidate.candidate_code])
   ]);
   res.json({
     ok: true,
-    application: result.rows[0],
+    application: candidate,
     history: history.rows,
     assessment: assessment.rows[0] || null,
     admission: admission.rows[0] || null,
     selection: selection.rows[0] || null,
+    outboundDeliveries: outbound.rows,
     admissionLegalGate: "BLOCKED"
   });
 });
