@@ -60,6 +60,44 @@ jobs:
           mkdir -p _site/assets/media-career
           cp site/assets/media-career/* _site/assets/media-career/
 
+          # Build local Inter font assets so public visitors stay on the Academy origin.
+          echo "Build local Inter font assets"
+          python - <<'PY'
+          from pathlib import Path
+          from urllib.request import Request, urlopen
+          import re
+
+          css_url = "https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap"
+          ua = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36"
+          req = Request(css_url, headers={"User-Agent": ua})
+          css = urlopen(req, timeout=30).read().decode("utf-8")
+          font_dir = Path("_site/assets/media-career/fonts")
+          font_dir.mkdir(parents=True, exist_ok=True)
+          seen = {}
+
+          def localize(match):
+              url = match.group(1)
+              if url not in seen:
+                  name = f"inter-{len(seen)}.woff2"
+                  font_req = Request(url, headers={"User-Agent": ua, "Referer": "https://fonts.googleapis.com/"})
+                  payload = urlopen(font_req, timeout=30).read()
+                  if len(payload) < 1024:
+                      raise RuntimeError(f"Inter font payload too small: {url} ({len(payload)} bytes)")
+                  (font_dir / name).write_bytes(payload)
+                  seen[url] = name
+                  print(name, len(payload))
+              return f'url("/assets/media-career/fonts/{seen[url]}")'
+
+          css = re.sub(r"url\((https://fonts\.gstatic\.com/[^)]+\.woff2)\)", localize, css)
+          if "fonts.gstatic.com" in css:
+              raise RuntimeError("Unlocalized Google font URL remains")
+          if "@font-face" not in css or not seen:
+              raise RuntimeError("No Inter font faces were generated")
+          Path("_site/assets/media-career/inter.css").write_text(css, encoding="utf-8")
+          print(f"Generated {len(seen)} local Inter font subset(s)")
+          PY
+
+
           # Build optimized Media Career images locally into the Pages artifact.
           # Public visitors never fetch these images from Google Drive at runtime.
           echo "Build optimized Media Career images"
@@ -362,6 +400,8 @@ jobs:
           test -s _site/assets/media-career/roadmap-02-yeu-cau.png
           test -s _site/assets/media-career/roadmap-03-san-pham.png
           test -s _site/assets/media-career/roadmap-04-du-an.png
+          test -s _site/assets/media-career/inter.css
+          test "$(find _site/assets/media-career/fonts -type f -name 'inter-*.woff2' | wc -l)" -ge 1
           test -s _site/assets/media-career/optimized/hero-bts.webp
           test -s _site/assets/media-career/optimized/fourpoints.webp
           test -s _site/assets/media-career/optimized/xita.webp
@@ -374,6 +414,10 @@ jobs:
           test -s _site/assets/media-career/optimized/roadmap-02-yeu-cau.webp
           test -s _site/assets/media-career/optimized/roadmap-03-san-pham.webp
           test -s _site/assets/media-career/optimized/roadmap-04-du-an.webp
+          if grep -Eq 'fonts\.(googleapis|gstatic)\.com' _site/media-career-program/index.html _site/assets/media-career/inter.css; then
+            echo "Runtime Google Fonts dependency remains in Media Career landing" >&2
+            exit 1
+          fi
           if grep -q 'drive.google.com/thumbnail' _site/media-career-program/index.html; then
             echo "Runtime Google Drive image dependency remains in Media Career landing" >&2
             exit 1
