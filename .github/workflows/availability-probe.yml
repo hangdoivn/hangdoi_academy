@@ -1,0 +1,101 @@
+name: Academy Availability Probe
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: academy-availability-probe
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check Candidate API health
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          url="https://candidate-api-v2-production.up.railway.app/health"
+          body_file="$(mktemp)"
+          trap 'rm -f "$body_file"' EXIT
+
+          set +e
+          status="$(curl \
+            --silent --show-error --location \
+            --retry 2 --retry-delay 5 --retry-all-errors \
+            --connect-timeout 10 --max-time 30 \
+            --output "$body_file" \
+            --write-out '%{http_code}' \
+            "$url")"
+          curl_exit=$?
+          set -e
+
+          echo "Candidate API HTTP status: $status"
+
+          if [ "$curl_exit" -ne 0 ] || [ "$status" != "200" ]; then
+            echo "::error title=Candidate API unavailable::curl_exit=$curl_exit http_status=$status"
+            cat "$body_file" || true
+            exit 1
+          fi
+
+          if ! jq -e '.ok == true' "$body_file" >/dev/null; then
+            echo "::error title=Candidate API unhealthy::HTTP 200 received but response does not contain ok=true"
+            cat "$body_file"
+            exit 1
+          fi
+
+          echo "Candidate API healthy"
+
+      - name: Check Academy page
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          url="https://academy.hangdoiproduction.com/media-career-program/"
+          body_file="$(mktemp)"
+          trap 'rm -f "$body_file"' EXIT
+
+          set +e
+          status="$(curl \
+            --silent --show-error --location \
+            --retry 2 --retry-delay 5 --retry-all-errors \
+            --connect-timeout 10 --max-time 30 \
+            --output "$body_file" \
+            --write-out '%{http_code}' \
+            "$url")"
+          curl_exit=$?
+          set -e
+
+          echo "Academy page HTTP status: $status"
+
+          if [ "$curl_exit" -ne 0 ] || [ "$status" != "200" ]; then
+            echo "::error title=Academy page unavailable::curl_exit=$curl_exit http_status=$status"
+            exit 1
+          fi
+
+          if ! grep -Fq 'Hang Đôi Academy' "$body_file"; then
+            echo "::error title=Academy page content mismatch::HTTP 200 received but expected Academy marker was not found"
+            exit 1
+          fi
+
+          echo "Academy page healthy"
+
+      - name: Write availability summary
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "## Academy availability probe"
+            echo
+            echo "- Candidate API: https://candidate-api-v2-production.up.railway.app/health"
+            echo "- Academy page: https://academy.hangdoiproduction.com/media-career-program/"
+            echo "- Probe source: GitHub-hosted Ubuntu runner"
+            echo "- Trigger: ${{ github.event_name }}"
+          } >> "$GITHUB_STEP_SUMMARY"
