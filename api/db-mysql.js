@@ -36,7 +36,7 @@ function translateConflict(sql) {
     /ON\s+CONFLICT\s*\(([^)]+)\)\s+DO\s+NOTHING/gi,
     (_m, cols) => {
       const first = String(cols).split(",")[0].trim().replace(/"/g, "");
-      return `ON DUPLICATE KEY UPDATE \${first} = \${first}`;
+      return `ON DUPLICATE KEY UPDATE ${first} = ${first}`;
     }
   );
   out = out.replace(
@@ -89,12 +89,12 @@ async function selectReturning(raw, table, returning, selector) {
   if (!selector) return [];
   const fields = returning.trim() === "*" ? "*" : returning.trim();
   if (selector.columns) {
-    const where = selector.columns.map(col => `\`\${col}\` = ?`).join(" AND ");
-    const [rows] = await raw.query(`SELECT \${fields} FROM \`\${table}\` WHERE \${where} LIMIT 1`, selector.values);
+    const where = selector.columns.map(col => `\`${col}\` = ?`).join(" AND ");
+    const [rows] = await raw.query(`SELECT ${fields} FROM \`${table}\` WHERE ${where} LIMIT 1`, selector.values);
     return rows;
   }
   const [rows] = await raw.query(
-    `SELECT \${fields} FROM \`\${table}\` WHERE \`\${selector.column}\` = ? LIMIT 1`,
+    `SELECT ${fields} FROM \`${table}\` WHERE \`${selector.column}\` = ? LIMIT 1`,
     [selector.value]
   );
   return rows;
