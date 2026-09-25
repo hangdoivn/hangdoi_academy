@@ -5485,3 +5485,21 @@ footer{background:var(--aca-ink-950);color:var(--aca-paper-0);padding:30px 0}
     scroll-behavior:auto!important;
   }
 }
+
+/* Performance: defer rendering of sections well below the initial viewport.
+   Keep hero + first narrative sections fully rendered for stable LCP/FCP. */
+@supports (content-visibility: auto){
+  #system,
+  #learning-loop,
+  .section.practice,
+  #roles,
+  .section.outputs,
+  #income,
+  #tuition,
+  #fit,
+  #faq,
+  #apply{
+    content-visibility:auto;
+    contain-intrinsic-size:auto 1000px;
+  }
+}
