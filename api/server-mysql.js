@@ -120,6 +120,13 @@ function outboundFormat(endpointKey) {
   return outboundFormats.has(format) ? format : "generic";
 }
 
+function outboundRequired(endpointKey) {
+  const requiredKey = endpointKey === "NEW_APPLICATION_WEBHOOK_URL"
+    ? "NEW_APPLICATION_WEBHOOK_REQUIRED"
+    : "APPLICATION_ACK_WEBHOOK_REQUIRED";
+  return String(process.env[requiredKey] || "").trim().toLowerCase() === "true";
+}
+
 function outboundText(payload = {}) {
   if (payload.type === "NEW_APPLICATION") {
     return [
@@ -347,7 +354,8 @@ function startOutboundDeliveryWorker() {
     intervalMs: OUTBOUND_DELIVERY_INTERVAL_MS,
     batchSize: OUTBOUND_DELIVERY_BATCH_SIZE,
     configured: Array.from(outboundEndpointKeys).filter((key) => Boolean(outboundEndpoint(key))),
-    formats: Object.fromEntries(Array.from(outboundEndpointKeys).map((key) => [key, outboundFormat(key)]))
+    formats: Object.fromEntries(Array.from(outboundEndpointKeys).map((key) => [key, outboundFormat(key)])),
+    required: Object.fromEntries(Array.from(outboundEndpointKeys).map((key) => [key, outboundRequired(key)]))
   });
 }
 
@@ -596,14 +604,21 @@ app.get("/health/outbound", async (_req, res) => {
     const maxOverdueSeconds = Number(stale.max_overdue_seconds || 0);
     const degraded = failedOpen > 0 || staleProcessing > 0 || maxOverdueSeconds > 600;
     const configured = Array.from(outboundEndpointKeys).filter((key) => Boolean(outboundEndpoint(key)));
-    const formats = Object.fromEntries(configured.map((key) => [key, outboundFormat(key)]));
+    const formats = Object.fromEntries(Array.from(outboundEndpointKeys).map((key) => [key, outboundFormat(key)]));
+    const required = Object.fromEntries(Array.from(outboundEndpointKeys).map((key) => [key, outboundRequired(key)]));
+    const missingRequired = Array.from(outboundEndpointKeys).filter(
+      (key) => outboundRequired(key) && !outboundEndpoint(key)
+    );
+    const unhealthy = degraded || missingRequired.length > 0;
 
-    res.status(degraded ? 503 : 200).json({
-      ok: !degraded,
+    res.status(unhealthy ? 503 : 200).json({
+      ok: !unhealthy,
       service: "hangdoi-academy-candidate-api",
       check: "outbound-delivery",
       configured,
       formats,
+      required,
+      missingRequired,
       supportedFormats: Array.from(outboundFormats),
       counts,
       failedOpen,
