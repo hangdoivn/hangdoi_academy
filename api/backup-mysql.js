@@ -3,6 +3,7 @@ import zlib from "node:zlib";
 import {
   S3Client,
   PutObjectCommand,
+  GetObjectCommand,
   ListObjectsV2Command,
   DeleteObjectCommand
 } from "@aws-sdk/client-s3";
@@ -143,6 +144,52 @@ async function pruneOldBackups(client, bucket, now = new Date()) {
 
     continuationToken = response.IsTruncated ? response.NextContinuationToken : undefined;
   } while (continuationToken);
+}
+
+async function objectBodyToBuffer(body) {
+  if (!body) throw new Error("Backup manifest body is empty");
+  if (typeof body.transformToByteArray === "function") {
+    return Buffer.from(await body.transformToByteArray());
+  }
+  const chunks = [];
+  for await (const chunk of body) chunks.push(Buffer.from(chunk));
+  return Buffer.concat(chunks);
+}
+
+export async function getMysqlBackupStatus({ maxAgeHours = 30 } = {}) {
+  const config = backupConfig();
+  if (!config) {
+    return { ok: false, status: "disabled", maxAgeHours };
+  }
+
+  try {
+    const response = await config.client.send(new GetObjectCommand({
+      Bucket: config.bucket,
+      Key: "mysql/latest.json"
+    }));
+    const manifest = JSON.parse((await objectBodyToBuffer(response.Body)).toString("utf8"));
+    const createdAtMs = Date.parse(manifest.createdAt || "");
+    if (!Number.isFinite(createdAtMs)) {
+      return { ok: false, status: "invalid_manifest", maxAgeHours };
+    }
+
+    const ageHoursRaw = Math.max(0, (Date.now() - createdAtMs) / 3_600_000);
+    const ageHours = Math.round(ageHoursRaw * 10) / 10;
+    const ok = ageHoursRaw <= maxAgeHours;
+
+    return {
+      ok,
+      status: ok ? "fresh" : "stale",
+      createdAt: new Date(createdAtMs).toISOString(),
+      ageHours,
+      maxAgeHours,
+      bytes: Number(manifest.bytes || 0),
+      tableCount: Number(manifest.tableCount || 0)
+    };
+  } catch (error) {
+    console.error("[mysql-backup] status_failed", error?.message || error);
+    return { ok: false, status: "unavailable", maxAgeHours };
+  }
 }
 
 export async function runMysqlBackup(pool, { reason = "scheduled", force = false } = {}) {
