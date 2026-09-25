@@ -3,6 +3,7 @@ import cors from "cors";
 import helmet from "helmet";
 import pg from "pg";
 import crypto from "node:crypto";
+import { migratePostgresToMysql } from "./shadow-migrate.js";
 
 const { Pool } = pg;
 const app = express();
@@ -1604,9 +1605,25 @@ app.patch("/v1/admin/applications/:id/stage", requireAdmin, async (req, res) => 
   }
 });
 
+async function runMysqlShadowMigrationIfEnabled() {
+  if (process.env.ACADEMY_MYSQL_SHADOW_MIGRATE !== "1") return;
+  const mysqlUrl = process.env.MYSQL_SHADOW_URL || "";
+  if (!mysqlUrl) {
+    console.error("[mysql-shadow] MYSQL_SHADOW_URL is missing");
+    return;
+  }
+  try {
+    const result = await migratePostgresToMysql(pool, mysqlUrl);
+    console.log("[mysql-shadow] verified", JSON.stringify(result.report));
+  } catch (error) {
+    console.error("[mysql-shadow] failed", error);
+  }
+}
+
 initDb()
   .then(() => app.listen(port, "0.0.0.0", () => {
     console.log(`candidate-api listening on ${port}`);
+    void runMysqlShadowMigrationIfEnabled();
   }))
   .catch((error) => {
     console.error("db_init_failed", error);
