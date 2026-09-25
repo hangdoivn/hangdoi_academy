@@ -213,7 +213,8 @@ Cutover verification:
 - migration counts matched exactly at cutover
 - `media_career_events`: 43 → 43
 - `media_career_applications`: 0 → 0
-- Candidate API redeployed from commit `e655829a413d7ed14ba42a004853c0072b75014b`
+- Candidate API MySQL cutover completed on commit `486b4e3ca569e9995d3b7385664ae56c187e9a7f`
+- transactional startup smoke test exercises the production application INSERT/UPSERT path and rolls back; deployment logged `[mysql-runtime] smoke_ok`
 - live `/health` returned HTTP 200 after MySQL cutover
 - public selection lookup returned the expected HTTP 404 for a nonexistent token, confirming live MySQL reads
 
