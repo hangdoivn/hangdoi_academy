@@ -6,7 +6,7 @@ function mysqlTypeCast(field, next) {
     return value === null ? null : value === "1";
   }
   if (field.type === "JSON") {
-    const value = field.string();
+    const value = field.string("utf8");
     if (value === null) return null;
     try { return JSON.parse(value); } catch { return value; }
   }
