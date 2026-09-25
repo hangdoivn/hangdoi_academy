@@ -121,6 +121,12 @@ jobs:
           out_dir = Path("_site/assets/media-career/optimized")
           out_dir.mkdir(parents=True, exist_ok=True)
 
+          mobile_variants = {
+              "hero-bts.webp": ("hero-bts-mobile.webp", 640),
+              "fourpoints.webp": ("fourpoints-mobile.webp", 360),
+              "xita.webp": ("xita-mobile.webp", 360),
+          }
+
           for filename, file_id in sources.items():
               url = f"https://drive.google.com/thumbnail?id={file_id}&sz=w1200"
               req = Request(url, headers={"User-Agent": "Mozilla/5.0"})
@@ -129,12 +135,22 @@ jobs:
               if len(payload) < 1024:
                   raise RuntimeError(f"Image payload too small for {filename}: {len(payload)} bytes")
               with Image.open(BytesIO(payload)) as source:
-                  image = ImageOps.exif_transpose(source).convert("RGB")
+                  original = ImageOps.exif_transpose(source).convert("RGB")
+                  image = original
                   if image.width > 720:
                       height = round(image.height * 720 / image.width)
                       image = image.resize((720, height), Image.Resampling.LANCZOS)
                   image.save(out_dir / filename, "WEBP", quality=76, method=6)
                   print(filename, image.size, (out_dir / filename).stat().st_size)
+
+                  if filename in mobile_variants:
+                      mobile_name, mobile_width = mobile_variants[filename]
+                      mobile = original
+                      if mobile.width > mobile_width:
+                          mobile_height = round(mobile.height * mobile_width / mobile.width)
+                          mobile = mobile.resize((mobile_width, mobile_height), Image.Resampling.LANCZOS)
+                      mobile.save(out_dir / mobile_name, "WEBP", quality=72, method=6)
+                      print(mobile_name, mobile.size, (out_dir / mobile_name).stat().st_size)
 
           local_sources = {
               "roadmap-01-thiet-bi.webp": Path("_site/assets/media-career/roadmap-01-thiet-bi.png"),
@@ -404,6 +420,9 @@ jobs:
           test -s _site/assets/media-career/inter.css
           test "$(find _site/assets/media-career/fonts -type f -name 'inter-*.woff2' | wc -l)" -ge 1
           test -s _site/assets/media-career/optimized/hero-bts.webp
+          test -s _site/assets/media-career/optimized/hero-bts-mobile.webp
+          test -s _site/assets/media-career/optimized/fourpoints-mobile.webp
+          test -s _site/assets/media-career/optimized/xita-mobile.webp
           test -s _site/assets/media-career/optimized/fourpoints.webp
           test -s _site/assets/media-career/optimized/xita.webp
           test -s _site/assets/media-career/optimized/fnb-676.webp
