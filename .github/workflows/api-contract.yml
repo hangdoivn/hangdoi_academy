@@ -67,6 +67,9 @@ jobs:
           grep -Fq 'EMAIL_CANDIDATE_CLOSE' api/server-mysql.js
           grep -Fq '/v1/admin/mail/scenarios' api/server-mysql.js
           grep -Fq '/v1/admin/applications/:id/mail' api/server-mysql.js
+          grep -Fq '/v1/admin/applications/:id/mail/preview' api/server-mysql.js
+          grep -Fq 'RECENT_DUPLICATE_MAIL' api/server-mysql.js
+          grep -Fq 'INTERVAL 10 MINUTE' api/server-mysql.js
           grep -Fq 'startMailScenarioScheduler' api/server-mysql.js
           if grep -Fq 'void postWebhook(' api/server-mysql.js; then
             echo "Legacy fire-and-forget webhook call found" >&2
