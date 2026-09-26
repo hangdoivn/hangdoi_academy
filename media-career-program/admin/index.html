@@ -1,0 +1,849 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Quản lý tuyển sinh | Hang Đôi Academy</title>
+
+<style>
+:root{--blue:#152BE8;--yellow:#FDDE58;--ink:#00031A;--mist:#F3F5FF;--line:#D9DDEC;--muted:#646B86;--red:#B42318;--green:#157A55;--white:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--mist)}button,input,select{font:inherit}.wrap{width:min(calc(100% - 28px),1380px);margin:auto}.nav{height:70px;display:flex;align-items:center;justify-content:space-between}.nav img{width:184px}.tag{font-size:12px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}h1{font-size:44px;letter-spacing:-.045em;margin:4px 0 22px}.login{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;display:grid;grid-template-columns:1fr auto;gap:10px;margin-bottom:18px}.login input,.login button,.toolbar input,.toolbar select,.toolbar button,.range select{border:1px solid var(--line);border-radius:12px;padding:11px 12px;background:#fff}.login button,.toolbar button{background:var(--ink);color:#fff;font-weight:850;cursor:pointer}.hint{font-size:12px;color:var(--muted);grid-column:1/-1}.topline{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}.range{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}.metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:14px}.metric,.panel{background:#fff;border:1px solid var(--line);border-radius:16px}.metric{padding:16px}.metric small{color:var(--muted);font-weight:800}.metric strong{display:block;font-size:28px;margin-top:6px}.cohort-band{display:grid;grid-template-columns:1.2fr repeat(4,.7fr) auto;gap:10px;align-items:stretch;margin-bottom:14px}.cohort-main,.cohort-stat,.cohort-settings{background:var(--ink);color:#fff;border-radius:16px;padding:16px}.cohort-main small,.cohort-stat small{display:block;color:#bfc6df;font-size:11px;font-weight:800}.cohort-main strong,.cohort-stat strong{display:block;font-size:28px;margin-top:5px}.cohort-main p{margin:6px 0 0;color:#cfd4e6;font-size:12px}.cohort-settings{display:flex;gap:8px;align-items:end;background:#fff;color:var(--ink);border:1px solid var(--line)}.cohort-settings label{display:grid;gap:4px;font-size:10px;color:var(--muted)}.cohort-settings input,.cohort-settings select{width:92px;border:1px solid var(--line);border-radius:9px;padding:8px}.cohort-settings button{border:0;border-radius:999px;background:var(--blue);color:#fff;padding:9px 12px;font-weight:850;cursor:pointer}.coverage-track{height:8px;background:rgba(255,255,255,.16);border-radius:999px;overflow:hidden;margin-top:10px}.coverage-track i{display:block;height:100%;background:var(--yellow);border-radius:999px}.acq{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:14px}.acq-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:14px}.acq-head h2{margin:3px 0 5px;font-size:20px}.mode-pill{padding:7px 10px;border-radius:999px;background:var(--yellow);font-size:11px;font-weight:950;white-space:nowrap}.mode-pill.open{background:#DDF5E8;color:#145A3C}.acq-grid{display:grid;grid-template-columns:1fr 1fr 1.2fr;gap:9px}.acq-grid label{display:grid;gap:5px;font-size:11px;color:var(--muted)}.acq-grid input,.acq-grid select{width:100%;border:1px solid var(--line);border-radius:9px;padding:9px;background:#fff;font:inherit}.acq-links{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:10px}.acq-links input{width:100%;border:1px solid var(--line);border-radius:9px;padding:9px;background:var(--mist);font:inherit}.acq-links button,.preset{border:0;border-radius:999px;background:var(--ink);color:#fff;padding:9px 12px;font-weight:850;cursor:pointer}.preset-row{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.preset{background:#fff;color:var(--ink);border:1px solid var(--line);font-size:12px}.acq-note{font-size:12px;color:var(--muted);margin:8px 0 0}.campaign-editor{display:grid;grid-template-columns:1.2fr .7fr .7fr;gap:9px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}.campaign-editor label{display:grid;gap:5px;font-size:11px;color:var(--muted)}.campaign-editor input,.campaign-editor select,.campaign-editor textarea{width:100%;border:1px solid var(--line);border-radius:9px;padding:9px;background:#fff;font:inherit}.campaign-editor textarea{min-height:76px;resize:vertical}.campaign-editor .wide{grid-column:1/-1}.ready-checks{grid-column:1/-1;display:grid;grid-template-columns:repeat(5,1fr);gap:7px}.ready-check{display:flex!important;align-items:center;gap:7px!important;padding:9px;border:1px solid var(--line);border-radius:10px;background:var(--mist);font-size:11px!important;color:var(--ink)!important}.ready-check input{width:auto!important;margin:0}.readiness{display:inline-flex;align-items:center;gap:6px}.readiness-bar{width:66px;height:6px;background:#E6E8F2;border-radius:999px;overflow:hidden}.readiness-bar i{display:block;height:100%;background:var(--blue);border-radius:999px}.campaign-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.campaign-actions button{border:0;border-radius:999px;background:var(--blue);color:#fff;padding:9px 13px;font-weight:850;cursor:pointer}.campaign-registry{margin-top:16px;border-top:1px solid var(--line);padding-top:14px}.campaign-registry h3{font-size:14px;margin:0 0 10px}.campaign-table{overflow:auto;border:1px solid var(--line);border-radius:12px}.campaign-table table{min-width:980px}.campaign-table td,.campaign-table th{padding:10px}.campaign-table tr[data-content]{cursor:pointer}.campaign-table tr[data-content]:hover{background:var(--mist)}.metric-mini{font-size:11px;color:var(--muted)}.legal-gate{background:#fff;border:2px solid var(--red);border-radius:18px;padding:18px;margin-bottom:14px}.legal-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:14px}.legal-head h2{margin:3px 0 5px;font-size:20px}.gate-pill{background:var(--red);color:#fff;border-radius:999px;padding:7px 10px;font-size:11px;font-weight:950;white-space:nowrap}.legal-progress{height:9px;background:#F1E6E5;border-radius:999px;overflow:hidden;margin:10px 0 16px}.legal-progress i{display:block;height:100%;background:var(--green);border-radius:999px}.legal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.legal-item{display:grid;gap:5px;background:var(--mist);border-radius:12px;padding:10px}.legal-item span{font-size:11px;font-weight:800}.legal-item select,.legal-meta input,.legal-meta textarea{width:100%;border:1px solid var(--line);border-radius:9px;padding:8px 9px;background:#fff;font:inherit;color:var(--ink)}.legal-meta{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}.legal-meta label{display:grid;gap:5px;font-size:11px;color:var(--muted)}.legal-meta .wide{grid-column:1/-1}.legal-meta textarea{min-height:80px;resize:vertical}.legal-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.legal-actions button{border:0;border-radius:999px;padding:10px 14px;background:var(--ink);color:#fff;font-weight:900;cursor:pointer}.legal-actions button.review{background:var(--green)}.legal-note{font-size:12px;color:var(--muted);margin:0}.legal-final{margin-top:14px;padding:14px;border-radius:14px;background:#FFF3F1;border:1px solid #E8B9B4}.legal-final h3{font-size:14px;margin:0 0 10px}.legal-final-grid{display:grid;grid-template-columns:.7fr 1fr 1.4fr;gap:9px}.legal-final label{display:grid;gap:5px;font-size:11px;color:var(--muted)}.legal-final input,.legal-final select{width:100%;border:1px solid var(--line);border-radius:9px;padding:8px 9px;background:#fff;font:inherit}.legal-final button{margin-top:10px;border:0;border-radius:999px;padding:10px 14px;background:var(--red);color:#fff;font-weight:900;cursor:pointer}.legal-final .approval-state{display:inline-block;padding:5px 8px;border-radius:999px;background:#fff;font-size:11px;font-weight:900}.legal-note{font-size:12px;color:var(--muted);margin:0}.insights{display:grid;grid-template-columns:1.1fr .9fr .9fr;gap:12px;margin-bottom:16px}.panel{padding:17px;min-height:230px}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}.panel h2{font-size:15px;margin:0}.badge{padding:5px 8px;border-radius:999px;background:var(--yellow);font-size:11px;font-weight:900}.funnel{display:grid;gap:8px}.frow{display:grid;grid-template-columns:1fr 64px 64px;gap:8px;align-items:center;font-size:12px}.bar{height:8px;background:#edf0f7;border-radius:999px;overflow:hidden;margin-top:4px}.bar i{display:block;height:100%;background:var(--blue);border-radius:999px}.list{display:grid;gap:9px}.list-row{display:grid;grid-template-columns:1fr auto;gap:8px;font-size:12px;padding-bottom:8px;border-bottom:1px solid #edf0f7}.list-row:last-child{border-bottom:0}.list-row b{font-size:13px}.notifications{max-height:188px;overflow:auto}.nitem{padding:9px 0;border-bottom:1px solid #edf0f7;font-size:12px}.nitem:last-child{border-bottom:0}.nitem button{border:0;background:none;color:var(--blue);font-weight:850;cursor:pointer;padding:0;margin-top:5px}.delivery-panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:16px}.delivery-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:14px}.delivery-head h2{font-size:20px;margin:3px 0 5px}.delivery-note{margin:0;color:var(--muted);font-size:12px;line-height:1.45}.delivery-state{padding:7px 10px;border-radius:999px;font-size:11px;font-weight:950;white-space:nowrap;background:var(--yellow)}.delivery-state.ok{background:#DDF5E8;color:#145A3C}.delivery-state.warn{background:#FFF2C2;color:#6B5400}.delivery-state.bad{background:#FDE8E6;color:var(--red)}.delivery-state.busy{background:#E9ECFF;color:var(--blue)}.delivery-head-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}.delivery-test{border:0;border-radius:999px;background:var(--ink);color:#fff;padding:8px 11px;font-size:11px;font-weight:900;cursor:pointer}.delivery-test:disabled{opacity:.4;cursor:not-allowed}.delivery-config{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.delivery-config span{display:inline-flex;align-items:center;gap:6px;padding:7px 9px;border:1px solid var(--line);border-radius:999px;font-size:11px;font-weight:800}.delivery-config i{width:8px;height:8px;border-radius:999px;background:#B8BECE}.delivery-config .on i{background:var(--green)}.delivery-config .delivery-config-missing{border-color:#E4A39D;background:#FFF3F1;color:var(--red)}.delivery-config .delivery-config-missing i{background:var(--red)}.delivery-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}.delivery-metric{background:var(--mist);border-radius:12px;padding:11px}.delivery-metric small{display:block;color:var(--muted);font-size:10px;font-weight:850;text-transform:uppercase;letter-spacing:.05em}.delivery-metric strong{display:block;font-size:22px;margin-top:4px}.delivery-list{border-top:1px solid var(--line)}.delivery-row{display:grid;grid-template-columns:minmax(0,1.3fr) .9fr .7fr .7fr auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid #edf0f7;font-size:12px}.delivery-row:last-child{border-bottom:0}.delivery-row b{display:block;overflow:hidden;text-overflow:ellipsis}.delivery-row small{color:var(--muted)}.delivery-status{display:inline-block;padding:5px 7px;border-radius:999px;background:var(--mist);font-size:10px;font-weight:900}.delivery-status.DELIVERED{background:#DDF5E8;color:#145A3C}.delivery-status.FAILED{background:#FDE8E6;color:var(--red)}.delivery-status.RETRY,.delivery-status.PROCESSING{background:#FFF2C2;color:#6B5400}.delivery-retry{border:0;border-radius:999px;background:var(--ink);color:#fff;padding:7px 10px;font-size:11px;font-weight:850;cursor:pointer}.delivery-retry:disabled{opacity:.45;cursor:wait}.toolbar{display:grid;grid-template-columns:1.25fr .7fr .7fr auto;gap:10px;margin-bottom:10px}.status{font-size:12px;color:var(--muted);margin:10px 0}.ok{color:var(--green)}.err{color:var(--red)}.table-wrap{overflow:auto;background:#fff;border:1px solid var(--line);border-radius:18px;margin-bottom:50px}table{width:100%;border-collapse:collapse;min-width:1080px}th,td{padding:13px 12px;border-bottom:1px solid #edf0f7;text-align:left;font-size:13px;vertical-align:top}th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);position:sticky;top:0;background:#fff}td strong{font-size:14px;cursor:pointer}.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:var(--blue)}.stage{font:inherit;border:1px solid var(--line);border-radius:10px;padding:7px 9px;background:#fff;min-width:170px}.source{display:inline-block;padding:5px 8px;border-radius:999px;background:var(--mist);font-size:11px}.empty{padding:48px;text-align:center;color:var(--muted)}dialog{width:min(calc(100% - 28px),820px);max-height:88vh;border:0;border-radius:24px;padding:0;box-shadow:0 28px 100px rgba(0,3,26,.3)}dialog::backdrop{background:rgba(0,3,26,.48)}.drawer{padding:24px}.drawer-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;border-bottom:1px solid var(--line);padding-bottom:18px}.drawer h2{font-size:28px;letter-spacing:-.03em;margin:3px 0}.close{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 12px;cursor:pointer}.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}.detail{background:var(--mist);border-radius:14px;padding:13px}.detail small{display:block;color:var(--muted);font-size:11px;margin-bottom:4px}.answers{display:grid;gap:12px}.answer{border-top:1px solid var(--line);padding-top:12px}.answer b{display:block;font-size:12px;color:var(--blue);margin-bottom:5px}.answer p{white-space:pre-wrap;margin:0;font-size:14px}.loading{color:var(--muted)}.ops{margin:18px 0;padding:16px;border:1px solid var(--line);border-radius:16px;background:#fff}.ops h3,.timeline h3{font-size:14px;margin:0 0 12px}.ops-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.ops label{display:grid;gap:5px;font-size:11px;color:var(--muted)}.ops input,.ops textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:9px 10px;font:inherit;color:var(--ink);background:#fff}.ops textarea{min-height:90px;resize:vertical}.ops .wide{grid-column:1/-1}.ops button{margin-top:12px;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 14px;font-weight:850;cursor:pointer}.timeline{margin-top:18px}.titem{padding:9px 0;border-top:1px solid var(--line);font-size:12px}.titem b{color:var(--blue)}.candidate-delivery{margin:18px 0;padding:16px;border:1px solid var(--line);border-radius:16px;background:#fff}.candidate-delivery-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}.candidate-delivery h3{font-size:14px;margin:0}.candidate-delivery-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;align-items:start;padding:10px 0;border-top:1px solid var(--line);font-size:12px}.candidate-delivery-row b{display:block}.candidate-delivery-row small{display:block;color:var(--muted);margin-top:3px}.candidate-delivery-row .delivery-retry{align-self:center}.selection-box{margin:18px 0;padding:16px;border:1px solid #BAC2FF;border-radius:16px;background:#EEF0FF}.selection-box h3{font-size:14px;margin:0}.selection-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.selection-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.selection-grid label{display:grid;gap:5px;font-size:11px;color:#4e5682}.selection-grid input,.selection-grid textarea,.selection-grid select{width:100%;border:1px solid #C9CEF3;border-radius:10px;padding:9px 10px;font:inherit;background:#fff;color:var(--ink)}.selection-grid textarea{min-height:82px;resize:vertical}.selection-grid .wide{grid-column:1/-1}.selection-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.selection-actions button{border:0;border-radius:999px;background:var(--blue);color:#fff;padding:10px 14px;font-weight:850;cursor:pointer}.selection-actions button.secondary{background:#fff;color:var(--ink);border:1px solid #C9CEF3}.selection-actions button.dark{background:var(--ink)}.assessment{margin:18px 0;padding:16px;border-radius:16px;background:var(--ink);color:#fff}.assessment h3{font-size:14px;margin:0 0 12px}.score-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.score-grid label{display:grid;gap:5px;font-size:11px;color:#c9d0e5}.score-grid input,.assessment input,.assessment textarea,.assessment select{width:100%;border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:9px 10px;font:inherit;background:rgba(255,255,255,.08);color:#fff}.assessment textarea{min-height:86px;resize:vertical}.assessment select option{color:var(--ink)}.assessment-meta{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.assessment .wide{grid-column:1/-1}.assessment button{margin-top:12px;border:0;border-radius:999px;background:var(--yellow);color:var(--ink);padding:10px 14px;font-weight:900;cursor:pointer}.admission{margin:18px 0;padding:16px;border:1px solid #F0C94F;border-radius:16px;background:#FFF9DA}.admission h3{font-size:14px;margin:0}.admission-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.locked{font-size:11px;font-weight:900;padding:5px 8px;border-radius:999px;background:var(--ink);color:#fff}.admission-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.admission label{display:grid;gap:5px;font-size:11px;color:#6b5b10}.admission input,.admission textarea,.admission select{width:100%;border:1px solid #E5CB66;border-radius:10px;padding:9px 10px;font:inherit;background:#fff;color:var(--ink)}.admission textarea{min-height:82px;resize:vertical}.admission .wide{grid-column:1/-1}.admission-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.admission button{border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 14px;font-weight:850;cursor:pointer}.admission button.secondary{background:#fff;color:var(--ink);border:1px solid #D5BB54}.score-total{font-size:28px;font-weight:950;color:var(--yellow);margin:10px 0}.ops-cell{font-size:12px}.ops-cell b{display:block}.ops-cell span{color:var(--muted)}
+@media(max-width:1040px){.acq-grid{grid-template-columns:1fr 1fr}.legal-grid{grid-template-columns:repeat(2,1fr)}.cohort-band{grid-template-columns:repeat(2,1fr)}.cohort-settings{grid-column:1/-1}.metrics{grid-template-columns:repeat(2,1fr)}.insights{grid-template-columns:1fr}.toolbar{grid-template-columns:1fr 1fr}.delivery-row{grid-template-columns:minmax(0,1.2fr) .8fr .7fr auto}.delivery-row .delivery-error{grid-column:1/-1}}@media(max-width:650px){.ready-checks{grid-template-columns:1fr 1fr}.campaign-editor,.acq-grid,.legal-grid,.legal-meta,.legal-final-grid{grid-template-columns:1fr}.legal-meta .wide{grid-column:auto}.legal-head,.delivery-head{flex-direction:column}.delivery-head-actions{width:100%;justify-content:space-between}.cohort-band{grid-template-columns:1fr}.cohort-settings{grid-column:auto;align-items:stretch;flex-direction:column}.cohort-settings input,.cohort-settings select{width:100%}.score-grid,.assessment-meta,.admission-grid,.selection-grid{grid-template-columns:1fr}.login{grid-template-columns:1fr}.login button{width:100%}.metrics,.toolbar,.detail-grid,.delivery-metrics{grid-template-columns:1fr 1fr}.topline{align-items:flex-start;flex-direction:column}.delivery-row{grid-template-columns:1fr auto;gap:6px}.delivery-row .delivery-type,.delivery-row .delivery-attempts,.delivery-row .delivery-error{grid-column:1/-1}.delivery-row .delivery-action{grid-column:2;grid-row:1}.delivery-state{white-space:normal}.candidate-delivery-row{grid-template-columns:1fr auto}.candidate-delivery-row .candidate-delivery-error{grid-column:1/-1}}
+
+/* ===== Admin IA v2 · P0-P1 ===== */
+.eyebrow,.view-kicker{font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.topline h1{margin:3px 0 0}.admin-tabs{position:sticky;top:0;z-index:20;display:flex;gap:6px;padding:8px;margin:0 0 16px;background:rgba(243,245,255,.94);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:16px;overflow:auto}
+.admin-tab{border:0;background:transparent;color:var(--muted);padding:10px 14px;border-radius:11px;font-weight:850;white-space:nowrap;cursor:pointer;display:inline-flex;gap:7px;align-items:center}
+.admin-tab.active{background:var(--ink);color:#fff}.nav-badge{min-width:20px;height:20px;padding:0 6px;border-radius:999px;background:rgba(255,255,255,.14);display:inline-grid;place-items:center;font-size:10px}.nav-dot{width:8px;height:8px;border-radius:50%;background:var(--red)}
+.admin-view{display:none}.admin-view.active{display:block}.view-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin:8px 2px 14px}.view-head h2{font-size:30px;letter-spacing:-.035em;margin:4px 0}.view-head p{margin:4px 0 0;color:var(--muted);font-size:13px}.text-button{border:0;background:none;color:var(--blue);font-weight:900;cursor:pointer;padding:8px}
+.action-metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:14px}.action-metric{border:1px solid var(--line);background:#fff;text-align:left;border-radius:16px;padding:15px;cursor:pointer;color:var(--ink)}.action-metric:hover{border-color:#AEB7FF}.action-metric small{display:block;color:var(--muted);font-weight:800}.action-metric strong{display:block;font-size:30px;line-height:1;margin:8px 0 5px}.action-metric span{font-size:11px;color:var(--muted)}.action-metric.danger strong{color:var(--red)}
+.overview-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:12px;margin-bottom:12px}.work-panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:17px;min-height:230px}.action-center{display:grid}.action-item{display:grid;grid-template-columns:minmax(0,1.3fr) 1fr auto;gap:10px;align-items:center;padding:10px 0;border-top:1px solid #edf0f7}.action-item:first-child{border-top:0}.action-item b{font-size:13px}.action-item small{display:block;color:var(--muted);margin-top:2px}.action-kind{display:inline-flex;padding:5px 8px;border-radius:999px;background:var(--mist);font-size:10px;font-weight:900}.action-kind.overdue{background:#FDE8E6;color:var(--red)}.action-open{border:0;background:var(--ink);color:#fff;border-radius:999px;padding:7px 10px;font-size:11px;font-weight:850;cursor:pointer}
+.overview-status-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}.status-card{border:1px solid var(--line);background:#fff;border-radius:16px;padding:14px;text-align:left;color:var(--ink);cursor:pointer}.status-card small{color:var(--muted);font-weight:800}.status-card strong{display:block;font-size:16px;margin:5px 0}.status-card span{font-size:12px;color:var(--muted)}
+.candidate-cards{display:none}.candidate-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:9px}.candidate-card-head{display:flex;justify-content:space-between;gap:10px}.candidate-card h3{font-size:16px;margin:0}.candidate-card .code{margin-top:3px}.candidate-card-meta{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}.candidate-card-action{background:var(--mist);border-radius:12px;padding:10px}.candidate-card-action small{display:block;color:var(--muted);font-size:10px}.candidate-card-action b{display:block;margin-top:3px}.candidate-card-footer{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:10px}.candidate-card-footer button{border:0;background:var(--ink);color:#fff;border-radius:999px;padding:8px 11px;font-weight:850}
+.recruitment-insights{grid-template-columns:1.2fr .8fr}.candidate-desktop .table-wrap table{min-width:880px}
+@media(max-width:1040px){.action-metrics{grid-template-columns:repeat(3,1fr)}.overview-grid{grid-template-columns:1fr}.overview-status-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:650px){.wrap{width:min(calc(100% - 20px),1380px)}.nav{height:58px}.nav img{width:158px}.topline h1{font-size:34px}.login{padding:13px}.admin-tabs{margin-left:-2px;margin-right:-2px;padding:6px}.admin-tab{padding:9px 11px}.view-head h2{font-size:26px}.view-head{align-items:flex-start}.action-metrics{grid-template-columns:1fr 1fr}.action-metric:last-child{grid-column:1/-1}.overview-status-grid{grid-template-columns:1fr}.action-item{grid-template-columns:1fr auto}.action-item .action-detail{grid-column:1/-1}.candidate-desktop{display:none}.candidate-cards{display:block}.metrics{grid-template-columns:1fr 1fr}.recruitment-insights{grid-template-columns:1fr}.cohort-band{grid-template-columns:1fr 1fr}.cohort-main,.cohort-settings{grid-column:1/-1}}
+
+/* ===== Candidate detail + Vietnamese UI · P2-P3 ===== */
+dialog{width:min(calc(100% - 20px),960px);overflow:auto}.drawer{padding:0}.drawer-head{position:sticky;top:0;z-index:8;background:#fff;padding:20px 22px 16px}.drawer-body-wrap{padding:0 22px 24px}
+.candidate-summary{position:sticky;top:91px;z-index:7;display:grid;grid-template-columns:1.15fr 1.25fr .8fr 1fr;gap:8px;padding:10px 22px;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.summary-cell{padding:9px 10px;border-radius:11px;background:var(--mist);min-width:0}.summary-cell small{display:block;color:var(--muted);font-size:9px;font-weight:900;letter-spacing:.05em}.summary-cell b{display:block;font-size:12px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.summary-contact{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.summary-contact a{font-size:11px;color:var(--blue);font-weight:850;text-decoration:none}
+.detail-tabs{display:flex;gap:6px;padding:14px 0 10px;border-bottom:1px solid var(--line);overflow:auto}.detail-tab{border:0;background:var(--mist);color:var(--muted);padding:8px 11px;border-radius:999px;font-size:11px;font-weight:900;white-space:nowrap;cursor:pointer}.detail-tab.active{background:var(--ink);color:#fff}
+.detail-pane{display:none}.detail-pane.active{display:block}.detail-section-title{font-size:13px;margin:18px 0 8px}.profile-intro{margin:16px 0 4px}.profile-intro h3{font-size:18px;margin:0 0 4px}.profile-intro p{font-size:12px;color:var(--muted);margin:0}
+.system-note{font-size:11px;color:var(--muted);margin-top:4px}
+@media(max-width:650px){dialog{width:calc(100% - 12px);max-height:94vh;border-radius:18px}.drawer-head{padding:15px 14px 12px}.drawer-head h2{font-size:24px}.drawer-body-wrap{padding:0 14px 18px}.candidate-summary{top:76px;grid-template-columns:1fr 1fr;padding:8px 14px}.summary-cell:nth-child(2){grid-column:1/-1;grid-row:2}.detail-tabs{padding-top:10px}.detail-grid{grid-template-columns:1fr}.ops-grid{grid-template-columns:1fr}.ops .wide{grid-column:auto}}
+
+.landing-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.landing-metric{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px}
+.landing-metric small{display:block;color:var(--muted);font-weight:800}
+.landing-metric strong{display:block;font-size:30px;line-height:1;margin:8px 0 5px}
+.landing-metric span{font-size:11px;color:var(--muted)}
+.action-metrics.compact{grid-template-columns:repeat(4,1fr)}
+@media(max-width:1040px){.landing-metrics{grid-template-columns:repeat(2,1fr)}.action-metrics.compact{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){.landing-metrics,.action-metrics.compact{grid-template-columns:1fr 1fr}}
+
+.candidate-mail{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:12px}
+.candidate-mail-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:12px}
+.candidate-mail-head h3{margin:0 0 4px}.candidate-mail-head p{margin:0;color:var(--muted);font-size:12px;line-height:1.6}
+.candidate-mail-grid{display:grid;grid-template-columns:1fr;gap:10px}.candidate-mail label{font-size:11px;font-weight:850;color:var(--muted)}
+.candidate-mail select,.candidate-mail textarea{width:100%;margin-top:5px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:10px;font:inherit;color:var(--ink)}
+.candidate-mail textarea{min-height:96px;resize:vertical}.mail-scenario-note{font-size:11px;color:var(--muted);line-height:1.55;margin-top:-2px}
+.candidate-mail-actions{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}
+.candidate-mail-actions button{border:0;background:var(--ink);color:#fff;border-radius:999px;padding:10px 14px;font-weight:850;cursor:pointer}
+.candidate-mail-actions button:disabled{opacity:.45;cursor:not-allowed}.mail-state{font-size:11px;font-weight:850;color:var(--muted)}
+@media(max-width:650px){.candidate-mail-actions{align-items:flex-start;flex-direction:column}.candidate-mail-actions button{width:100%}}
+
+.mail-preview{display:none;border:1px solid var(--line);background:var(--mist);border-radius:14px;padding:13px;margin-top:10px}
+.mail-preview.show{display:block}.mail-preview small{display:block;color:var(--muted);font-size:10px;font-weight:900;letter-spacing:.05em}
+.mail-preview b{display:block;margin:4px 0 10px;font-size:13px}.mail-preview pre{white-space:pre-wrap;margin:0;font:12px/1.6 Arial,sans-serif;color:var(--ink)}
+.candidate-mail-actions .secondary-mail{background:#fff;color:var(--ink);border:1px solid var(--line)}
+</style>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><style id="academy-logo-critical">
+header.site-header,header.site-header.scrolled{background:linear-gradient(90deg,#fffef9,#f5f7f1)!important;border-color:rgba(23,56,43,.12)!important}
+.site-header .nav-links a,.site-header.scrolled .nav-links a{color:#17382b!important}
+.brand-official,.p2-brand{display:inline-flex!important;align-items:center!important;width:200px!important;min-width:200px!important;height:40px!important;padding:0!important;border:0!important;background:none!important;background-image:none!important}
+.brand-official>*{opacity:1!important;visibility:visible!important}
+.brand-official .academy-logo-svg,.p2-brand .academy-logo-svg{display:block!important;width:200px!important;max-height:40px!important;height:auto!important;opacity:1!important;visibility:visible!important}
+footer .brand-official,.p2-footer-logo{width:220px!important;min-width:220px!important;height:48px!important}
+footer .academy-logo-svg,.p2-footer-logo .academy-logo-svg{display:block!important;width:220px!important;max-height:48px!important;height:auto!important;opacity:1!important;visibility:visible!important}
+footer .academy-logo-svg .cls-1,.p2-footer .academy-logo-svg .cls-1{fill:#fff!important}
+footer .academy-logo-svg .cls-2,.p2-footer .academy-logo-svg .cls-2{fill:#fcb415!important}
+@media(max-width:760px){.brand-official,.p2-brand{width:170px!important;min-width:170px!important;height:34px!important}.brand-official .academy-logo-svg,.p2-brand .academy-logo-svg{width:170px!important;max-height:34px!important}footer .brand-official,.p2-footer-logo{width:190px!important;min-width:190px!important;height:42px!important}footer .academy-logo-svg,.p2-footer-logo .academy-logo-svg{width:190px!important;max-height:42px!important}}
+</style></head>
+<body>
+<div class="wrap">
+<div class="nav"><a href="/"><img src="/logo-academy.svg" alt="Hang Đôi Academy"></a><div class="tag">Nội bộ · Quản lý ứng viên</div></div>
+<div class="topline"><div><div class="eyebrow">HANG ĐÔI ACADEMY · NỘI BỘ</div><h1>Quản lý tuyển sinh</h1></div><div class="range">Khoảng thời gian <select id="days"><option value="7">7 ngày</option><option value="30" selected>30 ngày</option><option value="90">90 ngày</option><option value="365">365 ngày</option></select></div></div>
+<div class="login"><input id="token" type="password" placeholder="Khóa truy cập quản trị"><button id="connect">Kết nối</button><div class="hint">Khóa truy cập chỉ được giữ trong phiên trình duyệt hiện tại, không lưu trong mã nguồn.</div></div>
+
+<nav class="admin-tabs" aria-label="Điều hướng quản trị">
+  <button class="admin-tab active" data-view="overview">Tổng quan</button>
+  <button class="admin-tab" data-view="candidates">Ứng viên <span id="candidateNavBadge" class="nav-badge">0</span></button>
+  <button class="admin-tab" data-view="system">Hệ thống <span id="systemNavDot" class="nav-dot" hidden></span></button>
+</nav>
+
+<main class="admin-main">
+<section class="admin-view active" data-view-panel="overview">
+  <div class="view-head"><div><span class="view-kicker">Tổng quan landing</span><h2>Lượt vào trang & đăng ký</h2></div><button class="text-button" data-go-view="candidates">Xem danh sách đăng ký →</button></div>
+  <div class="landing-metrics">
+    <div class="landing-metric"><small>Người vào trang</small><strong id="landingVisits">0</strong><span id="landingWindowLabel">30 ngày gần nhất</span></div>
+    <div class="landing-metric"><small>Người vào trang đăng ký</small><strong id="landingApplyVisits">0</strong><span>đã mở trang đăng ký</span></div>
+    <div class="landing-metric"><small>Đăng ký thành công</small><strong id="landingRegistrations">0</strong><span>đã gửi biểu mẫu</span></div>
+    <div class="landing-metric"><small>Tỷ lệ đăng ký</small><strong id="landingConversion">0%</strong><span>từ landing → đăng ký</span></div>
+  </div>
+  <div class="action-metrics compact">
+    <button class="action-metric" data-action-filter="new"><small>Đăng ký mới</small><strong id="aNew">0</strong><span>chưa đọc</span></button>
+    <button class="action-metric" data-action-filter="unassigned"><small>Chưa phụ trách</small><strong id="aUnassigned">0</strong><span>cần giao người</span></button>
+    <button class="action-metric" data-action-filter="today"><small>Cần xử lý hôm nay</small><strong id="aToday">0</strong><span>theo lịch tiếp theo</span></button>
+    <button class="action-metric danger" data-action-filter="overdue"><small>Quá hạn</small><strong id="aOverdue">0</strong><span>cần ưu tiên</span></button>
+  </div>
+  <div class="overview-grid">
+    <section class="work-panel"><div class="panel-head"><h2>Trung tâm công việc</h2><span id="actionCenterCount" class="badge">0 việc</span></div><div id="actionCenter" class="action-center"><div class="status">Kết nối dữ liệu để xem việc cần xử lý.</div></div></section>
+    <section class="panel"><div class="panel-head"><h2>Đăng ký mới</h2><span id="unreadCount" class="badge">0 chưa đọc</span></div><div id="notifications" class="notifications"></div></section>
+  </div>
+  <div class="overview-status-grid">
+    <button class="status-card" data-go-view="system"><small>Hệ thống thông báo</small><strong id="overviewSystemState">Đang kiểm tra</strong><span id="overviewSystemNote">—</span></button>
+  </div>
+</section>
+
+<section class="admin-view" data-view-panel="candidates">
+  <div class="view-head"><div><span class="view-kicker">Danh sách đăng ký</span><h2>Ứng viên</h2><p>Xem người đã đăng ký và theo dõi việc cần xử lý tiếp theo.</p></div><button class="text-button" id="clearActionFilter" hidden>Xóa bộ lọc công việc</button></div>
+  <div class="toolbar">
+    <input id="search" placeholder="Tìm tên, email, số điện thoại, mã ứng viên">
+    <select id="stageFilter"><option value="">Tất cả trạng thái</option></select>
+    <select id="sourceFilter"><option value="">Tất cả nguồn</option></select>
+    <button id="exportBtn">Xuất CSV</button>
+  </div>
+  <div id="status" class="status">Chưa kết nối dữ liệu ứng viên.</div>
+  <div class="candidate-desktop"><div class="table-wrap"><table><thead><tr><th>Ứng viên</th><th>Trạng thái</th><th>Phụ trách</th><th>Việc tiếp theo</th><th>Hạn xử lý</th><th>Nguồn</th><th>Cập nhật</th></tr></thead><tbody id="rows"></tbody></table><div id="empty" class="empty">Chưa có dữ liệu.</div></div></div>
+  <div id="candidateCards" class="candidate-cards"></div>
+</section>
+
+<section class="admin-view" data-view-panel="system">
+  <div class="view-head"><div><span class="view-kicker">Theo dõi vận hành</span><h2>Hệ thống</h2></div></div>
+  <section class="delivery-panel">
+  <div class="delivery-head">
+    <div>
+      <div class="tag">Hệ thống thông báo</div>
+      <h2>Thông báo tự động</h2>
+      <p id="deliveryNote" class="delivery-note">Đang chờ kết nối hệ thống dữ liệu…</p>
+    </div>
+    <div class="delivery-head-actions">
+      <button id="deliveryTest" class="delivery-test" disabled>Gửi thử</button>
+      <span id="deliveryState" class="delivery-state">CHƯA KẾT NỐI</span>
+    </div>
+  </div>
+  <div id="deliveryConfig" class="delivery-config"></div>
+  <div class="delivery-metrics">
+    <div class="delivery-metric"><small>Đã gửi</small><strong id="deliveryDelivered">0</strong></div>
+    <div class="delivery-metric"><small>Đang chờ</small><strong id="deliveryPending">0</strong></div>
+    <div class="delivery-metric"><small>Đang thử lại</small><strong id="deliveryRetrying">0</strong></div>
+    <div class="delivery-metric"><small>Lỗi cần xử lý</small><strong id="deliveryFailed">0</strong></div>
+  </div>
+  <div id="deliveryList" class="delivery-list"><div class="status">Chưa có lịch sử gửi thông báo.</div></div>
+</section>
+
+
+</section>
+</main>
+</div>
+
+<dialog id="detailDialog"><div class="drawer"><div class="drawer-head"><div><div class="tag">Hồ sơ ứng viên</div><h2 id="dName">Đang tải…</h2><div id="dCode" class="code"></div></div><button class="close" onclick="detailDialog.close()">Đóng</button></div><div id="detailBody" class="loading">Đang tải hồ sơ…</div></div></dialog>
+
+<script>
+const API="https://candidate-api-v2-production.up.railway.app";
+const stages=["INTEREST_REGISTERED","APPLICATION_COMPLETED","QUALIFIED","SELECTION_INVITED","SELECTION_CONFIRMED","SELECTION_ATTENDED","PASS","WAITLIST","LOST","ADMITTED","ENROLLED"];
+const stageLabels={INTEREST_REGISTERED:"Đã đăng ký quan tâm",APPLICATION_COMPLETED:"Đã hoàn tất hồ sơ",QUALIFIED:"Đủ điều kiện",SELECTION_INVITED:"Đã mời tuyển chọn",SELECTION_CONFIRMED:"Đã xác nhận tuyển chọn",SELECTION_ATTENDED:"Đã tham gia tuyển chọn",PASS:"Đạt",WAITLIST:"Dự bị",LOST:"Dừng",ADMITTED:"Đã nhận",ENROLLED:"Đã nhập học"};
+const legalStatusLabels={PENDING:"Chờ xử lý",CONFIRMED:"Đã xác nhận",NOT_APPLICABLE:"Không áp dụng"};
+const approvalLabels={PENDING:"Chờ xử lý",APPROVED:"Đã phê duyệt",REJECTED:"Không phê duyệt"};
+const deliveryStatusLabels={PENDING:"Đang chờ",PROCESSING:"Đang gửi",RETRY:"Đang thử lại",DELIVERED:"Đã gửi",FAILED:"Lỗi"};
+const assessmentDecisionLabels={PENDING:"Chờ đánh giá",PASS:"Đạt",WAITLIST:"Dự bị",LOST:"Dừng"};
+const selectionStatusLabels={DRAFT:"Bản nháp",INVITED:"Đã mời",CONFIRMED:"Đã xác nhận",DECLINED:"Từ chối",ATTENDED:"Đã tham gia"};
+const campaignStatusLabels={IDEA:"Ý tưởng",DRAFT:"Bản nháp",READY:"Sẵn sàng",PUBLISHED:"Đã đăng",PAUSED:"Tạm dừng",ARCHIVED:"Lưu trữ"};
+let activeActionFilter="";
+let data=[],dash=null,notifications=[],campaigns=[],outboundDeliveries=[],outboundHealth=null,mailScenarios=[],mailConfigured=false;
+const $=id=>document.getElementById(id);
+const tokenEl=$("token"),statusEl=$("status"),rowsEl=$("rows"),emptyEl=$("empty"),stageFilter=$("stageFilter"),detailDialog=$("detailDialog");
+tokenEl.value=sessionStorage.getItem("mcp_admin_token")||"";
+stages.forEach(s=>{const o=document.createElement("option");o.value=s;o.textContent=s;stageFilter.appendChild(o)});
+const auth=()=>({"Authorization":"Bearer "+(sessionStorage.getItem("mcp_admin_token")||"")});
+const esc=v=>String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+const n=v=>Number(v||0);
+const legalFields=[
+  ["operating_entity_status","operatingEntityStatus","Tư cách đơn vị vận hành"],
+  ["program_classification_status","programClassificationStatus","Phân loại chương trình"],
+  ["activity_conditions_status","activityConditionsStatus","Điều kiện hoạt động · NĐ 361/2026"],
+  ["program_registration_status","programRegistrationStatus","Đăng ký chương trình trước tuyển sinh"],
+  ["curriculum_standard_status","curriculumStandardStatus","Chuẩn chương trình / giáo trình"],
+  ["certificate_wording_status","certificateWordingStatus","Nội dung chứng nhận / thẩm quyền"],
+  ["tuition_disclosure_status","tuitionDisclosureStatus","Công khai học phí"],
+  ["enrollment_agreement_status","enrollmentAgreementStatus","Thỏa thuận nhập học"],
+  ["refund_deferral_status","refundDeferralStatus","Hoàn phí / hủy / bảo lưu"],
+  ["invoice_tax_status","invoiceTaxStatus","Hóa đơn / thuế"],
+  ["production_exposure_status","productionExposureStatus","Thực hành dự án khách hàng thật"],
+  ["employment_separation_status","employmentSeparationStatus","Tách biệt Academy ↔ Production"],
+  ["privacy_terms_status","privacyTermsStatus","Quyền riêng tư / truyền thông"]
+];
+const legalOptions=["PENDING","CONFIRMED","NOT_APPLICABLE"];
+const formalStages=new Set(["APPLICATION_COMPLETED","QUALIFIED","SELECTION_INVITED","SELECTION_CONFIRMED","SELECTION_ATTENDED","PASS","WAITLIST"]);
+function stageOption(stage,current){
+  const formalOpen=dash?.legalReadiness?.program_registration_status==="CONFIRMED";
+  const locked=(stage==="ADMITTED"||stage==="ENROLLED"||(!formalOpen&&formalStages.has(stage)))&&stage!==current;
+  return '<option value="'+stage+'" '+(stage===current?'selected ':'')+(locked?'disabled ':'')+'>'+esc(stageLabels[stage]||stage)+'</option>';
+}
+
+function setView(view){
+  document.querySelectorAll(".admin-tab").forEach(btn=>btn.classList.toggle("active",btn.dataset.view===view));
+  document.querySelectorAll("[data-view-panel]").forEach(panel=>panel.classList.toggle("active",panel.dataset.viewPanel===view));
+  sessionStorage.setItem("academy_admin_view",view);
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function localDateKey(value){
+  if(!value)return "";
+  const d=new Date(value);if(Number.isNaN(d.getTime()))return String(value).slice(0,10);
+  const pad=n=>String(n).padStart(2,"0");
+  return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
+}
+function todayKey(){return localDateKey(new Date())}
+function isClosedCandidate(x){return ["LOST","ENROLLED"].includes(x.pipeline_stage)}
+function actionMatches(x,type){
+  const today=todayKey(),due=localDateKey(x.next_action_date);
+  if(type==="unassigned")return !isClosedCandidate(x)&&!String(x.owner||"").trim();
+  if(type==="today")return !isClosedCandidate(x)&&due===today;
+  if(type==="overdue")return !isClosedCandidate(x)&&due&&due<today;
+  if(type==="selection"){
+    if(!x.selection_start)return false;
+    const t=new Date(x.selection_start).getTime(),now=Date.now();
+    return t>=now&&t<=now+7*86400000;
+  }
+  if(type==="new")return notifications.some(n=>n.status==="UNREAD"&&String(n.candidate_code)===String(x.candidate_code));
+  return true;
+}
+function renderActionCenter(){
+  const unread=notifications.filter(x=>x.status==="UNREAD");
+  const unassigned=data.filter(x=>actionMatches(x,"unassigned"));
+  const today=data.filter(x=>actionMatches(x,"today"));
+  const overdue=data.filter(x=>actionMatches(x,"overdue"));
+  $("aNew").textContent=unread.length;$("aUnassigned").textContent=unassigned.length;$("aToday").textContent=today.length;$("aOverdue").textContent=overdue.length;
+  $("candidateNavBadge").textContent=data.length;
+  const items=[
+    ...overdue.map(x=>({x,kind:"overdue",label:"Quá hạn"})),
+    ...today.map(x=>({x,kind:"today",label:"Hôm nay"})),
+    ...unassigned.slice(0,6).map(x=>({x,kind:"unassigned",label:"Chưa phụ trách"}))
+  ].filter((v,i,a)=>a.findIndex(z=>String(z.x.id)===String(v.x.id))===i).slice(0,10);
+  $("actionCenterCount").textContent=items.length+" việc";
+  $("actionCenter").innerHTML=items.length?items.map(({x,kind,label})=>'<div class="action-item"><div><b>'+esc(x.full_name)+'</b><small>'+esc(x.candidate_code)+' · '+esc(stageLabels[x.pipeline_stage]||x.pipeline_stage)+'</small></div><div class="action-detail"><span class="action-kind '+kind+'">'+label+'</span><small>'+esc(x.next_action||"Chưa có việc tiếp theo")+(x.next_action_date?" · "+new Date(x.next_action_date).toLocaleDateString("vi-VN"):"")+'</small></div><button class="action-open" data-open-candidate="'+x.id+'">Mở</button></div>').join(""):'<div class="status">Không có việc gấp cần xử lý.</div>';
+  document.querySelectorAll("[data-open-candidate]").forEach(btn=>btn.onclick=()=>openDetail(btn.dataset.openCandidate));
+}
+function updateOverviewStatus(){
+  const failed=n(outboundHealth?.counts?.FAILED),missing=(outboundHealth?.missingRequired||[]).length,retrying=n(outboundHealth?.counts?.RETRY)+n(outboundHealth?.counts?.PROCESSING);
+  const bad=failed>0||missing>0||outboundHealth?.ok===false;
+  $("overviewSystemState").textContent=bad?"Có lỗi cần xử lý":retrying?"Đang thử gửi lại":(outboundHealth?.email?.configured?"Email đang hoạt động":"Chưa bật email tự động");
+  $("overviewSystemNote").textContent=bad?(failed+" lỗi gửi · "+missing+" kênh bắt buộc bị thiếu"):(retrying+" thông báo đang thử lại");
+  $("systemNavDot").hidden=!bad;
+}
+function updateAcquisition(){
+  const source=$("utmSource").value,medium=$("utmMedium").value,content=$("utmContent").value.trim()||"general";
+  const params=new URLSearchParams({utm_source:source,utm_medium:medium,utm_campaign:"media_career_cohort01",utm_content:content});
+  $("landingCampaignUrl").value="https://academy.hangdoiproduction.com/media-career-program/?"+params.toString();
+  $("registerCampaignUrl").value="https://academy.hangdoiproduction.com/media-career-program/apply/?"+params.toString();
+  const formalOpen=dash?.publicIntakeMode==="APPLICATION_OPEN";
+  $("publicMode").textContent=formalOpen?"ĐÃ MỞ TUYỂN CHÍNH THỨC":"CHỈ GHI NHẬN QUAN TÂM";
+  $("publicMode").className="mode-pill"+(formalOpen?" open":"");
+  $("acqModeNote").textContent=formalOpen
+    ?"Đã mở tiếp nhận hồ sơ chính thức theo thay đổi đã được rà soát."
+    :"Chế độ an toàn pháp lý: chỉ ghi nhận quan tâm. Một mục pháp lý được xác nhận riêng lẻ không tự mở tuyển chính thức; cần thay đổi mở khóa được rà soát riêng.";
+}
+async function copyField(id){
+  try{await navigator.clipboard.writeText($(id).value);statusEl.textContent="Đã sao chép liên kết chiến dịch.";statusEl.className="status ok"}
+  catch{statusEl.textContent="Không sao chép được liên kết chiến dịch.";statusEl.className="status err"}
+}
+function renderCampaigns(){
+  $("campaignWindow").textContent=($("days").value||30)+" ngày";
+  const rows=$("campaignRows");rows.innerHTML=campaigns.length?campaigns.map(x=>
+    '<tr data-content="'+esc(x.content_id)+'"><td><b>'+esc(x.content_id)+'</b><div class="metric-mini">'+esc(x.title||"")+(x.asset_type?' · '+esc(x.asset_type):'')+'</div></td>'+
+    '<td>'+esc(x.source)+' / '+esc(x.medium)+'</td><td>'+esc(campaignStatusLabels[x.status]||x.status)+'</td>'+
+    '<td><span class="readiness"><span class="readiness-bar"><i style="width:'+n(x.readiness_pct)+'%"></i></span><b>'+n(x.readiness_pct)+'%</b></span></td>'+
+    '<td>'+esc(x.target_publish_date?new Date(x.target_publish_date).toLocaleDateString("vi-VN"):"—")+'</td><td>'+esc(x.owner||"—")+'</td>'+
+    '<td>'+n(x.landing_views)+'</td><td>'+n(x.apply_views)+'</td><td>'+n(x.form_starts)+'</td><td><b>'+n(x.interests)+'</b></td><td>'+n(x.landing_to_interest_pct)+'%</td></tr>'
+  ).join(""):'<tr><td colspan="11" class="empty">Chưa có chiến dịch trong danh sách.</td></tr>';
+  rows.querySelectorAll("[data-content]").forEach(row=>row.addEventListener("click",()=>loadCampaignIntoEditor(row.dataset.content)));
+}
+function loadCampaignIntoEditor(contentId){
+  const x=campaigns.find(c=>c.content_id===contentId);if(!x)return;
+  $("utmContent").value=x.content_id;$("utmSource").value=x.source;$("utmMedium").value=x.medium;
+  $("campaignTitle").value=x.title||"";$("campaignStatus").value=x.status||"IDEA";$("campaignOwner").value=x.owner||"";
+  $("campaignAssetType").value=x.asset_type||"";$("campaignTargetDate").value=(x.target_publish_date||"").slice(0,10);
+  $("readyBrief").checked=x.brief_ready===true;$("readyProduction").checked=x.production_ready===true;$("readyEdit").checked=x.edit_ready===true;$("readyCopy").checked=x.copy_ready===true;$("readyQa").checked=x.qa_ready===true;
+  $("campaignAssetUrl").value=x.asset_url||"";$("campaignPublishUrl").value=x.publish_url||"";$("campaignNotes").value=x.notes||"";
+  updateAcquisition();
+}
+async function saveCampaign(){
+  const contentId=$("utmContent").value.trim().toLowerCase();
+  if(!contentId){statusEl.textContent="Nhập mã nội dung trước khi lưu chiến dịch.";statusEl.className="status err";return}
+  const body={
+    title:$("campaignTitle").value,source:$("utmSource").value,medium:$("utmMedium").value,status:$("campaignStatus").value,
+    owner:$("campaignOwner").value,assetType:$("campaignAssetType").value,targetPublishDate:$("campaignTargetDate").value,
+    briefReady:$("readyBrief").checked,productionReady:$("readyProduction").checked,editReady:$("readyEdit").checked,copyReady:$("readyCopy").checked,qaReady:$("readyQa").checked,
+    assetUrl:$("campaignAssetUrl").value,publishUrl:$("campaignPublishUrl").value,notes:$("campaignNotes").value
+  };
+  try{
+    const j=await api("/v1/admin/campaigns/"+encodeURIComponent(contentId),{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
+    statusEl.textContent="Đã lưu chiến dịch · "+j.campaign.content_id+" · "+(campaignStatusLabels[j.campaign.status]||j.campaign.status);statusEl.className="status ok";
+    const refreshed=await api("/v1/admin/campaigns?days="+$("days").value);campaigns=refreshed.campaigns||[];renderCampaigns();
+  }catch(e){statusEl.textContent="Lưu chiến dịch lỗi: "+e.message;statusEl.className="status err"}
+}
+async function api(path,options={}){
+  const r=await fetch(API+path,{...options,headers:{...auth(),...(options.headers||{})}});
+  const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||("HTTP "+r.status));return j;
+}
+async function load(){
+  const token=tokenEl.value.trim();if(!token){statusEl.textContent="Nhập khóa truy cập quản trị.";statusEl.className="status err";return}
+  sessionStorage.setItem("mcp_admin_token",token);statusEl.textContent="Đang tải dữ liệu tuyển sinh…";statusEl.className="status";
+  try{
+    const days=$("days").value;
+    const [apps,dashboard,notes,outboundData,outboundStatus,mailData]=await Promise.all([
+      api("/v1/admin/applications?limit=500"),
+      api("/v1/admin/dashboard?days="+days),
+      api("/v1/admin/notifications"),
+      api("/v1/admin/outbound"),
+      api("/health/outbound"),
+      api("/v1/admin/mail/scenarios").catch(()=>({scenarios:[],emailConfigured:false}))
+    ]);
+    data=apps.applications||[];dash=dashboard;notifications=notes.notifications||[];
+    outboundDeliveries=outboundData.deliveries||[];outboundHealth=outboundStatus||null;
+    mailScenarios=mailData.scenarios||[];mailConfigured=mailData.emailConfigured===true;
+    buildFilters();render();renderDashboard();renderNotifications();renderOutbound();renderActionCenter();updateOverviewStatus();
+    statusEl.textContent="Đã kết nối · "+data.length+" ứng viên";statusEl.className="status ok";
+  }catch(e){statusEl.textContent="Không kết nối được: "+e.message;statusEl.className="status err"}
+}
+function renderLegal(){
+  const lr=dash?.legalReadiness||{};
+  const complete=legalFields.filter(([db])=>["CONFIRMED","NOT_APPLICABLE"].includes(lr[db])).length;
+  $("legalDone").textContent=complete;$("legalTotal").textContent=legalFields.length;
+  $("legalProgress").style.width=(legalFields.length?Math.round(complete/legalFields.length*100):0)+"%";
+  $("legalChecklist").innerHTML=legalFields.map(([db,apiKey,label],i)=>'<label class="legal-item"><span>'+esc(label)+'</span><select id="legal_'+i+'" data-api="'+apiKey+'">'+legalOptions.map(v=>'<option value="'+v+'" '+((lr[db]||"PENDING")===v?'selected':'')+'>'+esc(legalStatusLabels[v]||v)+'</option>').join("")+'</select></label>').join("");
+  $("legalCounsel").value=lr.counsel_reference||"";$("legalAuthority").value=lr.authority_reference||"";
+  $("legalReviewedBy").value=lr.reviewed_by||"";$("legalReviewedAt").value=lr.reviewed_at?new Date(lr.reviewed_at).toLocaleString("vi-VN"):"Chưa đánh dấu đã rà soát";
+  $("legalNotes").value=lr.notes||"";
+  $("legalFinalState").textContent=approvalLabels[lr.final_approval_status||"PENDING"]||"Chờ xử lý";
+  $("legalFinalDecision").value=lr.final_approval_status||"PENDING";
+  $("legalFinalBy").value=lr.final_approved_by||"";
+  $("legalFinalRef").value=lr.final_approval_reference||"";
+}
+async function saveLegal(markReviewed=false){
+  const body={};
+  legalFields.forEach(([,apiKey],i)=>{body[apiKey]=$("legal_"+i).value});
+  Object.assign(body,{
+    counselReference:$("legalCounsel").value,
+    authorityReference:$("legalAuthority").value,
+    reviewedBy:$("legalReviewedBy").value,
+    notes:$("legalNotes").value,
+    markReviewed
+  });
+  try{
+    const j=await api("/v1/admin/legal-readiness/01",{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
+    statusEl.textContent="Đã lưu tình trạng pháp lý · "+j.progress.completed+"/"+j.progress.total+" · Cổng nhận học/thanh toán: "+(j.admissionSendGate==="BLOCKED"?"Đang khóa":j.admissionSendGate);statusEl.className="status ok";
+    await refreshDashboard();
+  }catch(e){statusEl.textContent="Lưu tình trạng pháp lý lỗi: "+e.message;statusEl.className="status err"}
+}
+async function saveLegalFinal(){
+  const body={
+    decision:$("legalFinalDecision").value,
+    approvedBy:$("legalFinalBy").value,
+    approvalReference:$("legalFinalRef").value
+  };
+  try{
+    const j=await api("/v1/admin/legal-readiness/01/final-approval",{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
+    statusEl.textContent="Đã lưu phê duyệt pháp lý cuối · "+(approvalLabels[j.finalApproval]||j.finalApproval)+" · Cổng nhận học/thanh toán vẫn "+(j.admissionSendGate==="BLOCKED"?"đang khóa":j.admissionSendGate);statusEl.className="status ok";
+    await refreshDashboard();
+  }catch(e){statusEl.textContent="Lưu phê duyệt cuối lỗi: "+e.message;statusEl.className="status err"}
+}
+async function saveCohort(){
+  const targetEnrollment=Number($("cTargetInput").value),status=$("cStatus").value;
+  try{
+    const j=await api("/v1/admin/cohort/01",{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify({targetEnrollment,status})});
+    statusEl.textContent="Đã cập nhật Khóa 01 · mục tiêu "+j.cohort.target_enrollment+" · "+({OPEN:"Đang mở",PAUSED:"Tạm dừng",CLOSED:"Đã đóng"}[j.cohort.status]||j.cohort.status);statusEl.className="status ok";
+    await refreshDashboard();
+  }catch(e){statusEl.textContent="Cập nhật khóa học lỗi: "+e.message;statusEl.className="status err"}
+}
+function buildFilters(){
+  const sf=$("sourceFilter"),current=sf.value;sf.innerHTML='<option value="">Tất cả nguồn</option>';
+  [...new Set(data.map(x=>x.utm_source||"trực tiếp"))].sort().forEach(s=>{const o=document.createElement("option");o.value=s;o.textContent=s;sf.appendChild(o)});sf.value=current;
+}
+function filtered(){
+  const q=$("search").value.trim().toLowerCase(),st=stageFilter.value,src=$("sourceFilter").value;
+  return data.filter(x=>{const hay=[x.full_name,x.email,x.phone,x.candidate_code].join(" ").toLowerCase();const sx=x.utm_source||"trực tiếp";return(!q||hay.includes(q))&&(!st||x.pipeline_stage===st)&&(!src||sx===src)&&(!activeActionFilter||actionMatches(x,activeActionFilter))});
+}
+function renderDashboard(){
+  if(!dash)return;
+  const t=dash.totals||{};
+  const em=Object.fromEntries((dash.events||[]).map(x=>[x.key,n(x.count)]));
+  const landingViews=em.landing_view||0;
+  const applyViews=em.apply_view||0;
+  const registrations=em.application_received||n(t.applications);
+  if($("landingVisits"))$("landingVisits").textContent=landingViews;
+  if($("landingApplyVisits"))$("landingApplyVisits").textContent=applyViews;
+  if($("landingRegistrations"))$("landingRegistrations").textContent=registrations;
+  if($("landingConversion"))$("landingConversion").textContent=(landingViews?Math.round(registrations/landingViews*100):0)+"%";
+  if($("landingWindowLabel"))$("landingWindowLabel").textContent=dash.days+" ngày gần nhất";
+}
+function renderList(id,rows,max){
+  const box=$(id),list=rows.slice(0,max);box.innerHTML=list.length?list.map(x=>'<div class="list-row"><span>'+esc(x.key)+'</span><b>'+n(x.count)+'</b></div>').join(""):'<div class="status">Chưa có dữ liệu.</div>';
+}
+function renderNotifications(){
+  const unread=notifications.filter(x=>x.status==="UNREAD");$("unreadCount").textContent=unread.length+" chưa đọc";
+  $("notifications").innerHTML=notifications.length?notifications.slice(0,15).map(x=>{const p=x.payload||{};return '<div class="nitem"><b>'+esc(p.fullName||x.candidate_code||"Đăng ký mới")+'</b><br>'+esc(p.email||"")+' · '+esc(p.source||"trực tiếp")+'<br><span class="code">'+esc(x.candidate_code||"")+'</span>'+(x.status==="UNREAD"?'<br><button onclick="markRead('+x.id+')">Đánh dấu đã đọc</button>':'')+'</div>'}).join("") :'<div class="status">Chưa có thông báo mới.</div>';
+}
+function renderOutbound(){
+  const health=outboundHealth||{},counts=health.counts||{},configured=new Set(health.configured||[]),formats=health.formats||{},required=health.required||{},missingRequired=new Set(health.missingRequired||[]);
+  const delivered=n(counts.DELIVERED),pending=n(counts.PENDING),retrying=n(counts.RETRY)+n(counts.PROCESSING),failed=n(counts.FAILED);
+  $("deliveryDelivered").textContent=delivered;$("deliveryPending").textContent=pending;$("deliveryRetrying").textContent=retrying;$("deliveryFailed").textContent=failed;
+
+  const channels=[
+    ["ACADEMY_SMTP","Email tự động"],
+    ["NEW_APPLICATION_WEBHOOK_URL","Thông báo webhook cho đội ngũ"],
+    ["APPLICATION_ACK_WEBHOOK_URL","Webhook xác nhận ứng viên"]
+  ];
+  const formatLabel=value=>value==="smtp"?"SMTP":value==="google_chat"?"Google Chat":value==="slack"?"Slack":"Webhook chung";
+  $("deliveryConfig").innerHTML=channels.map(([key,label])=>{
+    const isOn=configured.has(key),isRequired=required[key]===true,isMissing=missingRequired.has(key);
+    const suffix=isOn
+      ?("Đã kết nối · "+formatLabel(formats[key]))
+      :(isRequired?"THIẾU KÊNH BẮT BUỘC":"Chưa kết nối · "+formatLabel(formats[key]));
+    return '<span class="'+(isOn?'on ':'')+(isMissing?'delivery-config-missing':'')+'"><i></i>'+esc(label)+' · '+esc(suffix)+'</span>';
+  }).join("");
+  const testButton=$("deliveryTest");
+  testButton.disabled=!configured.size;
+  testButton.textContent=configured.size?"Gửi thử":"Chưa có kênh gửi";
+
+  const state=$("deliveryState"),note=$("deliveryNote");
+  if(missingRequired.size){
+    state.textContent="THIẾU KÊNH BẮT BUỘC";state.className="delivery-state bad";
+    note.textContent="Một kênh bắt buộc đã mất cấu hình. Hệ thống giám sát sẽ giữ trạng thái lỗi cho tới khi khôi phục liên kết hoặc bỏ yêu cầu bắt buộc.";
+  }else if(failed>0||health.ok===false){
+    state.textContent="CẦN XỬ LÝ";state.className="delivery-state bad";
+    note.textContent="Có thông báo gửi lỗi hoặc hàng đợi bị trễ. Kiểm tra mục bên dưới và thử lại sau khi xác nhận kênh hoạt động.";
+  }else if(!configured.size){
+    state.textContent="CHƯA KẾT NỐI";state.className="delivery-state warn";
+    note.textContent="Hàng đợi và cơ chế thử lại đang hoạt động, nhưng chưa cấu hình kênh thông báo ngoài.";
+  }else if(pending+retrying>0){
+    state.textContent="ĐANG GỬI";state.className="delivery-state busy";
+    note.textContent="Có thông báo đang chờ hoặc đang được thử gửi lại. Hệ thống kiểm tra hàng đợi mỗi 30 giây.";
+  }else{
+    state.textContent="ỔN ĐỊNH";state.className="delivery-state ok";
+    note.textContent="Kênh ngoài đã kết nối và hiện không có thông báo tồn đọng.";
+  }
+
+  const list=outboundDeliveries.slice(0,8);
+  $("deliveryList").innerHTML=list.length?list.map(x=>{
+    const when=x.delivered_at||x.last_attempt_at||x.created_at;
+    const error=x.last_error?'<small class="delivery-error">'+esc(x.last_error)+'</small>':'<small class="delivery-error">Không có lỗi</small>';
+    const action=x.status==="FAILED"
+      ?'<button class="delivery-retry" data-delivery-retry="'+x.id+'">Thử lại</button>'
+      :'';
+    return '<div class="delivery-row">'+
+      '<div><b>'+esc(x.candidate_code||"—")+'</b><small>'+esc(when?new Date(when).toLocaleString("vi-VN"):"—")+'</small></div>'+
+      '<div class="delivery-type">'+esc(deliveryTypeLabel(x.delivery_type))+'</div>'+
+      '<div><span class="delivery-status '+esc(x.status||"")+'">'+esc(deliveryStatusLabels[x.status]||x.status||"—")+'</span></div>'+
+      '<div class="delivery-attempts">'+n(x.attempt_count)+' / '+n(x.max_attempts||6)+' lần</div>'+
+      '<div class="delivery-action">'+action+'</div>'+
+      error+
+    '</div>';
+  }).join(""):'<div class="status">'+(configured.size?'Chưa có lượt gửi nào.':'Chưa có lượt gửi vì chưa kết nối kênh ngoài.')+'</div>';
+
+  document.querySelectorAll("[data-delivery-retry]").forEach(btn=>btn.addEventListener("click",()=>retryOutbound(btn.dataset.deliveryRetry,btn)));
+}
+async function sendOutboundTest(){
+  const button=$("deliveryTest");
+  if(button.disabled)return;
+  button.disabled=true;button.textContent="Đang gửi thử…";
+  try{
+    const j=await api("/v1/admin/outbound/test",{method:"POST",headers:{"Content-Type":"application/json"},body:"{}"});
+    statusEl.textContent="Đã tạo "+n(j.queued?.length)+" lượt gửi thử · "+esc(j.testCode||"");statusEl.className="status ok";
+    await new Promise(resolve=>setTimeout(resolve,900));
+    await refreshOutbound();
+  }catch(e){
+    statusEl.textContent="Gửi thử lỗi: "+e.message;statusEl.className="status err";
+    button.disabled=false;button.textContent="Gửi thử";
+  }
+}
+async function refreshOutbound(){
+  try{
+    const [outboundData,outboundStatus]=await Promise.all([api("/v1/admin/outbound"),api("/health/outbound")]);
+    outboundDeliveries=outboundData.deliveries||[];outboundHealth=outboundStatus||null;renderOutbound();
+  }catch(e){statusEl.textContent="Không tải được hàng đợi thông báo: "+e.message;statusEl.className="status err"}
+}
+async function retryOutbound(id,button){
+  button.disabled=true;button.textContent="Đang thử lại…";
+  try{
+    await api("/v1/admin/outbound/"+id+"/retry",{method:"POST"});
+    statusEl.textContent="Đã đưa lượt gửi #"+id+" vào hàng đợi thử lại.";statusEl.className="status ok";
+    await new Promise(resolve=>setTimeout(resolve,700));
+    await refreshOutbound();
+  }catch(e){
+    statusEl.textContent="Thử lại thông báo lỗi: "+e.message;statusEl.className="status err";
+    button.disabled=false;button.textContent="Thử lại";
+  }
+}
+function render(){
+  const list=filtered();rowsEl.innerHTML="";emptyEl.style.display=list.length?"none":"block";
+  for(const x of list){
+    const due=x.next_action_date?new Date(x.next_action_date).toLocaleDateString("vi-VN"):"—";
+    const updated=x.updated_at||x.submitted_at;
+    const tr=document.createElement("tr");
+    tr.innerHTML='<td><strong data-detail="'+x.id+'">'+esc(x.full_name)+'</strong><div class="code">'+esc(x.candidate_code)+'</div></td>'+
+      '<td><select class="stage" data-id="'+x.id+'">'+stages.map(s=>stageOption(s,x.pipeline_stage)).join("")+'</select></td>'+
+      '<td><b>'+esc(x.owner||"Chưa giao")+'</b></td>'+
+      '<td>'+esc(x.next_action||"Chưa có việc tiếp theo")+'</td>'+
+      '<td>'+esc(due)+'</td>'+
+      '<td><span class="source">'+esc(x.utm_source||"trực tiếp")+'</span></td>'+
+      '<td>'+new Date(updated).toLocaleString("vi-VN")+'</td>';
+    rowsEl.appendChild(tr);
+  }
+  const cards=$("candidateCards");
+  cards.innerHTML=list.length?list.map(x=>{
+    const due=x.next_action_date?new Date(x.next_action_date).toLocaleDateString("vi-VN"):"Chưa đặt hạn";
+    return '<article class="candidate-card"><div class="candidate-card-head"><div><h3>'+esc(x.full_name)+'</h3><div class="code">'+esc(x.candidate_code)+'</div></div><span class="source">'+esc(x.utm_source||"trực tiếp")+'</span></div>'+
+      '<div class="candidate-card-meta"><span class="source">'+esc(stageLabels[x.pipeline_stage]||x.pipeline_stage)+'</span><span class="source">'+esc(x.owner||"Chưa phụ trách")+'</span></div>'+
+      '<div class="candidate-card-action"><small>VIỆC TIẾP THEO</small><b>'+esc(x.next_action||"Chưa có việc tiếp theo")+'</b><small>'+esc(due)+'</small></div>'+
+      '<div class="candidate-card-footer"><span>'+esc(x.phone||x.email||"")+'</span><button data-detail="'+x.id+'">Mở hồ sơ</button></div></article>';
+  }).join(""):'<div class="empty">Không có ứng viên phù hợp bộ lọc.</div>';
+  document.querySelectorAll(".stage").forEach(el=>el.addEventListener("change",()=>updateStage(el.dataset.id,el.value,el)));
+  document.querySelectorAll("[data-detail]").forEach(el=>el.addEventListener("click",()=>openDetail(el.dataset.detail)));
+}
+async function updateStage(id,stage,el){
+  el.disabled=true;try{const j=await api("/v1/admin/applications/"+id+"/stage",{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify({stage})});const item=data.find(x=>String(x.id)===String(id));if(item)item.pipeline_stage=stage;statusEl.textContent="Đã cập nhật "+j.application.candidate_code+" → "+stage;statusEl.className="status ok";await refreshDashboard()}catch(e){statusEl.textContent="Cập nhật lỗi: "+e.message;statusEl.className="status err";await load()}finally{el.disabled=false}
+}
+async function refreshDashboard(){try{dash=await api("/v1/admin/dashboard?days="+$("days").value);renderDashboard();renderActionCenter();updateOverviewStatus()}catch{}}
+async function markRead(id){try{await api("/v1/admin/notifications/"+id+"/read",{method:"PATCH"});const x=notifications.find(n=>String(n.id)===String(id));if(x)x.status="READ";renderNotifications()}catch(e){statusEl.textContent=e.message;statusEl.className="status err"}}
+function deliveryTypeLabel(type){
+  const exact={
+    EMAIL_TEAM_NEW_APPLICATION:"Email báo team",
+    EMAIL_CANDIDATE_ACK:"Email xác nhận đăng ký",
+    EMAIL_TEAM_UNASSIGNED_24H:"Nhắc team: chưa có người phụ trách",
+    CONNECTION_TEST_EMAIL:"Kiểm tra email",
+    NEW_APPLICATION_WEBHOOK:"Webhook báo đăng ký",
+    APPLICATION_ACK_WEBHOOK:"Webhook xác nhận đăng ký"
+  };
+  if(exact[type])return exact[type];
+  if(String(type||"").startsWith("EMAIL_MANUAL_REQUEST_INFO_"))return "Email: yêu cầu bổ sung thông tin";
+  if(String(type||"").startsWith("EMAIL_MANUAL_INTRO_CALL_"))return "Email: mời trao đổi";
+  if(String(type||"").startsWith("EMAIL_MANUAL_FOLLOW_UP_"))return "Email: nhắc phản hồi";
+  if(String(type||"").startsWith("EMAIL_MANUAL_CLOSE_"))return "Email: cảm ơn & kết thúc";
+  return type||"Thông báo hệ thống";
+}
+function renderCandidateMailPanel(applicationId){
+  const options=mailScenarios.map(s=>'<option value="'+esc(s.key)+'">'+esc(s.label)+'</option>').join("");
+  const first=mailScenarios[0];
+  const disabled=!mailConfigured||!mailScenarios.length;
+  return '<section class="candidate-mail">'+
+    '<div class="candidate-mail-head"><div><h3>Gửi email</h3><p>Dùng kịch bản có sẵn để giữ giọng điệu thống nhất. Nên xem trước nội dung trước khi xác nhận gửi.</p></div><span class="delivery-status '+(mailConfigured?'DELIVERED':'')+'">'+(mailConfigured?'SẴN SÀNG':'CHƯA BẬT MAIL')+'</span></div>'+
+    '<div class="candidate-mail-grid">'+
+      '<label>Kịch bản<select id="mailScenario" onchange="updateMailScenarioDescription()">'+options+'</select></label>'+
+      '<div id="mailScenarioDescription" class="mail-scenario-note">'+esc(first?.description||"Chưa có kịch bản email.")+'</div>'+
+      '<label>Ghi chú thêm <span style="font-weight:500">(không bắt buộc)</span><textarea id="mailNote" placeholder="Ví dụ: cần bổ sung portfolio, thời gian có thể trao đổi, nội dung muốn nhắn riêng..." oninput="hideMailPreview()"></textarea></label>'+
+      '<div id="mailPreview" class="mail-preview"><small>TIÊU ĐỀ</small><b id="mailPreviewSubject"></b><small>NỘI DUNG</small><pre id="mailPreviewText"></pre></div>'+
+    '</div>'+
+    '<div class="candidate-mail-actions"><span class="mail-state">'+(mailConfigured?'Mail sẽ được gửi từ Hang Đôi Academy và có lưu lịch sử.':'SMTP chưa bật: vẫn có thể xem trước nhưng chưa thể gửi thật.')+'</span><div style="display:flex;gap:8px"><button class="secondary-mail" onclick="previewCandidateMail('+applicationId+',this)">Xem trước</button><button id="sendCandidateMailButton" '+(disabled?'disabled':'')+' onclick="sendCandidateMail('+applicationId+',this)">Xác nhận & gửi email</button></div></div>'+
+  '</section>';
+}
+function updateMailScenarioDescription(){
+  const key=$("mailScenario")?.value;
+  const scenario=mailScenarios.find(x=>x.key===key);
+  if($("mailScenarioDescription"))$("mailScenarioDescription").textContent=scenario?.description||"";
+  hideMailPreview();
+}
+function hideMailPreview(){if($("mailPreview"))$("mailPreview").classList.remove("show")}
+async function previewCandidateMail(applicationId,button){
+  const scenario=$("mailScenario")?.value;
+  if(!scenario)return;
+  const old=button.textContent;button.disabled=true;button.textContent="Đang tạo bản xem trước…";
+  try{
+    const j=await api("/v1/admin/applications/"+applicationId+"/mail/preview",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({scenario,note:$("mailNote")?.value||""})});
+    $("mailPreviewSubject").textContent=j.preview?.subject||"";
+    $("mailPreviewText").textContent=j.preview?.text||"";
+    $("mailPreview").classList.add("show");
+  }catch(e){statusEl.textContent="Không tạo được bản xem trước: "+e.message;statusEl.className="status err"}
+  finally{button.disabled=false;button.textContent=old}
+}
+async function sendCandidateMail(applicationId,button){
+  const scenario=$("mailScenario")?.value;
+  const meta=mailScenarios.find(x=>x.key===scenario);
+  if(!scenario||!meta)return;
+  const candidateName=$("dName")?.textContent||"ứng viên";
+  if(!confirm('Gửi "'+meta.label+'" tới '+candidateName+'?'))return;
+  button.disabled=true;button.textContent="Đang đưa vào hàng đợi…";
+  try{
+    const j=await api("/v1/admin/applications/"+applicationId+"/mail",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({scenario,note:$("mailNote")?.value||""})});
+    statusEl.textContent="Đã đưa email vào hàng đợi · "+meta.label;statusEl.className="status ok";
+    await new Promise(resolve=>setTimeout(resolve,600));
+    await refreshOutbound();
+    await openDetail(applicationId);
+  }catch(e){
+    statusEl.textContent="Gửi email lỗi: "+e.message;statusEl.className="status err";
+    button.disabled=false;button.textContent="Xác nhận & gửi email";
+  }
+}
+function renderCandidateOutbound(items,applicationId){
+  const configured=n(outboundHealth?.configured?.length)>0;
+  if(!items.length){
+    return '<section class="candidate-delivery"><div class="candidate-delivery-head"><h3>Thông báo tự động</h3><span class="delivery-status">'+(configured?'CHƯA CÓ LƯỢT GỬI':'CHƯA KẾT NỐI')+'</span></div><div class="status">'+(configured?'Ứng viên này chưa phát sinh thông báo tự động.':'Hàng đợi đã sẵn sàng nhưng chưa cấu hình kênh thông báo ngoài.')+'</div></section>';
+  }
+  return '<section class="candidate-delivery"><div class="candidate-delivery-head"><h3>Thông báo tự động</h3><span class="source">'+items.length+' lượt gửi</span></div>'+
+    items.map(x=>{
+      const at=x.delivered_at||x.last_attempt_at||x.created_at;
+      const retry=x.status==="FAILED"?'<button class="delivery-retry" onclick="retryCandidateDelivery('+x.id+','+applicationId+',this)">Thử lại</button>':'';
+      return '<div class="candidate-delivery-row">'+
+        '<div><b>'+esc(deliveryTypeLabel(x.delivery_type))+'</b><small>'+(at?esc(new Date(at).toLocaleString("vi-VN")):"—")+' · '+n(x.attempt_count)+'/'+n(x.max_attempts||6)+' lần thử</small></div>'+
+        '<span class="delivery-status '+esc(x.status||"")+'">'+esc(deliveryStatusLabels[x.status]||x.status||"—")+'</span>'+
+        retry+
+        (x.last_error?'<small class="candidate-delivery-error">'+esc(x.last_error)+'</small>':'')+
+      '</div>';
+    }).join("")+
+  '</section>';
+}
+async function retryCandidateDelivery(deliveryId,applicationId,button){
+  button.disabled=true;button.textContent="Đang thử lại…";
+  try{
+    await api("/v1/admin/outbound/"+deliveryId+"/retry",{method:"POST"});
+    statusEl.textContent="Đã đưa lượt gửi #"+deliveryId+" vào thử lại.";statusEl.className="status ok";
+    await new Promise(resolve=>setTimeout(resolve,700));
+    await refreshOutbound();
+    await openDetail(applicationId);
+  }catch(e){
+    statusEl.textContent="Thử lại thông báo lỗi: "+e.message;statusEl.className="status err";
+    button.disabled=false;button.textContent="Thử lại";
+  }
+}
+function detailTabButton(key,label,active=false){return '<button class="detail-tab'+(active?' active':'')+'" data-detail-tab="'+key+'">'+label+'</button>'}
+function bindDetailTabs(){
+  document.querySelectorAll("[data-detail-tab]").forEach(btn=>btn.onclick=()=>{
+    document.querySelectorAll("[data-detail-tab]").forEach(x=>x.classList.toggle("active",x===btn));
+    document.querySelectorAll("[data-detail-pane]").forEach(x=>x.classList.toggle("active",x.dataset.detailPane===btn.dataset.detailTab));
+  });
+}
+async function openDetail(id){
+  if(!detailDialog.open) detailDialog.showModal();
+  $("dName").textContent="Đang tải…";$("dCode").textContent="";$("detailBody").innerHTML='<div class="loading">Đang tải hồ sơ…</div>';
+  try{
+    const j=await api("/v1/admin/applications/"+id),x=j.application,p=x.payload||{},history=j.history||[],a=j.assessment||{},adm=j.admission||{},selApp=j.selection||{},outbound=j.outboundDeliveries||[],legalGate=j.admissionLegalGate||"BLOCKED",formalSelectionOpen=dash?.legalReadiness?.program_registration_status==="CONFIRMED";
+    $("dName").textContent=x.full_name;$("dCode").textContent=x.candidate_code;
+    const lostOptions=[
+      ["","—"],["Tuition","Học phí"],["Schedule","Lịch học"],["Parents / Family","Gia đình"],["Location","Địa điểm"],
+      ["Career Uncertainty","Chưa chắc định hướng nghề"],["Chose Job","Chọn đi làm"],["Another Program","Chọn chương trình khác"],
+      ["No Response","Không phản hồi"],["Failed Qualification","Không đạt điều kiện"],["Failed Selection","Không đạt tuyển chọn"],
+      ["Not Ready","Chưa sẵn sàng"],["Other","Khác"]
+    ];
+    const summary='<div class="candidate-summary">'+
+      '<div class="summary-cell"><small>TRẠNG THÁI</small><b>'+esc(stageLabels[x.pipeline_stage]||x.pipeline_stage)+'</b></div>'+
+      '<div class="summary-cell"><small>VIỆC TIẾP THEO</small><b>'+esc(x.next_action||"Chưa có việc tiếp theo")+'</b></div>'+
+      '<div class="summary-cell"><small>HẠN XỬ LÝ</small><b>'+esc(x.next_action_date?new Date(x.next_action_date).toLocaleDateString("vi-VN"):"Chưa đặt")+'</b></div>'+
+      '<div class="summary-cell"><small>PHỤ TRÁCH / LIÊN HỆ</small><b>'+esc(x.owner||"Chưa giao")+'</b><div class="summary-contact">'+(x.phone?'<a href="tel:'+attr(x.phone)+'">'+esc(x.phone)+'</a>':'')+(x.email?'<a href="mailto:'+attr(x.email)+'">Email</a>':'')+'</div></div>'+
+    '</div>';
+    const tabs='<div class="detail-tabs">'+detailTabButton("overview","Tổng quan",true)+detailTabButton("profile","Hồ sơ")+detailTabButton("selection","Tuyển chọn")+detailTabButton("history","Lịch sử")+'</div>';
+
+    const operations='<section class="ops"><h3>Vận hành ứng viên</h3><div class="ops-grid">'+
+      '<label>Người phụ trách<input id="opOwner" value="'+attr(x.owner||"")+'" placeholder="Tên người phụ trách"></label>'+
+      '<label>Hạn xử lý<input id="opNextDate" type="date" value="'+attr((x.next_action_date||"").slice(0,10))+'"></label>'+
+      '<label class="wide">Việc tiếp theo<input id="opNextAction" value="'+attr(x.next_action||"")+'" placeholder="Việc cần làm tiếp theo"></label>'+
+      '<label>Lý do dừng<select id="opLostReason">'+lostOptions.map(([v,label])=>'<option value="'+attr(v)+'" '+(v===(x.lost_reason||"")?'selected':'')+'>'+esc(label)+'</option>').join("")+'</select></label>'+
+      '<label class="wide">Ghi chú nội bộ<textarea id="opNotes" placeholder="Ghi chú nội bộ">'+esc(x.internal_notes||"")+'</textarea></label>'+
+      '</div><button onclick="saveOps('+x.id+')">Lưu vận hành</button></section>';
+
+    const profile='<div class="profile-intro"><h3>Thông tin ứng viên</h3><p>Thông tin liên hệ, nền tảng hiện tại và câu trả lời trong biểu mẫu.</p></div>'+
+      '<div class="detail-grid">'+
+      detail("Email",x.email)+detail("Số điện thoại",x.phone)+detail("Thành phố",x.city)+detail("Hiện trạng",x.current_status)+
+      detail("Kinh nghiệm",x.experience_level)+detail("Hướng quan tâm",x.preferred_track)+detail("Nguồn",(x.utm_source||"trực tiếp")+" / "+(x.utm_content||"—"))+detail("Trạng thái",stageLabels[x.pipeline_stage]||x.pipeline_stage)+'</div>'+
+      '<div class="answers">'+answer("Cách nhìn hình ảnh",p.visualThinking)+answer("Tham chiếu hình ảnh",p.visualReferences)+answer("Vì sao chọn Media",p.careerWhy)+answer("Định hướng 3 năm",p.career3yr)+answer("Rào cản hiện tại",p.currentBarrier)+answer("Câu chuyện học kỹ năng",p.hardSkillStory)+answer("Thất bại / cách phục hồi",p.failureStory)+answer("Lịch hiện tại",p.schedule)+answer("Vì sao phù hợp",p.whyYou)+'</div>';
+
+    const selectionBlock=formalSelectionOpen?'<section class="selection-box"><div class="selection-head"><h3>Lịch tuyển chọn</h3><span class="source">'+esc(selectionStatusLabels[selApp.status]||selApp.status||"Bản nháp")+'</span></div>'+
+      '<input id="selToken" type="hidden" value="'+attr(selApp.public_token||"")+'">'+
+      '<div class="selection-grid">'+
+      '<label>Thời gian bắt đầu<input id="selStart" type="datetime-local" value="'+attr(toLocalInput(selApp.selection_start))+'"></label>'+
+      '<label>Thời lượng (phút)<input id="selDuration" type="number" min="15" max="480" step="15" value="'+attr(selApp.duration_minutes||90)+'"></label>'+
+      '<label>Hình thức<select id="selMode"><option value="ONSITE" '+sel(selApp.mode,"ONSITE")+'>Tại chỗ</option><option value="ONLINE" '+sel(selApp.mode,"ONLINE")+'>Trực tuyến</option></select></label>'+
+      '<label>Địa điểm / liên kết họp<input id="selLocation" value="'+attr(selApp.location||"")+'" placeholder="Địa chỉ hoặc liên kết họp"></label>'+
+      '<label class="wide">Ghi chú lời mời<textarea id="selInviteNote" placeholder="Thông tin muốn gửi cùng lời mời">'+esc(selApp.invitation_note||"")+'</textarea></label>'+
+      '<label class="wide">Ghi chú chuẩn bị<textarea id="selPrepNote" placeholder="Ứng viên cần chuẩn bị gì trước buổi tuyển chọn">'+esc(selApp.prep_note||"")+'</textarea></label>'+
+      (selApp.candidate_response_note?'<label class="wide">Phản hồi của ứng viên<div class="detail"><b>'+esc(selApp.candidate_response_note)+'</b></div></label>':'')+
+      '</div><div class="selection-actions"><button onclick="saveSelection('+x.id+')">Lưu lịch</button><button class="secondary" onclick="copySelectionInvite()">Sao chép lời mời</button><button class="dark" onclick="markSelectionInvited('+x.id+')">Đánh dấu đã gửi lời mời</button><button class="secondary" onclick="markSelectionAttended('+x.id+')">Đánh dấu đã tham gia</button></div></section>':
+      '<section class="selection-box"><div class="selection-head"><h3>Tuyển chọn chính thức đang khóa</h3><span class="source">CHẾ ĐỘ AN TOÀN PHÁP LÝ</span></div><p class="legal-note">Điều kiện đăng ký chương trình chưa được xác nhận. Hồ sơ hiện chỉ ở giai đoạn ghi nhận quan tâm; chưa được lên lịch, gửi lời mời hoặc chấm tuyển chọn.</p></section>';
+
+    const assessment=(x.pipeline_stage==="SELECTION_ATTENDED"||a.updated_at)?'<section class="assessment"><h3>Đánh giá tuyển chọn</h3><div class="score-grid">'+
+      scoreInput("Tiềm năng hình ảnh","asVisual",a.visual_score,25)+scoreInput("Khả năng học","asLearning",a.learning_score,20)+scoreInput("Khả năng thực thi","asExecution",a.execution_score,20)+scoreInput("Thái độ","asBehaviour",a.behaviour_score,20)+scoreInput("Động lực","asMotivation",a.motivation_score,15)+
+      '</div><div class="score-total">Tổng <span id="asTotal">'+assessmentTotal(a)+'</span>/100</div>'+
+      '<div class="assessment-meta"><label>Người đánh giá<input id="asAssessor" value="'+attr(a.assessor||"")+'" placeholder="Người chấm"></label>'+
+      '<label>Kết quả<select id="asDecision"><option value="PENDING" '+sel(a.decision,"PENDING")+'>Chờ đánh giá</option><option value="PASS" '+sel(a.decision,"PASS")+'>Đạt</option><option value="WAITLIST" '+sel(a.decision,"WAITLIST")+'>Dự bị</option><option value="LOST" '+sel(a.decision,"LOST")+'>Dừng</option></select></label>'+
+      '<label class="wide">Ghi chú tuyển chọn<textarea id="asSelectionNotes">'+esc(a.selection_notes||"")+'</textarea></label>'+
+      '<label class="wide">Ghi chú phỏng vấn<textarea id="asInterviewNotes">'+esc(a.interview_notes||"")+'</textarea></label></div>'+
+      '<button onclick="saveAssessment('+x.id+')">Lưu đánh giá</button></section>':'';
+
+    const admission=(x.pipeline_stage==="PASS"||adm.status)?'<section class="admission"><div class="admission-head"><h3>Bản nháp thư nhận học</h3><span class="locked">CỔNG PHÁP LÝ: '+esc(legalGate==="BLOCKED"?"ĐANG KHÓA":legalGate)+'</span></div>'+
+      '<div class="notice" style="margin-bottom:12px">Bản nháp nội bộ. Gửi thư nhận học và thanh toán vẫn bị khóa cho tới khi cổng Pháp lý & Tuyển sinh được phê duyệt.</div>'+
+      '<div class="admission-grid">'+
+      '<label>Trạng thái<select id="adStatus"><option value="DRAFT" '+sel(adm.status,"DRAFT")+'>Bản nháp</option><option value="READY_FOR_LEGAL" '+sel(adm.status,"READY_FOR_LEGAL")+'>Sẵn sàng rà soát pháp lý</option></select></label>'+
+      '<label>Người chuẩn bị<input id="adPreparedBy" value="'+attr(adm.prepared_by||"")+'" placeholder="Người chuẩn bị"></label>'+
+      '<label class="wide">Chương trình<input id="adProgram" value="'+attr(adm.program_name||"Hang Đôi Media Career Program")+'"></label>'+
+      '<label>Học phí (VNĐ)<input id="adTuition" type="number" min="0" step="1000000" value="'+attr(adm.tuition_amount||40000000)+'"></label>'+
+      '<label>Ngày dự kiến bắt đầu<input id="adStart" type="date" value="'+attr((adm.proposed_start_date||"").slice(0,10))+'"></label>'+
+      '<label>Hạn phản hồi<input id="adDeadline" type="date" value="'+attr((adm.response_deadline||"").slice(0,10))+'"></label>'+
+      '<label class="wide">Kế hoạch thanh toán<input id="adPaymentPlan" value="'+attr(adm.payment_plan||"40.000.000 VNĐ một lần hoặc 10.000.000 VNĐ × 4 kỳ")+'"></label>'+
+      '<label class="wide">Ghi chú lịch học<textarea id="adScheduleNote">'+esc(adm.schedule_note||"")+'</textarea></label>'+
+      '<label class="wide">Ghi chú nhận học<textarea id="adAdmissionNote">'+esc(adm.admission_note||"")+'</textarea></label>'+
+      '</div><div class="admission-actions"><button onclick="saveAdmissionDraft('+x.id+')">Lưu bản nháp</button><button class="secondary" onclick="copyAdmissionDraft()">Sao chép nội dung</button></div></section>':'';
+
+    const timeline='<section class="timeline"><h3>Lịch sử trạng thái</h3>'+(history.length?history.map(h=>'<div class="titem"><b>'+esc(stageLabels[h.from_stage]||h.from_stage||"—")+' → '+esc(stageLabels[h.to_stage]||h.to_stage)+'</b><br>'+new Date(h.changed_at).toLocaleString("vi-VN")+'</div>').join(""):'<div class="status">Chưa có thay đổi trạng thái.</div>')+'</section>';
+
+    $("detailBody").innerHTML=summary+'<div class="drawer-body-wrap">'+tabs+
+      '<div class="detail-pane active" data-detail-pane="overview">'+operations+renderCandidateMailPanel(x.id)+renderCandidateOutbound(outbound,x.id)+'</div>'+
+      '<div class="detail-pane" data-detail-pane="profile">'+profile+'</div>'+
+      '<div class="detail-pane" data-detail-pane="selection">'+selectionBlock+assessment+admission+'</div>'+
+      '<div class="detail-pane" data-detail-pane="history">'+timeline+'</div>'+
+    '</div>';
+    bindDetailTabs();
+  }catch(e){$("detailBody").innerHTML='<div class="drawer-body-wrap"><div class="err">'+esc(e.message)+'</div></div>'}
+}
+function toLocalInput(iso){
+  if(!iso)return "";
+  const d=new Date(iso),pad=n=>String(n).padStart(2,"0");
+  return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())+"T"+pad(d.getHours())+":"+pad(d.getMinutes());
+}
+async function saveSelection(id,refresh=true){
+  const local=$("selStart").value;
+  const body={
+    selectionStart:local?new Date(local).toISOString():"",
+    durationMinutes:Number($("selDuration").value||90),
+    mode:$("selMode").value,location:$("selLocation").value,
+    invitationNote:$("selInviteNote").value,prepNote:$("selPrepNote").value
+  };
+  try{
+    const j=await api("/v1/admin/applications/"+id+"/selection",{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
+    $("selToken").value=j.selection.public_token||"";
+    statusEl.textContent="Đã lưu lịch tuyển chọn · "+j.selection.status;statusEl.className="status ok";
+    if(refresh)await openDetail(id);
+    return j.selection;
+  }catch(e){statusEl.textContent="Lưu lịch tuyển chọn lỗi: "+e.message;statusEl.className="status err";throw e}
+}
+async function markSelectionInvited(id){
+  try{
+    await saveSelection(id,false);
+    const j=await api("/v1/admin/applications/"+id+"/selection/mark-invited",{method:"POST"});
+    const item=data.find(x=>String(x.id)===String(id));if(item){item.pipeline_stage="SELECTION_INVITED";item.selection_appointment_status="INVITED"}
+    render();await refreshDashboard();statusEl.textContent="Đã đánh dấu gửi lời mời → Đã mời tuyển chọn";statusEl.className="status ok";await openDetail(id);
+  }catch(e){if(!String(e.message).includes("Selection schedule")){statusEl.textContent="Đánh dấu lời mời lỗi: "+e.message;statusEl.className="status err"}}
+}
+async function markSelectionAttended(id){
+  try{
+    const j=await api("/v1/admin/applications/"+id+"/selection/attended",{method:"POST"});
+    const item=data.find(x=>String(x.id)===String(id));if(item){item.pipeline_stage="SELECTION_ATTENDED";item.selection_appointment_status="ATTENDED"}
+    render();await refreshDashboard();statusEl.textContent="Đã đánh dấu tham gia → Đã tham gia tuyển chọn";statusEl.className="status ok";await openDetail(id);
+  }catch(e){statusEl.textContent="Đánh dấu tham gia lỗi: "+e.message;statusEl.className="status err"}
+}
+async function copySelectionInvite(){
+  const token=$("selToken").value;
+  if(!token){statusEl.textContent="Hãy lưu lịch trước để tạo liên kết xác nhận.";statusEl.className="status err";return}
+  const dt=$("selStart").value?new Date($("selStart").value):null;
+  const time=dt?new Intl.DateTimeFormat("vi-VN",{dateStyle:"full",timeStyle:"short"}).format(dt):"[chưa chốt]";
+  const link="https://academy.hangdoiproduction.com/media-career-program/selection/?token="+encodeURIComponent(token);
+  const text=[
+    "Xin chào "+($("dName").textContent||"")+",",
+    "",
+    "Hang Đôi mời bạn tham gia buổi tuyển chọn của Chương trình Media Career — Khóa 01.",
+    "Thời gian: "+time,
+    "Hình thức: "+($("selMode").value==="ONLINE"?"Trực tuyến":"Tại chỗ"),
+    "Địa điểm / liên kết: "+($("selLocation").value||"[chưa chốt]"),
+    "Thời lượng dự kiến: "+($("selDuration").value||90)+" phút",
+    $("selInviteNote").value,
+    "",
+    "Vui lòng xác nhận tham gia tại:",
+    link,
+    "",
+    $("selPrepNote").value
+  ].filter(Boolean).join("\n");
+  try{await navigator.clipboard.writeText(text);statusEl.textContent="Đã sao chép lời mời tuyển chọn.";statusEl.className="status ok"}catch{statusEl.textContent="Không sao chép được lời mời.";statusEl.className="status err"}
+}
+const scoreInput=(label,id,value,max)=>'<label>'+esc(label)+'<input id="'+id+'" type="number" min="0" max="'+max+'" step="0.5" value="'+attr(value??0)+'" oninput="recalcAssessment()"></label>';
+const sel=(value,target)=>(String(value||"PENDING").toUpperCase()===target?'selected':'');
+const assessmentTotal=a=>[a.visual_score,a.learning_score,a.execution_score,a.behaviour_score,a.motivation_score].reduce((s,v)=>s+Number(v||0),0);
+function recalcAssessment(){
+  const total=["asVisual","asLearning","asExecution","asBehaviour","asMotivation"].reduce((s,id)=>s+Number($(id)?.value||0),0);
+  $("asTotal").textContent=Math.round(total*100)/100;
+}
+async function saveAssessment(id){
+  const body={
+    visualScore:$("asVisual").value,learningScore:$("asLearning").value,executionScore:$("asExecution").value,
+    behaviourScore:$("asBehaviour").value,motivationScore:$("asMotivation").value,
+    assessor:$("asAssessor").value,decision:$("asDecision").value,
+    selectionNotes:$("asSelectionNotes").value,interviewNotes:$("asInterviewNotes").value
+  };
+  try{
+    const j=await api("/v1/admin/applications/"+id+"/assessment",{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
+    const item=data.find(x=>String(x.id)===String(id));
+    if(item){item.selection_score=j.assessment.total_score;item.assessment_decision=j.assessment.decision;item.pipeline_stage=j.pipelineStage}
+    render();await refreshDashboard();statusEl.textContent="Đã lưu đánh giá · "+j.assessment.total_score+"/100 · "+j.assessment.decision;statusEl.className="status ok";await openDetail(id);
+  }catch(e){statusEl.textContent="Lưu đánh giá lỗi: "+e.message;statusEl.className="status err"}
+}
+async function saveAdmissionDraft(id){
+  const body={
+    status:$("adStatus").value,preparedBy:$("adPreparedBy").value,programName:$("adProgram").value,
+    tuitionAmount:Number($("adTuition").value||40000000),proposedStartDate:$("adStart").value,
+    responseDeadline:$("adDeadline").value,paymentPlan:$("adPaymentPlan").value,
+    scheduleNote:$("adScheduleNote").value,admissionNote:$("adAdmissionNote").value
+  };
+  try{
+    const j=await api("/v1/admin/applications/"+id+"/admission-draft",{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
+    statusEl.textContent="Đã lưu bản nháp nhận học · "+j.admission.status+" · Legal gate "+j.legalGate;statusEl.className="status ok";await openDetail(id);
+  }catch(e){statusEl.textContent="Lưu bản nháp nhận học lỗi: "+e.message;statusEl.className="status err"}
+}
+async function copyAdmissionDraft(){
+  const text=[
+    "HANG ĐÔI MEDIA CAREER — BẢN NHÁP NHẬN HỌC",
+    "",
+    "Ứng viên: "+($("dName").textContent||""),
+    "Mã ứng viên: "+($("dCode").textContent||""),
+    "Chương trình: "+$("adProgram").value,
+    "Học phí: "+Number($("adTuition").value||0).toLocaleString("vi-VN")+" VNĐ",
+    "Thanh toán: "+$("adPaymentPlan").value,
+    "Ngày dự kiến bắt đầu: "+($("adStart").value||"[chưa chốt]"),
+    "Hạn phản hồi: "+($("adDeadline").value||"[chưa chốt]"),
+    "",
+    $("adScheduleNote").value,
+    $("adAdmissionNote").value,
+    "",
+    "BẢN NHÁP NỘI BỘ — CHƯA DÙNG ĐỂ GỬI / THU TIỀN"
+  ].filter(Boolean).join("\n");
+  try{await navigator.clipboard.writeText(text);statusEl.textContent="Đã sao chép bản nháp nhận học.";statusEl.className="status ok"}catch{statusEl.textContent="Không sao chép được bản nháp.";statusEl.className="status err"}
+}
+async function saveOps(id){
+  const body={
+    owner:$("opOwner").value,
+    nextAction:$("opNextAction").value,
+    nextActionDate:$("opNextDate").value,
+    lostReason:$("opLostReason").value,
+    internalNotes:$("opNotes").value
+  };
+  try{
+    const j=await api("/v1/admin/applications/"+id+"/ops",{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
+    const item=data.find(x=>String(x.id)===String(id));
+    if(item){item.owner=j.application.owner;item.next_action=j.application.next_action;item.next_action_date=j.application.next_action_date;item.lost_reason=j.application.lost_reason}
+    render();renderActionCenter();statusEl.textContent="Đã lưu vận hành cho "+j.application.candidate_code;statusEl.className="status ok";await openDetail(id);
+  }catch(e){statusEl.textContent="Lưu vận hành lỗi: "+e.message;statusEl.className="status err"}
+}
+const detail=(k,v)=>'<div class="detail"><small>'+esc(k)+'</small><b>'+esc(v||"—")+'</b></div>';
+const answer=(k,v)=>v?'<div class="answer"><b>'+esc(k)+'</b><p>'+esc(v)+'</p></div>':"";
+const attr=v=>esc(v).replaceAll("&#39;","&#39;");
+function csv(){const list=filtered(),cols=["candidate_code","full_name","phone","email","city","current_status","preferred_track","experience_level","selection_score","assessment_decision","pipeline_stage","owner","next_action","next_action_date","lost_reason","utm_source","utm_medium","utm_campaign","utm_content","submitted_at"];const quote=v=>'"'+String(v??"").replaceAll('"','""')+'"';return [cols.join(","),...list.map(x=>cols.map(c=>quote(x[c])).join(","))].join("\n")}
+$("connect").onclick=load;$("days").onchange=load;$("deliveryTest").onclick=sendOutboundTest;
+["search","stageFilter","sourceFilter"].forEach(id=>$(id).addEventListener("input",render));
+$("exportBtn").onclick=()=>{const b=new Blob([csv()],{type:"text/csv;charset=utf-8"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="media-career-candidates.csv";a.click();URL.revokeObjectURL(a.href)};
+document.querySelectorAll(".admin-tab").forEach(btn=>btn.onclick=()=>setView(btn.dataset.view));
+document.querySelectorAll("[data-go-view]").forEach(btn=>btn.onclick=()=>setView(btn.dataset.goView));
+document.querySelectorAll("[data-action-filter]").forEach(btn=>btn.onclick=()=>{activeActionFilter=btn.dataset.actionFilter;$("clearActionFilter").hidden=false;setView("candidates");render()});
+$("clearActionFilter").onclick=()=>{activeActionFilter="";$("clearActionFilter").hidden=true;render()};
+const savedView=sessionStorage.getItem("academy_admin_view");setView(["overview","candidates","system"].includes(savedView)?savedView:"overview");
+if(tokenEl.value)load();
+</script>
+</body>
+</html>

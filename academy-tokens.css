@@ -1,0 +1,482 @@
+/*
+ * Hang Đôi Academy Design Tokens v2 — Reference-led visual system
+ * Concept: Creative Learning Studio × Editorial Poster × Production Culture
+ *
+ * Source of truth for all Academy web surfaces.
+ * New code should consume --aca-* semantic/component tokens.
+ */
+
+:root {
+  /* ============================================================
+     01. PRIMITIVE COLOR
+     ============================================================ */
+
+  /* Core ink / paper */
+  --aca-ink-950: #101713;
+  --aca-ink-900: #17382b;
+  --aca-ink-800: #24483a;
+
+  --aca-paper-0: #fffdf7;
+  --aca-paper-50: #f8f4ea;
+  --aca-paper-100: #f2ecdf;
+  --aca-paper-200: #e8dfd0;
+
+  /* Academy green */
+  --aca-green-950: #0f422d;
+  --aca-green-900: #145238;
+  --aca-green-800: #176b43;
+  --aca-green-700: #239653;
+  --aca-green-500: #68b96d;
+  --aca-green-300: #a7d67b;
+  --aca-green-100: #e8f4df;
+
+  /* Signal yellow */
+  --aca-yellow-700: #c9a700;
+  --aca-yellow-500: #f2d43d;
+  --aca-yellow-300: #ffe783;
+  --aca-yellow-100: #fff7cb;
+
+  /* Signal orange / coral */
+  --aca-orange-700: #c94a22;
+  --aca-orange-500: #f26a3d;
+  --aca-orange-300: #ff9a72;
+  --aca-orange-100: #ffe1d3;
+
+  /* Editorial cobalt */
+  --aca-cobalt-700: #2338a8;
+  --aca-cobalt-500: #3450d8;
+  --aca-cobalt-300: #8091ed;
+  --aca-cobalt-100: #e8ecff;
+
+  /* Functional */
+  --aca-red-500: #d95c4f;
+  --aca-neutral-500: #6c756f;
+  --aca-neutral-300: #aeb6b0;
+  --aca-neutral-200: #d5dbd6;
+
+  /* Official SVG logo colors — asset-level, not page palette */
+  --aca-logo-primary: #00031a;
+  --aca-logo-accent: #fcb415;
+
+  /* ============================================================
+     02. SEMANTIC COLOR
+     ============================================================ */
+
+  --aca-color-bg-canvas: var(--aca-paper-50);
+  --aca-color-bg-paper: var(--aca-paper-0);
+  --aca-color-bg-soft: var(--aca-paper-100);
+  --aca-color-bg-dark: var(--aca-green-950);
+  --aca-color-bg-brand: var(--aca-green-800);
+
+  --aca-color-text-display: var(--aca-ink-950);
+  --aca-color-text-heading: var(--aca-ink-900);
+  --aca-color-text-body: var(--aca-ink-800);
+  --aca-color-text-muted: var(--aca-neutral-500);
+  --aca-color-text-inverse: var(--aca-paper-0);
+
+  --aca-color-brand: var(--aca-green-800);
+  --aca-color-brand-active: var(--aca-green-700);
+  --aca-color-brand-soft: var(--aca-green-100);
+
+  --aca-color-signal-yellow: var(--aca-yellow-500);
+  --aca-color-signal-orange: var(--aca-orange-500);
+  --aca-color-signal-cobalt: var(--aca-cobalt-500);
+
+  --aca-color-border: rgba(16, 23, 19, .18);
+  --aca-color-border-strong: rgba(16, 23, 19, .62);
+  --aca-color-divider: rgba(16, 23, 19, .14);
+  --aca-color-divider-inverse: rgba(255, 253, 247, .18);
+
+  --aca-color-focus: var(--aca-cobalt-500);
+  --aca-color-danger: var(--aca-red-500);
+
+  /* ============================================================
+     03. THEME RECIPES
+     ============================================================ */
+
+  --aca-theme-canvas-bg: var(--aca-color-bg-canvas);
+  --aca-theme-canvas-fg: var(--aca-color-text-body);
+
+  --aca-theme-paper-bg: var(--aca-color-bg-paper);
+  --aca-theme-paper-fg: var(--aca-color-text-body);
+
+  --aca-theme-dark-bg: var(--aca-green-950);
+  --aca-theme-dark-fg: var(--aca-paper-0);
+  --aca-theme-dark-accent: var(--aca-yellow-500);
+
+  --aca-theme-yellow-bg: var(--aca-yellow-500);
+  --aca-theme-yellow-fg: var(--aca-ink-950);
+
+  --aca-theme-orange-bg: var(--aca-orange-500);
+  --aca-theme-orange-fg: var(--aca-ink-950);
+
+  --aca-theme-cobalt-bg: var(--aca-cobalt-500);
+  --aca-theme-cobalt-fg: var(--aca-paper-0);
+
+  /* ============================================================
+     04. TYPOGRAPHY
+     ============================================================ */
+
+  --aca-font-display: Inter, "Helvetica Neue", Arial, sans-serif;
+  --aca-font-body: Inter, "Helvetica Neue", Arial, sans-serif;
+  --aca-font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+
+  --aca-weight-regular: 400;
+  --aca-weight-medium: 500;
+  --aca-weight-semibold: 600;
+  --aca-weight-bold: 700;
+  --aca-weight-extrabold: 800;
+  --aca-weight-black: 900;
+
+  --aca-type-poster-xl: clamp(4.5rem, 10vw, 9.5rem);
+  --aca-type-poster-lg: clamp(3.75rem, 8vw, 7.5rem);
+  --aca-type-display: clamp(3rem, 6vw, 5.5rem);
+  --aca-type-heading-1: clamp(2.25rem, 4.5vw, 4.25rem);
+  --aca-type-heading-2: clamp(1.75rem, 3vw, 2.75rem);
+  --aca-type-heading-3: clamp(1.35rem, 2vw, 1.75rem);
+  --aca-type-body-xl: 1.25rem;
+  --aca-type-body-lg: 1.125rem;
+  --aca-type-body: .9375rem;
+  --aca-type-body-sm: .875rem;
+  --aca-type-label: .75rem;
+  --aca-type-micro: .6875rem;
+
+  --aca-leading-poster: .82;
+  --aca-leading-display: .9;
+  --aca-leading-heading: 1.02;
+  --aca-leading-body: 1.55;
+  --aca-leading-relaxed: 1.68;
+
+  --aca-tracking-poster: -.075em;
+  --aca-tracking-display: -.06em;
+  --aca-tracking-heading: -.04em;
+  --aca-tracking-body: 0;
+  --aca-tracking-label: .11em;
+  --aca-tracking-micro: .08em;
+
+  /* ============================================================
+     05. SPACING
+     4px base + editorial macro scale
+     ============================================================ */
+
+  --aca-space-0: 0;
+  --aca-space-1: 4px;
+  --aca-space-2: 8px;
+  --aca-space-3: 12px;
+  --aca-space-4: 16px;
+  --aca-space-5: 20px;
+  --aca-space-6: 24px;
+  --aca-space-8: 32px;
+  --aca-space-10: 40px;
+  --aca-space-12: 48px;
+  --aca-space-14: 56px;
+  --aca-space-16: 64px;
+  --aca-space-20: 80px;
+  --aca-space-24: 96px;
+  --aca-space-28: 112px;
+  --aca-space-32: 128px;
+  --aca-space-40: 160px;
+
+  --aca-section-y-tight: clamp(52px, 6vw, 80px);
+  --aca-section-y: clamp(72px, 8vw, 112px);
+  --aca-section-y-loose: clamp(92px, 11vw, 160px);
+
+  /* ============================================================
+     06. GRID / LAYOUT
+     ============================================================ */
+
+  --aca-layout-max: 1280px;
+  --aca-layout-wide: 1440px;
+  --aca-layout-readable: 760px;
+  --aca-layout-copy: 560px;
+
+  --aca-gutter-mobile: 16px;
+  --aca-gutter-tablet: 28px;
+  --aca-gutter-desktop: 40px;
+
+  --aca-grid-columns-desktop: 12;
+  --aca-grid-columns-tablet: 6;
+  --aca-grid-columns-mobile: 4;
+
+  --aca-grid-gap-xs: 8px;
+  --aca-grid-gap-sm: 12px;
+  --aca-grid-gap-md: 20px;
+  --aca-grid-gap-lg: 32px;
+  --aca-grid-gap-xl: 48px;
+
+  /* Reference breakpoints:
+     xs 560 | sm 760 | md 900 | lg 1024 | xl 1280 */
+
+  /* ============================================================
+     07. SHAPE LANGUAGE
+     ============================================================ */
+
+  --aca-radius-none: 0;
+  --aca-radius-xs: 4px;
+  --aca-radius-sm: 8px;
+  --aca-radius-md: 12px;
+  --aca-radius-lg: 16px;
+  --aca-radius-xl: 24px;
+  --aca-radius-full: 999px;
+
+  --aca-shape-circle: 50%;
+  --aca-shape-arch-top: 999px 999px 16px 16px;
+  --aca-shape-arch-bottom: 16px 16px 999px 999px;
+  --aca-shape-capsule: 999px;
+  --aca-shape-ticket: 18px;
+
+  --aca-shape-rotate-neg: -2deg;
+  --aca-shape-rotate-pos: 2deg;
+  --aca-shape-rotate-strong-neg: -4deg;
+  --aca-shape-rotate-strong-pos: 4deg;
+
+  --aca-shape-circle-sm: 64px;
+  --aca-shape-circle-md: 128px;
+  --aca-shape-circle-lg: 240px;
+  --aca-shape-circle-xl: 420px;
+
+  /* ============================================================
+     08. BORDER / PRINT DETAIL
+     ============================================================ */
+
+  --aca-border-hairline: 1px;
+  --aca-border-strong: 2px;
+  --aca-border-poster: 3px;
+  --aca-border-ink: var(--aca-ink-950);
+
+  --aca-print-shadow-sm: 4px 4px 0 var(--aca-ink-950);
+  --aca-print-shadow-md: 7px 7px 0 var(--aca-ink-950);
+  --aca-print-shadow-accent: 7px 7px 0 var(--aca-yellow-500);
+
+  /* ============================================================
+     09. ELEVATION
+     Editorial system is border/offset-led. Soft shadow is secondary.
+     ============================================================ */
+
+  --aca-shadow-soft-sm: 0 10px 30px rgba(16, 23, 19, .06);
+  --aca-shadow-soft-md: 0 20px 56px rgba(16, 23, 19, .10);
+  --aca-shadow-media: 0 30px 80px rgba(16, 23, 19, .18);
+
+  /* ============================================================
+     10. IMAGE TREATMENT
+     ============================================================ */
+
+  --aca-image-radius-editorial: 0px;
+  --aca-image-radius-soft: 12px;
+  --aca-image-radius-feature: 24px;
+
+  --aca-image-overlay-dark: linear-gradient(180deg, rgba(16,23,19,0) 38%, rgba(16,23,19,.78) 100%);
+  --aca-image-overlay-green: linear-gradient(135deg, rgba(15,66,45,.14), rgba(15,66,45,0));
+  --aca-image-overlay-warm: linear-gradient(135deg, rgba(242,106,61,.16), rgba(242,212,61,.06));
+
+  --aca-image-saturation-editorial: 1.04;
+  --aca-image-contrast-editorial: 1.02;
+
+  /* ============================================================
+     11. MOTION
+     ============================================================ */
+
+  --aca-duration-fast: 140ms;
+  --aca-duration-base: 220ms;
+  --aca-duration-slow: 360ms;
+  --aca-duration-media: 520ms;
+
+  --aca-ease-standard: cubic-bezier(.2, .8, .2, 1);
+  --aca-ease-enter: cubic-bezier(.16, 1, .3, 1);
+  --aca-ease-exit: cubic-bezier(.4, 0, 1, 1);
+
+  --aca-motion-lift: -3px;
+  --aca-motion-media-scale: 1.025;
+
+  /* ============================================================
+     12. Z / LAYERS
+     ============================================================ */
+
+  --aca-z-base: 0;
+  --aca-z-shape: 2;
+  --aca-z-content: 5;
+  --aca-z-raised: 10;
+  --aca-z-header: 50;
+  --aca-z-menu: 60;
+  --aca-z-overlay: 80;
+  --aca-z-modal: 90;
+  --aca-z-toast: 100;
+
+  /* ============================================================
+     13. COMPONENT TOKENS
+     ============================================================ */
+
+  /* Header */
+  --aca-header-height: 76px;
+  --aca-header-height-mobile: 64px;
+  --aca-header-blur: 16px;
+
+  /* Buttons */
+  --aca-button-height-sm: 42px;
+  --aca-button-height-md: 50px;
+  --aca-button-height-lg: 56px;
+  --aca-button-pad-x: 22px;
+  --aca-button-gap: 10px;
+  --aca-button-radius: var(--aca-radius-full);
+  --aca-button-font-size: var(--aca-type-body-sm);
+  --aca-button-font-weight: var(--aca-weight-extrabold);
+
+  /* Poster button / sticker CTA */
+  --aca-poster-button-radius: var(--aca-radius-sm);
+  --aca-poster-button-border: var(--aca-border-strong);
+  --aca-poster-button-shadow: var(--aca-print-shadow-sm);
+
+  /* Forms */
+  --aca-field-height: 52px;
+  --aca-field-radius: var(--aca-radius-sm);
+  --aca-field-pad-x: 16px;
+  --aca-field-border: var(--aca-color-border);
+  --aca-field-bg: var(--aca-paper-0);
+
+  /* Tags / labels */
+  --aca-tag-height: 32px;
+  --aca-tag-pad-x: 10px;
+  --aca-tag-radius: var(--aca-radius-full);
+  --aca-tag-font-size: var(--aca-type-label);
+
+  /* Cards */
+  --aca-card-radius: var(--aca-radius-md);
+  --aca-card-radius-soft: var(--aca-radius-lg);
+  --aca-card-padding: 24px;
+  --aca-card-border: var(--aca-color-border);
+  --aca-card-shadow: none;
+
+  /* Poster cards */
+  --aca-poster-card-radius: var(--aca-radius-sm);
+  --aca-poster-card-border: var(--aca-border-strong);
+  --aca-poster-card-shadow: var(--aca-print-shadow-sm);
+
+  /* Navigation / tabs */
+  --aca-tab-height: 40px;
+  --aca-tab-radius: var(--aca-radius-full);
+
+  /* Accessibility */
+  --aca-focus-width: 3px;
+  --aca-focus-ring: 0 0 0 var(--aca-focus-width) rgba(52, 80, 216, .26);
+  --aca-hit-target-min: 44px;
+
+  /* ============================================================
+     14. SECTION ARCHETYPES
+     ============================================================ */
+
+  --aca-section-poster-bg: var(--aca-paper-50);
+  --aca-section-poster-fg: var(--aca-ink-950);
+
+  --aca-section-dark-bg: var(--aca-green-950);
+  --aca-section-dark-fg: var(--aca-paper-0);
+
+  --aca-section-signal-bg: var(--aca-yellow-500);
+  --aca-section-signal-fg: var(--aca-ink-950);
+
+  --aca-section-orange-bg: var(--aca-orange-500);
+  --aca-section-orange-fg: var(--aca-ink-950);
+
+  --aca-section-cobalt-bg: var(--aca-cobalt-500);
+  --aca-section-cobalt-fg: var(--aca-paper-0);
+
+  /* ============================================================
+     15. LEGACY COMPATIBILITY
+     New work: do not consume these names.
+     ============================================================ */
+
+  --ink: var(--aca-color-text-heading);
+  --ink-2: var(--aca-color-text-body);
+  --paper: var(--aca-color-bg-canvas);
+  --paper-2: var(--aca-color-bg-soft);
+  --white: var(--aca-paper-0);
+  --green: var(--aca-color-brand-active);
+  --green-2: var(--aca-green-500);
+  --yellow: var(--aca-color-signal-yellow);
+  --yellow-2: var(--aca-yellow-300);
+  --muted: var(--aca-color-text-muted);
+  --line: var(--aca-color-border);
+  --danger: var(--aca-color-danger);
+  --radius: var(--aca-card-radius);
+  --shadow: var(--aca-shadow-soft-md);
+  --max: var(--aca-layout-max);
+
+  --p2-green: var(--aca-color-brand);
+  --p2-green-2: var(--aca-color-brand-active);
+  --p2-dark: var(--aca-color-bg-dark);
+  --p2-yellow: var(--aca-color-signal-yellow);
+  --p2-ink: var(--aca-color-text-body);
+  --p2-muted: var(--aca-color-text-muted);
+  --p2-bg: var(--aca-color-bg-canvas);
+  --p2-line: var(--aca-color-border);
+
+  --logo-primary: var(--aca-logo-primary);
+  --logo-accent: var(--aca-logo-accent);
+}
+
+/* Canonical focus behavior */
+:where(a, button, input, select, textarea, summary):focus-visible {
+  outline: none;
+  box-shadow: var(--aca-focus-ring);
+}
+
+/* Reusable visual-language utility hooks */
+.aca-theme-paper {
+  background: var(--aca-theme-paper-bg);
+  color: var(--aca-theme-paper-fg);
+}
+.aca-theme-dark {
+  background: var(--aca-theme-dark-bg);
+  color: var(--aca-theme-dark-fg);
+}
+.aca-theme-yellow {
+  background: var(--aca-theme-yellow-bg);
+  color: var(--aca-theme-yellow-fg);
+}
+.aca-theme-orange {
+  background: var(--aca-theme-orange-bg);
+  color: var(--aca-theme-orange-fg);
+}
+.aca-theme-cobalt {
+  background: var(--aca-theme-cobalt-bg);
+  color: var(--aca-theme-cobalt-fg);
+}
+.aca-poster-border {
+  border: var(--aca-border-strong) solid var(--aca-border-ink);
+}
+.aca-print-shadow {
+  box-shadow: var(--aca-print-shadow-sm);
+}
+.aca-editorial-image {
+  border-radius: var(--aca-image-radius-editorial);
+  filter: saturate(var(--aca-image-saturation-editorial)) contrast(var(--aca-image-contrast-editorial));
+}
+.aca-sticker {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--aca-tag-height);
+  padding: 0 var(--aca-tag-pad-x);
+  border-radius: var(--aca-tag-radius);
+  border: var(--aca-border-strong) solid var(--aca-border-ink);
+  background: var(--aca-color-signal-yellow);
+  color: var(--aca-ink-950);
+  font-size: var(--aca-type-label);
+  font-weight: var(--aca-weight-extrabold);
+  letter-spacing: var(--aca-tracking-label);
+  text-transform: uppercase;
+}
+.aca-shape-circle { border-radius: 50%; }
+.aca-shape-arch-top { border-radius: var(--aca-shape-arch-top); }
+.aca-shape-arch-bottom { border-radius: var(--aca-shape-arch-bottom); }
+.aca-tilt-neg { transform: rotate(var(--aca-shape-rotate-neg)); }
+.aca-tilt-pos { transform: rotate(var(--aca-shape-rotate-pos)); }
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --aca-duration-fast: 0ms;
+    --aca-duration-base: 0ms;
+    --aca-duration-slow: 0ms;
+    --aca-duration-media: 0ms;
+    --aca-motion-lift: 0px;
+    --aca-motion-media-scale: 1;
+  }
+}

@@ -1,0 +1,1550 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Media Career Program | Hang Đôi Academy</title>
+<meta name="description" content="Chương trình Nghề Media của Hang Đôi — 4 tháng xây năng lực làm việc theo quy trình sản xuất hình ảnh thương mại thực tế. Khóa 01 hiện mở đăng ký quan tâm.">
+<link rel="canonical" href="https://academy.hangdoiproduction.com/media-career-program/">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:site_name" content="Hang Đôi Academy">
+<meta property="og:title" content="Chương trình Nghề Media | Học Media để đi làm">
+<meta property="og:description" content="4 tháng để đi từ kỹ năng rời rạc đến khả năng tham gia một quy trình sản xuất hình ảnh thương mại. Khóa 01 hiện chỉ mở đăng ký quan tâm.">
+<meta property="og:url" content="https://academy.hangdoiproduction.com/media-career-program/">
+<meta name="theme-color" content="#F8F4EA">
+
+<style id="media-career-fonts">
+/* vietnamese */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: optional;
+  src: url("/assets/media-career/fonts/inter-0.woff2?v=b386128591ae") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: optional;
+  src: url("/assets/media-career/fonts/inter-1.woff2?v=b386128591ae") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<link rel="preload" as="image" href="/assets/media-career/optimized/hero-bts-mobile.webp?v=b386128591ae" media="(max-width:760px)" fetchpriority="high">
+<link rel="preload" as="image" href="/assets/media-career/optimized/hero-bts.webp?v=b386128591ae" media="(min-width:761px)" fetchpriority="high">
+<style id="academy-tokens-inline">
+/*
+ * Hang Đôi Academy Design Tokens v2 — Reference-led visual system
+ * Concept: Creative Learning Studio × Editorial Poster × Production Culture
+ *
+ * Source of truth for all Academy web surfaces.
+ * New code should consume --aca-* semantic/component tokens.
+ */
+
+:root {
+  /* ============================================================
+     01. PRIMITIVE COLOR
+     ============================================================ */
+
+  /* Core ink / paper */
+  --aca-ink-950: #101713;
+  --aca-ink-900: #17382b;
+  --aca-ink-800: #24483a;
+
+  --aca-paper-0: #fffdf7;
+  --aca-paper-50: #f8f4ea;
+  --aca-paper-100: #f2ecdf;
+  --aca-paper-200: #e8dfd0;
+
+  /* Academy green */
+  --aca-green-950: #0f422d;
+  --aca-green-900: #145238;
+  --aca-green-800: #176b43;
+  --aca-green-700: #239653;
+  --aca-green-500: #68b96d;
+  --aca-green-300: #a7d67b;
+  --aca-green-100: #e8f4df;
+
+  /* Signal yellow */
+  --aca-yellow-700: #c9a700;
+  --aca-yellow-500: #f2d43d;
+  --aca-yellow-300: #ffe783;
+  --aca-yellow-100: #fff7cb;
+
+  /* Signal orange / coral */
+  --aca-orange-700: #c94a22;
+  --aca-orange-500: #f26a3d;
+  --aca-orange-300: #ff9a72;
+  --aca-orange-100: #ffe1d3;
+
+  /* Editorial cobalt */
+  --aca-cobalt-700: #2338a8;
+  --aca-cobalt-500: #3450d8;
+  --aca-cobalt-300: #8091ed;
+  --aca-cobalt-100: #e8ecff;
+
+  /* Functional */
+  --aca-red-500: #d95c4f;
+  --aca-neutral-500: #6c756f;
+  --aca-neutral-300: #aeb6b0;
+  --aca-neutral-200: #d5dbd6;
+
+  /* Official SVG logo colors — asset-level, not page palette */
+  --aca-logo-primary: #00031a;
+  --aca-logo-accent: #fcb415;
+
+  /* ============================================================
+     02. SEMANTIC COLOR
+     ============================================================ */
+
+  --aca-color-bg-canvas: var(--aca-paper-50);
+  --aca-color-bg-paper: var(--aca-paper-0);
+  --aca-color-bg-soft: var(--aca-paper-100);
+  --aca-color-bg-dark: var(--aca-green-950);
+  --aca-color-bg-brand: var(--aca-green-800);
+
+  --aca-color-text-display: var(--aca-ink-950);
+  --aca-color-text-heading: var(--aca-ink-900);
+  --aca-color-text-body: var(--aca-ink-800);
+  --aca-color-text-muted: var(--aca-neutral-500);
+  --aca-color-text-inverse: var(--aca-paper-0);
+
+  --aca-color-brand: var(--aca-green-800);
+  --aca-color-brand-active: var(--aca-green-700);
+  --aca-color-brand-soft: var(--aca-green-100);
+
+  --aca-color-signal-yellow: var(--aca-yellow-500);
+  --aca-color-signal-orange: var(--aca-orange-500);
+  --aca-color-signal-cobalt: var(--aca-cobalt-500);
+
+  --aca-color-border: rgba(16, 23, 19, .18);
+  --aca-color-border-strong: rgba(16, 23, 19, .62);
+  --aca-color-divider: rgba(16, 23, 19, .14);
+  --aca-color-divider-inverse: rgba(255, 253, 247, .18);
+
+  --aca-color-focus: var(--aca-cobalt-500);
+  --aca-color-danger: var(--aca-red-500);
+
+  /* ============================================================
+     03. THEME RECIPES
+     ============================================================ */
+
+  --aca-theme-canvas-bg: var(--aca-color-bg-canvas);
+  --aca-theme-canvas-fg: var(--aca-color-text-body);
+
+  --aca-theme-paper-bg: var(--aca-color-bg-paper);
+  --aca-theme-paper-fg: var(--aca-color-text-body);
+
+  --aca-theme-dark-bg: var(--aca-green-950);
+  --aca-theme-dark-fg: var(--aca-paper-0);
+  --aca-theme-dark-accent: var(--aca-yellow-500);
+
+  --aca-theme-yellow-bg: var(--aca-yellow-500);
+  --aca-theme-yellow-fg: var(--aca-ink-950);
+
+  --aca-theme-orange-bg: var(--aca-orange-500);
+  --aca-theme-orange-fg: var(--aca-ink-950);
+
+  --aca-theme-cobalt-bg: var(--aca-cobalt-500);
+  --aca-theme-cobalt-fg: var(--aca-paper-0);
+
+  /* ============================================================
+     04. TYPOGRAPHY
+     ============================================================ */
+
+  --aca-font-display: Inter, "Helvetica Neue", Arial, sans-serif;
+  --aca-font-body: Inter, "Helvetica Neue", Arial, sans-serif;
+  --aca-font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+
+  --aca-weight-regular: 400;
+  --aca-weight-medium: 500;
+  --aca-weight-semibold: 600;
+  --aca-weight-bold: 700;
+  --aca-weight-extrabold: 800;
+  --aca-weight-black: 900;
+
+  --aca-type-poster-xl: clamp(4.5rem, 10vw, 9.5rem);
+  --aca-type-poster-lg: clamp(3.75rem, 8vw, 7.5rem);
+  --aca-type-display: clamp(3rem, 6vw, 5.5rem);
+  --aca-type-heading-1: clamp(2.25rem, 4.5vw, 4.25rem);
+  --aca-type-heading-2: clamp(1.75rem, 3vw, 2.75rem);
+  --aca-type-heading-3: clamp(1.35rem, 2vw, 1.75rem);
+  --aca-type-body-xl: 1.25rem;
+  --aca-type-body-lg: 1.125rem;
+  --aca-type-body: .9375rem;
+  --aca-type-body-sm: .875rem;
+  --aca-type-label: .75rem;
+  --aca-type-micro: .6875rem;
+
+  --aca-leading-poster: .82;
+  --aca-leading-display: .9;
+  --aca-leading-heading: 1.02;
+  --aca-leading-body: 1.55;
+  --aca-leading-relaxed: 1.68;
+
+  --aca-tracking-poster: -.075em;
+  --aca-tracking-display: -.06em;
+  --aca-tracking-heading: -.04em;
+  --aca-tracking-body: 0;
+  --aca-tracking-label: .11em;
+  --aca-tracking-micro: .08em;
+
+  /* ============================================================
+     05. SPACING
+     4px base + editorial macro scale
+     ============================================================ */
+
+  --aca-space-0: 0;
+  --aca-space-1: 4px;
+  --aca-space-2: 8px;
+  --aca-space-3: 12px;
+  --aca-space-4: 16px;
+  --aca-space-5: 20px;
+  --aca-space-6: 24px;
+  --aca-space-8: 32px;
+  --aca-space-10: 40px;
+  --aca-space-12: 48px;
+  --aca-space-14: 56px;
+  --aca-space-16: 64px;
+  --aca-space-20: 80px;
+  --aca-space-24: 96px;
+  --aca-space-28: 112px;
+  --aca-space-32: 128px;
+  --aca-space-40: 160px;
+
+  --aca-section-y-tight: clamp(52px, 6vw, 80px);
+  --aca-section-y: clamp(72px, 8vw, 112px);
+  --aca-section-y-loose: clamp(92px, 11vw, 160px);
+
+  /* ============================================================
+     06. GRID / LAYOUT
+     ============================================================ */
+
+  --aca-layout-max: 1280px;
+  --aca-layout-wide: 1440px;
+  --aca-layout-readable: 760px;
+  --aca-layout-copy: 560px;
+
+  --aca-gutter-mobile: 16px;
+  --aca-gutter-tablet: 28px;
+  --aca-gutter-desktop: 40px;
+
+  --aca-grid-columns-desktop: 12;
+  --aca-grid-columns-tablet: 6;
+  --aca-grid-columns-mobile: 4;
+
+  --aca-grid-gap-xs: 8px;
+  --aca-grid-gap-sm: 12px;
+  --aca-grid-gap-md: 20px;
+  --aca-grid-gap-lg: 32px;
+  --aca-grid-gap-xl: 48px;
+
+  /* Reference breakpoints:
+     xs 560 | sm 760 | md 900 | lg 1024 | xl 1280 */
+
+  /* ============================================================
+     07. SHAPE LANGUAGE
+     ============================================================ */
+
+  --aca-radius-none: 0;
+  --aca-radius-xs: 4px;
+  --aca-radius-sm: 8px;
+  --aca-radius-md: 12px;
+  --aca-radius-lg: 16px;
+  --aca-radius-xl: 24px;
+  --aca-radius-full: 999px;
+
+  --aca-shape-circle: 50%;
+  --aca-shape-arch-top: 999px 999px 16px 16px;
+  --aca-shape-arch-bottom: 16px 16px 999px 999px;
+  --aca-shape-capsule: 999px;
+  --aca-shape-ticket: 18px;
+
+  --aca-shape-rotate-neg: -2deg;
+  --aca-shape-rotate-pos: 2deg;
+  --aca-shape-rotate-strong-neg: -4deg;
+  --aca-shape-rotate-strong-pos: 4deg;
+
+  --aca-shape-circle-sm: 64px;
+  --aca-shape-circle-md: 128px;
+  --aca-shape-circle-lg: 240px;
+  --aca-shape-circle-xl: 420px;
+
+  /* ============================================================
+     08. BORDER / PRINT DETAIL
+     ============================================================ */
+
+  --aca-border-hairline: 1px;
+  --aca-border-strong: 2px;
+  --aca-border-poster: 3px;
+  --aca-border-ink: var(--aca-ink-950);
+
+  --aca-print-shadow-sm: 4px 4px 0 var(--aca-ink-950);
+  --aca-print-shadow-md: 7px 7px 0 var(--aca-ink-950);
+  --aca-print-shadow-accent: 7px 7px 0 var(--aca-yellow-500);
+
+  /* ============================================================
+     09. ELEVATION
+     Editorial system is border/offset-led. Soft shadow is secondary.
+     ============================================================ */
+
+  --aca-shadow-soft-sm: 0 10px 30px rgba(16, 23, 19, .06);
+  --aca-shadow-soft-md: 0 20px 56px rgba(16, 23, 19, .10);
+  --aca-shadow-media: 0 30px 80px rgba(16, 23, 19, .18);
+
+  /* ============================================================
+     10. IMAGE TREATMENT
+     ============================================================ */
+
+  --aca-image-radius-editorial: 0px;
+  --aca-image-radius-soft: 12px;
+  --aca-image-radius-feature: 24px;
+
+  --aca-image-overlay-dark: linear-gradient(180deg, rgba(16,23,19,0) 38%, rgba(16,23,19,.78) 100%);
+  --aca-image-overlay-green: linear-gradient(135deg, rgba(15,66,45,.14), rgba(15,66,45,0));
+  --aca-image-overlay-warm: linear-gradient(135deg, rgba(242,106,61,.16), rgba(242,212,61,.06));
+
+  --aca-image-saturation-editorial: 1.04;
+  --aca-image-contrast-editorial: 1.02;
+
+  /* ============================================================
+     11. MOTION
+     ============================================================ */
+
+  --aca-duration-fast: 140ms;
+  --aca-duration-base: 220ms;
+  --aca-duration-slow: 360ms;
+  --aca-duration-media: 520ms;
+
+  --aca-ease-standard: cubic-bezier(.2, .8, .2, 1);
+  --aca-ease-enter: cubic-bezier(.16, 1, .3, 1);
+  --aca-ease-exit: cubic-bezier(.4, 0, 1, 1);
+
+  --aca-motion-lift: -3px;
+  --aca-motion-media-scale: 1.025;
+
+  /* ============================================================
+     12. Z / LAYERS
+     ============================================================ */
+
+  --aca-z-base: 0;
+  --aca-z-shape: 2;
+  --aca-z-content: 5;
+  --aca-z-raised: 10;
+  --aca-z-header: 50;
+  --aca-z-menu: 60;
+  --aca-z-overlay: 80;
+  --aca-z-modal: 90;
+  --aca-z-toast: 100;
+
+  /* ============================================================
+     13. COMPONENT TOKENS
+     ============================================================ */
+
+  /* Header */
+  --aca-header-height: 76px;
+  --aca-header-height-mobile: 64px;
+  --aca-header-blur: 16px;
+
+  /* Buttons */
+  --aca-button-height-sm: 42px;
+  --aca-button-height-md: 50px;
+  --aca-button-height-lg: 56px;
+  --aca-button-pad-x: 22px;
+  --aca-button-gap: 10px;
+  --aca-button-radius: var(--aca-radius-full);
+  --aca-button-font-size: var(--aca-type-body-sm);
+  --aca-button-font-weight: var(--aca-weight-extrabold);
+
+  /* Poster button / sticker CTA */
+  --aca-poster-button-radius: var(--aca-radius-sm);
+  --aca-poster-button-border: var(--aca-border-strong);
+  --aca-poster-button-shadow: var(--aca-print-shadow-sm);
+
+  /* Forms */
+  --aca-field-height: 52px;
+  --aca-field-radius: var(--aca-radius-sm);
+  --aca-field-pad-x: 16px;
+  --aca-field-border: var(--aca-color-border);
+  --aca-field-bg: var(--aca-paper-0);
+
+  /* Tags / labels */
+  --aca-tag-height: 32px;
+  --aca-tag-pad-x: 10px;
+  --aca-tag-radius: var(--aca-radius-full);
+  --aca-tag-font-size: var(--aca-type-label);
+
+  /* Cards */
+  --aca-card-radius: var(--aca-radius-md);
+  --aca-card-radius-soft: var(--aca-radius-lg);
+  --aca-card-padding: 24px;
+  --aca-card-border: var(--aca-color-border);
+  --aca-card-shadow: none;
+
+  /* Poster cards */
+  --aca-poster-card-radius: var(--aca-radius-sm);
+  --aca-poster-card-border: var(--aca-border-strong);
+  --aca-poster-card-shadow: var(--aca-print-shadow-sm);
+
+  /* Navigation / tabs */
+  --aca-tab-height: 40px;
+  --aca-tab-radius: var(--aca-radius-full);
+
+  /* Accessibility */
+  --aca-focus-width: 3px;
+  --aca-focus-ring: 0 0 0 var(--aca-focus-width) rgba(52, 80, 216, .26);
+  --aca-hit-target-min: 44px;
+
+  /* ============================================================
+     14. SECTION ARCHETYPES
+     ============================================================ */
+
+  --aca-section-poster-bg: var(--aca-paper-50);
+  --aca-section-poster-fg: var(--aca-ink-950);
+
+  --aca-section-dark-bg: var(--aca-green-950);
+  --aca-section-dark-fg: var(--aca-paper-0);
+
+  --aca-section-signal-bg: var(--aca-yellow-500);
+  --aca-section-signal-fg: var(--aca-ink-950);
+
+  --aca-section-orange-bg: var(--aca-orange-500);
+  --aca-section-orange-fg: var(--aca-ink-950);
+
+  --aca-section-cobalt-bg: var(--aca-cobalt-500);
+  --aca-section-cobalt-fg: var(--aca-paper-0);
+
+  /* ============================================================
+     15. LEGACY COMPATIBILITY
+     New work: do not consume these names.
+     ============================================================ */
+
+  --ink: var(--aca-color-text-heading);
+  --ink-2: var(--aca-color-text-body);
+  --paper: var(--aca-color-bg-canvas);
+  --paper-2: var(--aca-color-bg-soft);
+  --white: var(--aca-paper-0);
+  --green: var(--aca-color-brand-active);
+  --green-2: var(--aca-green-500);
+  --yellow: var(--aca-color-signal-yellow);
+  --yellow-2: var(--aca-yellow-300);
+  --muted: var(--aca-color-text-muted);
+  --line: var(--aca-color-border);
+  --danger: var(--aca-color-danger);
+  --radius: var(--aca-card-radius);
+  --shadow: var(--aca-shadow-soft-md);
+  --max: var(--aca-layout-max);
+
+  --p2-green: var(--aca-color-brand);
+  --p2-green-2: var(--aca-color-brand-active);
+  --p2-dark: var(--aca-color-bg-dark);
+  --p2-yellow: var(--aca-color-signal-yellow);
+  --p2-ink: var(--aca-color-text-body);
+  --p2-muted: var(--aca-color-text-muted);
+  --p2-bg: var(--aca-color-bg-canvas);
+  --p2-line: var(--aca-color-border);
+
+  --logo-primary: var(--aca-logo-primary);
+  --logo-accent: var(--aca-logo-accent);
+}
+
+/* Canonical focus behavior */
+:where(a, button, input, select, textarea, summary):focus-visible {
+  outline: none;
+  box-shadow: var(--aca-focus-ring);
+}
+
+/* Reusable visual-language utility hooks */
+.aca-theme-paper {
+  background: var(--aca-theme-paper-bg);
+  color: var(--aca-theme-paper-fg);
+}
+.aca-theme-dark {
+  background: var(--aca-theme-dark-bg);
+  color: var(--aca-theme-dark-fg);
+}
+.aca-theme-yellow {
+  background: var(--aca-theme-yellow-bg);
+  color: var(--aca-theme-yellow-fg);
+}
+.aca-theme-orange {
+  background: var(--aca-theme-orange-bg);
+  color: var(--aca-theme-orange-fg);
+}
+.aca-theme-cobalt {
+  background: var(--aca-theme-cobalt-bg);
+  color: var(--aca-theme-cobalt-fg);
+}
+.aca-poster-border {
+  border: var(--aca-border-strong) solid var(--aca-border-ink);
+}
+.aca-print-shadow {
+  box-shadow: var(--aca-print-shadow-sm);
+}
+.aca-editorial-image {
+  border-radius: var(--aca-image-radius-editorial);
+  filter: saturate(var(--aca-image-saturation-editorial)) contrast(var(--aca-image-contrast-editorial));
+}
+.aca-sticker {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--aca-tag-height);
+  padding: 0 var(--aca-tag-pad-x);
+  border-radius: var(--aca-tag-radius);
+  border: var(--aca-border-strong) solid var(--aca-border-ink);
+  background: var(--aca-color-signal-yellow);
+  color: var(--aca-ink-950);
+  font-size: var(--aca-type-label);
+  font-weight: var(--aca-weight-extrabold);
+  letter-spacing: var(--aca-tracking-label);
+  text-transform: uppercase;
+}
+.aca-shape-circle { border-radius: 50%; }
+.aca-shape-arch-top { border-radius: var(--aca-shape-arch-top); }
+.aca-shape-arch-bottom { border-radius: var(--aca-shape-arch-bottom); }
+.aca-tilt-neg { transform: rotate(var(--aca-shape-rotate-neg)); }
+.aca-tilt-pos { transform: rotate(var(--aca-shape-rotate-pos)); }
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --aca-duration-fast: 0ms;
+    --aca-duration-base: 0ms;
+    --aca-duration-slow: 0ms;
+    --aca-duration-media: 0ms;
+    --aca-motion-lift: 0px;
+    --aca-motion-media-scale: 1;
+  }
+}
+
+</style>
+<link rel="stylesheet" href="/assets/media-career/program-critical.css?v=b386128591ae">
+<link rel="stylesheet" href="/assets/media-career/program.css?v=b386128591ae" media="print" onload="this.media='all'" data-program-styles>
+<noscript><link rel="stylesheet" href="/assets/media-career/program.css?v=b386128591ae"></noscript>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Course","name":"Hang Đôi Media Career Program","description":"Chương trình Media 4 tháng hướng tới Production Ready trong Commercial Production.","provider":{"@type":"EducationalOrganization","name":"Hang Đôi Academy","url":"https://academy.hangdoiproduction.com/"}}
+</script>
+<script src="/assets/media-career/program.js?v=b386128591ae" defer></script>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><style id="academy-logo-critical">
+header.site-header,header.site-header.scrolled{background:linear-gradient(90deg,#fffef9,#f5f7f1)!important;border-color:rgba(23,56,43,.12)!important}
+.site-header .nav-links a,.site-header.scrolled .nav-links a{color:#17382b!important}
+.brand-official,.p2-brand{display:inline-flex!important;align-items:center!important;width:200px!important;min-width:200px!important;height:40px!important;padding:0!important;border:0!important;background:none!important;background-image:none!important}
+.brand-official>*{opacity:1!important;visibility:visible!important}
+.brand-official .academy-logo-svg,.p2-brand .academy-logo-svg{display:block!important;width:200px!important;max-height:40px!important;height:auto!important;opacity:1!important;visibility:visible!important}
+footer .brand-official,.p2-footer-logo{width:220px!important;min-width:220px!important;height:48px!important}
+footer .academy-logo-svg,.p2-footer-logo .academy-logo-svg{display:block!important;width:220px!important;max-height:48px!important;height:auto!important;opacity:1!important;visibility:visible!important}
+footer .academy-logo-svg .cls-1,.p2-footer .academy-logo-svg .cls-1{fill:#fff!important}
+footer .academy-logo-svg .cls-2,.p2-footer .academy-logo-svg .cls-2{fill:#fcb415!important}
+@media(max-width:760px){.brand-official,.p2-brand{width:170px!important;min-width:170px!important;height:34px!important}.brand-official .academy-logo-svg,.p2-brand .academy-logo-svg{width:170px!important;max-height:34px!important}footer .brand-official,.p2-footer-logo{width:190px!important;min-width:190px!important;height:42px!important}footer .academy-logo-svg,.p2-footer-logo .academy-logo-svg{width:190px!important;max-height:42px!important}}
+</style></head>
+<body>
+<header class="site-header">
+  <div class="wrap nav">
+    <a href="/" aria-label="Hang Đôi Academy"><img class="brand-logo" src="/logo-academy.svg?v=b386128591ae" alt="Hang Đôi Academy" width="390" height="53"></a>
+    <nav class="nav-links">
+      <a href="#system">4 THÁNG</a>
+      <a href="#roles">NGHỀ NGHIỆP</a>
+      <a href="#tuition">HỌC PHÍ</a>
+      <a href="#faq">CÂU HỎI</a>
+      <a class="btn btn-primary" href="/media-career-program/apply/">ĐĂNG KÝ QUAN TÂM →</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="career-hero-v3" id="hero">
+  <div class="wrap">
+    <div class="mcv3-stage">
+      <div class="mcv3-copy">
+        <div class="mcv3-kicker"><i></i> Chương trình nghề Media</div>
+
+        <h1 class="mcv3-headline" aria-label="Học Media để đi làm">
+          <span class="mcv3-line"><span>HỌC</span></span>
+          <span class="mcv3-line"><span class="mcv3-yellow">MEDIA</span></span>
+          <span class="mcv3-line"><span>ĐỂ ĐI LÀM.</span></span>
+        </h1>
+
+        <p class="mcv3-description">
+          4 tháng xây nền tảng để bước vào nghề <strong>Media</strong> qua <strong>thực hành</strong>
+          và <strong>quy trình sản xuất thực tế</strong>.
+        </p>
+
+        <div class="mcv3-actions">
+          <a class="mcv3-cta" href="/media-career-program/apply/">
+            <span>ĐĂNG KÝ QUAN TÂM</span><span class="arrow">→</span>
+          </a>
+          <a class="mcv3-link" href="#system">Xem chương trình 4 tháng ↓</a>
+        </div>
+
+        <div class="mcv3-status">Đang mở đăng ký quan tâm</div>
+        <div class="mcv3-micro">Chưa thu phí ở bước này.</div>
+      </div>
+
+      <div class="mcv3-visual">
+        <figure class="mcv3-bts" id="mcv3-bts">
+          <picture>
+            <source media="(max-width:760px)" srcset="/assets/media-career/optimized/hero-bts-mobile.webp?v=b386128591ae">
+            <img
+              src="/assets/media-career/optimized/hero-bts.webp?v=b386128591ae"
+              alt="BTS Hang Đôi Academy"
+              fetchpriority="high"
+              width="800" height="1200">
+          </picture>
+          <figcaption class="mcv3-bts-label">
+            <strong>BTS ACADEMY</strong>
+            <span>Thực hành · thiết bị · môi trường làm nghề</span>
+          </figcaption>
+        </figure>
+
+        <div class="mcv3-badge">KHÓA 01</div>
+        <div class="mcv3-orange" aria-hidden="true"></div>
+
+        <figure class="mcv3-case one">
+          <img src="/assets/media-career/optimized/fourpoints.webp?v=b386128591ae" srcset="/assets/media-career/optimized/fourpoints-mobile.webp?v=b386128591ae 360w, /assets/media-career/optimized/fourpoints.webp?v=b386128591ae 720w" sizes="(max-width:760px) 46vw, 190px" alt="Case Four Points" loading="eager" fetchpriority="low" decoding="async" width="800" height="1200">
+          <small>CASE 01</small><b>FOUR POINTS</b>
+        </figure>
+
+        <figure class="mcv3-case two">
+          <img src="/assets/media-career/optimized/xita.webp?v=b386128591ae" srcset="/assets/media-career/optimized/xita-mobile.webp?v=b386128591ae 360w, /assets/media-career/optimized/xita.webp?v=b386128591ae 720w" sizes="(max-width:760px) 46vw, 190px" alt="Case Hoiana" loading="eager" fetchpriority="low" decoding="async" width="800" height="1200">
+          <small>CASE 02</small><b>HOIANA</b>
+        </figure>
+      </div>
+    </div>
+
+    <div class="mcv3-facts" aria-label="Thông tin nhanh">
+      <div class="mcv3-fact is-key"><small>01</small><strong>4 THÁNG</strong><span>Lộ trình nghề rõ ràng</span></div>
+      <div class="mcv3-fact"><small>02</small><strong>10 HỌC VIÊN</strong><span>Lớp nhỏ · theo sát hơn</span></div>
+      <div class="mcv3-fact is-practical"><small>03</small><strong>KHÔNG CẦN CAMERA</strong><span>Có thiết bị để thực hành</span></div>
+      <div class="mcv3-fact is-key"><small>04</small><strong>CHƯA THU PHÍ</strong><span>Chỉ đăng ký quan tâm trước</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section gap" id="gap">
+  <div class="wrap">
+    <div class="gap2-head reveal">
+      <div class="gap2-meta">
+        <div class="gap2-kicker">02 · Bạn đang thiếu gì để đi làm?</div>
+        <p class="gap2-index">TOOL ≠ NĂNG LỰC NGHỀ</p>
+      </div>
+
+      <div>
+        <h2 class="gap2-title">
+          BIẾT QUAY,<br>
+          BIẾT DỰNG<br>
+          <span class="accent">CHƯA CÓ NGHĨA</span><br>
+          LÀ SẴN SÀNG ĐI LÀM.
+        </h2>
+        <p class="gap2-lead">
+          Tutorial có thể chỉ bạn cách dùng camera hay phần mềm. Nhưng công việc Media thương mại còn cần
+          <strong>quy trình, tiêu chuẩn, phối hợp đội nhóm, feedback và deadline.</strong>
+        </p>
+      </div>
+    </div>
+
+    <div class="gap2-flow reveal" aria-label="Những năng lực cần có trong một quy trình Media thương mại">
+      <article class="gap2-stage">
+        <div class="gap2-stage-top">
+          <span class="gap2-stage-label">Trước sản xuất</span>
+          <span class="gap2-stage-no">01</span>
+        </div>
+        <h3>BIẾT MÌNH<br>ĐANG LÀM GÌ.</h3>
+        <ul class="gap2-list">
+          <li><strong>Hiểu đề bài</strong> và mục tiêu đầu ra</li>
+          <li><strong>Nghiên cứu</strong> trước khi bấm máy</li>
+          <li>Lập <strong>danh sách cảnh</strong> cần có</li>
+          <li><strong>Chuẩn bị thiết bị</strong> đúng nhu cầu</li>
+        </ul>
+      </article>
+
+      <article class="gap2-stage">
+        <div class="gap2-stage-top">
+          <span class="gap2-stage-label">Trong sản xuất</span>
+          <span class="gap2-stage-no">02</span>
+        </div>
+        <h3>BIẾT VẬN HÀNH<br>TRÊN MỘT SET THẬT.</h3>
+        <ul class="gap2-list">
+          <li>Kiểm soát <strong>ánh sáng</strong> có chủ đích</li>
+          <li>Chọn <strong>góc quay</strong> phục vụ câu chuyện</li>
+          <li><strong>Phối hợp đội nhóm</strong> trên set</li>
+          <li><strong>Xử lý tình huống</strong> khi thực tế thay đổi</li>
+        </ul>
+      </article>
+
+      <article class="gap2-stage">
+        <div class="gap2-stage-top">
+          <span class="gap2-stage-label">Sau sản xuất</span>
+          <span class="gap2-stage-no">03</span>
+        </div>
+        <h3>BIẾT ĐƯA JOB<br>ĐẾN ĐÍCH.</h3>
+        <ul class="gap2-list">
+          <li>Quản lý và sao lưu <strong>dữ liệu</strong></li>
+          <li><strong>Hậu kỳ</strong> theo đúng đầu ra</li>
+          <li><strong>Kiểm tra</strong> chất lượng trước khi gửi</li>
+          <li><strong>Bàn giao</strong> đúng phiên bản và deadline</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="gap2-mobile-progress" aria-hidden="true">
+      <span class="gap2-progress-label"><b>01</b> / 03</span>
+      <div class="gap2-progress-dots"><i class="is-active"></i><i></i><i></i></div>
+      <span class="gap2-progress-hint">VUỐT ĐỂ XEM →</span>
+    </div>
+
+    <div class="gap2-bridge reveal">
+      <div>
+        <small>Khoảng thiếu lớn nhất</small>
+        <p>
+          Bạn không thiếu thêm một phần mềm.
+          <strong>Bạn thiếu một quy trình để biến kỹ năng thành công việc thật.</strong>
+        </p>
+      </div>
+      <div class="gap2-bridge-action">
+        <span>Tiếp theo: xem một job thật đi từ đề bài đến bàn giao như thế nào.</span>
+        <a class="gap2-cta" href="#reality">
+          <span>XEM MỘT JOB THẬT VẬN HÀNH THẾ NÀO</span><b>→</b>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reality" class="section reality">
+  <div class="wrap">
+    <div class="reality-head reveal">
+      <div class="reality-meta">
+        <div class="reality-kicker">03 · Một job thật vận hành thế nào?</div>
+        <p class="reality-index">BRIEF → BÀN GIAO · BẤM VÀO TỪNG BƯỚC ĐỂ XEM CHI TIẾT</p>
+      </div>
+
+      <div>
+        <h2 class="reality-title">
+          CAMERA CHỈ NẰM<br>
+          Ở GIỮA <span class="accent">MỘT QUY TRÌNH DÀI.</span>
+        </h2>
+        <p class="reality-lead">
+          Một job Media thương mại không được tính là xong khi tắt camera.
+          Chọn từng bước để xem <strong>visual hỗ trợ, đầu ra và những vị trí thực sự tham gia vào bước đó.</strong>
+        </p>
+      </div>
+    </div>
+
+    <div class="reality-layout">
+      <div class="job-mobile-guide" aria-hidden="true">
+        <span><b>8</b> BƯỚC CỦA MỘT JOB</span>
+        <span>CHẠM TỪNG BƯỚC ĐỂ XEM ↓</span>
+      </div>
+      <div class="job-flow reveal" aria-label="Quy trình 8 bước của một job Media thương mại">
+        <article class="job-step is-active" id="job-step-01" role="button" tabindex="0" aria-pressed="true" aria-controls="job-detail" data-step="01">
+          <div class="job-step-no">01</div>
+          <div class="job-step-title"><small>Bắt đầu</small><h3>ĐỀ BÀI</h3></div>
+          <p class="job-step-copy"><strong>Hiểu mục tiêu</strong>, đầu ra, đối tượng xem và các ràng buộc trước khi nghĩ đến thiết bị.</p>
+          <span class="job-step-arrow">→</span>
+        </article>
+
+        <article class="job-step" id="job-step-02" role="button" tabindex="0" aria-pressed="false" aria-controls="job-detail" data-step="02">
+          <div class="job-step-no">02</div>
+          <div class="job-step-title"><small>Trước set</small><h3>CHUẨN BỊ</h3></div>
+          <p class="job-step-copy">Nghiên cứu · moodboard · shotlist · thiết bị · ánh sáng · nhân sự · địa điểm.</p>
+          <span class="job-step-arrow">→</span>
+        </article>
+
+        <article class="job-step is-camera" id="job-step-03" role="button" tabindex="0" aria-pressed="false" aria-controls="job-detail" data-step="03">
+          <span class="job-camera-tag">CAMERA Ở ĐÂY</span>
+          <div class="job-step-no">03</div>
+          <div class="job-step-title"><small>Trên set</small><h3>SẢN XUẤT</h3></div>
+          <p class="job-step-copy">Ghi hình, kiểm soát ánh sáng, phối hợp đội nhóm và <strong>xử lý những gì thực tế làm lệch kế hoạch.</strong></p>
+          <span class="job-step-arrow">→</span>
+        </article>
+
+        <article class="job-step" id="job-step-04" role="button" tabindex="0" aria-pressed="false" aria-controls="job-detail" data-step="04">
+          <div class="job-step-no">04</div>
+          <div class="job-step-title"><small>Sau set</small><h3>DỮ LIỆU</h3></div>
+          <p class="job-step-copy">Ingest · backup · đặt tên · phân loại · kiểm tra để không biến một buổi quay tốt thành dữ liệu hỗn loạn.</p>
+          <span class="job-step-arrow">→</span>
+        </article>
+
+        <article class="job-step" id="job-step-05" role="button" tabindex="0" aria-pressed="false" aria-controls="job-detail" data-step="05">
+          <div class="job-step-no">05</div>
+          <div class="job-step-title"><small>Tạo đầu ra</small><h3>HẬU KỲ</h3></div>
+          <p class="job-step-copy">Chọn · dựng · chỉnh ảnh · âm thanh · màu sắc · đồ họa theo <strong>đúng mục tiêu của brief.</strong></p>
+          <span class="job-step-arrow">→</span>
+        </article>
+
+        <article class="job-step is-feedback" id="job-step-06" role="button" tabindex="0" aria-pressed="false" aria-controls="job-detail" data-step="06">
+          <div class="job-step-no">06</div>
+          <div class="job-step-title"><small>Revision loop</small><h3>GÓP Ý</h3></div>
+          <p class="job-step-copy">Nhận feedback, hiểu lý do cần sửa và xác định thay đổi nào thực sự phục vụ đầu ra.</p>
+          <span class="job-step-arrow">→</span>
+        </article>
+
+        <article class="job-step is-feedback" id="job-step-07" role="button" tabindex="0" aria-pressed="false" aria-controls="job-detail" data-step="07">
+          <div class="job-step-no">07</div>
+          <div class="job-step-title"><small>Revision loop</small><h3>LÀM LẠI</h3></div>
+          <p class="job-step-copy">Sửa · quản lý phiên bản · QC lại. <strong>Chưa đạt thì chưa coi là hoàn thành.</strong></p>
+          <span class="job-step-arrow">→</span>
+        </article>
+
+        <article class="job-step" id="job-step-08" role="button" tabindex="0" aria-pressed="false" aria-controls="job-detail" data-step="08">
+          <div class="job-step-no">08</div>
+          <div class="job-step-title"><small>Kết thúc</small><h3>BÀN GIAO</h3></div>
+          <p class="job-step-copy">Đúng file · đúng format · đúng phiên bản · đúng nơi nhận · <strong>đúng deadline.</strong></p>
+          <span class="job-step-arrow">✓</span>
+        </article>
+      </div>
+
+      <aside class="job-side reveal">
+        <div class="job-detail-home" id="job-detail-home">
+          <section class="job-detail-card" id="job-detail" role="region" aria-live="polite" aria-labelledby="job-detail-title">
+            <div class="job-detail-top">
+              <small>VISUAL HỖ TRỢ · MỘT JOB THẬT</small>
+              <span class="job-detail-counter" id="job-detail-counter">01 / 08</span>
+            </div>
+            <figure class="job-detail-visual">
+              <img id="job-detail-image" src="/assets/media-career/optimized/fourpoints.webp?v=b386128591ae" alt="Case Four Points do Hang Đôi Production thực hiện" loading="lazy" fetchpriority="low" decoding="async" width="800" height="1200">
+              <figcaption class="job-detail-caption">
+                <small id="job-detail-visual-label">CASE THƯƠNG MẠI / FOUR POINTS</small>
+                <strong id="job-detail-visual-title">Từ yêu cầu thành đầu bài có thể sản xuất.</strong>
+              </figcaption>
+            </figure>
+
+            <div class="job-role-bar">
+              <small>Vị trí liên quan trong bước này</small>
+              <div class="job-role-chips" id="job-role-chips">
+                <span class="job-role-chip">Production Assistant / Owner</span>
+                <span class="job-role-chip">Video Creative</span>
+                <span class="job-role-chip">Creative Leader / Manager / Director</span>
+              </div>
+            </div>
+
+            <div class="job-detail-body">
+              <div class="job-detail-kicker" id="job-detail-kicker">BƯỚC 01 · ĐỀ BÀI</div>
+              <h3 id="job-detail-title">Biến yêu cầu thành đầu bài có thể sản xuất.</h3>
+              <p id="job-detail-copy">Team làm rõ mục tiêu truyền thông, kênh sử dụng, đối tượng xem, format, số lượng đầu ra và các ràng buộc. Chưa rõ đầu bài thì chưa bàn camera.</p>
+              <div class="job-output">
+                <small>OUTPUT</small>
+                <strong id="job-detail-output">Brief đã làm rõ + danh sách đầu ra cần bàn giao.</strong>
+              </div>
+            </div>
+          </section>
+        </div>
+
+      </aside>
+    </div>
+    <div class="reality-bridge reveal">
+      <div class="reality-bridge-copy">
+        <small>TIẾP THEO · CHƯƠNG TRÌNH 4 THÁNG</small>
+        <p><strong>BIẾT MỘT JOB VẬN HÀNH THẾ NÀO</strong> LÀ BƯỚC ĐẦU.</p>
+        <span>Tiếp theo: 4 tháng để học cách tự mình đi qua quy trình đó.</span>
+      </div>
+      <a class="reality-bridge-cta" href="#system">
+        <span>XEM CÁCH 4 THÁNG ĐƯỢC THIẾT KẾ</span>
+        <b aria-hidden="true">→</b>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<section id="system" class="section curriculum program4">
+  <div class="wrap">
+    <div class="program4-head reveal">
+      <div class="program4-meta">
+        <div class="program4-kicker">04 · LỘ TRÌNH 4 THÁNG</div>
+        <p class="program4-index">THIẾT BỊ → YÊU CẦU → SẢN PHẨM → DỰ ÁN</p>
+      </div>
+      <div>
+        <h2 class="program4-title">4 THÁNG.<br>TỪ BIẾT DÙNG THIẾT BỊ<br><span class="accent">ĐẾN TỰ LÀM TRỌN MỘT DỰ ÁN.</span></h2>
+        <p class="program4-lead">Không học dàn trải. <strong>Mỗi tháng chỉ tập trung vào một bước tiến rõ ràng</strong> và kết thúc bằng một sản phẩm để bạn biết mình thực sự đã làm được gì.</p>
+      </div>
+    </div>
+
+    <div class="program4-roadmap reveal" aria-label="Lộ trình 4 tháng">
+      <svg class="program4-roadmap-svg" viewBox="0 0 1400 430" preserveAspectRatio="none" aria-hidden="true">
+        <path class="program4-roadmap-shadow" d="M70 145 C220 35 300 75 355 180 C420 300 495 295 555 160 C615 22 720 30 800 155 C885 287 935 305 1005 190 C1075 75 1170 87 1230 172 C1280 245 1332 230 1370 115"/>
+        <path class="program4-roadmap-base" d="M70 145 C220 35 300 75 355 180 C420 300 495 295 555 160 C615 22 720 30 800 155 C885 287 935 305 1005 190 C1075 75 1170 87 1230 172 C1280 245 1332 230 1370 115"/>
+        <path class="program4-roadmap-highlight" d="M70 145 C220 35 300 75 355 180 C420 300 495 295 555 160 C615 22 720 30 800 155 C885 287 935 305 1005 190 C1075 75 1170 87 1230 172 C1280 245 1332 230 1370 115"/>
+        <path class="program4-roadmap-dash" d="M70 145 C220 35 300 75 355 180 C420 300 495 295 555 160 C615 22 720 30 800 155 C885 287 935 305 1005 190 C1075 75 1170 87 1230 172 C1280 245 1332 230 1370 115"/>
+      </svg>
+
+      <button class="program4-roadmap-pin is-active" type="button" data-stage="01" aria-pressed="true" aria-controls="program4-detail">
+        <span class="program4-pin-core">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <rect x="10" y="15" width="28" height="20" rx="3"/>
+            <circle cx="24" cy="25" r="6"/>
+            <path d="M17 15l3-5h8l3 5"/>
+          </svg>
+        </span>
+        <span class="program4-pin-label"><b>01</b><strong>THIẾT BỊ</strong><small>Tool</small></span>
+      </button>
+
+      <button class="program4-roadmap-pin" type="button" data-stage="02" aria-pressed="false" aria-controls="program4-detail">
+        <span class="program4-pin-core">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M14 7h17l6 6v27H14z"/>
+            <path d="M31 7v7h7"/>
+            <circle cx="24" cy="25" r="5"/>
+            <path d="M28 29l6 6"/>
+          </svg>
+        </span>
+        <span class="program4-pin-label"><b>02</b><strong>YÊU CẦU</strong><small>Brief</small></span>
+      </button>
+
+      <button class="program4-roadmap-pin" type="button" data-stage="03" aria-pressed="false" aria-controls="program4-detail">
+        <span class="program4-pin-core">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <rect x="8" y="9" width="32" height="23" rx="3"/>
+            <path d="M16 39h16M24 32v7"/>
+            <path d="M15 24l6-6 4 4 8-8"/>
+          </svg>
+        </span>
+        <span class="program4-pin-label"><b>03</b><strong>SẢN PHẨM</strong><small>Output</small></span>
+      </button>
+
+      <button class="program4-roadmap-pin" type="button" data-stage="04" aria-pressed="false" aria-controls="program4-detail">
+        <span class="program4-pin-core">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <circle cx="18" cy="17" r="6"/>
+            <path d="M8 38c1-8 5-12 10-12s9 4 10 12"/>
+            <rect x="31" y="14" width="9" height="18" rx="2"/>
+            <path d="M34 18h3M34 22h3"/>
+          </svg>
+        </span>
+        <span class="program4-pin-label"><b>04</b><strong>DỰ ÁN</strong><small>Job</small></span>
+      </button>
+    </div>
+
+    <div class="program4-detail-wrap reveal">
+      <article class="program4-detail" id="program4-detail" aria-live="polite">
+        <div class="program4-detail-copy">
+          <div class="program4-detail-kicker" id="program4-detail-kicker">THÁNG 01 · LÀM QUEN THUẬT NGỮ: TOOL</div>
+          <h3 class="program4-detail-title" id="program4-detail-title">LÀM QUEN &amp; LÀM CHỦ THIẾT BỊ.</h3>
+          <p class="program4-detail-desc" id="program4-detail-desc">Biết tự setup máy, ánh sáng và âm thanh để quay/chụp đúng mục tiêu.</p>
+          <div class="program4-detail-bottom">
+            <span class="program4-detail-proof" id="program4-detail-proof">BẠN CÓ · 01 BÀI THỰC HÀNH KỸ THUẬT</span>
+            <span class="program4-detail-focus" id="program4-detail-focus">Tập trung: máy ảnh · ánh sáng · âm thanh · gimbal</span>
+          </div>
+          <span class="program4-detail-no" id="program4-detail-no" aria-hidden="true">01</span>
+        </div>
+        <div class="program4-detail-media">
+          <img id="program4-detail-image" src="/assets/media-career/optimized/roadmap-01-thiet-bi.webp?v=b386128591ae" alt="Học viên thực hành thiết bị tại Hang Đôi Academy" loading="lazy" fetchpriority="low" decoding="async">
+          <span class="program4-detail-media-label" id="program4-detail-media-label">BTS HANG ĐÔI ACADEMY · THỰC HÀNH</span>
+        </div>
+      </article>
+      <div class="program4-detail-progress" aria-hidden="true">
+        <span class="is-active"></span><span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <div class="program4-bridge reveal">
+      <div>
+        <small>TIẾP THEO · CÁCH HỌC</small>
+        <strong>Làm xong chưa phải là xong — còn phải nhận góp ý, sửa và làm tốt hơn.</strong>
+      </div>
+      <a class="program4-bridge-cta" href="#learning-loop">XEM CÁCH HỌC &amp; GÓP Ý →</a>
+    </div>
+  </div>
+</section>
+
+<section class="section learning-loop" id="learning-loop">
+  <div class="wrap loop5">
+    <div class="loop5-head reveal">
+      <div class="loop5-meta">
+        <div class="loop5-kicker">05 · CÁCH HỌC</div>
+        <p class="loop5-index">LÀM → XEM LẠI → NHẬN GÓP Ý → SỬA</p>
+      </div>
+      <div>
+        <h2 class="loop5-title">KHÔNG CẦN ĐÚNG NGAY.<br><span class="accent">CẦN BIẾT SỬA.</span></h2>
+        <p class="loop5-lead">Đi làm thật hiếm khi đúng ngay lần đầu. <strong>Quan trọng là biết vì sao chưa đạt và làm phiên bản tiếp theo tốt hơn.</strong></p>
+      </div>
+    </div>
+
+    <div class="loop5-stage reveal">
+      <div class="loop5-panel" id="loop5-panel" aria-live="polite">
+        <div class="loop5-step-kicker" id="loop5-step-kicker">BƯỚC 01 · LÀM</div>
+        <div class="loop5-step-no" id="loop5-step-no">01 / 04</div>
+        <h3 class="loop5-step-title" id="loop5-step-title">LÀM MỘT PHIÊN BẢN.</h3>
+        <p class="loop5-step-desc" id="loop5-step-desc">Biến điều vừa học thành một sản phẩm cụ thể để có thứ thật mà xem lại.</p>
+        <span class="loop5-step-proof" id="loop5-step-proof">CÓ THỨ THẬT ĐỂ ĐÁNH GIÁ</span>
+      </div>
+
+      <div class="loop5-visual" id="loop5-visual" data-step="1">
+        <img src="/assets/media-career/optimized/roadmap-02-yeu-cau.webp?v=b386128591ae" alt="Học viên Hang Đôi Academy cùng xem lại sản phẩm" loading="lazy" fetchpriority="low" decoding="async">
+        <span class="loop5-version" id="loop5-version">VERSION 01 · ĐANG LÀM</span>
+
+        <div class="loop5-comment loop5-comment-a">
+          <small>GÓP Ý</small>
+          <strong>Khung hình này chưa làm rõ chủ thể.</strong>
+        </div>
+        <div class="loop5-comment loop5-comment-b">
+          <small>GIỮ LẠI</small>
+          <strong>Ánh sáng ở shot này đang ổn hơn.</strong>
+        </div>
+
+        <div class="loop5-review-chip">
+          <i aria-hidden="true"></i>
+          <span>BTS HANG ĐÔI ACADEMY · REVIEW CÙNG NHAU</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="loop5-nav reveal" aria-label="Vòng lặp học và thực hành">
+      <button class="loop5-btn is-active" type="button" data-loop-step="0" aria-pressed="true">
+        <span class="loop5-nav-no">01</span>
+        <span class="loop5-nav-copy"><strong>LÀM</strong><small>TẠO PHIÊN BẢN ĐẦU</small></span>
+      </button>
+      <button class="loop5-btn" type="button" data-loop-step="1" aria-pressed="false">
+        <span class="loop5-nav-no">02</span>
+        <span class="loop5-nav-copy"><strong>XEM LẠI</strong><small>SO VỚI MỤC TIÊU</small></span>
+      </button>
+      <button class="loop5-btn" type="button" data-loop-step="2" aria-pressed="false">
+        <span class="loop5-nav-no">03</span>
+        <span class="loop5-nav-copy"><strong>NHẬN GÓP Ý</strong><small>BIẾT CHỖ CẦN SỬA</small></span>
+      </button>
+      <button class="loop5-btn" type="button" data-loop-step="3" aria-pressed="false">
+        <span class="loop5-nav-no">04</span>
+        <span class="loop5-nav-copy"><strong>SỬA &amp; LÀM LẠI</strong><small>TẠO PHIÊN BẢN TỐT HƠN</small></span>
+      </button>
+    </div>
+
+    <div class="loop5-timer" aria-hidden="true">
+      <span class="is-active"></span><span></span><span></span><span></span>
+    </div>
+
+    <div class="loop5-exit reveal">
+      <div>
+        <small>KHI ĐẠT TIÊU CHUẨN</small>
+        <strong>GIỮ LẠI SẢN PHẨM TỐT NHẤT ĐỂ XÂY HỒ SƠ NĂNG LỰC.</strong>
+      </div>
+      <div class="loop5-exit-flow" aria-label="Kết quả sau vòng học">
+        <span>SẢN PHẨM ĐẠT</span><b aria-hidden="true">→</b>
+        <span>GIỮ LẠI</span><b aria-hidden="true">→</b>
+        <span>ĐI TIẾP</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section practice">
+  <div class="wrap practice6">
+    <div class="practice6-head reveal">
+      <div class="practice6-meta">
+        <div class="practice6-kicker">06 · ĐỀ BÀI THỰC HÀNH</div>
+        <p class="practice6-index">F&amp;B · KHÔNG GIAN · CON NGƯỜI · PHOTO · VIDEO</p>
+      </div>
+      <div>
+        <h2 class="practice6-title">KHÔNG HỌC TRÊN<br><span class="accent">MỘT KIỂU BÀI.</span></h2>
+        <p class="practice6-lead">Bạn sẽ luyện cách nhìn và xử lý nhiều bối cảnh khác nhau — <strong>từ món ăn, sản phẩm, không gian đến con người</strong> — bằng cả ảnh và video.</p>
+      </div>
+    </div>
+
+    <div class="practice6-gallery reveal">
+      <article class="practice6-tile big">
+        <img src="/assets/media-career/optimized/fnb-676.webp?v=b386128591ae" alt="Hình ảnh F&amp;B tham chiếu do Hang Đôi Production thực hiện" loading="lazy" fetchpriority="low" decoding="async" width="800" height="1200">
+        <span class="practice6-source">THAM CHIẾU · HANG ĐÔI PRODUCTION</span>
+        <div class="practice6-tile-copy">
+          <span class="practice6-tile-kicker">01 · F&amp;B / SẢN PHẨM</span>
+          <h3>LÀM MÓN ĂN<br>TRỞ NÊN MUỐN NHÌN.</h3>
+          <p>Luyện bố cục, ánh sáng, chất liệu và cách làm nổi bật sản phẩm.</p>
+        </div>
+      </article>
+
+      <article class="practice6-tile">
+        <img src="/assets/media-career/optimized/floral-1823.webp?v=b386128591ae" alt="Hình ảnh không gian hospitality tham chiếu do Hang Đôi Production thực hiện" loading="lazy" fetchpriority="low" decoding="async" width="800" height="1200">
+        <span class="practice6-source">THAM CHIẾU · HANG ĐÔI PRODUCTION</span>
+        <div class="practice6-tile-copy">
+          <span class="practice6-tile-kicker">02 · KHÔNG GIAN / HOSPITALITY</span>
+          <h3>KỂ CÂU CHUYỆN<br>CỦA MỘT KHÔNG GIAN.</h3>
+        </div>
+      </article>
+
+      <article class="practice6-tile">
+        <img src="/assets/media-career/optimized/floral-9532.webp?v=b386128591ae" alt="Hình ảnh con người lifestyle tham chiếu do Hang Đôi Production thực hiện" loading="lazy" fetchpriority="low" decoding="async" width="800" height="1200">
+        <span class="practice6-source">THAM CHIẾU · HANG ĐÔI PRODUCTION</span>
+        <div class="practice6-tile-copy">
+          <span class="practice6-tile-kicker">03 · CON NGƯỜI / LIFESTYLE</span>
+          <h3>ĐỂ CON NGƯỜI<br>TRÔNG TỰ NHIÊN.</h3>
+        </div>
+      </article>
+    </div>
+
+    <div class="practice6-format-strip reveal">
+      <article class="practice6-format-card">
+        <small>FORMAT 01</small>
+        <strong>PHOTO.</strong>
+        <p>Biết chọn khoảnh khắc, bố cục và hoàn thiện một bộ ảnh có mục tiêu.</p>
+      </article>
+      <article class="practice6-format-card">
+        <small>FORMAT 02</small>
+        <strong>VIDEO.</strong>
+        <p>Biết nghĩ theo chuỗi cảnh, chuyển động và dựng thành một câu chuyện ngắn.</p>
+      </article>
+      <article class="practice6-format-card mixed">
+        <small>MỤC TIÊU</small>
+        <strong>KHÔNG CHỈ BIẾT DÙNG MÁY. BIẾT CHỌN CÁCH KỂ.</strong>
+        <p>Cùng một đề bài, bạn bắt đầu hiểu khi nào nên dùng ảnh, khi nào nên dùng video — và vì sao.</p>
+      </article>
+    </div>
+
+    <div class="practice6-bridge reveal">
+      <div>
+        <small>TIẾP THEO · HƯỚNG NGHỀ</small>
+        <strong>Sau khi đi qua nền tảng chung, bạn sẽ bắt đầu thấy mình hợp với phần nào nhất.</strong>
+      </div>
+      <a href="#roles">XEM CÁC HƯỚNG NGHỀ →</a>
+    </div>
+  </div>
+</section>
+
+<section id="roles" class="section roles">
+  <div class="wrap roles7">
+    <div class="roles7-head reveal">
+      <div class="roles7-meta">
+        <div class="roles7-kicker">07 · HƯỚNG NGHỀ</div>
+        <p class="roles7-index">PHOTO · VIDEO · VIDEO CREATIVE · PRODUCTION</p>
+      </div>
+      <div>
+        <h2 class="roles7-title">MEDIA KHÔNG CHỈ CÓ<br><span class="accent">MỘT CÔNG VIỆC.</span></h2>
+        <p class="roles7-lead">Bạn không cần chọn nghề ngay từ ngày đầu. <strong>Học nền tảng chung trước, rồi dần nhận ra phần việc mình làm tốt và thích nhất.</strong></p>
+      </div>
+    </div>
+
+    <div class="roles7-tabs reveal" aria-label="Các hướng nghề Media">
+      <button class="roles7-tab is-active" type="button" data-role="photo" aria-pressed="true">
+        <small>01 · HÌNH ẢNH</small>
+        <strong>PHOTOGRAPHER</strong>
+        <span>Khung hình · ánh sáng · khoảnh khắc</span>
+      </button>
+      <button class="roles7-tab" type="button" data-role="video" aria-pressed="false">
+        <small>02 · CHUYỂN ĐỘNG</small>
+        <strong>VIDEOGRAPHER</strong>
+        <span>Camera · movement · set</span>
+      </button>
+      <button class="roles7-tab" type="button" data-role="creative" aria-pressed="false">
+        <small>03 · CÂU CHUYỆN</small>
+        <strong>VIDEO CREATIVE</strong>
+        <span>Ý tưởng · shotlist · dựng</span>
+      </button>
+      <button class="roles7-tab" type="button" data-role="production" aria-pressed="false">
+        <small>04 · VẬN HÀNH</small>
+        <strong>PRODUCTION</strong>
+        <span>Điều phối · quy trình · team</span>
+      </button>
+    </div>
+
+    <div class="roles7-detail reveal">
+      <article class="roles7-detail-main" id="roles7-detail-main" data-index="01" aria-live="polite">
+        <div class="roles7-detail-kicker" id="roles7-detail-kicker">HƯỚNG 01 · PHOTOGRAPHER</div>
+        <h3 class="roles7-detail-title" id="roles7-detail-title">THÍCH NHÌN MỘT KHUNG HÌNH CHO ĐÚNG.</h3>
+        <p class="roles7-detail-desc" id="roles7-detail-desc">Bạn để ý ánh sáng, bố cục, khoảnh khắc và thường muốn chỉnh từng chi tiết để hình ảnh “đúng cảm giác” hơn.</p>
+        <div class="roles7-fit" id="roles7-fit">
+          <span>ÁNH SÁNG</span><span>BỐ CỤC</span><span>CHI TIẾT</span><span>KHOẢNH KHẮC</span>
+        </div>
+      </article>
+
+      <aside class="roles7-path-card">
+        <small>ĐIỂM BẮT ĐẦU CÓ THỂ LÀ</small>
+        <div class="roles7-path-list" id="roles7-path-list">
+          <div class="roles7-path-step"><b>01</b><div><strong>Trợ lý nhiếp ảnh</strong><span>Hỗ trợ thiết bị, ánh sáng và set.</span></div></div>
+          <div class="roles7-path-step"><b>02</b><div><strong>Photographer</strong><span>Tự thực hiện những bài chụp phù hợp năng lực.</span></div></div>
+          <div class="roles7-path-step"><b>03</b><div><strong>Commercial Photographer</strong><span>Đi sâu vào hình ảnh thương mại và dự án lớn hơn.</span></div></div>
+        </div>
+        <div class="roles7-note">Đây là hướng phát triển tham khảo, không phải chức danh tự động sau 4 tháng.</div>
+      </aside>
+    </div>
+
+    <div class="roles7-bridge reveal">
+      <div>
+        <small>KHÔNG CẦN CHỌN NGAY</small>
+        <strong>4 tháng đầu là để xây nền và có đủ trải nghiệm trước khi nghiêng về một hướng.</strong>
+      </div>
+      <a href="#apply">XEM MÌNH CÓ PHÙ HỢP →</a>
+    </div>
+  </div>
+</section>
+
+<section class="section outputs">
+  <div class="wrap outputs8">
+    <div class="outputs8-head reveal">
+      <div class="outputs8-meta">
+        <div class="outputs8-kicker">08 · SAU 4 THÁNG, BẠN CÓ GÌ?</div>
+        <p class="outputs8-index">SẢN PHẨM · ĐỒ ÁN · ĐỊNH HƯỚNG</p>
+      </div>
+      <div>
+        <h2 class="outputs8-title">SAU 4 THÁNG,<br>BẠN PHẢI CÓ THỨ<br><span class="accent">ĐỂ MANG ĐI.</span></h2>
+        <p class="outputs8-lead">Không chỉ là học xong một khóa. Quan trọng là <strong>bạn có sản phẩm để cho người khác xem, biết mình làm được gì và nên đi tiếp theo hướng nào.</strong></p>
+      </div>
+    </div>
+
+    <div class="outputs8-grid reveal">
+      <div class="outputs8-pack">
+        <div class="outputs8-pack-copy">
+          <small>SAU CHƯƠNG TRÌNH</small>
+          <strong>3 THỨ BẠN PHẢI CÓ SAU 4 THÁNG.</strong>
+          <p>Không chỉ kết thúc bằng việc “học xong”. Bạn có những thứ cụ thể để mở ra, xem lại và dùng tiếp.</p>
+        </div>
+
+        <div class="outputs8-doc-rail">
+        <article class="outputs8-doc a">
+          <div class="outputs8-doc-cover">
+            <img src="/assets/media-career/optimized/fnb-676.webp?v=b386128591ae" alt="Hình ảnh tham chiếu do Hang Đôi Production thực hiện" loading="lazy" fetchpriority="low" decoding="async" width="800" height="1200">
+            <span class="outputs8-doc-source">HÌNH THAM CHIẾU · HANG ĐÔI PRODUCTION</span>
+          </div>
+          <div class="outputs8-doc-body">
+            <small>01 · SẢN PHẨM ĐÃ LÀM · PORTFOLIO</small>
+            <strong>NHỮNG BÀI TỐT NHẤT CỦA BẠN.</strong>
+            <p>Chọn lại những sản phẩm tốt nhất để dùng khi xin thực tập, tìm việc hoặc nhận dự án.</p>
+          </div>
+        </article>
+
+        <article class="outputs8-doc b">
+          <div class="outputs8-doc-cover">
+            <img src="/assets/media-career/optimized/floral-1823.webp?v=b386128591ae" alt="Hình ảnh tham chiếu do Hang Đôi Production thực hiện" loading="lazy" fetchpriority="low" decoding="async" width="800" height="1200">
+            <span class="outputs8-doc-source">HÌNH THAM CHIẾU · HANG ĐÔI PRODUCTION</span>
+          </div>
+          <div class="outputs8-doc-body">
+            <small>02 · ĐỒ ÁN CUỐI KHÓA</small>
+            <strong>MỘT DỰ ÁN BẠN TỰ ĐI TỪ ĐẦU ĐẾN CUỐI.</strong>
+            <p>Từ nhận yêu cầu → chuẩn bị → quay/chụp → chỉnh sửa → bàn giao.</p>
+          </div>
+        </article>
+
+        <article class="outputs8-doc c">
+          <div class="outputs8-doc-cover">
+            <img src="/assets/media-career/optimized/floral-9532.webp?v=b386128591ae" alt="Hình ảnh tham chiếu do Hang Đôi Production thực hiện" loading="lazy" fetchpriority="low" decoding="async" width="800" height="1200">
+            <span class="outputs8-doc-source">HÌNH THAM CHIẾU · HANG ĐÔI PRODUCTION</span>
+          </div>
+          <div class="outputs8-doc-body">
+            <small>03 · BẢN ĐÁNH GIÁ CÁ NHÂN · SKILL PROFILE</small>
+            <strong>BIẾT MÌNH ĐANG MẠNH VÀ YẾU Ở ĐÂU.</strong>
+            <p>Nhìn lại kỹ năng đã có, phần còn thiếu và hướng nên tiếp tục luyện.</p>
+          </div>
+        </article>
+        </div>
+      </div>
+
+      <div class="outputs8-side">
+        <article class="outputs8-side-card">
+          <small>BẠN BIẾT</small>
+          <strong>MÌNH LÀM TỐT PHẦN NÀO.</strong>
+          <p>Không còn chỉ dựa vào cảm giác.</p>
+        </article>
+        <article class="outputs8-side-card">
+          <small>BẠN BIẾT</small>
+          <strong>PHẦN NÀO CẦN LUYỆN THÊM.</strong>
+          <p>Để không học lan man sau khóa.</p>
+        </article>
+        <article class="outputs8-side-card dark">
+          <small>BẠN BIẾT</small>
+          <strong>MÌNH NÊN BẮT ĐẦU TỪ ĐÂU.</strong>
+          <p>Tiếp tục học, xin thực tập, tham gia dự án hoặc tìm vị trí phù hợp.</p>
+        </article>
+      </div>
+    </div>
+
+    <div class="outputs8-footer reveal">
+      <div>
+        <small>ĐÍCH ĐẾN KHÔNG CHỈ LÀ HOÀN THÀNH KHÓA HỌC</small>
+        <strong>MÀ LÀ CÓ THỨ ĐỂ CHO NGƯỜI KHÁC XEM: “ĐÂY LÀ NHỮNG GÌ MÌNH ĐÃ LÀM.”</strong>
+      </div>
+      <span>CÓ SẢN PHẨM · CÓ HƯỚNG ĐI</span>
+    </div>
+  </div>
+</section>
+
+<section class="career9" id="income">
+  <div class="wrap career9-wrap">
+    <div class="career9-head">
+      <div class="career9-meta">
+        <div class="career9-kicker">09 · THU NHẬP THAM CHIẾU</div>
+        <div class="career9-sub">TẠI HANG ĐÔI PRODUCTION · THEO NĂNG LỰC THỰC TẾ</div>
+      </div>
+      <div>
+        <h2 class="career9-title">NĂNG LỰC TĂNG.<br><span>CƠ HỘI CŨNG TĂNG.</span></h2>
+        <p class="career9-lead">Khi bạn làm được nhiều hơn, tự chủ hơn và tạo ra giá trị rõ hơn, <strong>mức thu nhập cũng có thể tăng theo.</strong></p>
+      </div>
+    </div>
+
+    <div class="career9-area">
+      <div class="career9-stairs">
+        <div class="career9-intro">
+          <small>LỘ TRÌNH THU NHẬP THAM CHIẾU</small>
+          <h3>ĐI TỪ BẬC ĐẦU TIÊN ĐẾN MỨC CAO HƠN.</h3>
+          <p>Mỗi bậc không chỉ là số tiền cao hơn. Đó là lúc bạn làm được nhiều việc hơn, chịu trách nhiệm lớn hơn và tạo ra kết quả rõ hơn.</p>
+        </div>
+
+        <div class="career9-svg-wrap">
+          <svg class="career9-svg" viewBox="0 0 1100 470" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M90 410 V330 H250 V250 H450 V170 H670 V90 H930" stroke="url(#career9Grad)" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs><linearGradient id="career9Grad" x1="90" y1="410" x2="930" y2="90" gradientUnits="userSpaceOnUse"><stop stop-color="#F4C542"/><stop offset=".34" stop-color="#B8DCC8"/><stop offset=".68" stop-color="#22865A"/><stop offset="1" stop-color="#0B6A3F"/></linearGradient></defs>
+          </svg>
+          <article class="career9-step s1"><small>LEVEL 01 · FRESHER</small><div class="career9-money">8M+</div><strong>Tổng thu nhập / tháng</strong><p>Làm được những phần việc cơ bản, có người hướng dẫn và góp ý.</p></article>
+          <article class="career9-step s2"><small>LEVEL 02 · JUNIOR</small><div class="career9-money">12M+</div><strong>Tổng thu nhập / tháng</strong><p>Tự xử lý nhiều phần việc hơn và chịu trách nhiệm rõ hơn trong một job.</p></article>
+          <article class="career9-step s3"><small>LEVEL 03 · MID</small><div class="career9-money">20M+</div><strong>Tổng thu nhập / tháng</strong><p>Làm độc lập hơn, xử lý bài khó hơn và tạo giá trị rõ cho dự án.</p></article>
+          <article class="career9-step s4"><small>LEVEL 04 · SENIOR</small><div class="career9-money">30M+</div><strong>Tổng thu nhập / tháng</strong><p>Chịu trách nhiệm phần việc lớn, dẫn người khác và chịu trách nhiệm cao hơn với kết quả.</p></article>
+        </div>
+
+        <div class="career9-mobile">
+          <article class="career9-step"><small style="color:#f4c542">LEVEL 01 · FRESHER</small><div class="career9-money">8M+</div><strong>Tổng thu nhập / tháng</strong><p>Làm được những phần việc cơ bản, có người hướng dẫn và góp ý.</p></article>
+          <article class="career9-step"><small style="color:#b8dcc8">LEVEL 02 · JUNIOR</small><div class="career9-money">12M+</div><strong>Tổng thu nhập / tháng</strong><p>Tự xử lý nhiều phần việc hơn và chịu trách nhiệm rõ hơn trong một job.</p></article>
+          <article class="career9-step"><small style="color:#6fc49a">LEVEL 03 · MID</small><div class="career9-money">20M+</div><strong>Tổng thu nhập / tháng</strong><p>Làm độc lập hơn, xử lý bài khó hơn và tạo giá trị rõ cho dự án.</p></article>
+          <article class="career9-step"><small style="color:#83d4a9">LEVEL 04 · SENIOR</small><div class="career9-money">30M+</div><strong>Tổng thu nhập / tháng</strong><p>Chịu trách nhiệm phần việc lớn, dẫn người khác và chịu trách nhiệm cao hơn với kết quả.</p></article>
+        </div>
+      </div>
+
+      <div class="career9-legend">
+        <article><small>01 · NĂNG LỰC</small><strong>Làm được việc gì?</strong><p>Từ việc cơ bản đến những phần việc khó hơn.</p></article>
+        <article><small>02 · TRÁCH NHIỆM</small><strong>Chịu trách nhiệm đến đâu?</strong><p>Từ làm một phần nhỏ đến phụ trách phần việc lớn hơn.</p></article>
+        <article><small>03 · KẾT QUẢ</small><strong>Tạo ra kết quả gì?</strong><p>Kết quả càng rõ, cơ hội và thu nhập càng có thể tăng.</p></article>
+      </div>
+    </div>
+
+    <div class="career9-note">
+      <div><strong>Đây là mức tổng thu nhập tham chiếu theo cấp độ nghề tại Hang Đôi Production — không phải lương cơ bản và không phải mức được đảm bảo sau 4 tháng học.</strong><p>Chương trình giúp bạn xây nền tảng và tạo điểm bắt đầu. Cấp độ và thu nhập thực tế phụ thuộc năng lực, vai trò, hiệu suất và dự án bạn đảm nhận.</p></div>
+      <div class="career9-pill">THU NHẬP ≠ THÂM NIÊN</div>
+    </div>
+  </div>
+</section>
+
+<section id="tuition" class="section tuition">
+  <div class="wrap tuition10">
+    <div class="tuition10-head reveal">
+      <div class="tuition10-meta">
+        <div class="tuition10-kicker">10 · HỌC PHÍ / GIÁ TRỊ</div>
+        <p class="tuition10-index">4 THÁNG · 16 TUẦN · HỌC THEO LỘ TRÌNH</p>
+      </div>
+      <div>
+        <h2 class="tuition10-title">40 TRIỆU.<br><span class="accent">GỒM NHỮNG GÌ?</span></h2>
+        <p class="tuition10-lead">Khoản này không phải để mua một công việc. Bạn đang trả cho <strong>4 tháng học và thực hành có người hướng dẫn, thiết bị, bài tập, góp ý và sản phẩm cuối khóa.</strong></p>
+      </div>
+    </div>
+
+    <div class="tuition10-layout">
+      <article class="tuition10-price reveal">
+        <div class="tuition10-price-top">
+          <small>HỌC PHÍ DỰ KIẾN</small>
+          <div class="tuition10-price-value">40M</div>
+          <div class="tuition10-price-sub">4 THÁNG · 16 TUẦN</div>
+          <p class="tuition10-price-caption">Mức học phí cho toàn bộ 4 tháng học.</p>
+          <div class="tuition10-payment" aria-label="Hình thức thanh toán">
+            <div><small>PHƯƠNG ÁN 01</small><strong>ĐÓNG 1 LẦN</strong></div>
+            <div><small>PHƯƠNG ÁN 02</small><strong>CHIA 3 LẦN</strong><span>Ngày 05 hằng tháng</span></div>
+          </div>
+        </div>
+
+        <div class="tuition10-price-bottom">
+          <span class="tuition10-legal-chip">HIỆN CHƯA THU PHÍ</span>
+          <p>Ghi danh chính thức và thanh toán chỉ mở sau khi <strong>các điều kiện pháp lý và hồ sơ ghi danh được phê duyệt.</strong></p>
+        </div>
+      </article>
+
+      <div class="tuition10-value-panel">
+        <div class="tuition10-value-intro reveal">
+          <small>NẾU BẠN CHỈ MUỐN HỌC DÙNG MÁY HOẶC PHẦN MỀM</small>
+          <strong>CÓ NHIỀU CÁCH HỌC RẺ HƠN.</strong>
+          <p>Ví dụ: học Premiere, Lightroom, camera cơ bản hoặc xem hướng dẫn online.</p>
+        </div>
+
+        <div class="tuition10-receipt reveal">
+          <div class="tuition10-receipt-head">
+            <div>
+              <small>40M BAO GỒM</small>
+              <strong>NHỮNG PHẦN NÀY TRONG 4 THÁNG.</strong>
+            </div>
+            <span>BẠN NHẬN ĐƯỢC GÌ</span>
+          </div>
+
+          <div class="tuition10-receipt-list">
+            <div class="tuition10-receipt-row">
+              <div class="tuition10-num">01</div>
+              <div><strong>LỊCH HỌC RÕ RÀNG</strong><p>Biết từng tháng học gì, làm bài gì và cần đạt kết quả nào.</p></div>
+              <div class="tuition10-check">✓</div>
+            </div>
+            <div class="tuition10-receipt-row">
+              <div class="tuition10-num">02</div>
+              <div><strong>CÓ NGƯỜI HƯỚNG DẪN</strong><p>Có người xem bài, chỉ chỗ chưa ổn và hướng dẫn cách sửa.</p></div>
+              <div class="tuition10-check">✓</div>
+            </div>
+            <div class="tuition10-receipt-row">
+              <div class="tuition10-num">03</div>
+              <div><strong>ĐƯỢC DÙNG THIẾT BỊ VÀ THỰC HÀNH</strong><p>Trực tiếp quay, chụp và chỉnh sửa thay vì chỉ nghe lý thuyết.</p></div>
+              <div class="tuition10-check">✓</div>
+            </div>
+            <div class="tuition10-receipt-row">
+              <div class="tuition10-num">04</div>
+              <div><strong>HỌC CÁCH LÀM MỘT JOB THẬT</strong><p>Từ nhận yêu cầu → chuẩn bị → quay/chụp → chỉnh sửa → bàn giao.</p></div>
+              <div class="tuition10-check">✓</div>
+            </div>
+            <div class="tuition10-receipt-row">
+              <div class="tuition10-num">05</div>
+              <div><strong>CÓ SẢN PHẨM ĐỂ MANG ĐI</strong><p>Giữ lại những bài tốt nhất và hoàn thành một đồ án cuối khóa.</p></div>
+              <div class="tuition10-check">✓</div>
+            </div>
+            <div class="tuition10-receipt-row">
+              <div class="tuition10-num">06</div>
+              <div><strong>BIẾT MÌNH NÊN ĐI TIẾP THẾ NÀO</strong><p>Biết mình hợp hướng nào, phần nào còn yếu và cần luyện thêm gì.</p></div>
+              <div class="tuition10-check">✓</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tuition10-not-job reveal">
+          <div>
+            <small>LƯU Ý</small>
+            <strong>ĐÓNG HỌC PHÍ KHÔNG CÓ NGHĨA LÀ ĐƯỢC ĐẢM BẢO VIỆC LÀM.</strong>
+          </div>
+          <span>KHÔNG ĐẢM BẢO VIỆC LÀM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tuition10-bridge reveal">
+      <div>
+        <small>TIẾP THEO · CHƯƠNG TRÌNH CÓ HỢP VỚI BẠN KHÔNG?</small>
+        <strong>Xem nhanh những trường hợp phù hợp và không phù hợp trước khi đăng ký.</strong>
+      </div>
+      <a href="#fit">XEM CHƯƠNG TRÌNH CÓ HỢP VỚI MÌNH →</a>
+    </div>
+  </div>
+</section>
+
+<section id="fit" class="section fit11">
+  <span class="fit11-no">11</span>
+  <div class="wrap">
+    <div class="fit11-head">
+      <div class="fit11-meta"><div class="fit11-kicker">11 · CÓ HỢP VỚI BẠN KHÔNG?</div><p>TỰ KIỂM TRA NHANH</p></div>
+      <div><h2 class="fit11-title">BẠN CÓ HỢP VỚI<br><span>CHƯƠNG TRÌNH NÀY?</span></h2><p class="fit11-lead">Nhìn nhanh 2 nhóm dưới đây. Nếu phần bên trái giống bạn nhiều hơn, chương trình có thể đáng để tìm hiểu tiếp.</p></div>
+    </div>
+    <div class="fit11-wrap">
+      <article class="fit11-card">
+        <small>CÓ THỂ PHÙ HỢP NẾU…</small><strong>BẠN MUỐN HỌC MEDIA ĐỂ DÙNG ĐI LÀM.</strong>
+        <div class="fit11-list">
+          <div class="fit11-item"><b>✓</b><span>Chưa biết bắt đầu từ đâu hoặc tự học còn rời rạc.</span></div>
+          <div class="fit11-item"><b>✓</b><span>Muốn được xem bài, góp ý và sửa lại.</span></div>
+          <div class="fit11-item"><b>✓</b><span>Sẵn sàng học theo thời hạn và làm ra sản phẩm thật.</span></div>
+        </div>
+      </article>
+      <article class="fit11-card bad">
+        <small>CÓ THỂ CHƯA PHÙ HỢP NẾU…</small><strong>BẠN CHỈ CẦN HỌC NHANH MỘT THỨ.</strong>
+        <div class="fit11-list">
+          <div class="fit11-item"><b>×</b><span>Chỉ muốn học một phần mềm hoặc vài kỹ thuật cơ bản.</span></div>
+          <div class="fit11-item"><b>×</b><span>Chỉ cần chứng chỉ hoặc kỳ vọng học xong là có việc ngay.</span></div>
+          <div class="fit11-item"><b>×</b><span>Không muốn nhận góp ý hoặc làm lại bài.</span></div>
+        </div>
+      </article>
+    </div>
+    <div class="fit11-note">Chưa chắc? Bạn vẫn có thể đăng ký quan tâm — hiện chưa thu phí và chưa phải hồ sơ nhập học.</div>
+  </div>
+</section>
+
+<section id="faq" class="section faq12">
+  <span class="faq12-no">12</span>
+  <div class="wrap">
+    <div class="faq12-head">
+      <div><div class="faq12-kicker">12 · CÂU HỎI THƯỜNG GẶP</div><h2 class="faq12-title">NHỮNG ĐIỀU<br><span>CẦN RÕ TRƯỚC.</span></h2></div>
+      <p class="faq12-lead">Không cần đoán. Những câu hỏi quan trọng nhất về việc bắt đầu, cách học, học phí và cơ hội sau chương trình được trả lời rõ ở đây.</p>
+    </div>
+    <div class="faq12-cats" aria-label="Nhóm câu hỏi"><span>BẮT ĐẦU</span><span>CÁCH HỌC</span><span>SAU CHƯƠNG TRÌNH</span><span>HỌC PHÍ & GHI DANH</span></div>
+    <div class="faq12-list">
+      <details class="faq12-item" open>
+        <summary><span class="faq12-index">01</span><span class="faq12-question">Chưa từng học Media có đăng ký được không?</span><span class="faq12-icon" aria-hidden="true"></span></summary>
+        <div class="faq12-answer"><div class="faq12-answer-main"><p><strong>Có.</strong> Bạn không cần kinh nghiệm chuyên nghiệp để đăng ký quan tâm. Chương trình được thiết kế cho người mới bắt đầu nhưng muốn học Media theo hướng nghiêm túc và có thể dùng kỹ năng này cho công việc sau này.</p><p>Trong giai đoạn đầu, bạn sẽ được làm quen với thiết bị, thuật ngữ, cách đọc yêu cầu và cách một job Media vận hành. Vì vậy việc chưa biết camera, ánh sáng hay hậu kỳ không phải là vấn đề.</p></div><aside class="faq12-note"><small>BẠN KHÔNG CẦN</small><ul><li>Kinh nghiệm làm nghề trước đó</li><li>Biết sử dụng máy ảnh chuyên nghiệp</li><li>Có portfolio hoàn chỉnh</li></ul></aside></div>
+      </details>
+      <details class="faq12-item">
+        <summary><span class="faq12-index">02</span><span class="faq12-question">Không có camera hoặc thiết bị riêng thì sao?</span><span class="faq12-icon" aria-hidden="true"></span></summary>
+        <div class="faq12-answer"><div class="faq12-answer-main"><p>Bạn <strong>không bắt buộc phải sở hữu camera</strong> để đăng ký quan tâm hoặc bắt đầu chương trình.</p><p>Thiết bị thực hành được tính trong cách chương trình được thiết kế. Mục tiêu là để bạn trực tiếp sử dụng máy, ánh sáng và thiết bị cần thiết trong từng bài thực hành, thay vì phải mua thiết bị ngay từ đầu.</p><p>Sau khi hiểu mình phù hợp hướng nào và thường xuyên dùng loại thiết bị nào, việc đầu tư thiết bị cá nhân mới hợp lý hơn.</p></div><aside class="faq12-note"><small>ƯU TIÊN</small><p>Học cách sử dụng thiết bị đúng mục tiêu trước khi nghĩ đến việc mua nhiều thiết bị.</p></aside></div>
+      </details>
+      <details class="faq12-item">
+        <summary><span class="faq12-index">03</span><span class="faq12-question">Có cần portfolio hoặc sản phẩm trước khi tham gia không?</span><span class="faq12-icon" aria-hidden="true"></span></summary>
+        <div class="faq12-answer"><div class="faq12-answer-main"><p><strong>Không bắt buộc.</strong> Nếu bạn chưa từng làm sản phẩm, chương trình vẫn phù hợp để bắt đầu từ nền tảng.</p><p>Nếu đã có ảnh, video hoặc các bài từng tự làm, bạn nên gửi kèm khi có thể. Những sản phẩm này giúp đội ngũ hiểu nhanh hơn về điểm mạnh, thói quen và mức kỹ năng hiện tại của bạn.</p><p>Portfolio quan trọng hơn ở <strong>đầu ra của chương trình</strong>: sau 4 tháng, bạn cần có những sản phẩm tốt nhất để dùng khi xin thực tập, tìm việc hoặc tham gia dự án.</p></div><aside class="faq12-note"><small>NẾU ĐÃ CÓ SẢN PHẨM</small><ul><li>Ảnh cá nhân</li><li>Video ngắn / reel</li><li>Bài dựng hoặc project cá nhân</li></ul></aside></div>
+      </details>
+      <details class="faq12-item">
+        <summary><span class="faq12-index">04</span><span class="faq12-question">Một tuần sẽ học và thực hành như thế nào?</span><span class="faq12-icon" aria-hidden="true"></span></summary>
+        <div class="faq12-answer"><div class="faq12-answer-main"><p>Chương trình không đi theo kiểu chỉ nghe giảng rồi kết thúc. Mỗi giai đoạn đều cần có <strong>bài thực hành hoặc sản phẩm cụ thể</strong>.</p><p>Cách học cơ bản là: học một phần kiến thức → làm thử → xem lại → nhận góp ý → sửa → giữ phiên bản tốt hơn. Có những bài bạn sẽ phải làm lại nếu sản phẩm chưa đạt mục tiêu.</p><p>Khối lượng từng tuần có thể khác nhau tùy bài, nhưng bạn cần dành thời gian ngoài buổi hướng dẫn để hoàn thiện sản phẩm.</p></div><aside class="faq12-note"><small>CÁCH HỌC</small><ul><li>Học ngắn gọn</li><li>Làm bài thật</li><li>Nhận góp ý</li><li>Sửa và làm lại</li></ul></aside></div>
+      </details>
+      <details class="faq12-item">
+        <summary><span class="faq12-index">05</span><span class="faq12-question">Học xong có chắc chắn được nhận vào Hang Đôi Production không?</span><span class="faq12-icon" aria-hidden="true"></span></summary>
+        <div class="faq12-answer"><div class="faq12-answer-main"><p><strong>Không.</strong> Hang Đôi Academy và Hang Đôi Production là hai quy trình khác nhau. Việc tham gia chương trình không đồng nghĩa với việc được tuyển tự động.</p><p>Nếu sau chương trình có vị trí phù hợp, tuyển dụng vẫn dựa trên năng lực thực tế, portfolio, thái độ làm việc, mức phù hợp với vị trí và nhu cầu nhân sự tại thời điểm đó.</p><p>Mục tiêu của chương trình là giúp bạn có nền tảng và sản phẩm tốt hơn để bước vào thị trường Media — không phải bán một lời hứa việc làm.</p></div><aside class="faq12-note warning"><small>CẦN HIỂU RÕ</small><p>Học phí không phải phí đổi lấy việc làm.</p></aside></div>
+      </details>
+      <details class="faq12-item">
+        <summary><span class="faq12-index">06</span><span class="faq12-question">8M+, 12M+, 20M+, 30M+ có phải mức thu nhập ngay sau khóa không?</span><span class="faq12-icon" aria-hidden="true"></span></summary>
+        <div class="faq12-answer"><div class="faq12-answer-main"><p><strong>Không.</strong> Đây là mức <strong>tổng thu nhập tham chiếu</strong> theo các cấp độ nghề hiện tại tại Hang Đôi Production.</p><p>Mức thực tế phụ thuộc vào năng lực, vai trò, trách nhiệm, hiệu suất và loại dự án mà một người đảm nhận. Việc hoàn thành chương trình 4 tháng không tự động đưa bạn lên bất kỳ cấp độ nào.</p><p>Phần thu nhập trên landing chỉ giúp bạn hình dung một con đường phát triển nghề nghiệp khi năng lực tăng dần theo thời gian.</p></div><aside class="faq12-note"><small>THU NHẬP TĂNG KHI</small><ul><li>Năng lực tăng</li><li>Trách nhiệm tăng</li><li>Kết quả công việc tốt hơn</li></ul></aside></div>
+      </details>
+      <details class="faq12-item">
+        <summary><span class="faq12-index">07</span><span class="faq12-question">40 triệu đóng như thế nào?</span><span class="faq12-icon" aria-hidden="true"></span></summary>
+        <div class="faq12-answer"><div class="faq12-answer-main"><p><strong>Hiện tại chưa thu phí.</strong> Chương trình mới chỉ mở bước đăng ký quan tâm.</p><p>Khi chính thức mở ghi danh, học viên có thể chọn <strong>đóng một lần</strong> hoặc <strong>chia thành 3 lần</strong>. Với phương án chia 3 lần, khoản thanh toán được thực hiện vào <strong>ngày 05 hằng tháng</strong> theo lịch ghi danh của khóa.</p><p>Lịch thanh toán cụ thể sẽ được ghi rõ trong hồ sơ ghi danh trước khi học viên xác nhận tham gia. Việc đăng ký quan tâm hiện tại không yêu cầu đặt cọc, không giữ chỗ và không phát sinh thanh toán.</p></div><aside class="faq12-note"><small>HÌNH THỨC THANH TOÁN</small><ul><li>Đóng 1 lần</li><li>Hoặc chia 3 lần</li><li>Ngày thanh toán: 05 hằng tháng</li></ul></aside></div>
+      </details>
+      <details class="faq12-item">
+        <summary><span class="faq12-index">08</span><span class="faq12-question">Khi nào mở hồ sơ chính thức và ghi danh?</span><span class="faq12-icon" aria-hidden="true"></span></summary>
+        <div class="faq12-answer"><div class="faq12-answer-main"><p>Hang Đôi Academy sẽ có thông báo riêng khi chương trình sẵn sàng nhận hồ sơ chính thức.</p><p>Những người đã đăng ký quan tâm sẽ là nhóm được cập nhật khi có thông tin về lịch mở hồ sơ, quy trình trao đổi, lịch dự kiến và các bước ghi danh.</p><p>Trước thời điểm đó, form hiện tại chỉ giúp Hang Đôi hiểu nhu cầu, nền tảng và hướng nghề mà bạn quan tâm.</p></div><aside class="faq12-note"><small>BƯỚC HIỆN TẠI</small><p>Đăng ký quan tâm → chờ thông báo chính thức khi chương trình sẵn sàng.</p></aside></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="final13-section" id="apply">
+  <span class="final13-no">13</span>
+  <div class="wrap">
+    <div class="final13-top">
+      <div>
+        <div class="final13-kicker">13 · ĐĂNG KÝ QUAN TÂM</div>
+        <h2 class="final13-title">NẾU MUỐN THỬ<br>ĐI MEDIA<br><span>NHƯ MỘT NGHỀ.</span></h2>
+        <p class="final13-lead">Để lại thông tin để Hang Đôi biết bạn đang ở đâu, đã từng làm gì và đang quan tâm hướng nào. <strong>Đây chưa phải ghi danh chính thức.</strong></p>
+      </div>
+      <aside class="final13-card">
+        <div class="final13-card-head"><div><small>BƯỚC 01 · ĐANG MỞ</small><strong>ĐĂNG KÝ QUAN TÂM</strong></div><span class="final13-status">OPEN</span></div>
+        <div class="final13-facts">
+          <div><small>MẤT KHOẢNG</small><strong>3–5 PHÚT</strong></div>
+          <div><small>THANH TOÁN</small><strong>CHƯA CẦN</strong></div>
+          <div><small>CAMERA</small><strong>KHÔNG BẮT BUỘC</strong></div>
+          <div><small>PORTFOLIO</small><strong>KHÔNG BẮT BUỘC</strong></div>
+        </div>
+        <a class="final13-cta" href="/media-career-program/apply/"><span>ĐĂNG KÝ QUAN TÂM</span><b aria-hidden="true">↗</b></a>
+        <p class="final13-micro">Không đặt cọc · Không giữ chỗ · Không cam kết nhập học</p>
+      </aside>
+    </div>
+    <div class="final13-bottom">
+      <div class="final13-path"><span class="active">01 · ĐĂNG KÝ QUAN TÂM</span><i></i><span>02 · HỒ SƠ CHÍNH THỨC</span><i></i><span>03 · GHI DANH</span></div>
+      <div class="final13-brand">HANG ĐÔI ACADEMY · MEDIA CAREER PROGRAM · ĐÀ NẴNG</div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="academy-footer-v2">
+  <div class="wrap">
+    <div class="footer-v2-main">
+      <div class="footer-v2-brand">
+        <span class="footer-v2-label">HANG ĐÔI ACADEMY</span>
+        <strong>HỌC MEDIA. HỌC THẬT. LÀM THẬT.</strong>
+        <p>Media Career Program dành cho người muốn xây nền tảng, làm ra sản phẩm và hiểu cách một công việc Media vận hành trong thực tế.</p>
+      </div>
+      <div class="footer-v2-contact">
+        <div><span>HOTLINE</span><a href="tel:+84888445997">0888 445 997</a></div>
+        <div><span>ĐỊA CHỈ</span><strong>98 Điện Biên Phủ<br>Đà Nẵng</strong></div>
+      </div>
+      <div class="footer-v2-links">
+        <span class="footer-v2-label">ĐI NHANH</span>
+        <nav><a href="#system">Lộ trình 4 tháng</a><a href="#roles">Hướng nghề</a><a href="#tuition">Học phí</a><a href="#faq">Câu hỏi thường gặp</a><a href="/media-career-program/apply/">Đăng ký quan tâm</a></nav>
+      </div>
+      <aside class="footer-v2-patron">
+        <div class="footer-v2-patron-head"><span>BẢO TRỢ BỞI</span><b aria-hidden="true"></b></div>
+        <strong>HANG ĐÔI<br>PRODUCTION.</strong>
+        <p>Môi trường production thực tế, quy trình thương mại và kinh nghiệm sản xuất hình ảnh quảng cáo truyền thông.</p>
+        <a href="https://hangdoistudio.vn/" target="_blank" rel="noopener">HANGDOISTUDIO.VN ↗</a>
+      </aside>
+    </div>
+    <div class="footer-v2-bottom"><span>© 2026 HANG ĐÔI ACADEMY · MEDIA CAREER PROGRAM</span></div>
+  </div>
+</footer>
+
+<div class="mobile-cta"><a class="btn btn-primary" href="/media-career-program/apply/">ĐĂNG KÝ QUAN TÂM →</a></div>
+
+</body>
+</html>

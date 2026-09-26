@@ -1,0 +1,1172 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Đăng ký quan tâm — Media Career Program | Hang Đôi Academy</title>
+<meta name="description" content="Đăng ký quan tâm Hang Đôi Media Career Program — Khóa 01. Chưa thu phí, chưa giữ chỗ, chưa phải hồ sơ ghi danh chính thức.">
+<meta name="robots" content="noindex,follow">
+<meta name="theme-color" content="#0B2418">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/academy-tokens.css">
+<style>
+:root{
+  --apply-ink:#0b2418;
+  --apply-green:#0b6a3f;
+  --apply-green-2:#e7f1e9;
+  --apply-yellow:#f4c542;
+  --apply-orange:#f26a3d;
+  --apply-paper:#f8f4ea;
+  --apply-paper-2:#f1ede3;
+  --apply-white:#fffdf7;
+  --apply-line:rgba(11,36,24,.13);
+  --apply-muted:#69776e;
+  --apply-red:#b42318;
+  --apply-radius:22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--apply-paper)}
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:var(--apply-ink);
+  background:var(--apply-paper);
+  line-height:1.5;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+a{color:inherit}
+button,input,select,textarea{font:inherit}
+button{touch-action:manipulation}
+img{display:block;max-width:100%}
+::selection{background:var(--apply-yellow);color:var(--apply-ink)}
+.shell{width:min(calc(100% - 40px),1280px);margin-inline:auto}
+
+/* Header */
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(248,244,234,.92);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(11,36,24,.08);
+}
+.topbar-inner{
+  min-height:68px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+.logo{width:190px}
+.back{
+  min-height:42px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:0 14px;
+  border:1px solid var(--apply-line);
+  border-radius:999px;
+  color:var(--apply-ink);
+  text-decoration:none;
+  font-size:11px;
+  font-weight:850;
+  letter-spacing:.02em;
+  background:rgba(255,253,247,.7);
+}
+.back:hover{background:var(--apply-white)}
+
+/* Page composition */
+.page{
+  display:grid;
+  grid-template-columns:minmax(320px,.84fr) minmax(0,1.46fr);
+  gap:26px;
+  padding:34px 0 72px;
+  align-items:start;
+}
+.context{
+  position:sticky;
+  top:94px;
+  overflow:hidden;
+  min-height:calc(100vh - 126px);
+  padding:30px;
+  border-radius:28px;
+  background:
+    radial-gradient(circle at 12% 8%,rgba(244,197,66,.10),transparent 26%),
+    radial-gradient(circle at 90% 85%,rgba(78,181,121,.13),transparent 30%),
+    var(--apply-ink);
+  color:var(--apply-white);
+  box-shadow:0 22px 70px rgba(11,36,24,.16);
+}
+.context:after{
+  content:"01";
+  position:absolute;
+  right:-18px;
+  bottom:-35px;
+  font-size:180px;
+  line-height:.8;
+  font-weight:950;
+  letter-spacing:-.09em;
+  color:rgba(255,255,255,.035);
+  pointer-events:none;
+}
+.context-kicker{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:9px;
+  font-weight:950;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  color:var(--apply-yellow);
+}
+.context-kicker:before{
+  content:"";
+  width:8px;height:8px;border-radius:50%;
+  background:var(--apply-yellow);
+  box-shadow:0 0 0 6px rgba(244,197,66,.09);
+}
+.context h1{
+  margin:24px 0 0;
+  max-width:480px;
+  font-size:clamp(52px,5.5vw,80px);
+  line-height:.86;
+  letter-spacing:-.07em;
+  font-weight:950;
+}
+.context h1 span{color:var(--apply-yellow)}
+.context-intro{
+  max-width:500px;
+  margin:21px 0 0;
+  font-size:14px;
+  line-height:1.62;
+  color:rgba(255,255,255,.64);
+}
+.context-intro strong{color:#fff}
+.context-chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:22px;
+}
+.context-chip{
+  display:inline-flex;
+  align-items:center;
+  min-height:32px;
+  padding:0 10px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:999px;
+  background:rgba(255,255,255,.05);
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.055em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.78);
+}
+.context-flow{
+  display:grid;
+  gap:0;
+  margin-top:32px;
+  border-top:1px solid rgba(255,255,255,.10);
+}
+.context-flow-row{
+  display:grid;
+  grid-template-columns:34px minmax(0,1fr);
+  gap:10px;
+  align-items:start;
+  padding:14px 0;
+  border-bottom:1px solid rgba(255,255,255,.10);
+  color:rgba(255,255,255,.38);
+}
+.context-flow-row b{
+  width:30px;height:30px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.14);
+  font-size:8px;
+}
+.context-flow-row strong{display:block;font-size:11px;line-height:1.2}
+.context-flow-row span{display:block;margin-top:4px;font-size:9px;line-height:1.35}
+.context-flow-row.active{color:#fff}
+.context-flow-row.active b{background:var(--apply-yellow);border-color:var(--apply-yellow);color:var(--apply-ink)}
+.context-note{
+  position:relative;
+  z-index:2;
+  margin-top:22px;
+  padding:14px;
+  border-radius:16px;
+  background:rgba(244,197,66,.10);
+  border:1px solid rgba(244,197,66,.19);
+  color:#f9f5df;
+  font-size:10px;
+  line-height:1.5;
+}
+.context-contact{
+  position:relative;
+  z-index:2;
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-top:20px;
+  font-size:9px;
+  color:rgba(255,255,255,.44);
+}
+.context-contact a{color:rgba(255,255,255,.72);text-decoration:none;font-weight:800}
+
+/* Form panel */
+.form-panel{
+  min-width:0;
+  overflow:hidden;
+  border-radius:28px;
+  background:var(--apply-white);
+  border:1px solid var(--apply-line);
+  box-shadow:0 22px 70px rgba(11,36,24,.08);
+}
+.form-head{
+  padding:28px 30px 22px;
+  border-bottom:1px solid var(--apply-line);
+}
+.form-statusline{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  align-items:flex-start;
+}
+.form-step-label{
+  font-size:9px;
+  font-weight:950;
+  letter-spacing:.10em;
+  text-transform:uppercase;
+  color:var(--apply-green);
+}
+.form-time{
+  display:inline-flex;
+  min-height:30px;
+  align-items:center;
+  padding:0 10px;
+  border-radius:999px;
+  background:var(--apply-green-2);
+  color:var(--apply-green);
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.06em;
+}
+.form-head h2{
+  margin:10px 0 0;
+  font-size:clamp(34px,3.6vw,52px);
+  line-height:.94;
+  letter-spacing:-.055em;
+}
+.form-head p{
+  max-width:650px;
+  margin:12px 0 0;
+  font-size:12px;
+  line-height:1.55;
+  color:var(--apply-muted);
+}
+.progress{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:6px;
+  margin-top:22px;
+}
+.progress-step{
+  position:relative;
+  height:4px;
+  overflow:hidden;
+  border-radius:999px;
+  background:#e5e4dc;
+}
+.progress-step:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:var(--apply-green);
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .32s cubic-bezier(.22,1,.36,1);
+}
+.progress-step.done:after,.progress-step.active:after{transform:scaleX(1)}
+.progress-step.active:after{background:var(--apply-yellow)}
+
+form{position:relative}
+.form-step{
+  margin:0;
+  padding:28px 30px 30px;
+  border:0;
+}
+.form-step[hidden]{display:none!important}
+legend{
+  width:100%;
+  padding:0;
+  margin:0 0 22px;
+}
+.step-title{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.step-title b{
+  flex:none;
+  width:40px;height:40px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:var(--apply-ink);
+  color:#fff;
+  font-size:10px;
+}
+.step-title div small{
+  display:block;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.09em;
+  color:var(--apply-green);
+  text-transform:uppercase;
+}
+.step-title div strong{
+  display:block;
+  margin-top:3px;
+  font-size:19px;
+  line-height:1.08;
+}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{min-width:0}
+.field.full{grid-column:1/-1}
+label.field-label{
+  display:block;
+  margin:0 0 8px;
+  font-size:12px;
+  font-weight:850;
+}
+.req:after{content:" *";color:var(--apply-red)}
+.help{
+  display:block;
+  margin-top:6px;
+  font-size:10px;
+  line-height:1.4;
+  color:var(--apply-muted);
+}
+input,select,textarea{
+  width:100%;
+  min-height:48px;
+  border:1px solid #cfd3cb;
+  border-radius:13px;
+  background:#fff;
+  color:var(--apply-ink);
+  outline:none;
+  padding:11px 13px;
+  font-size:13px;
+  transition:border-color .18s ease,box-shadow .18s ease,background .18s ease;
+}
+textarea{min-height:130px;resize:vertical;line-height:1.5}
+input::placeholder,textarea::placeholder{color:#9aa39d}
+input:focus,select:focus,textarea:focus{
+  border-color:var(--apply-green);
+  box-shadow:0 0 0 3px rgba(11,106,63,.09);
+}
+input:user-invalid,select:user-invalid,textarea:user-invalid{border-color:rgba(180,35,24,.55)}
+.checks{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+.check{
+  position:relative;
+  min-height:50px;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  padding:10px 12px;
+  border:1px solid var(--apply-line);
+  border-radius:13px;
+  background:#fff;
+  color:#4f5e55;
+  font-size:11px;
+  font-weight:760;
+  cursor:pointer;
+  transition:border-color .18s ease,background .18s ease,color .18s ease;
+}
+.check:has(input:checked){
+  border-color:rgba(11,106,63,.32);
+  background:var(--apply-green-2);
+  color:var(--apply-green);
+}
+.check input,.consent input{
+  width:18px;height:18px;
+  min-height:0;
+  margin:0;
+  accent-color:var(--apply-green);
+  flex:none;
+}
+.question{
+  display:grid;
+  gap:8px;
+  margin-bottom:18px;
+}
+.question:last-child{margin-bottom:0}
+.question-label{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:baseline;
+}
+.question-label strong{font-size:13px}
+.question-label span{font-size:9px;color:var(--apply-muted)}
+.notice{
+  overflow:hidden;
+  border-radius:18px;
+  border:1px solid rgba(11,106,63,.16);
+  background:var(--apply-green-2);
+}
+.notice-top{
+  padding:16px;
+  background:var(--apply-ink);
+  color:#fff;
+}
+.notice-top small{
+  display:block;
+  font-size:7px;
+  font-weight:900;
+  letter-spacing:.09em;
+  color:var(--apply-yellow);
+}
+.notice-top strong{
+  display:block;
+  margin-top:6px;
+  font-size:27px;
+  line-height:1;
+  letter-spacing:-.04em;
+}
+.notice-body{padding:14px 16px}
+.notice-body p{margin:0;font-size:11px;line-height:1.5;color:#526158}
+.payment-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:12px;
+}
+.payment-grid div{
+  min-height:67px;
+  padding:11px;
+  border-radius:13px;
+  background:var(--apply-white);
+  border:1px solid var(--apply-line);
+}
+.payment-grid small{
+  display:block;
+  font-size:7px;
+  font-weight:900;
+  letter-spacing:.07em;
+  color:var(--apply-green);
+}
+.payment-grid strong{display:block;margin-top:5px;font-size:12px}
+.payment-grid span{display:block;margin-top:3px;font-size:8px;color:var(--apply-muted)}
+.consent-list{display:grid;gap:9px;margin-top:18px}
+.consent{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  margin:0;
+  padding:12px;
+  border:1px solid var(--apply-line);
+  border-radius:13px;
+  background:#fff;
+  font-size:10.5px;
+  line-height:1.5;
+  color:#526158;
+}
+.consent strong{color:var(--apply-ink)}
+.form-actions{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  padding:20px 30px 24px;
+  border-top:1px solid var(--apply-line);
+  background:#fbfaf5;
+}
+.action-left{
+  min-width:0;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.back-btn{
+  min-height:48px;
+  padding:0 16px;
+  border:1px solid var(--apply-line);
+  border-radius:999px;
+  background:transparent;
+  color:var(--apply-ink);
+  font-size:10px;
+  font-weight:850;
+  cursor:pointer;
+}
+.back-btn[hidden]{display:none}
+.status{
+  max-width:310px;
+  font-size:9px;
+  line-height:1.4;
+  color:var(--apply-muted);
+}
+.status.error{color:var(--apply-red);font-weight:800}
+.next-btn,.submit-btn{
+  min-width:190px;
+  min-height:50px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:0 8px 0 18px;
+  border:0;
+  border-radius:999px;
+  background:var(--apply-yellow);
+  color:var(--apply-ink);
+  font-size:10px;
+  font-weight:950;
+  cursor:pointer;
+  box-shadow:0 10px 24px rgba(244,197,66,.16);
+}
+.next-btn b,.submit-btn b{
+  width:34px;height:34px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:var(--apply-ink);
+  color:#fff;
+  font-size:15px;
+}
+.next-btn:disabled,.submit-btn:disabled{opacity:.5;cursor:not-allowed}
+.submit-btn{background:var(--apply-green);color:#fff;box-shadow:0 10px 24px rgba(11,106,63,.18)}
+.submit-btn b{background:var(--apply-yellow);color:var(--apply-ink)}
+.hp{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}
+
+.form-foot{
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  padding:0 30px 26px;
+  background:#fbfaf5;
+  color:#8a948d;
+  font-size:8px;
+  line-height:1.4;
+}
+.form-foot a{color:var(--apply-green);text-decoration:none;font-weight:800}
+
+/* Success-ish inline cues */
+.step-summary{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:18px;
+}
+.step-summary span{
+  display:inline-flex;
+  min-height:28px;
+  align-items:center;
+  padding:0 9px;
+  border-radius:999px;
+  background:var(--apply-paper-2);
+  font-size:7px;
+  font-weight:850;
+  color:#637068;
+}
+
+/* Responsive */
+
+/* Desktop height alignment: form panel matches the context panel. */
+@media(min-width:961px){
+  .page{align-items:stretch}
+  .context,
+  .form-panel{
+    min-height:calc(100vh - 126px);
+  }
+  .form-panel{
+    display:flex;
+    flex-direction:column;
+  }
+  .form-panel form{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+  }
+  .form-step{
+    flex:1;
+  }
+  .form-actions{
+    margin-top:auto;
+  }
+}
+
+@media(max-width:960px){
+  .page{grid-template-columns:1fr}
+  .context{
+    position:relative;
+    top:auto;
+    min-height:0;
+    padding:26px;
+  }
+  .context h1{font-size:64px}
+  .context-flow{grid-template-columns:repeat(3,1fr);border-bottom:1px solid rgba(255,255,255,.10)}
+  .context-flow-row{grid-template-columns:28px minmax(0,1fr);border-bottom:0;border-right:1px solid rgba(255,255,255,.10);padding:12px}
+  .context-flow-row:last-child{border-right:0}
+  .context-flow-row b{width:26px;height:26px}
+}
+@media(max-width:650px){
+  html{scroll-padding-top:72px}
+  .shell{width:calc(100% - 28px)}
+  .topbar{padding-top:env(safe-area-inset-top)}
+  .topbar-inner{min-height:58px}
+  .logo{width:150px}
+  .back{min-height:38px;padding:0 10px;font-size:9px}
+  .page{gap:12px;padding:14px 0 calc(34px + env(safe-area-inset-bottom))}
+  .context{
+    padding:20px 18px;
+    border-radius:21px;
+  }
+  .context:after{font-size:120px;bottom:-25px}
+  .context-kicker{font-size:8px}
+  .context h1{margin-top:18px;font-size:clamp(48px,14vw,62px)}
+  .context-intro{margin-top:15px;font-size:12px;line-height:1.55}
+  .context-chips{margin-top:16px}
+  .context-chip{min-height:29px;padding:0 8px;font-size:7px}
+  .context-flow{grid-template-columns:1fr;margin-top:20px;border-top:1px solid rgba(255,255,255,.10);border-bottom:0}
+  .context-flow-row{
+    grid-template-columns:32px minmax(0,1fr);
+    padding:10px 0;
+    border-right:0;
+    border-bottom:1px solid rgba(255,255,255,.10);
+  }
+  .context-flow-row span{display:none}
+  .context-note{margin-top:16px;font-size:9px}
+  .context-contact{margin-top:14px}
+  .form-panel{border-radius:21px}
+  .form-head{padding:20px 18px 17px}
+  .form-statusline{gap:10px}
+  .form-step-label{font-size:8px}
+  .form-time{min-height:27px;padding:0 8px;font-size:7px}
+  .form-head h2{font-size:32px}
+  .form-head p{font-size:10.5px}
+  .progress{margin-top:16px}
+  .form-step{padding:20px 18px 22px}
+  legend{margin-bottom:18px}
+  .step-title{gap:9px}
+  .step-title b{width:35px;height:35px;font-size:9px}
+  .step-title div small{font-size:7px}
+  .step-title div strong{font-size:17px}
+  .grid,.checks,.payment-grid{grid-template-columns:1fr}
+  .field.full{grid-column:auto}
+  label.field-label{font-size:11px}
+  input,select,textarea{min-height:48px;font-size:16px}
+  textarea{min-height:116px}
+  .check{min-height:48px;font-size:10.5px}
+  .question-label{display:block}
+  .question-label span{display:block;margin-top:3px}
+  .notice-top strong{font-size:24px}
+  .form-actions{
+    position:sticky;
+    bottom:0;
+    z-index:20;
+    padding:12px 18px calc(12px + env(safe-area-inset-bottom));
+    background:rgba(251,250,245,.96);
+    backdrop-filter:blur(14px);
+  }
+  .action-left{display:none}
+  .next-btn,.submit-btn{width:100%;min-height:54px}
+  .form-foot{padding:12px 18px 18px;display:block}
+  .form-foot span{display:block;margin-top:4px}
+}
+@media(max-width:370px){
+  .shell{width:calc(100% - 22px)}
+  .logo{width:138px}
+  .back{font-size:8px}
+  .context{padding:18px 15px}
+  .context h1{font-size:45px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*:before,*:after{animation:none!important;transition:none!important}
+}
+</style>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><style id="academy-logo-critical">
+header.site-header,header.site-header.scrolled{background:linear-gradient(90deg,#fffef9,#f5f7f1)!important;border-color:rgba(23,56,43,.12)!important}
+.site-header .nav-links a,.site-header.scrolled .nav-links a{color:#17382b!important}
+.brand-official,.p2-brand{display:inline-flex!important;align-items:center!important;width:200px!important;min-width:200px!important;height:40px!important;padding:0!important;border:0!important;background:none!important;background-image:none!important}
+.brand-official>*{opacity:1!important;visibility:visible!important}
+.brand-official .academy-logo-svg,.p2-brand .academy-logo-svg{display:block!important;width:200px!important;max-height:40px!important;height:auto!important;opacity:1!important;visibility:visible!important}
+footer .brand-official,.p2-footer-logo{width:220px!important;min-width:220px!important;height:48px!important}
+footer .academy-logo-svg,.p2-footer-logo .academy-logo-svg{display:block!important;width:220px!important;max-height:48px!important;height:auto!important;opacity:1!important;visibility:visible!important}
+footer .academy-logo-svg .cls-1,.p2-footer .academy-logo-svg .cls-1{fill:#fff!important}
+footer .academy-logo-svg .cls-2,.p2-footer .academy-logo-svg .cls-2{fill:#fcb415!important}
+@media(max-width:760px){.brand-official,.p2-brand{width:170px!important;min-width:170px!important;height:34px!important}.brand-official .academy-logo-svg,.p2-brand .academy-logo-svg{width:170px!important;max-height:34px!important}footer .brand-official,.p2-footer-logo{width:190px!important;min-width:190px!important;height:42px!important}footer .academy-logo-svg,.p2-footer-logo .academy-logo-svg{width:190px!important;max-height:42px!important}}
+</style></head>
+<body>
+<header class="topbar">
+  <div class="shell topbar-inner">
+    <a href="/" aria-label="Hang Đôi Academy"><img class="logo" src="/logo-academy.svg" alt="Hang Đôi Academy"></a>
+    <a class="back" href="/media-career-program/"><span aria-hidden="true">←</span> Xem lại chương trình</a>
+  </div>
+</header>
+
+<main class="shell page">
+  <aside class="context">
+    <div class="context-kicker">Media Career Program · Khóa 01</div>
+    <h1>ĐĂNG KÝ<br><span>QUAN TÂM.</span></h1>
+    <p class="context-intro">Cho Hang Đôi biết bạn đang ở đâu và muốn đi theo hướng nào. <strong>Đây chưa phải hồ sơ ghi danh chính thức</strong> — không thu phí, không giữ chỗ và không tạo cam kết việc làm.</p>
+
+    <div class="context-chips" aria-label="Thông tin nhanh">
+      <span class="context-chip">3–5 phút</span>
+      <span class="context-chip">Chưa thu phí</span>
+      <span class="context-chip">Không cần camera</span>
+      <span class="context-chip">Không bắt buộc portfolio</span>
+    </div>
+
+    <div class="context-flow" aria-label="Quy trình hiện tại">
+      <div class="context-flow-row active"><b>01</b><div><strong>Đăng ký quan tâm</strong><span>Đang mở · bước hiện tại.</span></div></div>
+      <div class="context-flow-row"><b>02</b><div><strong>Thông báo mở hồ sơ</strong><span>Hang Đôi liên hệ khi sẵn sàng.</span></div></div>
+      <div class="context-flow-row"><b>03</b><div><strong>Hồ sơ chính thức</strong><span>Chỉ mở trong một đợt được thông báo riêng.</span></div></div>
+    </div>
+
+    <div class="context-note"><strong>Không cần chuẩn bị thật “đẹp” mới gửi.</strong><br>Thông tin ở đây giúp team hiểu nền tảng và nhu cầu của bạn trước khi chương trình mở hồ sơ chính thức.</div>
+    <div class="context-contact"><span>Cần hỏi trước khi gửi?</span><a href="tel:+84888445997">0888 445 997</a></div>
+  </aside>
+
+  <section class="form-panel" aria-labelledby="formTitle">
+    <div class="form-head">
+      <div class="form-statusline">
+        <div class="form-step-label" id="progressLabel">BƯỚC 01 / 04 · THÔNG TIN CỦA BẠN</div>
+        <span class="form-time">Khoảng 3–5 phút</span>
+      </div>
+      <h2 id="formTitle">Bắt đầu từ thông tin cơ bản.</h2>
+      <p id="formDescription">Không cần kinh nghiệm Media trước đó. Các trường có dấu * là thông tin cần thiết để Hang Đôi ghi nhận đăng ký quan tâm.</p>
+      <div class="progress" aria-label="Tiến độ biểu mẫu">
+        <span class="progress-step active"></span>
+        <span class="progress-step"></span>
+        <span class="progress-step"></span>
+        <span class="progress-step"></span>
+      </div>
+    </div>
+
+    <form id="interestForm" novalidate>
+      <div class="hp" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+
+      <fieldset class="form-step" data-step="0">
+        <legend>
+          <span class="step-title"><b>01</b><span><small>BƯỚC 01</small><strong>Bạn là ai?</strong></span></span>
+        </legend>
+        <div class="grid">
+          <div class="field"><label class="field-label req" for="fullName">Họ và tên</label><input id="fullName" name="fullName" autocomplete="name" placeholder="Nguyễn Văn A" required></div>
+          <div class="field"><label class="field-label req" for="phone">Số điện thoại</label><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="09xx xxx xxx" required></div>
+          <div class="field"><label class="field-label req" for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" placeholder="email@domain.com" required></div>
+          <div class="field"><label class="field-label req" for="city">Bạn hiện sống ở đâu?</label><input id="city" name="city" autocomplete="address-level2" placeholder="Ví dụ: Đà Nẵng" required></div>
+          <div class="field"><label class="field-label req" for="currentStatus">Hiện tại bạn đang</label><select id="currentStatus" name="currentStatus" required><option value="">Chọn một phương án</option><option>Sinh viên</option><option>Mới tốt nghiệp</option><option>Đang đi làm</option><option>Freelancer</option><option>Career break / tìm hướng mới</option><option>Khác</option></select></div>
+          <div class="field"><label class="field-label" for="schoolCompany">Trường / Công ty / Ngành hiện tại</label><input id="schoolCompany" name="schoolCompany" placeholder="Không bắt buộc"></div>
+        </div>
+        <div class="step-summary"><span>Không yêu cầu CV</span><span>Không yêu cầu kinh nghiệm</span></div>
+      </fieldset>
+
+      <fieldset class="form-step" data-step="1" hidden>
+        <legend>
+          <span class="step-title"><b>02</b><span><small>BƯỚC 02</small><strong>Bạn đã chạm vào Media đến đâu?</strong></span></span>
+        </legend>
+
+        <div class="question">
+          <div class="question-label"><strong>Bạn đã từng làm những gì?</strong><span>Chọn nhiều mục nếu phù hợp · không bắt buộc</span></div>
+          <div class="checks" id="experienceAreas">
+            <label class="check"><input type="checkbox" value="Photography">Photography</label>
+            <label class="check"><input type="checkbox" value="Video Shooting">Video Shooting</label>
+            <label class="check"><input type="checkbox" value="Video Editing">Video Editing</label>
+            <label class="check"><input type="checkbox" value="Retouching">Retouching</label>
+            <label class="check"><input type="checkbox" value="Graphic Design">Graphic Design</label>
+            <label class="check"><input type="checkbox" value="Content Creation">Content Creation</label>
+            <label class="check"><input type="checkbox" value="Lighting">Lighting</label>
+            <label class="check"><input type="checkbox" value="Chưa từng làm Media">Chưa từng làm Media</label>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="field full"><label class="field-label req" for="experienceLevel">Mức kinh nghiệm hiện tại</label><select id="experienceLevel" name="experienceLevel" required><option value="">Chọn mức gần nhất với bạn</option><option>Chưa bắt đầu</option><option>Đang tự học</option><option>Đã làm project cá nhân</option><option>Đã nhận freelance nhỏ</option><option>Đã từng làm ở team/công ty</option><option>Đã từng tham gia commercial production</option></select></div>
+          <div class="field full"><label class="field-label" for="preferredTrack">Bạn đang quan tâm hướng nào nhất?</label><select id="preferredTrack" name="preferredTrack"><option>Chưa biết — muốn khám phá trước</option><option>Photography</option><option>Video / Camera</option><option>Video Creative</option><option>Production / Điều phối</option></select><span class="help">Không cần chọn “đúng” ngay. Đây chỉ giúp team hiểu hướng bạn đang tò mò nhất.</span></div>
+          <div class="field full"><label class="field-label" for="portfolioUrl">Portfolio / Drive / Instagram / Behance / Website</label><input id="portfolioUrl" name="portfolioUrl" type="url" inputmode="url" placeholder="https://..."><span class="help">Không bắt buộc. Nếu có, gửi một link mà bạn thấy thể hiện mình rõ nhất.</span></div>
+        </div>
+      </fieldset>
+
+      <fieldset class="form-step" data-step="2" hidden>
+        <legend>
+          <span class="step-title"><b>03</b><span><small>BƯỚC 03</small><strong>Bạn muốn đi đâu với Media?</strong></span></span>
+        </legend>
+
+        <div class="question">
+          <div class="question-label"><strong class="req">Vì sao bạn đang quan tâm đến nghề Media?</strong><span>Không cần viết dài · nói đúng điều bạn nghĩ</span></div>
+          <textarea id="careerWhy" name="careerWhy" required placeholder="Ví dụ: Mình muốn chuyển từ việc tự học rời rạc sang một lộ trình có người góp ý và có sản phẩm để đi xin việc..."></textarea>
+        </div>
+
+        <div class="question">
+          <div class="question-label"><strong>Điều gì đang khiến bạn khó bước vào nghề nhất hiện tại?</strong><span>Không bắt buộc</span></div>
+          <textarea id="currentBarrier" name="currentBarrier" placeholder="Ví dụ: chưa biết bắt đầu từ đâu, thiếu người góp ý, thiếu thiết bị, chưa có môi trường thực hành..."></textarea>
+        </div>
+
+        <div class="step-summary"><span>Không có “câu trả lời chuẩn”</span><span>Team dùng phần này để hiểu nhu cầu thực tế</span></div>
+      </fieldset>
+
+      <fieldset class="form-step" data-step="3" hidden>
+        <legend>
+          <span class="step-title"><b>04</b><span><small>BƯỚC CUỐI</small><strong>Đọc rõ trước khi gửi.</strong></span></span>
+        </legend>
+
+        <div class="notice">
+          <div class="notice-top">
+            <small>HỌC PHÍ DỰ KIẾN · 4 THÁNG / 16 TUẦN</small>
+            <strong>40.000.000 VNĐ</strong>
+          </div>
+          <div class="notice-body">
+            <p>Hiện tại Hang Đôi <strong>chưa thu phí và chưa giữ chỗ</strong>. Khi chương trình chính thức mở ghi danh, học viên dự kiến có thể chọn một trong hai hình thức:</p>
+            <div class="payment-grid">
+              <div><small>PHƯƠNG ÁN 01</small><strong>Đóng 1 lần</strong><span>Theo lịch ghi danh của khóa</span></div>
+              <div><small>PHƯƠNG ÁN 02</small><strong>Chia thành 3 lần</strong><span>Thanh toán ngày 05 hằng tháng</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="consent-list">
+          <label class="consent"><input id="tuitionAwareness" type="checkbox"><span>Tôi đã đọc mức học phí và hình thức thanh toán dự kiến. <strong>Không bắt buộc để gửi đăng ký quan tâm.</strong></span></label>
+          <label class="consent"><input id="privacyConsent" type="checkbox" required><span>Tôi đồng ý để Hang Đôi xử lý thông tin tôi cung cấp nhằm ghi nhận mức độ quan tâm, liên hệ khi có cập nhật chính thức về Media Career Program và quản lý hồ sơ liên hệ của tôi. <strong>Bắt buộc.</strong></span></label>
+          <label class="consent"><input id="marketingConsent" type="checkbox"><span>Tôi đồng ý nhận thêm thông tin về workshop, chương trình và hoạt động tương lai của Hang Đôi. <strong>Không bắt buộc.</strong></span></label>
+        </div>
+
+        <div class="step-summary"><span>Không đặt cọc</span><span>Không giữ chỗ</span><span>Không cam kết nhập học</span><span>Không đảm bảo việc làm</span></div>
+      </fieldset>
+
+      <div class="form-actions">
+        <div class="action-left">
+          <button class="back-btn" id="backBtn" type="button" hidden>← Quay lại</button>
+          <div id="formStatus" class="status" aria-live="polite">Thông tin chỉ được gửi khi bạn bấm “Gửi đăng ký quan tâm”.</div>
+        </div>
+        <button class="next-btn" id="nextBtn" type="button"><span>TIẾP TỤC</span><b aria-hidden="true">→</b></button>
+        <button class="submit-btn" id="submitBtn" type="submit" hidden><span>GỬI ĐĂNG KÝ QUAN TÂM</span><b aria-hidden="true">✓</b></button>
+      </div>
+    </form>
+
+    <div class="form-foot">
+      <span>Hang Đôi Academy · Media Career Program · Khóa 01</span>
+      <span>Cần hỗ trợ? <a href="tel:+84888445997">0888 445 997</a></span>
+    </div>
+  </section>
+</main>
+
+<script>
+const API="https://candidate-api-v2-production.up.railway.app";
+const form=document.getElementById("interestForm");
+const steps=Array.from(document.querySelectorAll(".form-step"));
+const progress=Array.from(document.querySelectorAll(".progress-step"));
+const nextBtn=document.getElementById("nextBtn");
+const backBtn=document.getElementById("backBtn");
+const submitBtn=document.getElementById("submitBtn");
+const statusEl=document.getElementById("formStatus");
+const progressLabel=document.getElementById("progressLabel");
+const formTitle=document.getElementById("formTitle");
+const formDescription=document.getElementById("formDescription");
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const params=new URLSearchParams(location.search);
+
+const stepMeta=[
+  ["BƯỚC 01 / 04 · THÔNG TIN CỦA BẠN","Bắt đầu từ thông tin cơ bản.","Không cần kinh nghiệm Media trước đó. Các trường có dấu * là thông tin cần thiết để Hang Đôi ghi nhận đăng ký quan tâm."],
+  ["BƯỚC 02 / 04 · NỀN TẢNG MEDIA","Bạn đã chạm vào Media đến đâu?","Không cần portfolio hay kinh nghiệm chuyên nghiệp. Chọn mức gần nhất với hiện tại để team hiểu điểm bắt đầu của bạn."],
+  ["BƯỚC 03 / 04 · MỤC TIÊU NGHỀ NGHIỆP","Điều gì khiến bạn muốn đi tiếp với Media?","Hai câu hỏi ngắn để Hang Đôi hiểu điều bạn đang tìm kiếm và phần nào đang khiến bạn bị mắc lại."],
+  ["BƯỚC 04 / 04 · XÁC NHẬN","Đọc rõ trước khi gửi.","Hiện tại chỉ là đăng ký quan tâm. Chưa thu phí, chưa giữ chỗ và chưa phải hồ sơ ghi danh chính thức."]
+];
+let currentStep=0;
+
+["utm_source","utm_medium","utm_campaign","utm_content"].forEach(function(k){
+  const v=params.get(k);
+  if(v)sessionStorage.setItem(k,v);
+});
+
+const checkedValues=function(id){
+  return Array.from(document.querySelectorAll("#"+id+" input:checked")).map(function(x){return x.value});
+};
+
+
+const DRAFT_KEY="mcp_interest_draft_v1";
+const DRAFT_FIELDS=[
+  "fullName","phone","email","city","currentStatus","schoolCompany",
+  "experienceLevel","preferredTrack","portfolioUrl","careerWhy","currentBarrier"
+];
+let draftTimer=null;
+let draftRestored=false;
+
+function saveDraft(){
+  try{
+    const values={};
+    DRAFT_FIELDS.forEach(function(name){
+      const field=form.elements[name];
+      if(field)values[name]=field.value;
+    });
+    sessionStorage.setItem(DRAFT_KEY,JSON.stringify({
+      version:1,
+      savedAt:Date.now(),
+      step:currentStep,
+      values:values,
+      experienceAreas:checkedValues("experienceAreas"),
+      tuitionAwareness:document.getElementById("tuitionAwareness").checked,
+      privacyConsent:document.getElementById("privacyConsent").checked,
+      marketingConsent:document.getElementById("marketingConsent").checked
+    }));
+  }catch(_error){}
+}
+
+function scheduleDraftSave(){
+  clearTimeout(draftTimer);
+  draftTimer=setTimeout(saveDraft,180);
+}
+
+function restoreDraft(){
+  try{
+    const raw=sessionStorage.getItem(DRAFT_KEY);
+    if(!raw)return 0;
+    const draft=JSON.parse(raw);
+    if(!draft||draft.version!==1||!draft.values)return 0;
+
+    DRAFT_FIELDS.forEach(function(name){
+      const field=form.elements[name];
+      if(field&&typeof draft.values[name]==="string")field.value=draft.values[name];
+    });
+
+    const selected=new Set(Array.isArray(draft.experienceAreas)?draft.experienceAreas:[]);
+    document.querySelectorAll("#experienceAreas input[type='checkbox']").forEach(function(input){
+      input.checked=selected.has(input.value);
+    });
+    document.getElementById("tuitionAwareness").checked=draft.tuitionAwareness===true;
+    document.getElementById("privacyConsent").checked=draft.privacyConsent===true;
+    document.getElementById("marketingConsent").checked=draft.marketingConsent===true;
+
+    draftRestored=Object.values(draft.values).some(function(value){return String(value||"").trim()!==""})
+      || selected.size>0
+      || draft.tuitionAwareness===true
+      || draft.privacyConsent===true
+      || draft.marketingConsent===true;
+
+    return Number.isInteger(draft.step)?Math.max(0,Math.min(draft.step,steps.length-1)):0;
+  }catch(_error){
+    sessionStorage.removeItem(DRAFT_KEY);
+    return 0;
+  }
+}
+
+let sid=sessionStorage.getItem("mcp_sid");
+if(!sid){
+  sid="mcp_"+crypto.randomUUID();
+  sessionStorage.setItem("mcp_sid",sid);
+}
+
+const track=function(eventName,candidateCode,metadata){
+  return fetch(API+"/v1/events",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    keepalive:true,
+    body:JSON.stringify({
+      eventName:eventName,
+      sessionId:sid,
+      candidateCode:candidateCode||"",
+      path:location.pathname,
+      utmSource:sessionStorage.getItem("utm_source")||"",
+      utmMedium:sessionStorage.getItem("utm_medium")||"",
+      utmCampaign:sessionStorage.getItem("utm_campaign")||"media_career_cohort01",
+      utmContent:sessionStorage.getItem("utm_content")||"",
+      referrer:document.referrer||"",
+      metadata:metadata||{}
+    })
+  }).catch(function(){});
+};
+
+track("apply_view");
+
+let formStarted=false;
+form.addEventListener("input",function(){
+  scheduleDraftSave();
+  if(!formStarted){
+    formStarted=true;
+    track("form_start");
+  }
+},{passive:true});
+form.addEventListener("change",scheduleDraftSave,{passive:true});
+
+function renderStep(index,scroll){
+  currentStep=Math.max(0,Math.min(index,steps.length-1));
+  steps.forEach(function(step,i){step.hidden=i!==currentStep});
+  progress.forEach(function(bar,i){
+    bar.classList.toggle("done",i<currentStep);
+    bar.classList.toggle("active",i===currentStep);
+  });
+  backBtn.hidden=currentStep===0;
+  nextBtn.hidden=currentStep===steps.length-1;
+  submitBtn.hidden=currentStep!==steps.length-1;
+  progressLabel.textContent=stepMeta[currentStep][0];
+  formTitle.textContent=stepMeta[currentStep][1];
+  formDescription.textContent=stepMeta[currentStep][2];
+  statusEl.className="status";
+  statusEl.textContent=currentStep===steps.length-1
+    ?"Kiểm tra lại thông tin rồi bấm gửi. Không có khoản thanh toán nào ở bước này."
+    :"Thông tin chỉ được gửi khi bạn bấm “Gửi đăng ký quan tâm”.";
+  scheduleDraftSave();
+
+  if(scroll){
+    document.querySelector(".form-panel").scrollIntoView({
+      behavior:reduce?"auto":"smooth",
+      block:"start"
+    });
+  }
+}
+
+function validateCurrent(){
+  const required=Array.from(steps[currentStep].querySelectorAll("[required]"));
+  for(const field of required){
+    if(!field.checkValidity()){
+      field.reportValidity();
+      field.focus({preventScroll:true});
+      requestAnimationFrame(function(){
+        field.scrollIntoView({behavior:reduce?"auto":"smooth",block:"center"});
+      });
+      return false;
+    }
+  }
+  return true;
+}
+
+nextBtn.addEventListener("click",function(){
+  if(!validateCurrent())return;
+  renderStep(currentStep+1,true);
+});
+backBtn.addEventListener("click",function(){
+  renderStep(currentStep-1,true);
+});
+
+form.addEventListener("keydown",function(event){
+  if(event.key==="Enter" && event.target.tagName!=="TEXTAREA" && currentStep<steps.length-1){
+    event.preventDefault();
+    nextBtn.click();
+  }
+});
+
+const SUBMIT_TIMEOUT_MS=15000;
+let submitting=false;
+
+window.addEventListener("offline",function(){
+  statusEl.className="status error";
+  statusEl.textContent="Bạn đang mất kết nối. Nội dung vẫn được giữ trong tab này để gửi lại khi có mạng.";
+});
+window.addEventListener("online",function(){
+  if(submitting)return;
+  statusEl.className="status";
+  statusEl.textContent="Đã kết nối lại. Bạn có thể tiếp tục và gửi đăng ký.";
+});
+
+form.addEventListener("submit",async function(event){
+  event.preventDefault();
+  if(submitting)return;
+  if(currentStep!==steps.length-1){
+    if(validateCurrent())renderStep(currentStep+1,true);
+    return;
+  }
+  if(!validateCurrent())return;
+
+  if(navigator.onLine===false){
+    statusEl.className="status error";
+    statusEl.textContent="Bạn đang mất kết nối. Nội dung đã được giữ trong tab này; hãy thử lại khi có mạng.";
+    track("form_submit_error","",{kind:"offline"});
+    return;
+  }
+
+  submitting=true;
+  submitBtn.disabled=true;
+  statusEl.className="status";
+  statusEl.textContent="Đang ghi nhận thông tin…";
+
+  const f=new FormData(form);
+  const payload={
+    website:f.get("website"),
+    fullName:f.get("fullName"),
+    phone:f.get("phone"),
+    email:f.get("email"),
+    city:f.get("city"),
+    currentStatus:f.get("currentStatus"),
+    schoolCompany:f.get("schoolCompany"),
+    experienceAreas:checkedValues("experienceAreas"),
+    experienceLevel:f.get("experienceLevel"),
+    preferredTrack:f.get("preferredTrack"),
+    portfolioUrl:f.get("portfolioUrl"),
+    careerWhy:f.get("careerWhy"),
+    currentBarrier:f.get("currentBarrier"),
+    tuitionAwareness:document.getElementById("tuitionAwareness").checked,
+    privacyConsent:document.getElementById("privacyConsent").checked,
+    marketingConsent:document.getElementById("marketingConsent").checked,
+    utmSource:sessionStorage.getItem("utm_source")||"",
+    utmMedium:sessionStorage.getItem("utm_medium")||"",
+    utmCampaign:sessionStorage.getItem("utm_campaign")||"media_career_cohort01",
+    utmContent:sessionStorage.getItem("utm_content")||"",
+    referrer:document.referrer||""
+  };
+
+  const controller=new AbortController();
+  const timeoutId=setTimeout(function(){controller.abort()},SUBMIT_TIMEOUT_MS);
+
+  try{
+    const response=await fetch(API+"/v1/applications",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(payload),
+      signal:controller.signal
+    });
+    const data=await response.json().catch(function(){return {}});
+    if(!response.ok){
+      const error=new Error(response.status===409
+        ?"Email này đã có đăng ký quan tâm. Vui lòng liên hệ Hang Đôi nếu bạn cần cập nhật thông tin."
+        :(data.error||"Chưa gửi được đăng ký."));
+      error.kind="http_"+response.status;
+      throw error;
+    }
+
+    sessionStorage.removeItem(DRAFT_KEY);
+    track("form_submit_client",data.candidateCode,{intakeMode:data.intakeMode||"INTEREST_ONLY"});
+    location.href="/media-career-program/thank-you/?candidate="+encodeURIComponent(data.candidateCode)+"&mode="+encodeURIComponent(data.intakeMode||"INTEREST_ONLY");
+  }catch(error){
+    console.error(error);
+    const kind=navigator.onLine===false
+      ?"offline"
+      :(error.name==="AbortError"
+        ?"timeout"
+        :(error.kind||(error.message==="Failed to fetch"?"network":"unknown")));
+    track("form_submit_error","",{kind:kind});
+
+    statusEl.className="status error";
+    if(kind==="offline"){
+      statusEl.textContent="Bạn đang mất kết nối. Nội dung đã được giữ trong tab này; hãy thử lại khi có mạng.";
+    }else if(kind==="timeout"){
+      statusEl.textContent="Kết nối đang chậm nên hệ thống chưa xác nhận được. Nội dung vẫn được giữ; vui lòng thử gửi lại.";
+    }else if(kind==="network"){
+      statusEl.textContent="Không kết nối được hệ thống. Nội dung vẫn được giữ trong tab này; vui lòng thử lại.";
+    }else{
+      statusEl.textContent=error.message;
+    }
+    submitBtn.disabled=false;
+    submitting=false;
+  }finally{
+    clearTimeout(timeoutId);
+  }
+});
+
+const restoredStep=restoreDraft();
+renderStep(restoredStep,false);
+if(draftRestored){
+  statusEl.className="status";
+  statusEl.textContent="Đã khôi phục nội dung bạn đang điền trong tab này.";
+}
+</script>
+</body>
+</html>
