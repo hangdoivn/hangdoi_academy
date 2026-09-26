@@ -2420,6 +2420,55 @@ app.get("/v1/admin/mail/scenarios", requireAdmin, (_req, res) => {
   });
 });
 
+async function getManualMailCandidate(applicationId) {
+  const candidate = await pool.query(`
+    SELECT candidate_code, full_name, phone, email
+    FROM media_career_applications
+    WHERE id = $1
+  `, [applicationId]);
+  return candidate.rows[0] || null;
+}
+
+function manualMailPayload(row, scenario, note) {
+  return {
+    type: scenario.payloadType,
+    scenario: scenario.key,
+    candidateCode: row.candidate_code,
+    fullName: row.full_name,
+    phone: row.phone,
+    email: row.email,
+    note: cleanString(note, 4000)
+  };
+}
+
+app.post("/v1/admin/applications/:id/mail/preview", requireAdmin, async (req, res) => {
+  const scenarioKey = cleanString(req.body?.scenario, 80).toUpperCase();
+  const scenario = manualMailScenarios.get(scenarioKey);
+  if (!scenario) {
+    return res.status(400).json({ ok: false, error: "Unsupported email scenario" });
+  }
+  const row = await getManualMailCandidate(req.params.id);
+  if (!row) {
+    return res.status(404).json({ ok: false, error: "Candidate not found" });
+  }
+  const payload = manualMailPayload(row, scenario, req.body?.note);
+  const message = candidateMailBody(payload, "PREVIEW");
+  if (!message) {
+    return res.status(500).json({ ok: false, error: "Unable to render email preview" });
+  }
+  res.json({
+    ok: true,
+    emailConfigured: smtpReady(),
+    scenario: scenarioKey,
+    preview: {
+      to: message.to,
+      subject: message.subject,
+      text: message.text,
+      html: message.html
+    }
+  });
+});
+
 app.post("/v1/admin/applications/:id/mail", requireAdmin, async (req, res) => {
   if (!smtpReady()) {
     return res.status(409).json({ ok: false, error: "Academy email is not configured" });
@@ -2429,16 +2478,31 @@ app.post("/v1/admin/applications/:id/mail", requireAdmin, async (req, res) => {
   if (!scenario) {
     return res.status(400).json({ ok: false, error: "Unsupported email scenario" });
   }
-  const note = cleanString(req.body?.note, 4000);
-  const candidate = await pool.query(`
-    SELECT candidate_code, full_name, phone, email
-    FROM media_career_applications
-    WHERE id = $1
-  `, [req.params.id]);
-  if (!candidate.rowCount) {
+  const row = await getManualMailCandidate(req.params.id);
+  if (!row) {
     return res.status(404).json({ ok: false, error: "Candidate not found" });
   }
-  const row = candidate.rows[0];
+
+  const recentDuplicate = await pool.query(`
+    SELECT id, delivery_type, status, created_at
+    FROM media_career_outbound_deliveries
+    WHERE candidate_code = $1
+      AND delivery_type LIKE $2
+      AND status IN ('PENDING','PROCESSING','RETRY','DELIVERED')
+      AND created_at >= DATE_SUB(NOW(), INTERVAL 10 MINUTE)
+    ORDER BY created_at DESC
+    LIMIT 1
+  `, [row.candidate_code, `EMAIL_MANUAL_${scenarioKey}_%`]);
+  if (recentDuplicate.rowCount) {
+    return res.status(409).json({
+      ok: false,
+      error: "Kịch bản này vừa được gửi cho ứng viên trong 10 phút gần đây.",
+      code: "RECENT_DUPLICATE_MAIL",
+      existingDelivery: recentDuplicate.rows[0]
+    });
+  }
+
+  const payload = manualMailPayload(row, scenario, req.body?.note);
   const deliveryType = `EMAIL_MANUAL_${scenarioKey}_${Date.now().toString(36).toUpperCase()}`;
   const result = await pool.query(`
     INSERT INTO media_career_outbound_deliveries (
@@ -2450,15 +2514,7 @@ app.post("/v1/admin/applications/:id/mail", requireAdmin, async (req, res) => {
     row.candidate_code,
     deliveryType,
     SMTP_DELIVERY_ENDPOINT_KEY,
-    JSON.stringify({
-      type: scenario.payloadType,
-      scenario: scenarioKey,
-      candidateCode: row.candidate_code,
-      fullName: row.full_name,
-      phone: row.phone,
-      email: row.email,
-      note
-    })
+    JSON.stringify(payload)
   ]);
   void processOutboundDeliveries();
   res.status(202).json({ ok: true, delivery: result.rows[0], scenario: scenarioKey });
