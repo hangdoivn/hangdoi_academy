@@ -53,6 +53,11 @@ dialog{width:min(calc(100% - 20px),960px);overflow:auto}.drawer{padding:0}.drawe
 .candidate-mail-actions button{border:0;background:var(--ink);color:#fff;border-radius:999px;padding:10px 14px;font-weight:850;cursor:pointer}
 .candidate-mail-actions button:disabled{opacity:.45;cursor:not-allowed}.mail-state{font-size:11px;font-weight:850;color:var(--muted)}
 @media(max-width:650px){.candidate-mail-actions{align-items:flex-start;flex-direction:column}.candidate-mail-actions button{width:100%}}
+
+.mail-preview{display:none;border:1px solid var(--line);background:var(--mist);border-radius:14px;padding:13px;margin-top:10px}
+.mail-preview.show{display:block}.mail-preview small{display:block;color:var(--muted);font-size:10px;font-weight:900;letter-spacing:.05em}
+.mail-preview b{display:block;margin:4px 0 10px;font-size:13px}.mail-preview pre{white-space:pre-wrap;margin:0;font:12px/1.6 Arial,sans-serif;color:var(--ink)}
+.candidate-mail-actions .secondary-mail{background:#fff;color:var(--ink);border:1px solid var(--line)}
 </style>
 </head>
 <body>
@@ -523,19 +528,34 @@ function renderCandidateMailPanel(applicationId){
   const first=mailScenarios[0];
   const disabled=!mailConfigured||!mailScenarios.length;
   return '<section class="candidate-mail">'+
-    '<div class="candidate-mail-head"><div><h3>Gửi email</h3><p>Dùng kịch bản có sẵn để giữ giọng điệu thống nhất. Email chỉ được đưa vào hàng đợi sau khi xác nhận.</p></div><span class="delivery-status '+(mailConfigured?'DELIVERED':'')+'">'+(mailConfigured?'SẴN SÀNG':'CHƯA BẬT MAIL')+'</span></div>'+
+    '<div class="candidate-mail-head"><div><h3>Gửi email</h3><p>Dùng kịch bản có sẵn để giữ giọng điệu thống nhất. Nên xem trước nội dung trước khi xác nhận gửi.</p></div><span class="delivery-status '+(mailConfigured?'DELIVERED':'')+'">'+(mailConfigured?'SẴN SÀNG':'CHƯA BẬT MAIL')+'</span></div>'+
     '<div class="candidate-mail-grid">'+
       '<label>Kịch bản<select id="mailScenario" onchange="updateMailScenarioDescription()">'+options+'</select></label>'+
       '<div id="mailScenarioDescription" class="mail-scenario-note">'+esc(first?.description||"Chưa có kịch bản email.")+'</div>'+
-      '<label>Ghi chú thêm <span style="font-weight:500">(không bắt buộc)</span><textarea id="mailNote" placeholder="Ví dụ: cần bổ sung portfolio, thời gian có thể trao đổi, nội dung muốn nhắn riêng..."></textarea></label>'+
+      '<label>Ghi chú thêm <span style="font-weight:500">(không bắt buộc)</span><textarea id="mailNote" placeholder="Ví dụ: cần bổ sung portfolio, thời gian có thể trao đổi, nội dung muốn nhắn riêng..." oninput="hideMailPreview()"></textarea></label>'+
+      '<div id="mailPreview" class="mail-preview"><small>TIÊU ĐỀ</small><b id="mailPreviewSubject"></b><small>NỘI DUNG</small><pre id="mailPreviewText"></pre></div>'+
     '</div>'+
-    '<div class="candidate-mail-actions"><span class="mail-state">'+(mailConfigured?'Mail sẽ được gửi từ Hang Đôi Academy và có lưu lịch sử.':'Cần bật SMTP trước khi có thể gửi email.')+'</span><button id="sendCandidateMailButton" '+(disabled?'disabled':'')+' onclick="sendCandidateMail('+applicationId+',this)">Xác nhận & gửi email</button></div>'+
+    '<div class="candidate-mail-actions"><span class="mail-state">'+(mailConfigured?'Mail sẽ được gửi từ Hang Đôi Academy và có lưu lịch sử.':'SMTP chưa bật: vẫn có thể xem trước nhưng chưa thể gửi thật.')+'</span><div style="display:flex;gap:8px"><button class="secondary-mail" onclick="previewCandidateMail('+applicationId+',this)">Xem trước</button><button id="sendCandidateMailButton" '+(disabled?'disabled':'')+' onclick="sendCandidateMail('+applicationId+',this)">Xác nhận & gửi email</button></div></div>'+
   '</section>';
 }
 function updateMailScenarioDescription(){
   const key=$("mailScenario")?.value;
   const scenario=mailScenarios.find(x=>x.key===key);
   if($("mailScenarioDescription"))$("mailScenarioDescription").textContent=scenario?.description||"";
+  hideMailPreview();
+}
+function hideMailPreview(){if($("mailPreview"))$("mailPreview").classList.remove("show")}
+async function previewCandidateMail(applicationId,button){
+  const scenario=$("mailScenario")?.value;
+  if(!scenario)return;
+  const old=button.textContent;button.disabled=true;button.textContent="Đang tạo bản xem trước…";
+  try{
+    const j=await api("/v1/admin/applications/"+applicationId+"/mail/preview",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({scenario,note:$("mailNote")?.value||""})});
+    $("mailPreviewSubject").textContent=j.preview?.subject||"";
+    $("mailPreviewText").textContent=j.preview?.text||"";
+    $("mailPreview").classList.add("show");
+  }catch(e){statusEl.textContent="Không tạo được bản xem trước: "+e.message;statusEl.className="status err"}
+  finally{button.disabled=false;button.textContent=old}
 }
 async function sendCandidateMail(applicationId,button){
   const scenario=$("mailScenario")?.value;
