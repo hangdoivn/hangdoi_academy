@@ -71,7 +71,7 @@ function returningSelector(table, originalSql, originalParams) {
     case "media_career_applications":
       return { columns: ["cohort","email_normalized"], values: [originalParams[1], originalParams[6]] };
     case "academy_registrations":
-      return { columns: ["course_slug","email_normalized"], values: [originalParams[1], originalParams[6]] };
+      return { columns: ["course_slug","email_normalized"], values: [originalParams[1], originalParams[7]] };
     case "media_career_legal_readiness":
       return { column: "cohort", value: originalParams[0] };
     case "media_career_selection_appointments":
