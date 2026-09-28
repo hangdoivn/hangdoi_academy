@@ -283,6 +283,8 @@ jobs:
           cp site/media-career-admin.html _site/media-career-program/admin/index.html
           mkdir -p _site/media-career-program/selection
           cp site/media-career-selection.html _site/media-career-program/selection/index.html
+          mkdir -p _site/media-career-program/policy
+          cp site/media-career-policy.html _site/media-career-program/policy/index.html
 
           # Version Media Career runtime URLs with the exact deploy revision.
           # GitHub Pages/CDN can otherwise serve a new HTML shell with older CSS,
@@ -607,6 +609,10 @@ jobs:
           grep -qx "$GITHUB_SHA" _site/build-revision.txt
           test -s _site/assets/media-career/inter.css
           test "$(find _site/assets/media-career/fonts -type f -name 'inter-*.woff2' | wc -l)" -ge 1
+          test -s _site/media-career-program/policy/index.html
+          grep -q '30.000.000' _site/media-career-program/policy/index.html
+          grep -q '12 tháng' _site/media-career-program/policy/index.html
+          grep -q '24 tháng' _site/media-career-program/policy/index.html
           test -s _site/assets/media-career/program-critical.css
           grep -q 'program-critical.css' _site/media-career-program/index.html
           grep -q 'data-program-styles' _site/media-career-program/index.html
