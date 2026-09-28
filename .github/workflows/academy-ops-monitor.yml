@@ -110,6 +110,9 @@ jobs:
           check_json_health "Candidate API /health/backup" \
             "https://candidate-api-v2-production.up.railway.app/health/backup"
 
+          check_page "Academy registration page" \
+            "https://academy.hangdoiproduction.com/dang-ky/" \
+            'id="registrationForm"'
           check_page "Media Career landing" \
             "https://academy.hangdoiproduction.com/media-career-program/" \
             "media-career-program"
@@ -118,6 +121,19 @@ jobs:
             'id="interestForm"'
 
           check_cors
+
+          REG_HEADERS="$(mktemp)"
+          curl -sS -D "$REG_HEADERS" -o /dev/null \
+            --retry 2 --retry-all-errors \
+            --connect-timeout 10 --max-time 25 \
+            -X OPTIONS \
+            -H 'Origin: https://academy.hangdoiproduction.com' \
+            -H 'Access-Control-Request-Method: POST' \
+            https://candidate-api-v2-production.up.railway.app/v1/registrations
+          if ! grep -Eq '^HTTP/[0-9.]+ 20(0|4)' "$REG_HEADERS"; then
+            fail "Registration CORS preflight did not return HTTP 200/204"
+          fi
+          rm -f "$REG_HEADERS"
 
           echo "### Academy production monitor" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"

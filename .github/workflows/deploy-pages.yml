@@ -273,6 +273,11 @@ jobs:
 
           printf '%s\n' "$GITHUB_SHA" > _site/build-revision.txt
 
+          mkdir -p _site/dang-ky
+          cp site/academy-register.html _site/dang-ky/index.html
+          mkdir -p _site/dang-ky/cam-on
+          cp site/academy-register-thank-you.html _site/dang-ky/cam-on/index.html
+
           mkdir -p _site/media-career-program
           cp site/media-career-program.html _site/media-career-program/index.html
           mkdir -p _site/media-career-program/apply
@@ -609,6 +614,9 @@ jobs:
           grep -qx "$GITHUB_SHA" _site/build-revision.txt
           test -s _site/assets/media-career/inter.css
           test "$(find _site/assets/media-career/fonts -type f -name 'inter-*.woff2' | wc -l)" -ge 1
+          test -s _site/dang-ky/index.html
+          grep -q 'registrationForm' _site/dang-ky/index.html
+          test -s _site/dang-ky/cam-on/index.html
           test -s _site/media-career-program/policy/index.html
           grep -q '30.000.000' _site/media-career-program/policy/index.html
           grep -q '12 tháng' _site/media-career-program/policy/index.html

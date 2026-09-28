@@ -217,7 +217,7 @@ def build_main(articles: list[Article], categories: list[dict[str, str]]) -> str
 
       <section class="abh-section abh-topics-section" aria-labelledby="abh-topics-title"><div class="p2-wrap"><div class="abh-section-heading"><div><span class="abh-kicker">Đọc theo chủ đề</span><h2 id="abh-topics-title">Một thư viện có cấu trúc.</h2></div><p>Danh mục chỉ mở liên kết khi đã có bài, nên người đọc không bị dẫn vào trang trống.</p></div><div class="abh-topic-grid">{category_cards(categories, counts)}</div></div></section>
 
-      <section class="abh-section abh-cta-section"><div class="p2-wrap"><div class="abh-cta"><div><span class="abh-kicker">Cần người nhìn đúng vấn đề?</span><h2>Biết mình đang thiếu gì trước khi chọn khóa học.</h2><p>Gửi mục tiêu, thiết bị đang có và một số ảnh gần nhất. Academy sẽ giúp xác định nên ưu tiên vận hành máy, ánh sáng, tư duy hình ảnh hay hậu kỳ.</p></div><a class="abh-cta-button" href="/#tu-van" data-track="blog_consultation_click">Nhận tư vấn lộ trình <span aria-hidden="true">↗</span></a></div></div></section>
+      <section class="abh-section abh-cta-section"><div class="p2-wrap"><div class="abh-cta"><div><span class="abh-kicker">Cần người nhìn đúng vấn đề?</span><h2>Biết mình đang thiếu gì trước khi chọn khóa học.</h2><p>Gửi mục tiêu, thiết bị đang có và một số ảnh gần nhất. Academy sẽ giúp xác định nên ưu tiên vận hành máy, ánh sáng, tư duy hình ảnh hay hậu kỳ.</p></div><a class="abh-cta-button" href="/dang-ky/" data-track="blog_registration_click">Đăng ký / nhận tư vấn <span aria-hidden="true">↗</span></a></div></div></section>
     </main>"""
 
 

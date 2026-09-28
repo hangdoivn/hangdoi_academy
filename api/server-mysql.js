@@ -86,6 +86,28 @@ function candidateCode(cohort = "01") {
   return `MCP${cohort}-${stamp}-${rand}`;
 }
 
+const academyCourseCatalog = new Map([
+  ["nhiep-anh-co-ban", { name: "Nhiếp ảnh cơ bản", price: 6680000 }],
+  ["ky-thuat-nhiep-anh", { name: "Kỹ thuật nhiếp ảnh", price: 18680000 }],
+  ["ky-thuat-anh-sang", { name: "Kỹ thuật ánh sáng", price: 18680000 }],
+  ["chinh-sua-hinh-anh", { name: "Chỉnh sửa hình ảnh", price: 18680000 }],
+  ["nhiep-anh-toan-tap", { name: "Nhiếp ảnh toàn tập", price: 40000000 }],
+  ["media-career-program", { name: "Media Career Program", price: 40000000 }],
+  ["can-tu-van", { name: "Cần tư vấn", price: null }]
+]);
+
+function academyRegistrationCode(courseSlug = "academy") {
+  const prefix = String(courseSlug || "academy")
+    .split("-")
+    .map((part) => part[0] || "")
+    .join("")
+    .slice(0, 5)
+    .toUpperCase() || "ACA";
+  const stamp = Date.now().toString(36).toUpperCase();
+  const rand = crypto.randomBytes(2).toString("hex").toUpperCase();
+  return `ACA-${prefix}-${stamp}-${rand}`;
+}
+
 function selectionToken() {
   return crypto.randomBytes(24).toString("base64url");
 }
@@ -336,6 +358,78 @@ function buildEmailMessage(payload = {}, deliveryId) {
   const submitted = payload.submittedAt
     ? new Date(payload.submittedAt).toLocaleString("vi-VN", { timeZone: "Asia/Ho_Chi_Minh" })
     : "";
+
+  if (type === "EMAIL_TEAM_ACADEMY_REGISTRATION") {
+    const name = cleanString(payload.fullName, 160) || "Học viên mới";
+    const courseName = cleanString(payload.courseName, 240) || "Chưa chọn khóa";
+    const subject = `[Hang Đôi Academy] Đăng ký học mới · ${courseName} · ${name}`;
+    const text = [
+      "Hang Đôi Academy có đăng ký học mới.",
+      "",
+      `Khóa học: ${courseName}`,
+      `Họ tên: ${name}`,
+      payload.phone ? `Số điện thoại: ${payload.phone}` : "",
+      payload.email ? `Email: ${payload.email}` : "",
+      payload.city ? `Khu vực: ${payload.city}` : "",
+      payload.experienceLevel ? `Kinh nghiệm: ${payload.experienceLevel}` : "",
+      payload.learningGoal ? `Mục tiêu: ${payload.learningGoal}` : "",
+      payload.startTiming ? `Muốn bắt đầu: ${payload.startTiming}` : "",
+      Array.isArray(payload.schedulePreferences) && payload.schedulePreferences.length ? `Lịch phù hợp: ${payload.schedulePreferences.join(", ")}` : "",
+      payload.notes ? `Ghi chú: ${payload.notes}` : "",
+      payload.registrationCode ? `Mã đăng ký: ${payload.registrationCode}` : "",
+      submitted ? `Thời gian: ${submitted}` : ""
+    ].filter(Boolean).join("\n");
+    const html = mailShell("Có đăng ký học mới", `
+      <p style="font-size:15px;line-height:1.7;margin:0 0 18px">Một học viên vừa gửi form đăng ký tại Hang Đôi Academy.</p>
+      <table role="presentation" style="width:100%;border-collapse:collapse;font-size:14px;line-height:1.55">
+        <tr><td style="padding:7px 0;color:#646b86;width:150px">Khóa học</td><td style="padding:7px 0;font-weight:700">${htmlEscape(courseName)}</td></tr>
+        <tr><td style="padding:7px 0;color:#646b86">Họ tên</td><td style="padding:7px 0;font-weight:700">${htmlEscape(name)}</td></tr>
+        <tr><td style="padding:7px 0;color:#646b86">Số điện thoại</td><td style="padding:7px 0">${htmlEscape(payload.phone || "—")}</td></tr>
+        <tr><td style="padding:7px 0;color:#646b86">Email</td><td style="padding:7px 0">${htmlEscape(payload.email || "—")}</td></tr>
+        <tr><td style="padding:7px 0;color:#646b86">Kinh nghiệm</td><td style="padding:7px 0">${htmlEscape(payload.experienceLevel || "—")}</td></tr>
+        <tr><td style="padding:7px 0;color:#646b86">Mục tiêu</td><td style="padding:7px 0">${htmlEscape(payload.learningGoal || "—")}</td></tr>
+        <tr><td style="padding:7px 0;color:#646b86">Muốn bắt đầu</td><td style="padding:7px 0">${htmlEscape(payload.startTiming || "—")}</td></tr>
+        <tr><td style="padding:7px 0;color:#646b86">Mã đăng ký</td><td style="padding:7px 0">${htmlEscape(payload.registrationCode || "—")}</td></tr>
+      </table>
+    `);
+    return {
+      to: cfg.teamTo,
+      replyTo: cleanEmail(payload.email) || cfg.replyTo || cfg.from,
+      subject, text, html,
+      messageId: `<academy-registration-team-${deliveryId}@hangdoistudio.vn>`
+    };
+  }
+
+  if (type === "EMAIL_STUDENT_ACADEMY_REGISTRATION_ACK") {
+    const name = cleanString(payload.fullName, 160) || "bạn";
+    const courseName = cleanString(payload.courseName, 240) || "khóa học";
+    const code = cleanString(payload.registrationCode, 160);
+    const subject = `Hang Đôi Academy đã nhận đăng ký · ${courseName}`;
+    const text = [
+      `Chào ${name},`,
+      "",
+      `Hang Đôi Academy đã nhận đăng ký của bạn cho: ${courseName}.`,
+      code ? `Mã đăng ký: ${code}` : "",
+      "",
+      "Team sẽ liên hệ để xác nhận nhu cầu, lịch học và hướng dẫn bước tiếp theo.",
+      "Việc gửi form chưa phát sinh thanh toán.",
+      "",
+      "Hang Đôi Academy"
+    ].filter(Boolean).join("\n");
+    const html = mailShell("Đã nhận đăng ký học", `
+      <p style="font-size:15px;line-height:1.7;margin:0 0 14px">Chào <strong>${htmlEscape(name)}</strong>,</p>
+      <p style="font-size:15px;line-height:1.7;margin:0 0 14px">Hang Đôi Academy đã nhận đăng ký của bạn cho <strong>${htmlEscape(courseName)}</strong>.</p>
+      ${code ? `<div style="background:#fdde58;border-radius:12px;padding:12px 14px;margin:18px 0"><div style="font-size:11px;font-weight:800;color:#646b86">MÃ ĐĂNG KÝ</div><div style="font-size:18px;font-weight:800;margin-top:3px">${htmlEscape(code)}</div></div>` : ""}
+      <p style="font-size:15px;line-height:1.7;margin:0 0 14px">Team sẽ liên hệ để xác nhận nhu cầu, lịch học và hướng dẫn bước tiếp theo.</p>
+      <p style="font-size:14px;line-height:1.7;margin:0;color:#646b86">Việc gửi form chưa phát sinh thanh toán.</p>
+    `);
+    return {
+      to: cleanEmail(payload.email),
+      replyTo: cfg.replyTo || cfg.from,
+      subject, text, html,
+      messageId: `<academy-registration-ack-${deliveryId}@hangdoistudio.vn>`
+    };
+  }
 
   if (type === "EMAIL_TEAM_NEW_APPLICATION") {
     const name = cleanString(payload.fullName, 160) || "Ứng viên mới";
@@ -1212,6 +1306,184 @@ app.post("/v1/events", rateLimit(10 * 60 * 1000, 200), async (req, res) => {
   } catch (error) {
     console.error("event_record_failed", error);
     res.status(202).json({ ok: true });
+  }
+});
+
+
+app.post("/v1/registrations", rateLimit(60 * 60 * 1000, 20), async (req, res) => {
+  try {
+    const b = req.body || {};
+    if (cleanString(b.website, 200)) {
+      return res.status(201).json({ ok: true, registrationCode: "ACA-RECEIVED" });
+    }
+
+    const courseSlug = cleanString(b.courseSlug, 120);
+    const course = academyCourseCatalog.get(courseSlug);
+    const fullName = cleanString(b.fullName, 160);
+    const phone = cleanString(b.phone, 50);
+    const email = cleanEmail(b.email);
+    const learningGoal = cleanString(b.learningGoal, 6000);
+    const privacyConsent = b.privacyConsent === true;
+
+    const missing = [];
+    if (!course) missing.push("courseSlug");
+    if (!fullName) missing.push("fullName");
+    if (!phone) missing.push("phone");
+    if (!email || !email.includes("@")) missing.push("email");
+    if (!learningGoal) missing.push("learningGoal");
+    if (!privacyConsent) missing.push("privacyConsent");
+    if (missing.length) {
+      return res.status(400).json({ ok: false, error: "Missing required fields", fields: missing });
+    }
+
+    const registrationCode = academyRegistrationCode(courseSlug);
+    const schedulePreferences = Array.isArray(b.schedulePreferences)
+      ? b.schedulePreferences.map((value) => cleanString(value, 120)).filter(Boolean).slice(0, 12)
+      : [];
+
+    const payload = {
+      ...b,
+      courseSlug,
+      courseName: course.name,
+      coursePrice: course.price,
+      fullName,
+      phone,
+      email,
+      learningGoal,
+      schedulePreferences
+    };
+
+    const result = await pool.query(`
+      INSERT INTO academy_registrations (
+        registration_code, course_slug, course_name, full_name, date_of_birth,
+        phone, email, email_normalized, city, current_status, experience_level,
+        learning_goal, start_timing, contact_time, schedule_preferences, notes, status,
+        utm_source, utm_medium, utm_campaign, utm_content, referrer,
+        marketing_consent, privacy_consent, payload
+      ) VALUES (
+        $1,$2,$3,$4,NULLIF($5,'')::date,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15::jsonb,$16,'NEW',
+        $17,$18,$19,$20,$21,$22,$23,$24::jsonb
+      )
+      ON CONFLICT (course_slug, email_normalized)
+      DO UPDATE SET
+        course_name = EXCLUDED.course_name,
+        full_name = EXCLUDED.full_name,
+        date_of_birth = EXCLUDED.date_of_birth,
+        phone = EXCLUDED.phone,
+        city = EXCLUDED.city,
+        current_status = EXCLUDED.current_status,
+        experience_level = EXCLUDED.experience_level,
+        learning_goal = EXCLUDED.learning_goal,
+        start_timing = EXCLUDED.start_timing,
+        contact_time = EXCLUDED.contact_time,
+        schedule_preferences = EXCLUDED.schedule_preferences,
+        notes = EXCLUDED.notes,
+        utm_source = EXCLUDED.utm_source,
+        utm_medium = EXCLUDED.utm_medium,
+        utm_campaign = EXCLUDED.utm_campaign,
+        utm_content = EXCLUDED.utm_content,
+        referrer = EXCLUDED.referrer,
+        marketing_consent = EXCLUDED.marketing_consent,
+        privacy_consent = EXCLUDED.privacy_consent,
+        payload = EXCLUDED.payload,
+        submitted_at = NOW(),
+        updated_at = NOW()
+      RETURNING id, registration_code, submitted_at
+    `, [
+      registrationCode, courseSlug, course.name, fullName, cleanString(b.dateOfBirth, 20),
+      phone, email, email, cleanString(b.city, 160), cleanString(b.currentStatus, 100),
+      cleanString(b.experienceLevel, 100), learningGoal, cleanString(b.startTiming, 120),
+      cleanString(b.contactTime, 80), JSON.stringify(schedulePreferences), cleanString(b.notes, 6000),
+      cleanString(b.utmSource, 180), cleanString(b.utmMedium, 180), cleanString(b.utmCampaign, 180),
+      cleanString(b.utmContent, 180), cleanString(b.referrer, 1000),
+      b.marketingConsent === true, privacyConsent, JSON.stringify(payload)
+    ]);
+
+    const saved = result.rows[0];
+    await recordEvent({
+      eventName: "academy_registration_received",
+      candidateCode: saved.registration_code,
+      path: "/dang-ky/",
+      utmSource: b.utmSource,
+      utmMedium: b.utmMedium,
+      utmCampaign: b.utmCampaign,
+      utmContent: b.utmContent,
+      referrer: b.referrer,
+      metadata: { courseSlug, courseName: course.name }
+    });
+
+    if (smtpReady()) {
+      const jobs = [
+        {
+          deliveryType: "EMAIL_TEAM_ACADEMY_REGISTRATION",
+          endpointKey: SMTP_DELIVERY_ENDPOINT_KEY,
+          payload: {
+            type: "EMAIL_TEAM_ACADEMY_REGISTRATION",
+            registrationCode: saved.registration_code,
+            courseSlug,
+            courseName: course.name,
+            fullName, phone, email,
+            city: cleanString(b.city, 160),
+            experienceLevel: cleanString(b.experienceLevel, 100),
+            learningGoal,
+            startTiming: cleanString(b.startTiming, 120),
+            schedulePreferences,
+            notes: cleanString(b.notes, 6000),
+            submittedAt: saved.submitted_at
+          }
+        },
+        {
+          deliveryType: "EMAIL_STUDENT_ACADEMY_REGISTRATION_ACK",
+          endpointKey: SMTP_DELIVERY_ENDPOINT_KEY,
+          payload: {
+            type: "EMAIL_STUDENT_ACADEMY_REGISTRATION_ACK",
+            registrationCode: saved.registration_code,
+            courseName: course.name,
+            fullName, email,
+            submittedAt: saved.submitted_at
+          }
+        }
+      ];
+      const client = await pool.connect();
+      try {
+        await client.query("BEGIN");
+        await enqueueOutboundJobs(client, saved.registration_code, jobs);
+        await client.query("COMMIT");
+      } catch (error) {
+        try { await client.query("ROLLBACK"); } catch {}
+        console.error("academy_registration_email_queue_failed", error?.message || error);
+      } finally {
+        client.release();
+      }
+    }
+
+    res.status(201).json({
+      ok: true,
+      registrationCode: saved.registration_code,
+      submittedAt: saved.submitted_at,
+      courseSlug,
+      courseName: course.name
+    });
+  } catch (error) {
+    console.error("academy_registration_failed", error?.message || error);
+    res.status(500).json({ ok: false, error: "Không thể ghi nhận đăng ký lúc này." });
+  }
+});
+
+app.get("/v1/admin/registrations", requireAdmin, async (_req, res) => {
+  try {
+    const result = await pool.query(`
+      SELECT registration_code, course_slug, course_name, full_name, phone, email, city,
+             current_status, experience_level, learning_goal, start_timing, contact_time,
+             schedule_preferences, notes, status, submitted_at, updated_at
+      FROM academy_registrations
+      ORDER BY submitted_at DESC
+      LIMIT 500
+    `);
+    res.json({ ok: true, registrations: result.rows });
+  } catch (error) {
+    console.error("academy_registrations_admin_failed", error?.message || error);
+    res.status(500).json({ ok: false, error: "Failed to load registrations" });
   }
 });
 
