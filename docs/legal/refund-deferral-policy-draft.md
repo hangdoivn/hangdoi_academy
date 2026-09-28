@@ -2,7 +2,7 @@
 
 **DRAFT — COUNSEL REVIEW REQUIRED — NOT FOR PUBLICATION**
 
-Version: `DRAFT-0.1`
+Version: `DRAFT-0.2`
 
 The commercial terms below are a policy framework for decision and legal review. Percentages, timelines and deductions must be approved before publication.
 
@@ -135,17 +135,24 @@ Required process:
 - review/appeal where appropriate;
 - financial calculation record.
 
-## 11. Scholarship / tuition support
+## 11. Tuition support / Hang Đôi Production employment benefit
 
-If a scholarship is offered, define:
+Commercial structure confirmed on 28/09/2026 for Media Career Program:
 
-- scholarship amount;
-- whether it reduces tuition or is separately funded;
-- effect of withdrawal/deferral;
-- whether vested support can be clawed back;
-- tax/accounting treatment.
+- Program tuition: 40,000,000 VND.
+- Maximum tuition reimbursement linked to later employment at Hang Đôi Production: 30,000,000 VND.
+- First milestone: 10,000,000 VND after completing 12 months of work.
+- Second milestone: an additional 20,000,000 VND after completing 24 months of work.
+- Service time is counted from the first day the person starts working at Hang Đôi Production.
+- Probation counts toward the 12/24-month milestones when work continues without interruption after probation.
+- If the person leaves before a milestone, the not-yet-earned milestone does not vest.
+- An amount already vested and paid is not clawed back solely because the person later leaves.
+- After the full 24-month benefit, the learner's net tuition contribution remains 10,000,000 VND.
+- Academy completion does not guarantee employment. Recruitment remains a separate process based on role requirements and business hiring needs.
 
-Avoid structures that operate as employment security/deposit.
+This should be structured as an employment/retention benefit, not as a learner debt or an obligation to repay Academy tuition for leaving early.
+
+Legal, tax, payroll and employment-document treatment must be reviewed before final contractual wording is issued.
 
 ## 12. Refund method
 
