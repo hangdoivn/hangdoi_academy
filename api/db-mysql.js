@@ -70,6 +70,8 @@ function returningSelector(table, originalSql, originalParams) {
   switch (table) {
     case "media_career_applications":
       return { columns: ["cohort","email_normalized"], values: [originalParams[1], originalParams[6]] };
+    case "academy_registrations":
+      return { columns: ["course_slug","email_normalized"], values: [originalParams[1], originalParams[6]] };
     case "media_career_legal_readiness":
       return { column: "cohort", value: originalParams[0] };
     case "media_career_selection_appointments":
@@ -182,6 +184,40 @@ export function createMySqlPool(connectionString = process.env.MYSQL_URL) {
 
 export async function initMySqlSchema(pool) {
   const ddl = [
+    `CREATE TABLE IF NOT EXISTS academy_registrations (
+      id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+      registration_code VARCHAR(160) NOT NULL UNIQUE,
+      course_slug VARCHAR(120) NOT NULL,
+      course_name VARCHAR(240) NOT NULL,
+      full_name VARCHAR(160) NOT NULL,
+      date_of_birth DATE NULL,
+      phone VARCHAR(50) NOT NULL,
+      email VARCHAR(320) NOT NULL,
+      email_normalized VARCHAR(320) NOT NULL,
+      city VARCHAR(160) NULL,
+      current_status VARCHAR(100) NULL,
+      experience_level VARCHAR(100) NULL,
+      learning_goal LONGTEXT NOT NULL,
+      start_timing VARCHAR(120) NULL,
+      contact_time VARCHAR(80) NULL,
+      schedule_preferences JSON NULL,
+      notes LONGTEXT NULL,
+      status VARCHAR(40) NOT NULL DEFAULT 'NEW',
+      utm_source VARCHAR(180) NULL,
+      utm_medium VARCHAR(180) NULL,
+      utm_campaign VARCHAR(180) NULL,
+      utm_content VARCHAR(180) NULL,
+      referrer VARCHAR(1000) NULL,
+      marketing_consent BOOLEAN NOT NULL DEFAULT FALSE,
+      privacy_consent BOOLEAN NOT NULL DEFAULT TRUE,
+      payload JSON NOT NULL,
+      submitted_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+      updated_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+      UNIQUE KEY uk_academy_registration_course_email (course_slug,email_normalized),
+      KEY idx_academy_registration_course (course_slug,submitted_at),
+      KEY idx_academy_registration_status (status,submitted_at)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
+
     `CREATE TABLE IF NOT EXISTS media_career_cohorts (
       cohort VARCHAR(20) PRIMARY KEY,
       target_enrollment INT NOT NULL DEFAULT 10,
