@@ -236,7 +236,7 @@ function updateAcquisition(){
   const source=$("utmSource").value,medium=$("utmMedium").value,content=$("utmContent").value.trim()||"general";
   const params=new URLSearchParams({utm_source:source,utm_medium:medium,utm_campaign:"media_career_cohort01",utm_content:content});
   $("landingCampaignUrl").value="https://academy.hangdoiproduction.com/media-career-program/?"+params.toString();
-  $("registerCampaignUrl").value="https://academy.hangdoiproduction.com/media-career-program/apply/?"+params.toString();
+  $("registerCampaignUrl").value="https://academy.hangdoiproduction.com/dang-ky/?course=media-career-program&"+params.toString();
   const formalOpen=dash?.publicIntakeMode==="APPLICATION_OPEN";
   $("publicMode").textContent=formalOpen?"ĐÃ MỞ TUYỂN CHÍNH THỨC":"CHỈ GHI NHẬN QUAN TÂM";
   $("publicMode").className="mode-pill"+(formalOpen?" open":"");
