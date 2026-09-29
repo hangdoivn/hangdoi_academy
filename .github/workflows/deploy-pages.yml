@@ -311,6 +311,8 @@ jobs:
               "/assets/media-career/program-critical.css",
               "/assets/media-career/program.css",
               "/assets/media-career/program.js",
+              "/assets/media-career/benefit-popup.css",
+              "/assets/media-career/benefit-popup.js",
               "/academy-tokens.css",
               "/logo-academy.svg",
           ]
@@ -622,10 +624,16 @@ jobs:
           grep -q '12 tháng' _site/media-career-program/policy/index.html
           grep -q '24 tháng' _site/media-career-program/policy/index.html
           test -s _site/assets/media-career/program-critical.css
+          test -s _site/assets/media-career/benefit-popup.css
+          test -s _site/assets/media-career/benefit-popup.js
+          grep -q 'careerBenefitPopup' _site/media-career-program/index.html
+          grep -q 'HOÀN ĐẾN <span>30TR</span>' _site/media-career-program/index.html
           grep -q 'program-critical.css' _site/media-career-program/index.html
           grep -q 'data-program-styles' _site/media-career-program/index.html
           revision="${GITHUB_SHA:0:12}"
           grep -q "program.js?v=$revision" _site/media-career-program/index.html
+          grep -q "benefit-popup.js?v=$revision" _site/media-career-program/index.html
+          grep -q "benefit-popup.css?v=$revision" _site/media-career-program/index.html
           grep -q "program-critical.css?v=$revision" _site/media-career-program/index.html
           grep -q "hero-bts-mobile.webp?v=$revision" _site/media-career-program/index.html
           grep -q "woff2?v=$revision" _site/assets/media-career/inter.css
