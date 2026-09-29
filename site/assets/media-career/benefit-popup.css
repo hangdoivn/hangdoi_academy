@@ -1,0 +1,263 @@
+/* Media Career benefit entry popup */
+.career-benefit-overlay{
+  position:fixed;
+  inset:0;
+  z-index:10000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  background:rgba(6,19,13,.62);
+  -webkit-backdrop-filter:blur(8px);
+  backdrop-filter:blur(8px);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .24s ease,visibility .24s ease
+}
+.career-benefit-overlay.is-open{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto
+}
+body.career-benefit-lock{overflow:hidden}
+.career-benefit-modal{
+  position:relative;
+  width:min(760px,100%);
+  overflow:hidden;
+  border:1px solid rgba(176,132,52,.32);
+  border-radius:28px;
+  padding:38px;
+  background:
+    radial-gradient(circle at 92% 10%,rgba(196,151,63,.14),transparent 25%),
+    radial-gradient(circle at 7% 92%,rgba(11,106,63,.11),transparent 27%),
+    linear-gradient(145deg,#fffdf8 0%,#f8f1e4 100%);
+  color:#0b2418;
+  box-shadow:0 32px 90px rgba(0,0,0,.28);
+  transform:translateY(12px) scale(.985);
+  transition:transform .3s cubic-bezier(.2,.8,.2,1)
+}
+.career-benefit-overlay.is-open .career-benefit-modal{transform:translateY(0) scale(1)}
+.career-benefit-modal:before{
+  content:"";
+  position:absolute;
+  top:-88px;
+  left:-66px;
+  width:245px;
+  height:190px;
+  border-radius:0 0 72% 0;
+  background:#0b3d29;
+  transform:rotate(-8deg);
+  opacity:.98
+}
+.career-benefit-modal:after{
+  content:"";
+  position:absolute;
+  top:34px;
+  left:-8px;
+  width:250px;
+  height:1px;
+  background:linear-gradient(90deg,transparent,#c39a45,transparent);
+  transform:rotate(-34deg);
+  transform-origin:left center
+}
+.career-benefit-close{
+  position:absolute;
+  z-index:4;
+  top:18px;
+  right:18px;
+  display:grid;
+  place-items:center;
+  width:42px;
+  height:42px;
+  border:1px solid rgba(11,36,24,.12);
+  border-radius:999px;
+  background:rgba(255,255,255,.88);
+  color:#0b2418;
+  cursor:pointer;
+  font-size:24px;
+  line-height:1;
+  box-shadow:0 8px 20px rgba(11,36,24,.08)
+}
+.career-benefit-content{position:relative;z-index:2;text-align:center}
+.career-benefit-kicker{
+  display:inline-flex;
+  align-items:center;
+  min-height:36px;
+  padding:0 16px;
+  border:1px solid rgba(176,132,52,.42);
+  border-radius:999px;
+  background:rgba(255,255,255,.64);
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.12em;
+  text-transform:uppercase
+}
+.career-benefit-title{
+  margin:32px 0 8px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(52px,7.2vw,86px);
+  line-height:.9;
+  letter-spacing:-.055em;
+  text-transform:uppercase;
+  font-weight:500
+}
+.career-benefit-title span{color:#b3822f}
+.career-benefit-subtitle{
+  margin:0 auto;
+  max-width:650px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(21px,2.5vw,31px);
+  line-height:1.2;
+  font-weight:600
+}
+.career-benefit-divider{
+  width:54px;
+  height:1px;
+  margin:20px auto;
+  background:rgba(176,132,52,.46)
+}
+.career-benefit-milestones{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:22px
+}
+.career-benefit-milestone{
+  display:flex;
+  align-items:baseline;
+  justify-content:center;
+  gap:9px;
+  min-height:82px;
+  padding:18px 16px;
+  border:1px solid rgba(11,36,24,.08);
+  border-radius:18px;
+  background:rgba(255,255,255,.68);
+  box-shadow:0 8px 22px rgba(11,36,24,.04)
+}
+.career-benefit-milestone small{
+  font-size:13px;
+  font-weight:850;
+  color:#31443a
+}
+.career-benefit-milestone strong{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:28px;
+  color:#b3822f;
+  letter-spacing:-.03em
+}
+.career-benefit-actions{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:12px;
+  margin-top:24px
+}
+.career-benefit-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:54px;
+  border-radius:15px;
+  padding:0 18px;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:950;
+  letter-spacing:.04em;
+  text-transform:uppercase
+}
+.career-benefit-btn.primary{
+  background:#0b4d31;
+  color:#fff;
+  box-shadow:0 10px 22px rgba(11,77,49,.18)
+}
+.career-benefit-btn.secondary{
+  border:1px solid rgba(11,36,24,.24);
+  background:rgba(255,255,255,.72);
+  color:#0b2418
+}
+.career-benefit-handle{display:none}
+
+@media(max-width:700px){
+  .career-benefit-overlay{
+    align-items:flex-end;
+    padding:0
+  }
+  .career-benefit-modal{
+    width:100%;
+    max-height:calc(100dvh - 28px);
+    overflow:auto;
+    border-width:1px 1px 0;
+    border-radius:25px 25px 0 0;
+    padding:12px 16px calc(16px + env(safe-area-inset-bottom));
+    transform:translateY(24px)
+  }
+  .career-benefit-overlay.is-open .career-benefit-modal{transform:translateY(0)}
+  .career-benefit-modal:before{
+    width:150px;
+    height:115px;
+    top:-58px;
+    left:-46px
+  }
+  .career-benefit-modal:after{display:none}
+  .career-benefit-handle{
+    display:block;
+    width:42px;
+    height:4px;
+    margin:0 auto 12px;
+    border-radius:999px;
+    background:rgba(11,36,24,.14)
+  }
+  .career-benefit-close{
+    top:11px;
+    right:13px;
+    width:36px;
+    height:36px;
+    font-size:21px
+  }
+  .career-benefit-kicker{
+    min-height:30px;
+    padding:0 11px;
+    font-size:9px
+  }
+  .career-benefit-title{
+    margin-top:22px;
+    font-size:clamp(43px,13vw,58px)
+  }
+  .career-benefit-subtitle{
+    max-width:92%;
+    font-size:18px
+  }
+  .career-benefit-divider{margin:15px auto}
+  .career-benefit-milestones{
+    gap:8px;
+    margin-top:16px
+  }
+  .career-benefit-milestone{
+    min-height:68px;
+    padding:13px 9px;
+    border-radius:14px;
+    flex-direction:column;
+    gap:2px
+  }
+  .career-benefit-milestone small{font-size:10px}
+  .career-benefit-milestone strong{font-size:23px}
+  .career-benefit-actions{
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-top:16px
+  }
+  .career-benefit-btn{
+    min-height:50px;
+    border-radius:13px;
+    padding:0 11px;
+    font-size:10px
+  }
+}
+@media(max-width:390px){
+  .career-benefit-title{font-size:42px}
+  .career-benefit-subtitle{font-size:17px}
+  .career-benefit-actions{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  .career-benefit-overlay,.career-benefit-modal{transition:none}
+}
