@@ -1,4 +1,4 @@
-/* Media Career benefit entry popup */
+/* Media Career benefit entry popup · v2 */
 .career-benefit-overlay{
   position:fixed;
   inset:0;
@@ -6,10 +6,10 @@
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:24px;
-  background:rgba(6,19,13,.62);
-  -webkit-backdrop-filter:blur(8px);
-  backdrop-filter:blur(8px);
+  padding:28px;
+  background:rgba(5,17,12,.7);
+  -webkit-backdrop-filter:blur(10px) saturate(.85);
+  backdrop-filter:blur(10px) saturate(.85);
   opacity:0;
   visibility:hidden;
   pointer-events:none;
@@ -21,49 +21,66 @@
   pointer-events:auto
 }
 body.career-benefit-lock{overflow:hidden}
+
 .career-benefit-modal{
   position:relative;
-  width:min(760px,100%);
+  width:min(930px,100%);
   overflow:hidden;
-  border:1px solid rgba(176,132,52,.32);
-  border-radius:28px;
-  padding:38px;
-  background:
-    radial-gradient(circle at 92% 10%,rgba(196,151,63,.14),transparent 25%),
-    radial-gradient(circle at 7% 92%,rgba(11,106,63,.11),transparent 27%),
-    linear-gradient(145deg,#fffdf8 0%,#f8f1e4 100%);
+  border:1px solid rgba(190,145,61,.3);
+  border-radius:30px;
+  background:#f8f2e7;
   color:#0b2418;
-  box-shadow:0 32px 90px rgba(0,0,0,.28);
-  transform:translateY(12px) scale(.985);
-  transition:transform .3s cubic-bezier(.2,.8,.2,1)
+  box-shadow:
+    0 48px 120px rgba(0,0,0,.38),
+    0 0 0 1px rgba(255,255,255,.35) inset;
+  transform:translateY(16px) scale(.982);
+  transition:transform .32s cubic-bezier(.2,.8,.2,1)
 }
 .career-benefit-overlay.is-open .career-benefit-modal{transform:translateY(0) scale(1)}
-.career-benefit-modal:before{
+
+.career-benefit-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1.5fr) minmax(285px,.72fr);
+  min-height:520px
+}
+
+.career-benefit-main{
+  position:relative;
+  z-index:2;
+  padding:48px 48px 42px;
+  background:
+    radial-gradient(circle at 8% 8%,rgba(11,106,63,.1),transparent 28%),
+    radial-gradient(circle at 82% 100%,rgba(193,145,56,.1),transparent 30%),
+    linear-gradient(145deg,#fffdf8 0%,#f6efe2 100%)
+}
+.career-benefit-main:before{
   content:"";
   position:absolute;
-  top:-88px;
-  left:-66px;
-  width:245px;
-  height:190px;
-  border-radius:0 0 72% 0;
-  background:#0b3d29;
+  top:-86px;
+  left:-68px;
+  width:255px;
+  height:200px;
+  border-radius:0 0 80% 0;
+  background:#0b4b31;
   transform:rotate(-8deg);
-  opacity:.98
+  z-index:-1
 }
-.career-benefit-modal:after{
+.career-benefit-main:after{
   content:"";
   position:absolute;
-  top:34px;
-  left:-8px;
-  width:250px;
+  top:52px;
+  left:-16px;
+  width:285px;
   height:1px;
-  background:linear-gradient(90deg,transparent,#c39a45,transparent);
-  transform:rotate(-34deg);
-  transform-origin:left center
+  background:linear-gradient(90deg,transparent,#c89a42 22%,#c89a42 64%,transparent);
+  transform:rotate(-33deg);
+  transform-origin:left center;
+  z-index:-1
 }
+
 .career-benefit-close{
   position:absolute;
-  z-index:4;
+  z-index:8;
   top:18px;
   right:18px;
   display:grid;
@@ -72,192 +89,384 @@ body.career-benefit-lock{overflow:hidden}
   height:42px;
   border:1px solid rgba(11,36,24,.12);
   border-radius:999px;
-  background:rgba(255,255,255,.88);
+  background:rgba(255,255,255,.92);
   color:#0b2418;
   cursor:pointer;
-  font-size:24px;
+  font-size:22px;
   line-height:1;
-  box-shadow:0 8px 20px rgba(11,36,24,.08)
+  box-shadow:0 8px 20px rgba(0,0,0,.12);
+  transition:transform .18s ease,background .18s ease
 }
-.career-benefit-content{position:relative;z-index:2;text-align:center}
+.career-benefit-close:hover{transform:rotate(5deg);background:#fff}
+
+.career-benefit-eyebrow{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:28px;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:#496055
+}
+.career-benefit-eyebrow i{
+  width:28px;
+  height:1px;
+  background:#b98934
+}
 .career-benefit-kicker{
   display:inline-flex;
   align-items:center;
   min-height:36px;
-  padding:0 16px;
-  border:1px solid rgba(176,132,52,.42);
+  padding:0 15px;
+  border:1px solid rgba(176,132,52,.38);
   border-radius:999px;
   background:rgba(255,255,255,.64);
-  font-size:11px;
+  font-size:10px;
   font-weight:900;
   letter-spacing:.12em;
   text-transform:uppercase
 }
+
 .career-benefit-title{
-  margin:32px 0 8px;
+  margin:28px 0 8px;
+  max-width:600px;
   font-family:Georgia,"Times New Roman",serif;
-  font-size:clamp(52px,7.2vw,86px);
-  line-height:.9;
-  letter-spacing:-.055em;
+  font-size:clamp(58px,6.4vw,88px);
+  line-height:.86;
+  letter-spacing:-.06em;
   text-transform:uppercase;
   font-weight:500
 }
-.career-benefit-title span{color:#b3822f}
+.career-benefit-title span{
+  display:inline-block;
+  color:#b6812a
+}
 .career-benefit-subtitle{
-  margin:0 auto;
-  max-width:650px;
+  margin:0;
+  max-width:590px;
   font-family:Georgia,"Times New Roman",serif;
-  font-size:clamp(21px,2.5vw,31px);
-  line-height:1.2;
-  font-weight:600
+  font-size:clamp(22px,2.15vw,30px);
+  line-height:1.18;
+  font-weight:600;
+  color:#17382a
 }
-.career-benefit-divider{
-  width:54px;
+
+.career-benefit-rule{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin:24px 0 20px
+}
+.career-benefit-rule:before,
+.career-benefit-rule:after{
+  content:"";
   height:1px;
-  margin:20px auto;
-  background:rgba(176,132,52,.46)
+  flex:1;
+  background:linear-gradient(90deg,transparent,rgba(184,138,50,.35))
 }
+.career-benefit-rule:after{
+  background:linear-gradient(90deg,rgba(184,138,50,.35),transparent)
+}
+.career-benefit-rule i{
+  width:7px;
+  height:7px;
+  background:#c0923e;
+  transform:rotate(45deg)
+}
+
 .career-benefit-milestones{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin-top:22px
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap
 }
 .career-benefit-milestone{
-  display:flex;
-  align-items:baseline;
-  justify-content:center;
-  gap:9px;
-  min-height:82px;
-  padding:18px 16px;
-  border:1px solid rgba(11,36,24,.08);
-  border-radius:18px;
-  background:rgba(255,255,255,.68);
-  box-shadow:0 8px 22px rgba(11,36,24,.04)
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  min-height:44px;
+  padding:0 13px;
+  border:1px solid rgba(11,36,24,.1);
+  border-radius:999px;
+  background:rgba(255,255,255,.72);
+  box-shadow:0 6px 18px rgba(11,36,24,.035)
 }
 .career-benefit-milestone small{
-  font-size:13px;
-  font-weight:850;
-  color:#31443a
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.04em;
+  color:#46594f
 }
 .career-benefit-milestone strong{
   font-family:Georgia,"Times New Roman",serif;
-  font-size:28px;
-  color:#b3822f;
+  font-size:22px;
+  color:#b6812a;
   letter-spacing:-.03em
 }
+.career-benefit-milestone .dot{
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:#0b6a3f;
+  opacity:.65
+}
+
 .career-benefit-actions{
-  display:grid;
-  grid-template-columns:1.15fr .85fr;
-  gap:12px;
-  margin-top:24px
+  display:flex;
+  gap:10px;
+  margin-top:30px
 }
 .career-benefit-btn{
   display:inline-flex;
   align-items:center;
   justify-content:center;
   min-height:54px;
-  border-radius:15px;
-  padding:0 18px;
+  padding:0 20px;
+  border-radius:14px;
   text-decoration:none;
-  font-size:12px;
+  font-size:11px;
   font-weight:950;
   letter-spacing:.04em;
-  text-transform:uppercase
+  text-transform:uppercase;
+  transition:transform .18s ease,box-shadow .18s ease
 }
+.career-benefit-btn:hover{transform:translateY(-1px)}
 .career-benefit-btn.primary{
-  background:#0b4d31;
+  min-width:190px;
+  background:#0a5737;
   color:#fff;
-  box-shadow:0 10px 22px rgba(11,77,49,.18)
+  box-shadow:0 12px 28px rgba(10,87,55,.19)
 }
 .career-benefit-btn.secondary{
-  border:1px solid rgba(11,36,24,.24);
-  background:rgba(255,255,255,.72);
+  min-width:132px;
+  border:1px solid rgba(11,36,24,.2);
+  background:rgba(255,255,255,.7);
   color:#0b2418
+}
+
+.career-benefit-visual{
+  position:relative;
+  min-width:0;
+  overflow:hidden;
+  background:#0a2f21
+}
+.career-benefit-visual picture,
+.career-benefit-visual img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover
+}
+.career-benefit-visual img{
+  filter:saturate(.78) contrast(1.04) brightness(.82)
+}
+.career-benefit-visual:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background:
+    linear-gradient(180deg,rgba(4,29,19,.06),rgba(4,29,19,.7)),
+    linear-gradient(90deg,rgba(248,242,231,.08),transparent 35%)
+}
+.career-benefit-visual:after{
+  content:"";
+  position:absolute;
+  z-index:1;
+  left:0;
+  top:0;
+  bottom:0;
+  width:44px;
+  background:linear-gradient(90deg,rgba(248,242,231,.85),transparent)
+}
+.career-benefit-visual-copy{
+  position:absolute;
+  z-index:2;
+  left:26px;
+  right:26px;
+  bottom:28px;
+  color:#fff
+}
+.career-benefit-visual-copy small{
+  display:block;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.62)
+}
+.career-benefit-visual-copy strong{
+  display:block;
+  margin-top:8px;
+  max-width:230px;
+  font-size:24px;
+  line-height:1.02;
+  letter-spacing:-.035em
+}
+.career-benefit-visual-copy span{
+  display:inline-flex;
+  margin-top:14px;
+  padding:7px 9px;
+  border:1px solid rgba(255,255,255,.24);
+  border-radius:999px;
+  background:rgba(255,255,255,.1);
+  backdrop-filter:blur(8px);
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.04em
+}
+.career-benefit-seal{
+  position:absolute;
+  z-index:2;
+  top:24px;
+  left:24px;
+  width:82px;
+  height:82px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(255,255,255,.36);
+  border-radius:50%;
+  background:rgba(10,47,33,.6);
+  backdrop-filter:blur(8px);
+  color:#fff;
+  text-align:center
+}
+.career-benefit-seal b{
+  display:block;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:24px;
+  line-height:.9;
+  color:#e5bd65
+}
+.career-benefit-seal small{
+  display:block;
+  margin-top:3px;
+  font-size:7px;
+  line-height:1.15;
+  letter-spacing:.08em;
+  text-transform:uppercase
 }
 .career-benefit-handle{display:none}
 
-@media(max-width:700px){
+@media(max-width:760px){
   .career-benefit-overlay{
     align-items:flex-end;
     padding:0
   }
   .career-benefit-modal{
     width:100%;
-    max-height:calc(100dvh - 28px);
+    max-height:calc(100dvh - 18px);
     overflow:auto;
     border-width:1px 1px 0;
-    border-radius:25px 25px 0 0;
-    padding:12px 16px calc(16px + env(safe-area-inset-bottom));
-    transform:translateY(24px)
+    border-radius:26px 26px 0 0;
+    transform:translateY(28px)
   }
   .career-benefit-overlay.is-open .career-benefit-modal{transform:translateY(0)}
-  .career-benefit-modal:before{
-    width:150px;
-    height:115px;
-    top:-58px;
-    left:-46px
+  .career-benefit-layout{
+    grid-template-columns:1fr;
+    min-height:0
   }
-  .career-benefit-modal:after{display:none}
+  .career-benefit-visual{
+    order:-1;
+    height:148px
+  }
+  .career-benefit-visual:after{
+    display:none
+  }
+  .career-benefit-visual:before{
+    background:linear-gradient(180deg,rgba(4,29,19,.08),rgba(4,29,19,.78))
+  }
+  .career-benefit-visual-copy{
+    left:18px;
+    right:18px;
+    bottom:14px
+  }
+  .career-benefit-visual-copy strong{
+    max-width:270px;
+    font-size:19px
+  }
+  .career-benefit-visual-copy span{display:none}
+  .career-benefit-seal{
+    top:16px;
+    left:16px;
+    width:62px;
+    height:62px
+  }
+  .career-benefit-seal b{font-size:18px}
+  .career-benefit-seal small{font-size:6px}
+  .career-benefit-main{
+    padding:16px 18px calc(18px + env(safe-area-inset-bottom))
+  }
+  .career-benefit-main:before{
+    display:none
+  }
+  .career-benefit-main:after{
+    display:none
+  }
   .career-benefit-handle{
+    position:absolute;
+    z-index:5;
+    top:9px;
+    left:50%;
     display:block;
     width:42px;
     height:4px;
-    margin:0 auto 12px;
     border-radius:999px;
-    background:rgba(11,36,24,.14)
+    background:rgba(255,255,255,.48);
+    transform:translateX(-50%)
   }
   .career-benefit-close{
-    top:11px;
+    top:12px;
     right:13px;
     width:36px;
     height:36px;
-    font-size:21px
+    font-size:20px
   }
+  .career-benefit-eyebrow{display:none}
   .career-benefit-kicker{
-    min-height:30px;
-    padding:0 11px;
-    font-size:9px
+    min-height:29px;
+    padding:0 10px;
+    font-size:8px
   }
   .career-benefit-title{
-    margin-top:22px;
-    font-size:clamp(43px,13vw,58px)
+    margin:17px 0 7px;
+    font-size:clamp(43px,13vw,56px)
   }
   .career-benefit-subtitle{
-    max-width:92%;
+    max-width:94%;
+    margin:0;
     font-size:18px
   }
-  .career-benefit-divider{margin:15px auto}
+  .career-benefit-rule{margin:14px 0 13px}
   .career-benefit-milestones{
-    gap:8px;
-    margin-top:16px
+    gap:7px
   }
   .career-benefit-milestone{
-    min-height:68px;
-    padding:13px 9px;
-    border-radius:14px;
-    flex-direction:column;
-    gap:2px
+    min-height:40px;
+    padding:0 11px
   }
-  .career-benefit-milestone small{font-size:10px}
-  .career-benefit-milestone strong{font-size:23px}
+  .career-benefit-milestone small{font-size:9px}
+  .career-benefit-milestone strong{font-size:19px}
   .career-benefit-actions{
-    grid-template-columns:1fr 1fr;
+    display:grid;
+    grid-template-columns:1.08fr .92fr;
     gap:8px;
     margin-top:16px
   }
   .career-benefit-btn{
-    min-height:50px;
-    border-radius:13px;
-    padding:0 11px;
-    font-size:10px
+    min-width:0!important;
+    min-height:49px;
+    padding:0 10px;
+    font-size:9px
   }
 }
 @media(max-width:390px){
-  .career-benefit-title{font-size:42px}
+  .career-benefit-title{font-size:41px}
   .career-benefit-subtitle{font-size:17px}
-  .career-benefit-actions{grid-template-columns:1fr}
+  .career-benefit-visual{height:132px}
 }
 @media(prefers-reduced-motion:reduce){
-  .career-benefit-overlay,.career-benefit-modal{transition:none}
+  .career-benefit-overlay,.career-benefit-modal,.career-benefit-btn,.career-benefit-close{transition:none}
 }
