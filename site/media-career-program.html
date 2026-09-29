@@ -22,10 +22,12 @@
 <link rel="stylesheet" href="/assets/media-career/program-critical.css">
 <link rel="stylesheet" href="/assets/media-career/program.css" media="print" onload="this.media='all'" data-program-styles>
 <noscript><link rel="stylesheet" href="/assets/media-career/program.css"></noscript>
+<link rel="stylesheet" href="/assets/media-career/benefit-popup.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Course","name":"Hang Đôi Media Career Program","description":"Chương trình Media 4 tháng hướng tới Production Ready trong Commercial Production.","provider":{"@type":"EducationalOrganization","name":"Hang Đôi Academy","url":"https://academy.hangdoiproduction.com/"}}
 </script>
 <script src="/assets/media-career/program.js" defer></script>
+<script src="/assets/media-career/benefit-popup.js" defer></script>
 </head>
 <body>
 <header class="site-header">
@@ -1011,6 +1013,44 @@
   </div>
 </section>
 </main>
+
+
+<div id="careerBenefitPopup" class="career-benefit-overlay" aria-hidden="true">
+  <section class="career-benefit-modal" role="dialog" aria-modal="true" aria-labelledby="careerBenefitTitle" aria-describedby="careerBenefitSubtitle">
+    <div class="career-benefit-handle" aria-hidden="true"></div>
+    <button class="career-benefit-close" type="button" data-career-popup-close aria-label="Đóng">×</button>
+
+    <div class="career-benefit-content">
+      <div class="career-benefit-kicker">MEDIA CAREER PROGRAM</div>
+
+      <h2 class="career-benefit-title" id="careerBenefitTitle">
+        HOÀN ĐẾN <span>30TR</span>
+      </h2>
+
+      <p class="career-benefit-subtitle" id="careerBenefitSubtitle">
+        và cơ hội việc làm sau khi kết thúc khóa học
+      </p>
+
+      <div class="career-benefit-divider" aria-hidden="true"></div>
+
+      <div class="career-benefit-milestones" aria-label="Các mốc quyền lợi">
+        <div class="career-benefit-milestone">
+          <small>12 THÁNG</small>
+          <strong>10TR</strong>
+        </div>
+        <div class="career-benefit-milestone">
+          <small>24 THÁNG</small>
+          <strong>+20TR</strong>
+        </div>
+      </div>
+
+      <div class="career-benefit-actions">
+        <a class="career-benefit-btn primary" data-career-popup-action href="/media-career-program/policy/#tuition-back">XEM CHI TIẾT →</a>
+        <a class="career-benefit-btn secondary" data-career-popup-action href="/dang-ky/?course=media-career-program&utm_source=media-career-popup&utm_medium=onsite&utm_campaign=media_career_benefit">ĐĂNG KÝ</a>
+      </div>
+    </div>
+  </section>
+</div>
 
 <footer class="academy-footer-v2">
   <div class="wrap">
