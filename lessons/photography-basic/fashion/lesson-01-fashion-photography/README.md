@@ -23,3 +23,7 @@ Trọng tâm:
 
 ## Ghi chú triển khai
 Ảnh Pinterest hiện được embed trực tiếp trong HTML và cần Internet để tải. Không sao chép file ảnh Pinterest vào repository nếu chưa có quyền sử dụng.
+
+
+## Giáo án giảng viên
+- [Giáo án chi tiết 150 phút](./lesson-plan.md)
