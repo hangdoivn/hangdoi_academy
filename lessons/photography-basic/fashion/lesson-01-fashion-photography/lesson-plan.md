@@ -1,9 +1,9 @@
 # Giáo án chi tiết — Buổi 01: Tư duy Nhiếp ảnh Thời trang
 
-**Khóa:** Nhiếp ảnh cơ bản — Fashion  
+**Khóa:** Nhiếp ảnh cơ bản — Thời trang  
 **Thời lượng:** 150 phút  
 **Cấp độ:** Beginner  
-**Trọng tâm:** Visual literacy + garment awareness + camera position + framing + thực hành có chủ đích
+**Trọng tâm:** khả năng đọc hình ảnh + nhận biết trang phục + vị trí máy ảnh + khung hình + thực hành có chủ đích
 
 ---
 
@@ -14,25 +14,25 @@ Buổi đầu tiên không cố dạy sâu toàn bộ lens, ánh sáng, pose và
 Sau buổi học, học viên cần có thể:
 
 1. Phân biệt được ảnh chân dung, ảnh sản phẩm và ảnh thời trang ở mức cơ bản.
-2. Xác định trong một bức ảnh fashion: yếu tố nào đang được ưu tiên — model, garment, styling hay visual.
-3. Nhìn được 4 đặc tính cơ bản của garment:
-   - silhouette
-   - texture
-   - layering
-   - detail
-4. Nhận biết camera position:
+2. Xác định trong một bức ảnh thời trang: yếu tố nào đang được ưu tiên — người mẫu, trang phục, phối trang phục hay hình ảnh.
+3. Nhìn được 4 đặc tính cơ bản của trang phục:
+   - phom dáng
+   - bề mặt chất liệu
+   - các lớp trang phục
+   - chi tiết
+4. Nhận biết vị trí máy ảnh:
    - high angle
    - eye level
    - low angle
-5. Hiểu rằng **camera-to-subject distance** ảnh hưởng mạnh tới perspective; focal length quyết định angle of view/magnification và thường kéo theo thay đổi khoảng cách chụp.
-6. Phân biệt được các framing cơ bản:
+5. Hiểu rằng **khoảng cách từ máy ảnh đến chủ thể** ảnh hưởng mạnh tới phối cảnh; tiêu cự quyết định góc nhìn/độ phóng đại và thường kéo theo thay đổi khoảng cách chụp.
+6. Phân biệt được các khung hình cơ bản:
    - full body
    - 3/4 body
    - medium
    - close-up
-   - detail
+   - chi tiết
 7. Điều khiển một pose đơn giản để giữ form trang phục.
-8. Tự chụp được bài **1 Outfit / 6 Frame** và giải thích được vì sao từng frame khác nhau.
+8. Tự chụp được bài **1 Bộ trang phục / 6 Khung hình** và giải thích được vì sao từng khung hình khác nhau.
 
 ---
 
@@ -47,8 +47,8 @@ Chỉ giới thiệu ở mức quan sát, không biến thành bài kỹ thuật
 - Lighting ratio.
 - Retouch.
 - Color grading.
-- Model posing nâng cao.
-- Moodboard/campaign planning chuyên sâu.
+- Người mẫu posing nâng cao.
+- Moodboard/chiến dịch hình ảnh planning chuyên sâu.
 
 Các phần này sẽ được tách ra thành buổi riêng.
 
@@ -76,16 +76,16 @@ Ví dụ:
 # 4. Timeline chi tiết — 150 phút
 
 ## PHẦN A — Khởi động thị giác
-### 00:00–00:08 | Visual Diagnostic
+### 00:00–00:08 | Đánh giá khả năng quan sát hình ảnh
 
 ### Mục tiêu
 Đánh giá cách học viên đang nhìn ảnh trước khi đưa kiến thức.
 
 ### Chuẩn bị
-6 ảnh fashion:
-- 2 lookbook
-- 2 campaign/editorial
-- 2 e-commerce
+6 ảnh thời trang:
+- 2 bộ ảnh giới thiệu bộ sưu tập
+- 2 chiến dịch hình ảnh/ảnh thời trang biên tập
+- 2 ảnh bán hàng trực tuyến
 
 ### Câu hỏi
 Không giới thiệu thuật ngữ trước. Chỉ hỏi:
@@ -111,52 +111,52 @@ Không sửa ngay.
 
 ---
 
-# PHẦN B — Fashion Photography nhìn cái gì?
-## 00:08–00:20 | Portrait vs Product vs Fashion
+# PHẦN B — nhiếp ảnh thời trang nhìn cái gì?
+## 00:08–00:20 | Chân dung vs Sản phẩm vs Thời trang
 
 ### Mục tiêu
-Hiểu fashion photography không đơn thuần là portrait có quần áo đẹp.
+Hiểu nhiếp ảnh thời trang không đơn thuần là chân dung có quần áo đẹp.
 
 ### Nội dung
 
-### Portrait
+### Chân dung
 Ưu tiên:
 - khuôn mặt
 - cảm xúc
 - cá tính nhân vật
 
-### Product
+### Sản phẩm
 Ưu tiên:
 - hình dạng sản phẩm
 - màu
-- texture
-- detail
+- bề mặt chất liệu
+- chi tiết
 - độ chính xác
 
-### Fashion
+### Thời trang
 Là vùng giao nhau:
-- model
-- garment
-- styling
+- người mẫu
+- trang phục
+- phối trang phục
 - pose
 - photography
 
-### Demo ảnh
+### Minh họa ảnh
 Đặt 3 ảnh cạnh nhau:
-1. Portrait.
-2. E-commerce.
-3. Fashion editorial/lookbook.
+1. Chân dung.
+2. Ảnh bán hàng trực tuyến.
+3. Thời trang ảnh thời trang biên tập / bộ ảnh giới thiệu bộ sưu tập.
 
 ### Câu hỏi trọng tâm
-> Nếu bỏ quần áo này và thay bằng một outfit khác, bức ảnh còn giữ được ý nghĩa không?
+> Nếu bỏ quần áo này và thay bằng một bộ trang phục khác, bức ảnh còn giữ được ý nghĩa không?
 
-Nếu câu trả lời là "gần như không", garment đang đóng vai trò rất lớn.
+Nếu câu trả lời là "gần như không", trang phục đang đóng vai trò rất lớn.
 
-### Mini Exercise — 3 phút
+### Bài tập nhanh — 3 phút
 Cho 5 ảnh.
 Học viên đánh dấu:
-- M = Model-led
-- G = Garment-led
+- M = Người mẫu-led
+- G = Trang phục-led
 - B = Balanced
 
 Không cần có đáp án tuyệt đối.
@@ -164,14 +164,14 @@ Không cần có đáp án tuyệt đối.
 ---
 
 # PHẦN C — Học cách "đọc" quần áo
-## 00:20–00:38 | Garment Awareness
+## 00:20–00:38 | Trang phục Awareness
 
 ### Mục tiêu
-Trước khi chụp, học viên phải biết outfit cần được nhìn như thế nào.
+Trước khi chụp, học viên phải biết bộ trang phục cần được nhìn như thế nào.
 
 ## 4 thành phần phải kiểm tra
 
-### 1. Silhouette
+### 1. Phom dáng
 Form tổng thể khi nhìn từ xa.
 
 Hỏi:
@@ -179,26 +179,26 @@ Hỏi:
 - eo có cần thấy?
 - quần rộng hay ôm?
 - chiều dài áo/váy là điểm quan trọng không?
-- outfit thiên về straight / fitted / oversized?
+- bộ trang phục thiên về straight / fitted / oversized?
 
-### 2. Texture
+### 2. Bề mặt chất liệu
 Cách chất liệu phản ứng với ánh sáng.
 
 Ví dụ:
-- denim → texture tương đối rõ
+- denim → bề mặt chất liệu tương đối rõ
 - silk/satin → highlight mạnh
 - linen → nếp gấp là một phần đặc tính
-- black matte fabric → dễ mất detail nếu thiếu ánh sáng
+- black matte fabric → dễ mất chi tiết nếu thiếu ánh sáng
 
-### 3. Layering
+### 3. Các lớp trang phục
 Các lớp có bị nhập vào nhau không?
 
 Ví dụ:
 - áo khoác đen + áo trong đen
-- tay model dính sát body làm biến mất waist
+- tay người mẫu dính sát body làm biến mất waist
 - tóc che collar
 
-### 4. Detail
+### 4. Chi tiết
 Chi tiết nào phải nhìn thấy?
 
 Ví dụ:
@@ -207,43 +207,43 @@ Ví dụ:
 - buckle
 - sleeve
 - stitching
-- texture
+- bề mặt chất liệu
 - accessories
 
 ---
 
-## Demo tại lớp — 5 phút
+## Minh họa tại lớp — 5 phút
 
-Cho model mặc 1 outfit.
+Cho người mẫu mặc 1 bộ trang phục.
 
 Không chụp.
 
-Học viên đứng nhìn model và trả lời:
+Học viên đứng nhìn người mẫu và trả lời:
 
-1. Điểm quan trọng nhất của outfit là gì?
+1. Điểm quan trọng nhất của bộ trang phục là gì?
 2. Phần nào dễ bị mất form nhất?
 3. Pose nào có thể che sản phẩm?
-4. Nếu chỉ được chụp 3 frame, phải chụp gì?
+4. Nếu chỉ được chụp 3 khung hình, phải chụp gì?
 
 ### Checklist trước khi bấm máy
 
 **GARMENT CHECK**
 - [ ] Form đang đúng?
 - [ ] Áo/quần có bị nhăn bất thường?
-- [ ] Tay model có che sản phẩm?
-- [ ] Hair có che collar/detail?
+- [ ] Tay người mẫu có che sản phẩm?
+- [ ] Hair có che collar/chi tiết?
 - [ ] Accessories đúng vị trí?
-- [ ] Layering tách rõ?
+- [ ] Các lớp trang phục tách rõ?
 
 ---
 
 # PHẦN D — Camera Position trước Lens
-## 00:38–00:55 | Góc máy và Perspective
+## 00:38–00:55 | Góc máy và Phối cảnh
 
 ### Mục tiêu
 Hiểu vị trí máy ảnh làm thay đổi tỷ lệ cơ thể.
 
-### 1. High Angle
+### 1. Góc máy cao
 Camera cao hơn.
 
 Dễ:
@@ -251,28 +251,28 @@ Dễ:
 - chân ngắn hơn
 - giảm cảm giác "power"
 
-Có thể dùng có chủ đích, nhưng không phải lựa chọn mặc định cho full-body fashion.
+Có thể dùng có chủ đích, nhưng không phải lựa chọn mặc định cho full-body thời trang.
 
-### 2. Eye Level
+### 2. Góc ngang tầm mắt
 Trung tính.
 
 Ưu điểm:
 - dễ đọc tỷ lệ
 - ít exaggeration
-- dễ dùng cho lookbook
+- dễ dùng cho bộ ảnh giới thiệu bộ sưu tập
 
-### 3. Low Angle
+### 3. Góc máy thấp
 Camera thấp hơn.
 
 Có thể:
 - kéo dài chân
 - tăng cảm giác mạnh
-- tạo graphic perspective
+- tạo đồ họa phối cảnh
 
 Rủi ro:
 - giày/chân gần camera bị phóng đại
 - thân trên nhỏ hơn
-- background và vertical lines dễ biến dạng
+- phía sauground và vertical lines dễ biến dạng
 
 ---
 
@@ -283,27 +283,27 @@ Không dạy đơn giản rằng:
 
 Cách nói đúng hơn:
 
-> Perspective chủ yếu thay đổi khi **khoảng cách camera–subject thay đổi**. Focal length quyết định angle of view và magnification; khi dùng lens rộng để fill frame, photographer thường phải tiến gần, và chính khoảng cách gần đó làm tỷ lệ gần–xa bị phóng đại.
+> Phối cảnh chủ yếu thay đổi khi **khoảng cách camera–subject thay đổi**. Focal length quyết định góc nhìn và độ phóng đại; khi dùng lens rộng để fill khung hình, photographer thường phải tiến gần, và chính khoảng cách gần đó làm tỷ lệ gần–xa bị phóng đại.
 
-### Demo quan trọng
+### Minh họa quan trọng
 
-Giữ model đứng nguyên.
+Giữ người mẫu đứng nguyên.
 
 Chụp:
 1. Camera ngang ngực.
 2. Camera ngang eo.
 3. Camera ngang đầu gối.
 
-Cố gắng giữ framing gần tương đương.
+Cố gắng giữ khung hình gần tương đương.
 
 Đặt 3 ảnh cạnh nhau.
 
 ### Câu hỏi
 - chân thay đổi thế nào?
 - torso thay đổi thế nào?
-- outfit nào nhìn đúng form nhất?
-- frame nào "fashion" hơn?
-- frame nào đã exaggerate quá mức?
+- bộ trang phục nào nhìn đúng form nhất?
+- khung hình nào "thời trang" hơn?
+- khung hình nào đã exaggerate quá mức?
 
 ---
 
@@ -315,78 +315,78 @@ Không yêu cầu ghi nhớ lens "tốt nhất". Học viên cần hiểu mỗi 
 
 ### 35mm
 Thường phù hợp:
-- environmental fashion
+- environmental thời trang
 - street
-- editorial
+- ảnh thời trang biên tập
 - muốn thấy location
 
 Lưu ý:
-Nếu tiến quá gần model để full frame → dễ exaggerate tỷ lệ.
+Nếu tiến quá gần người mẫu để full khung hình → dễ exaggerate tỷ lệ.
 
 ### 50mm
 Cân bằng:
-- model
+- người mẫu
 - environment
-- working distance
+- khoảng cách làm việc
 
 Dễ học và dễ dùng.
 
 ### 85mm
 Thường cho:
-- background compression
-- subject isolation
-- working distance xa hơn
-- tỷ lệ dễ kiểm soát trong portrait/medium framing
+- phía sauground compression
+- khả năng tách chủ thể
+- khoảng cách làm việc xa hơn
+- tỷ lệ dễ kiểm soát trong chân dung/medium khung hình
 
 ### Bài demo
 Nếu có zoom 24–70 hoặc lens khác nhau:
 
-Chụp **cùng framing 3/4 body** ở:
+Chụp **cùng khung hình 3/4 body** ở:
 - ~35mm
 - ~50mm
 - ~70–85mm
 
-Photographer phải di chuyển để giữ framing.
+Photographer phải di chuyển để giữ khung hình.
 
 ### Học viên quan sát
-- background thay đổi?
-- tỷ lệ model thay đổi?
+- phía sauground thay đổi?
+- tỷ lệ người mẫu thay đổi?
 - cảm giác "gần" hay "xa"?
-- frame nào hợp location?
-- frame nào tập trung garment hơn?
+- khung hình nào hợp location?
+- khung hình nào tập trung trang phục hơn?
 
 ---
 
-# PHẦN F — Framing & Crop
-## 01:08–01:22 | 5 frame nền tảng
+# PHẦN F — Framing & Cắt khung
+## 01:08–01:22 | 5 khung hình nền tảng
 
-### 1. Full Body
+### 1. Toàn thân
 Dùng để đọc:
-- silhouette
+- phom dáng
 - footwear
-- toàn bộ styling
+- toàn bộ phối trang phục
 
-### 2. 3/4 Body
+### 2. Ba phần tư cơ thể
 Cân bằng:
-- garment
+- trang phục
 - body language
 - expression
 
-### 3. Medium
+### 3. Trung cảnh
 Tập trung:
 - upper body
 - jacket
 - accessories
 - makeup
 
-### 4. Close-up
+### 4. Cận cảnh
 Tập trung:
 - face
 - beauty
 - eyewear
 - jewelry
 
-### 5. Detail
+### 5. Chi tiết
 Tập trung:
 - fabric
 - logo
@@ -397,24 +397,24 @@ Tập trung:
 
 ---
 
-## Quy tắc crop cơ bản
+## Quy tắc cắt khung cơ bản
 
 Không biến thành luật cứng, nhưng beginner cần biết:
 
-Tránh crop ngẫu nhiên đúng vào:
+Tránh cắt khung ngẫu nhiên đúng vào:
 - đầu gối
 - mắt cá
 - khuỷu tay
 - cổ tay
 
-Nếu crop tại khớp, phải có lý do về composition.
+Nếu cắt khung tại khớp, phải có lý do về composition.
 
-### Exercise
+### Bài tập
 Giảng viên đứng ở một vị trí.
-Học viên phải tạo lần lượt 5 framing mà không "chụp vô thức".
+Học viên phải tạo lần lượt 5 khung hình mà không "chụp vô thức".
 
-Trước mỗi frame, học viên phải nói:
-> Frame này để cho người xem nhìn thấy ______.
+Trước mỗi khung hình, học viên phải nói:
+> Khung hình này để cho người xem nhìn thấy ______.
 
 ---
 
@@ -428,35 +428,35 @@ Trong lúc nghỉ:
 
 ---
 
-# PHẦN G — Pose phục vụ Garment
-## 01:32–01:48 | Static → Micro Movement
+# PHẦN G — Pose phục vụ Trang phục
+## 01:32–01:48 | Tĩnh → Micro Chuyển động
 
 ### Mục tiêu
 Không dạy một "pose library" dài.
 
 Dạy nguyên tắc:
-> Pose là công cụ thay đổi hình dạng garment trong frame.
+> Pose là công cụ thay đổi hình dạng trang phục trong khung hình.
 
 ### 1. Neutral Pose
 Dùng làm baseline.
 
-Model:
+Người mẫu:
 - đứng thẳng
 - trọng lượng cân bằng
 - tay thả tự nhiên
 
-Chụp một frame.
+Chụp một khung hình.
 
-### 2. Weight Shift
+### 2. Chuyển trọng tâm
 Chuyển trọng tâm sang một chân.
 
 Quan sát:
 - hip
 - shoulder
 - line cơ thể
-- trouser/skirt silhouette
+- trouser/skirt phom dáng
 
-### 3. Hand Placement
+### 3. Vị trí tay
 Cho tay:
 - vào túi
 - chạm jacket
@@ -464,13 +464,13 @@ Cho tay:
 - đặt ở waist
 
 Quan sát:
-- tay có che detail?
+- tay có che chi tiết?
 - tạo khoảng trống giữa arm/body không?
 
-### 4. Micro Movement
+### 4. Micro Chuyển động
 Không yêu cầu "pose mạnh".
 
-Cho model:
+Cho người mẫu:
 - bước 1 bước
 - xoay vai
 - quay đầu
@@ -489,8 +489,8 @@ Nói cụ thể:
 hoặc:
 > "Tách tay trái khỏi thân để nhìn rõ eo."
 
-### Exercise
-Một outfit, 3 thay đổi:
+### Bài tập
+Một bộ trang phục, 3 thay đổi:
 1. neutral
 2. weight shift
 3. movement
@@ -499,7 +499,7 @@ Một outfit, 3 thay đổi:
 
 ---
 
-# PHẦN H — Lighting & Background ở mức Visual Reading
+# PHẦN H — Lighting & Hậu cảnh ở mức Hình ảnh Reading
 ## 01:48–02:00 | Không setup đèn sâu
 
 ### Mục tiêu
@@ -507,14 +507,14 @@ Chỉ cần nhìn và gọi tên được.
 
 ## Lighting
 
-### Hard Light
+### Ánh sáng cứng
 Nhìn:
 - shadow edge rõ
 - highlight rõ
-- texture mạnh
-- graphic
+- bề mặt chất liệu mạnh
+- đồ họa
 
-### Soft Light
+### Ánh sáng mềm
 Nhìn:
 - shadow chuyển mềm
 - da mềm hơn
@@ -522,87 +522,87 @@ Nhìn:
 
 ## Direction
 Chỉ giới thiệu:
-- front
-- side
-- back
+- phía trước
+- bên hông
+- phía sau
 
 ### Câu hỏi
-- ánh sáng đang giúp hay làm mất texture?
-- black garment còn detail không?
-- white garment có bị cháy highlight không?
+- ánh sáng đang giúp hay làm mất bề mặt chất liệu?
+- black trang phục còn chi tiết không?
+- white trang phục có bị cháy highlight không?
 
 ---
 
-## Background
+## Hậu cảnh
 
 Hỏi:
-1. Background sáng hay tối hơn outfit?
-2. Màu background có nhập vào garment?
-3. Có line nào đâm qua đầu/model?
-4. Background có quá nhiều chi tiết?
-5. Outfit có đủ separation?
+1. Hậu cảnh sáng hay tối hơn bộ trang phục?
+2. Màu phía sauground có nhập vào trang phục?
+3. Có line nào đâm qua đầu/người mẫu?
+4. Hậu cảnh có quá nhiều chi tiết?
+5. Bộ trang phục có đủ separation?
 
 ### Kết luận
-> Background tốt không phải background đẹp nhất; là background giúp chủ thể được đọc đúng.
+> Hậu cảnh tốt không phải phía sauground đẹp nhất; là phía sauground giúp chủ thể được đọc đúng.
 
 ---
 
 # PHẦN I — Bài thực hành chính
-## 02:00–02:23 | 1 Outfit / 6 Frame
+## 02:00–02:23 | 1 Bộ trang phục / 6 Khung hình
 
 ### Setup
-- 1 model
-- 1 outfit
-- 1 background/location
+- 1 người mẫu
+- 1 bộ trang phục
+- 1 phía sauground/location
 - ánh sáng giữ nguyên
-- không thay styling
+- không thay phối trang phục
 
 Mục đích:
-Cô lập biến số **camera + framing + pose**.
+Cô lập biến số **camera + khung hình + pose**.
 
-## 6 frame bắt buộc
+## 6 khung hình bắt buộc
 
-### Frame 01 — Full Body / Eye Level
+### Khung hình 01 — Toàn thân / Góc ngang tầm mắt
 Mục tiêu:
-Đọc outfit trung tính.
+Đọc bộ trang phục trung tính.
 
-### Frame 02 — Full Body / Low Angle
+### Khung hình 02 — Toàn thân / Góc máy thấp
 Mục tiêu:
 Quan sát thay đổi tỷ lệ.
 
-### Frame 03 — 3/4 Body
+### Khung hình 03 — Ba phần tư cơ thể
 Mục tiêu:
-Garment + body language.
+Trang phục + body language.
 
-### Frame 04 — Medium
+### Khung hình 04 — Trung cảnh
 Mục tiêu:
-Upper-body styling.
+Upper-body phối trang phục.
 
-### Frame 05 — Detail
+### Khung hình 05 — Chi tiết
 Mục tiêu:
 Chất liệu hoặc điểm nhấn sản phẩm.
 
-### Frame 06 — Movement
+### Khung hình 06 — Chuyển động
 Mục tiêu:
-Xem garment phản ứng khi cơ thể chuyển động.
+Xem trang phục phản ứng khi cơ thể chuyển động.
 
 ---
 
 ## Quy trình chụp
 
-Trước mỗi frame, học viên phải nói:
+Trước mỗi khung hình, học viên phải nói:
 
 1. Tôi muốn người xem nhìn thấy gì?
 2. Camera đặt ở đâu?
-3. Tôi crop ở đâu?
-4. Model cần làm gì?
-5. Điều gì có thể làm mất form outfit?
+3. Tôi cắt khung ở đâu?
+4. Người mẫu cần làm gì?
+5. Điều gì có thể làm mất form bộ trang phục?
 
 Sau đó mới bấm máy.
 
 ---
 
-# PHẦN J — Review
+# PHẦN J — Xem lại và phân tích
 ## 02:23–02:30 | 7 phút
 
 Đặt 6 ảnh cạnh nhau.
@@ -612,26 +612,26 @@ Không hỏi:
 
 Hỏi:
 
-### Garment
-- frame nào đọc form rõ nhất?
-- frame nào mất detail?
-- frame nào làm outfit khác thực tế nhất?
+### Trang phục
+- khung hình nào đọc form rõ nhất?
+- khung hình nào mất chi tiết?
+- khung hình nào làm bộ trang phục khác thực tế nhất?
 
 ### Camera
-- frame nào perspective mạnh nhất?
+- khung hình nào phối cảnh mạnh nhất?
 - camera height nào phù hợp nhất?
 
 ### Framing
-- frame nào phù hợp để xem toàn outfit?
-- frame nào phù hợp để xem detail?
+- khung hình nào phù hợp để xem toàn bộ trang phục?
+- khung hình nào phù hợp để xem chi tiết?
 
 ### Pose
-- pose nào hỗ trợ garment?
-- tay/chân ở frame nào phá silhouette?
+- pose nào hỗ trợ trang phục?
+- tay/chân ở khung hình nào phá phom dáng?
 
 ### Học viên tự chọn
-1. **Frame hiệu quả nhất.**
-2. **Frame cần sửa nhất.**
+1. **Khung hình hiệu quả nhất.**
+2. **Khung hình cần sửa nhất.**
 
 Và phải giải thích bằng thuật ngữ vừa học.
 
@@ -639,20 +639,20 @@ Và phải giải thích bằng thuật ngữ vừa học.
 
 # 5. Bài tập về nhà
 
-## Assignment 01 — 10 Fashion References
+## Bài tập 01 — 10 Thời trang References
 
-Chọn 10 ảnh fashion.
+Chọn 10 ảnh thời trang.
 
 Mỗi ảnh trả lời:
 
-1. Garment chính là gì?
-2. Silhouette nổi bật ở đâu?
+1. Trang phục chính là gì?
+2. Phom dáng nổi bật ở đâu?
 3. Camera angle?
 4. Framing?
-5. Wide / normal / tele feel?
-6. Static hay movement?
+5. Góc rộng / normal / tiêu cự dài feel?
+6. Tĩnh hay movement?
 7. Hard hay soft light?
-8. Background đang hỗ trợ bằng cách nào?
+8. Hậu cảnh đang hỗ trợ bằng cách nào?
 9. Điều gì học được từ ảnh này?
 
 Không chấp nhận câu trả lời:
@@ -665,21 +665,21 @@ Nếu dùng các từ này phải giải thích bằng yếu tố cụ thể.
 
 ---
 
-## Assignment 02 — 1 Outfit / 3 Variations
+## Bài tập 02 — 1 Bộ trang phục / 3 Variations
 
-Tự chụp cùng một outfit:
+Tự chụp cùng một bộ trang phục:
 
 1. full body
 2. medium
-3. detail
+3. chi tiết
 
 Yêu cầu:
-- không đổi outfit
+- không đổi bộ trang phục
 - không filter mạnh
 - giữ ánh sáng tương đối giống nhau
 
 Mục đích:
-Học kiểm soát framing.
+Học kiểm soát khung hình.
 
 ---
 
@@ -689,12 +689,12 @@ Không chấm "ảnh đẹp" theo cảm tính.
 
 | Tiêu chí | Chưa đạt | Đạt | Tốt |
 |---|---|---|---|
-| Nhìn garment | Chỉ nhìn model | Nhận ra form/detail | Chủ động ưu tiên garment |
+| Nhìn trang phục | Chỉ nhìn người mẫu | Nhận ra form/chi tiết | Chủ động ưu tiên trang phục |
 | Camera angle | Chụp theo thói quen | Nhận biết high/eye/low | Dùng angle có chủ đích |
-| Framing | Crop ngẫu nhiên | Phân biệt 5 framing | Chọn framing theo mục tiêu |
-| Pose | Chỉ yêu cầu "tạo dáng" | Direction đơn giản | Pose làm rõ silhouette |
-| Visual analysis | Dùng từ cảm tính | Gọi tên kỹ thuật | Giải thích được cause → effect |
-| Thực hành | 6 ảnh gần giống nhau | Có 6 frame khác nhau | Mỗi frame có mục đích rõ |
+| Framing | Cắt khung ngẫu nhiên | Phân biệt 5 khung hình | Chọn khung hình theo mục tiêu |
+| Pose | Chỉ yêu cầu "tạo dáng" | Direction đơn giản | Pose làm rõ phom dáng |
+| Hình ảnh analysis | Dùng từ cảm tính | Gọi tên kỹ thuật | Giải thích được nguyên nhân → kết quả |
+| Thực hành | 6 ảnh gần giống nhau | Có 6 khung hình khác nhau | Mỗi khung hình có mục đích rõ |
 
 ---
 
@@ -705,18 +705,18 @@ Không chấm "ảnh đẹp" theo cảm tính.
 - Nếu có: 35mm, 50mm, 85mm.
 - Laptop / màn hình lớn.
 - 12–20 reference images.
-- Neutral background hoặc location đơn giản.
+- Neutral phía sauground hoặc location đơn giản.
 - 1 nguồn sáng dễ kiểm soát:
   - cửa sổ lớn, hoặc
   - LED / strobe đã setup sẵn.
 
-## Model
-Không cần professional model ở Buổi 01.
+## Người mẫu
+Không cần professional người mẫu ở Buổi 01.
 
 Yêu cầu:
-- outfit có silhouette rõ
-- có ít nhất 1 detail đáng chụp
-- tránh toàn bộ outfit đen trên nền tối cho buổi đầu
+- bộ trang phục có phom dáng rõ
+- có ít nhất 1 chi tiết đáng chụp
+- tránh toàn bộ bộ trang phục đen trên nền tối cho buổi đầu
 
 ## Học viên
 - máy ảnh
@@ -735,14 +735,14 @@ Không yêu cầu mua thiết bị mới.
 - cho xem ảnh cạnh nhau
 - thay một biến số mỗi lần
 - review ngay tại lớp
-- dùng garment thật để giảng
-- sửa styling trước khi nghĩ đến Photoshop
+- dùng trang phục thật để giảng
+- sửa phối trang phục trước khi nghĩ đến Photoshop
 
 ## Không nên
-- giảng lịch sử fashion photography quá dài
+- giảng lịch sử nhiếp ảnh thời trang quá dài
 - khoe quá nhiều gear
 - đưa preset camera settings như công thức cố định
-- dạy "35mm = fashion, 85mm = portrait"
+- dạy "35mm = thời trang, 85mm = chân dung"
 - dùng "rule of thirds" như quy luật bắt buộc
 - dạy hàng chục pose để học viên học thuộc
 - biến Buổi 01 thành bài marketing
@@ -752,55 +752,55 @@ Không yêu cầu mua thiết bị mới.
 # 9. Những misconception cần sửa ngay
 
 ### Misconception 01
-**"Ảnh fashion = ảnh model đẹp."**
+**"Ảnh thời trang = ảnh người mẫu đẹp."**
 
 Sửa:
-Garment và styling phải được đọc như chủ thể.
+Trang phục và phối trang phục phải được đọc như chủ thể.
 
 ### Misconception 02
-**"Lens wide làm méo người."**
+**"Lens góc rộng làm méo người."**
 
 Sửa:
-Perspective phụ thuộc lớn vào camera-to-subject distance. Lens wide thường khiến photographer tiến gần hơn để giữ framing, từ đó làm perspective bị exaggerate.
+Phối cảnh phụ thuộc lớn vào khoảng cách từ máy ảnh đến chủ thể. Lens góc rộng thường khiến photographer tiến gần hơn để giữ khung hình, từ đó làm phối cảnh bị exaggerate.
 
 ### Misconception 03
 **"Xóa phông càng nhiều càng chuyên nghiệp."**
 
 Sửa:
-Fashion cần garment rõ. Shallow depth of field quá mức có thể làm edge/detail quần áo mất nét.
+Thời trang cần trang phục rõ. Độ sâu trường ảnh mỏng quá mức có thể làm edge/chi tiết quần áo mất nét.
 
 ### Misconception 04
-**"Pose càng phức tạp càng fashion."**
+**"Pose càng phức tạp càng thời trang."**
 
 Sửa:
-Pose chỉ tốt nếu phục vụ silhouette, garment và mục tiêu hình ảnh.
+Pose chỉ tốt nếu phục vụ phom dáng, trang phục và mục tiêu hình ảnh.
 
 ### Misconception 05
-**"Background đẹp là đủ."**
+**"Hậu cảnh đẹp là đủ."**
 
 Sửa:
-Background phải tạo separation và hỗ trợ garment.
+Hậu cảnh phải tạo separation và hỗ trợ trang phục.
 
 ---
 
-# 10. Output cần lưu sau lớp
+# 10. Kết quả cần đạt cần lưu sau lớp
 
 Mỗi học viên có:
 
-1. 01 file **Fashion Photo Analysis Sheet**.
-2. Bộ **1 Outfit / 6 Frame**.
-3. Folder **10 Fashion References**.
-4. 01 Visual Observation Note.
-5. 01 homework **1 Outfit / 3 Variations**.
+1. 01 file **Thời trang Photo Analysis Sheet**.
+2. Bộ **1 Bộ trang phục / 6 Khung hình**.
+3. Folder **10 Thời trang References**.
+4. 01 Hình ảnh Observation Note.
+5. 01 homework **1 Bộ trang phục / 3 Variations**.
 
 ---
 
 # 11. Cơ sở tham khảo
 
-- Adobe — Fashion photography tips for beginners: fashion photography giao thoa giữa portrait, product và fine art; nhấn mạnh styling, model direction, test shot và việc quần áo cần đủ độ nét.
-- Adobe — Using Color, Space, and Environment to Create Fantasy in Fashion Photography: model direction nên cụ thể và phục vụ shape/mood của garment.
-- Nikon — Understanding Focal Length: focal length thay đổi angle of view và magnification; standard và telephoto cho working distance khác nhau.
-- Nikon — Quick Tips for Taking Better Portraits: wide lens ở khoảng cách gần dễ tạo tỷ lệ khuôn mặt không flattering.
-- Nikon NIKKOR lens literature — perspective được quyết định bởi camera-to-subject distance.
+- Adobe — Thời trang photography tips for beginners: nhiếp ảnh thời trang giao thoa giữa chân dung, sản phẩm và fine art; nhấn mạnh phối trang phục, người mẫu direction, test shot và việc quần áo cần đủ độ nét.
+- Adobe — Using Color, Space, and Environment to Create Fantasy in nhiếp ảnh thời trang: người mẫu direction nên cụ thể và phục vụ shape/mood của trang phục.
+- Nikon — Understanding Tiêu cự: tiêu cự thay đổi góc nhìn và độ phóng đại; standard và tiêu cự dàiphoto cho khoảng cách làm việc khác nhau.
+- Nikon — Quick Tips for Taking Better Chân dungs: ống kính góc rộng ở khoảng cách gần dễ tạo tỷ lệ khuôn mặt không flattering.
+- Nikon NIKKOR lens literature — phối cảnh được quyết định bởi khoảng cách từ máy ảnh đến chủ thể.
 - Adobe — Diffused Light Photography: hard light tạo shadow/highlight rõ; diffused light làm chuyển vùng mềm hơn.
 
