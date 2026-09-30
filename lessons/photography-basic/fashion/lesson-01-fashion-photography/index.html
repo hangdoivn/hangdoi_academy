@@ -3487,6 +3487,266 @@
       .light-question-list { grid-template-columns:1fr; }
     }
 
+    /* ===== Section 10 · Hậu cảnh & không gian ===== */
+    .section.section-bg {
+      position:relative;
+      display:block;
+      margin:0 -24px;
+      padding:92px 24px 98px;
+      background:var(--paper-0);
+      border-bottom:1px solid var(--paper-200);
+      overflow:hidden;
+    }
+
+    .bg-head {
+      display:grid;
+      grid-template-columns:minmax(0,7fr) minmax(260px,5fr);
+      gap:42px;
+      align-items:end;
+      margin-bottom:42px;
+    }
+
+    .bg-kicker {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:18px;
+      color:var(--cobalt);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .bg-kicker b {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      background:var(--cobalt);
+      color:white;
+      font-size:12px;
+    }
+
+    .bg-head h2 {
+      margin:0;
+      max-width:780px;
+      color:var(--green-950);
+      font-size:clamp(50px,6vw,84px);
+      line-height:.9;
+      letter-spacing:-.055em;
+      font-weight:900;
+    }
+
+    .bg-lead {
+      max-width:430px;
+      margin:0;
+      padding-top:18px;
+      border-top:2px solid var(--green-950);
+      color:#4E6257;
+      font-size:16px;
+      line-height:1.6;
+    }
+
+    .bg-principle {
+      display:grid;
+      grid-template-columns:minmax(0,4fr) minmax(0,8fr);
+      gap:18px;
+      margin-bottom:24px;
+      padding:20px 22px;
+      border:1px solid var(--green-950);
+      background:var(--paper-100);
+    }
+
+    .bg-principle span {
+      color:var(--orange);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+
+    .bg-principle p {
+      margin:0;
+      color:var(--green-950);
+      font-size:18px;
+      line-height:1.45;
+      font-weight:750;
+    }
+
+    .bg-grid {
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+    }
+
+    .bg-card {
+      min-height:520px;
+      display:flex;
+      flex-direction:column;
+      border:1px solid var(--green-950);
+      background:var(--paper-50);
+      overflow:hidden;
+    }
+
+    .bg-card:nth-child(2) { background:var(--green-100); }
+    .bg-card:nth-child(3) { background:#E7EAFB; }
+
+    .bg-visual {
+      position:relative;
+      min-height:315px;
+      overflow:hidden;
+      border-bottom:1px solid var(--green-950);
+    }
+
+    .bg-visual .pin-embed-wrap {
+      min-height:315px;
+      border-radius:0;
+      background:transparent;
+    }
+
+    .bg-label {
+      position:absolute;
+      left:12px;
+      bottom:12px;
+      padding:8px 10px;
+      background:rgba(15,66,45,.9);
+      color:white;
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .bg-copy {
+      display:flex;
+      flex:1;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:20px;
+      padding:20px;
+    }
+
+    .bg-copy h3 {
+      margin:0 0 10px;
+      color:var(--green-950);
+      font-size:28px;
+      line-height:.96;
+      letter-spacing:-.04em;
+    }
+
+    .bg-copy p {
+      margin:0;
+      color:#526359;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .bg-use {
+      display:grid;
+      gap:7px;
+      padding-top:14px;
+      border-top:1px solid rgba(15,66,45,.18);
+    }
+
+    .bg-use span {
+      color:var(--orange);
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+
+    .bg-use strong {
+      color:var(--green-950);
+      font-size:13px;
+      line-height:1.4;
+    }
+
+    .bg-check {
+      display:grid;
+      grid-template-columns:minmax(0,5fr) minmax(320px,7fr);
+      gap:18px;
+      margin-top:22px;
+      padding:22px;
+      border:1px solid var(--green-950);
+      background:var(--green-950);
+      color:var(--paper-0);
+    }
+
+    .bg-check h3 {
+      margin:0 0 8px;
+      color:var(--paper-0);
+      font-size:26px;
+      line-height:1.05;
+      letter-spacing:-.03em;
+    }
+
+    .bg-check p {
+      margin:0;
+      color:#C7D7CD;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .bg-check-list {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:8px;
+    }
+
+    .bg-check-list div {
+      padding:12px 14px;
+      border:1px solid rgba(255,255,255,.16);
+      color:var(--paper-0);
+      font-size:13px;
+      line-height:1.4;
+    }
+
+    .bg-badges {
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:10px;
+    }
+
+    .bg-badges span {
+      padding:7px 10px;
+      border:1px solid var(--green-950);
+      border-radius:999px;
+      color:var(--green-950);
+      background:var(--paper-0);
+      font-size:11px;
+      font-weight:800;
+    }
+
+    @media (max-width:800px) {
+      .section.section-bg {
+        margin:0 -16px;
+        padding:62px 16px 68px;
+      }
+
+      .bg-head {
+        grid-template-columns:1fr;
+        gap:24px;
+        margin-bottom:30px;
+      }
+
+      .bg-head h2 { font-size:52px; }
+
+      .bg-principle { grid-template-columns:1fr; }
+
+      .bg-grid { grid-template-columns:1fr; }
+
+      .bg-card { min-height:auto; }
+
+      .bg-check { grid-template-columns:1fr; }
+
+      .bg-check-list { grid-template-columns:1fr; }
+    }
+
     @media (max-width: 800px) {
       .page { padding: 0 16px 64px; }
       .lesson-nav { min-height:54px; }
@@ -4702,37 +4962,133 @@
     </div>
   </section>
 
-  <section class="section">
-    <div class="num">10</div>
-    <div>
-      <h2>Hậu cảnh và không gian</h2>
-      <div class="grid-3">
-        <div class="card"><h3>Phông nền trong studio</h3><p>Kiểm soát sạch, tập trung trang phục và dáng tổng thể.</p></div>
-        <div class="card"><h3>Không gian kiến trúc</h3><p>Dùng đường nét, hình khối và tỷ lệ để hỗ trợ bố cục.</p></div>
-        <div class="card"><h3>Đường phố / Đời sống</h3><p>Tạo bối cảnh sử dụng thực tế và năng lượng đời sống.</p></div>
-      </div>
-      <div class="note">
-        Hậu cảnh tốt không phải hậu cảnh đẹp nhất. Là hậu cảnh giúp <strong>bộ trang phục nổi đúng mức</strong> và không cạnh tranh với người mẫu.
-      </div>
-      <div class="visual-ref">
-        <div class="visual-ref-head">
-          <div class="label">ẢNH MINH HOẠ · HẬU CẢNH</div>
-          <p>Cùng là ảnh fashion nhưng studio, architecture và street cho ra các vai trò hậu cảnh khác nhau.</p>
+    <section class="section section-bg">
+    <div class="section-note-anchor">
+      <details class="teacher-note">
+        <summary aria-label="Mở gợi ý giảng viên"></summary>
+        <div class="teacher-note-popover">
+          <h4>Cách dẫn dắt</h4>
+          <p>Cho học viên xem một ảnh có hậu cảnh đẹp nhưng rối và một ảnh đơn giản hơn. Hỏi: “Ảnh nào giúp bạn nhìn trang phục nhanh hơn?”</p>
+
+          <h4>Câu hỏi gợi mở</h4>
+          <ul>
+            <li>Màu hậu cảnh có nhập với trang phục không?</li>
+            <li>Có đường thẳng nào đi xuyên qua đầu hoặc cơ thể người mẫu không?</li>
+            <li>Hậu cảnh có quá nhiều chi tiết cạnh tranh với chủ thể không?</li>
+          </ul>
+
+          <h4>Lưu ý chuyên môn</h4>
+          <p>Không đánh đồng “hậu cảnh đẹp” với “hậu cảnh phù hợp”. Hậu cảnh tốt là hậu cảnh phục vụ mục tiêu bức ảnh và tạo đủ tách biệt cho chủ thể.</p>
         </div>
-        <div class="pin-grid">
-          <article class="pin-card">
-            <p class="pin-title">Phông nền trong studio clean hậu cảnh</p>
-            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://www.pinterest.com/pin/692709986479212160/"></a></div>
-            <p class="pin-note">Tập trung hoàn toàn vào trang phục và dáng tổng thể.</p>
-          </article>
-          <article class="pin-card">
-            <p class="pin-title">Không gian kiến trúc / environmental hậu cảnh</p>
-            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://ar.pinterest.com/pin/1125968647538045/"></a></div>
-            <p class="pin-note">Không gian góp phần tạo ngôn ngữ hình ảnh và scale.</p>
-          </article>
+      </details>
+    </div>
+
+    <div class="bg-head">
+      <div>
+        <div class="bg-kicker"><b>10</b> Hậu cảnh & không gian</div>
+        <h2>Hậu cảnh đẹp chưa chắc là hậu cảnh tốt.</h2>
+      </div>
+      <p class="bg-lead">
+        Hậu cảnh phải giúp <strong>người mẫu và trang phục được nhìn rõ hơn</strong>,
+        chứ không trở thành một chủ thể khác đang tranh sự chú ý.
+      </p>
+    </div>
+
+    <div class="bg-principle">
+      <span>Nguyên tắc</span>
+      <p>
+        Chọn hậu cảnh dựa trên khả năng <strong>tạo tách biệt, hỗ trợ màu sắc và giữ hình ảnh sạch</strong> —
+        không chỉ dựa vào việc địa điểm có đẹp hay không.
+      </p>
+    </div>
+
+    <div class="bg-grid">
+      <article class="bg-card">
+        <div class="bg-visual">
+          <div class="pin-embed-wrap">
+            <a data-pin-do="embedPin" href="https://www.pinterest.com/pin/692709986479212160/"></a>
+          </div>
+          <div class="bg-label">Phông nền tối giản</div>
         </div>
+        <div class="bg-copy">
+          <div>
+            <h3>Phông nền trong studio</h3>
+            <p>
+              Ít yếu tố gây nhiễu, dễ tập trung vào dáng tổng thể, màu sắc và chất liệu trang phục.
+            </p>
+          </div>
+          <div class="bg-use">
+            <span>Phù hợp khi</span>
+            <strong>Cần kiểm soát hình ảnh, giữ sự đồng nhất và trình bày sản phẩm rõ.</strong>
+          </div>
+        </div>
+      </article>
+
+      <article class="bg-card">
+        <div class="bg-visual">
+          <div class="pin-embed-wrap">
+            <a data-pin-do="embedPin" href="https://ar.pinterest.com/pin/1125968647538045/"></a>
+          </div>
+          <div class="bg-label">Kiến trúc</div>
+        </div>
+        <div class="bg-copy">
+          <div>
+            <h3>Không gian kiến trúc</h3>
+            <p>
+              Đường nét, hình khối và tỷ lệ của không gian có thể hỗ trợ bố cục và làm hình ảnh có cấu trúc hơn.
+            </p>
+          </div>
+          <div class="bg-use">
+            <span>Phù hợp khi</span>
+            <strong>Muốn bối cảnh trở thành một phần của ngôn ngữ hình ảnh nhưng vẫn giữ trang phục nổi bật.</strong>
+          </div>
+        </div>
+      </article>
+
+      <article class="bg-card">
+        <div class="bg-visual">
+          <div class="pin-embed-wrap">
+            <a data-pin-do="embedPin" href="https://www.pinterest.com/pin/sunset-editorial-portrait-fashion-photography-in-palm-springs--272045633731231808/"></a>
+          </div>
+          <div class="bg-label">Đường phố / đời sống</div>
+        </div>
+        <div class="bg-copy">
+          <div>
+            <h3>Không gian đời sống</h3>
+            <p>
+              Tạo cảm giác thật, có bối cảnh sử dụng và nhiều năng lượng hơn, nhưng cũng dễ xuất hiện chi tiết gây nhiễu.
+            </p>
+          </div>
+          <div class="bg-use">
+            <span>Phù hợp khi</span>
+            <strong>Muốn trang phục sống trong một bối cảnh cụ thể thay vì tách khỏi môi trường.</strong>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="bg-check">
+      <div>
+        <h3>4 câu hỏi trước khi chọn hậu cảnh</h3>
+        <p>
+          Chỉ cần trả lời bốn câu này, học viên sẽ tránh được phần lớn lỗi hậu cảnh ở cấp độ cơ bản.
+        </p>
       </div>
 
+      <div class="bg-check-list">
+        <div>01 · Trang phục có đủ tách khỏi hậu cảnh không?</div>
+        <div>02 · Màu sắc có hòa hợp hay bị nhập vào nhau?</div>
+        <div>03 · Có đường hoặc vật thể nào cắt qua đầu, vai, tay không?</div>
+        <div>04 · Chi tiết hậu cảnh có tranh sự chú ý với trang phục không?</div>
+      </div>
+    </div>
+
+    <div class="bg-badges">
+      <span>Tách chủ thể</span>
+      <span>Màu sắc</span>
+      <span>Đường nét</span>
+      <span>Mức độ chi tiết</span>
+      <span>Không gian âm</span>
     </div>
   </section>
 
