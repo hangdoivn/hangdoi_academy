@@ -323,9 +323,464 @@
       line-height: 1.45;
     }
 
+    /* ===== Academy lesson shell · Hero + Section 01 ===== */
+    :root {
+      --paper-0:#FFFDF7;
+      --paper-50:#F8F4EA;
+      --paper-100:#F2ECDF;
+      --paper-200:#E8DFD0;
+      --green-950:#0F422D;
+      --green-800:#176B43;
+      --green-700:#239653;
+      --green-100:#E8F4DF;
+      --yellow:#F2D43D;
+      --orange:#F26A3D;
+      --cobalt:#3450D8;
+      --ink:#173326;
+    }
+
+    body {
+      background: var(--paper-50);
+      color: var(--ink);
+    }
+
+    .page {
+      max-width: 1240px;
+      padding-top: 18px;
+    }
+
+    .lesson-nav {
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      border-bottom: 1px solid var(--paper-200);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .lesson-nav-path {
+      display:flex;
+      align-items:center;
+      gap:9px;
+      flex-wrap:wrap;
+    }
+
+    .lesson-nav-path span:not(:last-child)::after {
+      content:"/";
+      margin-left:9px;
+      color:#9A9A8D;
+    }
+
+    .lesson-nav-time {
+      padding: 8px 12px;
+      border: 1px solid var(--green-950);
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .hero.hero-v2 {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 7fr) minmax(320px, 5fr);
+      gap: 30px;
+      min-height: 690px;
+      padding: 52px 0 56px;
+      border-bottom: 0;
+      overflow: hidden;
+    }
+
+    .hero-copy {
+      position:relative;
+      z-index:2;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      min-width:0;
+      padding: 6px 0;
+    }
+
+    .hero-eyebrow {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:32px;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .hero-eyebrow::before {
+      content:"";
+      width:42px;
+      height:4px;
+      background:var(--orange);
+    }
+
+    .hero-v2 h1 {
+      max-width: 770px;
+      margin: 0;
+      color: var(--green-950);
+      font-size: clamp(66px, 8.4vw, 126px);
+      line-height: .82;
+      letter-spacing: -.075em;
+      font-weight: 900;
+    }
+
+    .hero-v2 h1 .line-small {
+      display:block;
+      margin-bottom:12px;
+      font-size:.33em;
+      line-height:1;
+      letter-spacing:-.035em;
+      color:var(--green-800);
+    }
+
+    .hero-v2 h1 .line-accent {
+      position:relative;
+      display:inline-block;
+    }
+
+    .hero-v2 h1 .line-accent::after {
+      content:"";
+      position:absolute;
+      left:2%;
+      right:-4%;
+      bottom:.02em;
+      height:.12em;
+      background:var(--yellow);
+      z-index:-1;
+      transform:rotate(-1deg);
+    }
+
+    .hero-intro {
+      max-width: 610px !important;
+      margin: 34px 0 0 !important;
+      color:#435A4D !important;
+      font-size:18px !important;
+      line-height:1.55 !important;
+    }
+
+    .hero-bottom {
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:24px;
+      align-items:end;
+      margin-top:54px;
+    }
+
+    .hero-principle {
+      max-width:510px;
+      padding-top:16px;
+      border-top:2px solid var(--green-950);
+      font-size:15px;
+      line-height:1.5;
+    }
+
+    .hero-principle strong {
+      display:block;
+      margin-bottom:7px;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.1em;
+    }
+
+    .hero-meta-strip {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      border:1px solid var(--green-950);
+      background:var(--paper-0);
+    }
+
+    .hero-meta-strip div {
+      min-height:90px;
+      padding:14px;
+      border-right:1px solid var(--green-950);
+    }
+
+    .hero-meta-strip div:last-child { border-right:0; }
+
+    .hero-meta-strip span {
+      display:block;
+      margin-bottom:12px;
+      color:#6B756F;
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:.1em;
+    }
+
+    .hero-meta-strip strong {
+      font-size:19px;
+      line-height:1.05;
+    }
+
+    .hero-visual {
+      position:relative;
+      min-height:560px;
+      align-self:center;
+    }
+
+    .hero-green-block {
+      position:absolute;
+      inset:26px 0 30px 44px;
+      background:var(--green-800);
+      border-radius: 48% 48% 8px 8px / 34% 34% 8px 8px;
+    }
+
+    .hero-pin {
+      position:absolute;
+      z-index:2;
+      top:0;
+      left:0;
+      right:34px;
+      min-height:510px;
+      padding:14px 14px 8px;
+      background:var(--paper-0);
+      border:2px solid var(--green-950);
+      box-shadow:12px 12px 0 rgba(15,66,45,.16);
+      overflow:hidden;
+    }
+
+    .hero-pin .pin-embed-wrap {
+      min-height:445px;
+      background:var(--paper-100);
+    }
+
+    .hero-pin-caption {
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      padding-top:10px;
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.04em;
+    }
+
+    .hero-sticker {
+      position:absolute;
+      z-index:3;
+      right:0;
+      top:62px;
+      width:118px;
+      height:118px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      background:var(--yellow);
+      border:2px solid var(--green-950);
+      border-radius:50%;
+      text-align:center;
+      font-size:12px;
+      font-weight:900;
+      line-height:1.1;
+      text-transform:uppercase;
+      transform:rotate(7deg);
+    }
+
+    .hero-session-no {
+      position:absolute;
+      right:4px;
+      bottom:-26px;
+      z-index:1;
+      color:var(--paper-100);
+      font-size:190px;
+      font-weight:900;
+      line-height:1;
+      letter-spacing:-.08em;
+      -webkit-text-stroke: 2px var(--green-950);
+    }
+
+    .section.section-objectives {
+      display:block;
+      position:relative;
+      margin: 0 -24px;
+      padding: 86px 24px 92px;
+      background: var(--green-950);
+      color:var(--paper-0);
+      border-bottom:0;
+      overflow:hidden;
+    }
+
+    .objective-layout {
+      display:grid;
+      grid-template-columns: minmax(260px,4fr) minmax(0,8fr);
+      gap:54px;
+      align-items:start;
+    }
+
+    .objective-heading {
+      position:sticky;
+      top:28px;
+    }
+
+    .objective-kicker {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:20px;
+      color:#CFE2D6;
+      font-size:11px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+    }
+
+    .objective-kicker b {
+      display:inline-flex;
+      width:32px;
+      height:32px;
+      align-items:center;
+      justify-content:center;
+      background:var(--yellow);
+      color:var(--green-950);
+      border-radius:50%;
+      font-size:12px;
+    }
+
+    .objective-heading h2 {
+      margin:0;
+      max-width:390px;
+      color:var(--paper-0);
+      font-size:clamp(48px,5.4vw,76px);
+      line-height:.9;
+      letter-spacing:-.055em;
+      font-weight:900;
+    }
+
+    .objective-heading p {
+      max-width:370px;
+      margin:24px 0 0;
+      color:#C4D4CA;
+      font-size:16px;
+      line-height:1.6;
+    }
+
+    .objective-core {
+      display:grid;
+      gap:0;
+      border-top:1px solid rgba(255,255,255,.28);
+    }
+
+    .objective-item {
+      display:grid;
+      grid-template-columns:74px minmax(160px,1.1fr) minmax(220px,1.4fr);
+      gap:18px;
+      align-items:center;
+      min-height:142px;
+      border-bottom:1px solid rgba(255,255,255,.28);
+    }
+
+    .objective-no {
+      color:var(--yellow);
+      font-size:42px;
+      font-weight:900;
+      line-height:1;
+      letter-spacing:-.05em;
+    }
+
+    .objective-item h3 {
+      margin:0;
+      color:var(--paper-0);
+      font-size:25px;
+      line-height:1.05;
+      letter-spacing:-.025em;
+    }
+
+    .objective-item p {
+      margin:0;
+      color:#C4D4CA;
+      font-size:15px;
+      line-height:1.55;
+    }
+
+    .objective-outcomes {
+      grid-column:2;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      margin-top:22px;
+    }
+
+    .objective-outcomes div {
+      min-height:106px;
+      padding:16px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.15);
+    }
+
+    .objective-outcomes span {
+      display:block;
+      margin-bottom:9px;
+      color:var(--yellow);
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .objective-outcomes strong {
+      font-size:15px;
+      line-height:1.35;
+      font-weight:700;
+    }
+
+    .section-objectives::after {
+      content:"MẮT";
+      position:absolute;
+      right:-26px;
+      bottom:-52px;
+      color:rgba(255,255,255,.035);
+      font-size:220px;
+      line-height:1;
+      font-weight:900;
+      letter-spacing:-.08em;
+      pointer-events:none;
+    }
+
     @media (max-width: 800px) {
-      .page { padding: 20px 16px 64px; }
-      .hero { padding-top: 42px; }
+      .page { padding: 0 16px 64px; }
+      .lesson-nav { min-height:54px; }
+      .lesson-nav-time { display:none; }
+      .hero.hero-v2 {
+        grid-template-columns:1fr;
+        gap:34px;
+        min-height:auto;
+        padding:36px 0 52px;
+      }
+      .hero-v2 h1 { font-size:clamp(58px,18vw,92px); }
+      .hero-v2 h1 .line-small { font-size:.29em; margin-bottom:10px; }
+      .hero-intro { font-size:16px !important; }
+      .hero-bottom { grid-template-columns:1fr; margin-top:38px; }
+      .hero-meta-strip div { min-height:78px; padding:11px; }
+      .hero-meta-strip strong { font-size:16px; }
+      .hero-visual { min-height:500px; }
+      .hero-pin { right:24px; }
+      .hero-sticker { width:96px; height:96px; font-size:10px; }
+      .hero-session-no { font-size:130px; bottom:-18px; }
+      .section.section-objectives {
+        margin:0 -16px;
+        padding:62px 16px 68px;
+      }
+      .objective-layout { grid-template-columns:1fr; gap:38px; }
+      .objective-heading { position:static; }
+      .objective-heading h2 { font-size:52px; }
+      .objective-core { grid-column:1; }
+      .objective-item {
+        grid-template-columns:52px 1fr;
+        gap:14px;
+        padding:22px 0;
+      }
+      .objective-item p { grid-column:2; }
+      .objective-no { font-size:32px; }
+      .objective-outcomes {
+        grid-column:1;
+        grid-template-columns:1fr;
+      }
       .meta, .grid-2, .grid-3, .grid-4, .framework, .shot-list, .output-list {
         grid-template-columns: 1fr;
       }
@@ -345,32 +800,103 @@
 </head>
 <body>
 <div class="page">
-  <header class="hero">
-    <div class="kicker">NHIẾP ẢNH CƠ BẢN · NHIẾP ẢNH ỨNG DỤNG TRONG THỜI TRANG</div>
-    <h1>Buổi 01 — Tư duy Nhiếp ảnh Thời trang</h1>
-    <p>
-      Học cách nhìn một bức ảnh thời trang bằng tư duy nhiếp ảnh:
-      form trang phục, model, góc máy, tiêu cự, bố cục, ánh sáng, background và mục đích sử dụng.
-    </p>
-    <div class="meta">
-      <div><span>Thời lượng</span><strong>2,5 giờ</strong></div>
-      <div><span>Lý thuyết</span><strong>30%</strong></div>
-      <div><span>Phân tích ảnh</span><strong>30%</strong></div>
-      <div><span>Thực hành</span><strong>40%</strong></div>
+  <nav class="lesson-nav" aria-label="Vị trí bài học">
+    <div class="lesson-nav-path">
+      <span>Nhiếp ảnh cơ bản</span>
+      <span>Thời trang</span>
+      <span>Buổi 01</span>
+    </div>
+    <div class="lesson-nav-time">150 phút</div>
+  </nav>
+
+  <header class="hero hero-v2">
+    <div class="hero-copy">
+      <div>
+        <div class="hero-eyebrow">Nhiếp ảnh ứng dụng trong thời trang</div>
+        <h1>
+          <span class="line-small">Buổi 01</span>
+          Tư duy<br>
+          nhiếp ảnh<br>
+          <span class="line-accent">thời trang</span>
+        </h1>
+        <p class="hero-intro">
+          Học cách nhìn trang phục, người mẫu và khung hình trước khi học sâu về thiết bị.
+          Mục tiêu của buổi đầu là biến cảm giác “ảnh đẹp” thành những yếu tố có thể quan sát,
+          giải thích và chủ động tạo ra.
+        </p>
+      </div>
+
+      <div class="hero-bottom">
+        <div class="hero-principle">
+          <strong>Nguyên tắc buổi học</strong>
+          Nhìn → gọi tên → dự đoán → chụp thử → so sánh → giải thích.
+        </div>
+
+        <div class="hero-meta-strip" aria-label="Thông tin buổi học">
+          <div><span>Thời lượng</span><strong>150<br>phút</strong></div>
+          <div><span>Bài chính</span><strong>1 bộ đồ<br>/ 6 khung</strong></div>
+          <div><span>Trọng tâm</span><strong>Quan sát<br>+ thực hành</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-label="Ảnh tham khảo thời trang">
+      <div class="hero-green-block"></div>
+      <div class="hero-pin">
+        <div class="pin-embed-wrap">
+          <a data-pin-do="embedPin" href="https://www.pinterest.com/pin/442197257170509299/"></a>
+        </div>
+        <div class="hero-pin-caption">
+          <span>Ảnh tham khảo</span>
+          <span>Đọc phom · dáng · khung</span>
+        </div>
+      </div>
+      <div class="hero-sticker">Học bằng mắt trước</div>
+      <div class="hero-session-no">01</div>
     </div>
   </header>
 
-  <section class="section">
-    <div class="num">01</div>
-    <div>
-      <h2>Mục tiêu sau buổi học</h2>
-      <div class="grid-2">
-        <div class="card"><h3>Nhìn đúng chủ thể</h3><p>Hiểu trong Fashion Photography, model và trang phục cùng tạo nên hình ảnh.</p></div>
-        <div class="card"><h3>Đọc được form</h3><p>Nhìn silhouette, độ rủ, volume, layering và các chi tiết cần được làm nổi bật.</p></div>
-        <div class="card"><h3>Nhận biết góc chụp</h3><p>Phân biệt góc cao, ngang, thấp và tác động lên tỷ lệ cơ thể.</p></div>
-        <div class="card"><h3>Đọc bố cục</h3><p>Phân biệt full body, 3/4, medium, close-up và detail.</p></div>
-        <div class="card"><h3>Quan sát ánh sáng</h3><p>Nhận biết hard/soft light và hướng sáng cơ bản.</p></div>
-        <div class="card"><h3>Cầm máy kiểm chứng</h3><p>Thực hành 6 frame khác nhau trên cùng một outfit và model.</p></div>
+  <section class="section section-objectives">
+    <div class="objective-layout">
+      <div class="objective-heading">
+        <div class="objective-kicker"><b>01</b> Mục tiêu buổi học</div>
+        <h2>Không học nhiều.<br>Học nhìn đúng.</h2>
+        <p>
+          Buổi đầu chỉ khóa vào ba năng lực nền. Khi nhìn đúng, những buổi sau về máy ảnh,
+          tiêu cự, ánh sáng và tạo dáng sẽ có chỗ để “gắn” vào.
+        </p>
+      </div>
+
+      <div class="objective-core">
+        <article class="objective-item">
+          <div class="objective-no">01</div>
+          <h3>Đọc được trang phục</h3>
+          <p>
+            Nhận ra phom dáng, bề mặt chất liệu, các lớp trang phục và chi tiết nào cần được giữ rõ trong ảnh.
+          </p>
+        </article>
+
+        <article class="objective-item">
+          <div class="objective-no">02</div>
+          <h3>Kiểm soát vị trí máy & khung hình</h3>
+          <p>
+            Hiểu việc nâng, hạ, tiến, lùi máy và thay đổi cách cắt khung sẽ làm tỷ lệ cơ thể và cách đọc bộ đồ thay đổi ra sao.
+          </p>
+        </article>
+
+        <article class="objective-item">
+          <div class="objective-no">03</div>
+          <h3>Chụp có chủ đích</h3>
+          <p>
+            Trước mỗi lần bấm máy, nói được mình muốn người xem nhìn thấy gì và vì sao chọn góc máy, khung hình, cách tạo dáng đó.
+          </p>
+        </article>
+
+        <div class="objective-outcomes">
+          <div><span>Sau buổi học</span><strong>Phân biệt ảnh chân dung, ảnh sản phẩm và ảnh thời trang.</strong></div>
+          <div><span>Sau buổi học</span><strong>Tạo được 6 khung ảnh khác nhau từ cùng một bộ đồ.</strong></div>
+          <div><span>Sau buổi học</span><strong>Tự chỉ ra khung nào hiệu quả và khung nào cần sửa.</strong></div>
+        </div>
       </div>
     </div>
   </section>
