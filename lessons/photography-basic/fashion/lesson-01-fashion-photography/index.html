@@ -2859,6 +2859,306 @@
       .crop-zones { grid-template-columns:1fr 1fr; }
     }
 
+    /* ===== Section 08 · Tạo dáng & chuyển động ===== */
+    .section.section-pose {
+      position:relative;
+      display:block;
+      margin:0 -24px;
+      padding:92px 24px 98px;
+      background:var(--paper-100);
+      border-bottom:1px solid var(--paper-200);
+      overflow:hidden;
+    }
+
+    .pose-head {
+      display:grid;
+      grid-template-columns:minmax(0,7fr) minmax(260px,5fr);
+      gap:42px;
+      align-items:end;
+      margin-bottom:42px;
+    }
+
+    .pose-kicker {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:18px;
+      color:var(--green-700);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .pose-kicker b {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      background:var(--green-700);
+      color:white;
+      font-size:12px;
+    }
+
+    .pose-head h2 {
+      margin:0;
+      max-width:780px;
+      color:var(--green-950);
+      font-size:clamp(50px,6vw,84px);
+      line-height:.9;
+      letter-spacing:-.055em;
+      font-weight:900;
+    }
+
+    .pose-lead {
+      max-width:430px;
+      margin:0;
+      padding-top:18px;
+      border-top:2px solid var(--green-950);
+      color:#4E6257;
+      font-size:16px;
+      line-height:1.6;
+    }
+
+    .pose-sequence {
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:12px;
+      margin-bottom:24px;
+    }
+
+    .pose-step {
+      position:relative;
+      min-height:430px;
+      display:flex;
+      flex-direction:column;
+      border:1px solid var(--green-950);
+      background:var(--paper-0);
+      overflow:hidden;
+    }
+
+    .pose-step:nth-child(2) { background:var(--green-100); }
+    .pose-step:nth-child(3) { background:#F7E4DC; }
+    .pose-step:nth-child(4) { background:#E7EAFB; }
+
+    .pose-figure-zone {
+      position:relative;
+      min-height:250px;
+      border-bottom:1px solid var(--green-950);
+      overflow:hidden;
+    }
+
+    .pose-figure {
+      position:absolute;
+      left:50%;
+      bottom:26px;
+      width:90px;
+      height:205px;
+      transform:translateX(-50%);
+      color:var(--green-950);
+    }
+
+    .pose-head-dot {
+      position:absolute;
+      top:0;
+      left:50%;
+      width:34px;
+      height:34px;
+      border:2px solid currentColor;
+      border-radius:50%;
+      transform:translateX(-50%);
+    }
+
+    .pose-torso {
+      position:absolute;
+      left:50%;
+      top:38px;
+      width:2px;
+      height:96px;
+      background:currentColor;
+      transform-origin:top;
+    }
+
+    .pose-arm,
+    .pose-leg {
+      position:absolute;
+      width:2px;
+      background:currentColor;
+      transform-origin:top;
+    }
+
+    .pose-arm { top:57px; height:72px; }
+    .pose-leg { top:130px; height:74px; }
+
+    .pose-arm.left { left:50%; transform:rotate(16deg); }
+    .pose-arm.right { left:50%; transform:rotate(-16deg); }
+    .pose-leg.left { left:50%; transform:rotate(8deg); }
+    .pose-leg.right { left:50%; transform:rotate(-8deg); }
+
+    .pose-neutral .pose-torso { transform:translateX(-50%); }
+
+    .pose-shift .pose-torso { transform:translateX(-50%) rotate(-5deg); }
+    .pose-shift .pose-leg.left { transform:rotate(16deg); }
+    .pose-shift .pose-leg.right { transform:rotate(-3deg); }
+
+    .pose-hands .pose-arm.left { transform:rotate(42deg); height:66px; }
+    .pose-hands .pose-arm.right { transform:rotate(-6deg); }
+
+    .pose-move .pose-torso { transform:translateX(-50%) rotate(6deg); }
+    .pose-move .pose-arm.left { transform:rotate(56deg); }
+    .pose-move .pose-arm.right { transform:rotate(-30deg); }
+    .pose-move .pose-leg.left { transform:rotate(25deg); }
+    .pose-move .pose-leg.right { transform:rotate(-20deg); }
+
+    .pose-copy {
+      display:flex;
+      flex:1;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:18px;
+      padding:18px;
+    }
+
+    .pose-copy-top span {
+      display:block;
+      margin-bottom:8px;
+      color:#728278;
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.09em;
+      text-transform:uppercase;
+    }
+
+    .pose-copy h3 {
+      margin:0 0 9px;
+      color:var(--green-950);
+      font-size:24px;
+      line-height:.98;
+      letter-spacing:-.035em;
+    }
+
+    .pose-copy p {
+      margin:0;
+      color:#526359;
+      font-size:13px;
+      line-height:1.5;
+    }
+
+    .pose-check {
+      padding-top:12px;
+      border-top:1px solid rgba(15,66,45,.18);
+      color:var(--green-950);
+      font-size:12px;
+      line-height:1.4;
+      font-weight:700;
+    }
+
+    .pose-direction {
+      display:grid;
+      grid-template-columns:minmax(0,5fr) minmax(320px,7fr);
+      gap:18px;
+      padding:22px;
+      border:1px solid var(--green-950);
+      background:var(--green-950);
+      color:var(--paper-0);
+    }
+
+    .pose-direction h3 {
+      margin:0 0 8px;
+      color:var(--paper-0);
+      font-size:26px;
+      line-height:1.05;
+      letter-spacing:-.03em;
+    }
+
+    .pose-direction p {
+      margin:0;
+      color:#C7D7CD;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .pose-say {
+      display:grid;
+      gap:8px;
+    }
+
+    .pose-say div {
+      padding:12px 14px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.04);
+    }
+
+    .pose-say b {
+      display:block;
+      margin-bottom:5px;
+      color:var(--yellow);
+      font-size:10px;
+      letter-spacing:.09em;
+      text-transform:uppercase;
+    }
+
+    .pose-say span {
+      color:var(--paper-0);
+      font-size:13px;
+      line-height:1.45;
+    }
+
+    .pose-practice {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      margin-top:20px;
+    }
+
+    .pose-practice div {
+      min-height:104px;
+      padding:15px;
+      border:1px solid var(--green-950);
+      background:var(--paper-0);
+    }
+
+    .pose-practice b {
+      display:block;
+      margin-bottom:8px;
+      color:var(--orange);
+      font-size:11px;
+      letter-spacing:.08em;
+    }
+
+    .pose-practice span {
+      color:var(--green-950);
+      font-size:13px;
+      line-height:1.4;
+    }
+
+    @media (max-width:800px) {
+      .section.section-pose {
+        margin:0 -16px;
+        padding:62px 16px 68px;
+      }
+
+      .pose-head {
+        grid-template-columns:1fr;
+        gap:24px;
+        margin-bottom:30px;
+      }
+
+      .pose-head h2 { font-size:52px; }
+
+      .pose-sequence { grid-template-columns:1fr 1fr; }
+
+      .pose-direction { grid-template-columns:1fr; }
+
+      .pose-practice { grid-template-columns:1fr; }
+    }
+
+    @media (max-width:560px) {
+      .pose-sequence { grid-template-columns:1fr; }
+    }
+
     @media (max-width: 800px) {
       .page { padding: 0 16px 64px; }
       .lesson-nav { min-height:54px; }
@@ -3822,38 +4122,144 @@
     </div>
   </section>
 
-  <section class="section">
-    <div class="num">08</div>
-    <div>
-      <h2>Tạo dáng & Chuyển động</h2>
-      <p class="lead">
-        Tạo dáng trong ảnh thời trang không chỉ để người mẫu “đẹp”; pose phải hỗ trợ dáng tổng thể, chất liệu và tinh thần bộ trang phục.
-      </p>
-      <div class="grid-2">
-        <div class="card"><h3>Tư thế tĩnh</h3><p>Dễ đọc form, phù hợp lookbook và e-commerce.</p><small>Chú ý vai, tay, chân, trọng tâm cơ thể.</small></div>
-        <div class="card"><h3>Chuyển động</h3><p>Tạo độ sống và giúp chất liệu thể hiện chuyển động.</p><small>Bước đi · xoay người · chuyển động của vải</small></div>
-        <div class="card"><h3>Chuyển trọng tâm</h3><p>Chuyển trọng tâm giúp cơ thể bớt cứng và tạo đường cong tự nhiên.</p></div>
-        <div class="card"><h3>Vị trí tay</h3><p>Tay có thể giúp khoe túi, tay áo, phụ kiện hoặc phá form nếu đặt sai.</p></div>
+    <section class="section section-pose">
+    <div class="section-note-anchor">
+      <details class="teacher-note">
+        <summary aria-label="Mở gợi ý giảng viên"></summary>
+        <div class="teacher-note-popover">
+          <h4>Cách dẫn dắt</h4>
+          <p>Cho người mẫu đứng ở tư thế trung tính trước. Sau đó chỉ thay một yếu tố mỗi lần: trọng tâm, vị trí tay, rồi chuyển động. Chụp sau mỗi thay đổi để so sánh.</p>
+
+          <h4>Câu hỏi gợi mở</h4>
+          <ul>
+            <li>Tư thế này có làm mất eo hoặc che túi không?</li>
+            <li>Tay người mẫu đang giúp hay đang che trang phục?</li>
+            <li>Khi người mẫu bước đi, phần vải nào bắt đầu chuyển động đẹp hơn?</li>
+          </ul>
+
+          <h4>Lưu ý chuyên môn</h4>
+          <p>Không dạy học viên thuộc nhiều tư thế. Mục tiêu là biết điều chỉnh cơ thể để giữ dáng tổng thể và làm rõ trang phục.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="pose-head">
+      <div>
+        <div class="pose-kicker"><b>08</b> Tạo dáng & chuyển động</div>
+        <h2>Tạo dáng để trang phục rõ hơn.</h2>
       </div>
-      <div class="visual-ref">
-        <div class="visual-ref-head">
-          <div class="label">ẢNH MINH HOẠ · TẠO DÁNG & CHUYỂN ĐỘNG</div>
-          <p>Quan sát xem dáng đứng tĩnh và chuyển động thật sự thay đổi cảm giác trang phục ra sao.</p>
+      <p class="pose-lead">
+        Một tư thế tốt không chỉ làm người mẫu đẹp hơn.
+        Nó phải giúp <strong>dáng tổng thể, chất liệu và chi tiết trang phục</strong> được nhìn rõ hơn.
+      </p>
+    </div>
+
+    <div class="pose-sequence">
+      <article class="pose-step pose-neutral">
+        <div class="pose-figure-zone">
+          <div class="pose-figure">
+            <div class="pose-head-dot"></div>
+            <div class="pose-torso"></div>
+            <span class="pose-arm left"></span><span class="pose-arm right"></span>
+            <span class="pose-leg left"></span><span class="pose-leg right"></span>
+          </div>
         </div>
-        <div class="pin-grid">
-          <article class="pin-card">
-            <p class="pin-title">Tư thế tĩnh</p>
-            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://www.pinterest.com/pin/311592867979786175/"></a></div>
-            <p class="pin-note">Form bộ trang phục dễ đọc và kiểm soát tốt.</p>
-          </article>
-          <article class="pin-card">
-            <p class="pin-title">Tư thế có chuyển động</p>
-            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://www.pinterest.com/pin/sunset-editorial-portrait-fashion-photography-in-palm-springs--272045633731231808/"></a></div>
-            <p class="pin-note">Vải và cơ thể có độ sống, tạo cảm giác giàu tính biên tập hơn.</p>
-          </article>
+        <div class="pose-copy">
+          <div class="pose-copy-top">
+            <span>Bước 01</span>
+            <h3>Tư thế trung tính</h3>
+            <p>Dùng làm điểm bắt đầu để nhìn đúng dáng bộ trang phục trước khi thay đổi tư thế.</p>
+          </div>
+          <div class="pose-check">Kiểm tra: vai · eo · chiều dài · hai bên trang phục.</div>
         </div>
+      </article>
+
+      <article class="pose-step pose-shift">
+        <div class="pose-figure-zone">
+          <div class="pose-figure">
+            <div class="pose-head-dot"></div>
+            <div class="pose-torso"></div>
+            <span class="pose-arm left"></span><span class="pose-arm right"></span>
+            <span class="pose-leg left"></span><span class="pose-leg right"></span>
+          </div>
+        </div>
+        <div class="pose-copy">
+          <div class="pose-copy-top">
+            <span>Bước 02</span>
+            <h3>Chuyển trọng tâm</h3>
+            <p>Đưa trọng lượng sang một chân giúp cơ thể bớt cứng và tạo đường nét tự nhiên hơn.</p>
+          </div>
+          <div class="pose-check">Kiểm tra: hông thay đổi thế nào? Quần hoặc váy có mất dáng không?</div>
+        </div>
+      </article>
+
+      <article class="pose-step pose-hands">
+        <div class="pose-figure-zone">
+          <div class="pose-figure">
+            <div class="pose-head-dot"></div>
+            <div class="pose-torso"></div>
+            <span class="pose-arm left"></span><span class="pose-arm right"></span>
+            <span class="pose-leg left"></span><span class="pose-leg right"></span>
+          </div>
+        </div>
+        <div class="pose-copy">
+          <div class="pose-copy-top">
+            <span>Bước 03</span>
+            <h3>Điều chỉnh tay</h3>
+            <p>Tay có thể mở khoảng trống quanh eo, làm rõ túi, tay áo hoặc phụ kiện.</p>
+          </div>
+          <div class="pose-check">Kiểm tra: tay đang hỗ trợ hay đang che chi tiết quan trọng?</div>
+        </div>
+      </article>
+
+      <article class="pose-step pose-move">
+        <div class="pose-figure-zone">
+          <div class="pose-figure">
+            <div class="pose-head-dot"></div>
+            <div class="pose-torso"></div>
+            <span class="pose-arm left"></span><span class="pose-arm right"></span>
+            <span class="pose-leg left"></span><span class="pose-leg right"></span>
+          </div>
+        </div>
+        <div class="pose-copy">
+          <div class="pose-copy-top">
+            <span>Bước 04</span>
+            <h3>Chuyển động nhẹ</h3>
+            <p>Bước đi, xoay vai hoặc xoay người giúp chất liệu và các lớp trang phục có độ sống.</p>
+          </div>
+          <div class="pose-check">Kiểm tra: chuyển động có làm bộ trang phục đẹp hơn hay chỉ làm ảnh rối hơn?</div>
+        </div>
+      </article>
+    </div>
+
+    <div class="pose-direction">
+      <div>
+        <h3>Hướng dẫn người mẫu bằng điều cần nhìn thấy</h3>
+        <p>
+          Đừng nói “tạo dáng đẹp hơn”. Hãy nói chính xác bộ phận nào cần thay đổi và vì sao.
+        </p>
       </div>
 
+      <div class="pose-say">
+        <div>
+          <b>Thay vì nói</b>
+          <span>“Tạo dáng thời trang hơn.”</span>
+        </div>
+        <div>
+          <b>Hãy nói</b>
+          <span>“Tách tay trái khỏi thân một chút để nhìn rõ phần eo.”</span>
+        </div>
+        <div>
+          <b>Hoặc</b>
+          <span>“Xoay vai phải ra sau để đường áo khoác hiện rõ hơn.”</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pose-practice">
+      <div><b>01 · Trung tính</b><span>Chụp một khung để làm mốc so sánh.</span></div>
+      <div><b>02 · Chuyển trọng tâm</b><span>Giữ gần như mọi thứ, chỉ đổi trọng tâm cơ thể.</span></div>
+      <div><b>03 · Chuyển động</b><span>Cho người mẫu bước hoặc xoay nhẹ và quan sát vải chuyển động.</span></div>
     </div>
   </section>
 
