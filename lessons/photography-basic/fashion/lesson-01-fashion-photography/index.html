@@ -1178,6 +1178,302 @@
       .compare-equation i { transform:rotate(90deg); }
     }
 
+    /* ===== Section 03 · 4 mục đích chụp thời trang ===== */
+    .section.section-types {
+      position:relative;
+      display:block;
+      margin:0 -24px;
+      padding:90px 24px 96px;
+      background:var(--paper-100);
+      border-bottom:1px solid var(--paper-200);
+      overflow:hidden;
+    }
+
+    .types-head {
+      display:grid;
+      grid-template-columns:minmax(0,7fr) minmax(260px,5fr);
+      gap:42px;
+      align-items:end;
+      margin-bottom:42px;
+    }
+
+    .types-kicker {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:18px;
+      color:var(--cobalt);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .types-kicker b {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      background:var(--cobalt);
+      color:white;
+      font-size:12px;
+    }
+
+    .types-head h2 {
+      margin:0;
+      max-width:760px;
+      color:var(--green-950);
+      font-size:clamp(50px,6vw,84px);
+      line-height:.9;
+      letter-spacing:-.055em;
+      font-weight:900;
+    }
+
+    .types-lead {
+      max-width:430px;
+      margin:0;
+      padding-top:18px;
+      border-top:2px solid var(--green-950);
+      color:#4E6257;
+      font-size:16px;
+      line-height:1.6;
+    }
+
+    .types-grid {
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:16px;
+    }
+
+    .type-card {
+      display:grid;
+      grid-template-columns:minmax(210px, .92fr) minmax(0,1.08fr);
+      min-height:360px;
+      border:1px solid var(--green-950);
+      background:var(--paper-0);
+      overflow:hidden;
+    }
+
+    .type-card:nth-child(2) {
+      background:var(--green-100);
+    }
+
+    .type-card:nth-child(3) {
+      background:#F7E4DC;
+    }
+
+    .type-card:nth-child(4) {
+      background:#E7EAFB;
+    }
+
+    .type-image {
+      min-height:360px;
+      background:var(--paper-200);
+      border-right:1px solid var(--green-950);
+      overflow:hidden;
+    }
+
+    .type-image .pin-embed-wrap {
+      min-height:360px;
+      border-radius:0;
+      background:transparent;
+    }
+
+    .type-copy {
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      padding:24px 22px;
+    }
+
+    .type-index {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:28px;
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+      color:#6C7A71;
+    }
+
+    .type-index b {
+      display:inline-flex;
+      width:34px;
+      height:34px;
+      align-items:center;
+      justify-content:center;
+      border:1px solid var(--green-950);
+      border-radius:50%;
+      color:var(--green-950);
+      font-size:12px;
+    }
+
+    .type-copy h3 {
+      margin:0 0 14px;
+      color:var(--green-950);
+      font-size:31px;
+      line-height:.95;
+      letter-spacing:-.045em;
+    }
+
+    .type-copy p {
+      margin:0;
+      color:#4E6257;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .type-signals {
+      display:grid;
+      gap:7px;
+      margin-top:24px;
+      padding-top:16px;
+      border-top:1px solid rgba(15,66,45,.22);
+    }
+
+    .type-signals span {
+      color:#748278;
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+
+    .type-signals strong {
+      color:var(--green-950);
+      font-size:13px;
+      line-height:1.4;
+    }
+
+    .types-test {
+      display:grid;
+      grid-template-columns:minmax(0,5fr) minmax(260px,7fr);
+      gap:18px;
+      margin-top:24px;
+      padding:22px;
+      border:1px solid var(--green-950);
+      background:var(--green-950);
+      color:var(--paper-0);
+    }
+
+    .types-test-label {
+      display:flex;
+      align-items:flex-start;
+      gap:14px;
+    }
+
+    .types-test-label b {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:44px;
+      height:44px;
+      flex:0 0 auto;
+      border-radius:50%;
+      background:var(--yellow);
+      color:var(--green-950);
+      font-size:18px;
+    }
+
+    .types-test h3 {
+      margin:0 0 8px;
+      color:var(--paper-0);
+      font-size:25px;
+      line-height:1.05;
+      letter-spacing:-.03em;
+    }
+
+    .types-test p {
+      margin:0;
+      color:#C7D7CD;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .types-test-questions {
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      border-left:1px solid rgba(255,255,255,.2);
+    }
+
+    .types-test-questions div {
+      padding:12px 18px;
+      border-bottom:1px solid rgba(255,255,255,.14);
+    }
+
+    .types-test-questions div:nth-last-child(-n+2) {
+      border-bottom:0;
+    }
+
+    .types-test-questions strong {
+      display:block;
+      margin-bottom:5px;
+      color:var(--yellow);
+      font-size:11px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .types-test-questions span {
+      color:var(--paper-0);
+      font-size:13px;
+      line-height:1.45;
+    }
+
+    @media (max-width:800px) {
+      .section.section-types {
+        margin:0 -16px;
+        padding:62px 16px 68px;
+      }
+
+      .types-head {
+        grid-template-columns:1fr;
+        gap:24px;
+        margin-bottom:30px;
+      }
+
+      .types-head h2 { font-size:52px; }
+
+      .types-grid {
+        grid-template-columns:1fr;
+      }
+
+      .type-card {
+        grid-template-columns:1fr;
+      }
+
+      .type-image {
+        min-height:300px;
+        border-right:0;
+        border-bottom:1px solid var(--green-950);
+      }
+
+      .type-image .pin-embed-wrap { min-height:300px; }
+
+      .types-test {
+        grid-template-columns:1fr;
+      }
+
+      .types-test-questions {
+        grid-template-columns:1fr;
+        border-left:0;
+        border-top:1px solid rgba(255,255,255,.2);
+        margin-top:4px;
+      }
+
+      .types-test-questions div,
+      .types-test-questions div:nth-last-child(-n+2) {
+        border-bottom:1px solid rgba(255,255,255,.14);
+      }
+
+      .types-test-questions div:last-child { border-bottom:0; }
+    }
+
     @media (max-width: 800px) {
       .page { padding: 0 16px 64px; }
       .lesson-nav { min-height:54px; }
@@ -1497,50 +1793,157 @@
     </div>
   </section>
 
-  <section class="section">
-    <div class="num">03</div>
-    <div>
-      <h2>4 dạng chụp thời trang học viên cần phân biệt</h2>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr><th>Dạng chụp</th><th>Mục tiêu nhiếp ảnh</th><th>Điểm cần chú ý</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><strong>Ảnh chiến dịch</strong></td><td>Tạo cảm xúc và hình ảnh thương hiệu</td><td>Concept, ánh sáng, bối cảnh, pose và art direction</td></tr>
-            <tr><td><strong>Bộ ảnh giới thiệu bộ sưu tập</strong></td><td>Thể hiện collection một cách nhất quán</td><td>Form, phối trang phục, sequencing và consistency</td></tr>
-            <tr><td><strong>Ảnh bán hàng trực tuyến</strong></td><td>Cho khách thấy sản phẩm chính xác</td><td>Form, màu, chất liệu, crop và độ sạch</td></tr>
-            <tr><td><strong>Ảnh thời trang biên tập</strong></td><td>Tạo câu chuyện và ngôn ngữ thị giác</td><td>Pose, mood, bố cục, ánh sáng và tính thử nghiệm</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="exercise">
-        <div class="exercise-label">BÀI TẬP QUAN SÁT</div>
-        <h3>Nhìn 8–10 ảnh và đoán ảnh thuộc nhóm nào</h3>
-        <p>
-          Không cần đúng tuyệt đối. Mục tiêu là nhận ra <strong>cách chụp khác nhau</strong>
-          chứ không chỉ phân loại nội dung.
-        </p>
-      </div>
-      <div class="visual-ref">
-        <div class="visual-ref-head">
-          <div class="label">ẢNH MINH HOẠ · CÁC DẠNG ẢNH THỜI TRANG</div>
-          <p>Dùng các ví dụ này để phân biệt campaign, lookbook và editorial dựa trên cách chụp chứ không chỉ nội dung.</p>
+    <section class="section section-types">
+    <div class="section-note-anchor">
+      <details class="teacher-note">
+        <summary aria-label="Mở gợi ý giảng viên"></summary>
+        <div class="teacher-note-popover">
+          <h4>Cách dẫn dắt</h4>
+          <p>Cho học viên nhìn 4 ảnh trước khi đọc tên. Yêu cầu đoán mục đích sử dụng của từng ảnh, rồi mới mở phần giải thích.</p>
+
+          <h4>Câu hỏi gợi mở</h4>
+          <ul>
+            <li>Ảnh này muốn người xem cảm nhận hay muốn người xem kiểm tra sản phẩm?</li>
+            <li>Mức độ tự do về tạo dáng và ánh sáng ở ảnh này cao hay thấp?</li>
+            <li>Nếu chụp cả một bộ sưu tập, ảnh có cần giữ sự đồng nhất không?</li>
+          </ul>
+
+          <h4>Lưu ý chuyên môn</h4>
+          <p>Đây là cách chia theo mục đích sử dụng phổ biến, không phải ranh giới tuyệt đối. Một bộ ảnh có thể nằm giữa hai nhóm.</p>
         </div>
-        <div class="pin-grid">
-          <article class="pin-card">
-            <p class="pin-title">Ảnh chiến dịch / đời sống</p>
-            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://ar.pinterest.com/pin/1125968647538045/"></a></div>
-            <p class="pin-note">Cảm xúc, bối cảnh và không khí thương hiệu nổi bật.</p>
-          </article>
-          <article class="pin-card">
-            <p class="pin-title">Bộ ảnh giới thiệu bộ sưu tập / Ảnh sản phẩm-led</p>
-            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://ca.pinterest.com/pin/simple-lookbook-design-template-indd-idml--829858668868877361/"></a></div>
-            <p class="pin-note">Tính hệ thống, consistency và khả năng đọc bộ trang phục rõ hơn.</p>
-          </article>
+      </details>
+    </div>
+
+    <div class="types-head">
+      <div>
+        <div class="types-kicker"><b>03</b> 4 mục đích chụp phổ biến</div>
+        <h2>Cùng là thời trang.<br>Nhưng mục tiêu khác nhau.</h2>
+      </div>
+      <p class="types-lead">
+        Trước khi chụp, cần biết bức ảnh được tạo ra để làm gì.
+        Mục đích sử dụng sẽ quyết định mức độ rõ sản phẩm, cách tạo dáng, ánh sáng và bối cảnh.
+      </p>
+    </div>
+
+    <div class="types-grid">
+      <article class="type-card">
+        <div class="type-image">
+          <div class="pin-embed-wrap">
+            <a data-pin-do="embedPin" href="https://ar.pinterest.com/pin/1125968647538045/"></a>
+          </div>
+        </div>
+        <div class="type-copy">
+          <div>
+            <div class="type-index"><span>Chiến dịch hình ảnh</span><b>01</b></div>
+            <h3>Tạo cảm xúc & hình ảnh thương hiệu</h3>
+            <p>
+              Trang phục vẫn quan trọng, nhưng bức ảnh còn phải truyền được tinh thần,
+              không khí và cách thương hiệu muốn được ghi nhớ.
+            </p>
+          </div>
+          <div class="type-signals">
+            <span>Dấu hiệu thường gặp</span>
+            <strong>Ý tưởng rõ · bối cảnh có chủ đích · tạo dáng mạnh · ánh sáng có cá tính</strong>
+          </div>
+        </div>
+      </article>
+
+      <article class="type-card">
+        <div class="type-image">
+          <div class="pin-embed-wrap">
+            <a data-pin-do="embedPin" href="https://ca.pinterest.com/pin/simple-lookbook-design-template-indd-idml--829858668868877361/"></a>
+          </div>
+        </div>
+        <div class="type-copy">
+          <div>
+            <div class="type-index"><span>Bộ ảnh giới thiệu bộ sưu tập</span><b>02</b></div>
+            <h3>Trình bày nhiều bộ trang phục một cách đồng nhất</h3>
+            <p>
+              Mỗi bộ trang phục phải được nhìn rõ, nhưng toàn bộ loạt ảnh cũng cần giữ cùng một nhịp hình ảnh.
+            </p>
+          </div>
+          <div class="type-signals">
+            <span>Dấu hiệu thường gặp</span>
+            <strong>Khung hình ổn định · ánh sáng nhất quán · dáng tổng thể rõ · trình tự dễ theo dõi</strong>
+          </div>
+        </div>
+      </article>
+
+      <article class="type-card">
+        <div class="type-image">
+          <div class="pin-embed-wrap">
+            <a data-pin-do="embedPin" href="https://www.pinterest.com/pin/692709986479212160/"></a>
+          </div>
+        </div>
+        <div class="type-copy">
+          <div>
+            <div class="type-index"><span>Ảnh bán hàng trực tuyến</span><b>03</b></div>
+            <h3>Cho người xem thấy sản phẩm chính xác</h3>
+            <p>
+              Hình dáng, màu sắc, chất liệu và chi tiết cần được thể hiện rõ.
+              Cách chụp phải giúp người xem hình dung sản phẩm gần với thực tế nhất có thể.
+            </p>
+          </div>
+          <div class="type-signals">
+            <span>Dấu hiệu thường gặp</span>
+            <strong>Nền sạch · màu ổn định · ít gây nhiễu · dễ so sánh giữa các sản phẩm</strong>
+          </div>
+        </div>
+      </article>
+
+      <article class="type-card">
+        <div class="type-image">
+          <div class="pin-embed-wrap">
+            <a data-pin-do="embedPin" href="https://www.pinterest.com/pin/sunset-editorial-portrait-fashion-photography-in-palm-springs--272045633731231808/"></a>
+          </div>
+        </div>
+        <div class="type-copy">
+          <div>
+            <div class="type-index"><span>Ảnh thời trang biên tập</span><b>04</b></div>
+            <h3>Kể câu chuyện bằng hình ảnh</h3>
+            <p>
+              Đây là nhóm cho phép thử nghiệm mạnh hơn về góc máy, ánh sáng,
+              tạo dáng và bố cục để tạo một thế giới hình ảnh riêng.
+            </p>
+          </div>
+          <div class="type-signals">
+            <span>Dấu hiệu thường gặp</span>
+            <strong>Tính kể chuyện · bố cục thử nghiệm · tạo dáng giàu biểu cảm · hình ảnh có chất riêng</strong>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="types-test">
+      <div class="types-test-label">
+        <b>?</b>
+        <div>
+          <h3>Bài tập quan sát nhanh</h3>
+          <p>
+            Nhìn 8–10 ảnh và thử đoán chúng thuộc nhóm nào.
+            Không cần đúng tuyệt đối; quan trọng là giải thích được vì sao.
+          </p>
         </div>
       </div>
 
+      <div class="types-test-questions">
+        <div>
+          <strong>Chiến dịch</strong>
+          <span>Ảnh có đang cố tạo cảm xúc và hình ảnh thương hiệu không?</span>
+        </div>
+        <div>
+          <strong>Bộ sưu tập</strong>
+          <span>Ảnh có cần giữ sự đồng nhất với nhiều bộ trang phục khác không?</span>
+        </div>
+        <div>
+          <strong>Bán hàng</strong>
+          <span>Người xem có đủ thông tin để nhìn sản phẩm rõ và chính xác không?</span>
+        </div>
+        <div>
+          <strong>Biên tập</strong>
+          <span>Ảnh có đang ưu tiên câu chuyện và cách thể hiện thị giác không?</span>
+        </div>
+      </div>
     </div>
   </section>
 
