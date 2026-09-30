@@ -1787,6 +1787,376 @@
       .garment-checklist div:last-child { border-bottom:0; }
     }
 
+    /* ===== Section 05 · Góc máy & tỷ lệ cơ thể ===== */
+    .section.section-angle {
+      position:relative;
+      display:block;
+      margin:0 -24px;
+      padding:92px 24px 98px;
+      background:var(--green-950);
+      color:var(--paper-0);
+      border-bottom:0;
+      overflow:hidden;
+    }
+
+    .angle-head {
+      display:grid;
+      grid-template-columns:minmax(0,7fr) minmax(260px,5fr);
+      gap:42px;
+      align-items:end;
+      margin-bottom:42px;
+    }
+
+    .angle-kicker {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:18px;
+      color:var(--yellow);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .angle-kicker b {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      background:var(--yellow);
+      color:var(--green-950);
+      font-size:12px;
+    }
+
+    .angle-head h2 {
+      margin:0;
+      max-width:760px;
+      color:var(--paper-0);
+      font-size:clamp(50px,6vw,84px);
+      line-height:.9;
+      letter-spacing:-.055em;
+      font-weight:900;
+    }
+
+    .angle-lead {
+      max-width:430px;
+      margin:0;
+      padding-top:18px;
+      border-top:2px solid rgba(255,255,255,.7);
+      color:#C7D7CD;
+      font-size:16px;
+      line-height:1.6;
+    }
+
+    .angle-grid {
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+    }
+
+    .angle-card {
+      position:relative;
+      min-height:520px;
+      display:flex;
+      flex-direction:column;
+      border:1px solid rgba(255,255,255,.35);
+      background:rgba(255,255,255,.035);
+      overflow:hidden;
+    }
+
+    .angle-card.is-neutral {
+      background:var(--paper-0);
+      color:var(--green-950);
+      border-color:var(--yellow);
+      box-shadow:0 0 0 3px rgba(242,212,61,.15);
+    }
+
+    .angle-diagram {
+      position:relative;
+      min-height:280px;
+      border-bottom:1px solid rgba(255,255,255,.18);
+      overflow:hidden;
+    }
+
+    .angle-card.is-neutral .angle-diagram {
+      border-color:rgba(15,66,45,.18);
+      background:var(--paper-100);
+    }
+
+    .angle-horizon {
+      position:absolute;
+      left:18px;
+      right:18px;
+      top:50%;
+      border-top:1px dashed rgba(255,255,255,.28);
+    }
+
+    .angle-card.is-neutral .angle-horizon {
+      border-color:rgba(15,66,45,.22);
+    }
+
+    .angle-person {
+      position:absolute;
+      left:50%;
+      bottom:24px;
+      width:52px;
+      height:186px;
+      transform:translateX(-50%);
+    }
+
+    .angle-person::before {
+      content:"";
+      position:absolute;
+      top:0;
+      left:50%;
+      width:34px;
+      height:34px;
+      border:2px solid currentColor;
+      border-radius:50%;
+      transform:translateX(-50%);
+    }
+
+    .angle-person::after {
+      content:"";
+      position:absolute;
+      left:50%;
+      top:36px;
+      width:2px;
+      height:112px;
+      background:currentColor;
+      transform:translateX(-50%);
+      box-shadow:-24px 35px 0 -1px currentColor,24px 35px 0 -1px currentColor;
+    }
+
+    .angle-leg {
+      position:absolute;
+      bottom:0;
+      left:50%;
+      width:2px;
+      height:64px;
+      background:currentColor;
+      transform-origin:top;
+    }
+
+    .angle-leg.left { transform:translateX(-50%) rotate(10deg); }
+    .angle-leg.right { transform:translateX(-50%) rotate(-10deg); }
+
+    .angle-camera {
+      position:absolute;
+      right:34px;
+      width:54px;
+      height:36px;
+      border:2px solid currentColor;
+      border-radius:4px;
+    }
+
+    .angle-camera::before {
+      content:"";
+      position:absolute;
+      left:-16px;
+      top:9px;
+      width:14px;
+      height:14px;
+      border:2px solid currentColor;
+      border-right:0;
+    }
+
+    .angle-camera::after {
+      content:"";
+      position:absolute;
+      left:50%;
+      top:50%;
+      width:13px;
+      height:13px;
+      border:2px solid currentColor;
+      border-radius:50%;
+      transform:translate(-50%,-50%);
+    }
+
+    .angle-high .angle-camera { top:42px; }
+    .angle-eye .angle-camera { top:116px; }
+    .angle-low .angle-camera { bottom:40px; }
+
+    .angle-ray {
+      position:absolute;
+      right:82px;
+      width:155px;
+      height:1px;
+      background:currentColor;
+      transform-origin:right center;
+      opacity:.7;
+    }
+
+    .angle-high .angle-ray { top:74px; transform:rotate(15deg); }
+    .angle-eye .angle-ray { top:136px; transform:rotate(0deg); }
+    .angle-low .angle-ray { bottom:72px; transform:rotate(-15deg); }
+
+    .angle-copy {
+      display:flex;
+      flex:1;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:22px;
+      padding:20px;
+    }
+
+    .angle-copy-top span {
+      display:block;
+      margin-bottom:10px;
+      color:#AFC6B7;
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+
+    .angle-card.is-neutral .angle-copy-top span {
+      color:var(--green-700);
+    }
+
+    .angle-copy h3 {
+      margin:0 0 10px;
+      color:inherit;
+      font-size:29px;
+      line-height:.95;
+      letter-spacing:-.04em;
+    }
+
+    .angle-copy p {
+      margin:0;
+      color:#C7D7CD;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .angle-card.is-neutral .angle-copy p {
+      color:#526359;
+    }
+
+    .angle-effect {
+      display:grid;
+      gap:6px;
+      padding-top:14px;
+      border-top:1px solid rgba(255,255,255,.18);
+    }
+
+    .angle-card.is-neutral .angle-effect {
+      border-color:rgba(15,66,45,.18);
+    }
+
+    .angle-effect span {
+      color:var(--yellow);
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+
+    .angle-card.is-neutral .angle-effect span {
+      color:var(--orange);
+    }
+
+    .angle-effect strong {
+      font-size:13px;
+      line-height:1.4;
+    }
+
+    .angle-practice {
+      display:grid;
+      grid-template-columns:minmax(0,5fr) minmax(300px,7fr);
+      gap:18px;
+      margin-top:24px;
+      padding:22px;
+      border:1px solid rgba(255,255,255,.25);
+      background:rgba(255,255,255,.05);
+    }
+
+    .angle-practice h3 {
+      margin:0 0 8px;
+      color:var(--paper-0);
+      font-size:26px;
+      line-height:1.05;
+      letter-spacing:-.03em;
+    }
+
+    .angle-practice p {
+      margin:0;
+      color:#C7D7CD;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .angle-practice-steps {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+    }
+
+    .angle-practice-steps div {
+      min-height:96px;
+      padding:14px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.04);
+    }
+
+    .angle-practice-steps b {
+      display:block;
+      margin-bottom:8px;
+      color:var(--yellow);
+      font-size:11px;
+      letter-spacing:.08em;
+    }
+
+    .angle-practice-steps span {
+      color:var(--paper-0);
+      font-size:13px;
+      line-height:1.35;
+    }
+
+    .section-angle .teacher-note summary {
+      background:rgba(255,255,255,.08);
+      color:var(--paper-0);
+      border-color:rgba(255,255,255,.35);
+      box-shadow:none;
+    }
+
+    .section-angle .teacher-note summary:hover,
+    .section-angle .teacher-note[open] summary {
+      background:var(--yellow);
+      color:var(--green-950);
+      border-color:var(--yellow);
+    }
+
+    @media (max-width:800px) {
+      .section.section-angle {
+        margin:0 -16px;
+        padding:62px 16px 68px;
+      }
+
+      .angle-head {
+        grid-template-columns:1fr;
+        gap:24px;
+        margin-bottom:30px;
+      }
+
+      .angle-head h2 { font-size:52px; }
+
+      .angle-grid { grid-template-columns:1fr; }
+
+      .angle-card { min-height:auto; }
+
+      .angle-practice {
+        grid-template-columns:1fr;
+      }
+
+      .angle-practice-steps {
+        grid-template-columns:1fr;
+      }
+    }
+
     @media (max-width: 800px) {
       .page { padding: 0 16px 64px; }
       .lesson-nav { min-height:54px; }
@@ -2384,39 +2754,118 @@
     </div>
   </section>
 
-  <section class="section">
-    <div class="num">05</div>
-    <div>
-      <h2>Góc máy & tỷ lệ cơ thể</h2>
-      <div class="grid-3">
-        <div class="card"><h3>Góc máy cao</h3><p>Máy cao hơn người mẫu. Có thể làm cơ thể nhỏ lại, giảm cảm giác quyền lực và thay đổi tỷ lệ chân.</p></div>
-        <div class="card"><h3>Góc ngang tầm mắt</h3><p>Trung tính, dễ kiểm soát dáng tổng thể và phù hợp với bộ ảnh giới thiệu bộ sưu tập và ảnh bán hàng trực tuyến.</p></div>
-        <div class="card"><h3>Góc máy thấp</h3><p>Kéo dài chân, tăng cảm giác mạnh và thời trang hơn nhưng dễ distortion nếu lạm dụng.</p></div>
-      </div>
-      <div class="exercise">
-        <div class="exercise-label">THỰC HÀNH NHANH</div>
-        <h3>Cùng một người mẫu — chụp 3 góc máy</h3>
-        <p>Giữ nguyên pose và tiêu cự. Chỉ thay đổi độ cao máy để nhìn rõ tác động lên cơ thể và bộ trang phục.</p>
-      </div>
-      <div class="visual-ref">
-        <div class="visual-ref-head">
-          <div class="label">ẢNH MINH HOẠ · GÓC MÁY</div>
-          <p>So sánh tác động của góc máy cao và góc máy thấp lên chân, thân người và cảm giác thời trang của bức ảnh.</p>
-        </div>
-        <div class="pin-grid">
-          <article class="pin-card">
-            <p class="pin-title">Ngang tầm mắt / Trung tính</p>
-            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://www.pinterest.com/pin/311592867979786175/"></a></div>
-            <p class="pin-note">Dễ kiểm soát tỷ lệ và phù hợp cho nhiều mục đích cơ bản.</p>
-          </article>
-          <article class="pin-card">
-            <p class="pin-title">Góc máy thấp / Nhấn mạnh tỷ lệ</p>
-            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://ar.pinterest.com/pin/144115256820887498/"></a></div>
-            <p class="pin-note">Tạo cảm giác chân dài hơn và hình ảnh “fashion” hơn, nhưng dễ méo nếu lạm dụng.</p>
-          </article>
-        </div>
-      </div>
+    <section class="section section-angle">
+    <div class="section-note-anchor">
+      <details class="teacher-note">
+        <summary aria-label="Mở gợi ý giảng viên"></summary>
+        <div class="teacher-note-popover">
+          <h4>Cách dẫn dắt</h4>
+          <p>Đặt người mẫu đứng yên. Chụp ba ảnh với cùng tiêu cự và gần cùng khung hình, chỉ thay đổi độ cao máy. Cho học viên xem ba ảnh cạnh nhau trước khi giải thích.</p>
 
+          <h4>Câu hỏi gợi mở</h4>
+          <ul>
+            <li>Ở ảnh nào chân trông dài hơn?</li>
+            <li>Ở ảnh nào phần đầu và vai có cảm giác lớn hơn?</li>
+            <li>Ảnh nào giữ tỷ lệ bộ trang phục gần trung tính nhất?</li>
+          </ul>
+
+          <h4>Lưu ý chuyên môn</h4>
+          <p>Không nói “góc thấp luôn đẹp hơn”. Góc máy là lựa chọn có chủ đích. Với ảnh bán hàng hoặc bộ sưu tập, tỷ lệ trung tính thường quan trọng hơn hiệu ứng kéo dài chân.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="angle-head">
+      <div>
+        <div class="angle-kicker"><b>05</b> Vị trí máy ảnh</div>
+        <h2>Chỉ cần nâng hoặc hạ máy, tỷ lệ đã khác.</h2>
+      </div>
+      <p class="angle-lead">
+        Góc máy thay đổi cách các phần cơ thể gần và xa máy được nhìn thấy.
+        Vì vậy cùng một người mẫu và một bộ trang phục có thể cho cảm giác hoàn toàn khác.
+      </p>
+    </div>
+
+    <div class="angle-grid">
+      <article class="angle-card angle-high">
+        <div class="angle-diagram">
+          <div class="angle-horizon"></div>
+          <div class="angle-person"><span class="angle-leg left"></span><span class="angle-leg right"></span></div>
+          <div class="angle-camera"></div>
+          <div class="angle-ray"></div>
+        </div>
+        <div class="angle-copy">
+          <div class="angle-copy-top">
+            <span>Máy cao hơn người mẫu</span>
+            <h3>Góc máy cao</h3>
+            <p>
+              Có thể làm phần đầu và thân trên nổi bật hơn, đồng thời khiến chân có cảm giác ngắn lại.
+            </p>
+          </div>
+          <div class="angle-effect">
+            <span>Cần để ý</span>
+            <strong>Dễ làm giảm cảm giác chiều cao nếu dùng cho ảnh toàn thân.</strong>
+          </div>
+        </div>
+      </article>
+
+      <article class="angle-card angle-eye is-neutral">
+        <div class="angle-diagram">
+          <div class="angle-horizon"></div>
+          <div class="angle-person"><span class="angle-leg left"></span><span class="angle-leg right"></span></div>
+          <div class="angle-camera"></div>
+          <div class="angle-ray"></div>
+        </div>
+        <div class="angle-copy">
+          <div class="angle-copy-top">
+            <span>Máy ngang tầm chủ thể</span>
+            <h3>Ngang tầm mắt</h3>
+            <p>
+              Tạo cảm giác trung tính, dễ quan sát tỷ lệ cơ thể và dáng tổng thể của bộ trang phục.
+            </p>
+          </div>
+          <div class="angle-effect">
+            <span>Phù hợp khi</span>
+            <strong>Cần trình bày trang phục rõ ràng và hạn chế phóng đại tỷ lệ.</strong>
+          </div>
+        </div>
+      </article>
+
+      <article class="angle-card angle-low">
+        <div class="angle-diagram">
+          <div class="angle-horizon"></div>
+          <div class="angle-person"><span class="angle-leg left"></span><span class="angle-leg right"></span></div>
+          <div class="angle-camera"></div>
+          <div class="angle-ray"></div>
+        </div>
+        <div class="angle-copy">
+          <div class="angle-copy-top">
+            <span>Máy thấp hơn người mẫu</span>
+            <h3>Góc máy thấp</h3>
+            <p>
+              Có thể làm chân có cảm giác dài hơn và tạo hình ảnh mạnh hơn, nhưng cũng dễ phóng đại phần gần máy.
+            </p>
+          </div>
+          <div class="angle-effect">
+            <span>Cần để ý</span>
+            <strong>Giày, chân hoặc phần dưới cơ thể có thể lớn hơn thực tế nếu máy quá gần.</strong>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="angle-practice">
+      <div>
+        <h3>Thực hành: cùng một người mẫu, ba độ cao máy</h3>
+        <p>
+          Giữ nguyên tư thế và tiêu cự. Cố gắng giữ khung hình gần giống nhau để chỉ quan sát tác động của độ cao máy.
+        </p>
+      </div>
+      <div class="angle-practice-steps">
+        <div><b>01</b><span>Máy ngang khoảng đầu hoặc vai</span></div>
+        <div><b>02</b><span>Máy ngang khoảng ngực hoặc eo</span></div>
+        <div><b>03</b><span>Máy ngang khoảng đầu gối</span></div>
+      </div>
     </div>
   </section>
 
