@@ -4817,6 +4817,102 @@
       .visual-ref-head p { margin-top: 8px; }
       h2 { font-size: 30px; }
     }
+  
+    /* ===== Ảnh nội bộ dùng trong bài giảng ===== */
+    .lesson-photo-wrap {
+      width:100%;
+      height:100%;
+      min-height:inherit;
+      overflow:hidden;
+      background:var(--paper-100);
+    }
+
+    .lesson-photo {
+      display:block;
+      width:100%;
+      height:100%;
+      min-height:inherit;
+      object-fit:cover;
+      object-position:center;
+    }
+
+    .lesson-photo-wrap.contain .lesson-photo {
+      object-fit:contain;
+      background:var(--paper-50);
+    }
+
+    .garment-mini-photo {
+      margin-top:14px;
+      height:104px;
+      overflow:hidden;
+      border:1px solid rgba(15,66,45,.22);
+      background:var(--paper-0);
+    }
+
+    .garment-mini-photo img {
+      display:block;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .pose-photo-pair {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin:0 0 24px;
+    }
+
+    .pose-photo-pair figure {
+      margin:0;
+      display:grid;
+      grid-template-columns:minmax(180px,.9fr) minmax(0,1.1fr);
+      min-height:260px;
+      border:1px solid var(--green-950);
+      background:var(--paper-0);
+      overflow:hidden;
+    }
+
+    .pose-photo-pair img {
+      display:block;
+      width:100%;
+      height:100%;
+      min-height:260px;
+      object-fit:cover;
+      border-right:1px solid var(--green-950);
+    }
+
+    .pose-photo-pair figcaption {
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      gap:8px;
+      padding:18px;
+      color:var(--green-950);
+    }
+
+    .pose-photo-pair figcaption strong {
+      font-size:22px;
+      line-height:1;
+      letter-spacing:-.03em;
+    }
+
+    .pose-photo-pair figcaption span {
+      color:#526359;
+      font-size:13px;
+      line-height:1.5;
+    }
+
+    @media (max-width:800px) {
+      .pose-photo-pair { grid-template-columns:1fr; }
+      .pose-photo-pair figure { grid-template-columns:1fr; }
+      .pose-photo-pair img {
+        height:340px;
+        border-right:0;
+        border-bottom:1px solid var(--green-950);
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -4879,11 +4975,11 @@
       </div>
       <div class="hero-green-block"></div>
       <div class="hero-pin">
-        <div class="pin-embed-wrap">
-          <a data-pin-do="embedPin" href="https://www.pinterest.com/pin/442197257170509299/"></a>
+        <div class="pin-embed-wrap lesson-photo-wrap">
+          <img class="lesson-photo" src="https://drive.google.com/thumbnail?id=1OkPSJPoW43vkR0LZoYfycz8_3FMW6WL_&sz=w1600" alt="Thanh Nga — ảnh thời trang với góc máy thấp và tạo dáng">
         </div>
         <div class="hero-pin-caption">
-          <span>Ảnh tham khảo</span>
+          <span>Ảnh nội bộ · Thanh Nga</span>
           <span>Đọc dáng trang phục · tư thế · khung hình</span>
         </div>
       </div>
@@ -5045,9 +5141,9 @@
           <span>Cân bằng hai phía</span>
         </div>
         <div class="compare-photo">
-          <div class="pin-embed-wrap">
-            <a data-pin-do="embedPin" href="https://www.pinterest.com/pin/442197257170509299/"></a>
-          </div>
+          <div class="pin-embed-wrap lesson-photo-wrap">
+          <img class="lesson-photo" src="https://drive.google.com/thumbnail?id=1OkPSJPoW43vkR0LZoYfycz8_3FMW6WL_&sz=w1600" alt="Thanh Nga — người mẫu và trang phục cùng tạo hình ảnh" loading="lazy">
+        </div>
         </div>
         <div class="compare-body">
           <div>
@@ -5117,9 +5213,9 @@
     <div class="types-grid">
       <article class="type-card">
         <div class="type-image">
-          <div class="pin-embed-wrap">
-            <a data-pin-do="embedPin" href="https://ar.pinterest.com/pin/1125968647538045/"></a>
-          </div>
+          <div class="pin-embed-wrap lesson-photo-wrap">
+          <img class="lesson-photo" src="https://drive.google.com/thumbnail?id=1bs5qHwvEXoz6tanX4Br3zK8ZMWa8sjZh&sz=w1600" alt="XITA — ví dụ hình ảnh thời trang có bối cảnh" loading="lazy">
+        </div>
         </div>
         <div class="type-copy">
           <div>
@@ -5139,9 +5235,9 @@
 
       <article class="type-card">
         <div class="type-image">
-          <div class="pin-embed-wrap">
-            <a data-pin-do="embedPin" href="https://ca.pinterest.com/pin/simple-lookbook-design-template-indd-idml--829858668868877361/"></a>
-          </div>
+          <div class="pin-embed-wrap lesson-photo-wrap contain">
+          <img class="lesson-photo" src="https://drive.google.com/thumbnail?id=1Ogkzs-THCub8oEF1a5YgRThL3C3InIhb&sz=w1600" alt="Thanh Nga — khung toàn thân dùng để minh họa bộ ảnh giới thiệu bộ sưu tập" loading="lazy">
+        </div>
         </div>
         <div class="type-copy">
           <div>
@@ -5293,16 +5389,19 @@
               Vải bóng, vải nhám, vải bò hay lụa phản ứng với ánh sáng khác nhau.
               Chất liệu có đang hiện đúng đặc tính không?
             </p>
+            <div class="garment-mini-photo">
+              <img src="https://drive.google.com/thumbnail?id=1cabovxTsJeavROHQw_BVKZBXjZ4tkPzT&sz=w1600" alt="Thanh Nga — ảnh cận bề mặt chất liệu trang phục" loading="lazy">
+            </div>
           </div>
         </article>
       </div>
 
       <div class="garment-visual">
-        <div class="pin-embed-wrap">
-          <a data-pin-do="embedPin" href="https://www.pinterest.com/pin/274086327309621039/"></a>
+        <div class="pin-embed-wrap lesson-photo-wrap contain">
+          <img class="lesson-photo" src="https://drive.google.com/thumbnail?id=1Ogkzs-THCub8oEF1a5YgRThL3C3InIhb&sz=w1600" alt="Thanh Nga — quan sát dáng tổng thể trang phục" loading="lazy">
         </div>
         <div class="garment-visual-label">
-          <span>Ảnh tham khảo</span>
+          <span>Ảnh nội bộ · Thanh Nga</span>
           <span>Quan sát bộ trang phục trước khi quan sát máy ảnh</span>
         </div>
       </div>
@@ -5836,6 +5935,23 @@
       </article>
     </div>
 
+    <div class="pose-photo-pair" aria-label="Ví dụ tạo dáng thực tế">
+      <figure>
+        <img src="https://drive.google.com/thumbnail?id=1cBsFHtBeHVSr1Hh1qlYqBomrOBNkMKon&sz=w1600" alt="Thanh Nga — ví dụ chuyển trọng tâm khi tạo dáng" loading="lazy">
+        <figcaption>
+          <strong>Chuyển trọng tâm</strong>
+          <span>Dáng cơ thể thay đổi nhưng trang phục vẫn đọc rõ.</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="https://drive.google.com/thumbnail?id=1btBA73CHJnnMIE-ENfwSFHgceUMrryAY&sz=w1600" alt="XITA — ví dụ tạo dáng trong không gian thực tế" loading="lazy">
+        <figcaption>
+          <strong>Tạo dáng trong không gian</strong>
+          <span>Cơ thể tương tác với bối cảnh nhưng trang phục vẫn là điểm nhìn chính.</span>
+        </figcaption>
+      </figure>
+    </div>
+
     <div class="pose-direction">
       <div>
         <h3>Hướng dẫn người mẫu bằng điều cần nhìn thấy</h3>
@@ -6021,9 +6137,9 @@
     <div class="bg-grid">
       <article class="bg-card">
         <div class="bg-visual">
-          <div class="pin-embed-wrap">
-            <a data-pin-do="embedPin" href="https://www.pinterest.com/pin/692709986479212160/"></a>
-          </div>
+          <div class="pin-embed-wrap lesson-photo-wrap contain">
+          <img class="lesson-photo" src="https://drive.google.com/thumbnail?id=1Ogkzs-THCub8oEF1a5YgRThL3C3InIhb&sz=w1600" alt="Thanh Nga — phông nền tối giản" loading="lazy">
+        </div>
           <div class="bg-label">Phông nền tối giản</div>
         </div>
         <div class="bg-copy">
@@ -6042,9 +6158,9 @@
 
       <article class="bg-card">
         <div class="bg-visual">
-          <div class="pin-embed-wrap">
-            <a data-pin-do="embedPin" href="https://ar.pinterest.com/pin/1125968647538045/"></a>
-          </div>
+          <div class="pin-embed-wrap lesson-photo-wrap">
+          <img class="lesson-photo" src="https://drive.google.com/thumbnail?id=1bue2waUh4WlmuKXZ8iNw36AXFj7Vn9rz&sz=w1600" alt="XITA — người mẫu trong không gian kiến trúc" loading="lazy">
+        </div>
           <div class="bg-label">Kiến trúc</div>
         </div>
         <div class="bg-copy">
@@ -6063,9 +6179,9 @@
 
       <article class="bg-card">
         <div class="bg-visual">
-          <div class="pin-embed-wrap">
-            <a data-pin-do="embedPin" href="https://www.pinterest.com/pin/sunset-editorial-portrait-fashion-photography-in-palm-springs--272045633731231808/"></a>
-          </div>
+          <div class="pin-embed-wrap lesson-photo-wrap">
+          <img class="lesson-photo" src="https://drive.google.com/thumbnail?id=1bv2siusWxMHSphNlbbpPRYu1ZR960Gck&sz=w1600" alt="XITA — kiến trúc tạo đường dẫn và cảm giác tỷ lệ" loading="lazy">
+        </div>
           <div class="bg-label">Đường phố / đời sống</div>
         </div>
         <div class="bg-copy">
@@ -6142,11 +6258,11 @@
 
     <div class="analysis-layout">
       <div class="analysis-image">
-        <div class="pin-embed-wrap">
-          <a data-pin-do="embedPin" href="https://www.pinterest.com/pin/543176405060673319/"></a>
+        <div class="pin-embed-wrap lesson-photo-wrap">
+          <img class="lesson-photo" src="https://drive.google.com/thumbnail?id=1btBA73CHJnnMIE-ENfwSFHgceUMrryAY&sz=w1600" alt="XITA — ảnh dùng để thực hành phân tích nhiều lớp" loading="lazy">
         </div>
         <div class="analysis-image-label">
-          <span>Ảnh tham khảo</span>
+          <span>Ảnh nội bộ · XITA</span>
           <span>Dùng một ảnh để đi hết 9 bước</span>
         </div>
       </div>
