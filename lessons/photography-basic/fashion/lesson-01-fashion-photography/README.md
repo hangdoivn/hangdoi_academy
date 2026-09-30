@@ -27,3 +27,8 @@ Trọng tâm:
 
 ## Giáo án giảng viên
 - [Giáo án chi tiết 150 phút](./lesson-plan.md)
+
+## Trạng thái giao diện bài giảng
+- `index.html`: bản trình bày trực quan dùng trực tiếp khi dạy học viên; nội dung hiển thị ưu tiên tiếng Việt, chia 14 phần.
+- Mỗi phần có nút gợi ý giảng viên dạng rê chuột/chạm, gồm cách dẫn dắt, câu hỏi gợi mở và lưu ý chuyên môn.
+- `lesson-plan.md`: giáo án chi tiết dành cho giảng viên, dùng để chuẩn bị trước buổi học.
