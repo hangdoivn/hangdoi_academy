@@ -3747,6 +3747,269 @@
       .bg-check-list { grid-template-columns:1fr; }
     }
 
+    /* ===== Section 11 · Khung phân tích ảnh theo lớp ===== */
+    .section.section-analysis {
+      position:relative;
+      display:block;
+      margin:0 -24px;
+      padding:92px 24px 98px;
+      background:var(--paper-50);
+      border-bottom:1px solid var(--paper-200);
+      overflow:hidden;
+    }
+
+    .analysis-head {
+      display:grid;
+      grid-template-columns:minmax(0,7fr) minmax(260px,5fr);
+      gap:42px;
+      align-items:end;
+      margin-bottom:42px;
+    }
+
+    .analysis-kicker {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:18px;
+      color:var(--green-700);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .analysis-kicker b {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      background:var(--green-700);
+      color:white;
+      font-size:12px;
+    }
+
+    .analysis-head h2 {
+      margin:0;
+      max-width:800px;
+      color:var(--green-950);
+      font-size:clamp(50px,6vw,84px);
+      line-height:.9;
+      letter-spacing:-.055em;
+      font-weight:900;
+    }
+
+    .analysis-lead {
+      max-width:430px;
+      margin:0;
+      padding-top:18px;
+      border-top:2px solid var(--green-950);
+      color:#4E6257;
+      font-size:16px;
+      line-height:1.6;
+    }
+
+    .analysis-layout {
+      display:grid;
+      grid-template-columns:minmax(300px,5fr) minmax(0,7fr);
+      gap:18px;
+      align-items:stretch;
+    }
+
+    .analysis-image {
+      position:relative;
+      min-height:720px;
+      border:1px solid var(--green-950);
+      background:var(--paper-100);
+      overflow:hidden;
+    }
+
+    .analysis-image .pin-embed-wrap {
+      min-height:720px;
+      border-radius:0;
+      background:transparent;
+    }
+
+    .analysis-image-label {
+      position:absolute;
+      left:16px;
+      right:16px;
+      bottom:16px;
+      z-index:3;
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      padding:12px 14px;
+      background:rgba(15,66,45,.92);
+      color:white;
+      border:1px solid rgba(255,255,255,.28);
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.04em;
+    }
+
+    .analysis-stack {
+      display:grid;
+      gap:10px;
+    }
+
+    .analysis-layer {
+      display:grid;
+      grid-template-columns:62px minmax(180px,1fr) minmax(0,1.45fr);
+      gap:16px;
+      align-items:center;
+      min-height:112px;
+      padding:14px 16px;
+      border:1px solid var(--green-950);
+      background:var(--paper-0);
+    }
+
+    .analysis-layer:nth-child(2) { background:var(--green-100); }
+    .analysis-layer:nth-child(3) { background:#F7E4DC; }
+    .analysis-layer:nth-child(4) { background:#E7EAFB; }
+    .analysis-layer:nth-child(5) { background:var(--paper-100); }
+    .analysis-layer:nth-child(6) { background:#EDF3EA; }
+    .analysis-layer:nth-child(7) { background:#F5EAE4; }
+    .analysis-layer:nth-child(8) { background:#EEF0FB; }
+
+    .analysis-layer.is-purpose {
+      background:var(--green-950);
+      color:var(--paper-0);
+      border-color:var(--green-950);
+    }
+
+    .analysis-no {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:48px;
+      height:48px;
+      border:1px solid var(--green-950);
+      border-radius:50%;
+      color:var(--green-950);
+      font-size:14px;
+      font-weight:900;
+    }
+
+    .analysis-layer.is-purpose .analysis-no {
+      background:var(--yellow);
+      color:var(--green-950);
+      border-color:var(--yellow);
+    }
+
+    .analysis-layer h3 {
+      margin:0;
+      color:inherit;
+      font-size:21px;
+      line-height:1;
+      letter-spacing:-.025em;
+    }
+
+    .analysis-layer p {
+      margin:0;
+      color:#526359;
+      font-size:13px;
+      line-height:1.48;
+    }
+
+    .analysis-layer.is-purpose p {
+      color:#C7D7CD;
+    }
+
+    .analysis-flow {
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:22px;
+    }
+
+    .analysis-flow span {
+      padding:9px 12px;
+      border:1px solid var(--green-950);
+      border-radius:999px;
+      background:var(--paper-0);
+      color:var(--green-950);
+      font-size:11px;
+      font-weight:800;
+    }
+
+    .analysis-question {
+      display:grid;
+      grid-template-columns:44px 1fr;
+      gap:14px;
+      align-items:start;
+      margin-top:22px;
+      padding:20px 22px;
+      background:var(--cobalt);
+      color:white;
+    }
+
+    .analysis-question b {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:44px;
+      height:44px;
+      border-radius:50%;
+      background:var(--yellow);
+      color:var(--green-950);
+      font-size:19px;
+    }
+
+    .analysis-question p {
+      margin:0;
+      color:white;
+      font-size:18px;
+      line-height:1.45;
+      font-weight:750;
+    }
+
+    .analysis-question small {
+      display:block;
+      margin-top:7px;
+      color:#D6DCF8;
+      font-size:12px;
+      line-height:1.45;
+      font-weight:500;
+    }
+
+    @media (max-width:800px) {
+      .section.section-analysis {
+        margin:0 -16px;
+        padding:62px 16px 68px;
+      }
+
+      .analysis-head {
+        grid-template-columns:1fr;
+        gap:24px;
+        margin-bottom:30px;
+      }
+
+      .analysis-head h2 { font-size:52px; }
+
+      .analysis-layout {
+        grid-template-columns:1fr;
+      }
+
+      .analysis-image {
+        min-height:500px;
+      }
+
+      .analysis-image .pin-embed-wrap {
+        min-height:500px;
+      }
+
+      .analysis-layer {
+        grid-template-columns:52px 1fr;
+        gap:12px;
+      }
+
+      .analysis-layer p {
+        grid-column:2;
+      }
+    }
+
     @media (max-width: 800px) {
       .page { padding: 0 16px 64px; }
       .lesson-nav { min-height:54px; }
@@ -5092,35 +5355,124 @@
     </div>
   </section>
 
-  <section class="section">
-    <div class="num">11</div>
-    <div>
-      <h2>Khung phân tích đọc một ảnh thời trang</h2>
-      <div class="framework">
-        <div class="fw-card"><span>01</span><h3>Trang phục</h3><p>Dáng tổng thể, bề mặt chất liệu, vật liệu, màu sắc và chi tiết nào cần được nhìn thấy?</p></div>
-        <div class="fw-card"><span>02</span><h3>Người mẫu</h3><p>Ngôn ngữ cơ thể và biểu cảm đang hỗ trợ bộ trang phục thế nào?</p></div>
-        <div class="fw-card"><span>03</span><h3>Góc máy</h3><p>Máy cao, ngang hay thấp hơn người mẫu?</p></div>
-        <div class="fw-card"><span>04</span><h3>Tiêu cự</h3><p>Ảnh có cảm giác góc rộng, tiêu cự tiêu chuẩn hay tiêu cự dài?</p></div>
-        <div class="fw-card"><span>05</span><h3>Bố cục</h3><p>Full body, 3/4, medium, close-up hay chi tiết?</p></div>
-        <div class="fw-card"><span>06</span><h3>Ánh sáng</h3><p>Ánh sáng cứng hay mềm? Hướng sáng? Độ tương phản? Vùng sáng và vùng tối?</p></div>
-        <div class="fw-card"><span>07</span><h3>Hậu cảnh</h3><p>Hậu cảnh đang hỗ trợ hay cạnh tranh với bộ trang phục?</p></div>
-        <div class="fw-card"><span>08</span><h3>Màu sắc</h3><p>Outfit, skin, hậu cảnh và grading có hoạt động cùng nhau không?</p></div>
-        <div class="fw-card wide"><span>09 · ỨNG DỤNG</span><h3>Mục đích sử dụng</h3><p>Ảnh này phù hợp hơn với Ảnh chiến dịch, Bộ ảnh giới thiệu bộ sưu tập, Ảnh bán hàng trực tuyến hay mạng xã hội? Vì sao?</p></div>
-      </div>
-      <div class="visual-ref">
-        <div class="visual-ref-head">
-          <div class="label">ẢNH MINH HOẠ · KHUNG PHÂN TÍCH</div>
-          <p>Chọn một ảnh rồi tập gọi tên đủ: trang phục, người mẫu, góc máy, tiêu cự, bố cục, ánh sáng, hậu cảnh và màu sắc.</p>
+    <section class="section section-analysis">
+    <div class="section-note-anchor">
+      <details class="teacher-note">
+        <summary aria-label="Mở gợi ý giảng viên"></summary>
+        <div class="teacher-note-popover">
+          <h4>Cách dẫn dắt</h4>
+          <p>Chọn đúng một ảnh và phân tích từ trên xuống theo 9 bước. Không đổi ảnh giữa chừng. Mục tiêu là tập cho học viên một trình tự quan sát cố định.</p>
+
+          <h4>Câu hỏi gợi mở</h4>
+          <ul>
+            <li>Thứ đầu tiên bạn nhìn thấy là gì?</li>
+            <li>Yếu tố nào đang làm trang phục nổi bật nhất?</li>
+            <li>Nếu thay đổi góc máy hoặc hậu cảnh, cảm giác ảnh sẽ đổi ra sao?</li>
+          </ul>
+
+          <h4>Lưu ý chuyên môn</h4>
+          <p>Không cần ép học viên trả lời “đúng”. Quan trọng là mỗi nhận xét phải gắn với một yếu tố có thể nhìn thấy và giải thích được.</p>
         </div>
-        <div class="pin-grid one">
-          <article class="pin-card">
-            <p class="pin-title">Một ảnh để phân tích đầy đủ</p>
-            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://www.pinterest.com/pin/543176405060673319/"></a></div>
-            <p class="pin-note">Ảnh này phù hợp để dừng lại và phân tích đầy đủ theo khung phân tích 9 bước.</p>
-          </article>
+      </details>
+    </div>
+
+    <div class="analysis-head">
+      <div>
+        <div class="analysis-kicker"><b>11</b> Khung phân tích một ảnh</div>
+        <h2>Đọc ảnh theo từng lớp.<br>Không đoán cảm tính.</h2>
+      </div>
+      <p class="analysis-lead">
+        Khi xem một ảnh tham khảo, hãy đi từ <strong>thứ đang hiện ra trước mắt</strong>
+        đến <strong>mục đích sử dụng cuối cùng</strong>. Một trình tự cố định giúp việc phân tích trở nên rõ ràng hơn.
+      </p>
+    </div>
+
+    <div class="analysis-layout">
+      <div class="analysis-image">
+        <div class="pin-embed-wrap">
+          <a data-pin-do="embedPin" href="https://www.pinterest.com/pin/543176405060673319/"></a>
+        </div>
+        <div class="analysis-image-label">
+          <span>Ảnh tham khảo</span>
+          <span>Dùng một ảnh để đi hết 9 bước</span>
         </div>
       </div>
 
+      <div class="analysis-stack">
+        <article class="analysis-layer">
+          <div class="analysis-no">01</div>
+          <h3>Trang phục</h3>
+          <p>Dáng tổng thể, chất liệu, màu sắc và chi tiết nào đang cần được nhìn thấy?</p>
+        </article>
+
+        <article class="analysis-layer">
+          <div class="analysis-no">02</div>
+          <h3>Người mẫu</h3>
+          <p>Tư thế, ngôn ngữ cơ thể và biểu cảm đang hỗ trợ bộ trang phục như thế nào?</p>
+        </article>
+
+        <article class="analysis-layer">
+          <div class="analysis-no">03</div>
+          <h3>Góc máy</h3>
+          <p>Máy đang cao, ngang hay thấp hơn người mẫu? Tỷ lệ cơ thể thay đổi ra sao?</p>
+        </article>
+
+        <article class="analysis-layer">
+          <div class="analysis-no">04</div>
+          <h3>Tiêu cự & khoảng cách</h3>
+          <p>Ảnh có cảm giác góc rộng, tiêu cự tiêu chuẩn hay tiêu cự dài? Không gian bị mở rộng hay nén lại?</p>
+        </article>
+
+        <article class="analysis-layer">
+          <div class="analysis-no">05</div>
+          <h3>Khung hình</h3>
+          <p>Toàn thân, ba phần tư, trung cảnh, cận cảnh hay chi tiết? Thông tin nào đang được giữ lại?</p>
+        </article>
+
+        <article class="analysis-layer">
+          <div class="analysis-no">06</div>
+          <h3>Ánh sáng</h3>
+          <p>Ánh sáng cứng hay mềm? Đi từ hướng nào? Bóng đổ và bề mặt chất liệu đang hiện ra sao?</p>
+        </article>
+
+        <article class="analysis-layer">
+          <div class="analysis-no">07</div>
+          <h3>Hậu cảnh</h3>
+          <p>Hậu cảnh đang hỗ trợ, tạo tách biệt hay đang cạnh tranh với người mẫu và trang phục?</p>
+        </article>
+
+        <article class="analysis-layer">
+          <div class="analysis-no">08</div>
+          <h3>Màu sắc</h3>
+          <p>Màu trang phục, màu da và hậu cảnh có đang hoạt động cùng nhau hay gây xung đột?</p>
+        </article>
+
+        <article class="analysis-layer is-purpose">
+          <div class="analysis-no">09</div>
+          <h3>Mục đích sử dụng</h3>
+          <p>Ảnh này phù hợp với chiến dịch hình ảnh, bộ ảnh giới thiệu bộ sưu tập, ảnh bán hàng trực tuyến hay ảnh thời trang biên tập? Vì sao?</p>
+        </article>
+      </div>
+    </div>
+
+    <div class="analysis-flow" aria-label="Trình tự đọc ảnh">
+      <span>Trang phục</span>
+      <span>Người mẫu</span>
+      <span>Góc máy</span>
+      <span>Tiêu cự</span>
+      <span>Khung hình</span>
+      <span>Ánh sáng</span>
+      <span>Hậu cảnh</span>
+      <span>Màu sắc</span>
+      <span>Mục đích</span>
+    </div>
+
+    <div class="analysis-question">
+      <b>?</b>
+      <div>
+        <p>Không nói “ảnh này đẹp”. Hãy chỉ ra yếu tố nào khiến bạn thấy nó hiệu quả.</p>
+        <small>Mỗi nhận xét nên gắn với một thứ có thể nhìn thấy: trang phục, người mẫu, góc máy, ánh sáng, hậu cảnh hoặc màu sắc.</small>
+      </div>
     </div>
   </section>
 
