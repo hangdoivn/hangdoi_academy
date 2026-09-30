@@ -541,7 +541,7 @@
       padding:14px 14px 8px;
       background:var(--paper-0);
       border:2px solid var(--green-950);
-      box-bóng đổ:12px 12px 0 rgba(15,66,45,.16);
+      box-shadow:12px 12px 0 rgba(15,66,45,.16);
       overflow:hidden;
     }
 
@@ -764,7 +764,7 @@
       font-weight: 900;
       cursor: pointer;
       user-select: none;
-      box-bóng đổ: 0 4px 12px rgba(15,66,45,.08);
+      box-shadow: 0 4px 12px rgba(15,66,45,.08);
     }
 
     .teacher-note summary::-webkit-details-marker { display:none; }
@@ -790,7 +790,7 @@
       background: var(--paper-0);
       color: var(--green-950);
       border: 1px solid var(--green-950);
-      box-bóng đổ: 8px 8px 0 rgba(15,66,45,.12);
+      box-shadow: 8px 8px 0 rgba(15,66,45,.12);
       opacity: 0;
       visibility: hidden;
       transform: translateY(-5px);
@@ -863,7 +863,7 @@
       background: rgba(255,255,255,.08);
       color: var(--paper-0);
       border-color: rgba(255,255,255,.35);
-      box-bóng đổ:none;
+      box-shadow:none;
     }
 
     .section-objectives .teacher-note summary:hover,
@@ -4302,6 +4302,363 @@
       .practice-review-q { grid-template-columns:1fr; }
     }
 
+    /* ===== Section 13 · Bài tập về nhà ===== */
+    .section.section-homework {
+      position:relative;
+      display:block;
+      margin:0 -24px;
+      padding:92px 24px 98px;
+      background:var(--paper-100);
+      border-bottom:1px solid var(--paper-200);
+      overflow:hidden;
+    }
+
+    .homework-head,
+    .result-head {
+      display:grid;
+      grid-template-columns:minmax(0,7fr) minmax(260px,5fr);
+      gap:42px;
+      align-items:end;
+      margin-bottom:42px;
+    }
+
+    .homework-kicker,
+    .result-kicker {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:18px;
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .homework-kicker { color:var(--orange); }
+    .result-kicker { color:var(--yellow); }
+
+    .homework-kicker b,
+    .result-kicker b {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      font-size:12px;
+    }
+
+    .homework-kicker b {
+      background:var(--orange);
+      color:white;
+    }
+
+    .result-kicker b {
+      background:var(--yellow);
+      color:var(--green-950);
+    }
+
+    .homework-head h2,
+    .result-head h2 {
+      margin:0;
+      max-width:820px;
+      font-size:clamp(50px,6vw,84px);
+      line-height:.9;
+      letter-spacing:-.055em;
+      font-weight:900;
+    }
+
+    .homework-head h2 { color:var(--green-950); }
+    .result-head h2 { color:var(--paper-0); }
+
+    .homework-lead,
+    .result-lead {
+      max-width:430px;
+      margin:0;
+      padding-top:18px;
+      font-size:16px;
+      line-height:1.6;
+    }
+
+    .homework-lead {
+      border-top:2px solid var(--green-950);
+      color:#4E6257;
+    }
+
+    .result-lead {
+      border-top:2px solid rgba(255,255,255,.7);
+      color:#C7D7CD;
+    }
+
+    .homework-grid {
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+    }
+
+    .homework-task {
+      min-height:350px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      padding:22px;
+      border:1px solid var(--green-950);
+      background:var(--paper-0);
+    }
+
+    .homework-task:nth-child(2) { background:var(--green-100); }
+    .homework-task:nth-child(3) { background:#E7EAFB; }
+
+    .homework-task-top {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+
+    .homework-task-no {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:46px;
+      height:46px;
+      border:1px solid var(--green-950);
+      border-radius:50%;
+      color:var(--green-950);
+      font-size:13px;
+      font-weight:900;
+    }
+
+    .homework-task-time {
+      color:#718077;
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .homework-task h3 {
+      margin:34px 0 11px;
+      color:var(--green-950);
+      font-size:29px;
+      line-height:.96;
+      letter-spacing:-.04em;
+    }
+
+    .homework-task p {
+      margin:0;
+      color:#526359;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .homework-deliver {
+      margin-top:22px;
+      padding-top:14px;
+      border-top:1px solid rgba(15,66,45,.18);
+    }
+
+    .homework-deliver span {
+      display:block;
+      margin-bottom:6px;
+      color:var(--orange);
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.09em;
+      text-transform:uppercase;
+    }
+
+    .homework-deliver strong {
+      color:var(--green-950);
+      font-size:13px;
+      line-height:1.4;
+    }
+
+    .homework-rule {
+      display:grid;
+      grid-template-columns:44px 1fr;
+      gap:14px;
+      align-items:start;
+      margin-top:22px;
+      padding:20px 22px;
+      border:1px solid var(--green-950);
+      background:var(--paper-0);
+    }
+
+    .homework-rule b {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:44px;
+      height:44px;
+      border-radius:50%;
+      background:var(--yellow);
+      color:var(--green-950);
+      font-size:19px;
+    }
+
+    .homework-rule p {
+      margin:0;
+      color:var(--green-950);
+      font-size:17px;
+      line-height:1.45;
+      font-weight:750;
+    }
+
+    .homework-rule small {
+      display:block;
+      margin-top:7px;
+      color:#637369;
+      font-size:12px;
+      line-height:1.45;
+      font-weight:500;
+    }
+
+    /* ===== Section 14 · Kết quả cuối buổi ===== */
+    .section.section-result {
+      position:relative;
+      display:block;
+      margin:0 -24px;
+      padding:92px 24px 98px;
+      background:var(--green-950);
+      color:var(--paper-0);
+      border-bottom:0;
+      overflow:hidden;
+    }
+
+    .result-grid {
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      border:1px solid rgba(255,255,255,.28);
+    }
+
+    .result-item {
+      min-height:240px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      padding:20px;
+      border-right:1px solid rgba(255,255,255,.22);
+    }
+
+    .result-item:last-child { border-right:0; }
+
+    .result-item-no {
+      color:var(--yellow);
+      font-size:42px;
+      line-height:1;
+      font-weight:900;
+      letter-spacing:-.05em;
+    }
+
+    .result-item h3 {
+      margin:34px 0 8px;
+      color:var(--paper-0);
+      font-size:22px;
+      line-height:1.02;
+      letter-spacing:-.03em;
+    }
+
+    .result-item p {
+      margin:0;
+      color:#C7D7CD;
+      font-size:13px;
+      line-height:1.5;
+    }
+
+    .result-manifesto {
+      margin-top:28px;
+      padding:34px 0 0;
+      border-top:1px solid rgba(255,255,255,.28);
+    }
+
+    .result-manifesto span {
+      display:block;
+      margin-bottom:12px;
+      color:var(--yellow);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .result-manifesto strong {
+      display:block;
+      max-width:940px;
+      color:var(--paper-0);
+      font-size:clamp(36px,5vw,70px);
+      line-height:.95;
+      letter-spacing:-.055em;
+      font-weight:900;
+    }
+
+    .result-next {
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:28px;
+    }
+
+    .result-next span {
+      padding:9px 12px;
+      border:1px solid rgba(255,255,255,.25);
+      border-radius:999px;
+      color:var(--paper-0);
+      font-size:11px;
+      font-weight:800;
+    }
+
+    .section-result .teacher-note summary {
+      background:rgba(255,255,255,.08);
+      color:var(--paper-0);
+      border-color:rgba(255,255,255,.35);
+      box-shadow:none;
+    }
+
+    .section-result .teacher-note summary:hover,
+    .section-result .teacher-note[open] summary {
+      background:var(--yellow);
+      color:var(--green-950);
+      border-color:var(--yellow);
+    }
+
+    .teacher-end-note {
+      position:relative;
+      display:flex;
+      justify-content:flex-end;
+      margin:22px 0 0;
+    }
+
+    @media (max-width:800px) {
+      .section.section-homework,
+      .section.section-result {
+        margin:0 -16px;
+        padding:62px 16px 68px;
+      }
+
+      .homework-head,
+      .result-head {
+        grid-template-columns:1fr;
+        gap:24px;
+        margin-bottom:30px;
+      }
+
+      .homework-head h2,
+      .result-head h2 { font-size:52px; }
+
+      .homework-grid { grid-template-columns:1fr; }
+
+      .result-grid { grid-template-columns:1fr; }
+
+      .result-item {
+        min-height:190px;
+        border-right:0;
+        border-bottom:1px solid rgba(255,255,255,.22);
+      }
+
+      .result-item:last-child { border-bottom:0; }
+    }
+
     @media (max-width: 800px) {
       .page { padding: 0 16px 64px; }
       .lesson-nav { min-height:54px; }
@@ -5917,46 +6274,193 @@
     </div>
   </section>
 
-  <section class="section">
-    <div class="num">13</div>
-    <div>
-      <h2>Bài tập về nhà</h2>
-      <div class="grid-3">
-        <div class="card"><h3>10 ảnh tham khảo thời trang</h3><p>Chọn 10 ảnh và phân tích theo khung phân tích 9 bước.</p></div>
-        <div class="card"><h3>3 ảnh tự chụp</h3><p>Chụp 3 cách lấy khung hình khác nhau cho cùng một bộ trang phục.</p></div>
-        <div class="card"><h3>1 trang Ghi chú quan sát hình ảnh</h3><p>Ghi lại những quan sát về góc máy, crop và form trang phục.</p></div>
+    <section class="section section-homework">
+    <div class="section-note-anchor">
+      <details class="teacher-note">
+        <summary aria-label="Mở gợi ý giảng viên"></summary>
+        <div class="teacher-note-popover">
+          <h4>Cách giao bài</h4>
+          <p>Giải thích rõ rằng bài tập không chấm theo “ảnh đẹp”. Học viên cần cho thấy mình biết quan sát và giải thích lựa chọn.</p>
+
+          <h4>Cách xem bài buổi sau</h4>
+          <ul>
+            <li>Chọn 2 ảnh phân tích tốt nhất.</li>
+            <li>Chọn 1 ảnh tự chụp tốt nhất.</li>
+            <li>Chọn 1 ảnh cần sửa và tự nói cách sửa.</li>
+          </ul>
+
+          <h4>Lưu ý chuyên môn</h4>
+          <p>Không yêu cầu chỉnh màu nặng hoặc dùng hiệu ứng. Bài này tập trung vào quan sát, khung hình và khả năng giải thích.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="homework-head">
+      <div>
+        <div class="homework-kicker"><b>13</b> Bài tập về nhà</div>
+        <h2>Tiếp tục luyện mắt trước khi luyện máy.</h2>
+      </div>
+      <p class="homework-lead">
+        Bài tập sau buổi 01 tập trung vào hai việc:
+        <strong>phân tích ảnh có sẵn</strong> và <strong>tự tạo các khung hình có mục đích</strong>.
+      </p>
+    </div>
+
+    <div class="homework-grid">
+      <article class="homework-task">
+        <div class="homework-task-top">
+          <div class="homework-task-no">01</div>
+          <div class="homework-task-time">Phân tích</div>
+        </div>
+        <div>
+          <h3>10 ảnh tham khảo thời trang</h3>
+          <p>
+            Chọn 10 ảnh và phân tích theo khung 9 bước:
+            trang phục, người mẫu, góc máy, tiêu cự, khung hình, ánh sáng, hậu cảnh, màu sắc và mục đích.
+          </p>
+        </div>
+        <div class="homework-deliver">
+          <span>Cần nộp</span>
+          <strong>10 ảnh + ghi chú ngắn cho từng ảnh.</strong>
+        </div>
+      </article>
+
+      <article class="homework-task">
+        <div class="homework-task-top">
+          <div class="homework-task-no">02</div>
+          <div class="homework-task-time">Tự chụp</div>
+        </div>
+        <div>
+          <h3>1 bộ trang phục / 3 khung hình</h3>
+          <p>
+            Tự chụp cùng một bộ trang phục theo ba cách:
+            toàn thân, trung cảnh và chi tiết. Giữ điều kiện ánh sáng tương đối giống nhau.
+          </p>
+        </div>
+        <div class="homework-deliver">
+          <span>Cần nộp</span>
+          <strong>3 ảnh gốc hoặc chỉnh rất nhẹ, không dùng hiệu ứng mạnh.</strong>
+        </div>
+      </article>
+
+      <article class="homework-task">
+        <div class="homework-task-top">
+          <div class="homework-task-no">03</div>
+          <div class="homework-task-time">Tự ghi nhận</div>
+        </div>
+        <div>
+          <h3>1 trang ghi chú quan sát</h3>
+          <p>
+            Ghi lại điều bạn nhận thấy về góc máy, cách cắt khung, dáng trang phục và những lỗi mình thường bỏ qua khi chụp.
+          </p>
+        </div>
+        <div class="homework-deliver">
+          <span>Cần nộp</span>
+          <strong>1 trang ngắn, ưu tiên nhận xét cụ thể thay vì từ cảm tính.</strong>
+        </div>
+      </article>
+    </div>
+
+    <div class="homework-rule">
+      <b>!</b>
+      <div>
+        <p>Không dùng “đẹp”, “sang”, “nghệ” làm lời giải thích cuối cùng.</p>
+        <small>Nếu dùng những từ này, hãy nói tiếp: yếu tố nào trong góc máy, ánh sáng, trang phục, màu sắc hoặc bố cục tạo ra cảm giác đó?</small>
       </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="num">14</div>
-    <div>
-      <h2>Kết quả cuối Buổi 01</h2>
-      <div class="output-list">
-        <div><span>01</span> Phiếu phân tích ảnh thời trang</div>
-        <div><span>02</span> 1 bộ trang phục / 6 khung hình Bài thực hành</div>
-        <div><span>03</span> Thư mục ảnh tham khảo cá nhân</div>
-        <div><span>04</span> Ghi chú quan sát hình ảnh</div>
+    <section class="section section-result">
+    <div class="section-note-anchor">
+      <details class="teacher-note">
+        <summary aria-label="Mở gợi ý giảng viên"></summary>
+        <div class="teacher-note-popover">
+          <h4>Cách kết buổi</h4>
+          <p>Không tổng kết lại toàn bộ lý thuyết. Yêu cầu học viên tự nói 3 điều mình sẽ thay đổi ngay ở lần chụp tiếp theo.</p>
+
+          <h4>Câu hỏi kết buổi</h4>
+          <ul>
+            <li>Trước đây bạn thường bỏ qua điều gì khi chụp?</li>
+            <li>Từ giờ trước khi bấm máy bạn sẽ kiểm tra điều gì?</li>
+            <li>Trong 6 khung vừa chụp, khung nào giúp bạn hiểu bài rõ nhất?</li>
+          </ul>
+
+          <h4>Lưu ý</h4>
+          <p>Kết thúc bằng hành động cụ thể. Buổi 02 mới đi sâu vào làm chủ máy ảnh và phơi sáng.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="result-head">
+      <div>
+        <div class="result-kicker"><b>14</b> Kết quả cuối buổi</div>
+        <h2>Sau buổi 01, bạn phải nhìn ảnh khác đi.</h2>
       </div>
+      <p class="result-lead">
+        Chưa cần chụp thật phức tạp. Điều quan trọng là bắt đầu biết
+        <strong>mình đang nhìn gì, thay đổi gì và vì sao</strong>.
+      </p>
+    </div>
+
+    <div class="result-grid">
+      <article class="result-item">
+        <div class="result-item-no">01</div>
+        <div>
+          <h3>Phân tích được ảnh</h3>
+          <p>Không dừng ở cảm giác đẹp/xấu; biết gọi tên các yếu tố tạo nên bức ảnh.</p>
+        </div>
+      </article>
+
+      <article class="result-item">
+        <div class="result-item-no">02</div>
+        <div>
+          <h3>Đọc được trang phục</h3>
+          <p>Nhìn dáng tổng thể, chất liệu, các lớp và chi tiết trước khi bấm máy.</p>
+        </div>
+      </article>
+
+      <article class="result-item">
+        <div class="result-item-no">03</div>
+        <div>
+          <h3>Chụp có mục đích</h3>
+          <p>Biết chọn vị trí máy, cách lấy khung và hướng dẫn người mẫu dựa trên điều muốn thể hiện.</p>
+        </div>
+      </article>
+
+      <article class="result-item">
+        <div class="result-item-no">04</div>
+        <div>
+          <h3>Tự xem lại ảnh</h3>
+          <p>Biết đặt các khung cạnh nhau, chỉ ra điều hiệu quả và điều cần sửa.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="result-manifesto">
+      <span>Điều cần mang sang buổi tiếp theo</span>
+      <strong>Nhìn đúng trước. Chụp có chủ đích sau.</strong>
+    </div>
+
+    <div class="result-next">
+      <span>Buổi 02</span>
+      <span>Làm chủ máy ảnh</span>
+      <span>Phơi sáng</span>
+      <span>Lấy nét</span>
+      <span>Cân bằng trắng</span>
     </div>
   </section>
 
-  <aside class="teaching">
-    <h2>Nguyên tắc dạy Buổi 01</h2>
-    <p>
-      Không giảng quá nhiều lý thuyết trước. Cho học viên nhìn ảnh, tự nói điều mình thấy,
-      sau đó giảng viên mới bóc tách kỹ thuật. Kết thúc mỗi phần phải có một hành động
-      trực tiếp với máy ảnh hoặc hình ảnh thực tế.
-    </p>
-    <div class="flow">
-      <span>Nhìn ảnh</span><i>→</i>
-      <span>Phân tích</span><i>→</i>
-      <span>Giải thích kỹ thuật</span><i>→</i>
-      <span>Cầm máy thử</span><i>→</i>
-      <span>So sánh kết quả</span>
-    </div>
-  </aside>
+    <div class="teacher-end-note">
+    <details class="teacher-note">
+      <summary aria-label="Mở nguyên tắc giảng viên"></summary>
+      <div class="teacher-note-popover">
+        <h4>Nguyên tắc xuyên suốt Buổi 01</h4>
+        <p>Nhìn ảnh → tự nhận xét → gọi tên yếu tố → chụp thử → đặt cạnh nhau → tự giải thích kết quả.</p>
+        <h4>Điều cần tránh</h4>
+        <p>Không giảng lý thuyết dài trước khi học viên được nhìn hoặc thử. Mỗi phần nên kết thúc bằng một hành động quan sát hoặc chụp thực tế.</p>
+      </div>
+    </details>
+  </div>
 </div>
   <script async defer src="https://assets.pinterest.com/js/pinit.js"></script>
 </body>
