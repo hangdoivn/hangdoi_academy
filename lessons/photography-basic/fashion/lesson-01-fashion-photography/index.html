@@ -1474,6 +1474,319 @@
       .types-test-questions div:last-child { border-bottom:0; }
     }
 
+    /* ===== Section 04 · Bản đồ đọc trang phục ===== */
+    .section.section-garment {
+      position:relative;
+      display:block;
+      margin:0 -24px;
+      padding:92px 24px 98px;
+      background:var(--paper-0);
+      border-bottom:1px solid var(--paper-200);
+      overflow:hidden;
+    }
+
+    .garment-head {
+      display:grid;
+      grid-template-columns:minmax(0,7fr) minmax(260px,5fr);
+      gap:42px;
+      align-items:end;
+      margin-bottom:42px;
+    }
+
+    .garment-kicker {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:18px;
+      color:var(--orange);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .garment-kicker b {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      background:var(--orange);
+      color:white;
+      font-size:12px;
+    }
+
+    .garment-head h2 {
+      margin:0;
+      max-width:760px;
+      color:var(--green-950);
+      font-size:clamp(50px,6vw,84px);
+      line-height:.9;
+      letter-spacing:-.055em;
+      font-weight:900;
+    }
+
+    .garment-lead {
+      max-width:430px;
+      margin:0;
+      padding-top:18px;
+      border-top:2px solid var(--green-950);
+      color:#4E6257;
+      font-size:16px;
+      line-height:1.6;
+    }
+
+    .garment-map {
+      display:grid;
+      grid-template-columns:minmax(190px,1fr) minmax(320px,1.5fr) minmax(190px,1fr);
+      gap:16px;
+      align-items:stretch;
+    }
+
+    .garment-side {
+      display:grid;
+      gap:16px;
+    }
+
+    .garment-point {
+      min-height:210px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      padding:20px;
+      border:1px solid var(--green-950);
+      background:var(--paper-50);
+    }
+
+    .garment-point.is-green {
+      background:var(--green-100);
+    }
+
+    .garment-point.is-orange {
+      background:#F7E4DC;
+    }
+
+    .garment-point.is-blue {
+      background:#E7EAFB;
+    }
+
+    .garment-point-top {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:24px;
+    }
+
+    .garment-point-top b {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:34px;
+      height:34px;
+      border:1px solid var(--green-950);
+      border-radius:50%;
+      color:var(--green-950);
+      font-size:12px;
+    }
+
+    .garment-point-top span {
+      color:#748278;
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+
+    .garment-point h3 {
+      margin:0 0 10px;
+      color:var(--green-950);
+      font-size:28px;
+      line-height:.95;
+      letter-spacing:-.04em;
+    }
+
+    .garment-point p {
+      margin:0;
+      color:#4E6257;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .garment-visual {
+      position:relative;
+      min-height:436px;
+      border:1px solid var(--green-950);
+      background:var(--green-800);
+      overflow:hidden;
+    }
+
+    .garment-visual::before {
+      content:"";
+      position:absolute;
+      inset:18px;
+      border:1px solid rgba(255,255,255,.35);
+      pointer-events:none;
+      z-index:2;
+    }
+
+    .garment-visual .pin-embed-wrap {
+      min-height:436px;
+      border-radius:0;
+      background:transparent;
+    }
+
+    .garment-visual-label {
+      position:absolute;
+      left:18px;
+      right:18px;
+      bottom:18px;
+      z-index:3;
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      padding:12px 14px;
+      background:rgba(15,66,45,.92);
+      color:white;
+      border:1px solid rgba(255,255,255,.3);
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.04em;
+    }
+
+    .garment-check {
+      display:grid;
+      grid-template-columns:minmax(0,5fr) minmax(320px,7fr);
+      gap:18px;
+      margin-top:22px;
+      padding:22px;
+      border:1px solid var(--green-950);
+      background:var(--paper-100);
+    }
+
+    .garment-check-intro {
+      padding-right:18px;
+      border-right:1px solid rgba(15,66,45,.22);
+    }
+
+    .garment-check-intro span {
+      display:block;
+      margin-bottom:10px;
+      color:var(--green-700);
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+
+    .garment-check-intro h3 {
+      margin:0 0 10px;
+      color:var(--green-950);
+      font-size:26px;
+      line-height:1.02;
+      letter-spacing:-.03em;
+    }
+
+    .garment-check-intro p {
+      margin:0;
+      color:#526359;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .garment-checklist {
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:0;
+    }
+
+    .garment-checklist div {
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding:10px 14px;
+      border-bottom:1px solid rgba(15,66,45,.14);
+    }
+
+    .garment-checklist div:nth-last-child(-n+2) {
+      border-bottom:0;
+    }
+
+    .garment-checklist b {
+      color:var(--orange);
+      font-size:15px;
+      line-height:1.2;
+    }
+
+    .garment-checklist span {
+      color:var(--green-950);
+      font-size:13px;
+      line-height:1.45;
+    }
+
+    .garment-quote {
+      margin-top:22px;
+      padding:24px 28px;
+      background:var(--green-950);
+      color:var(--paper-0);
+      border-left:8px solid var(--yellow);
+      font-size:clamp(22px,2.5vw,34px);
+      line-height:1.28;
+      letter-spacing:-.025em;
+      font-weight:800;
+    }
+
+    @media (max-width:800px) {
+      .section.section-garment {
+        margin:0 -16px;
+        padding:62px 16px 68px;
+      }
+
+      .garment-head {
+        grid-template-columns:1fr;
+        gap:24px;
+        margin-bottom:30px;
+      }
+
+      .garment-head h2 { font-size:52px; }
+
+      .garment-map {
+        grid-template-columns:1fr;
+      }
+
+      .garment-side { grid-template-columns:1fr 1fr; }
+
+      .garment-visual {
+        order:-1;
+        min-height:420px;
+      }
+
+      .garment-visual .pin-embed-wrap { min-height:420px; }
+
+      .garment-check {
+        grid-template-columns:1fr;
+      }
+
+      .garment-check-intro {
+        padding-right:0;
+        padding-bottom:16px;
+        border-right:0;
+        border-bottom:1px solid rgba(15,66,45,.22);
+      }
+
+      .garment-checklist {
+        grid-template-columns:1fr;
+      }
+
+      .garment-checklist div,
+      .garment-checklist div:nth-last-child(-n+2) {
+        border-bottom:1px solid rgba(15,66,45,.14);
+      }
+
+      .garment-checklist div:last-child { border-bottom:0; }
+    }
+
     @media (max-width: 800px) {
       .page { padding: 0 16px 64px; }
       .lesson-nav { min-height:54px; }
@@ -1947,41 +2260,127 @@
     </div>
   </section>
 
-  <section class="section">
-    <div class="num">04</div>
-    <div>
-      <h2>Chủ thể trong ảnh thời trang: Người mẫu + Trang phục</h2>
-      <p class="lead">
-        Học viên cần học cách nhìn quần áo như một đối tượng có hình khối, vật liệu và chuyển động riêng.
-      </p>
-      <div class="grid-4">
-        <div class="card"><h3>Dáng tổng thể</h3><p>Form tổng thể của bộ trang phục khi nhìn từ xa.</p><small>Vai · eo · chiều dài · volume</small></div>
-        <div class="card"><h3>Bề mặt chất liệu</h3><p>Chất liệu phản ứng với ánh sáng như thế nào.</p><small>Linen · denim · leather · silk</small></div>
-        <div class="card"><h3>Các lớp trang phục</h3><p>Các lớp trang phục có tách nhau đủ rõ hay không.</p></div>
-        <div class="card"><h3>Chi tiết</h3><p>Khuy, đường may, logo, phụ kiện và điểm nhấn cần được thấy.</p></div>
-      </div>
-      <blockquote>
-        Nếu pose đẹp nhưng làm mất form quần áo, đó vẫn là một pose chưa tốt cho ảnh thời trang.
-      </blockquote>
-      <div class="visual-ref">
-        <div class="visual-ref-head">
-          <div class="label">ẢNH MINH HOẠ · SILHOUETTE & TEXTURE</div>
-          <p>Quan sát cách ánh sáng và pose giúp phô bày đường form, lớp vải và bề mặt chất liệu.</p>
+    <section class="section section-garment">
+    <div class="section-note-anchor">
+      <details class="teacher-note">
+        <summary aria-label="Mở gợi ý giảng viên"></summary>
+        <div class="teacher-note-popover">
+          <h4>Cách dẫn dắt</h4>
+          <p>Đừng cho học viên chụp ngay. Cho người mẫu đứng yên và yêu cầu học viên chỉ bằng mắt: đâu là phần quan trọng nhất của bộ trang phục, đâu là phần dễ mất dáng nhất.</p>
+
+          <h4>Câu hỏi gợi mở</h4>
+          <ul>
+            <li>Nếu đứng xa 3 mét, bạn còn nhìn thấy đặc điểm nào của bộ trang phục?</li>
+            <li>Phần chất liệu nào cần ánh sáng để nhìn rõ?</li>
+            <li>Tay hoặc tóc của người mẫu đang che chi tiết nào không?</li>
+          </ul>
+
+          <h4>Lưu ý chuyên môn</h4>
+          <p>Ưu tiên sửa trang phục ngay tại chỗ trước khi nghĩ đến chỉnh sửa hậu kỳ. Với người mới, hãy dạy nhìn dáng tổng thể trước rồi mới đến chi tiết nhỏ.</p>
         </div>
-        <div class="pin-grid">
-          <article class="pin-card">
-            <p class="pin-title">Dáng tổng thể emphasis</p>
-            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://www.pinterest.com/pin/692709986479212160/"></a></div>
-            <p class="pin-note">Dễ đọc form tổng thể, tỷ lệ cơ thể và hình khối bộ trang phục.</p>
-          </article>
-          <article class="pin-card">
-            <p class="pin-title">Bề mặt chất liệu emphasis</p>
-            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://www.pinterest.com/pin/274086327309621039/"></a></div>
-            <p class="pin-note">Ánh sáng tạo chi tiết bề mặt, nếp gấp và chất liệu rõ hơn.</p>
-          </article>
+      </details>
+    </div>
+
+    <div class="garment-head">
+      <div>
+        <div class="garment-kicker"><b>04</b> Đọc trang phục trước khi bấm máy</div>
+        <h2>Trang phục cũng là một chủ thể.</h2>
+      </div>
+      <p class="garment-lead">
+        Không chỉ nhìn người mẫu. Hãy nhìn bộ trang phục như một vật thể có
+        <strong>dáng, chất liệu, nhiều lớp và chi tiết riêng</strong>.
+      </p>
+    </div>
+
+    <div class="garment-map">
+      <div class="garment-side">
+        <article class="garment-point is-green">
+          <div class="garment-point-top">
+            <span>Nhìn từ xa</span><b>01</b>
+          </div>
+          <div>
+            <h3>Dáng tổng thể</h3>
+            <p>
+              Nhìn vai, eo, chiều dài và độ rộng của bộ trang phục.
+              Khi thu nhỏ ảnh, tổng thể có còn đọc rõ không?
+            </p>
+          </div>
+        </article>
+
+        <article class="garment-point is-orange">
+          <div class="garment-point-top">
+            <span>Nhìn bề mặt</span><b>02</b>
+          </div>
+          <div>
+            <h3>Bề mặt chất liệu</h3>
+            <p>
+              Vải bóng, vải nhám, denim hay lụa phản ứng với ánh sáng khác nhau.
+              Chất liệu có đang hiện đúng đặc tính không?
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <div class="garment-visual">
+        <div class="pin-embed-wrap">
+          <a data-pin-do="embedPin" href="https://www.pinterest.com/pin/274086327309621039/"></a>
+        </div>
+        <div class="garment-visual-label">
+          <span>Ảnh tham khảo</span>
+          <span>Quan sát bộ trang phục trước khi quan sát máy ảnh</span>
         </div>
       </div>
 
+      <div class="garment-side">
+        <article class="garment-point is-blue">
+          <div class="garment-point-top">
+            <span>Nhìn quan hệ</span><b>03</b>
+          </div>
+          <div>
+            <h3>Các lớp trang phục</h3>
+            <p>
+              Áo ngoài và áo trong có tách nhau đủ rõ không?
+              Tóc, tay hoặc phụ kiện có làm các lớp bị nhập vào nhau không?
+            </p>
+          </div>
+        </article>
+
+        <article class="garment-point">
+          <div class="garment-point-top">
+            <span>Nhìn gần</span><b>04</b>
+          </div>
+          <div>
+            <h3>Chi tiết</h3>
+            <p>
+              Khuy, đường may, logo, khóa, túi và phụ kiện.
+              Chi tiết nào là điểm nhận biết cần phải thấy trong ảnh?
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="garment-check">
+      <div class="garment-check-intro">
+        <span>Kiểm tra trước khi chụp</span>
+        <h3>5 giây nhìn lại trang phục</h3>
+        <p>
+          Trước khi đưa máy lên mắt, kiểm tra nhanh những lỗi có thể làm bộ trang phục mất dáng hoặc mất thông tin.
+        </p>
+      </div>
+
+      <div class="garment-checklist">
+        <div><b>✓</b><span>Dáng tổng thể có đúng không?</span></div>
+        <div><b>✓</b><span>Quần áo có nếp nhăn bất thường không?</span></div>
+        <div><b>✓</b><span>Tay người mẫu có che eo, túi hoặc chi tiết không?</span></div>
+        <div><b>✓</b><span>Tóc có che cổ áo hoặc phụ kiện không?</span></div>
+        <div><b>✓</b><span>Các lớp trang phục có tách rõ khỏi nhau không?</span></div>
+        <div><b>✓</b><span>Chi tiết quan trọng đã quay về phía máy ảnh chưa?</span></div>
+      </div>
+    </div>
+
+    <div class="garment-quote">
+      Tạo dáng đẹp nhưng làm mất dáng trang phục thì vẫn chưa phải một khung hình tốt cho nhiếp ảnh thời trang.
     </div>
   </section>
 
