@@ -295,6 +295,8 @@ jobs:
           mkdir -p _site/bai-giang/nhiep-anh-co-ban/thoi-trang/buoi-01
           cp lessons/photography-basic/fashion/lesson-01-fashion-photography/index.html \
             _site/bai-giang/nhiep-anh-co-ban/thoi-trang/buoi-01/index.html
+          cp -R lessons/photography-basic/fashion/lesson-01-fashion-photography/assets \
+            _site/bai-giang/nhiep-anh-co-ban/thoi-trang/buoi-01/assets
 
           # Version Media Career runtime URLs with the exact deploy revision.
           # GitHub Pages/CDN can otherwise serve a new HTML shell with older CSS,
