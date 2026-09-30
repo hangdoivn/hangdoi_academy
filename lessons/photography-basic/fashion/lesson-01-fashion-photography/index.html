@@ -3159,6 +3159,334 @@
       .pose-sequence { grid-template-columns:1fr; }
     }
 
+    /* ===== Section 09 · Đọc ánh sáng ===== */
+    .section.section-light {
+      position:relative;
+      display:block;
+      margin:0 -24px;
+      padding:92px 24px 98px;
+      background:var(--green-950);
+      color:var(--paper-0);
+      border-bottom:0;
+      overflow:hidden;
+    }
+
+    .light-head {
+      display:grid;
+      grid-template-columns:minmax(0,7fr) minmax(260px,5fr);
+      gap:42px;
+      align-items:end;
+      margin-bottom:42px;
+    }
+
+    .light-kicker {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:18px;
+      color:var(--yellow);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .light-kicker b {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      background:var(--yellow);
+      color:var(--green-950);
+      font-size:12px;
+    }
+
+    .light-head h2 {
+      margin:0;
+      max-width:780px;
+      color:var(--paper-0);
+      font-size:clamp(50px,6vw,84px);
+      line-height:.9;
+      letter-spacing:-.055em;
+      font-weight:900;
+    }
+
+    .light-lead {
+      max-width:430px;
+      margin:0;
+      padding-top:18px;
+      border-top:2px solid rgba(255,255,255,.7);
+      color:#C7D7CD;
+      font-size:16px;
+      line-height:1.6;
+    }
+
+    .light-quality {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-bottom:18px;
+    }
+
+    .light-quality-card {
+      min-height:440px;
+      display:grid;
+      grid-template-columns:minmax(240px,1.05fr) minmax(0,.95fr);
+      border:1px solid rgba(255,255,255,.3);
+      overflow:hidden;
+    }
+
+    .light-quality-card.is-soft {
+      background:var(--paper-0);
+      color:var(--green-950);
+      border-color:var(--yellow);
+    }
+
+    .light-sim {
+      position:relative;
+      min-height:440px;
+      overflow:hidden;
+      background:#153F2F;
+    }
+
+    .light-quality-card.is-soft .light-sim {
+      background:var(--paper-100);
+    }
+
+    .light-face {
+      position:absolute;
+      left:50%;
+      top:50%;
+      width:150px;
+      height:200px;
+      border:2px solid currentColor;
+      border-radius:48% 48% 44% 44%;
+      transform:translate(-50%,-50%);
+      overflow:hidden;
+    }
+
+    .light-face::before {
+      content:"";
+      position:absolute;
+      inset:0 50% 0 0;
+      background:rgba(255,255,255,.42);
+    }
+
+    .hard-shadow {
+      position:absolute;
+      inset:0 0 0 50%;
+      background:rgba(0,0,0,.52);
+    }
+
+    .soft-shadow {
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg, rgba(255,255,255,.38) 0%, rgba(255,255,255,.2) 42%, rgba(15,66,45,.08) 65%, rgba(15,66,45,.18) 100%);
+    }
+
+    .light-source-mark {
+      position:absolute;
+      left:24px;
+      top:24px;
+      width:66px;
+      height:66px;
+      border:2px solid currentColor;
+      border-radius:50%;
+    }
+
+    .light-source-mark::after {
+      content:"";
+      position:absolute;
+      left:62px;
+      top:31px;
+      width:120px;
+      height:1px;
+      background:currentColor;
+      opacity:.55;
+    }
+
+    .light-quality-copy {
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:22px;
+      padding:24px 22px;
+      background:rgba(255,255,255,.04);
+    }
+
+    .light-quality-card.is-soft .light-quality-copy {
+      background:var(--paper-0);
+    }
+
+    .light-quality-copy span {
+      display:block;
+      margin-bottom:10px;
+      color:var(--yellow);
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+
+    .light-quality-card.is-soft .light-quality-copy span {
+      color:var(--orange);
+    }
+
+    .light-quality-copy h3 {
+      margin:0 0 10px;
+      color:inherit;
+      font-size:30px;
+      line-height:.96;
+      letter-spacing:-.04em;
+    }
+
+    .light-quality-copy p {
+      margin:0;
+      color:#C7D7CD;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .light-quality-card.is-soft .light-quality-copy p {
+      color:#526359;
+    }
+
+    .light-observe {
+      padding-top:14px;
+      border-top:1px solid rgba(255,255,255,.18);
+      font-size:13px;
+      line-height:1.4;
+      font-weight:700;
+    }
+
+    .light-quality-card.is-soft .light-observe {
+      border-color:rgba(15,66,45,.18);
+    }
+
+    .light-direction {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+      margin-top:18px;
+    }
+
+    .direction-card {
+      min-height:210px;
+      padding:18px;
+      border:1px solid rgba(255,255,255,.24);
+      background:rgba(255,255,255,.04);
+    }
+
+    .direction-card b {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:36px;
+      height:36px;
+      margin-bottom:18px;
+      border-radius:50%;
+      background:var(--yellow);
+      color:var(--green-950);
+      font-size:15px;
+    }
+
+    .direction-card h3 {
+      margin:0 0 8px;
+      color:var(--paper-0);
+      font-size:22px;
+      line-height:1;
+      letter-spacing:-.03em;
+    }
+
+    .direction-card p {
+      margin:0;
+      color:#C7D7CD;
+      font-size:13px;
+      line-height:1.5;
+    }
+
+    .light-question {
+      display:grid;
+      grid-template-columns:minmax(0,5fr) minmax(300px,7fr);
+      gap:18px;
+      margin-top:22px;
+      padding:22px;
+      border:1px solid rgba(255,255,255,.28);
+      background:rgba(255,255,255,.05);
+    }
+
+    .light-question h3 {
+      margin:0 0 8px;
+      color:var(--paper-0);
+      font-size:26px;
+      line-height:1.05;
+      letter-spacing:-.03em;
+    }
+
+    .light-question p {
+      margin:0;
+      color:#C7D7CD;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .light-question-list {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:8px;
+    }
+
+    .light-question-list div {
+      padding:12px 14px;
+      border:1px solid rgba(255,255,255,.16);
+      color:var(--paper-0);
+      font-size:13px;
+      line-height:1.4;
+    }
+
+    .section-light .teacher-note summary {
+      background:rgba(255,255,255,.08);
+      color:var(--paper-0);
+      border-color:rgba(255,255,255,.35);
+      box-shadow:none;
+    }
+
+    .section-light .teacher-note summary:hover,
+    .section-light .teacher-note[open] summary {
+      background:var(--yellow);
+      color:var(--green-950);
+      border-color:var(--yellow);
+    }
+
+    @media (max-width:800px) {
+      .section.section-light {
+        margin:0 -16px;
+        padding:62px 16px 68px;
+      }
+
+      .light-head {
+        grid-template-columns:1fr;
+        gap:24px;
+        margin-bottom:30px;
+      }
+
+      .light-head h2 { font-size:52px; }
+
+      .light-quality { grid-template-columns:1fr; }
+
+      .light-quality-card { grid-template-columns:1fr; }
+
+      .light-sim { min-height:320px; }
+
+      .light-direction { grid-template-columns:1fr; }
+
+      .light-question { grid-template-columns:1fr; }
+
+      .light-question-list { grid-template-columns:1fr; }
+    }
+
     @media (max-width: 800px) {
       .page { padding: 0 16px 64px; }
       .lesson-nav { min-height:54px; }
@@ -4263,40 +4591,114 @@
     </div>
   </section>
 
-  <section class="section">
-    <div class="num">09</div>
-    <div>
-      <h2>Ánh sáng cơ bản cho thời trang</h2>
-      <div class="grid-2">
-        <div class="card"><h3>Ánh sáng cứng</h3><p>Bóng đổ rõ, bề mặt chất liệu mạnh, cảm giác đồ họa và cá tính.</p></div>
-        <div class="card"><h3>Ánh sáng mềm</h3><p>Chuyển vùng sáng mượt, dễ kiểm soát da và form sản phẩm.</p></div>
-        <div class="card"><h3>Ánh sáng từ phía trước</h3><p>Dễ đọc sản phẩm, ít bóng đổ nhưng có thể thiếu chiều sâu.</p></div>
-        <div class="card"><h3>Ánh sáng từ bên hông / phía sau</h3><p>Tạo khối, viền sáng và tách người mẫu khỏi hậu cảnh; cần kiểm soát độ phơi sáng.</p></div>
-      </div>
-      <div class="exercise">
-        <div class="exercise-label">BÀI TẬP QUAN SÁT</div>
-        <h3>Không cần biết bố trí đèn — chỉ cần đọc được ánh sáng</h3>
-        <p>Với mỗi ảnh: ánh sáng từ đâu? Ánh sáng cứng hay mềm? Bóng đổ nằm đâu? Bề mặt chất liệu trang phục đang rõ hay mất?</p>
-      </div>
-      <div class="visual-ref">
-        <div class="visual-ref-head">
-          <div class="label">ẢNH MINH HOẠ · ÁNH SÁNG</div>
-          <p>So sánh ánh sáng hard và soft để hiểu bề mặt chất liệu, bóng đổ và độ “đồ họa” trong ảnh thời trang.</p>
+    <section class="section section-light">
+    <div class="section-note-anchor">
+      <details class="teacher-note">
+        <summary aria-label="Mở gợi ý giảng viên"></summary>
+        <div class="teacher-note-popover">
+          <h4>Cách dẫn dắt</h4>
+          <p>Cho học viên xem hai ảnh có ánh sáng khác nhau và hỏi trước: “Bóng đổ ở ảnh nào sắc hơn?” Sau đó mới gọi tên ánh sáng cứng và ánh sáng mềm.</p>
+
+          <h4>Câu hỏi gợi mở</h4>
+          <ul>
+            <li>Bóng đổ nằm ở đâu?</li>
+            <li>Ranh giới giữa vùng sáng và vùng tối rõ hay mềm?</li>
+            <li>Chất liệu trang phục đang hiện rõ hơn hay bị mất chi tiết?</li>
+          </ul>
+
+          <h4>Lưu ý chuyên môn</h4>
+          <p>Không đi sâu vào cách bố trí đèn ở Buổi 01. Mục tiêu chỉ là đọc được chất lượng và hướng sáng. Phần thiết lập đèn sẽ học riêng.</p>
         </div>
-        <div class="pin-grid">
-          <article class="pin-card">
-            <p class="pin-title">Ánh sáng cứng</p>
-            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://ar.pinterest.com/pin/144115256820887498/"></a></div>
-            <p class="pin-note">Bóng đổ rõ, độ sắc cạnh cao, cá tính mạnh.</p>
-          </article>
-          <article class="pin-card">
-            <p class="pin-title">Ánh sáng mềm</p>
-            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://www.pinterest.com/pin/274086327309621039/"></a></div>
-            <p class="pin-note">Mềm hơn trên da và dễ kiểm soát với trang phục cần bề mặt chất liệu nhẹ.</p>
-          </article>
+      </details>
+    </div>
+
+    <div class="light-head">
+      <div>
+        <div class="light-kicker"><b>09</b> Đọc ánh sáng</div>
+        <h2>Chưa cần biết đặt đèn.<br>Trước tiên phải nhìn ra ánh sáng.</h2>
+      </div>
+      <p class="light-lead">
+        Hãy quan sát hai điều trước: <strong>bóng đổ sắc hay mềm</strong> và
+        <strong>ánh sáng đang đi từ hướng nào</strong>.
+      </p>
+    </div>
+
+    <div class="light-quality">
+      <article class="light-quality-card">
+        <div class="light-sim">
+          <div class="light-source-mark"></div>
+          <div class="light-face">
+            <div class="hard-shadow"></div>
+          </div>
         </div>
+        <div class="light-quality-copy">
+          <div>
+            <span>Chất lượng ánh sáng</span>
+            <h3>Ánh sáng cứng</h3>
+            <p>
+              Ranh giới bóng đổ rõ, vùng sáng và vùng tối tách mạnh.
+              Có thể làm đường nét, nếp vải và bề mặt chất liệu nổi bật hơn.
+            </p>
+          </div>
+          <div class="light-observe">Quan sát: mép bóng đổ rõ · độ tương phản mạnh · hình ảnh dứt khoát.</div>
+        </div>
+      </article>
+
+      <article class="light-quality-card is-soft">
+        <div class="light-sim">
+          <div class="light-source-mark"></div>
+          <div class="light-face">
+            <div class="soft-shadow"></div>
+          </div>
+        </div>
+        <div class="light-quality-copy">
+          <div>
+            <span>Chất lượng ánh sáng</span>
+            <h3>Ánh sáng mềm</h3>
+            <p>
+              Vùng sáng chuyển sang vùng tối từ từ hơn.
+              Dễ kiểm soát da, dáng tổng thể và nhiều loại trang phục ở mức cơ bản.
+            </p>
+          </div>
+          <div class="light-observe">Quan sát: mép bóng mềm · chuyển vùng mượt · ít tương phản gắt.</div>
+        </div>
+      </article>
+    </div>
+
+    <div class="light-direction">
+      <article class="direction-card">
+        <b>→</b>
+        <h3>Ánh sáng từ phía trước</h3>
+        <p>Dễ nhìn rõ sản phẩm, nhưng hình ảnh có thể ít chiều sâu nếu ánh sáng quá đều.</p>
+      </article>
+
+      <article class="direction-card">
+        <b>↘</b>
+        <h3>Ánh sáng từ bên hông</h3>
+        <p>Tạo vùng sáng – tối rõ hơn, giúp nhìn hình khối và bề mặt chất liệu tốt hơn.</p>
+      </article>
+
+      <article class="direction-card">
+        <b>←</b>
+        <h3>Ánh sáng từ phía sau</h3>
+        <p>Có thể tạo viền sáng và tách người mẫu khỏi hậu cảnh, nhưng cần chú ý độ sáng mặt và trang phục.</p>
+      </article>
+    </div>
+
+    <div class="light-question">
+      <div>
+        <h3>4 câu hỏi để đọc ánh sáng</h3>
+        <p>
+          Khi nhìn một ảnh tham khảo, chưa cần đoán thiết bị. Chỉ cần trả lời bốn câu này trước.
+        </p>
       </div>
 
+      <div class="light-question-list">
+        <div>01 · Ánh sáng đi từ hướng nào?</div>
+        <div>02 · Ánh sáng cứng hay mềm?</div>
+        <div>03 · Bóng đổ nằm ở đâu?</div>
+        <div>04 · Chất liệu trang phục đang rõ hay bị mất chi tiết?</div>
+      </div>
     </div>
   </section>
 
