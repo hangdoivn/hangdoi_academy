@@ -4659,6 +4659,110 @@
       .result-item:last-child { border-bottom:0; }
     }
 
+
+    /* ===== QA hardening · responsive, embeds, teacher notes ===== */
+    .pin-embed-wrap {
+      min-width:0;
+      isolation:isolate;
+    }
+
+    .pin-embed-wrap > span,
+    .pin-embed-wrap iframe {
+      max-width:100% !important;
+    }
+
+    .teacher-note summary {
+      position:relative;
+      z-index:2;
+    }
+
+    .teacher-note-popover {
+      z-index:3;
+    }
+
+    .analysis-layout {
+      align-items:start;
+    }
+
+    .analysis-image {
+      position:sticky;
+      top:24px;
+      align-self:start;
+    }
+
+    @media (max-width:1024px) and (min-width:801px) {
+      .compare-stage,
+      .angle-grid,
+      .focal-stage,
+      .bg-grid {
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+
+      .compare-panel:last-child,
+      .angle-card:last-child,
+      .focal-card:last-child,
+      .bg-card:last-child {
+        grid-column:span 2;
+      }
+
+      .framing-strip {
+        grid-template-columns:repeat(3,minmax(0,1fr));
+        gap:1px;
+        background:var(--green-950);
+      }
+
+      .frame-type {
+        border-right:0;
+        background:var(--paper-50);
+      }
+
+      .frame-type:nth-child(2) { background:var(--green-100); }
+      .frame-type:nth-child(3) { background:#F7E4DC; }
+      .frame-type:nth-child(4) { background:#E7EAFB; }
+      .frame-type:nth-child(5) {
+        grid-column:span 2;
+        background:var(--paper-100);
+      }
+
+      .pose-sequence,
+      .practice-grid,
+      .result-grid {
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+
+      .result-item {
+        border-right:1px solid rgba(255,255,255,.22);
+        border-bottom:1px solid rgba(255,255,255,.22);
+      }
+
+      .result-item:nth-child(2n) { border-right:0; }
+      .result-item:nth-last-child(-n+2) { border-bottom:0; }
+    }
+
+    @media (max-width:800px) {
+      .analysis-image {
+        position:relative;
+        top:auto;
+      }
+
+      .teacher-note-popover {
+        z-index:9999;
+        padding-bottom:max(18px, env(safe-area-inset-bottom));
+        box-shadow:0 18px 60px rgba(15,66,45,.28);
+      }
+
+      .teacher-note summary {
+        z-index:10000;
+      }
+    }
+
+    @media print {
+      .teacher-note,
+      .teacher-end-note {
+        display:none !important;
+      }
+    }
+
     @media (max-width: 800px) {
       .page { padding: 0 16px 64px; }
       .lesson-nav { min-height:54px; }
@@ -4760,7 +4864,7 @@
     <div class="hero-visual" aria-label="Ảnh tham khảo thời trang">
       <div class="hero-note-anchor">
         <details class="teacher-note">
-          <summary aria-label="Mở gợi ý giảng viên"></summary>
+          <summary aria-label="Mở gợi ý giảng viên" title="Gợi ý giảng viên"></summary>
           <div class="teacher-note-popover">
             <h4>Cách mở bài</h4>
             <p>Đừng giải thích ngay “nhiếp ảnh thời trang là gì”. Hãy cho học viên xem 2–3 ảnh và hỏi: “Bạn nhìn thấy người mẫu trước hay trang phục trước?”</p>
@@ -4791,7 +4895,7 @@
   <section class="section section-objectives">
     <div class="section-note-anchor">
       <details class="teacher-note">
-        <summary aria-label="Mở gợi ý giảng viên"></summary>
+        <summary aria-label="Mở gợi ý giảng viên" title="Gợi ý giảng viên"></summary>
         <div class="teacher-note-popover">
           <h4>Cách dẫn dắt</h4>
           <p>Đi lần lượt 3 năng lực. Sau mỗi năng lực, hỏi học viên đưa ra một ví dụ từ ảnh vừa xem thay vì chỉ nghe lý thuyết.</p>
@@ -4845,7 +4949,7 @@
 
         <div class="objective-outcomes">
           <div><span>Sau buổi học</span><strong>Phân biệt ảnh chân dung, ảnh sản phẩm và ảnh thời trang.</strong></div>
-          <div><span>Sau buổi học</span><strong>Tạo được 6 cách lấy khung hình khác nhau từ cùng một bộ đồ.</strong></div>
+          <div><span>Sau buổi học</span><strong>Tạo được 6 cách lấy khung hình khác nhau từ cùng một bộ trang phục.</strong></div>
           <div><span>Sau buổi học</span><strong>Tự chỉ ra cách lấy khung nào hiệu quả và cách nào cần điều chỉnh.</strong></div>
         </div>
       </div>
@@ -4855,7 +4959,7 @@
     <section class="section section-compare">
     <div class="section-note-anchor">
       <details class="teacher-note">
-        <summary aria-label="Mở gợi ý giảng viên"></summary>
+        <summary aria-label="Mở gợi ý giảng viên" title="Gợi ý giảng viên"></summary>
         <div class="teacher-note-popover">
           <h4>Cách dẫn dắt</h4>
           <p>Cho học viên nhìn ba ảnh trước, chưa đọc tiêu đề. Hỏi: “Ảnh nào khiến bạn nhìn người trước? Ảnh nào khiến bạn nhìn sản phẩm trước? Ảnh nào cân bằng cả hai?”</p>
@@ -4961,12 +5065,12 @@
       </article>
     </div>
 
-    <div class="compare-equation" aria-label="Mối quan hệ giữa ba dạng ảnh">
-      <strong>Ảnh chân dung<br><small>Người là trung tâm</small></strong>
+    <div class="compare-equation" aria-label="Ba yếu tố cần cân bằng trong ảnh thời trang">
+      <strong>Con người<br><small>Tư thế · biểu cảm · cá tính</small></strong>
       <i>+</i>
-      <strong>Ảnh sản phẩm<br><small>Sản phẩm phải được đọc rõ</small></strong>
-      <i>=</i>
-      <strong>Ảnh thời trang<br><small>Con người giúp trang phục có câu chuyện</small></strong>
+      <strong>Trang phục<br><small>Dáng · chất liệu · chi tiết</small></strong>
+      <i>+</i>
+      <strong>Cách thể hiện<br><small>Góc máy · ánh sáng · bối cảnh</small></strong>
     </div>
 
     <div class="compare-question">
@@ -4981,7 +5085,7 @@
     <section class="section section-types">
     <div class="section-note-anchor">
       <details class="teacher-note">
-        <summary aria-label="Mở gợi ý giảng viên"></summary>
+        <summary aria-label="Mở gợi ý giảng viên" title="Gợi ý giảng viên"></summary>
         <div class="teacher-note-popover">
           <h4>Cách dẫn dắt</h4>
           <p>Cho học viên nhìn 4 ảnh trước khi đọc tên. Yêu cầu đoán mục đích sử dụng của từng ảnh, rồi mới mở phần giải thích.</p>
@@ -5135,7 +5239,7 @@
     <section class="section section-garment">
     <div class="section-note-anchor">
       <details class="teacher-note">
-        <summary aria-label="Mở gợi ý giảng viên"></summary>
+        <summary aria-label="Mở gợi ý giảng viên" title="Gợi ý giảng viên"></summary>
         <div class="teacher-note-popover">
           <h4>Cách dẫn dắt</h4>
           <p>Đừng cho học viên chụp ngay. Cho người mẫu đứng yên và yêu cầu học viên chỉ bằng mắt: đâu là phần quan trọng nhất của bộ trang phục, đâu là phần dễ mất dáng nhất.</p>
@@ -5186,7 +5290,7 @@
           <div>
             <h3>Bề mặt chất liệu</h3>
             <p>
-              Vải bóng, vải nhám, denim hay lụa phản ứng với ánh sáng khác nhau.
+              Vải bóng, vải nhám, vải bò hay lụa phản ứng với ánh sáng khác nhau.
               Chất liệu có đang hiện đúng đặc tính không?
             </p>
           </div>
@@ -5259,7 +5363,7 @@
     <section class="section section-angle">
     <div class="section-note-anchor">
       <details class="teacher-note">
-        <summary aria-label="Mở gợi ý giảng viên"></summary>
+        <summary aria-label="Mở gợi ý giảng viên" title="Gợi ý giảng viên"></summary>
         <div class="teacher-note-popover">
           <h4>Cách dẫn dắt</h4>
           <p>Đặt người mẫu đứng yên. Chụp ba ảnh với cùng tiêu cự và gần cùng khung hình, chỉ thay đổi độ cao máy. Cho học viên xem ba ảnh cạnh nhau trước khi giải thích.</p>
@@ -5374,7 +5478,7 @@
     <section class="section section-focal">
     <div class="section-note-anchor">
       <details class="teacher-note">
-        <summary aria-label="Mở gợi ý giảng viên"></summary>
+        <summary aria-label="Mở gợi ý giảng viên" title="Gợi ý giảng viên"></summary>
         <div class="teacher-note-popover">
           <h4>Cách dẫn dắt</h4>
           <p>Cho học viên chụp cùng một khung ba phần tư cơ thể ở 35mm, 50mm và 85mm. Yêu cầu người chụp tự tiến hoặc lùi để giữ khung hình gần giống nhau.</p>
@@ -5505,7 +5609,7 @@
     <section class="section section-framing">
     <div class="section-note-anchor">
       <details class="teacher-note">
-        <summary aria-label="Mở gợi ý giảng viên"></summary>
+        <summary aria-label="Mở gợi ý giảng viên" title="Gợi ý giảng viên"></summary>
         <div class="teacher-note-popover">
           <h4>Cách dẫn dắt</h4>
           <p>Không bắt học viên nhớ tên trước. Hãy hỏi: “Nếu mục tiêu là cho người xem nhìn toàn bộ bộ trang phục, bạn sẽ lấy khung thế nào?” Sau đó mới gọi tên loại khung.</p>
@@ -5625,7 +5729,7 @@
     <section class="section section-pose">
     <div class="section-note-anchor">
       <details class="teacher-note">
-        <summary aria-label="Mở gợi ý giảng viên"></summary>
+        <summary aria-label="Mở gợi ý giảng viên" title="Gợi ý giảng viên"></summary>
         <div class="teacher-note-popover">
           <h4>Cách dẫn dắt</h4>
           <p>Cho người mẫu đứng ở tư thế trung tính trước. Sau đó chỉ thay một yếu tố mỗi lần: trọng tâm, vị trí tay, rồi chuyển động. Chụp sau mỗi thay đổi để so sánh.</p>
@@ -5766,7 +5870,7 @@
     <section class="section section-light">
     <div class="section-note-anchor">
       <details class="teacher-note">
-        <summary aria-label="Mở gợi ý giảng viên"></summary>
+        <summary aria-label="Mở gợi ý giảng viên" title="Gợi ý giảng viên"></summary>
         <div class="teacher-note-popover">
           <h4>Cách dẫn dắt</h4>
           <p>Cho học viên xem hai ảnh có ánh sáng khác nhau và hỏi trước: “Bóng đổ ở ảnh nào sắc hơn?” Sau đó mới gọi tên ánh sáng cứng và ánh sáng mềm.</p>
@@ -5877,7 +5981,7 @@
     <section class="section section-bg">
     <div class="section-note-anchor">
       <details class="teacher-note">
-        <summary aria-label="Mở gợi ý giảng viên"></summary>
+        <summary aria-label="Mở gợi ý giảng viên" title="Gợi ý giảng viên"></summary>
         <div class="teacher-note-popover">
           <h4>Cách dẫn dắt</h4>
           <p>Cho học viên xem một ảnh có hậu cảnh đẹp nhưng rối và một ảnh đơn giản hơn. Hỏi: “Ảnh nào giúp bạn nhìn trang phục nhanh hơn?”</p>
@@ -5924,7 +6028,7 @@
         </div>
         <div class="bg-copy">
           <div>
-            <h3>Phông nền trong studio</h3>
+            <h3>Phông nền trong phòng chụp</h3>
             <p>
               Ít yếu tố gây nhiễu, dễ tập trung vào dáng tổng thể, màu sắc và chất liệu trang phục.
             </p>
@@ -6007,7 +6111,7 @@
     <section class="section section-analysis">
     <div class="section-note-anchor">
       <details class="teacher-note">
-        <summary aria-label="Mở gợi ý giảng viên"></summary>
+        <summary aria-label="Mở gợi ý giảng viên" title="Gợi ý giảng viên"></summary>
         <div class="teacher-note-popover">
           <h4>Cách dẫn dắt</h4>
           <p>Chọn đúng một ảnh và phân tích từ trên xuống theo 9 bước. Không đổi ảnh giữa chừng. Mục tiêu là tập cho học viên một trình tự quan sát cố định.</p>
@@ -6128,7 +6232,7 @@
     <section class="section section-practice">
     <div class="section-note-anchor">
       <details class="teacher-note">
-        <summary aria-label="Mở gợi ý giảng viên"></summary>
+        <summary aria-label="Mở gợi ý giảng viên" title="Gợi ý giảng viên"></summary>
         <div class="teacher-note-popover">
           <h4>Cách dẫn dắt</h4>
           <p>Giữ nguyên bộ trang phục, người mẫu, vị trí và ánh sáng. Chỉ thay đổi góc máy, cách lấy khung hình và tạo dáng để học viên thấy rõ tác động của từng biến số.</p>
@@ -6142,7 +6246,7 @@
           </ul>
 
           <h4>Lưu ý chuyên môn</h4>
-          <p>Không cho chụp liên tục theo cảm tính. Mỗi khung phải có mục đích khác nhau. Sau khi đủ 6 ảnh mới review cạnh nhau.</p>
+          <p>Không cho chụp liên tục theo cảm tính. Mỗi khung phải có mục đích khác nhau. Sau khi đủ 6 ảnh mới đặt cạnh nhau để xem lại.</p>
         </div>
       </details>
     </div>
@@ -6277,7 +6381,7 @@
     <section class="section section-homework">
     <div class="section-note-anchor">
       <details class="teacher-note">
-        <summary aria-label="Mở gợi ý giảng viên"></summary>
+        <summary aria-label="Mở gợi ý giảng viên" title="Gợi ý giảng viên"></summary>
         <div class="teacher-note-popover">
           <h4>Cách giao bài</h4>
           <p>Giải thích rõ rằng bài tập không chấm theo “ảnh đẹp”. Học viên cần cho thấy mình biết quan sát và giải thích lựa chọn.</p>
@@ -6373,7 +6477,7 @@
     <section class="section section-result">
     <div class="section-note-anchor">
       <details class="teacher-note">
-        <summary aria-label="Mở gợi ý giảng viên"></summary>
+        <summary aria-label="Mở gợi ý giảng viên" title="Gợi ý giảng viên"></summary>
         <div class="teacher-note-popover">
           <h4>Cách kết buổi</h4>
           <p>Không tổng kết lại toàn bộ lý thuyết. Yêu cầu học viên tự nói 3 điều mình sẽ thay đổi ngay ở lần chụp tiếp theo.</p>
@@ -6452,7 +6556,7 @@
 
     <div class="teacher-end-note">
     <details class="teacher-note">
-      <summary aria-label="Mở nguyên tắc giảng viên"></summary>
+      <summary aria-label="Mở nguyên tắc giảng viên" title="Nguyên tắc giảng viên"></summary>
       <div class="teacher-note-popover">
         <h4>Nguyên tắc xuyên suốt Buổi 01</h4>
         <p>Nhìn ảnh → tự nhận xét → gọi tên yếu tố → chụp thử → đặt cạnh nhau → tự giải thích kết quả.</p>
