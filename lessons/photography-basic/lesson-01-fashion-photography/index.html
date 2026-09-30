@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Buổi 01 — Tư duy Nhiếp ảnh Thời trang</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f5f5f2;
+      color: #171717;
+    }
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 24px 96px;
+    }
+    .hero {
+      padding: 72px 0 54px;
+      border-bottom: 1px solid #d9d9d3;
+    }
+    .kicker {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    h1 {
+      max-width: 940px;
+      margin: 0;
+      font-size: clamp(44px, 7vw, 78px);
+      line-height: .96;
+      letter-spacing: -.05em;
+    }
+    .hero p {
+      max-width: 760px;
+      margin: 24px 0 0;
+      font-size: 20px;
+      line-height: 1.6;
+      color: #626262;
+    }
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 12px;
+      margin-top: 42px;
+    }
+    .meta div {
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #ecece7;
+      border-radius: 14px;
+    }
+    .meta span {
+      display: block;
+      font-size: 12px;
+      color: #777;
+      margin-bottom: 8px;
+    }
+    .meta strong { font-size: 21px; }
+    .section {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 28px;
+      padding: 68px 0;
+      border-bottom: 1px solid #d9d9d3;
+    }
+    .num {
+      font-size: 13px;
+      font-weight: 700;
+      color: #8a8a84;
+    }
+    h2 {
+      margin: 0 0 28px;
+      font-size: 36px;
+      letter-spacing: -.03em;
+    }
+    h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+    }
+    p { line-height: 1.65; }
+    .lead {
+      max-width: 800px;
+      margin: -10px 0 28px;
+      color: #646464;
+      font-size: 18px;
+    }
+    .grid-2, .grid-3, .grid-4 {
+      display: grid;
+      gap: 14px;
+    }
+    .grid-2 { grid-template-columns: repeat(2,1fr); }
+    .grid-3 { grid-template-columns: repeat(3,1fr); }
+    .grid-4 { grid-template-columns: repeat(4,1fr); }
+    .card {
+      padding: 22px;
+      background: #fff;
+      border: 1px solid #ecece7;
+      border-radius: 14px;
+    }
+    .card p {
+      margin: 0;
+      color: #666;
+    }
+    .card small {
+      display: block;
+      margin-top: 14px;
+      color: #888;
+      line-height: 1.5;
+    }
+    .highlight {
+      padding: 30px;
+      background: #171717;
+      color: #fff;
+      border-radius: 18px;
+      margin-bottom: 26px;
+    }
+    .highlight span {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .12em;
+    }
+    .highlight h3 {
+      margin: 14px 0 8px;
+      font-size: 30px;
+    }
+    .highlight p { margin: 0; color: #cfcfcf; }
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid #ecece7;
+      border-radius: 14px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+    }
+    th, td {
+      padding: 18px 20px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid #e8e8e3;
+      line-height: 1.5;
+    }
+    th {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      background: #fafaf8;
+    }
+    tr:last-child td { border-bottom: 0; }
+    .framework {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 14px;
+    }
+    .fw-card {
+      padding: 22px;
+      border-radius: 14px;
+      background: #fff;
+      border: 1px solid #ecece7;
+    }
+    .fw-card span {
+      display: block;
+      font-size: 12px;
+      color: #8a8a84;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .fw-card p { margin: 0; color: #666; }
+    .fw-card.wide { grid-column: span 2; }
+    .exercise {
+      padding: 28px;
+      margin-top: 24px;
+      border-radius: 16px;
+      background: #ecece7;
+    }
+    .exercise-label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .12em;
+    }
+    .exercise h3 {
+      margin: 12px 0;
+      font-size: 26px;
+    }
+    .shot-list {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .shot {
+      padding: 18px;
+      background: #fff;
+      border: 1px solid #e4e4df;
+      border-radius: 12px;
+    }
+    .shot strong { display: block; margin-bottom: 6px; }
+    .shot span { color: #777; font-size: 13px; }
+    .flow {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .flow span {
+      padding: 10px 14px;
+      border-radius: 100px;
+      background: #fff;
+      border: 1px solid #e7e7e2;
+      font-size: 14px;
+    }
+    .flow i { font-style: normal; color: #999; }
+    blockquote {
+      margin: 26px 0 0;
+      padding-left: 22px;
+      border-left: 3px solid #171717;
+      font-size: 25px;
+      line-height: 1.45;
+    }
+    .output-list {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 12px;
+    }
+    .output-list div {
+      padding: 20px;
+      border-radius: 12px;
+      background: #171717;
+      color: #fff;
+    }
+    .output-list span { color: #8f8f8f; margin-right: 10px; }
+    .note {
+      margin-top: 24px;
+      padding: 24px;
+      border-radius: 14px;
+      background: #fff;
+      border: 1px solid #ecece7;
+      color: #626262;
+    }
+    .teaching {
+      margin-top: 58px;
+      padding: 42px;
+      background: #171717;
+      color: #fff;
+      border-radius: 18px;
+    }
+    .teaching h2 { margin-bottom: 14px; }
+    .teaching p { max-width: 760px; color: #bdbdbd; }
+
+    .visual-ref {
+      margin-top: 26px;
+      padding: 22px;
+      background: #ecece7;
+      border-radius: 16px;
+    }
+    .visual-ref-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: end;
+      margin-bottom: 16px;
+    }
+    .visual-ref-head .label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #6f6f68;
+    }
+    .visual-ref-head p {
+      margin: 0;
+      max-width: 620px;
+      color: #666;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .pin-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 14px;
+      align-items: start;
+    }
+    .pin-grid.one {
+      grid-template-columns: 1fr;
+    }
+    .pin-card {
+      min-width: 0;
+      padding: 12px;
+      background: #fff;
+      border: 1px solid #e4e4df;
+      border-radius: 12px;
+    }
+    .pin-title {
+      margin: 0 0 10px;
+      font-size: 12px;
+      font-weight: 750;
+      color: #313131;
+    }
+    .pin-note {
+      margin: 10px 0 0;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #747474;
+    }
+    .pin-embed-wrap {
+      min-height: 280px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+    .ref-credit {
+      margin-top: 10px;
+      font-size: 11px;
+      color: #87877f;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 800px) {
+      .page { padding: 20px 16px 64px; }
+      .hero { padding-top: 42px; }
+      .meta, .grid-2, .grid-3, .grid-4, .framework, .shot-list, .output-list {
+        grid-template-columns: 1fr;
+      }
+      .section {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        padding: 48px 0;
+      }
+      .fw-card.wide { grid-column: auto; }
+      .teaching { padding: 28px; }
+      .pin-grid { grid-template-columns: 1fr; }
+      .visual-ref-head { display: block; }
+      .visual-ref-head p { margin-top: 8px; }
+      h2 { font-size: 30px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <header class="hero">
+    <div class="kicker">NHIẾP ẢNH CƠ BẢN · NHIẾP ẢNH ỨNG DỤNG TRONG THỜI TRANG</div>
+    <h1>Buổi 01 — Tư duy Nhiếp ảnh Thời trang</h1>
+    <p>
+      Học cách nhìn một bức ảnh thời trang bằng tư duy nhiếp ảnh:
+      form trang phục, model, góc máy, tiêu cự, bố cục, ánh sáng, background và mục đích sử dụng.
+    </p>
+    <div class="meta">
+      <div><span>Thời lượng</span><strong>2,5 giờ</strong></div>
+      <div><span>Lý thuyết</span><strong>30%</strong></div>
+      <div><span>Phân tích ảnh</span><strong>30%</strong></div>
+      <div><span>Thực hành</span><strong>40%</strong></div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="num">01</div>
+    <div>
+      <h2>Mục tiêu sau buổi học</h2>
+      <div class="grid-2">
+        <div class="card"><h3>Nhìn đúng chủ thể</h3><p>Hiểu trong Fashion Photography, model và trang phục cùng tạo nên hình ảnh.</p></div>
+        <div class="card"><h3>Đọc được form</h3><p>Nhìn silhouette, độ rủ, volume, layering và các chi tiết cần được làm nổi bật.</p></div>
+        <div class="card"><h3>Nhận biết góc chụp</h3><p>Phân biệt góc cao, ngang, thấp và tác động lên tỷ lệ cơ thể.</p></div>
+        <div class="card"><h3>Đọc bố cục</h3><p>Phân biệt full body, 3/4, medium, close-up và detail.</p></div>
+        <div class="card"><h3>Quan sát ánh sáng</h3><p>Nhận biết hard/soft light và hướng sáng cơ bản.</p></div>
+        <div class="card"><h3>Cầm máy kiểm chứng</h3><p>Thực hành 6 frame khác nhau trên cùng một outfit và model.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="num">02</div>
+    <div>
+      <h2>Fashion Photography khác gì chụp chân dung?</h2>
+      <div class="highlight">
+        <span>KEY IDEA</span>
+        <h3>Không chỉ chụp người đẹp. Phải chụp trang phục đẹp.</h3>
+        <p>
+          Chân dung thường ưu tiên con người. Fashion Photography cần cân bằng giữa
+          con người, trang phục, styling và ngôn ngữ hình ảnh.
+        </p>
+      </div>
+      <div class="grid-3">
+        <div class="card"><h3>Portrait</h3><p>Ưu tiên khuôn mặt, cảm xúc, cá tính người mẫu.</p></div>
+        <div class="card"><h3>Fashion</h3><p>Ưu tiên sự tương tác giữa model, garment, pose và visual direction.</p></div>
+        <div class="card"><h3>Product</h3><p>Ưu tiên độ chính xác về form, màu, texture và detail sản phẩm.</p></div>
+      </div>
+      <div class="note">
+        Câu hỏi giảng viên nên hỏi liên tục: <strong>“Ảnh này đang làm nổi model hay làm nổi trang phục?”</strong>
+      </div>
+      <div class="visual-ref">
+        <div class="visual-ref-head">
+          <div class="label">ẢNH MINH HOẠ · PORTRAIT VS FASHION</div>
+          <p>Quan sát xem ảnh nào ưu tiên biểu cảm khuôn mặt, ảnh nào ưu tiên garment, styling và silhouette.</p>
+        </div>
+        <div class="pin-grid">
+          <article class="pin-card">
+            <p class="pin-title">Portrait-led image</p>
+            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://www.pinterest.com/pin/196258496237929627/"></a></div>
+            <p class="pin-note">Tập trung gương mặt, cảm xúc và visual impact từ model.</p>
+          </article>
+          <article class="pin-card">
+            <p class="pin-title">Fashion-led image</p>
+            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://www.pinterest.com/pin/442197257170509299/"></a></div>
+            <p class="pin-note">Outfit, pose và tổng thể styling được ưu tiên đọc rõ hơn.</p>
+          </article>
+        </div>
+        <div class="ref-credit">Ảnh được nhúng từ Pinterest để phục vụ mục đích học tập và phân tích.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="num">03</div>
+    <div>
+      <h2>4 dạng chụp thời trang học viên cần phân biệt</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Dạng chụp</th><th>Mục tiêu nhiếp ảnh</th><th>Điểm cần chú ý</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Campaign</strong></td><td>Tạo cảm xúc và hình ảnh thương hiệu</td><td>Concept, ánh sáng, bối cảnh, pose và art direction</td></tr>
+            <tr><td><strong>Lookbook</strong></td><td>Thể hiện collection một cách nhất quán</td><td>Form, styling, sequencing và consistency</td></tr>
+            <tr><td><strong>E-commerce</strong></td><td>Cho khách thấy sản phẩm chính xác</td><td>Form, màu, chất liệu, crop và độ sạch</td></tr>
+            <tr><td><strong>Editorial</strong></td><td>Tạo câu chuyện và ngôn ngữ thị giác</td><td>Pose, mood, bố cục, ánh sáng và tính thử nghiệm</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="exercise">
+        <div class="exercise-label">BÀI TẬP QUAN SÁT</div>
+        <h3>Nhìn 8–10 ảnh và đoán ảnh thuộc nhóm nào</h3>
+        <p>
+          Không cần đúng tuyệt đối. Mục tiêu là nhận ra <strong>cách chụp khác nhau</strong>
+          chứ không chỉ phân loại nội dung.
+        </p>
+      </div>
+      <div class="visual-ref">
+        <div class="visual-ref-head">
+          <div class="label">ẢNH MINH HOẠ · CÁC DẠNG ẢNH THỜI TRANG</div>
+          <p>Dùng các ví dụ này để phân biệt campaign, lookbook và editorial dựa trên cách chụp chứ không chỉ nội dung.</p>
+        </div>
+        <div class="pin-grid">
+          <article class="pin-card">
+            <p class="pin-title">Campaign / Lifestyle</p>
+            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://ar.pinterest.com/pin/1125968647538045/"></a></div>
+            <p class="pin-note">Cảm xúc, bối cảnh và không khí thương hiệu nổi bật.</p>
+          </article>
+          <article class="pin-card">
+            <p class="pin-title">Lookbook / Product-led</p>
+            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://ca.pinterest.com/pin/simple-lookbook-design-template-indd-idml--829858668868877361/"></a></div>
+            <p class="pin-note">Tính hệ thống, consistency và khả năng đọc outfit rõ hơn.</p>
+          </article>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="num">04</div>
+    <div>
+      <h2>Chủ thể trong ảnh thời trang: Model + Garment</h2>
+      <p class="lead">
+        Học viên cần học cách nhìn quần áo như một đối tượng có hình khối, vật liệu và chuyển động riêng.
+      </p>
+      <div class="grid-4">
+        <div class="card"><h3>Silhouette</h3><p>Form tổng thể của outfit khi nhìn từ xa.</p><small>Vai · eo · chiều dài · volume</small></div>
+        <div class="card"><h3>Texture</h3><p>Chất liệu phản ứng với ánh sáng như thế nào.</p><small>Linen · denim · leather · silk</small></div>
+        <div class="card"><h3>Layering</h3><p>Các lớp trang phục có tách nhau đủ rõ hay không.</p></div>
+        <div class="card"><h3>Detail</h3><p>Khuy, đường may, logo, phụ kiện và điểm nhấn cần được thấy.</p></div>
+      </div>
+      <blockquote>
+        Nếu pose đẹp nhưng làm mất form quần áo, đó vẫn là một pose chưa tốt cho ảnh thời trang.
+      </blockquote>
+      <div class="visual-ref">
+        <div class="visual-ref-head">
+          <div class="label">ẢNH MINH HOẠ · SILHOUETTE & TEXTURE</div>
+          <p>Quan sát cách ánh sáng và pose giúp phô bày đường form, lớp vải và bề mặt chất liệu.</p>
+        </div>
+        <div class="pin-grid">
+          <article class="pin-card">
+            <p class="pin-title">Silhouette emphasis</p>
+            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://www.pinterest.com/pin/692709986479212160/"></a></div>
+            <p class="pin-note">Dễ đọc form tổng thể, tỷ lệ cơ thể và hình khối outfit.</p>
+          </article>
+          <article class="pin-card">
+            <p class="pin-title">Texture emphasis</p>
+            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://www.pinterest.com/pin/274086327309621039/"></a></div>
+            <p class="pin-note">Ánh sáng tạo chi tiết bề mặt, nếp gấp và chất liệu rõ hơn.</p>
+          </article>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="num">05</div>
+    <div>
+      <h2>Góc máy & tỷ lệ cơ thể</h2>
+      <div class="grid-3">
+        <div class="card"><h3>High Angle</h3><p>Máy cao hơn model. Có thể làm cơ thể nhỏ lại, giảm cảm giác quyền lực và thay đổi tỷ lệ chân.</p></div>
+        <div class="card"><h3>Eye Level</h3><p>Trung tính, dễ kiểm soát form và phù hợp nhiều dạng lookbook/e-commerce.</p></div>
+        <div class="card"><h3>Low Angle</h3><p>Kéo dài chân, tăng cảm giác mạnh và thời trang hơn nhưng dễ distortion nếu lạm dụng.</p></div>
+      </div>
+      <div class="exercise">
+        <div class="exercise-label">THỰC HÀNH NHANH</div>
+        <h3>Cùng một model — chụp 3 góc máy</h3>
+        <p>Giữ nguyên pose và tiêu cự. Chỉ thay đổi độ cao máy để nhìn rõ tác động lên cơ thể và outfit.</p>
+      </div>
+      <div class="visual-ref">
+        <div class="visual-ref-head">
+          <div class="label">ẢNH MINH HOẠ · GÓC MÁY</div>
+          <p>So sánh tác động của high angle và low angle lên chân, thân người và cảm giác thời trang của bức ảnh.</p>
+        </div>
+        <div class="pin-grid">
+          <article class="pin-card">
+            <p class="pin-title">Eye-level / Neutral</p>
+            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://www.pinterest.com/pin/311592867979786175/"></a></div>
+            <p class="pin-note">Dễ kiểm soát tỷ lệ và phù hợp cho nhiều mục đích cơ bản.</p>
+          </article>
+          <article class="pin-card">
+            <p class="pin-title">Low-angle / Fashion impact</p>
+            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://ar.pinterest.com/pin/144115256820887498/"></a></div>
+            <p class="pin-note">Tạo cảm giác chân dài hơn và hình ảnh “fashion” hơn, nhưng dễ méo nếu lạm dụng.</p>
+          </article>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="num">06</div>
+    <div>
+      <h2>Tiêu cự & khoảng cách chụp</h2>
+      <p class="lead">
+        Chưa cần học sâu về lens ở Buổi 01, nhưng học viên cần nhận ra tiêu cự ảnh hưởng trực tiếp đến tỷ lệ model và cảm giác hình ảnh.
+      </p>
+      <div class="grid-3">
+        <div class="card"><h3>35mm</h3><p>Rộng, gần môi trường, có thể tạo cảm giác năng động và editorial.</p><small>Dễ distortion nếu đứng quá gần.</small></div>
+        <div class="card"><h3>50mm</h3><p>Tự nhiên, cân bằng giữa người và bối cảnh, dễ dùng.</p></div>
+        <div class="card"><h3>85mm</h3><p>Nén không gian, tách background tốt, form cơ thể thường dễ kiểm soát hơn.</p></div>
+      </div>
+      <div class="note">
+        Bài học quan trọng: <strong>tiêu cự không chỉ quyết định “zoom bao nhiêu”, mà quyết định cảm giác hình thể và không gian.</strong>
+      </div>
+      <div class="visual-ref">
+        <div class="visual-ref-head">
+          <div class="label">ẢNH MINH HOẠ · TIÊU CỰ</div>
+          <p>Nhìn ảnh để cảm nhận sự khác nhau giữa không gian rộng, cảm giác tự nhiên và độ nén nền.</p>
+        </div>
+        <div class="pin-grid">
+          <article class="pin-card">
+            <p class="pin-title">Wide / Environmental feel</p>
+            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://www.pinterest.com/pin/sunset-editorial-portrait-fashion-photography-in-palm-springs--272045633731231808/"></a></div>
+            <p class="pin-note">Có nhiều bối cảnh và năng lượng không gian hơn.</p>
+          </article>
+          <article class="pin-card">
+            <p class="pin-title">Tele / Compressed look</p>
+            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://www.pinterest.com/pin/543176405060673319/"></a></div>
+            <p class="pin-note">Model tách nền tốt hơn và form cơ thể thường gọn hơn.</p>
+          </article>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="num">07</div>
+    <div>
+      <h2>Bố cục trong Fashion Photography</h2>
+      <div class="grid-3">
+        <div class="card"><h3>Full Body</h3><p>Đọc toàn bộ outfit, silhouette và tỷ lệ cơ thể.</p></div>
+        <div class="card"><h3>3/4 Body</h3><p>Cân bằng giữa outfit và biểu cảm model.</p></div>
+        <div class="card"><h3>Medium</h3><p>Tập trung upper-body, styling và phụ kiện.</p></div>
+        <div class="card"><h3>Close-up</h3><p>Biểu cảm, beauty, accessories hoặc detail.</p></div>
+        <div class="card"><h3>Detail</h3><p>Chất liệu, logo, đường may, phụ kiện.</p></div>
+        <div class="card"><h3>Negative Space</h3><p>Tạo nhịp thở và khoảng trống phục vụ layout/visual.</p></div>
+      </div>
+      <div class="note">
+        Lưu ý crop: tránh cắt hình tùy tiện đúng vào các khớp lớn như gối, mắt cá, khuỷu tay nếu không có chủ đích.
+      </div>
+      <div class="visual-ref">
+        <div class="visual-ref-head">
+          <div class="label">ẢNH MINH HOẠ · BỐ CỤC & CROP</div>
+          <p>Dùng ảnh để chỉ ra sự khác nhau giữa full body, medium và detail, cũng như cách crop ảnh ảnh hưởng việc đọc outfit.</p>
+        </div>
+        <div class="pin-grid">
+          <article class="pin-card">
+            <p class="pin-title">Full-body composition</p>
+            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://www.pinterest.com/pin/442197257170509299/"></a></div>
+            <p class="pin-note">Phù hợp để đọc silhouette và tổng thể bộ đồ.</p>
+          </article>
+          <article class="pin-card">
+            <p class="pin-title">Medium / styling detail</p>
+            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://www.pinterest.com/pin/196258496237929627/"></a></div>
+            <p class="pin-note">Tập trung upper-body, tay áo, phụ kiện và styling.</p>
+          </article>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="num">08</div>
+    <div>
+      <h2>Pose & Movement</h2>
+      <p class="lead">
+        Pose trong ảnh thời trang không chỉ để model “đẹp”; pose phải hỗ trợ silhouette, chất liệu và tinh thần outfit.
+      </p>
+      <div class="grid-2">
+        <div class="card"><h3>Static Pose</h3><p>Dễ đọc form, phù hợp lookbook và e-commerce.</p><small>Chú ý vai, tay, chân, trọng tâm cơ thể.</small></div>
+        <div class="card"><h3>Movement</h3><p>Tạo độ sống và giúp chất liệu thể hiện chuyển động.</p><small>Walking · turning · fabric motion</small></div>
+        <div class="card"><h3>Weight Shift</h3><p>Chuyển trọng tâm giúp cơ thể bớt cứng và tạo đường cong tự nhiên.</p></div>
+        <div class="card"><h3>Hand Placement</h3><p>Tay có thể giúp khoe túi, tay áo, phụ kiện hoặc phá form nếu đặt sai.</p></div>
+      </div>
+      <div class="visual-ref">
+        <div class="visual-ref-head">
+          <div class="label">ẢNH MINH HOẠ · POSE & MOVEMENT</div>
+          <p>Quan sát xem dáng đứng tĩnh và chuyển động thật sự thay đổi cảm giác trang phục ra sao.</p>
+        </div>
+        <div class="pin-grid">
+          <article class="pin-card">
+            <p class="pin-title">Static pose</p>
+            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://www.pinterest.com/pin/311592867979786175/"></a></div>
+            <p class="pin-note">Form outfit dễ đọc và kiểm soát tốt.</p>
+          </article>
+          <article class="pin-card">
+            <p class="pin-title">Movement pose</p>
+            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://www.pinterest.com/pin/sunset-editorial-portrait-fashion-photography-in-palm-springs--272045633731231808/"></a></div>
+            <p class="pin-note">Vải và cơ thể có độ sống, tạo cảm giác editorial hơn.</p>
+          </article>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="num">09</div>
+    <div>
+      <h2>Ánh sáng cơ bản cho Fashion</h2>
+      <div class="grid-2">
+        <div class="card"><h3>Hard Light</h3><p>Shadow rõ, texture mạnh, cảm giác graphic và cá tính.</p></div>
+        <div class="card"><h3>Soft Light</h3><p>Chuyển vùng sáng mượt, dễ kiểm soát da và form sản phẩm.</p></div>
+        <div class="card"><h3>Front Light</h3><p>Dễ đọc sản phẩm, ít shadow nhưng có thể thiếu chiều sâu.</p></div>
+        <div class="card"><h3>Side / Back Light</h3><p>Tạo khối, rim và tách model khỏi background; cần kiểm soát exposure.</p></div>
+      </div>
+      <div class="exercise">
+        <div class="exercise-label">BÀI TẬP QUAN SÁT</div>
+        <h3>Không cần biết setup đèn — chỉ cần đọc được ánh sáng</h3>
+        <p>Với mỗi ảnh: ánh sáng từ đâu? Hard hay soft? Shadow nằm đâu? Texture trang phục đang rõ hay mất?</p>
+      </div>
+      <div class="visual-ref">
+        <div class="visual-ref-head">
+          <div class="label">ẢNH MINH HOẠ · ÁNH SÁNG</div>
+          <p>So sánh ánh sáng hard và soft để hiểu texture, shadow và độ “graphic” trong ảnh thời trang.</p>
+        </div>
+        <div class="pin-grid">
+          <article class="pin-card">
+            <p class="pin-title">Hard light</p>
+            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://ar.pinterest.com/pin/144115256820887498/"></a></div>
+            <p class="pin-note">Bóng đổ rõ, độ sắc cạnh cao, cá tính mạnh.</p>
+          </article>
+          <article class="pin-card">
+            <p class="pin-title">Soft light</p>
+            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://www.pinterest.com/pin/274086327309621039/"></a></div>
+            <p class="pin-note">Mềm hơn trên da và dễ kiểm soát với garment cần texture nhẹ.</p>
+          </article>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="num">10</div>
+    <div>
+      <h2>Background & Environment</h2>
+      <div class="grid-3">
+        <div class="card"><h3>Studio</h3><p>Kiểm soát sạch, tập trung garment và silhouette.</p></div>
+        <div class="card"><h3>Architecture</h3><p>Dùng line, shape và scale để hỗ trợ bố cục.</p></div>
+        <div class="card"><h3>Street / Lifestyle</h3><p>Tạo context sử dụng thực tế và năng lượng đời sống.</p></div>
+      </div>
+      <div class="note">
+        Background tốt không phải background đẹp nhất. Là background giúp <strong>outfit nổi đúng mức</strong> và không cạnh tranh với model.
+      </div>
+      <div class="visual-ref">
+        <div class="visual-ref-head">
+          <div class="label">ẢNH MINH HOẠ · BACKGROUND</div>
+          <p>Cùng là ảnh fashion nhưng studio, architecture và street cho ra các vai trò background khác nhau.</p>
+        </div>
+        <div class="pin-grid">
+          <article class="pin-card">
+            <p class="pin-title">Studio clean background</p>
+            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://www.pinterest.com/pin/692709986479212160/"></a></div>
+            <p class="pin-note">Tập trung hoàn toàn vào garment và silhouette.</p>
+          </article>
+          <article class="pin-card">
+            <p class="pin-title">Architecture / environmental background</p>
+            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://ar.pinterest.com/pin/1125968647538045/"></a></div>
+            <p class="pin-note">Không gian góp phần tạo ngôn ngữ hình ảnh và scale.</p>
+          </article>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="num">11</div>
+    <div>
+      <h2>Framework đọc một ảnh Fashion</h2>
+      <div class="framework">
+        <div class="fw-card"><span>01</span><h3>Garment</h3><p>Form, texture, material, color, detail nào cần được nhìn thấy?</p></div>
+        <div class="fw-card"><span>02</span><h3>Model</h3><p>Body language và expression đang hỗ trợ outfit thế nào?</p></div>
+        <div class="fw-card"><span>03</span><h3>Camera Angle</h3><p>Máy cao, ngang hay thấp hơn model?</p></div>
+        <div class="fw-card"><span>04</span><h3>Focal Length</h3><p>Ảnh có cảm giác wide, normal hay tele?</p></div>
+        <div class="fw-card"><span>05</span><h3>Composition</h3><p>Full body, 3/4, medium, close-up hay detail?</p></div>
+        <div class="fw-card"><span>06</span><h3>Lighting</h3><p>Hard/soft? Direction? Contrast? Highlight và shadow?</p></div>
+        <div class="fw-card"><span>07</span><h3>Background</h3><p>Background đang hỗ trợ hay cạnh tranh với outfit?</p></div>
+        <div class="fw-card"><span>08</span><h3>Color</h3><p>Outfit, skin, background và grading có hoạt động cùng nhau không?</p></div>
+        <div class="fw-card wide"><span>09 · APPLICATION</span><h3>Purpose</h3><p>Ảnh này phù hợp hơn với Campaign, Lookbook, E-commerce hay Social? Vì sao?</p></div>
+      </div>
+      <div class="visual-ref">
+        <div class="visual-ref-head">
+          <div class="label">ẢNH MINH HOẠ · FRAMEWORK PHÂN TÍCH</div>
+          <p>Chọn một ảnh rồi tập gọi tên đủ: garment, model, camera angle, focal length, composition, lighting, background và color.</p>
+        </div>
+        <div class="pin-grid one">
+          <article class="pin-card">
+            <p class="pin-title">One image for full analysis</p>
+            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://www.pinterest.com/pin/543176405060673319/"></a></div>
+            <p class="pin-note">Ảnh này phù hợp để dừng lại và phân tích đầy đủ theo framework 9 bước.</p>
+          </article>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="num">12</div>
+    <div>
+      <h2>Thực hành cuối buổi — 1 Outfit / 6 Frame</h2>
+      <p class="lead">
+        Đây là phần quan trọng nhất của Buổi 01. Học viên tự cầm máy và thấy ngay một thay đổi nhỏ về góc hoặc crop có thể thay đổi cách outfit được nhìn nhận.
+      </p>
+      <div class="shot-list">
+        <div class="shot"><strong>01 · Full Body</strong><span>Eye level</span></div>
+        <div class="shot"><strong>02 · Full Body</strong><span>Low angle</span></div>
+        <div class="shot"><strong>03 · 3/4 Body</strong><span>Kiểm soát crop</span></div>
+        <div class="shot"><strong>04 · Medium</strong><span>Upper-body styling</span></div>
+        <div class="shot"><strong>05 · Detail</strong><span>Material / accessory</span></div>
+        <div class="shot"><strong>06 · Movement</strong><span>Walking / fabric motion</span></div>
+      </div>
+      <div class="exercise">
+        <div class="exercise-label">REVIEW TẠI LỚP</div>
+        <h3>Đặt 6 ảnh cạnh nhau và tự phân tích</h3>
+        <p>
+          Frame nào làm chân dài nhất? Frame nào đọc outfit rõ nhất? Frame nào cảm giác fashion nhất?
+          Frame nào mất form? Vì sao?
+        </p>
+      </div>
+      <div class="visual-ref">
+        <div class="visual-ref-head">
+          <div class="label">ẢNH MINH HOẠ · BÀI 1 OUTFIT / 6 FRAME</div>
+          <p>Ảnh minh hoạ để thấy rằng cùng một outfit vẫn có thể tạo ra nhiều kết quả khác nhau nếu thay đổi frame, góc và nhịp pose.</p>
+        </div>
+        <div class="pin-grid">
+          <article class="pin-card">
+            <p class="pin-title">Full-body / Systematic shooting</p>
+            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://ca.pinterest.com/pin/simple-lookbook-design-template-indd-idml--829858668868877361/"></a></div>
+            <p class="pin-note">Thấy cách một bộ ảnh có thể bao gồm nhiều framing khác nhau.</p>
+          </article>
+          <article class="pin-card">
+            <p class="pin-title">Movement / Variation</p>
+            <div class="pin-embed-wrap"><a data-pin-do="embedPin" href="https://www.pinterest.com/pin/sunset-editorial-portrait-fashion-photography-in-palm-springs--272045633731231808/"></a></div>
+            <p class="pin-note">Một frame chuyển động có thể thêm năng lượng cho cả bộ ảnh.</p>
+          </article>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="num">13</div>
+    <div>
+      <h2>Bài tập về nhà</h2>
+      <div class="grid-3">
+        <div class="card"><h3>10 Fashion References</h3><p>Chọn 10 ảnh và phân tích theo framework 9 bước.</p></div>
+        <div class="card"><h3>3 ảnh tự chụp</h3><p>Chụp 3 framing khác nhau cho cùng một outfit.</p></div>
+        <div class="card"><h3>1 trang Visual Note</h3><p>Ghi lại những quan sát về góc máy, crop và form trang phục.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="num">14</div>
+    <div>
+      <h2>Output cuối Buổi 01</h2>
+      <div class="output-list">
+        <div><span>01</span> Fashion Photography Analysis Sheet</div>
+        <div><span>02</span> 1 Outfit / 6 Frame Exercise</div>
+        <div><span>03</span> Personal Reference Folder V0</div>
+        <div><span>04</span> Visual Observation Notes</div>
+      </div>
+    </div>
+  </section>
+
+  <aside class="teaching">
+    <h2>Nguyên tắc dạy Buổi 01</h2>
+    <p>
+      Không giảng quá nhiều lý thuyết trước. Cho học viên nhìn ảnh, tự nói điều mình thấy,
+      sau đó giảng viên mới bóc tách kỹ thuật. Kết thúc mỗi phần phải có một hành động
+      trực tiếp với máy ảnh hoặc hình ảnh thực tế.
+    </p>
+    <div class="flow">
+      <span>Nhìn ảnh</span><i>→</i>
+      <span>Phân tích</span><i>→</i>
+      <span>Giải thích kỹ thuật</span><i>→</i>
+      <span>Cầm máy thử</span><i>→</i>
+      <span>So sánh kết quả</span>
+    </div>
+  </aside>
+</div>
+  <script async defer src="https://assets.pinterest.com/js/pinit.js"></script>
+</body>
+</html>
