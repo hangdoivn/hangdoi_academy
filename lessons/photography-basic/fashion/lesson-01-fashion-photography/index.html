@@ -742,6 +742,153 @@
       pointer-events:none;
     }
 
+    /* ===== Gợi ý giảng viên: hover trên máy tính, chạm trên di động ===== */
+    .teacher-note {
+      position: relative;
+      display: inline-block;
+      z-index: 20;
+    }
+
+    .teacher-note summary {
+      list-style: none;
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(15,66,45,.32);
+      border-radius: 999px;
+      background: var(--paper-0);
+      color: var(--green-950);
+      font-size: 14px;
+      font-weight: 900;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 4px 12px rgba(15,66,45,.08);
+    }
+
+    .teacher-note summary::-webkit-details-marker { display:none; }
+
+    .teacher-note summary::before {
+      content: "i";
+      font-family: Georgia, serif;
+      font-style: italic;
+    }
+
+    .teacher-note summary:hover,
+    .teacher-note[open] summary {
+      background: var(--yellow);
+      border-color: var(--green-950);
+    }
+
+    .teacher-note-popover {
+      position: absolute;
+      top: 44px;
+      right: 0;
+      width: min(360px, 78vw);
+      padding: 18px;
+      background: var(--paper-0);
+      color: var(--green-950);
+      border: 1px solid var(--green-950);
+      box-shadow: 8px 8px 0 rgba(15,66,45,.12);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-5px);
+      transition: .16s ease;
+      pointer-events: none;
+    }
+
+    .teacher-note:hover .teacher-note-popover,
+    .teacher-note[open] .teacher-note-popover {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .teacher-note-popover::before {
+      content:"GỢI Ý GIẢNG VIÊN";
+      display:block;
+      margin-bottom:10px;
+      color: var(--green-700);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .12em;
+    }
+
+    .teacher-note-popover h4 {
+      margin: 14px 0 6px;
+      font-size: 13px;
+      line-height: 1.25;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    .teacher-note-popover h4:first-of-type { margin-top:0; }
+
+    .teacher-note-popover p,
+    .teacher-note-popover li {
+      margin:0;
+      color:#3F5549;
+      font-size:13px;
+      line-height:1.5;
+    }
+
+    .teacher-note-popover ul {
+      margin: 6px 0 0;
+      padding-left: 18px;
+    }
+
+    .teacher-note-inline {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+
+    .section-note-anchor {
+      position:absolute;
+      top:24px;
+      right:24px;
+    }
+
+    .hero-note-anchor {
+      position:absolute;
+      z-index:30;
+      top:22px;
+      right:6px;
+    }
+
+    .section-objectives .teacher-note summary {
+      background: rgba(255,255,255,.08);
+      color: var(--paper-0);
+      border-color: rgba(255,255,255,.35);
+      box-shadow:none;
+    }
+
+    .section-objectives .teacher-note summary:hover,
+    .section-objectives .teacher-note[open] summary {
+      background: var(--yellow);
+      color: var(--green-950);
+      border-color: var(--yellow);
+    }
+
+    @media (max-width:800px) {
+      .teacher-note-popover {
+        position: fixed;
+        left: 16px;
+        right: 16px;
+        top: auto;
+        bottom: 18px;
+        width: auto;
+        max-height: 58vh;
+        overflow:auto;
+        z-index: 99;
+      }
+      .hero-note-anchor { top: 8px; right: 0; }
+      .section-note-anchor { top:14px; right:16px; }
+    }
+
     @media (max-width: 800px) {
       .page { padding: 0 16px 64px; }
       .lesson-nav { min-height:54px; }
@@ -841,6 +988,21 @@
     </div>
 
     <div class="hero-visual" aria-label="Ảnh tham khảo thời trang">
+      <div class="hero-note-anchor">
+        <details class="teacher-note">
+          <summary aria-label="Mở gợi ý giảng viên"></summary>
+          <div class="teacher-note-popover">
+            <h4>Cách mở bài</h4>
+            <p>Đừng giải thích ngay “nhiếp ảnh thời trang là gì”. Hãy cho học viên xem 2–3 ảnh và hỏi: “Bạn nhìn thấy người mẫu trước hay trang phục trước?”</p>
+
+            <h4>Câu chuyển ý</h4>
+            <p>“Buổi hôm nay không phải học thật nhiều kỹ thuật. Mục tiêu là học cách nhìn để những buổi sau biết mình đang điều khiển điều gì.”</p>
+
+            <h4>Lưu ý</h4>
+            <p>Tránh dùng các từ cảm tính như “đẹp”, “sang”, “có gu” mà không chỉ ra nguyên nhân thị giác cụ thể.</p>
+          </div>
+        </details>
+      </div>
       <div class="hero-green-block"></div>
       <div class="hero-pin">
         <div class="pin-embed-wrap">
@@ -857,6 +1019,25 @@
   </header>
 
   <section class="section section-objectives">
+    <div class="section-note-anchor">
+      <details class="teacher-note">
+        <summary aria-label="Mở gợi ý giảng viên"></summary>
+        <div class="teacher-note-popover">
+          <h4>Cách dẫn dắt</h4>
+          <p>Đi lần lượt 3 năng lực. Sau mỗi năng lực, hỏi học viên đưa ra một ví dụ từ ảnh vừa xem thay vì chỉ nghe lý thuyết.</p>
+
+          <h4>Câu hỏi gợi mở</h4>
+          <ul>
+            <li>Nếu đổi người mẫu nhưng giữ nguyên bộ đồ, điều gì trong ảnh vẫn cần giữ?</li>
+            <li>Nâng máy cao hơn một chút thì tỷ lệ cơ thể thay đổi ra sao?</li>
+            <li>Trước khi bấm máy, người xem cần nhìn thấy gì đầu tiên?</li>
+          </ul>
+
+          <h4>Lưu ý chuyên môn</h4>
+          <p>Không đi sâu vào tiêu cự, ánh sáng hay tạo dáng ở phần này. Chỉ giới thiệu để học viên hình thành hệ quy chiếu; phần kỹ thuật sẽ học riêng ở các buổi sau.</p>
+        </div>
+      </details>
+    </div>
     <div class="objective-layout">
       <div class="objective-heading">
         <div class="objective-kicker"><b>01</b> Mục tiêu buổi học</div>
