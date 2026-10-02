@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "base_url": "https://academy.hangdoiproduction.com",
+  "route_pattern": "/blog/{category_slug}/{article_slug}/",
+  "categories": [
+    {
+      "slug": "bat-dau-hoc",
+      "label": "Bắt đầu học",
+      "article_count": 1
+    },
+    {
+      "slug": "hau-ky",
+      "label": "Hậu kỳ",
+      "article_count": 1
+    },
+    {
+      "slug": "may-anh-thiet-bi",
+      "label": "Máy ảnh & thiết bị",
+      "article_count": 1
+    }
+  ],
+  "articles": [
+    {
+      "article_slug": "chon-may-anh-cho-nguoi-moi",
+      "category_slug": "may-anh-thiet-bi",
+      "category_label": "Máy ảnh và thiết bị",
+      "url": "https://academy.hangdoiproduction.com/blog/may-anh-thiet-bi/chon-may-anh-cho-nguoi-moi/",
+      "legacy_url": "https://academy.hangdoiproduction.com/blog/chon-may-anh-cho-nguoi-moi/"
+    },
+    {
+      "article_slug": "lightroom-hay-photoshop",
+      "category_slug": "hau-ky",
+      "category_label": "Hậu kỳ hình ảnh",
+      "url": "https://academy.hangdoiproduction.com/blog/hau-ky/lightroom-hay-photoshop/",
+      "legacy_url": "https://academy.hangdoiproduction.com/blog/lightroom-hay-photoshop/"
+    },
+    {
+      "article_slug": "hoc-nhiep-anh-mat-bao-lau",
+      "category_slug": "bat-dau-hoc",
+      "category_label": "Bắt đầu học nhiếp ảnh",
+      "url": "https://academy.hangdoiproduction.com/blog/bat-dau-hoc/hoc-nhiep-anh-mat-bao-lau/",
+      "legacy_url": "https://academy.hangdoiproduction.com/blog/hoc-nhiep-anh-mat-bao-lau/"
+    }
+  ]
+}

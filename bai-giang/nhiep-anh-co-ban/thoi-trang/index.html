@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Bài giảng Nhiếp ảnh Cơ bản — Thời trang | Hang Đôi Academy</title>
+  <meta name="description" content="Danh sách 12 bài giảng Nhiếp ảnh Cơ bản ứng dụng trong Thời trang tại Hang Đôi Academy.">
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="https://academy.hangdoiproduction.com/bai-giang/nhiep-anh-co-ban/thoi-trang/">
+  <style>
+    *{box-sizing:border-box}
+    :root{
+      --paper-0:#FFFDF7;--paper-50:#F8F4EA;--paper-100:#F2ECDF;--paper-200:#E8DFD0;
+      --green-950:#0F422D;--green-800:#176B43;--green-700:#239653;--green-100:#E8F4DF;
+      --yellow:#F2D43D;--orange:#F26A3D;--cobalt:#3450D8;--ink:#173326;--muted:#5E7166;
+    }
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper-50);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    a{color:inherit}
+    .page{max-width:1240px;margin:auto;padding:18px 24px 80px}
+    .topbar{min-height:62px;display:flex;align-items:center;justify-content:space-between;gap:18px;border-bottom:1px solid var(--paper-200)}
+    .brand{font-size:12px;font-weight:900;letter-spacing:.11em;text-transform:uppercase;text-decoration:none}
+    .top-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .top-link{padding:8px 11px;border:1px solid var(--green-950);border-radius:999px;font-size:11px;font-weight:800;text-decoration:none}
+    .hero{display:grid;grid-template-columns:minmax(0,7fr) minmax(320px,5fr);gap:34px;min-height:650px;padding:54px 0 66px;align-items:center}
+    .eyebrow{display:flex;align-items:center;gap:10px;color:var(--green-700);font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}.eyebrow:before{content:"";width:42px;height:4px;background:var(--orange)}
+    h1{margin:26px 0 0;color:var(--green-950);font-size:clamp(62px,8vw,122px);line-height:.83;letter-spacing:-.075em}
+    .lead{max-width:680px;margin:28px 0 0;color:#435A4D;font-size:18px;line-height:1.6}
+    .hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 17px;border:2px solid var(--green-950);border-radius:8px;font-size:12px;font-weight:900;text-decoration:none}
+    .btn.primary{background:var(--yellow);box-shadow:4px 4px 0 var(--green-950)}
+    .btn.ghost{background:var(--paper-0)}
+    .hero-visual{position:relative;min-height:520px}
+    .hero-shape{position:absolute;inset:30px 0 0 54px;background:var(--green-800);border-radius:50% 50% 8px 8px/36% 36% 8px 8px}
+    .hero-photo{position:absolute;z-index:2;inset:0 34px 24px 0;padding:12px;background:var(--paper-0);border:2px solid var(--green-950);box-shadow:12px 12px 0 rgba(15,66,45,.14)}
+    .hero-photo img{width:100%;height:438px;display:block;object-fit:cover;object-position:center 32%}
+    .hero-caption{display:flex;justify-content:space-between;gap:10px;padding-top:8px;color:#526359;font-size:10px;font-weight:800}
+    .hero-badge{position:absolute;z-index:3;right:0;top:52px;width:112px;height:112px;display:grid;place-items:center;padding:14px;border:2px solid var(--green-950);border-radius:50%;background:var(--yellow);text-align:center;font-size:12px;font-weight:900;line-height:1.1;transform:rotate(6deg)}
+    .progress-strip{display:grid;grid-template-columns:1.2fr repeat(3,1fr);border:1px solid var(--green-950);background:var(--paper-0);margin-bottom:72px}
+    .progress-main,.progress-cell{padding:18px}.progress-cell{border-left:1px solid var(--green-950)}
+    .progress-main small,.progress-cell small{display:block;margin-bottom:8px;color:#64766B;font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase}
+    .progress-main strong{font-size:30px;letter-spacing:-.04em}.progress-cell strong{font-size:15px}
+    .section{padding:76px 0;border-top:1px solid var(--paper-200)}
+    .section-head{display:grid;grid-template-columns:minmax(0,7fr) minmax(260px,5fr);gap:42px;align-items:end;margin-bottom:34px}
+    .kicker{color:var(--orange);font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+    h2{margin:14px 0 0;color:var(--green-950);font-size:clamp(42px,5vw,72px);line-height:.9;letter-spacing:-.055em}
+    .section-lead{margin:0;padding-top:16px;border-top:2px solid var(--green-950);color:var(--muted);font-size:15px;line-height:1.6}
+    .available-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .lesson-feature{min-height:410px;display:flex;flex-direction:column;justify-content:space-between;padding:24px;border:2px solid var(--green-950);background:var(--paper-0);text-decoration:none;transition:transform .18s ease,box-shadow .18s ease}
+    .lesson-feature:hover{transform:translate(-3px,-3px);box-shadow:7px 7px 0 var(--green-950)}
+    .lesson-feature:nth-child(2){background:var(--green-100)}
+    .lesson-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .lesson-no{font-size:78px;line-height:.85;font-weight:900;letter-spacing:-.08em;color:var(--green-950)}
+    .status{padding:7px 10px;border-radius:999px;background:var(--yellow);font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+    .lesson-feature h3{max-width:510px;margin:36px 0 12px;color:var(--green-950);font-size:34px;line-height:.98;letter-spacing:-.045em}
+    .lesson-feature p{max-width:550px;margin:0;color:var(--muted);font-size:14px;line-height:1.55}
+    .lesson-meta{display:flex;justify-content:space-between;gap:16px;padding-top:18px;border-top:1px solid rgba(15,66,45,.2);font-size:11px;font-weight:800}
+    .roadmap{position:relative;display:grid;gap:0;border-top:1px solid var(--green-950)}
+    .roadmap-row{display:grid;grid-template-columns:86px minmax(220px,3fr) minmax(200px,2fr) 120px;gap:18px;align-items:center;min-height:126px;border-bottom:1px solid var(--green-950)}
+    .roadmap-row.live{background:var(--paper-0)}
+    .roadmap-row.upcoming{color:#697B71}
+    .roadmap-no{font-size:42px;font-weight:900;letter-spacing:-.06em}
+    .roadmap-title strong{display:block;color:var(--green-950);font-size:21px;line-height:1.05}.roadmap-title span{display:block;margin-top:7px;font-size:12px;color:#718077}
+    .roadmap-focus{font-size:13px;line-height:1.5}
+    .roadmap-action{justify-self:end}
+    .roadmap-action a{display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:0 11px;border:1px solid var(--green-950);border-radius:999px;background:var(--yellow);font-size:10px;font-weight:900;text-decoration:none}
+    .roadmap-action span{font-size:10px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:#7B887F}
+    .phase{display:grid;grid-template-columns:150px 1fr;gap:18px;padding:18px 0 10px;color:var(--cobalt);font-size:10px;font-weight:900;letter-spacing:.11em;text-transform:uppercase}
+    .principle{margin-top:62px;padding:42px;background:var(--green-950);color:white}
+    .principle small{display:block;margin-bottom:14px;color:var(--yellow);font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+    .principle strong{display:block;max-width:900px;font-size:clamp(36px,5vw,68px);line-height:.94;letter-spacing:-.055em}
+    .principle p{max-width:680px;margin:20px 0 0;color:#C7D7CD;line-height:1.65}
+    .footer{display:flex;justify-content:space-between;gap:18px;align-items:center;padding:26px 0 0;border-top:1px solid var(--paper-200);font-size:11px;color:#68796F}
+    @media(max-width:900px){
+      .hero{grid-template-columns:1fr;min-height:auto}.hero-visual{min-height:510px}.progress-strip{grid-template-columns:1fr 1fr}.progress-cell:nth-child(3){border-left:0;border-top:1px solid var(--green-950)}.progress-cell:nth-child(4){border-top:1px solid var(--green-950)}
+      .available-grid{grid-template-columns:1fr}.roadmap-row{grid-template-columns:70px 1fr 110px}.roadmap-focus{grid-column:2 / 4;padding-bottom:18px}.section-head{grid-template-columns:1fr;gap:22px}
+    }
+    @media(max-width:620px){
+      .page{padding:12px 16px 54px}.topbar{align-items:flex-start;padding:8px 0 12px}.top-actions{justify-content:flex-end}.hero{padding:42px 0 56px}.hero h1{font-size:56px}.lead{font-size:16px}.hero-visual{min-height:450px}.hero-photo{right:24px;height:410px}.hero-photo img{height:350px}.hero-badge{width:94px;height:94px;font-size:10px}
+      .progress-strip{grid-template-columns:1fr}.progress-cell{border-left:0;border-top:1px solid var(--green-950)!important}.section{padding:60px 0}.section h2{font-size:47px}.lesson-feature{min-height:350px}.lesson-no{font-size:62px}
+      .roadmap-row{grid-template-columns:58px 1fr;gap:12px;padding:18px 0}.roadmap-no{font-size:34px}.roadmap-action{grid-column:2;justify-self:start}.roadmap-focus{grid-column:2;padding:0}.phase{grid-template-columns:1fr;gap:4px}.principle{margin-left:-16px;margin-right:-16px;padding:34px 16px}.footer{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><style id="academy-logo-critical">
+header.site-header,header.site-header.scrolled{background:linear-gradient(90deg,#fffef9,#f5f7f1)!important;border-color:rgba(23,56,43,.12)!important}
+.site-header .nav-links a,.site-header.scrolled .nav-links a{color:#17382b!important}
+.brand-official,.p2-brand{display:inline-flex!important;align-items:center!important;width:200px!important;min-width:200px!important;height:40px!important;padding:0!important;border:0!important;background:none!important;background-image:none!important}
+.brand-official>*{opacity:1!important;visibility:visible!important}
+.brand-official .academy-logo-svg,.p2-brand .academy-logo-svg{display:block!important;width:200px!important;max-height:40px!important;height:auto!important;opacity:1!important;visibility:visible!important}
+footer .brand-official,.p2-footer-logo{width:220px!important;min-width:220px!important;height:48px!important}
+footer .academy-logo-svg,.p2-footer-logo .academy-logo-svg{display:block!important;width:220px!important;max-height:48px!important;height:auto!important;opacity:1!important;visibility:visible!important}
+footer .academy-logo-svg .cls-1,.p2-footer .academy-logo-svg .cls-1{fill:#fff!important}
+footer .academy-logo-svg .cls-2,.p2-footer .academy-logo-svg .cls-2{fill:#fcb415!important}
+@media(max-width:760px){.brand-official,.p2-brand{width:170px!important;min-width:170px!important;height:34px!important}.brand-official .academy-logo-svg,.p2-brand .academy-logo-svg{width:170px!important;max-height:34px!important}footer .brand-official,.p2-footer-logo{width:190px!important;min-width:190px!important;height:42px!important}footer .academy-logo-svg,.p2-footer-logo .academy-logo-svg{width:190px!important;max-height:42px!important}}
+</style></head>
+<body>
+<div class="page">
+  <header class="topbar">
+    <a class="brand" href="/">Hang Đôi Academy</a>
+    <div class="top-actions">
+      <a class="top-link" href="/nhiep-anh-co-ban/">Thông tin khóa học</a>
+      <a class="top-link" href="/">Trang chủ</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Nhiếp ảnh cơ bản · Ứng dụng thời trang</div>
+        <h1>Bài giảng<br>Thời trang.</h1>
+        <p class="lead">Lộ trình 12 buổi đi từ <strong>tư duy hình ảnh → làm chủ máy → ánh sáng → hướng dẫn người mẫu → chụp thực tế → hậu kỳ → dự án cuối khóa</strong>.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="/bai-giang/nhiep-anh-co-ban/thoi-trang/buoi-02/">Tiếp tục Buổi 02 →</a>
+          <a class="btn ghost" href="#lo-trinh">Xem toàn bộ lộ trình</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-shape"></div>
+        <div class="hero-photo">
+          <img src="https://drive.google.com/thumbnail?id=1OkPSJPoW43vkR0LZoYfycz8_3FMW6WL_&sz=w1600" alt="Ảnh thời trang Thanh Nga">
+          <div class="hero-caption"><span>Ảnh nội bộ · Thanh Nga</span><span>Hang Đôi Academy</span></div>
+        </div>
+        <div class="hero-badge">12<br>buổi học</div>
+      </div>
+    </section>
+
+    <div class="progress-strip">
+      <div class="progress-main"><small>Tiến độ giáo trình</small><strong>02 / 12 buổi</strong></div>
+      <div class="progress-cell"><small>Đã có bài giảng</small><strong>Buổi 01–02</strong></div>
+      <div class="progress-cell"><small>Thời lượng</small><strong>150 phút / buổi</strong></div>
+      <div class="progress-cell"><small>Phương pháp</small><strong>Quan sát + thực hành</strong></div>
+    </div>
+
+    <section class="section">
+      <div class="section-head">
+        <div><div class="kicker">Bài giảng hiện có</div><h2>Bắt đầu từ cách nhìn.<br>Sau đó mới làm chủ máy.</h2></div>
+        <p class="section-lead">Mỗi bài giảng được thiết kế để mở trực tiếp trên lớp, có nội dung dành cho học viên và ghi chú riêng cho giảng viên.</p>
+      </div>
+      <div class="available-grid">
+        <a class="lesson-feature" href="/bai-giang/nhiep-anh-co-ban/thoi-trang/buoi-01/">
+          <div>
+            <div class="lesson-top"><div class="lesson-no">01</div><div class="status">Đã sẵn sàng</div></div>
+            <h3>Tư duy Nhiếp ảnh Thời trang</h3>
+            <p>Học cách đọc trang phục, vị trí máy, khung hình, tạo dáng, ánh sáng và hậu cảnh trước khi đi sâu vào kỹ thuật.</p>
+          </div>
+          <div class="lesson-meta"><span>150 phút</span><span>1 bộ trang phục / 6 khung hình →</span></div>
+        </a>
+        <a class="lesson-feature" href="/bai-giang/nhiep-anh-co-ban/thoi-trang/buoi-02/">
+          <div>
+            <div class="lesson-top"><div class="lesson-no">02</div><div class="status">Đã sẵn sàng</div></div>
+            <h3>Làm chủ máy ảnh & Phơi sáng</h3>
+            <p>Tốc độ, khẩu độ, ISO, biểu đồ sáng, cân bằng trắng, lấy nét và cách thiết lập máy theo từng tình huống.</p>
+          </div>
+          <div class="lesson-meta"><span>150 phút</span><span>4 biến số / 8 khung hình →</span></div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" id="lo-trinh">
+      <div class="section-head">
+        <div><div class="kicker">Lộ trình 12 buổi</div><h2>Mỗi buổi giải quyết một lớp năng lực.</h2></div>
+        <p class="section-lead">Các buổi chưa có bài giảng sẽ được mở dần theo đúng cấu trúc khóa, không đẩy quá nhiều kỹ năng vào một buổi.</p>
+      </div>
+
+      <div class="phase"><span>Giai đoạn 01</span><span>Nền tảng hình ảnh & máy ảnh</span></div>
+      <div class="roadmap">
+        <div class="roadmap-row live"><div class="roadmap-no">01</div><div class="roadmap-title"><strong>Tư duy Nhiếp ảnh Thời trang</strong><span>Đọc trang phục · góc máy · khung hình</span></div><div class="roadmap-focus">Biết mình đang nhìn gì trước khi bấm máy.</div><div class="roadmap-action"><a href="/bai-giang/nhiep-anh-co-ban/thoi-trang/buoi-01/">Mở bài</a></div></div>
+        <div class="roadmap-row live"><div class="roadmap-no">02</div><div class="roadmap-title"><strong>Làm chủ máy ảnh & Phơi sáng</strong><span>Tốc độ · khẩu độ · ISO · lấy nét</span></div><div class="roadmap-focus">Thiết lập máy theo mục tiêu, không theo công thức.</div><div class="roadmap-action"><a href="/bai-giang/nhiep-anh-co-ban/thoi-trang/buoi-02/">Mở bài</a></div></div>
+        <div class="roadmap-row upcoming"><div class="roadmap-no">03</div><div class="roadmap-title"><strong>Tiêu cự & Phối cảnh</strong><span>Ống kính · khoảng cách · tỷ lệ</span></div><div class="roadmap-focus">Hiểu cách vị trí máy và tiêu cự làm thay đổi không gian.</div><div class="roadmap-action"><span>Sắp triển khai</span></div></div>
+        <div class="roadmap-row upcoming"><div class="roadmap-no">04</div><div class="roadmap-title"><strong>Bố cục & Tư duy thị giác</strong><span>Khung hình · cắt khung · nhịp thị giác</span></div><div class="roadmap-focus">Sắp xếp thông tin trong ảnh có chủ đích.</div><div class="roadmap-action"><span>Sắp triển khai</span></div></div>
+      </div>
+
+      <div class="phase"><span>Giai đoạn 02</span><span>Ánh sáng</span></div>
+      <div class="roadmap">
+        <div class="roadmap-row upcoming"><div class="roadmap-no">05</div><div class="roadmap-title"><strong>Ánh sáng tự nhiên</strong><span>Hướng sáng · chất lượng sáng · vị trí chủ thể</span></div><div class="roadmap-focus">Biết tìm và sử dụng nguồn sáng có sẵn.</div><div class="roadmap-action"><span>Sắp triển khai</span></div></div>
+        <div class="roadmap-row upcoming"><div class="roadmap-no">06</div><div class="roadmap-title"><strong>Ánh sáng nhân tạo cơ bản</strong><span>Nguồn sáng · khuếch tán · bố trí đèn</span></div><div class="roadmap-focus">Chủ động tạo ánh sáng thay vì chỉ phản ứng với môi trường.</div><div class="roadmap-action"><span>Sắp triển khai</span></div></div>
+      </div>
+
+      <div class="phase"><span>Giai đoạn 03</span><span>Người mẫu & buổi chụp</span></div>
+      <div class="roadmap">
+        <div class="roadmap-row upcoming"><div class="roadmap-no">07</div><div class="roadmap-title"><strong>Tạo dáng & Hướng dẫn người mẫu</strong><span>Tư thế · chuyển động · giao tiếp</span></div><div class="roadmap-focus">Biến chỉ dẫn thành thay đổi cụ thể trong khung hình.</div><div class="roadmap-action"><span>Sắp triển khai</span></div></div>
+        <div class="roadmap-row upcoming"><div class="roadmap-no">08</div><div class="roadmap-title"><strong>Chụp Lookbook / Sản phẩm thời trang</strong><span>Shot list · tính đồng nhất · coverage</span></div><div class="roadmap-focus">Triển khai một bộ ảnh giới thiệu bộ sưu tập có hệ thống.</div><div class="roadmap-action"><span>Sắp triển khai</span></div></div>
+      </div>
+
+      <div class="phase"><span>Giai đoạn 04</span><span>Hậu kỳ</span></div>
+      <div class="roadmap">
+        <div class="roadmap-row upcoming"><div class="roadmap-no">09</div><div class="roadmap-title"><strong>Lightroom / Camera Raw</strong><span>Chọn ảnh · màu · đồng bộ bộ ảnh</span></div><div class="roadmap-focus">Hoàn thiện một bộ ảnh nhất quán ở cấp độ cơ bản.</div><div class="roadmap-action"><span>Sắp triển khai</span></div></div>
+        <div class="roadmap-row upcoming"><div class="roadmap-no">10</div><div class="roadmap-title"><strong>Photoshop cơ bản</strong><span>Làm sạch · chỉnh chi tiết · hoàn thiện</span></div><div class="roadmap-focus">Xử lý những phần Lightroom không phù hợp để giải quyết.</div><div class="roadmap-action"><span>Sắp triển khai</span></div></div>
+      </div>
+
+      <div class="phase"><span>Giai đoạn 05</span><span>Dự án cuối khóa</span></div>
+      <div class="roadmap">
+        <div class="roadmap-row upcoming"><div class="roadmap-no">11</div><div class="roadmap-title"><strong>Chụp dự án thời trang</strong><span>Chuẩn bị · sản xuất · thực hành</span></div><div class="roadmap-focus">Tự triển khai một buổi chụp theo brief.</div><div class="roadmap-action"><span>Sắp triển khai</span></div></div>
+        <div class="roadmap-row upcoming"><div class="roadmap-no">12</div><div class="roadmap-title"><strong>Chọn ảnh · Hậu kỳ · Xem lại cuối khóa</strong><span>Chọn ảnh · hoàn thiện · đánh giá</span></div><div class="roadmap-focus">Chốt bộ ảnh đầu ra và nhìn lại toàn bộ quy trình.</div><div class="roadmap-action"><span>Sắp triển khai</span></div></div>
+      </div>
+
+      <div class="principle">
+        <small>Nguyên tắc của lộ trình</small>
+        <strong>Học một lớp năng lực. Thử ngay. So sánh. Giải thích. Sau đó mới đi tiếp.</strong>
+        <p>Khóa không dạy bằng cách nhồi nhiều thuật ngữ trong một buổi. Mỗi kỹ năng đều phải được nhìn thấy trong ảnh và kiểm chứng bằng thực hành.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Hang Đôi Academy · Nhiếp ảnh cơ bản — Thời trang</span>
+    <span>academy.hangdoiproduction.com</span>
+  </footer>
+</div>
+</body>
+</html>
