@@ -292,7 +292,15 @@ jobs:
           cp site/media-career-policy.html _site/media-career-program/policy/index.html
 
           # Publish Academy teaching materials under stable public lesson routes.
+          mkdir -p _site/bai-giang/nhiep-anh-co-ban/thoi-trang
+          cp lessons/photography-basic/fashion/index.html \
+            _site/bai-giang/nhiep-anh-co-ban/thoi-trang/index.html
+
           # Any folder named lesson-XX-* is published to /bai-giang/nhiep-anh-co-ban/thoi-trang/buoi-XX/.
+          test -s _site/bai-giang/nhiep-anh-co-ban/thoi-trang/index.html
+          grep -q 'Bài giảng Nhiếp ảnh Cơ bản — Thời trang' _site/bai-giang/nhiep-anh-co-ban/thoi-trang/index.html
+          grep -q 'https://academy.hangdoiproduction.com/bai-giang/nhiep-anh-co-ban/thoi-trang/' _site/bai-giang/nhiep-anh-co-ban/thoi-trang/index.html
+
           for lesson_dir in lessons/photography-basic/fashion/lesson-[0-9][0-9]-*; do
             [ -d "$lesson_dir" ] || continue
             lesson_no="$(basename "$lesson_dir" | sed -E 's/^lesson-([0-9]{2})-.*/\1/')"
