@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Buổi 03 — Tiêu cự, Phối cảnh & Nền tảng Ánh sáng | Hang Đôi Academy</title>
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="https://academy.hangdoiproduction.com/bai-giang/nhiep-anh-co-ban/thoi-trang/buoi-03/">
+  <style>
+    *{box-sizing:border-box}
+    :root{
+      --paper-0:#FFFDF7;--paper-50:#F8F4EA;--paper-100:#F2ECDF;--paper-200:#E8DFD0;
+      --green-950:#0F422D;--green-900:#145238;--green-800:#176B43;--green-700:#239653;
+      --green-100:#E8F4DF;--yellow:#F2D43D;--orange:#F26A3D;--cobalt:#3450D8;--ink:#173326;
+      --muted:#5D7065;
+    }
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper-50);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    .page{max-width:1240px;margin:auto;padding:18px 24px 80px}
+    .lesson-nav{min-height:58px;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid var(--paper-200);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    .lesson-nav-path{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+    .lesson-nav-path span:not(:last-child)::after{content:"/";margin-left:9px;color:#9A9A8D}
+    .lesson-nav-time{padding:8px 12px;border:1px solid var(--green-950);border-radius:999px;white-space:nowrap}
+
+    .hero{position:relative;display:grid;grid-template-columns:minmax(0,7fr) minmax(320px,5fr);gap:34px;min-height:690px;padding:52px 0 62px;overflow:hidden}
+    .hero-copy{display:flex;flex-direction:column;justify-content:space-between;min-width:0}
+    .eyebrow{display:flex;align-items:center;gap:12px;font-size:12px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+    .eyebrow:before{content:"";width:42px;height:4px;background:var(--orange)}
+    h1{margin:30px 0 0;color:var(--green-950);font-size:clamp(60px,7.8vw,116px);line-height:.84;letter-spacing:-.075em;font-weight:900}
+    h1 small{display:block;margin-bottom:10px;color:var(--green-800);font-size:.34em;line-height:1;letter-spacing:-.03em}
+    .hero-intro{max-width:660px;margin:30px 0 0;color:#435A4D;font-size:18px;line-height:1.58}
+    .hero-bottom{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:end;margin-top:46px}
+    .principle{padding-top:14px;border-top:2px solid var(--green-950);font-size:15px;line-height:1.55}
+    .principle strong{display:block;margin-bottom:7px;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+    .hero-meta{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--green-950);background:var(--paper-0)}
+    .hero-meta div{padding:13px;border-right:1px solid var(--green-950)}.hero-meta div:last-child{border:0}
+    .hero-meta span{display:block;margin-bottom:10px;color:#66776D;font-size:10px;text-transform:uppercase;letter-spacing:.09em}
+    .hero-meta strong{font-size:17px;line-height:1.05}
+    .hero-visual{position:relative;min-height:570px;align-self:center}
+    .hero-block{position:absolute;inset:28px 0 28px 48px;background:var(--orange);border-radius:48% 48% 8px 8px/34% 34% 8px 8px}
+    .hero-image{position:absolute;z-index:2;top:0;left:0;right:34px;height:520px;padding:13px;background:var(--paper-0);border:2px solid var(--green-950);box-shadow:12px 12px 0 rgba(15,66,45,.16)}
+    .hero-image img{width:100%;height:462px;display:block;object-fit:cover;object-position:center 34%}
+    .hero-caption{display:flex;justify-content:space-between;gap:10px;padding-top:8px;font-size:10px;font-weight:800}
+    .hero-sticker{position:absolute;z-index:3;right:0;top:58px;width:116px;height:116px;display:flex;align-items:center;justify-content:center;padding:16px;border:2px solid var(--green-950);border-radius:50%;background:var(--yellow);text-align:center;font-size:12px;font-weight:900;line-height:1.1;text-transform:uppercase;transform:rotate(6deg)}
+
+    .section{position:relative;margin:0 -24px;padding:86px 24px 92px;border-bottom:1px solid var(--paper-200);overflow:hidden}
+    .paper{background:var(--paper-0)}.paper-alt{background:var(--paper-100)}.dark{background:var(--green-950);color:var(--paper-0)}.blue{background:#E8EBFA}.warm{background:#F8E8DF}
+    .section-head{display:grid;grid-template-columns:minmax(0,7fr) minmax(260px,5fr);gap:42px;align-items:end;margin-bottom:40px}
+    .kicker{display:flex;align-items:center;gap:10px;margin-bottom:18px;color:var(--green-700);font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+    .dark .kicker{color:var(--yellow)}
+    .kicker b{display:inline-flex;width:32px;height:32px;align-items:center;justify-content:center;border-radius:50%;background:var(--green-700);color:white}
+    .dark .kicker b{background:var(--yellow);color:var(--green-950)}
+    h2{margin:0;color:var(--green-950);font-size:clamp(48px,5.8vw,82px);line-height:.9;letter-spacing:-.055em}
+    .dark h2{color:var(--paper-0)}
+    .section-lead{max-width:430px;margin:0;padding-top:17px;border-top:2px solid var(--green-950);color:#506359;font-size:16px;line-height:1.6}
+    .dark .section-lead{border-color:rgba(255,255,255,.7);color:#C7D7CD}
+
+    .teacher-note{position:relative;display:inline-block;z-index:20}
+    .teacher-note summary{list-style:none;width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(15,66,45,.32);border-radius:999px;background:var(--paper-0);color:var(--green-950);font-size:14px;font-weight:900;cursor:pointer}
+    .teacher-note summary::-webkit-details-marker{display:none}.teacher-note summary:before{content:"i";font-family:Georgia,serif;font-style:italic}
+    .teacher-note summary:hover,.teacher-note[open] summary{background:var(--yellow)}
+    .teacher-note-popover{position:absolute;top:44px;right:0;width:min(370px,78vw);padding:18px;background:var(--paper-0);color:var(--green-950);border:1px solid var(--green-950);box-shadow:8px 8px 0 rgba(15,66,45,.12);opacity:0;visibility:hidden;transform:translateY(-5px);transition:.16s;pointer-events:none;z-index:30}
+    .teacher-note:hover .teacher-note-popover,.teacher-note[open] .teacher-note-popover{opacity:1;visibility:visible;transform:none;pointer-events:auto}
+    .teacher-note-popover:before{content:"GỢI Ý GIẢNG VIÊN";display:block;margin-bottom:10px;color:var(--green-700);font-size:10px;font-weight:900;letter-spacing:.12em}
+    .teacher-note-popover h4{margin:14px 0 6px;font-size:12px;letter-spacing:.05em;text-transform:uppercase}.teacher-note-popover h4:first-of-type{margin-top:0}
+    .teacher-note-popover p,.teacher-note-popover li{margin:0;color:#3F5549;font-size:13px;line-height:1.5}.teacher-note-popover ul{margin:6px 0 0;padding-left:18px}
+    .section-note{position:absolute;top:22px;right:24px}
+    .dark .teacher-note summary{background:rgba(255,255,255,.08);color:white;border-color:rgba(255,255,255,.35)}.dark .teacher-note summary:hover,.dark .teacher-note[open] summary{background:var(--yellow);color:var(--green-950)}
+
+    .recap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .recap-card{min-height:260px;padding:22px;border:1px solid var(--green-950);background:var(--paper-0)}
+    .recap-card:nth-child(2){background:var(--green-100)}.recap-card:nth-child(3){background:#E8EBFA}
+    .recap-card b{font-size:44px;line-height:1;letter-spacing:-.06em}.recap-card h3{margin:34px 0 9px;font-size:23px}.recap-card p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}
+
+    .lens-demo{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .lens-panel{padding:24px;border:1px solid var(--green-950);background:var(--paper-0)}
+    .lens-panel h3{margin:0 0 18px;font-size:28px;line-height:1}.lens-panel p{color:var(--muted);line-height:1.55}
+    .distance-diagram{position:relative;height:260px;margin-top:24px;border-top:1px solid rgba(15,66,45,.25);border-bottom:1px solid rgba(15,66,45,.25);overflow:hidden}
+    .camera{position:absolute;left:18px;top:98px;width:42px;height:28px;background:var(--green-950);border-radius:5px}.camera:after{content:"";position:absolute;right:-14px;top:7px;width:16px;height:14px;background:var(--green-950);clip-path:polygon(0 0,100% 25%,100% 75%,0 100%)}
+    .person{position:absolute;top:58px;width:42px;height:142px;border:2px solid var(--green-950);border-radius:22px 22px 10px 10px}
+    .near .person{left:42%}.far .person{left:66%}
+    .bg-block{position:absolute;right:20px;top:45px;width:110px;height:168px;background:var(--orange);opacity:.2;border:2px solid var(--orange)}
+    .ray{position:absolute;left:64px;top:111px;height:2px;background:var(--cobalt);transform-origin:left center}.near .ray{width:310px;transform:rotate(-8deg)}.far .ray{width:430px;transform:rotate(-4deg)}
+    .lens-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.lens-tags span{padding:8px 10px;border:1px solid var(--green-950);border-radius:999px;font-size:11px;font-weight:800}
+
+    .light-properties{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--green-950)}
+    .light-prop{min-height:230px;padding:18px;border-right:1px solid var(--green-950);background:var(--paper-0)}.light-prop:last-child{border:0}
+    .light-prop b{display:block;color:var(--orange);font-size:34px}.light-prop h3{margin:26px 0 8px;font-size:20px}.light-prop p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
+
+    .direction-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+    .direction-card{min-height:350px;padding:18px;border:1px solid var(--green-950);background:var(--paper-0)}
+    .direction-card:nth-child(2){background:var(--green-100)}.direction-card:nth-child(3){background:#F7E4DC}.direction-card:nth-child(4){background:#E8EBFA}
+    .light-sketch{position:relative;height:150px;margin-bottom:20px}
+    .head-shape{position:absolute;left:50%;top:46px;width:58px;height:74px;border:2px solid var(--green-950);border-radius:45% 45% 42% 42%;transform:translateX(-50%)}
+    .light-source{position:absolute;width:34px;height:34px;border-radius:50%;background:var(--yellow);border:2px solid var(--green-950)}
+    .front .light-source{left:50%;top:0;transform:translateX(-50%)}.angle .light-source{left:18%;top:12px}.side .light-source{left:0;top:58px}.back .light-source{right:10%;top:12px}
+    .light-beam{position:absolute;background:linear-gradient(90deg,rgba(242,212,61,.65),rgba(242,212,61,0));height:46px;transform-origin:left center;clip-path:polygon(0 25%,100% 0,100% 100%,0 75%)}
+    .front .light-beam{left:50%;top:32px;width:98px;transform:translateX(-50%) rotate(90deg)}.angle .light-beam{left:44px;top:34px;width:108px;transform:rotate(24deg)}.side .light-beam{left:32px;top:74px;width:120px}.back .light-beam{right:38px;top:35px;width:112px;transform:rotate(155deg)}
+    .direction-card h3{margin:0 0 8px;font-size:24px}.direction-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
+
+    .hardsoft{display:grid;grid-template-columns:1fr 1fr;gap:14px}.hs-card{padding:24px;border:1px solid var(--green-950);background:var(--paper-0)}
+    .hs-card.soft{background:var(--green-100)}
+    .shadow-demo{position:relative;height:190px;margin:20px 0;background:var(--paper-100);overflow:hidden}
+    .shadow-object{position:absolute;left:38%;top:46px;width:58px;height:96px;border-radius:50% 50% 38% 38%;background:var(--green-800)}
+    .hard .shadow-object:after{content:"";position:absolute;left:54px;top:14px;width:92px;height:76px;background:rgba(15,66,45,.55);clip-path:polygon(0 0,100% 20%,100% 80%,0 100%)}
+    .soft .shadow-object:after{content:"";position:absolute;left:42px;top:8px;width:112px;height:86px;background:rgba(15,66,45,.18);filter:blur(14px);border-radius:40%}
+    .hs-card h3{font-size:29px;margin:0 0 8px}.hs-card p{color:var(--muted);line-height:1.55}
+    .hs-rule{margin-top:16px;padding-top:16px;border-top:1px solid rgba(15,66,45,.25);font-size:13px;font-weight:800}
+
+    .distance-light{display:grid;grid-template-columns:1.1fr .9fr;gap:14px}
+    .distance-steps{display:grid;grid-template-columns:1fr 1fr;gap:10px}.distance-step{min-height:320px;padding:20px;border:1px solid var(--green-950);background:var(--paper-0)}
+    .distance-step:first-child{background:#FFF3C9}.distance-step strong{font-size:38px}.distance-step h3{margin:30px 0 10px;font-size:24px}.distance-step p{color:var(--muted);line-height:1.55}
+    .inverse-note{padding:24px;border:1px solid var(--green-950);background:var(--green-950);color:white;display:flex;flex-direction:column;justify-content:space-between}
+    .inverse-note h3{font-size:32px;margin:0}.inverse-note p{color:#C7D7CD;line-height:1.6}.inverse-note strong{color:var(--yellow);font-size:17px;line-height:1.4}
+
+    .fabric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+    .fabric-card{min-height:300px;padding:20px;border:1px solid var(--green-950);background:var(--paper-0)}
+    .fabric-card:nth-child(2){background:#FAFAF6}.fabric-card:nth-child(3){background:#FFF1E8}.fabric-card:nth-child(4){background:#E8EBFA}
+    .fabric-swatch{height:86px;margin-bottom:28px;border:1px solid var(--green-950);background:repeating-linear-gradient(135deg,#1b1b1b 0 6px,#333 6px 12px)}
+    .white-swatch{background:repeating-linear-gradient(135deg,#fff 0 6px,#ececec 6px 12px)}.satin-swatch{background:linear-gradient(100deg,#654b54,#f3d8da 42%,#7c5961 66%,#d6afb3)}.texture-swatch{background:repeating-linear-gradient(90deg,#6f88a1 0 4px,#8498aa 4px 8px)}
+    .fabric-card h3{font-size:22px;margin:0 0 8px}.fabric-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
+
+    .fill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .fill-card{min-height:340px;padding:20px;border:1px solid var(--green-950);background:var(--paper-0)}
+    .fill-card:nth-child(2){background:var(--green-100)}.fill-card:nth-child(3){background:#E6E6E1}
+    .fill-portrait{position:relative;height:155px;margin-bottom:24px}.fill-head{position:absolute;left:50%;top:30px;width:64px;height:92px;border-radius:45%;background:linear-gradient(90deg,#D4B49D 0 48%,#8B6D5C 48%);transform:translateX(-50%)}.whitefill .fill-head{background:linear-gradient(90deg,#D4B49D 0 54%,#B58F77 54%)}.blackfill .fill-head{background:linear-gradient(90deg,#D4B49D 0 44%,#4F3D32 44%)}
+    .fill-card h3{font-size:24px;margin:0 0 8px}.fill-card p{color:var(--muted);font-size:13px;line-height:1.55}
+
+    .practice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .practice-card{min-height:300px;padding:20px;border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.04)}
+    .practice-card b{display:flex;width:42px;height:42px;align-items:center;justify-content:center;border-radius:50%;background:var(--yellow);color:var(--green-950)}
+    .practice-card h3{margin:34px 0 10px;color:white;font-size:25px;line-height:1}.practice-card p{margin:0;color:#C7D7CD;font-size:13px;line-height:1.55}
+    .practice-card strong{display:block;margin-top:20px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);color:var(--yellow);font-size:12px}
+
+    .checklist{display:grid;grid-template-columns:repeat(7,1fr);border:1px solid var(--green-950)}
+    .check-item{min-height:190px;padding:16px;border-right:1px solid var(--green-950);background:var(--paper-0)}.check-item:last-child{border:0}
+    .check-item b{display:block;color:var(--orange);font-size:30px}.check-item span{display:block;margin-top:26px;font-size:13px;font-weight:800;line-height:1.4}
+
+    .homework-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.homework{min-height:330px;padding:22px;border:1px solid var(--green-950);background:var(--paper-0)}
+    .homework:nth-child(2){background:var(--green-100)}.homework:nth-child(3){background:#E8EBFA}.homework b{font-size:46px}.homework h3{margin:32px 0 9px;font-size:24px}.homework p{color:var(--muted);line-height:1.55}
+
+    .final-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid rgba(255,255,255,.24)}
+    .final-item{min-height:220px;padding:20px;border-right:1px solid rgba(255,255,255,.18)}.final-item:last-child{border:0}
+    .final-item b{color:var(--yellow);font-size:38px}.final-item h3{margin:30px 0 8px;color:white;font-size:21px}.final-item p{margin:0;color:#C7D7CD;font-size:13px;line-height:1.5}
+    .final-line{margin-top:28px;padding-top:28px;border-top:1px solid rgba(255,255,255,.25);color:white;font-size:clamp(36px,5vw,66px);font-weight:900;line-height:.95;letter-spacing:-.05em}
+
+    @media(max-width:1024px) and (min-width:801px){
+      .light-properties{grid-template-columns:repeat(3,1fr)}.light-prop{border-bottom:1px solid var(--green-950)}.direction-grid,.fabric-grid{grid-template-columns:repeat(2,1fr)}.checklist{grid-template-columns:repeat(4,1fr)}.check-item{border-bottom:1px solid var(--green-950)}
+    }
+    @media(max-width:800px){
+      .page{padding:12px 16px 60px}.lesson-nav{font-size:10px}.hero{grid-template-columns:1fr;min-height:auto;padding:40px 0 54px}.hero h1{font-size:54px}.hero-bottom{grid-template-columns:1fr}.hero-visual{min-height:500px}.hero-image{right:26px;height:455px}.hero-image img{height:398px}
+      .section{margin:0 -16px;padding:62px 16px 68px}.section-head{grid-template-columns:1fr;gap:24px}.section h2{font-size:48px}.section-note{top:14px;right:16px}.teacher-note-popover{position:fixed;left:16px;right:16px;top:auto;bottom:18px;width:auto;max-height:58vh;overflow:auto;z-index:9999}
+      .recap-grid,.lens-demo,.light-properties,.direction-grid,.hardsoft,.distance-light,.distance-steps,.fabric-grid,.fill-grid,.practice-grid,.homework-grid,.final-grid{grid-template-columns:1fr}
+      .light-prop,.final-item,.check-item{border-right:0;border-bottom:1px solid var(--green-950)}.light-prop:last-child,.final-item:last-child,.check-item:last-child{border-bottom:0}.checklist{grid-template-columns:1fr}
+    }
+    @media print{.teacher-note{display:none!important}}
+  </style>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><style id="academy-logo-critical">
+header.site-header,header.site-header.scrolled{background:linear-gradient(90deg,#fffef9,#f5f7f1)!important;border-color:rgba(23,56,43,.12)!important}
+.site-header .nav-links a,.site-header.scrolled .nav-links a{color:#17382b!important}
+.brand-official,.p2-brand{display:inline-flex!important;align-items:center!important;width:200px!important;min-width:200px!important;height:40px!important;padding:0!important;border:0!important;background:none!important;background-image:none!important}
+.brand-official>*{opacity:1!important;visibility:visible!important}
+.brand-official .academy-logo-svg,.p2-brand .academy-logo-svg{display:block!important;width:200px!important;max-height:40px!important;height:auto!important;opacity:1!important;visibility:visible!important}
+footer .brand-official,.p2-footer-logo{width:220px!important;min-width:220px!important;height:48px!important}
+footer .academy-logo-svg,.p2-footer-logo .academy-logo-svg{display:block!important;width:220px!important;max-height:48px!important;height:auto!important;opacity:1!important;visibility:visible!important}
+footer .academy-logo-svg .cls-1,.p2-footer .academy-logo-svg .cls-1{fill:#fff!important}
+footer .academy-logo-svg .cls-2,.p2-footer .academy-logo-svg .cls-2{fill:#fcb415!important}
+@media(max-width:760px){.brand-official,.p2-brand{width:170px!important;min-width:170px!important;height:34px!important}.brand-official .academy-logo-svg,.p2-brand .academy-logo-svg{width:170px!important;max-height:34px!important}footer .brand-official,.p2-footer-logo{width:190px!important;min-width:190px!important;height:42px!important}footer .academy-logo-svg,.p2-footer-logo .academy-logo-svg{width:190px!important;max-height:42px!important}}
+</style></head>
+<body>
+<div class="page">
+  <nav class="lesson-nav">
+    <div class="lesson-nav-path"><span>Nhiếp ảnh cơ bản</span><span>Thời trang</span><span>Buổi 03</span></div>
+    <div class="lesson-nav-time">150 phút</div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-copy">
+      <div>
+        <div class="eyebrow">Nhiếp ảnh ứng dụng trong thời trang</div>
+        <h1><small>Buổi 03</small>Tiêu cự.<br>Phối cảnh.<br>Ánh sáng.</h1>
+        <p class="hero-intro">Buổi 03 nối hai việc: <strong>đặt máy ở đâu</strong> và <strong>ánh sáng đến từ đâu</strong>. Mục tiêu là bắt đầu kiểm soát hình khối, tỷ lệ và chất liệu thay vì chỉ “tìm góc đẹp”.</p>
+      </div>
+      <div class="hero-bottom">
+        <div class="principle"><strong>Nguyên tắc</strong>Vị trí máy tạo phối cảnh. Ánh sáng tạo hình khối. Mọi lựa chọn đều phải phục vụ trang phục.</div>
+        <div class="hero-meta">
+          <div><span>Thời lượng</span><strong>150 phút</strong></div>
+          <div><span>Bài chính</span><strong>1 nguồn / 6 ảnh</strong></div>
+          <div><span>Trọng tâm</span><strong>70% ánh sáng</strong></div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-block"></div>
+      <div class="hero-image">
+        <img src="https://drive.google.com/thumbnail?id=1btBA73CHJnnMIE-ENfwSFHgceUMrryAY&sz=w1600" alt="Ảnh thời trang XITA dùng minh họa Buổi 03">
+        <div class="hero-caption"><span>Ảnh nội bộ · XITA</span><span>Đọc hướng sáng · tỷ lệ · hậu cảnh</span></div>
+      </div>
+      <div class="hero-sticker">Nhìn bóng<br>trước khi<br>đặt đèn</div>
+    </div>
+  </header>
+
+  <section class="section paper">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Cách dẫn dắt</h4><p>Không giảng lại Buổi 02. Chỉ hỏi học viên ba câu: máy đặt ở đâu, tiêu cự bao nhiêu, và ảnh đang ưu tiên người hay không gian?</p>
+      <h4>Lưu ý</h4><p>Phần tiêu cự chỉ dùng để củng cố. Trọng tâm chính của buổi là nền tảng ánh sáng.</p>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>01</b> Kết nối từ Buổi 02</div><h2>Không học lại lens.<br>Chỉ giữ ba nguyên tắc.</h2></div>
+      <p class="section-lead">Buổi 02 đã chạm vào tiêu cự và khoảng cách. Buổi 03 chỉ nhắc lại đủ để chuyển sang việc nhìn và điều khiển ánh sáng.</p>
+    </div>
+    <div class="recap-grid">
+      <article class="recap-card"><b>01</b><h3>Vị trí máy</h3><p>Khoảng cách và độ cao máy ảnh ảnh hưởng mạnh đến phối cảnh và tỷ lệ gần–xa.</p></article>
+      <article class="recap-card"><b>02</b><h3>Tiêu cự</h3><p>Quyết định góc nhìn và lượng không gian được đưa vào khung từ vị trí đã chọn.</p></article>
+      <article class="recap-card"><b>03</b><h3>Khung hình</h3><p>Quyết định lượng thông tin về người mẫu, trang phục và hậu cảnh được giữ lại.</p></article>
+    </div>
+  </section>
+
+  <section class="section blue">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Demo nhanh</h4><p>Chụp cùng khung 3/4 ở 35 / 50 / 85mm. Di chuyển máy để người mẫu có kích thước gần giống nhau.</p>
+      <h4>Câu hỏi</h4><ul><li>Lượng hậu cảnh thay đổi ra sao?</li><li>Tỷ lệ gần–xa thay đổi vì tiêu cự hay vì khoảng cách?</li></ul>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>02</b> Tiêu cự & khoảng cách</div><h2>Cùng khung hình.<br>Nhưng người chụp đứng khác chỗ.</h2></div>
+      <p class="section-lead">35mm thường khiến người chụp tiến gần hơn. 85mm thường khiến người chụp lùi xa hơn. Chính khoảng cách đó làm phối cảnh thay đổi rõ.</p>
+    </div>
+    <div class="lens-demo">
+      <article class="lens-panel near">
+        <h3>35mm · đứng gần</h3>
+        <p>Thấy nhiều không gian hơn, chiều sâu mạnh hơn, phần gần máy có thể được nhấn rõ.</p>
+        <div class="distance-diagram"><div class="camera"></div><div class="ray"></div><div class="person"></div><div class="bg-block"></div></div>
+        <div class="lens-tags"><span>Nhiều bối cảnh</span><span>Cảm giác gần</span><span>Perspective mạnh</span></div>
+      </article>
+      <article class="lens-panel far">
+        <h3>85mm · đứng xa</h3>
+        <p>Góc nhìn hẹp hơn, ít bối cảnh hơn, quan hệ kích thước gần–xa ổn định hơn khi giữ cùng framing.</p>
+        <div class="distance-diagram"><div class="camera"></div><div class="ray"></div><div class="person"></div><div class="bg-block"></div></div>
+        <div class="lens-tags"><span>Ít bối cảnh</span><span>Khoảng cách xa</span><span>Tỷ lệ dễ kiểm soát</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Cách chuyển bài</h4><p>Đặt câu hỏi: “Sau khi máy đã đúng vị trí, điều gì đang tạo hình khối trên khuôn mặt và trang phục?” rồi mới chuyển sang ánh sáng.</p>
+      <h4>Lưu ý</h4><p>Không đi sâu công suất, stop hay light meter ở đây.</p>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>03</b> Đọc ánh sáng</div><h2>Năm thuộc tính phải nhìn được trước khi đặt đèn.</h2></div>
+      <p class="section-lead">Từ Buổi 03 trở đi, mọi bài ánh sáng đều bắt đầu bằng cùng một framework quan sát.</p>
+    </div>
+    <div class="light-properties">
+      <div class="light-prop"><b>01</b><h3>Hướng</h3><p>Ánh sáng đang đến từ trước, chéo, bên hông hay phía sau?</p></div>
+      <div class="light-prop"><b>02</b><h3>Cứng / mềm</h3><p>Rìa bóng rõ hay chuyển vùng nhẹ?</p></div>
+      <div class="light-prop"><b>03</b><h3>Cường độ</h3><p>Độ sáng hiện tại có giữ được chi tiết cần thiết?</p></div>
+      <div class="light-prop"><b>04</b><h3>Khoảng cách</h3><p>Nguồn ở gần hay xa chủ thể và điều đó ảnh hưởng ra sao?</p></div>
+      <div class="light-prop"><b>05</b><h3>Màu</h3><p>Nguồn sáng ấm, trung tính hay lạnh?</p></div>
+    </div>
+  </section>
+
+  <section class="section paper">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Demo bắt buộc</h4><p>Giữ người mẫu và máy cố định. Chỉ di chuyển một nguồn sáng theo 4 vị trí: front → 45° → side → back.</p>
+      <h4>Câu hỏi</h4><ul><li>Bóng đổ đang đi về đâu?</li><li>Ảnh nào đọc texture rõ nhất?</li><li>Ảnh nào phẳng nhất?</li></ul>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>04</b> Hướng ánh sáng</div><h2>Di chuyển nguồn sáng.<br>Hình khối thay đổi.</h2></div>
+      <p class="section-lead">Cùng một người mẫu, cùng một trang phục, chỉ cần đổi hướng nguồn sáng là khuôn mặt, chất liệu và chiều sâu đã thay đổi rõ.</p>
+    </div>
+    <div class="direction-grid">
+      <article class="direction-card front"><div class="light-sketch"><div class="light-source"></div><div class="light-beam"></div><div class="head-shape"></div></div><h3>Chính diện</h3><p>Ít bóng hơn, ảnh phẳng hơn, dễ đọc màu và form nhưng ít chiều sâu.</p></article>
+      <article class="direction-card angle"><div class="light-sketch"><div class="light-source"></div><div class="light-beam"></div><div class="head-shape"></div></div><h3>45°</h3><p>Cân bằng giữa độ rõ và chiều sâu. Đây là điểm bắt đầu tốt cho người mới.</p></article>
+      <article class="direction-card side"><div class="light-sketch"><div class="light-source"></div><div class="light-beam"></div><div class="head-shape"></div></div><h3>Bên hông</h3><p>Contrast mạnh hơn, texture và hình khối rõ nhưng phía tối dễ mất chi tiết.</p></article>
+      <article class="direction-card back"><div class="light-sketch"><div class="light-source"></div><div class="light-beam"></div><div class="head-shape"></div></div><h3>Phía sau</h3><p>Tạo viền sáng, silhouette hoặc separation nhưng mặt có thể thiếu sáng nếu chỉ có một nguồn.</p></article>
+    </div>
+  </section>
+
+  <section class="section paper-alt">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Điểm cần sửa</h4><p>Không nói “softbox = ánh sáng mềm”. Độ mềm phụ thuộc kích thước biểu kiến của nguồn so với chủ thể.</p>
+      <h4>Demo</h4><p>Dùng cùng modifier nhưng thay đổi khoảng cách hoặc dùng diffusion lớn hơn để so cạnh bóng.</p>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>05</b> Ánh sáng cứng & mềm</div><h2>Không nhìn tên thiết bị.<br>Nhìn cạnh bóng.</h2></div>
+      <p class="section-lead">Độ cứng/mềm được đọc từ cách bóng chuyển vùng và kích thước biểu kiến của nguồn sáng so với chủ thể.</p>
+    </div>
+    <div class="hardsoft">
+      <article class="hs-card hard"><h3>Ánh sáng cứng</h3><div class="shadow-demo"><div class="shadow-object"></div></div><p>Rìa bóng rõ, highlight mạnh, texture nổi và cảm giác đồ họa hơn.</p><div class="hs-rule">Nguồn tương đối nhỏ / xa → thường cứng hơn.</div></article>
+      <article class="hs-card soft"><h3>Ánh sáng mềm</h3><div class="shadow-demo"><div class="shadow-object"></div></div><p>Bóng chuyển mượt, da dễ kiểm soát hơn, form vẫn rõ nhưng ít gắt.</p><div class="hs-rule">Nguồn tương đối lớn / gần → thường mềm hơn.</div></article>
+    </div>
+  </section>
+
+  <section class="section warm">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Demo</h4><p>Giữ modifier và người mẫu. Đưa nguồn gần rồi kéo nguồn xa. Điều chỉnh công suất để exposure gần tương đương.</p>
+      <h4>Lưu ý</h4><p>Chỉ giải thích trực quan về falloff; chưa cần công thức nghịch đảo bình phương ở buổi này.</p>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>06</b> Khoảng cách nguồn sáng</div><h2>Gần hơn không chỉ sáng hơn.</h2></div>
+      <p class="section-lead">Khoảng cách thay đổi cả độ mềm tương đối lẫn cách ánh sáng suy giảm trên chủ thể và không gian.</p>
+    </div>
+    <div class="distance-light">
+      <div class="distance-steps">
+        <article class="distance-step"><strong>GẦN</strong><h3>Nguồn nhìn lớn hơn.</h3><p>Thường mềm hơn. Độ sáng thay đổi nhanh hơn khi chủ thể di chuyển ra xa nguồn.</p></article>
+        <article class="distance-step"><strong>XA</strong><h3>Nguồn nhìn nhỏ hơn.</h3><p>Thường cứng hơn tương đối. Độ sáng trên vùng chụp có xu hướng đồng đều hơn.</p></article>
+      </div>
+      <aside class="inverse-note"><div><h3>Điều cần nhớ</h3><p>Đừng chỉ hỏi “đèn mạnh bao nhiêu”. Hãy nhìn cả vị trí và khoảng cách của nguồn so với chủ thể.</p></div><strong>Nguồn gần → mềm hơn tương đối nhưng falloff nhanh hơn.</strong></aside>
+    </div>
+  </section>
+
+  <section class="section paper">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Cách dẫn dắt</h4><p>Dùng chính bộ trang phục đang mặc. Xoay người mẫu hoặc đổi hướng nguồn để tìm lúc chất liệu hiện rõ nhất.</p>
+      <h4>Câu hỏi</h4><ul><li>Highlight đang mô tả chất liệu hay phá chi tiết?</li><li>Vải đen còn separation không?</li></ul>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>07</b> Ánh sáng & chất liệu</div><h2>Mỗi loại vải phản ứng khác nhau.</h2></div>
+      <p class="section-lead">Fashion không chỉ cần da đẹp. Ánh sáng phải giúp người xem hiểu được chất liệu, lớp và chi tiết của trang phục.</p>
+    </div>
+    <div class="fabric-grid">
+      <article class="fabric-card"><div class="fabric-swatch"></div><h3>Vải đen</h3><p>Dễ mất đường may và các lớp. Cần highlight hoặc separation vừa đủ.</p></article>
+      <article class="fabric-card"><div class="fabric-swatch white-swatch"></div><h3>Vải trắng</h3><p>Dễ mất texture ở vùng sáng. Kiểm tra highlight và histogram.</p></article>
+      <article class="fabric-card"><div class="fabric-swatch satin-swatch"></div><h3>Vải bóng / satin</h3><p>Specular highlight thay đổi mạnh theo góc nguồn và góc bề mặt.</p></article>
+      <article class="fabric-card"><div class="fabric-swatch texture-swatch"></div><h3>Vải có texture</h3><p>Ánh sáng lệch thường giúp bề mặt nổi rõ hơn ánh sáng chính diện.</p></article>
+    </div>
+  </section>
+
+  <section class="section blue">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Demo</h4><p>Một nguồn chính 45°. Chụp ba phiên bản: không fill → reflector trắng → tấm đen.</p>
+      <h4>Lưu ý</h4><p>Fill không nhất thiết phải là một đèn khác. Mục tiêu là thay đổi lượng ánh sáng ở phía shadow.</p>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>08</b> Contrast & Fill</div><h2>Không thêm đèn vẫn thay đổi được tương phản.</h2></div>
+      <p class="section-lead">Reflector trắng đưa ánh sáng trở lại vùng tối. Tấm đen giảm ánh sáng phản xạ và làm shadow sâu hơn.</p>
+    </div>
+    <div class="fill-grid">
+      <article class="fill-card nofill"><div class="fill-portrait"><div class="fill-head"></div></div><h3>Không fill</h3><p>Giữ contrast tự nhiên của nguồn chính và môi trường xung quanh.</p></article>
+      <article class="fill-card whitefill"><div class="fill-portrait"><div class="fill-head"></div></div><h3>White fill</h3><p>Nâng vùng shadow, giảm contrast, trả lại chi tiết phía tối.</p></article>
+      <article class="fill-card blackfill"><div class="fill-portrait"><div class="fill-head"></div></div><h3>Negative fill</h3><p>Giảm phản xạ môi trường, shadow sâu hơn và hình khối mạnh hơn.</p></article>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Quy tắc</h4><p>Giữ máy, người mẫu, trang phục và hậu cảnh gần như cố định. Chỉ thay hướng sáng/fill để học viên thấy một biến số mỗi lần.</p>
+      <h4>Review</h4><p>Đặt 6 ảnh cạnh nhau rồi mới đánh giá. Không hỏi “ảnh nào đẹp nhất” trước.</p>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>09</b> Bài thực hành chính</div><h2>1 người mẫu.<br>1 nguồn sáng.<br>6 kết quả.</h2></div>
+      <p class="section-lead">Mỗi ảnh thay đổi đúng một quyết định ánh sáng để học viên hiểu nguyên nhân → kết quả.</p>
+    </div>
+    <div class="practice-grid">
+      <article class="practice-card"><b>01</b><h3>Front light</h3><p>Đặt nguồn gần trục máy để thấy ảnh phẳng hơn và ít shadow hơn.</p><strong>Mục tiêu: đọc form và màu.</strong></article>
+      <article class="practice-card"><b>02</b><h3>45°</h3><p>Đưa nguồn sang góc 45° để tạo chiều sâu vừa phải.</p><strong>Mục tiêu: form + chiều sâu.</strong></article>
+      <article class="practice-card"><b>03</b><h3>Side light</h3><p>Đưa nguồn sang bên hông để tăng contrast và texture.</p><strong>Mục tiêu: đọc chất liệu.</strong></article>
+      <article class="practice-card"><b>04</b><h3>Back / edge</h3><p>Đưa nguồn ra sau để tạo separation hoặc silhouette.</p><strong>Mục tiêu: viền sáng / tách nền.</strong></article>
+      <article class="practice-card"><b>05</b><h3>45° + white fill</h3><p>Giữ nguồn 45° và thêm reflector trắng phía shadow.</p><strong>Mục tiêu: giảm contrast.</strong></article>
+      <article class="practice-card"><b>06</b><h3>45° + negative fill</h3><p>Thay reflector trắng bằng tấm đen phía shadow.</p><strong>Mục tiêu: tăng chiều sâu.</strong></article>
+    </div>
+  </section>
+
+  <section class="section paper">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Cách dùng</h4><p>Yêu cầu học viên đọc checklist thành tiếng trước 2–3 khung đầu. Sau đó mới cho tự thực hiện.</p>
+      <h4>Mục tiêu</h4><p>Từ Buổi 03, checklist này trở thành thói quen trước mỗi lần bấm máy.</p>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>10</b> Checklist trước khi chụp</div><h2>Nhìn theo thứ tự.<br>Không sửa ngẫu nhiên.</h2></div>
+      <p class="section-lead">Mỗi quyết định phải trả lời được một câu hỏi cụ thể về hình ảnh.</p>
+    </div>
+    <div class="checklist">
+      <div class="check-item"><b>01</b><span>Tôi muốn người xem nhìn thấy gì?</span></div>
+      <div class="check-item"><b>02</b><span>Máy cần đặt ở đâu?</span></div>
+      <div class="check-item"><b>03</b><span>Khung hình bao nhiêu?</span></div>
+      <div class="check-item"><b>04</b><span>Ánh sáng đến từ đâu?</span></div>
+      <div class="check-item"><b>05</b><span>Cứng hay mềm?</span></div>
+      <div class="check-item"><b>06</b><span>Shadow còn đủ thông tin?</span></div>
+      <div class="check-item"><b>07</b><span>Chất liệu có đọc được?</span></div>
+    </div>
+  </section>
+
+  <section class="section paper-alt">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Cách giao bài</h4><p>Học viên phải nộp theo cặp/nhóm ảnh để chứng minh sự khác biệt, không chỉ nộp một ảnh đẹp nhất.</p>
+      <h4>Chấm</h4><p>Ưu tiên khả năng gọi tên hướng sáng, cạnh bóng, contrast và lý do lựa chọn.</p>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>11</b> Bài tập về nhà</div><h2>Tiếp tục luyện mắt bằng ánh sáng thật.</h2></div>
+      <p class="section-lead">Không cần thiết bị phức tạp. Có thể dùng cửa sổ, LED hoặc một nguồn sáng đang có.</p>
+    </div>
+    <div class="homework-grid">
+      <article class="homework"><b>01</b><h3>1 nguồn / 4 hướng</h3><p>Chụp front, 45°, side và back. Ghi bóng đổ thay đổi thế nào.</p></article>
+      <article class="homework"><b>02</b><h3>Cứng vs mềm</h3><p>Tạo hai phiên bản nguồn nhỏ/xa và nguồn lớn/gần hoặc có diffusion. So cạnh bóng và texture.</p></article>
+      <article class="homework"><b>03</b><h3>Fill comparison</h3><p>Chụp không fill, white fill và negative fill. Chọn phiên bản phù hợp nhất với trang phục và giải thích.</p></article>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Cách kết buổi</h4><p>Không tổng kết bằng thông số. Yêu cầu học viên trả lời: nguồn ở đâu, bóng đi đâu, chất liệu hiện thế nào.</p>
+      <h4>Chuyển tiếp</h4><p>Buổi 04 quay về bố cục và tư duy thị giác; Buổi 05 mới đi sâu ánh sáng tự nhiên.</p>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>12</b> Kết quả cuối buổi</div><h2>Biết nhìn bóng trước khi nghĩ đến thiết bị.</h2></div>
+      <p class="section-lead">Học viên phải bắt đầu dự đoán được ảnh sẽ thay đổi ra sao trước khi di chuyển nguồn sáng.</p>
+    </div>
+    <div class="final-grid">
+      <div class="final-item"><b>01</b><h3>Đọc hướng sáng</h3><p>Nhận biết nguồn đang ở trước, chéo, bên hay sau.</p></div>
+      <div class="final-item"><b>02</b><h3>Đọc độ cứng/mềm</h3><p>Nhìn cạnh bóng thay vì đoán qua tên modifier.</p></div>
+      <div class="final-item"><b>03</b><h3>Kiểm soát contrast</h3><p>Biết dùng fill hoặc negative fill ở mức cơ bản.</p></div>
+      <div class="final-item"><b>04</b><h3>Đọc chất liệu</h3><p>Biết ánh sáng đang giúp hay làm mất chi tiết trang phục.</p></div>
+    </div>
+    <div class="final-line">Đừng hỏi đèn đặt ở đâu trước.<br>Hãy hỏi bạn muốn bóng đổ ở đâu.</div>
+  </section>
+</div>
+</body>
+</html>
