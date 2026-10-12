@@ -11,7 +11,7 @@ Mục tiêu là giữ phần kỹ thuật nhiếp ảnh ở cấp độ Basic nh
 3. [Buổi 03 — Tiêu cự, Phối cảnh & Nền tảng Ánh sáng](./lesson-03-focal-length-lighting-foundation/)
 4. Buổi 04 — Thực hành tổng hợp Buổi 01–03
 5. [Buổi 05 — Ánh sáng tự nhiên cho Thời trang](./lesson-05-natural-light-fashion/)
-6. [Buổi 06 — Ánh sáng nhân tạo cơ bản](./lesson-06-artificial-light-fashion/)
+6. [Buổi 06 — Bố cục & Tư duy thị giác trong Thời trang](./lesson-06-composition-fashion/)
 7. Buổi 07 — Pose, Model Direction & Movement
 8. Buổi 08 — Lookbook / Product Fashion Shooting
 9. Buổi 09 — Lightroom / Camera Raw
