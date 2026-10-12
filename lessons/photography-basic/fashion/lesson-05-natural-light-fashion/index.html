@@ -113,6 +113,41 @@
       .scout-tag{font-size:9px;padding:5px 7px}
     }
 
+
+    /* Lesson 05 / Section 03: photo evidence + accurate top-down light-direction diagrams */
+    .window-lesson-section h2{font-size:clamp(42px,4.7vw,70px)}
+    .window-explain-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:stretch}
+    .window-explain-card{min-width:0;display:flex;flex-direction:column;background:var(--paper-0);border:1px solid var(--green-950)}
+    .window-explain-card:nth-child(2){background:var(--green-100)}
+    .window-explain-card:nth-child(3){background:#F7E7DF}
+    .window-explain-top{display:flex;align-items:center;justify-content:space-between;padding:13px 17px;font-size:11px;font-weight:900;letter-spacing:.1em;color:var(--green-950)}
+    .window-explain-top strong{font-size:29px;letter-spacing:-.05em}
+    .window-explain-image{width:100%;height:auto;aspect-ratio:960/534;object-fit:cover;display:block;border-top:1px solid rgba(15,66,45,.2);border-bottom:1px solid rgba(15,66,45,.2)}
+    .window-explain-copy{padding:20px 20px 15px;min-height:138px}
+    .window-explain-copy h3{font-size:23px;letter-spacing:-.03em;line-height:1.1;margin:0 0 10px;color:var(--green-950)}
+    .window-explain-copy p{margin:0;font-size:13px;line-height:1.55;color:var(--muted)}
+    .window-plan{margin:0 15px;border:1px solid rgba(15,66,45,.28);background:#F7F3E9;padding:10px 11px}
+    .window-plan-title{display:flex;align-items:center;justify-content:space-between;font-size:10px;font-weight:900;letter-spacing:.08em;color:var(--green-950)}
+    .window-plan-title b{font-size:20px;letter-spacing:-.04em}
+    .window-plan svg{width:100%;height:auto;display:block;max-height:176px}
+    .window-plan .plan-label{font-family:Inter,ui-sans-serif,system-ui,sans-serif;font-size:10px;fill:#0F422D;font-weight:850;letter-spacing:.02em}
+    .window-plan .plan-ray{stroke:#D18A12;stroke-width:4;stroke-linecap:round;stroke-dasharray:7 5}
+    .window-plan-key{display:flex;justify-content:space-between;gap:10px;font-size:10px;font-weight:800;color:var(--green-950)}
+    .window-plan-key>span{display:inline-flex;align-items:center;gap:5px}
+    .window-plan-key i{display:inline-block;width:12px;height:8px;border:1px solid var(--green-950)}
+    .window-plan-key .light-key{background:var(--yellow)}
+    .window-plan-key .face-key{background:#E5BFA4}
+    .window-explain-result{padding:20px;margin-top:auto;color:var(--green-950)}
+    .window-explain-result>strong{font-size:10px;letter-spacing:.08em}
+    .window-explain-result ul{padding:0;margin:10px 0 0;list-style:none;display:grid;gap:9px}
+    .window-explain-result li{position:relative;padding-left:16px;font-size:13px;line-height:1.45;color:#395144}
+    .window-explain-result li::before{content:"";position:absolute;left:0;top:7px;background:var(--green-700);width:7px;height:7px;border-radius:50%}
+    .window-compare-note{display:grid;grid-template-columns:175px 1fr;align-items:start;gap:20px;padding:20px 24px;margin-top:15px;border:1px solid rgba(15,66,45,.4);background:var(--paper-0)}
+    .window-compare-note>b{font-size:11px;letter-spacing:.08em;color:var(--green-700)}
+    .window-compare-note p{font-size:14px;line-height:1.6;margin:0;color:var(--green-950)}
+    @media(max-width:920px){.window-explain-grid{grid-template-columns:1fr}.window-explain-card{max-width:670px;width:100%;margin:0 auto}.window-explain-copy{min-height:0}.window-plan svg{max-height:220px}.window-compare-note{grid-template-columns:1fr;gap:6px}}
+    @media print{.window-explain-grid{break-inside:avoid}}
+
     @media(max-width:1024px) and (min-width:801px){.workflow{grid-template-columns:repeat(3,1fr)}.workflow-step{border-bottom:1px solid var(--green-950)}.color-grid{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:800px){
       .page{padding:12px 16px 60px}.lesson-nav{font-size:10px}.hero{grid-template-columns:1fr;min-height:auto;padding:40px 0 54px}.hero h1{font-size:55px}.hero-bottom{grid-template-columns:1fr}.hero-visual{min-height:510px}.hero-image{right:28px;height:455px}.hero-image img{height:397px}
@@ -196,20 +231,84 @@
     </div>
   </section>
 
-  <section class="section paper-alt">
+  <section class="section paper-alt window-lesson-section">
     <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
       <h4>Demo</h4><p>Dùng cửa sổ/cửa ra vào. Giữ người mẫu một vị trí và xoay front → 45° → side. Sau đó thay khoảng cách đến cửa.</p>
       <h4>Nhắc lại Buổi 03</h4><p>Nguồn gần và lớn tương đối thường mềm hơn nhưng falloff nhanh hơn.</p>
     </div></details></div>
     <div class="section-head">
-      <div><div class="kicker"><b>03</b> Cửa sổ & cửa ra vào</div><h2>Một nguồn sáng tự nhiên có hướng rất rõ.</h2></div>
-      <p class="section-lead">Cửa sổ cho phép học viên nhìn rõ nhất quan hệ giữa hướng sáng, khoảng cách và falloff mà không cần đèn studio.</p>
+      <div><div class="kicker"><b>03</b> Cửa sổ & cửa ra vào</div><h2>Một cửa sổ.<br>Ba hướng sáng khác nhau.</h2></div>
+      <p class="section-lead">Đọc hướng sáng qua <strong>bóng trên mặt và trang phục</strong>. Quan sát ảnh, sau đó nhìn sơ đồ vị trí tương đối giữa cửa sổ và người mẫu.</p>
     </div>
-    <div class="window-visual-grid">
-      <article class="window-visual-card"><img class="illustration-img" src="assets/window-front.webp" alt="Người mẫu hướng mặt ra nguồn sáng từ cửa sổ, mặt nhận sáng rộng" loading="lazy" decoding="async" width="960" height="540"><h3>Hướng về cửa</h3><p>Mặt nhận sáng tương đối đều; hình khối ít nổi bật hơn.</p></article>
-      <article class="window-visual-card"><img class="illustration-img" src="assets/window-angle.webp" alt="Người mẫu xoay chéo khoảng 45 độ so với cửa sổ, ánh sáng tạo chiều sâu trên mặt và áo" loading="lazy" decoding="async" width="960" height="540"><h3>Xoay 45°</h3><p>Cân bằng giữa độ rõ trang phục và chiều sâu khuôn mặt.</p></article>
-      <article class="window-visual-card"><img class="illustration-img" src="assets/window-side.webp" alt="Nguồn sáng cửa sổ từ bên hông tạo vùng sáng tối rõ hơn trên người mẫu" loading="lazy" decoding="async" width="960" height="540"><h3>Xoay ngang</h3><p>Ánh sáng bên hông rõ hơn, chất liệu nổi hơn và tương phản tăng.</p></article>
-    </div>
+    <div class="window-explain-grid">
+ <article class="window-explain-card">
+ <div class="window-explain-top"><span>01 / HƯỚNG SÁNG</span><strong>0°</strong></div>
+ <img class="window-explain-image" src="assets/window-front-clear.webp" alt="Ảnh minh hoạ người mẫu nhận nhiều ánh sáng từ phía trước mặt, vùng tối trên mặt ít" loading="lazy" decoding="async" width="960" height="534">
+ <div class="window-explain-copy"><h3>Nguồn sáng chính diện</h3><p>Nguồn sáng gần trục nhìn của khuôn mặt. Phần lớn mặt nhận sáng tương đối đều.</p></div>
+ <div class="window-plan" aria-label="Sơ đồ nhìn từ trên xuống: hướng ánh sáng 0 độ so với hướng mặt người mẫu">
+ <div class="window-plan-title"><span>SƠ ĐỒ HƯỚNG SÁNG</span><b>0°</b></div>
+ <svg viewBox="0 0 360 193" role="img" aria-label="Nguồn sáng từ cửa đến khuôn mặt của người mẫu, góc 0 độ">
+ <defs><marker id="lightArrow" markerWidth="8" markerHeight="8" refX="5" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#D18A12"/></marker></defs>
+ <rect x="1" y="1" width="358" height="191" rx="8" fill="#F7F3E9" stroke="#DFE4D6"/>
+ <path d="M166 117 Q203 140 240 117 L240 137 L166 137 Z" fill="#D3E7D9" stroke="#0F422D" stroke-width="1.7"/>
+ <circle cx="203" cy="95" r="25" fill="#E5BFA4" stroke="#0F422D" stroke-width="2"/>
+ <path d="M197 117 L203 125 L209 117" fill="#0F422D"/>
+ <text x="251" y="102" class="plan-label">MẪU</text>
+ <rect x="140" y="165" width="126" height="13" rx="3" fill="#F2D43D" stroke="#0F422D" stroke-width="2"/><text x="203" y="157" text-anchor="middle" class="plan-label">CỬA SỔ</text>
+ <line x1="203" y1="157" x2="203" y2="119" class="plan-ray" marker-end="url(#lightArrow)"/>
+ <g transform="translate(288 151)"><rect width="24" height="19" rx="3" fill="#0F422D"/><circle cx="12" cy="9" r="5.5" fill="#F7F3E9"/><rect x="5" y="-5" width="11" height="5" rx="1.5" fill="#0F422D"/></g>
+ <text x="276" y="184" class="plan-label">MÁY ẢNH</text>
+ </svg>
+ <div class="window-plan-key"><span><i class="light-key"></i> Nguồn sáng</span><span><i class="face-key"></i> Hướng mặt ↓</span></div>
+ </div>
+ <div class="window-explain-result"><strong>NHÌN VÀO ẢNH</strong><ul><li>Bóng trên má ít, da và màu trang phục dễ đọc.</li><li>Chiều sâu khuôn mặt nhẹ hơn.</li></ul></div>
+ </article>
+ <article class="window-explain-card">
+ <div class="window-explain-top"><span>02 / HƯỚNG SÁNG</span><strong>45°</strong></div>
+ <img class="window-explain-image" src="assets/window-angle-clear.webp" alt="Ảnh minh hoạ ánh sáng cửa sổ chéo 45 độ tạo vùng sáng và vùng tối vừa phải" loading="lazy" decoding="async" width="960" height="534">
+ <div class="window-explain-copy"><h3>Nguồn sáng chéo 45°</h3><p>Nguồn sáng lệch sang một bên. Bề mặt mặt và trang phục có vùng sáng – tối rõ hơn.</p></div>
+ <div class="window-plan" aria-label="Sơ đồ nhìn từ trên xuống: hướng ánh sáng 45 độ so với hướng mặt người mẫu">
+ <div class="window-plan-title"><span>SƠ ĐỒ HƯỚNG SÁNG</span><b>45°</b></div>
+ <svg viewBox="0 0 360 193" role="img" aria-label="Nguồn sáng từ cửa đến khuôn mặt của người mẫu, góc 45 độ">
+ <defs><marker id="lightArrow" markerWidth="8" markerHeight="8" refX="5" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#D18A12"/></marker></defs>
+ <rect x="1" y="1" width="358" height="191" rx="8" fill="#F7F3E9" stroke="#DFE4D6"/>
+ <path d="M166 117 Q203 140 240 117 L240 137 L166 137 Z" fill="#D3E7D9" stroke="#0F422D" stroke-width="1.7"/>
+ <circle cx="203" cy="95" r="25" fill="#E5BFA4" stroke="#0F422D" stroke-width="2"/>
+ <path d="M197 117 L203 125 L209 117" fill="#0F422D"/>
+ <text x="251" y="102" class="plan-label">MẪU</text>
+ <rect x="81" y="133" width="112" height="13" rx="3" transform="rotate(39 137 140)" fill="#F2D43D" stroke="#0F422D" stroke-width="2"/><text x="89" y="157" class="plan-label">CỬA SỔ</text>
+ <line x1="137" y1="141" x2="186" y2="114" class="plan-ray" marker-end="url(#lightArrow)"/>
+ <g transform="translate(288 151)"><rect width="24" height="19" rx="3" fill="#0F422D"/><circle cx="12" cy="9" r="5.5" fill="#F7F3E9"/><rect x="5" y="-5" width="11" height="5" rx="1.5" fill="#0F422D"/></g>
+ <text x="276" y="184" class="plan-label">MÁY ẢNH</text>
+ </svg>
+ <div class="window-plan-key"><span><i class="light-key"></i> Nguồn sáng</span><span><i class="face-key"></i> Hướng mặt ↓</span></div>
+ </div>
+ <div class="window-explain-result"><strong>NHÌN VÀO ẢNH</strong><ul><li>Một bên má sáng hơn, bên còn lại chuyển tối mềm.</li><li>Tạo hình khối nhưng vẫn giữ đủ chi tiết.</li></ul></div>
+ </article>
+ <article class="window-explain-card">
+ <div class="window-explain-top"><span>03 / HƯỚNG SÁNG</span><strong>90°</strong></div>
+ <img class="window-explain-image" src="assets/window-side-clear.webp" alt="Ảnh minh hoạ người mẫu dưới ánh sáng cửa sổ từ bên hông tạo chênh lệch sáng tối rõ" loading="lazy" decoding="async" width="960" height="534">
+ <div class="window-explain-copy"><h3>Nguồn sáng bên hông</h3><p>Nguồn sáng gần như vuông góc với hướng nhìn của khuôn mặt.</p></div>
+ <div class="window-plan" aria-label="Sơ đồ nhìn từ trên xuống: hướng ánh sáng 90 độ so với hướng mặt người mẫu">
+ <div class="window-plan-title"><span>SƠ ĐỒ HƯỚNG SÁNG</span><b>90°</b></div>
+ <svg viewBox="0 0 360 193" role="img" aria-label="Nguồn sáng từ cửa đến khuôn mặt của người mẫu, góc 90 độ">
+ <defs><marker id="lightArrow" markerWidth="8" markerHeight="8" refX="5" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#D18A12"/></marker></defs>
+ <rect x="1" y="1" width="358" height="191" rx="8" fill="#F7F3E9" stroke="#DFE4D6"/>
+ <path d="M166 117 Q203 140 240 117 L240 137 L166 137 Z" fill="#D3E7D9" stroke="#0F422D" stroke-width="1.7"/>
+ <circle cx="203" cy="95" r="25" fill="#E5BFA4" stroke="#0F422D" stroke-width="2"/>
+ <path d="M197 117 L203 125 L209 117" fill="#0F422D"/>
+ <text x="251" y="102" class="plan-label">MẪU</text>
+ <rect x="49" y="53" width="14" height="100" rx="3" fill="#F2D43D" stroke="#0F422D" stroke-width="2"/><text x="77" y="48" class="plan-label">CỬA SỔ</text>
+ <line x1="70" y1="100" x2="172" y2="100" class="plan-ray" marker-end="url(#lightArrow)"/>
+ <g transform="translate(288 151)"><rect width="24" height="19" rx="3" fill="#0F422D"/><circle cx="12" cy="9" r="5.5" fill="#F7F3E9"/><rect x="5" y="-5" width="11" height="5" rx="1.5" fill="#0F422D"/></g>
+ <text x="276" y="184" class="plan-label">MÁY ẢNH</text>
+ </svg>
+ <div class="window-plan-key"><span><i class="light-key"></i> Nguồn sáng</span><span><i class="face-key"></i> Hướng mặt ↓</span></div>
+ </div>
+ <div class="window-explain-result"><strong>NHÌN VÀO ẢNH</strong><ul><li>Sự phân chia sáng – tối rõ nhất.</li><li>Nếp vải và khối nổi hơn, cần kiểm tra vùng tối.</li></ul></div>
+ </article>
+ </div>
+ <div class="window-compare-note"><b>THỬ NGAY TẠI CỬA SỔ</b><p>Giữ người mẫu ở gần cùng một vị trí. Cho người mẫu xoay hướng mặt về phía cửa, rồi chéo 45°, rồi ngang 90°. Quan sát <strong>bóng trên má và nếp vải</strong> ở từng góc. Sơ đồ thể hiện góc ánh sáng <strong>tương đối với hướng mặt</strong>, không phải bản vẽ đúng vị trí cửa trong mỗi ảnh.</p></div>
   </section>
 
   <section class="section sand">
