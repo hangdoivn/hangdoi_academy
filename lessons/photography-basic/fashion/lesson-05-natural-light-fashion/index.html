@@ -72,6 +72,47 @@
     .homework-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.homework{min-height:320px;padding:22px;border:1px solid var(--green-950);background:var(--paper-0)}.homework:nth-child(2){background:var(--green-100)}.homework:nth-child(3){background:#E8EBFA}.homework b{font-size:46px}.homework h3{margin:32px 0 9px;font-size:24px}.homework p{color:var(--muted);line-height:1.55}
     .final-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid rgba(255,255,255,.24)}.final-item{min-height:220px;padding:20px;border-right:1px solid rgba(255,255,255,.18)}.final-item:last-child{border:0}.final-item b{color:var(--yellow);font-size:38px}.final-item h3{margin:30px 0 8px;color:white;font-size:21px}.final-item p{margin:0;color:#C7D7CD;font-size:13px;line-height:1.5}.final-line{margin-top:28px;padding-top:28px;border-top:1px solid rgba(255,255,255,.25);color:white;font-size:clamp(36px,5vw,66px);font-weight:900;line-height:.95;letter-spacing:-.05em}
 
+
+    /* Lesson 05: scene illustrations, same visual system as Academy editorial cards. */
+    .illustration-img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border:1px solid rgba(15,66,45,.24);margin:0 0 18px;background:var(--paper-100)}
+    .scout-image{position:relative;margin:0;background:var(--paper-0);border:2px solid var(--green-950);overflow:hidden;align-self:start}
+    .scout-image .illustration-img{margin:0;border:0;width:100%;aspect-ratio:16/10;object-fit:cover}
+    .scout-image figcaption{padding:12px 16px;font-size:12px;font-weight:700;color:var(--green-950)}
+    .scout-tag{position:absolute;padding:7px 10px;border-radius:999px;border:1px solid var(--green-950);background:var(--paper-0);font-size:11px;font-weight:850;box-shadow:2px 2px 0 rgba(15,66,45,.24)}
+    .scout-tag-sun{left:5%;top:10%;background:var(--yellow)}
+    .scout-tag-shade{right:5%;top:12%;background:var(--green-100)}
+    .scout-tag-edge{left:40%;bottom:20%;background:var(--paper-0)}
+    .shade-card{display:flex;flex-direction:column}
+    .shade-card .illustration-img{border-radius:0;object-position:center}
+    .window-visual-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .window-visual-card{padding:18px;border:1px solid var(--green-950);background:var(--paper-0)}
+    .window-visual-card:nth-child(2){background:var(--green-100)}
+    .window-visual-card:nth-child(3){background:#F7E4DC}
+    .window-visual-card h3{margin:0 0 8px;font-size:23px}
+    .window-visual-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}
+    .sun-card .illustration-img{margin-bottom:19px}
+    .sun-card .sun-icon{display:none}
+    .exposure-panel .illustration-img{margin-bottom:20px}
+    .exposure-panel.dark-subject .illustration-img{border-color:rgba(255,255,255,.3)}
+    .modifier .illustration-img{margin-bottom:20px}
+    .balance-card .illustration-img{margin-top:4px}
+    .color-card .tone-sample{position:relative;margin-bottom:18px;overflow:hidden}
+    .tone-sample .illustration-img{margin:0}
+    .tone-sample:after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:color}
+    .tone-green:after{background:rgba(64,119,65,.30)}
+    .tone-warm:after{background:rgba(210,122,48,.27)}
+    .tone-cool:after{background:rgba(75,119,185,.25)}
+    .tone-neutral:after{background:transparent}
+    .illustration-footnote{margin:14px 0 0;color:var(--muted);font-size:11px;line-height:1.5}
+    .practice-card{padding:15px 15px 20px}
+    .practice-card .illustration-img{margin:12px 0 20px;border-color:rgba(255,255,255,.27)}
+    .practice-card h3{margin:0 0 9px}
+    @media(max-width:800px){
+      .window-visual-grid{grid-template-columns:1fr}
+      .scout-map{grid-template-columns:1fr}
+      .scout-tag{font-size:9px;padding:5px 7px}
+    }
+
     @media(max-width:1024px) and (min-width:801px){.workflow{grid-template-columns:repeat(3,1fr)}.workflow-step{border-bottom:1px solid var(--green-950)}.color-grid{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:800px){
       .page{padding:12px 16px 60px}.lesson-nav{font-size:10px}.hero{grid-template-columns:1fr;min-height:auto;padding:40px 0 54px}.hero h1{font-size:55px}.hero-bottom{grid-template-columns:1fr}.hero-visual{min-height:510px}.hero-image{right:28px;height:455px}.hero-image img{height:397px}
@@ -122,15 +163,18 @@
       <p class="section-lead">Một location tốt không phải nơi có nhiều góc đẹp nhất, mà là nơi cho phép bạn chủ động chọn vùng sáng phù hợp với trang phục và mục tiêu hình ảnh.</p>
     </div>
     <div class="scout-map">
-      <div class="map-stage">
-        <div class="building"></div><div class="awning"></div><div class="ground-shadow"></div><div class="sun"></div>
-        <div class="zone z1">OPEN SHADE</div><div class="zone z2">NEGATIVE FILL</div><div class="zone z3">DIRECT SUN</div><div class="zone z4">WHITE BOUNCE</div><div class="zone z5">BACKLIGHT</div>
-      </div>
+      <figure class="scout-image">
+        <img class="illustration-img" src="assets/shade-edge.webp" alt="Minh hoạ địa điểm có khoảng sân sáng bên trái và hành lang có mái che bên phải" loading="lazy" decoding="async" width="960" height="540">
+        <span class="scout-tag scout-tag-sun">Vùng có nắng</span>
+        <span class="scout-tag scout-tag-shade">Vùng bóng râm</span>
+        <span class="scout-tag scout-tag-edge">Mép bóng râm</span>
+        <figcaption>Đọc vùng sáng trước khi quyết định vị trí người mẫu.</figcaption>
+      </figure>
       <div class="scout-list">
         <div class="scout-row"><b>01</b><span>Mặt trời đang ở hướng nào?</span></div>
         <div class="scout-row"><b>02</b><span>Vùng bóng râm có nhìn ra trời sáng không?</span></div>
-        <div class="scout-row"><b>03</b><span>Có tường/sàn sáng để bounce?</span></div>
-        <div class="scout-row"><b>04</b><span>Có mặt tối để negative fill?</span></div>
+        <div class="scout-row"><b>03</b><span>Có tường/sàn sáng để hắt sáng?</span></div>
+        <div class="scout-row"><b>04</b><span>Có mặt tối để giảm phản xạ?</span></div>
         <div class="scout-row"><b>05</b><span>Nền sáng hay tối hơn người mẫu?</span></div>
       </div>
     </div>
@@ -146,9 +190,9 @@
       <p class="section-lead">Mép bóng râm thường nhận nhiều ánh sáng từ bầu trời hơn. Đi sâu vào trong, ánh sáng giảm và direction có thể yếu dần.</p>
     </div>
     <div class="shade-grid">
-      <article class="shade-card"><div class="shade-depth"><div class="shade-person p-edge"></div></div><h3>Sát mép shade</h3><p>Nhiều skylight hơn, mắt sáng hơn, vẫn mềm nhưng có sức sống.</p></article>
-      <article class="shade-card"><div class="shade-depth"><div class="shade-person p-mid"></div></div><h3>Vào sâu vừa phải</h3><p>Ánh sáng dịu và kiểm soát tốt; cần xem background có bắt đầu sáng hơn quá nhiều không.</p></article>
-      <article class="shade-card"><div class="shade-depth"><div class="shade-person p-deep"></div></div><h3>Shade quá sâu</h3><p>Mắt và da dễ tối, ảnh có thể phẳng; background phía ngoài dễ vượt xa exposure của chủ thể.</p></article>
+      <article class="shade-card"><img class="illustration-img" src="assets/shade-edge.webp" alt="Người mẫu đứng gần mép bóng râm, nhận ánh sáng từ vùng trời mở" loading="lazy" decoding="async" width="960" height="540"><h3>Sát mép bóng râm</h3><p>Nhiều ánh sáng từ bầu trời hơn; mặt và mắt rõ, ánh sáng vẫn dịu.</p></article>
+      <article class="shade-card"><img class="illustration-img" src="assets/shade-mid.webp" alt="Người mẫu đứng sâu hơn trong hành lang có mái che, ánh sáng dịu hơn" loading="lazy" decoding="async" width="960" height="540"><h3>Vào sâu vừa phải</h3><p>Ánh sáng dịu và dễ kiểm soát; cần so độ sáng của hậu cảnh.</p></article>
+      <article class="shade-card"><img class="illustration-img" src="assets/shade-deep.webp" alt="Người mẫu đứng rất sâu trong vùng bóng râm, thiếu sáng so với ngoài trời" loading="lazy" decoding="async" width="960" height="540"><h3>Bóng râm quá sâu</h3><p>Mắt và da dễ tối, trang phục mất chi tiết; phía ngoài sáng hơn nhiều.</p></article>
     </div>
   </section>
 
@@ -161,13 +205,10 @@
       <div><div class="kicker"><b>03</b> Cửa sổ & cửa ra vào</div><h2>Một nguồn sáng tự nhiên có hướng rất rõ.</h2></div>
       <p class="section-lead">Cửa sổ cho phép học viên nhìn rõ nhất quan hệ giữa hướng sáng, khoảng cách và falloff mà không cần đèn studio.</p>
     </div>
-    <div class="window-grid">
-      <div class="window-demo"><div class="window-shape"></div><div class="window-rays"></div><div class="window-person"></div><div class="window-axis">WINDOW → SUBJECT</div></div>
-      <div class="window-options">
-        <div class="window-card"><strong>Nhìn thẳng ra cửa</strong><p>Ánh sáng đều hơn trên mặt, ít chiều sâu hơn.</p></div>
-        <div class="window-card"><strong>Xoay khoảng 45°</strong><p>Cân bằng giữa form khuôn mặt, trang phục và shadow.</p></div>
-        <div class="window-card"><strong>Xoay ngang</strong><p>Side light rõ hơn, texture mạnh hơn nhưng contrast tăng.</p></div>
-      </div>
+    <div class="window-visual-grid">
+      <article class="window-visual-card"><img class="illustration-img" src="assets/window-front.webp" alt="Người mẫu hướng mặt ra nguồn sáng từ cửa sổ, mặt nhận sáng rộng" loading="lazy" decoding="async" width="960" height="540"><h3>Hướng về cửa</h3><p>Mặt nhận sáng tương đối đều; hình khối ít nổi bật hơn.</p></article>
+      <article class="window-visual-card"><img class="illustration-img" src="assets/window-angle.webp" alt="Người mẫu xoay chéo khoảng 45 độ so với cửa sổ, ánh sáng tạo chiều sâu trên mặt và áo" loading="lazy" decoding="async" width="960" height="540"><h3>Xoay 45°</h3><p>Cân bằng giữa độ rõ trang phục và chiều sâu khuôn mặt.</p></article>
+      <article class="window-visual-card"><img class="illustration-img" src="assets/window-side.webp" alt="Nguồn sáng cửa sổ từ bên hông tạo vùng sáng tối rõ hơn trên người mẫu" loading="lazy" decoding="async" width="960" height="540"><h3>Xoay ngang</h3><p>Ánh sáng bên hông rõ hơn, chất liệu nổi hơn và tương phản tăng.</p></article>
     </div>
   </section>
 
@@ -181,9 +222,9 @@
       <p class="section-lead">Direct sun có contrast mạnh và cạnh bóng rõ. Thay vì tránh hoàn toàn, học viên cần biết khi nào biến nó thành yếu tố đồ họa.</p>
     </div>
     <div class="sun-grid">
-      <article class="sun-card"><div class="sun-icon"></div><h3>Đổi hướng mặt</h3><p>Không ép người mẫu nhìn thẳng vào nắng. Xoay profile hoặc chếch mặt để giảm nheo mắt và kiểm soát shadow.</p><strong>Ưu tiên: khuôn mặt + trang phục.</strong></article>
-      <article class="sun-card"><div class="sun-icon"></div><h3>Dùng bóng đổ</h3><p>Tường, lan can, cây và kiến trúc có thể tạo shadow pattern có chủ đích.</p><strong>Ưu tiên: hình học + nhịp thị giác.</strong></article>
-      <article class="sun-card"><div class="sun-icon"></div><h3>Bảo vệ highlight</h3><p>Vải trắng, da sáng và chất liệu bóng dễ mất chi tiết. Kiểm tra histogram và highlight warning nếu máy có.</p><strong>Ưu tiên: giữ thông tin quan trọng.</strong></article>
+      <article class="sun-card"><img class="illustration-img" src="assets/direct-sun.webp" alt="Người mẫu trên sân thượng dưới nắng trực tiếp và bóng đổ kiến trúc sắc nét" loading="lazy" decoding="async" width="960" height="540"><h3>Đổi hướng mặt</h3><p>Cho người mẫu nhìn chếch khỏi nắng; giảm nheo mắt và chủ động đặt bóng.</p><strong>Ưu tiên: khuôn mặt + trang phục.</strong></article>
+      <article class="sun-card"><img class="illustration-img" src="assets/natural-bounce.webp" alt="Người mẫu và bức tường sáng với bóng lá cùng bóng kiến trúc có hình dạng rõ" loading="lazy" decoding="async" width="960" height="540"><h3>Dùng bóng đổ</h3><p>Tận dụng bóng của tường, cây và kiến trúc làm thành phần bố cục.</p><strong>Ưu tiên: hình học + nhịp thị giác.</strong></article>
+      <article class="sun-card"><img class="illustration-img" src="assets/window-side.webp" alt="Vải trắng ở vùng sáng gần cửa sổ, cần kiểm tra để tránh mất chi tiết vùng sáng" loading="lazy" decoding="async" width="960" height="540"><h3>Giữ chi tiết vùng sáng</h3><p>Kiểm tra vùng da và vải trắng sáng nhất qua histogram/cảnh báo cháy sáng.</p><strong>Ưu tiên: thông tin quan trọng.</strong></article>
     </div>
   </section>
 
@@ -197,8 +238,8 @@
       <p class="section-lead">Backlight thường tạo chênh sáng lớn giữa người mẫu và hậu cảnh. Đây là bài học về lựa chọn ưu tiên, không phải tìm một exposure “chuẩn tuyệt đối”.</p>
     </div>
     <div class="backlight-stage">
-      <article class="exposure-panel bright-bg"><div class="exp-scene"><div class="exp-sun"></div><div class="exp-person"></div></div><h3>Ưu tiên người mẫu</h3><p>Da và trang phục sáng đúng hơn, nhưng trời hoặc background có thể sáng mạnh và mất bớt chi tiết.</p></article>
-      <article class="exposure-panel dark-subject"><div class="exp-scene"><div class="exp-sun"></div><div class="exp-person"></div></div><h3>Ưu tiên background</h3><p>Giữ trời / môi trường tốt hơn nhưng người mẫu tối hơn; có thể dùng như mood hoặc silhouette nếu phù hợp.</p></article>
+      <article class="exposure-panel bright-bg"><img class="illustration-img" src="assets/backlight-subject.webp" alt="Ngược sáng: người mẫu được ưu tiên phơi sáng, cảnh phía sau sáng mạnh" loading="lazy" decoding="async" width="960" height="540"><h3>Ưu tiên người mẫu</h3><p>Da và trang phục dễ đọc hơn nhưng trời hoặc cảnh phía sau có thể quá sáng.</p></article>
+      <article class="exposure-panel dark-subject"><img class="illustration-img" src="assets/backlight-background.webp" alt="Ngược sáng: giữ chi tiết hậu cảnh và bầu trời, người mẫu tối gần silhouette" loading="lazy" decoding="async" width="960" height="540"><h3>Ưu tiên hậu cảnh</h3><p>Giữ cảnh phía sau rõ hơn; người mẫu tối đi hoặc thành bóng dáng có chủ đích.</p></article>
     </div>
   </section>
 
@@ -212,9 +253,9 @@
       <p class="section-lead">Tường, sàn, cửa tối và bề mặt xung quanh có thể hoạt động như reflector hoặc negative fill tự nhiên.</p>
     </div>
     <div class="modifier-grid">
-      <article class="modifier env"><div class="modifier-symbol"><div class="mod-circle"></div></div><h3>Bounce tự nhiên</h3><p>Tường/sàn sáng trả ánh sáng vào người mẫu. Luôn kiểm tra màu của bề mặt bounce.</p></article>
-      <article class="modifier white"><div class="modifier-symbol"><div class="mod-circle"></div></div><h3>White fill</h3><p>Nâng shadow có kiểm soát khi vùng tối mất quá nhiều thông tin.</p></article>
-      <article class="modifier black"><div class="modifier-symbol"><div class="mod-circle"></div></div><h3>Negative fill</h3><p>Giảm ánh sáng phản xạ ở phía tối để tăng chiều sâu và separation.</p></article>
+      <article class="modifier env"><img class="illustration-img" src="assets/natural-bounce.webp" alt="Tường và mặt sàn sáng hắt ánh sáng trở lại người mẫu" loading="lazy" decoding="async" width="960" height="540"><h3>Hắt sáng tự nhiên</h3><p>Tường/sàn sáng trả ánh sáng vào chủ thể. Luôn kiểm tra màu bề mặt phản xạ.</p></article>
+      <article class="modifier white"><img class="illustration-img" src="assets/white-fill.webp" alt="Một tấm phản quang trắng bên cạnh người mẫu nâng phần tối của khuôn mặt" loading="lazy" decoding="async" width="960" height="540"><h3>Tấm hắt trắng</h3><p>Nâng vùng tối có kiểm soát mà không cần một nguồn đèn thứ hai.</p></article>
+      <article class="modifier black"><img class="illustration-img" src="assets/negative-fill.webp" alt="Tấm chắn đen cạnh người mẫu giảm ánh sáng phản xạ, tăng độ sâu phần tối" loading="lazy" decoding="async" width="960" height="540"><h3>Tấm chắn đen</h3><p>Giảm ánh sáng phản xạ phía tối để tăng tương phản và hình khối.</p></article>
     </div>
   </section>
 
@@ -228,8 +269,8 @@
       <p class="section-lead">Nếu người mẫu đúng sáng nhưng nền phá ảnh, exposure vẫn chưa được giải quyết ở cấp độ hình ảnh.</p>
     </div>
     <div class="balance">
-      <article class="balance-card"><h3>Chênh sáng vừa phải</h3><div class="meter"><i></i></div><p>Có khả năng giữ chi tiết cả người mẫu lẫn background. Phù hợp sequence cần ổn định và dễ hậu kỳ.</p></article>
-      <article class="balance-card"><h3>Chênh sáng quá lớn</h3><div class="meter"><i></i></div><p>Đổi góc máy, đổi background, dịch người mẫu hoặc chấp nhận một vùng mất thông tin theo ý đồ.</p></article>
+      <article class="balance-card"><img class="illustration-img" src="assets/backlight-subject.webp" alt="Ví dụ ưu tiên chủ thể khiến nền sau sáng hơn" loading="lazy" decoding="async" width="960" height="540"><h3>Ưu tiên chủ thể</h3><div class="meter" aria-hidden="true"><i></i></div><p>Trang phục dễ đọc nhưng có thể mất một phần chi tiết ở hậu cảnh sáng.</p></article>
+      <article class="balance-card"><img class="illustration-img" src="assets/backlight-background.webp" alt="Ví dụ ưu tiên hậu cảnh khiến chủ thể tối hơn" loading="lazy" decoding="async" width="960" height="540"><h3>Ưu tiên hậu cảnh</h3><div class="meter" aria-hidden="true"><i></i></div><p>Giữ vùng trời và phông nền, chấp nhận người mẫu tối hơn theo ý đồ.</p></article>
     </div>
   </section>
 
@@ -243,11 +284,12 @@
       <p class="section-lead">Màu của bề mặt xung quanh có thể phản xạ vào da và trang phục. Với fashion, màu vải sai có thể là lỗi quan trọng.</p>
     </div>
     <div class="color-grid">
-      <article class="color-card"><div class="color-chip green-cast"></div><h3>Cây xanh</h3><p>Có thể tạo cast xanh ở shadow hoặc mặt dưới cằm.</p></article>
-      <article class="color-card"><div class="color-chip red-cast"></div><h3>Tường màu</h3><p>Đặc biệt dễ thấy trên da sáng và vải trắng.</p></article>
-      <article class="color-card"><div class="color-chip blue-cast"></div><h3>Trời / kính</h3><p>Shade có thể lạnh hơn vùng nắng trực tiếp.</p></article>
-      <article class="color-card"><div class="color-chip neutral-cast"></div><h3>Bề mặt trung tính</h3><p>Dễ giữ màu da và màu trang phục ổn định hơn.</p></article>
+      <article class="color-card"><div class="tone-sample tone-green"><img class="illustration-img" src="assets/natural-bounce.webp" alt="Mô phỏng ánh sáng phản xạ cây xanh làm thay đổi cảm nhận màu trên da và áo" loading="lazy" decoding="async" width="960" height="540"></div><h3>Cây xanh</h3><p>Có thể tạo ám xanh ở vùng tối hoặc mặt dưới cằm.</p></article>
+      <article class="color-card"><div class="tone-sample tone-warm"><img class="illustration-img" src="assets/natural-bounce.webp" alt="Mô phỏng tường ấm phản xạ màu ấm lên da và áo trắng" loading="lazy" decoding="async" width="960" height="540"></div><h3>Tường màu ấm</h3><p>Dễ thấy trên da sáng và vải trắng.</p></article>
+      <article class="color-card"><div class="tone-sample tone-cool"><img class="illustration-img" src="assets/natural-bounce.webp" alt="Mô phỏng ánh sáng trời lạnh hơn trong vùng bóng râm" loading="lazy" decoding="async" width="960" height="540"></div><h3>Trời / kính</h3><p>Bóng râm có thể lạnh hơn vùng nắng trực tiếp.</p></article>
+      <article class="color-card"><div class="tone-sample tone-neutral"><img class="illustration-img" src="assets/natural-bounce.webp" alt="Mô phỏng ánh sáng trung tính trên người mẫu và trang phục" loading="lazy" decoding="async" width="960" height="540"></div><h3>Trung tính</h3><p>Dễ giữ màu da và màu trang phục ổn định hơn.</p></article>
     </div>
+    <p class="illustration-footnote">Minh hoạ mô phỏng các xu hướng ám màu; mức độ thực tế tùy bề mặt và điều kiện ánh sáng.</p>
   </section>
 
   <section class="section dark">
@@ -260,12 +302,12 @@
       <p class="section-lead">Mục tiêu không phải tạo 6 ảnh giống nhau. Mục tiêu là học cách đổi vị trí để ánh sáng phục vụ một ý đồ khác nhau.</p>
     </div>
     <div class="practice-grid">
-      <article class="practice-card"><b>01</b><h3>Open shade</h3><p>Chọn mép shade có skylight tốt.</p><strong>Mục tiêu: da + trang phục sạch.</strong></article>
-      <article class="practice-card"><b>02</b><h3>Window / Doorway</h3><p>Dùng nguồn lớn có hướng để tạo form.</p><strong>Mục tiêu: directional soft light.</strong></article>
-      <article class="practice-card"><b>03</b><h3>Direct sun</h3><p>Dùng nắng và shadow như thành phần đồ họa.</p><strong>Mục tiêu: contrast có chủ đích.</strong></article>
-      <article class="practice-card"><b>04</b><h3>Backlight</h3><p>Đặt mặt trời sau người mẫu và chọn ưu tiên exposure.</p><strong>Mục tiêu: separation / edge.</strong></article>
-      <article class="practice-card"><b>05</b><h3>White bounce</h3><p>Tận dụng tường/sàn sáng hoặc reflector.</p><strong>Mục tiêu: trả chi tiết shadow.</strong></article>
-      <article class="practice-card"><b>06</b><h3>Negative fill</h3><p>Dùng mặt tối hoặc tấm đen để giảm ánh sáng phản xạ.</p><strong>Mục tiêu: tăng chiều sâu.</strong></article>
+      <article class="practice-card"><b>01</b><img class="illustration-img" src="assets/shade-edge.webp" alt="Vùng bóng râm mở ở mép mái che" loading="lazy" decoding="async" width="960" height="540"><h3>Open shade</h3><p>Tìm vùng bóng râm còn nhận nhiều ánh sáng từ trời.</p><strong>Mục tiêu: da và trang phục rõ.</strong></article>
+      <article class="practice-card"><b>02</b><img class="illustration-img" src="assets/window-angle.webp" alt="Người mẫu cạnh cửa sổ với ánh sáng chéo" loading="lazy" decoding="async" width="960" height="540"><h3>Cửa sổ / cửa ra vào</h3><p>Dùng nguồn lớn có hướng để tạo hình khối.</p><strong>Mục tiêu: ánh sáng mềm có hướng.</strong></article>
+      <article class="practice-card"><b>03</b><img class="illustration-img" src="assets/direct-sun.webp" alt="Nắng trực tiếp tạo bóng rõ trên người mẫu và bối cảnh" loading="lazy" decoding="async" width="960" height="540"><h3>Nắng trực tiếp</h3><p>Dùng ánh nắng và bóng đổ có chủ đích.</p><strong>Mục tiêu: tương phản rõ.</strong></article>
+      <article class="practice-card"><b>04</b><img class="illustration-img" src="assets/backlight-background.webp" alt="Nắng phía sau người mẫu tạo viền sáng" loading="lazy" decoding="async" width="960" height="540"><h3>Ánh sáng ngược</h3><p>Chọn ưu tiên giữa người mẫu và hậu cảnh.</p><strong>Mục tiêu: viền sáng / tách nền.</strong></article>
+      <article class="practice-card"><b>05</b><img class="illustration-img" src="assets/white-fill.webp" alt="Tấm hắt trắng phản xạ ánh sáng sang phía tối người mẫu" loading="lazy" decoding="async" width="960" height="540"><h3>Hắt sáng trắng</h3><p>Dùng tường sáng hoặc tấm phản quang để nâng vùng tối.</p><strong>Mục tiêu: giữ chi tiết vùng tối.</strong></article>
+      <article class="practice-card"><b>06</b><img class="illustration-img" src="assets/negative-fill.webp" alt="Tấm đen đặt cạnh người mẫu tạo vùng tối sâu hơn" loading="lazy" decoding="async" width="960" height="540"><h3>Chắn sáng đen</h3><p>Dùng mặt tối/tấm đen để giảm ánh sáng hắt lại.</p><strong>Mục tiêu: tăng chiều sâu.</strong></article>
     </div>
   </section>
 
