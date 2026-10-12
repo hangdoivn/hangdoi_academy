@@ -307,7 +307,16 @@ jobs:
             lesson_out="_site/bai-giang/nhiep-anh-co-ban/thoi-trang/buoi-$lesson_no"
             mkdir -p "$lesson_out"
             cp "$lesson_dir/index.html" "$lesson_out/index.html"
+            # Keep locally hosted lesson media together with its HTML.
+            if [ -d "$lesson_dir/assets" ]; then
+              cp -R "$lesson_dir/assets" "$lesson_out/assets"
+            fi
           done
+
+          # Lesson 05 must ship actual image assets, not missing placeholders.
+          test -s _site/bai-giang/nhiep-anh-co-ban/thoi-trang/buoi-05/assets/shade-edge.webp
+          test -s _site/bai-giang/nhiep-anh-co-ban/thoi-trang/buoi-05/assets/white-fill.webp
+          test -s _site/bai-giang/nhiep-anh-co-ban/thoi-trang/buoi-05/assets/negative-fill.webp
 
           # Version Media Career runtime URLs with the exact deploy revision.
           # GitHub Pages/CDN can otherwise serve a new HTML shell with older CSS,
