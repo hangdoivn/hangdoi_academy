@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Buổi 06 — Ánh sáng nhân tạo cơ bản | Hang Đôi Academy</title>
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://academy.hangdoiproduction.com/bai-giang/nhiep-anh-co-ban/thoi-trang/buoi-06/">
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+:root{--paper:#FFFDF7;--cream:#F8F4EA;--sand:#F2ECDF;--green:#0F422D;--forest:#176B43;--leaf:#239653;--mint:#E8F4DF;--gold:#F2D43D;--coral:#F26A3D;--blue:#3450D8;--muted:#53685B}
+body{margin:0;background:var(--cream);color:var(--green);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}
+.page{max-width:1260px;margin:auto;padding:0 24px 50px}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:20px;min-height:64px;border-bottom:1px solid #CBD7CE;font-weight:850;font-size:12px;letter-spacing:.075em;text-transform:uppercase}
+.topbar a{display:inline-flex;align-items:center;gap:7px}.topbar .counter{border:1px solid var(--green);padding:8px 12px;border-radius:999px}
+.hero{display:grid;grid-template-columns:1.16fr .84fr;gap:38px;padding:55px 0 65px;min-height:620px;align-items:center}
+.hero h1{font-size:clamp(60px,8.3vw,118px);font-weight:900;letter-spacing:-.075em;line-height:.86;margin:20px 0 28px}
+.hero h1 small{display:block;font-size:.32em;letter-spacing:-.02em;line-height:1.12;margin-bottom:10px;color:var(--forest)}
+.overline{color:var(--forest);font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:900}
+.overline:before{content:"";display:inline-block;width:35px;height:4px;background:var(--coral);vertical-align:middle;margin-right:12px}
+.hero p{max-width:670px;font-size:18px;line-height:1.55;color:#455D4C}
+.hero-stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:42px}
+.hero-stats>div{min-width:125px;background:var(--paper);border:1px solid var(--green);padding:14px}
+.hero-stats span{display:block;font-size:10px;font-weight:900;letter-spacing:.08em;color:#607869;text-transform:uppercase;margin-bottom:7px}.hero-stats strong{font-size:19px;line-height:1.15}
+.hero-visual{position:relative;min-height:540px}
+.hero-halo{position:absolute;right:0;top:5%;width:75%;height:87%;background:var(--gold);border:2px solid var(--green);border-radius:47% 47% 10px 10px/32% 32% 10px 10px}
+.hero-frame{position:absolute;z-index:2;left:0;top:9%;height:83%;right:30px;background:var(--paper);padding:12px;border:2px solid var(--green);box-shadow:12px 12px 0 #123C272B}
+.hero-frame img{width:100%;height:calc(100% - 28px);display:block;object-fit:cover;object-position:50% 22%}
+.hero-frame .photo-credit{font-size:10px;font-weight:800;margin-top:7px;display:flex;justify-content:space-between}
+.hero-bubble{position:absolute;z-index:3;right:-5px;bottom:20px;width:117px;height:117px;background:var(--coral);color:#fff;border:2px solid var(--green);display:grid;place-items:center;padding:15px;border-radius:50%;text-align:center;font-size:13px;font-weight:900;line-height:1.2;transform:rotate(8deg)}
+.section{position:relative;margin:0 -24px;padding:86px 24px 92px;border-bottom:1px solid #D8DFD5;overflow:visible}
+.paper{background:var(--paper)}.sand{background:var(--sand)}.mint{background:var(--mint)}.bluebg{background:#E7EAF8}.dark{background:var(--green);color:var(--paper)}
+.section-heading{display:grid;grid-template-columns:1.12fr .88fr;gap:38px;align-items:end;margin-bottom:34px}
+.eyebrow-section{font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:900;display:flex;align-items:center;gap:10px;color:var(--leaf);margin-bottom:22px}
+.eyebrow-section b{width:32px;height:32px;display:grid;place-items:center;border-radius:50%;background:var(--leaf);color:white}
+.dark .eyebrow-section{color:var(--gold)}.dark .eyebrow-section b{background:var(--gold);color:var(--green)}
+h2{font-size:clamp(48px,5.8vw,78px);line-height:.92;letter-spacing:-.06em;margin:0;font-weight:900}
+.section-summary{margin:0;border-top:2px solid currentColor;padding-top:17px;font-size:16px;line-height:1.6;color:var(--muted)}.dark .section-summary{color:#C4D8CA}
+.section-note{position:absolute;top:20px;right:24px;z-index:10}
+.teacher-note{position:relative;display:block}
+.teacher-note>summary{list-style:none;width:35px;height:35px;display:grid;place-items:center;border:1px solid #98B1A0;background:var(--paper);color:var(--green);border-radius:50%;cursor:pointer}
+.teacher-note>summary:before{content:"i";font:bold italic 19px Georgia,serif}.teacher-note>summary::-webkit-details-marker{display:none}
+.teacher-note[open]>summary,.teacher-note>summary:hover{background:var(--gold)}
+.teacher-pop{position:absolute;right:0;top:46px;background:var(--paper);color:var(--green);padding:19px;border:1px solid var(--green);box-shadow:7px 7px 0 #0F422D22;width:min(360px,82vw);font-size:13px;line-height:1.5}
+.teacher-pop>strong{color:var(--leaf);font-size:10px;letter-spacing:.11em}.teacher-pop h4{font-size:12px;text-transform:uppercase;margin:13px 0 5px}.teacher-pop p{margin:0;color:#466050}
+.dark .teacher-note>summary{background:var(--green);color:white;border-color:#B1CEBB}
+.dark .teacher-note[open]>summary{background:var(--gold);color:var(--green)}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.info-card{min-height:245px;background:var(--paper);border:1px solid var(--green);padding:22px;display:flex;flex-direction:column;justify-content:space-between}
+.info-card:nth-child(2){background:var(--mint)}.info-card:nth-child(3){background:#FCE7DC}
+.info-card b{font-size:40px;letter-spacing:-.07em}.info-card h3{font-size:24px;line-height:1;margin:0 0 9px;letter-spacing:-.03em}
+.info-card p{font-size:14px;line-height:1.5;color:var(--muted);margin:0}
+.headline-rule{padding:19px 22px;background:var(--green);color:#fff;margin-top:17px;font-size:17px;font-weight:800}
+.kit-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+.kit-card{padding:20px;border:1px solid var(--green);background:var(--paper);min-height:260px}
+.kit-card h3{font-size:24px;margin:14px 0 10px}.kit-card p{color:var(--muted);line-height:1.5;margin:0;font-size:13px}
+.kit-icon{height:100px;display:flex;align-items:center;justify-content:center;border:1px solid #BFCEC0;background:var(--sand)}
+.kit-icon svg{height:86px;width:138px}
+.safe-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--green);margin-top:17px;background:#FFF3D2}
+.safe-item{padding:20px;border-right:1px solid var(--green)}.safe-item:last-child{border-right:0}
+.safe-item b{font-size:23px;color:var(--coral)}.safe-item strong{display:block;font-size:15px;margin:11px 0 6px}.safe-item p{margin:0;font-size:12px;line-height:1.5;color:var(--muted)}
+.compare-tech{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+.tech-box{min-height:395px;background:var(--paper);border:1px solid var(--green);padding:24px;display:flex;flex-direction:column}
+.tech-box:nth-child(2){background:#F4F0DB}
+.tech-logo{font-size:60px;line-height:1;letter-spacing:-.075em;font-weight:900}
+.tech-box h3{font-size:29px;line-height:1.05;margin:19px 0}
+.tech-box dl{margin:auto 0 0}.tech-box dt{font-size:10px;text-transform:uppercase;letter-spacing:.1em;font-weight:900;margin-top:15px}.tech-box dd{margin:6px 0 0;font-size:14px;line-height:1.5;color:#4B6253}
+.exposure-warning{padding:22px;border:1px solid var(--green);margin-top:14px;font-size:14px;line-height:1.6;background:var(--mint)}
+.interactive-layout{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:18px}
+.interactive-plot{border:2px solid var(--green);padding:19px;background:#F1F1E8}
+.interactive-plot svg{width:100%;height:auto;display:block;max-height:430px}
+.interactive-copy{padding:25px;background:var(--green);color:#fff;display:flex;flex-direction:column;justify-content:space-between}
+.interactive-copy small{font-size:10px;font-weight:900;letter-spacing:.1em;color:var(--gold)}
+.interactive-copy h3{font-size:clamp(30px,4vw,47px);letter-spacing:-.05em;line-height:1;margin:19px 0}
+.interactive-copy p{font-size:16px;line-height:1.6;color:#DBE8DE;margin:0 0 20px}
+.angle-buttons{display:flex;gap:9px;margin:23px 0;flex-wrap:wrap}
+.angle-buttons button{background:transparent;color:white;border:1px solid #B1CEBB;padding:11px 17px;border-radius:999px;font-size:12px;font-weight:900}
+.angle-buttons button[aria-pressed="true"]{background:var(--gold);color:var(--green);border-color:var(--gold)}
+.angle-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.angle-card{background:var(--paper);border:1px solid var(--green);padding:16px;min-width:0}
+.angle-card-head{display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:900;letter-spacing:.09em}
+.angle-card-head strong{font-size:29px}
+.angle-card .mini-plan{margin:8px 0 16px}.angle-card .mini-plan svg{width:100%;display:block;height:auto}
+.mini-plan figcaption{font-size:10px;color:var(--muted);line-height:1.4}
+.angle-card h3{font-size:23px;letter-spacing:-.03em;margin:14px 0 8px}.angle-card p{font-size:13px;line-height:1.55;color:var(--muted)}
+.face-demo{height:180px;position:relative;overflow:hidden;background:#BFC9BF;border:1px solid #9AAA9E;display:grid;place-items:center;margin-top:10px}
+.face-head{position:absolute;width:88px;height:119px;top:22px;left:calc(50% - 44px);border-radius:45% 45% 43% 43%;background:linear-gradient(90deg,#E7B796,#E7B796);border:1px solid #4C4739;z-index:2}
+.face-angle .face-head{background:linear-gradient(90deg,#E7B796 0%,#E7B796 38%,#AB795E 87%,#946348 100%)}
+.face-side .face-head{background:linear-gradient(90deg,#E7B796 0%,#E7B796 16%,#9C654B 48%,#614537 100%)}
+.face-hair{position:absolute;top:13px;left:calc(50% - 50px);width:100px;height:133px;background:#322A25;border-radius:48% 48% 40% 35%;z-index:1}
+.eye{position:absolute;width:12px;height:3px;background:#3D2B26;top:55px;border-radius:50%}.eye.left{left:19px}.eye.right{right:19px}
+.nose{position:absolute;left:44px;top:65px;border-left:1px solid #A36B52;height:20px}.mouth{position:absolute;left:35px;top:95px;width:21px;height:4px;border-radius:50%;background:#B9796D}
+.face-shoulder{position:absolute;width:150px;height:79px;border-radius:44% 44% 0 0;top:134px;left:calc(50% - 75px);background:#EAE5D8;z-index:3}
+.face-caption{position:absolute;bottom:8px;right:8px;font-size:8px;background:#FFFDF7;padding:4px;z-index:5;font-weight:850}
+.modifier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.mod-card{min-height:365px;padding:20px;border:1px solid var(--green);background:var(--paper)}
+.mod-card:nth-child(2){background:var(--mint)}.mod-card:nth-child(3){background:#E7EAF8}
+.mod-diagram{height:170px;display:grid;place-items:center;background:var(--sand);border:1px solid #B3C6B7;margin-bottom:20px;position:relative}
+.mod-diagram .disk{width:90px;height:90px;border:3px solid var(--green);border-radius:50%;background:var(--gold)}
+.mod-diagram.large .disk{width:140px;height:140px;background:radial-gradient(circle,#FFF9D4,#F2D43D)}
+.mod-diagram.gridded .disk{border-radius:12px;background:repeating-linear-gradient(0deg,#F2D43D 0 9px,#0F422D 9px 12px),repeating-linear-gradient(90deg,transparent 0 9px,#0F422D 9px 12px);background-blend-mode:multiply}
+.mod-card h3{font-size:23px;margin:0 0 10px}.mod-card p{font-size:13px;line-height:1.55;color:var(--muted)}
+.distance-layout{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.distance-card{border:1px solid var(--green);padding:20px;background:var(--paper)}
+.distance-card:nth-child(2){background:var(--mint)}
+.distance-field{height:180px;position:relative;background:#E2E9DF;border:1px solid #B7CBB8;overflow:hidden;margin-bottom:22px}
+.distance-light{position:absolute;left:10%;top:38%;width:48px;height:48px;border:2px solid var(--green);border-radius:50%;background:var(--gold)}
+.distance-field .subject{position:absolute;left:57%;top:31%;height:95px;width:43px;background:var(--green);border-radius:50% 50% 10px 10px}
+.distance-field .cone{position:absolute;left:17%;top:24%;height:104px;width:40%;background:#F2D43D66;clip-path:polygon(0 36%,100% 0,100% 100%)}
+.distance-field.far .distance-light{left:3%;width:28px;height:28px;top:43%}
+.distance-field.far .cone{left:8%;width:50%;height:50px;top:37%;clip-path:polygon(0 20%,100% 0,100% 100%)}
+.distance-card h3{font-size:28px;margin:0 0 10px}.distance-card p{font-size:14px;line-height:1.55;color:var(--muted)}
+.settings{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.setting{padding:22px;border:1px solid var(--green);background:var(--paper)}
+.setting h3{font-size:25px;margin:0 0 15px}.setting ul{list-style:none;padding:0;margin:0}
+.setting li{display:grid;grid-template-columns:100px 1fr;gap:9px;padding:10px 0;border-top:1px solid #D2DDCF;font-size:13px;line-height:1.5}
+.setting li b{font-size:12px}.setting li span{color:var(--muted)}
+.background-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.bg-card{padding:18px;border:1px solid var(--green);background:var(--paper)}
+.bg-card:nth-child(2){background:#EBF0F4}.bg-scene{height:200px;position:relative;overflow:hidden;background:#7E9689}
+.bg-scene:before{content:"";position:absolute;left:33%;top:20%;width:32%;height:140px;border-radius:45% 45% 0 0;background:#EEE4D2;z-index:2}
+.bg-scene:after{content:"";position:absolute;left:0;top:0;width:100%;height:100%;background:linear-gradient(90deg,transparent,#FFF7C566);z-index:1}
+.bg-scene.far:after{background:linear-gradient(90deg,transparent 75%,#8FA39966)}.bg-scene.near:before{box-shadow:29px -13px 50px 16px #F2D43D77}
+.bg-card h3{font-size:25px;margin:20px 0 6px}.bg-card p{font-size:13px;color:var(--muted);line-height:1.5}
+.fill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.fill-card{padding:21px;background:var(--paper);border:1px solid var(--green);min-height:270px}
+.fill-card:nth-child(2){background:var(--mint)}.fill-card:nth-child(3){background:#E6E7E4}
+.fill-portrait{width:100px;height:124px;border-radius:45% 45% 40% 40%;margin:0 auto 28px;background:linear-gradient(90deg,#D6A381 0 51%,#87634E 51%);border:2px solid var(--green)}
+.fill-card:nth-child(2) .fill-portrait{background:linear-gradient(90deg,#D6A381 0 50%,#BA8F70 50%)}
+.fill-card:nth-child(3) .fill-portrait{background:linear-gradient(90deg,#D6A381 0 48%,#4B3229 48%)}
+.fill-card h3{font-size:23px;margin:0 0 8px}.fill-card p{font-size:13px;line-height:1.55;color:var(--muted)}
+.work-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border:1px solid var(--green);background:var(--paper)}
+.work-step{padding:17px;border-right:1px solid var(--green);min-height:190px}.work-step:last-child{border:0}
+.work-step b{font-size:29px;color:var(--coral)}.work-step p{margin:22px 0 0;font-size:13px;font-weight:800;line-height:1.4}
+.practice-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.practice-item{min-height:315px;padding:20px;border:1px solid #547361;background:#164D35}
+.practice-item b{display:grid;place-items:center;width:39px;height:39px;border-radius:50%;background:var(--gold);color:var(--green)}
+.practice-item h3{font-size:26px;color:white;margin:36px 0 12px}.practice-item p{font-size:14px;line-height:1.55;color:#CFDFD5}
+.practice-item strong{display:block;color:var(--gold);border-top:1px solid #557E65;font-size:12px;padding-top:15px;margin-top:28px}
+.final-points{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid #769887}
+.final-points>div{padding:21px;min-height:220px;border-right:1px solid #769887}.final-points>div:last-child{border:0}
+.final-points b{color:var(--gold);font-size:40px}.final-points h3{font-size:21px;margin:30px 0 9px}.final-points p{color:#C7DCCC;font-size:13px;line-height:1.5;margin:0}
+.last-statement{border-top:1px solid #557E65;margin-top:34px;padding-top:29px;font-size:clamp(37px,5vw,64px);font-weight:900;letter-spacing:-.055em;line-height:1}
+.footer{padding-top:27px;display:flex;justify-content:space-between;color:#617668;font-size:11px;gap:20px}
+@media(min-width:801px) and (max-width:1100px){.kit-grid,.angle-grid,.modifier-grid,.practice-grid{grid-template-columns:repeat(2,1fr)}.safe-strip{grid-template-columns:repeat(2,1fr)}.work-grid{grid-template-columns:repeat(3,1fr)}.work-step{border-bottom:1px solid var(--green)}}
+@media(max-width:800px){
+.page{padding:0 16px 35px}.topbar{min-height:56px;font-size:10px}
+.hero{display:flex;flex-direction:column;padding:40px 0 46px;gap:15px;min-height:0}.hero h1{font-size:clamp(54px,12vw,88px)}.hero p{font-size:16px}
+.hero-visual{width:100%;min-height:470px;max-width:500px}.hero-stats>div{flex:1;min-width:95px}
+.section{margin:0 -16px;padding:64px 16px 70px}.section-heading{grid-template-columns:1fr;gap:22px}.section h2{font-size:clamp(42px,11vw,62px)}.section-summary{font-size:14px}
+.grid3,.grid2,.kit-grid,.compare-tech,.interactive-layout,.angle-grid,.modifier-grid,.distance-layout,.settings,.background-grid,.fill-grid,.practice-grid,.final-points{grid-template-columns:1fr}
+.safe-strip{grid-template-columns:1fr}.safe-item{border-right:0;border-bottom:1px solid var(--green)}.safe-item:last-child{border-bottom:0}
+.work-grid{grid-template-columns:repeat(2,1fr)}.work-step{min-height:140px;border-bottom:1px solid var(--green)}
+.final-points>div{border-right:0;border-bottom:1px solid #769887}.final-points>div:last-child{border-bottom:0}
+.section-note{top:14px;right:16px}.teacher-pop{position:fixed;left:16px;right:16px;top:auto;bottom:20px;width:auto;max-height:65vh;overflow:auto;z-index:150}
+.face-demo{height:210px}.mini-plan{max-width:460px;margin:auto}
+}
+@media print{.teacher-note,.angle-buttons{display:none!important}.section{break-inside:avoid}body{background:white}}
+</style>
+</head><body><div class="page">
+<nav class="topbar"><a href="/bai-giang/nhiep-anh-co-ban/thoi-trang/">← Danh sách bài giảng</a><span class="counter">Buổi 06 / 150 phút</span></nav>
+<header class="hero"><div>
+<div class="overline">Nhiếp ảnh cơ bản · Ứng dụng thời trang</div>
+<h1><small>Buổi 06</small>Tự tạo.<br>Tự kiểm soát.<br>Ánh sáng.</h1>
+<p>Buổi 05 học cách <strong>tìm nguồn sáng có sẵn</strong>. Buổi 06 học cách <strong>lắp, đặt và điều chỉnh một nguồn sáng nhân tạo</strong> để trang phục lên đúng hình khối, chất liệu và độ sáng mong muốn.</p>
+<div class="hero-stats"><div><span>Thời lượng</span><strong>150 phút</strong></div><div><span>Thiết bị</span><strong>1 đèn chính</strong></div><div><span>Đầu ra</span><strong>6 kiểu ánh sáng</strong></div></div>
+</div><div class="hero-visual"><div class="hero-halo"></div><div class="hero-frame"><img src="https://drive.google.com/thumbnail?id=1Ogkzs-THCub8oEF1a5YgRThL3C3InIhb&sz=w1600" alt="Bộ ảnh nội bộ Thanh Nga minh hoạ trang phục và hình khối" loading="eager"><div class="photo-credit"><span>Ảnh nội bộ · Thanh Nga</span><span>Ánh sáng phục vụ trang phục</span></div></div><div class="hero-bubble">MỘT ĐÈN<br>CŨNG ĐỦ<br>ĐỂ HỌC</div></div></header>
+<section class="section paper" id="muc-01"><div class="section-note"><details class="teacher-note"><summary aria-label="Gợi ý giảng viên" title="Gợi ý giảng viên"></summary><div class="teacher-pop"><strong>GỢI Ý GIẢNG VIÊN</strong><h4>Cách dẫn dắt</h4><p>Đưa ra 2 ảnh thời trang khác nhau và hỏi vị trí nguồn chính.</p><h4>Câu hỏi gợi mở</h4><p>Người mẫu đứng ở đâu? Bóng trên mặt/vải đi hướng nào?</p><h4>Lưu ý chuyên môn</h4><p>Không nói hệ nhiều đèn. Tập trung một nguồn để hiểu quan hệ nhân–quả.</p></div></details></div><div class="section-heading"><div><div class="eyebrow-section"><b>01</b>Tư duy buổi học</div><h2>Không cần nhiều đèn.<br>Cần biết một đèn đang làm gì.</h2></div><p class="section-summary">Ở Buổi 03 học viên đọc bóng. Buổi 05 biết tìm ánh sáng. Bây giờ học viên chủ động tạo ra nó.</p></div><div class="grid3"><article class="info-card"><b>01</b><div><h3>Chủ động nguồn sáng</h3><p>Không phụ thuộc hoàn toàn vào cửa sổ, thời tiết hay location.</p></div></article><article class="info-card"><b>02</b><div><h3>Chủ động vùng bóng</h3><p>Thay hướng, khoảng cách và kích thước nguồn để điều khiển hình khối.</p></div></article><article class="info-card"><b>03</b><div><h3>Chủ động lặp lại</h3><p>Ghi lại một setup để chụp đủ bộ ảnh thời trang tương đối đồng nhất.</p></div></article></div><div class="headline-rule">Mục tiêu → đặt đèn → dự đoán bóng → chụp thử → đổi một biến số → xem lại.</div></section>
+<section class="section sand" id="muc-02"><div class="section-note"><details class="teacher-note"><summary aria-label="Gợi ý giảng viên" title="Gợi ý giảng viên"></summary><div class="teacher-pop"><strong>GỢI Ý GIẢNG VIÊN</strong><h4>Cách dẫn dắt</h4><p>Thực hành lắp một đèn với chân, modifier, đối trọng.</p><h4>Câu hỏi gợi mở</h4><p>Thiết bị nào có thể đổ? Dây nào dễ vướng? Khi nào phải tắt đèn?</p><h4>Lưu ý chuyên môn</h4><p>Không tự tháo đèn flash studio; các phần điện áp cao có thể còn điện sau khi tắt nguồn.</p></div></details></div><div class="section-heading"><div><div class="eyebrow-section"><b>02</b>Bộ thiết bị & an toàn</div><h2>Nhận biết thiết bị trước khi bật nguồn.</h2></div><p class="section-summary">Đầu đèn, modifier và chân đèn hoạt động cùng nhau. Biết tên và nhiệm vụ để không setup theo cảm tính.</p></div><div class="kit-grid">
+<article class="kit-card"><div class="kit-icon"><svg viewBox="0 0 150 90" aria-hidden="true"><rect x="37" y="20" width="78" height="49" rx="5" fill="#0F422D"/><rect x="102" y="30" width="23" height="28" fill="#F2D43D"/><rect x="16" y="32" width="29" height="26" rx="6" fill="#176B43"/><path d="M64 69v17" stroke="#0F422D" stroke-width="4"/></svg></div><h3>Đầu đèn</h3><p>Đèn LED liên tục hoặc đèn flash studio: tạo nguồn sáng để kiểm soát.</p></article>
+<article class="kit-card"><div class="kit-icon"><svg viewBox="0 0 150 90" aria-hidden="true"><path d="M50 22h50l30 44H20z" fill="#E8F4DF" stroke="#0F422D" stroke-width="3"/><path d="M33 55h83" stroke="#0F422D" stroke-width="3"/><circle cx="75" cy="42" r="12" fill="#F2D43D"/></svg></div><h3>Modifier</h3><p>Softbox, chóa, lưới tổ ong: thay kích thước hoặc phạm vi phân bố của ánh sáng.</p></article>
+<article class="kit-card"><div class="kit-icon"><svg viewBox="0 0 150 90" aria-hidden="true"><path d="M75 4v70M75 67L27 87M75 67l48 20M75 67l-10 20" stroke="#0F422D" stroke-width="5" stroke-linecap="round"/><rect x="61" y="5" width="28" height="12" rx="3" fill="#F2D43D" stroke="#0F422D"/></svg></div><h3>Chân đèn & phụ kiện</h3><p>Chân, khóa nghiêng, dây điện, túi đối trọng, trigger (với flash) và reflector.</p></article>
+</div><div class="safe-strip">
+<div class="safe-item"><b>01</b><strong>Giữ chân vững</strong><p>Mở chân đúng hướng, đặt đối trọng phù hợp.</p></div>
+<div class="safe-item"><b>02</b><strong>Đường dây an toàn</strong><p>Gom dây, dán cố định, không để vướng lối đi.</p></div>
+<div class="safe-item"><b>03</b><strong>Tắt nguồn khi đổi</strong><p>Tránh chạm phần nóng và ngàm chưa khóa.</p></div>
+<div class="safe-item"><b>04</b><strong>Đúng tải, thông gió</strong><p>Chọn modifier phù hợp, không che khe tản nhiệt.</p></div>
+</div></section>
+<section class="section paper" id="muc-03"><div class="section-note"><details class="teacher-note"><summary aria-label="Gợi ý giảng viên" title="Gợi ý giảng viên"></summary><div class="teacher-pop"><strong>GỢI Ý GIẢNG VIÊN</strong><h4>Cách dẫn dắt</h4><p>Bật một LED để học viên nhìn thấy bóng, sau đó demo một ảnh flash.</p><h4>Câu hỏi gợi mở</h4><p>Khi đổi tốc độ màn trập, ảnh LED và phần ánh sáng flash thay đổi giống nhau không?</p><h4>Lưu ý chuyên môn</h4><p>Không nói flash luôn đóng băng mọi chuyển động; kết quả tùy thời lượng xung flash và ánh sáng môi trường.</p></div></details></div><div class="section-heading"><div><div class="eyebrow-section"><b>03</b>Hai loại nguồn chính</div><h2>LED liên tục và flash không vận hành giống nhau.</h2></div><p class="section-summary">Cùng tạo ánh sáng nhân tạo, nhưng cách kiểm soát chuyển động, công suất và phơi sáng khác nhau.</p></div><div class="compare-tech">
+<div class="tech-box"><div class="tech-logo">LED</div><h3>Đèn liên tục</h3><dl><dt>Nhìn trước khi chụp</dt><dd>Thấy tương đối trực tiếp hướng, vùng bóng và màu ánh sáng.</dd><dt>Kiểm soát ảnh</dt><dd>Tốc độ, khẩu độ, ISO đều ảnh hưởng độ sáng ghi nhận; chú ý nhòe khi chuyển động.</dd><dt>Dễ bắt đầu</dt><dd>Hữu ích để luyện hướng sáng và chụp cả ảnh/video.</dd></dl></div>
+<div class="tech-box"><div class="tech-logo">FLASH</div><h3>Đèn chớp studio</h3><dl><dt>Nhìn trước khi chụp</dt><dd>Đèn sáng hỗ trợ (modeling) chỉ cho hình dung tương đối.</dd><dt>Kiểm soát ảnh</dt><dd>Trong giới hạn đồng bộ thông thường, công suất flash/khẩu/ISO ảnh hưởng phần flash; tốc độ chủ yếu ảnh hưởng sáng môi trường.</dd><dt>Cần kiểm tra</dt><dd>Trigger, tốc độ đồng bộ, thời gian hồi đèn và histogram.</dd></dl></div>
+</div><div class="exposure-warning"><strong>Nhớ kỹ:</strong> Không có tốc độ 1/200 hay 1/250 dùng chung cho mọi máy. Với flash, chọn tốc độ phù hợp giới hạn đồng bộ của máy, chế độ màn trập và thiết bị kích đèn. HSS là nội dung nâng cao.</div></section>
+<section class="section mint" id="muc-04"><div class="section-note"><details class="teacher-note"><summary aria-label="Gợi ý giảng viên" title="Gợi ý giảng viên"></summary><div class="teacher-pop"><strong>GỢI Ý GIẢNG VIÊN</strong><h4>Cách dẫn dắt</h4><p>Để máy/mẫu đứng yên. Kéo chân đèn theo một cung quanh mẫu.</p><h4>Câu hỏi gợi mở</h4><p>Bóng mũi, bóng má và các nếp vải thay đổi thế nào?</p><h4>Lưu ý chuyên môn</h4><p>Không nhầm vị trí máy với hướng sáng. Mọi diagram là sơ đồ nhìn từ trên xuống, không phải ảnh chụp chuẩn.</p></div></details></div><div class="section-heading"><div><div class="eyebrow-section"><b>04</b>Bố trí một đèn</div><h2>Đèn đặt ở đâu so với mặt người mẫu?</h2></div><p class="section-summary">Thao tác thử: cố định máy và người mẫu, chỉ đổi vị trí nguồn. Chọn một góc dưới đây để xem hướng đèn và vùng bóng dự kiến.</p></div><div class="interactive-layout">
+<div class="interactive-plot">
+<svg id="liveLightPlan" viewBox="0 0 520 450" role="img" aria-label="Sơ đồ studio nhìn từ trên xuống với người mẫu giữa, máy ảnh phía trước và một đèn thay đổi góc">
+<rect x="12" y="12" width="496" height="426" rx="12" fill="#FFFDF7" stroke="#BFD3C2"/>
+<text x="35" y="46" font-size="14" font-weight="900" fill="#0F422D">SƠ ĐỒ NHÌN TỪ TRÊN XUỐNG</text>
+<path d="M260 82v285" stroke="#93A99D" stroke-width="2" stroke-dasharray="7 8"/>
+<rect x="233" y="104" width="54" height="93" rx="13" fill="#BDD7C8"/>
+<circle cx="260" cy="199" r="34" fill="#E2B69A" stroke="#0F422D" stroke-width="3"/>
+<path d="M244 222 L260 233 L276 222" stroke="#0F422D" stroke-width="3" fill="none"/>
+<text x="309" y="203" font-size="16" font-weight="800" fill="#0F422D">NGƯỜI MẪU</text>
+<rect x="237" y="360" width="47" height="32" rx="5" fill="#0F422D"/><circle cx="260" cy="376" r="11" fill="#FFFDF7"/>
+<text x="294" y="383" font-size="15" font-weight="800" fill="#0F422D">MÁY ẢNH</text>
+<line id="liveLightRay" x1="121" y1="334" x2="246" y2="225" stroke="#D48A18" stroke-width="5" stroke-dasharray="10 7"/>
+<circle id="liveLightSource" cx="121" cy="334" r="26" fill="#F2D43D" stroke="#0F422D" stroke-width="3"/>
+<circle id="liveLightCenter" cx="121" cy="334" r="9" fill="#FFFDF7" stroke="#0F422D"/>
+<text id="liveLightLabel" x="65" y="317" font-size="17" font-weight="900" fill="#0F422D">ĐÈN</text>
+</svg>
+</div><div class="interactive-copy">
+<div><small>THỬ THAY ĐỔI HƯỚNG ĐÈN</small><h3 id="liveLightName">Góc chéo 45°</h3><p id="liveLightSummary">Nguồn lệch một bên. Mặt và áo có vùng sáng–tối vừa đủ; phù hợp để bắt đầu setup.</p></div>
+<div><div class="angle-buttons" role="group" aria-label="Chọn vị trí nguồn sáng"><button type="button" data-angle="0" aria-pressed="false">0°</button><button type="button" data-angle="45" aria-pressed="true">45°</button><button type="button" data-angle="90" aria-pressed="false">90°</button></div>
+<small>Góc tính theo hướng mặt người mẫu, không phải góc của máy ảnh.</small></div>
+</div></div></section>
+<section class="section paper" id="muc-05"><div class="section-note"><details class="teacher-note"><summary aria-label="Gợi ý giảng viên" title="Gợi ý giảng viên"></summary><div class="teacher-pop"><strong>GỢI Ý GIẢNG VIÊN</strong><h4>Cách dẫn dắt</h4><p>Chụp 3 ảnh thật ở 0°/45°/90° cùng một người mẫu, cùng trang phục.</p><h4>Câu hỏi gợi mở</h4><p>Ánh sáng nào cho vùng tối sâu nhất? Vải trắng/đen còn đúng chi tiết ở ảnh nào?</p><h4>Lưu ý chuyên môn</h4><p>Các hình chân dung là mô phỏng giản lược, bắt buộc cho học viên xem ảnh thực chụp để chốt quan sát.</p></div></details></div><div class="section-heading"><div><div class="eyebrow-section"><b>05</b>Ba hướng sáng để bắt đầu</div><h2>Cùng một người mẫu.<br>Ba hướng sáng khác nhau.</h2></div><p class="section-summary">Đọc ảnh trước, dùng sơ đồ để xác nhận nguồn nằm ở đâu. Khi thực hành, chỉ thay vị trí đèn.</p></div><div class="angle-grid"><article class="angle-card">
+ <div class="angle-card-head"><span>01 / HƯỚNG ĐÈN</span><strong>0°</strong></div>
+ <div class="face-demo face-front" role="img" aria-label="Mô phỏng vùng sáng tối trên mặt người mẫu"><div class="face-hair"></div><div class="face-head"><span class="eye left"></span><span class="eye right"></span><span class="nose"></span><span class="mouth"></span></div><div class="face-shoulder"></div><span class="face-caption">MÔ PHỎNG VÙNG SÁNG – TỐI</span></div>
+ <figure class="mini-plan"><svg viewBox="0 0 360 290" role="img" aria-label="Sơ đồ nhìn từ trên xuống: đèn lệch 0 độ so với hướng mặt người mẫu">
+ <rect x="1" y="1" width="358" height="288" rx="10" fill="#F8F4EA" stroke="#D5DFD5"/>
+ <path d="M180 111 V265" stroke="#9BA9A0" stroke-dasharray="5 5" stroke-width="1.7"/>
+ <path d="M170 126 L190 126 L190 166 L170 166 Z" fill="#BDD2C2"/><circle cx="180" cy="112" r="24" fill="#D9B39B" stroke="#0F422D" stroke-width="2"/>
+ <path d="M170 131 L180 139 L190 131" fill="none" stroke="#0F422D" stroke-width="2"/>
+ <text x="213" y="113" fill="#0F422D" font-size="14" font-weight="800">NGƯỜI MẪU</text>
+ <path d="M162 220 Q180 232 198 220" fill="none" stroke="#3D5AD7" stroke-width="3" stroke-linecap="round"/>
+ <rect x="168" y="235" width="26" height="22" rx="3" fill="#0F422D"/><circle cx="181" cy="245" r="7" fill="#F8F4EA"/><text x="210" y="249" fill="#0F422D" font-size="13" font-weight="800">MÁY</text>
+ <line x1="180" y1="238" x2="180" y2="121" stroke="#D18B21" stroke-width="4" stroke-dasharray="8 6"/>
+ <circle cx="180" cy="238" r="20" fill="#F2D43D" stroke="#0F422D" stroke-width="2"/>
+ <circle cx="180" cy="238" r="8" fill="#FFFDF7" stroke="#0F422D"/>
+ <text x="208" y="219" fill="#0F422D" font-size="14" font-weight="800">ĐÈN</text>
+ </svg><figcaption>Vị trí đèn tính theo hướng mặt, không tính theo hướng máy</figcaption></figure>
+ <h3>Chính diện · 0°</h3><p>Mặt tương đối đều sáng, ít chiều sâu. Hữu ích khi muốn đọc rõ màu và form trang phục.</p>
+ </article><article class="angle-card">
+ <div class="angle-card-head"><span>02 / HƯỚNG ĐÈN</span><strong>45°</strong></div>
+ <div class="face-demo face-angle" role="img" aria-label="Mô phỏng vùng sáng tối trên mặt người mẫu"><div class="face-hair"></div><div class="face-head"><span class="eye left"></span><span class="eye right"></span><span class="nose"></span><span class="mouth"></span></div><div class="face-shoulder"></div><span class="face-caption">MÔ PHỎNG VÙNG SÁNG – TỐI</span></div>
+ <figure class="mini-plan"><svg viewBox="0 0 360 290" role="img" aria-label="Sơ đồ nhìn từ trên xuống: đèn lệch 45 độ so với hướng mặt người mẫu">
+ <rect x="1" y="1" width="358" height="288" rx="10" fill="#F8F4EA" stroke="#D5DFD5"/>
+ <path d="M180 111 V265" stroke="#9BA9A0" stroke-dasharray="5 5" stroke-width="1.7"/>
+ <path d="M170 126 L190 126 L190 166 L170 166 Z" fill="#BDD2C2"/><circle cx="180" cy="112" r="24" fill="#D9B39B" stroke="#0F422D" stroke-width="2"/>
+ <path d="M170 131 L180 139 L190 131" fill="none" stroke="#0F422D" stroke-width="2"/>
+ <text x="213" y="113" fill="#0F422D" font-size="14" font-weight="800">NGƯỜI MẪU</text>
+ <path d="M162 220 Q180 232 198 220" fill="none" stroke="#3D5AD7" stroke-width="3" stroke-linecap="round"/>
+ <rect x="168" y="235" width="26" height="22" rx="3" fill="#0F422D"/><circle cx="181" cy="245" r="7" fill="#F8F4EA"/><text x="210" y="249" fill="#0F422D" font-size="13" font-weight="800">MÁY</text>
+ <line x1="82" y1="212" x2="180" y2="121" stroke="#D18B21" stroke-width="4" stroke-dasharray="8 6"/>
+ <circle cx="82" cy="212" r="20" fill="#F2D43D" stroke="#0F422D" stroke-width="2"/>
+ <circle cx="82" cy="212" r="8" fill="#FFFDF7" stroke="#0F422D"/>
+ <text x="108" y="193" fill="#0F422D" font-size="14" font-weight="800">ĐÈN</text>
+ </svg><figcaption>Vị trí đèn tính theo hướng mặt, không tính theo hướng máy</figcaption></figure>
+ <h3>Chéo · 45°</h3><p>Một bên sáng, phía đối diện chuyển tối. Dễ cân bằng da, hình khối và chi tiết vải.</p>
+ </article><article class="angle-card">
+ <div class="angle-card-head"><span>03 / HƯỚNG ĐÈN</span><strong>90°</strong></div>
+ <div class="face-demo face-side" role="img" aria-label="Mô phỏng vùng sáng tối trên mặt người mẫu"><div class="face-hair"></div><div class="face-head"><span class="eye left"></span><span class="eye right"></span><span class="nose"></span><span class="mouth"></span></div><div class="face-shoulder"></div><span class="face-caption">MÔ PHỎNG VÙNG SÁNG – TỐI</span></div>
+ <figure class="mini-plan"><svg viewBox="0 0 360 290" role="img" aria-label="Sơ đồ nhìn từ trên xuống: đèn lệch 90 độ so với hướng mặt người mẫu">
+ <rect x="1" y="1" width="358" height="288" rx="10" fill="#F8F4EA" stroke="#D5DFD5"/>
+ <path d="M180 111 V265" stroke="#9BA9A0" stroke-dasharray="5 5" stroke-width="1.7"/>
+ <path d="M170 126 L190 126 L190 166 L170 166 Z" fill="#BDD2C2"/><circle cx="180" cy="112" r="24" fill="#D9B39B" stroke="#0F422D" stroke-width="2"/>
+ <path d="M170 131 L180 139 L190 131" fill="none" stroke="#0F422D" stroke-width="2"/>
+ <text x="213" y="113" fill="#0F422D" font-size="14" font-weight="800">NGƯỜI MẪU</text>
+ <path d="M162 220 Q180 232 198 220" fill="none" stroke="#3D5AD7" stroke-width="3" stroke-linecap="round"/>
+ <rect x="168" y="235" width="26" height="22" rx="3" fill="#0F422D"/><circle cx="181" cy="245" r="7" fill="#F8F4EA"/><text x="210" y="249" fill="#0F422D" font-size="13" font-weight="800">MÁY</text>
+ <line x1="49" y1="111" x2="180" y2="121" stroke="#D18B21" stroke-width="4" stroke-dasharray="8 6"/>
+ <circle cx="49" cy="111" r="20" fill="#F2D43D" stroke="#0F422D" stroke-width="2"/>
+ <circle cx="49" cy="111" r="8" fill="#FFFDF7" stroke="#0F422D"/>
+ <text x="75" y="92" fill="#0F422D" font-size="14" font-weight="800">ĐÈN</text>
+ </svg><figcaption>Vị trí đèn tính theo hướng mặt, không tính theo hướng máy</figcaption></figure>
+ <h3>Bên hông · 90°</h3><p>Chênh sáng–tối rõ, phù hợp khi muốn thấy bề mặt chất liệu và cảm giác đồ họa.</p>
+ </article></div><div class="headline-rule">Đừng hỏi “đèn đặt mấy độ là đẹp?” → Hãy hỏi “bóng nào làm dáng và chất liệu rõ hơn?”</div></section>
+<section class="section sand" id="muc-06"><div class="section-note"><details class="teacher-note"><summary aria-label="Gợi ý giảng viên" title="Gợi ý giảng viên"></summary><div class="teacher-pop"><strong>GỢI Ý GIẢNG VIÊN</strong><h4>Cách dẫn dắt</h4><p>Giữ cùng góc nguồn. So một nguồn nhỏ và một modifier lớn, kiểm tra cạnh bóng.</p><h4>Câu hỏi gợi mở</h4><p>Độ cứng thay đổi vì đâu? Grid có làm nguồn lớn lên không?</p><h4>Lưu ý chuyên môn</h4><p>Thao tác modifier theo giới hạn nhiệt và ngàm tương thích; tránh chiếu flash liên tục quá gần mặt mẫu.</p></div></details></div><div class="section-heading"><div><div class="eyebrow-section"><b>06</b>Kích thước nguồn & modifier</div><h2>Chọn độ mềm.<br>Không chọn theo tên thiết bị.</h2></div><p class="section-summary">Độ mềm phụ thuộc kích thước biểu kiến của nguồn so với chủ thể. Modifier còn giúp kiểm soát phạm vi ánh sáng.</p></div><div class="modifier-grid">
+<article class="mod-card"><div class="mod-diagram"><div class="disk"></div></div><h3>Nguồn tương đối nhỏ</h3><p>Rìa bóng thường rõ, chuyển sáng–tối nhanh. Hữu ích khi muốn nhấn cấu trúc và độ tương phản.</p></article>
+<article class="mod-card"><div class="mod-diagram large"><div class="disk"></div></div><h3>Softbox lớn, đặt gần</h3><p>Kích thước biểu kiến lớn hơn nên bóng chuyển mềm hơn. Giúp da và vải chuyển sáng nhẹ.</p></article>
+<article class="mod-card"><div class="mod-diagram gridded"><div class="disk"></div></div><h3>Lưới tổ ong (grid)</h3><p>Chủ yếu hạn chế ánh sáng tràn ra ngoài, giúp kiểm soát nền. Không mặc định khiến bóng mềm hơn.</p></article>
+</div></section>
+<section class="section bluebg" id="muc-07"><div class="section-note"><details class="teacher-note"><summary aria-label="Gợi ý giảng viên" title="Gợi ý giảng viên"></summary><div class="teacher-pop"><strong>GỢI Ý GIẢNG VIÊN</strong><h4>Cách dẫn dắt</h4><p>Demo cùng softbox tại hai khoảng cách; bù công suất sau khi đo sáng.</p><h4>Câu hỏi gợi mở</h4><p>Ánh sáng giảm bao nhiêu khi lùi đèn? Bóng có sắc hơn không?</p><h4>Lưu ý chuyên môn</h4><p>Mô hình suy giảm phụ thuộc tính chất nguồn và điều kiện studio; chưa cần công thức nghịch đảo bình phương chi tiết.</p></div></details></div><div class="section-heading"><div><div class="eyebrow-section"><b>07</b>Khoảng cách nguồn sáng</div><h2>Gần hơn: mềm hơn, nhưng ánh sáng suy giảm nhanh hơn.</h2></div><p class="section-summary">Giữ nguyên modifier. Dịch nguồn gần/xa rồi bù độ sáng để nhìn rõ thay đổi về chất lượng sáng.</p></div><div class="distance-layout">
+<article class="distance-card"><div class="distance-field near"><div class="cone"></div><div class="distance-light"></div><div class="subject"></div></div><h3>Nguồn gần</h3><p>Nguồn nhìn lớn hơn → thường mềm hơn. Chênh sáng giữa phần gần và xa nguồn dễ lớn hơn.</p></article>
+<article class="distance-card"><div class="distance-field far"><div class="cone"></div><div class="distance-light"></div><div class="subject"></div></div><h3>Nguồn xa</h3><p>Nguồn nhìn nhỏ hơn → thường cứng hơn; vùng sáng trong bộ ảnh có xu hướng đồng đều hơn.</p></article>
+</div><div class="headline-rule">Khi so độ mềm, hãy điều chỉnh công suất để hai ảnh có độ sáng gần tương đương. Nếu không, học viên sẽ nhầm “sáng hơn” với “mềm hơn”.</div></section>
+<section class="section paper" id="muc-08"><div class="section-note"><details class="teacher-note"><summary aria-label="Gợi ý giảng viên" title="Gợi ý giảng viên"></summary><div class="teacher-pop"><strong>GỢI Ý GIẢNG VIÊN</strong><h4>Cách dẫn dắt</h4><p>Cho học viên đọc thông số từng bộ LED và flash, thử chụp 1 ảnh test.</p><h4>Câu hỏi gợi mở</h4><p>Khi ảnh flash quá sáng, nên chỉnh gì? Khi ambient quá sáng thì chỉnh gì?</p><h4>Lưu ý chuyên môn</h4><p>Nhắc kiểm tra X-sync, màn trập cơ/điện tử, tốc độ hồi đèn; đừng đưa con số shutter như quy luật chung.</p></div></details></div><div class="section-heading"><div><div class="eyebrow-section"><b>08</b>Thông số máy cho từng nguồn</div><h2>Một bộ thông số không dùng cho mọi loại đèn.</h2></div><p class="section-summary">Đặt mục tiêu về chuyển động, độ sâu trường ảnh và vùng sáng trước; thông số sau đây chỉ là điểm bắt đầu.</p></div><div class="settings">
+<article class="setting"><h3>LED liên tục</h3><ul><li><b>Chế độ</b><span>M hoặc A/Av tùy ánh sáng và chuyển động</span></li><li><b>Tốc độ</b><span>Ví dụ 1/125–1/250 với mẫu khá tĩnh/chuyển động nhẹ; kiểm tra nhòe và rung.</span></li><li><b>Khẩu / ISO</b><span>Chọn theo vùng nét cần giữ và công suất thực tế.</span></li><li><b>WB</b><span>Cố định gần nguồn sáng; chú ý ám màu và flicker.</span></li></ul></article>
+<article class="setting"><h3>Flash studio</h3><ul><li><b>Chế độ</b><span>M, RAW, đồng bộ trigger</span></li><li><b>Tốc độ</b><span>Không vượt X-sync của hệ thống (ví dụ 1/125 hay 1/160 nếu phù hợp).</span></li><li><b>Khẩu / ISO</b><span>Thử f/4–f/8, ISO thấp hợp lý để đọc được trang phục.</span></li><li><b>Điều chỉnh</b><span>Chụp thử, xem histogram/highlight, chỉnh công suất và vị trí nguồn.</span></li></ul></article>
+</div><div class="exposure-warning"><strong>Flash ≠ LED:</strong> dưới ngưỡng đồng bộ thông thường, tăng tốc độ không phải cách chính để giảm sáng do xung flash; nó chủ yếu giảm phần sáng liên tục (ambient). Hãy đổi công suất flash, khẩu độ hoặc ISO khi muốn thay độ sáng phần flash.</div></section>
+<section class="section mint" id="muc-09"><div class="section-note"><details class="teacher-note"><summary aria-label="Gợi ý giảng viên" title="Gợi ý giảng viên"></summary><div class="teacher-pop"><strong>GỢI Ý GIẢNG VIÊN</strong><h4>Cách dẫn dắt</h4><p>Giữ đèn và máy; thay khoảng cách người mẫu – phông, chú ý phải chỉnh bố cục nếu cần.</p><h4>Câu hỏi gợi mở</h4><p>Phông có bị tràn sáng không? Trang phục đen có tách khỏi phông không?</p><h4>Lưu ý chuyên môn</h4><p>Khoảng cách không phải yếu tố duy nhất; hướng, độ rộng chùm và phản xạ phòng cũng quyết định.</p></div></details></div><div class="section-heading"><div><div class="eyebrow-section"><b>09</b>Người mẫu & phông nền</div><h2>Đèn cũng đang chiếu lên nền — hoặc không.</h2></div><p class="section-summary">Dịch người mẫu xa phông và kiểm soát hướng/độ tràn để nền không làm mất trang phục.</p></div><div class="background-grid">
+<div class="bg-card"><div class="bg-scene near"></div><h3>Người mẫu gần phông</h3><p>Ánh sáng từ nguồn dễ tràn lên phông; khó tách phần sáng–tối của hai đối tượng.</p></div>
+<div class="bg-card"><div class="bg-scene far"></div><h3>Người mẫu xa phông</h3><p>Dễ kiểm soát mức sáng nền độc lập hơn, nhất là khi nguồn chĩa lệch và có modifier định hướng.</p></div>
+</div></section>
+<section class="section sand" id="muc-10"><div class="section-note"><details class="teacher-note"><summary aria-label="Gợi ý giảng viên" title="Gợi ý giảng viên"></summary><div class="teacher-pop"><strong>GỢI Ý GIẢNG VIÊN</strong><h4>Cách dẫn dắt</h4><p>Cho người mẫu đứng yên với đèn chéo, lần lượt không fill, trắng, đen.</p><h4>Câu hỏi gợi mở</h4><p>Vùng tối có còn chi tiết không? Bóng có giúp nổi chất liệu không?</p><h4>Lưu ý chuyên môn</h4><p>Reflector phải nhận được ánh sáng mới hắt lại; negative fill không 'hút ánh sáng' mà cản phản xạ.</p></div></details></div><div class="section-heading"><div><div class="eyebrow-section"><b>10</b>Giảm hay tăng tương phản</div><h2>Không cần đèn thứ hai để điều chỉnh vùng tối.</h2></div><p class="section-summary">Một nguồn sáng chính vẫn có thể tạo ra ba mức tương phản khác nhau bằng cách dùng hoặc giảm ánh sáng phản xạ.</p></div><div class="fill-grid">
+<article class="fill-card"><div class="fill-portrait"></div><h3>Không hắt sáng</h3><p>Giữ vùng tối theo nguồn chính và các phản xạ đang có trong phòng.</p></article>
+<article class="fill-card"><div class="fill-portrait"></div><h3>Tấm phản quang trắng</h3><p>Nâng phía tối, trả lại chi tiết da/vải nếu cần giữ rõ trang phục.</p></article>
+<article class="fill-card"><div class="fill-portrait"></div><h3>Tấm chắn đen</h3><p>Giảm phản xạ vào phía tối, tạo chiều sâu rõ hơn.</p></article>
+</div></section>
+<section class="section paper" id="muc-11"><div class="section-note"><details class="teacher-note"><summary aria-label="Gợi ý giảng viên" title="Gợi ý giảng viên"></summary><div class="teacher-pop"><strong>GỢI Ý GIẢNG VIÊN</strong><h4>Cách dẫn dắt</h4><p>Giao cho từng học viên tự thực hiện checklist.</p><h4>Câu hỏi gợi mở</h4><p>Bước nào giúp tránh thiết bị đổ? Khi không đúng sáng, kiểm tra gì trước?</p><h4>Lưu ý chuyên môn</h4><p>Giảng viên có thể dừng demo nếu chân, dây hoặc modifier chưa an toàn.</p></div></details></div><div class="section-heading"><div><div class="eyebrow-section"><b>11</b>Quy trình setup một đèn</div><h2>Làm đúng thứ tự để dễ tìm và sửa lỗi.</h2></div><p class="section-summary">Dùng lại checklist này ở các buổi chụp sau. Mỗi khi thay đổi setup, chụp lại ảnh test và ghi thông số.</p></div><div class="work-grid"><div class="work-step"><b>01</b><p>Kiểm tra chân, đối trọng, điện và modifier.</p></div><div class="work-step"><b>02</b><p>Cố định người mẫu, máy ảnh và phông.</p></div><div class="work-step"><b>03</b><p>Đặt đèn theo hướng sáng muốn tạo.</p></div><div class="work-step"><b>04</b><p>Chọn LED/flash và thiết lập máy phù hợp.</p></div><div class="work-step"><b>05</b><p>Chụp thử, kiểm tra mắt, vải, highlight và nền.</p></div><div class="work-step"><b>06</b><p>Chỉ thay một biến số rồi so ảnh cạnh nhau.</p></div></div></section>
+<section class="section dark" id="muc-12"><div class="section-note"><details class="teacher-note"><summary aria-label="Gợi ý giảng viên" title="Gợi ý giảng viên"></summary><div class="teacher-pop"><strong>GỢI Ý GIẢNG VIÊN</strong><h4>Cách dẫn dắt</h4><p>Giữ một mẫu/outfit. Giám sát đèn khi di chuyển và chỉ thay một biến số mỗi lần.</p><h4>Câu hỏi gợi mở</h4><p>Ảnh nào giữ chi tiết trang phục tốt nhất? Setup nào dễ lặp lại 20 ảnh?</p><h4>Lưu ý chuyên môn</h4><p>Nếu so hai ảnh cứng/mềm, bù exposure tương đương; ghi mọi thay đổi vào bảng.</p></div></details></div><div class="section-heading"><div><div class="eyebrow-section"><b>12</b>Bài thực hành chính</div><h2>1 người mẫu.<br>1 đèn.<br>6 kết quả.</h2></div><p class="section-summary">Mục tiêu: tạo được sáu phiên bản có chủ đích từ cùng một bộ trang phục. Không đánh giá chỉ bằng ảnh đẹp nhất.</p></div><div class="practice-grid">
+<article class="practice-item"><b>01</b><h3>Đèn chính diện</h3><p>Giữ nhiều thông tin trên mặt và trang phục.</p><strong>Chụp → ghi vị trí và bóng.</strong></article>
+<article class="practice-item"><b>02</b><h3>Đèn chéo 45°</h3><p>Tạo form vừa, đọc nếp vải và chiều sâu.</p><strong>Chụp → so với chính diện.</strong></article>
+<article class="practice-item"><b>03</b><h3>Đèn bên hông</h3><p>Nhấn vùng sáng–tối và bề mặt chất liệu.</p><strong>Chụp → kiểm tra vùng tối.</strong></article>
+<article class="practice-item"><b>04</b><h3>Nguồn lớn, đặt gần</h3><p>Tạo bóng mềm hơn, bù công suất khi cần.</p><strong>Chụp → so rìa bóng.</strong></article>
+<article class="practice-item"><b>05</b><h3>Nguồn nhỏ/hẹp hơn</h3><p>Tạo bóng rõ hơn; dùng đúng modifier và khoảng cách an toàn.</p><strong>Chụp → so texture.</strong></article>
+<article class="practice-item"><b>06</b><h3>45° + hắt sáng trắng</h3><p>Điều chỉnh phần tối mà không thêm đèn.</p><strong>Chụp → so mức tương phản.</strong></article>
+</div></section>
+<section class="section dark" id="muc-13"><div class="section-note"><details class="teacher-note"><summary aria-label="Gợi ý giảng viên" title="Gợi ý giảng viên"></summary><div class="teacher-pop"><strong>GỢI Ý GIẢNG VIÊN</strong><h4>Cách dẫn dắt</h4><p>Review bằng 6 ảnh đặt cùng một mặt phẳng, yêu cầu giải thích từng thay đổi.</p><h4>Câu hỏi gợi mở</h4><p>Ảnh nào có thể đưa vào lookbook? Phông nào bị tràn sáng?</p><h4>Lưu ý chuyên môn</h4><p>Homework gồm sơ đồ 0/45/90 và 6 ảnh chụp kèm thông số, không yêu cầu retouch quá sâu.</p></div></details></div><div class="section-heading"><div><div class="eyebrow-section"><b>13</b>Ghi nhận & bài tập</div><h2>Biết đặt đèn. Biết giải thích vì sao.</h2></div><p class="section-summary">Sau buổi 06, học viên phải nộp kết quả chụp và sơ đồ; không chỉ nộp một ảnh hoàn thiện.</p></div><div class="final-points">
+<div><b>01</b><h3>Biết setup an toàn</h3><p>Tự lắp được một nguồn sáng cơ bản.</p></div>
+<div><b>02</b><h3>Biết đọc hướng nguồn</h3><p>Nhận biết đèn chính diện/chéo/bên hông.</p></div>
+<div><b>03</b><h3>Biết thay modifier</h3><p>Dự đoán độ mềm và phạm vi nguồn.</p></div>
+<div><b>04</b><h3>Biết giữ trang phục</h3><p>Chủ động so chi tiết vùng sáng và vùng tối.</p></div>
+</div><div class="last-statement">Không phải bật thêm đèn.<br>Mà là hiểu một đèn đang làm gì.</div></section>
+<footer class="footer"><span>Hang Đôi Academy · Buổi 06 · Nhiếp ảnh cơ bản — Thời trang</span><a href="/bai-giang/nhiep-anh-co-ban/thoi-trang/">← Xem các buổi học</a></footer>
+</div>
+<script>
+(function(){
+ const map={
+  "0":{x:260,y:318,labelX:297,labelY:322,name:"Nguồn chính diện · 0°",summary:"Mặt tương đối đều sáng, ít bóng ngang khuôn mặt. Dễ đọc chi tiết nhưng chiều sâu nhẹ."},
+  "45":{x:121,y:334,labelX:65,labelY:317,name:"Nguồn chéo · 45°",summary:"Nguồn lệch một bên. Mặt và áo có vùng sáng–tối vừa đủ; phù hợp để bắt đầu setup."},
+  "90":{x:91,y:199,labelX:38,labelY:167,name:"Nguồn bên hông · 90°",summary:"Nguồn đặt gần vuông góc với hướng mặt. Phía tối sâu hơn, nếp vải rõ hơn, cần kiểm tra chi tiết."}
+ };
+ const buttons=[...document.querySelectorAll("[data-angle]")];
+ function select(value){
+  const d=map[value];
+  for(const b of buttons){b.setAttribute("aria-pressed",String(b.dataset.angle===value));}
+  const src=document.getElementById("liveLightSource"),ctr=document.getElementById("liveLightCenter"),
+  ray=document.getElementById("liveLightRay"),lab=document.getElementById("liveLightLabel");
+  src.setAttribute("cx",d.x);src.setAttribute("cy",d.y);ctr.setAttribute("cx",d.x);ctr.setAttribute("cy",d.y);
+  ray.setAttribute("x1",d.x);ray.setAttribute("y1",d.y);
+  lab.setAttribute("x",d.labelX);lab.setAttribute("y",d.labelY);
+  document.getElementById("liveLightName").textContent=d.name;
+  document.getElementById("liveLightSummary").textContent=d.summary;
+ }
+ for(const b of buttons){b.addEventListener("click",()=>select(b.dataset.angle));}
+ select("45");
+})();
+</script>
+</body></html>
