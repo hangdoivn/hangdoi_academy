@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Buổi 05 — Ánh sáng tự nhiên cho Nhiếp ảnh Thời trang | Hang Đôi Academy</title>
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="https://academy.hangdoiproduction.com/bai-giang/nhiep-anh-co-ban/thoi-trang/buoi-05/">
+  <style>
+    *{box-sizing:border-box}
+    :root{
+      --paper-0:#FFFDF7;--paper-50:#F8F4EA;--paper-100:#F2ECDF;--paper-200:#E8DFD0;
+      --green-950:#0F422D;--green-800:#176B43;--green-700:#239653;--green-100:#E8F4DF;
+      --yellow:#F2D43D;--orange:#F26A3D;--cobalt:#3450D8;--ink:#173326;--muted:#5D7065;
+      --sky:#DCEAF4;--sand:#F3E2C7;
+    }
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper-50);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    .page{max-width:1240px;margin:auto;padding:18px 24px 80px}
+    .lesson-nav{min-height:58px;display:flex;align-items:center;justify-content:space-between;gap:18px;border-bottom:1px solid var(--paper-200);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    .lesson-nav-path{display:flex;gap:9px;flex-wrap:wrap}.lesson-nav-path span:not(:last-child)::after{content:"/";margin-left:9px;color:#9A9A8D}
+    .lesson-nav-time{padding:8px 12px;border:1px solid var(--green-950);border-radius:999px}
+
+    .hero{display:grid;grid-template-columns:minmax(0,7fr) minmax(320px,5fr);gap:34px;min-height:690px;padding:52px 0 62px;align-items:center}
+    .eyebrow{display:flex;align-items:center;gap:12px;font-size:12px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}.eyebrow:before{content:"";width:42px;height:4px;background:var(--yellow)}
+    h1{margin:28px 0 0;color:var(--green-950);font-size:clamp(62px,8vw,118px);line-height:.83;letter-spacing:-.075em}
+    h1 small{display:block;margin-bottom:10px;color:var(--green-800);font-size:.34em;line-height:1;letter-spacing:-.03em}
+    .hero-intro{max-width:670px;margin:30px 0 0;color:#435A4D;font-size:18px;line-height:1.58}
+    .hero-bottom{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:end;margin-top:46px}.principle{padding-top:14px;border-top:2px solid var(--green-950);font-size:15px;line-height:1.55}.principle strong{display:block;margin-bottom:7px;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+    .hero-meta{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--green-950);background:var(--paper-0)}.hero-meta div{padding:13px;border-right:1px solid var(--green-950)}.hero-meta div:last-child{border:0}.hero-meta span{display:block;margin-bottom:10px;color:#66776D;font-size:10px;text-transform:uppercase;letter-spacing:.09em}.hero-meta strong{font-size:17px;line-height:1.05}
+    .hero-visual{position:relative;min-height:570px}.hero-sun{position:absolute;right:12px;top:2px;width:145px;height:145px;border:2px solid var(--green-950);border-radius:50%;background:var(--yellow);z-index:1}.hero-block{position:absolute;inset:52px 0 28px 48px;background:var(--sky);border:2px solid var(--green-950)}
+    .hero-image{position:absolute;z-index:2;top:34px;left:0;right:42px;height:498px;padding:13px;background:var(--paper-0);border:2px solid var(--green-950);box-shadow:12px 12px 0 rgba(15,66,45,.16)}.hero-image img{width:100%;height:440px;display:block;object-fit:cover;object-position:center 36%}.hero-caption{display:flex;justify-content:space-between;gap:10px;padding-top:8px;font-size:10px;font-weight:800}
+    .hero-sticker{position:absolute;z-index:3;right:0;bottom:20px;width:128px;height:128px;display:grid;place-items:center;padding:18px;border:2px solid var(--green-950);border-radius:50%;background:var(--orange);color:white;text-align:center;font-size:12px;font-weight:900;line-height:1.1;transform:rotate(6deg)}
+
+    .section{position:relative;margin:0 -24px;padding:86px 24px 92px;border-bottom:1px solid var(--paper-200);overflow:hidden}
+    .paper{background:var(--paper-0)}.paper-alt{background:var(--paper-100)}.dark{background:var(--green-950);color:var(--paper-0)}.sky{background:var(--sky)}.sand{background:var(--sand)}
+    .section-head{display:grid;grid-template-columns:minmax(0,7fr) minmax(260px,5fr);gap:42px;align-items:end;margin-bottom:40px}
+    .kicker{display:flex;align-items:center;gap:10px;margin-bottom:18px;color:var(--green-700);font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}.dark .kicker{color:var(--yellow)}
+    .kicker b{display:inline-flex;width:32px;height:32px;align-items:center;justify-content:center;border-radius:50%;background:var(--green-700);color:#fff}.dark .kicker b{background:var(--yellow);color:var(--green-950)}
+    h2{margin:0;color:var(--green-950);font-size:clamp(48px,5.8vw,82px);line-height:.9;letter-spacing:-.055em}.dark h2{color:var(--paper-0)}
+    .section-lead{max-width:430px;margin:0;padding-top:17px;border-top:2px solid var(--green-950);color:#506359;font-size:16px;line-height:1.6}.dark .section-lead{border-color:rgba(255,255,255,.7);color:#C7D7CD}
+
+    .teacher-note{position:relative;display:inline-block;z-index:20}.teacher-note summary{list-style:none;width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(15,66,45,.32);border-radius:999px;background:var(--paper-0);color:var(--green-950);font-size:14px;font-weight:900;cursor:pointer}.teacher-note summary::-webkit-details-marker{display:none}.teacher-note summary:before{content:"i";font-family:Georgia,serif;font-style:italic}.teacher-note summary:hover,.teacher-note[open] summary{background:var(--yellow)}
+    .teacher-note-popover{position:absolute;top:44px;right:0;width:min(370px,78vw);padding:18px;background:var(--paper-0);color:var(--green-950);border:1px solid var(--green-950);box-shadow:8px 8px 0 rgba(15,66,45,.12);opacity:0;visibility:hidden;transform:translateY(-5px);transition:.16s;pointer-events:none;z-index:30}.teacher-note:hover .teacher-note-popover,.teacher-note[open] .teacher-note-popover{opacity:1;visibility:visible;transform:none;pointer-events:auto}.teacher-note-popover:before{content:"GỢI Ý GIẢNG VIÊN";display:block;margin-bottom:10px;color:var(--green-700);font-size:10px;font-weight:900;letter-spacing:.12em}.teacher-note-popover h4{margin:14px 0 6px;font-size:12px;letter-spacing:.05em;text-transform:uppercase}.teacher-note-popover h4:first-of-type{margin-top:0}.teacher-note-popover p,.teacher-note-popover li{margin:0;color:#3F5549;font-size:13px;line-height:1.5}.teacher-note-popover ul{margin:6px 0 0;padding-left:18px}.section-note{position:absolute;top:22px;right:24px}.dark .teacher-note summary{background:rgba(255,255,255,.08);color:white;border-color:rgba(255,255,255,.35)}.dark .teacher-note summary:hover,.dark .teacher-note[open] summary{background:var(--yellow);color:var(--green-950)}
+
+    .scout-map{display:grid;grid-template-columns:1.3fr .7fr;gap:14px}
+    .map-stage{position:relative;min-height:480px;border:2px solid var(--green-950);background:linear-gradient(180deg,var(--sky) 0 30%,#EEE7D7 30% 100%);overflow:hidden}
+    .building{position:absolute;left:0;bottom:0;width:42%;height:68%;background:var(--green-800)}.awning{position:absolute;left:38%;top:31%;width:31%;height:12%;background:var(--orange);transform:skewX(-18deg)}.ground-shadow{position:absolute;left:35%;bottom:0;width:42%;height:30%;background:rgba(15,66,45,.15);clip-path:polygon(0 0,100% 35%,100% 100%,0 100%)}
+    .sun{position:absolute;right:10%;top:10%;width:70px;height:70px;border-radius:50%;background:var(--yellow);border:2px solid var(--green-950)}
+    .zone{position:absolute;padding:8px 10px;border:1px solid var(--green-950);background:var(--paper-0);font-size:10px;font-weight:900;letter-spacing:.06em}.z1{left:48%;top:49%}.z2{left:18%;top:48%;color:white;background:var(--green-950)}.z3{right:8%;bottom:24%;background:var(--yellow)}.z4{left:48%;bottom:8%;background:#fff}.z5{right:6%;top:40%;background:#E8EBFA}
+    .scout-list{display:grid;border-top:1px solid var(--green-950)}.scout-row{display:grid;grid-template-columns:48px 1fr;gap:14px;min-height:88px;align-items:center;border-bottom:1px solid var(--green-950)}.scout-row b{font-size:28px;color:var(--orange)}.scout-row span{font-size:13px;line-height:1.45;font-weight:750}
+
+    .shade-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.shade-card{padding:20px;border:1px solid var(--green-950);background:var(--paper-0)}.shade-card:nth-child(1){background:#FFF4C9}.shade-card:nth-child(3){background:#D8DFDC}.shade-depth{height:160px;position:relative;margin-bottom:22px;background:linear-gradient(90deg,#F2D43D 0 18%,#D8E3DF 18% 100%);overflow:hidden}.shade-depth:after{content:"";position:absolute;left:18%;top:0;width:82%;height:100%;background:linear-gradient(90deg,rgba(15,66,45,.06),rgba(15,66,45,.36))}.shade-person{position:absolute;z-index:2;top:36px;width:36px;height:94px;border-radius:20px 20px 8px 8px;border:2px solid var(--green-950);background:var(--paper-0)}.p-edge{left:24%}.p-mid{left:49%}.p-deep{left:74%}.shade-card h3{margin:0 0 8px;font-size:23px}.shade-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
+
+    .window-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:14px}.window-demo{position:relative;min-height:400px;border:1px solid var(--green-950);background:#263A31;overflow:hidden}.window-shape{position:absolute;left:0;top:0;width:34%;height:100%;background:#F9F3D6;border-right:2px solid var(--green-950)}.window-rays{position:absolute;left:34%;top:0;width:66%;height:100%;background:linear-gradient(105deg,rgba(242,212,61,.32),rgba(242,212,61,0) 72%)}.window-person{position:absolute;left:48%;top:85px;width:72px;height:210px;border-radius:38px 38px 12px 12px;background:#D8B49B;border:2px solid var(--paper-0)}.window-axis{position:absolute;right:20px;bottom:20px;color:white;font-size:11px;font-weight:800}
+    .window-options{display:grid;gap:10px}.window-card{padding:20px;border:1px solid var(--green-950);background:var(--paper-0)}.window-card:nth-child(2){background:var(--green-100)}.window-card:nth-child(3){background:#F7E4DC}.window-card strong{font-size:20px}.window-card p{margin:9px 0 0;color:var(--muted);font-size:13px;line-height:1.5}
+
+    .sun-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.sun-card{min-height:330px;padding:20px;border:1px solid var(--green-950);background:var(--paper-0)}.sun-card:nth-child(2){background:#FFF3C9}.sun-card:nth-child(3){background:#F7E4DC}.sun-icon{width:72px;height:72px;border-radius:50%;background:var(--yellow);border:2px solid var(--green-950);margin-bottom:54px}.sun-card h3{font-size:25px;margin:0 0 8px}.sun-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}.sun-card strong{display:block;margin-top:18px;padding-top:14px;border-top:1px solid rgba(15,66,45,.2);font-size:12px}
+
+    .backlight-stage{display:grid;grid-template-columns:1fr 1fr;gap:14px}.exposure-panel{min-height:380px;padding:22px;border:1px solid var(--green-950);background:var(--paper-0)}.exposure-panel.dark-subject{background:#23372E;color:white}.exp-scene{position:relative;height:190px;margin-bottom:24px;background:linear-gradient(180deg,#BFD7E5,#F7E4C4);overflow:hidden}.exp-sun{position:absolute;right:20px;top:20px;width:58px;height:58px;border-radius:50%;background:var(--yellow)}.exp-person{position:absolute;left:46%;bottom:12px;width:58px;height:135px;border-radius:32px 32px 10px 10px;background:#6A4F43}.dark-subject .exp-person{background:#26342F}.bright-bg .exp-scene{filter:brightness(1.15)}.dark-subject .exp-scene{filter:brightness(.85)}.exposure-panel h3{font-size:26px;margin:0 0 8px}.exposure-panel p{font-size:13px;line-height:1.55;color:var(--muted)}.dark-subject p{color:#C7D7CD}
+
+    .modifier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.modifier{min-height:310px;padding:20px;border:1px solid var(--green-950);background:var(--paper-0)}.modifier:nth-child(2){background:var(--green-100)}.modifier:nth-child(3){background:#E4E3DF}.modifier-symbol{height:110px;display:grid;place-items:center;margin-bottom:26px}.mod-circle{width:82px;height:82px;border-radius:50%;border:2px solid var(--green-950)}.white .mod-circle{background:#fff}.black .mod-circle{background:#1D2823}.env .mod-circle{background:linear-gradient(135deg,#fff 0 50%,#D0A77A 50%)}.modifier h3{font-size:23px;margin:0 0 8px}.modifier p{font-size:13px;line-height:1.55;color:var(--muted)}
+
+    .balance{display:grid;grid-template-columns:1fr 1fr;gap:14px}.balance-card{padding:24px;border:1px solid var(--green-950);background:var(--paper-0)}.balance-card:nth-child(2){background:#E8EBFA}.meter{height:18px;margin:28px 0 18px;border:1px solid var(--green-950);background:linear-gradient(90deg,#17251F 0 32%,#E0CF9E 32% 68%,#FFFDF7 68% 100%);position:relative}.meter i{position:absolute;top:-8px;width:3px;height:34px;background:var(--orange)}.balance-card:first-child .meter i{left:48%}.balance-card:nth-child(2) .meter i{left:74%}.balance-card h3{font-size:25px;margin:0 0 8px}.balance-card p{color:var(--muted);font-size:13px;line-height:1.55}
+
+    .color-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.color-card{min-height:280px;padding:20px;border:1px solid var(--green-950);background:var(--paper-0)}.color-chip{height:70px;margin-bottom:34px;border:1px solid var(--green-950)}.green-cast{background:#9EBF9A}.red-cast{background:#D49588}.blue-cast{background:#9EB9D6}.neutral-cast{background:#E7DFD2}.color-card h3{font-size:20px;margin:0 0 8px}.color-card p{color:var(--muted);font-size:13px;line-height:1.5}
+
+    .practice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.practice-card{min-height:300px;padding:20px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.04)}.practice-card b{display:flex;width:42px;height:42px;align-items:center;justify-content:center;border-radius:50%;background:var(--yellow);color:var(--green-950)}.practice-card h3{margin:34px 0 9px;color:white;font-size:24px}.practice-card p{margin:0;color:#C7D7CD;font-size:13px;line-height:1.55}.practice-card strong{display:block;margin-top:18px;padding-top:13px;border-top:1px solid rgba(255,255,255,.15);color:var(--yellow);font-size:12px}
+
+    .workflow{display:grid;grid-template-columns:repeat(6,1fr);border:1px solid var(--green-950)}.workflow-step{min-height:185px;padding:16px;border-right:1px solid var(--green-950);background:var(--paper-0)}.workflow-step:last-child{border:0}.workflow-step b{display:block;color:var(--orange);font-size:30px}.workflow-step span{display:block;margin-top:27px;font-size:13px;font-weight:800;line-height:1.4}
+
+    .homework-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.homework{min-height:320px;padding:22px;border:1px solid var(--green-950);background:var(--paper-0)}.homework:nth-child(2){background:var(--green-100)}.homework:nth-child(3){background:#E8EBFA}.homework b{font-size:46px}.homework h3{margin:32px 0 9px;font-size:24px}.homework p{color:var(--muted);line-height:1.55}
+    .final-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid rgba(255,255,255,.24)}.final-item{min-height:220px;padding:20px;border-right:1px solid rgba(255,255,255,.18)}.final-item:last-child{border:0}.final-item b{color:var(--yellow);font-size:38px}.final-item h3{margin:30px 0 8px;color:white;font-size:21px}.final-item p{margin:0;color:#C7D7CD;font-size:13px;line-height:1.5}.final-line{margin-top:28px;padding-top:28px;border-top:1px solid rgba(255,255,255,.25);color:white;font-size:clamp(36px,5vw,66px);font-weight:900;line-height:.95;letter-spacing:-.05em}
+
+
+    /* Lesson 05: scene illustrations, same visual system as Academy editorial cards. */
+    .illustration-img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border:1px solid rgba(15,66,45,.24);margin:0 0 18px;background:var(--paper-100)}
+    .scout-image{position:relative;margin:0;background:var(--paper-0);border:2px solid var(--green-950);overflow:hidden;align-self:start}
+    .scout-image .illustration-img{margin:0;border:0;width:100%;aspect-ratio:16/10;object-fit:cover}
+    .scout-image figcaption{padding:12px 16px;font-size:12px;font-weight:700;color:var(--green-950)}
+    .scout-tag{position:absolute;padding:7px 10px;border-radius:999px;border:1px solid var(--green-950);background:var(--paper-0);font-size:11px;font-weight:850;box-shadow:2px 2px 0 rgba(15,66,45,.24)}
+    .scout-tag-sun{left:5%;top:10%;background:var(--yellow)}
+    .scout-tag-shade{right:5%;top:12%;background:var(--green-100)}
+    .scout-tag-edge{left:40%;bottom:20%;background:var(--paper-0)}
+    .shade-card{display:flex;flex-direction:column}
+    .shade-card .illustration-img{border-radius:0;object-position:center}
+    .window-visual-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .window-visual-card{padding:18px;border:1px solid var(--green-950);background:var(--paper-0)}
+    .window-visual-card:nth-child(2){background:var(--green-100)}
+    .window-visual-card:nth-child(3){background:#F7E4DC}
+    .window-visual-card h3{margin:0 0 8px;font-size:23px}
+    .window-visual-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}
+    .sun-card .illustration-img{margin-bottom:19px}
+    .sun-card .sun-icon{display:none}
+    .exposure-panel .illustration-img{margin-bottom:20px}
+    .exposure-panel.dark-subject .illustration-img{border-color:rgba(255,255,255,.3)}
+    .modifier .illustration-img{margin-bottom:20px}
+    .balance-card .illustration-img{margin-top:4px}
+    .color-card .tone-sample{position:relative;margin-bottom:18px;overflow:hidden}
+    .tone-sample .illustration-img{margin:0}
+    .tone-sample:after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:color}
+    .tone-green:after{background:rgba(64,119,65,.30)}
+    .tone-warm:after{background:rgba(210,122,48,.27)}
+    .tone-cool:after{background:rgba(75,119,185,.25)}
+    .tone-neutral:after{background:transparent}
+    .illustration-footnote{margin:14px 0 0;color:var(--muted);font-size:11px;line-height:1.5}
+    .practice-card{padding:15px 15px 20px}
+    .practice-card .illustration-img{margin:12px 0 20px;border-color:rgba(255,255,255,.27)}
+    .practice-card h3{margin:0 0 9px}
+    @media(max-width:800px){
+      .window-visual-grid{grid-template-columns:1fr}
+      .scout-map{grid-template-columns:1fr}
+      .scout-tag{font-size:9px;padding:5px 7px}
+    }
+
+
+    /* Lesson 05 / Section 03: photo evidence + accurate top-down light-direction diagrams */
+    .window-lesson-section h2{font-size:clamp(42px,4.7vw,70px)}
+    .window-explain-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:stretch}
+    .window-explain-card{min-width:0;display:flex;flex-direction:column;background:var(--paper-0);border:1px solid var(--green-950)}
+    .window-explain-card:nth-child(2){background:var(--green-100)}
+    .window-explain-card:nth-child(3){background:#F7E7DF}
+    .window-explain-top{display:flex;align-items:center;justify-content:space-between;padding:13px 17px;font-size:11px;font-weight:900;letter-spacing:.1em;color:var(--green-950)}
+    .window-explain-top strong{font-size:29px;letter-spacing:-.05em}
+    .window-explain-image{width:100%;height:auto;aspect-ratio:960/534;object-fit:cover;display:block;border-top:1px solid rgba(15,66,45,.2);border-bottom:1px solid rgba(15,66,45,.2)}
+    .window-explain-copy{padding:20px 20px 15px;min-height:138px}
+    .window-explain-copy h3{font-size:23px;letter-spacing:-.03em;line-height:1.1;margin:0 0 10px;color:var(--green-950)}
+    .window-explain-copy p{margin:0;font-size:13px;line-height:1.55;color:var(--muted)}
+    .window-plan{margin:0 15px;border:1px solid rgba(15,66,45,.28);background:#F7F3E9;padding:10px 11px}
+    .window-plan-title{display:flex;align-items:center;justify-content:space-between;font-size:10px;font-weight:900;letter-spacing:.08em;color:var(--green-950)}
+    .window-plan-title b{font-size:20px;letter-spacing:-.04em}
+    .window-plan svg{width:100%;height:auto;display:block;max-height:176px}
+    .window-plan .plan-label{font-family:Inter,ui-sans-serif,system-ui,sans-serif;font-size:10px;fill:#0F422D;font-weight:850;letter-spacing:.02em}
+    .window-plan .plan-ray{stroke:#D18A12;stroke-width:4;stroke-linecap:round;stroke-dasharray:7 5}
+    .window-plan-key{display:flex;justify-content:space-between;gap:10px;font-size:10px;font-weight:800;color:var(--green-950)}
+    .window-plan-key>span{display:inline-flex;align-items:center;gap:5px}
+    .window-plan-key i{display:inline-block;width:12px;height:8px;border:1px solid var(--green-950)}
+    .window-plan-key .light-key{background:var(--yellow)}
+    .window-plan-key .face-key{background:#E5BFA4}
+    .window-explain-result{padding:20px;margin-top:auto;color:var(--green-950)}
+    .window-explain-result>strong{font-size:10px;letter-spacing:.08em}
+    .window-explain-result ul{padding:0;margin:10px 0 0;list-style:none;display:grid;gap:9px}
+    .window-explain-result li{position:relative;padding-left:16px;font-size:13px;line-height:1.45;color:#395144}
+    .window-explain-result li::before{content:"";position:absolute;left:0;top:7px;background:var(--green-700);width:7px;height:7px;border-radius:50%}
+    .window-compare-note{display:grid;grid-template-columns:175px 1fr;align-items:start;gap:20px;padding:20px 24px;margin-top:15px;border:1px solid rgba(15,66,45,.4);background:var(--paper-0)}
+    .window-compare-note>b{font-size:11px;letter-spacing:.08em;color:var(--green-700)}
+    .window-compare-note p{font-size:14px;line-height:1.6;margin:0;color:var(--green-950)}
+    @media(max-width:920px){.window-explain-grid{grid-template-columns:1fr}.window-explain-card{max-width:670px;width:100%;margin:0 auto}.window-explain-copy{min-height:0}.window-plan svg{max-height:220px}.window-compare-note{grid-template-columns:1fr;gap:6px}}
+    @media print{.window-explain-grid{break-inside:avoid}}
+
+    @media(max-width:1024px) and (min-width:801px){.workflow{grid-template-columns:repeat(3,1fr)}.workflow-step{border-bottom:1px solid var(--green-950)}.color-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:800px){
+      .page{padding:12px 16px 60px}.lesson-nav{font-size:10px}.hero{grid-template-columns:1fr;min-height:auto;padding:40px 0 54px}.hero h1{font-size:55px}.hero-bottom{grid-template-columns:1fr}.hero-visual{min-height:510px}.hero-image{right:28px;height:455px}.hero-image img{height:397px}
+      .section{margin:0 -16px;padding:62px 16px 68px}.section-head{grid-template-columns:1fr;gap:24px}.section h2{font-size:48px}.section-note{top:14px;right:16px}.teacher-note-popover{position:fixed;left:16px;right:16px;top:auto;bottom:18px;width:auto;max-height:58vh;overflow:auto;z-index:9999}
+      .scout-map,.shade-grid,.window-grid,.sun-grid,.backlight-stage,.modifier-grid,.balance,.color-grid,.practice-grid,.homework-grid,.final-grid{grid-template-columns:1fr}.workflow{grid-template-columns:1fr}.workflow-step,.final-item{border-right:0;border-bottom:1px solid var(--green-950)}.final-item{border-color:rgba(255,255,255,.18)}.workflow-step:last-child,.final-item:last-child{border-bottom:0}.map-stage{min-height:400px}
+    }
+    @media print{.teacher-note{display:none!important}}
+  </style>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><style id="academy-logo-critical">
+header.site-header,header.site-header.scrolled{background:linear-gradient(90deg,#fffef9,#f5f7f1)!important;border-color:rgba(23,56,43,.12)!important}
+.site-header .nav-links a,.site-header.scrolled .nav-links a{color:#17382b!important}
+.brand-official,.p2-brand{display:inline-flex!important;align-items:center!important;width:200px!important;min-width:200px!important;height:40px!important;padding:0!important;border:0!important;background:none!important;background-image:none!important}
+.brand-official>*{opacity:1!important;visibility:visible!important}
+.brand-official .academy-logo-svg,.p2-brand .academy-logo-svg{display:block!important;width:200px!important;max-height:40px!important;height:auto!important;opacity:1!important;visibility:visible!important}
+footer .brand-official,.p2-footer-logo{width:220px!important;min-width:220px!important;height:48px!important}
+footer .academy-logo-svg,.p2-footer-logo .academy-logo-svg{display:block!important;width:220px!important;max-height:48px!important;height:auto!important;opacity:1!important;visibility:visible!important}
+footer .academy-logo-svg .cls-1,.p2-footer .academy-logo-svg .cls-1{fill:#fff!important}
+footer .academy-logo-svg .cls-2,.p2-footer .academy-logo-svg .cls-2{fill:#fcb415!important}
+@media(max-width:760px){.brand-official,.p2-brand{width:170px!important;min-width:170px!important;height:34px!important}.brand-official .academy-logo-svg,.p2-brand .academy-logo-svg{width:170px!important;max-height:34px!important}footer .brand-official,.p2-footer-logo{width:190px!important;min-width:190px!important;height:42px!important}footer .academy-logo-svg,.p2-footer-logo .academy-logo-svg{width:190px!important;max-height:42px!important}}
+</style></head>
+<body>
+<div class="page">
+  <nav class="lesson-nav">
+    <div class="lesson-nav-path"><span>Nhiếp ảnh cơ bản</span><span>Thời trang</span><span>Buổi 05</span></div>
+    <div class="lesson-nav-time">150 phút</div>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <div class="eyebrow">Nhiếp ảnh ứng dụng trong thời trang</div>
+      <h1><small>Buổi 05</small>Ánh sáng<br>tự nhiên.</h1>
+      <p class="hero-intro">Không đứng ở một location rồi cố “chỉnh máy cho đẹp”. Buổi này học cách <strong>đi tìm vùng sáng, đặt người mẫu đúng chỗ và dùng chính môi trường như một modifier</strong>.</p>
+      <div class="hero-bottom">
+        <div class="principle"><strong>Nguyên tắc</strong>Nhìn hướng sáng → nhìn bóng → nhìn nền → đặt người mẫu → đo sáng → dịch chuyển → so sánh.</div>
+        <div class="hero-meta">
+          <div><span>Thời lượng</span><strong>150 phút</strong></div>
+          <div><span>Bài chính</span><strong>1 location / 6 ánh sáng</strong></div>
+          <div><span>Thiết bị</span><strong>Không flash</strong></div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-sun"></div><div class="hero-block"></div>
+      <div class="hero-image">
+        <img src="https://drive.google.com/thumbnail?id=1bue2waUh4WlmuKXZ8iNw36AXFj7Vn9rz&sz=w1600" alt="Ảnh thời trang XITA tại location">
+        <div class="hero-caption"><span>Ảnh nội bộ · XITA</span><span>Quan sát location trước khi chụp</span></div>
+      </div>
+      <div class="hero-sticker">Tìm<br>ánh sáng<br>trước.</div>
+    </div>
+  </header>
+
+  <section class="section sky">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Cách dẫn dắt</h4><p>Đưa học viên ra một khu vực có ít nhất 3 loại ánh sáng. Không cho cầm máy ngay trong 3 phút đầu.</p>
+      <h4>Câu hỏi</h4><ul><li>Mặt trời ở đâu?</li><li>Vùng nào là open shade?</li><li>Bề mặt nào đang bounce?</li></ul>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>01</b> Scouting</div><h2>Đừng tìm background trước.<br>Hãy tìm ánh sáng trước.</h2></div>
+      <p class="section-lead">Một location tốt không phải nơi có nhiều góc đẹp nhất, mà là nơi cho phép bạn chủ động chọn vùng sáng phù hợp với trang phục và mục tiêu hình ảnh.</p>
+    </div>
+    <div class="scout-map">
+      <figure class="scout-image">
+        <img class="illustration-img" src="assets/shade-edge.webp" alt="Minh hoạ địa điểm có khoảng sân sáng bên trái và hành lang có mái che bên phải" loading="lazy" decoding="async" width="960" height="540">
+        <span class="scout-tag scout-tag-sun">Vùng có nắng</span>
+        <span class="scout-tag scout-tag-shade">Vùng bóng râm</span>
+        <span class="scout-tag scout-tag-edge">Mép bóng râm</span>
+        <figcaption>Đọc vùng sáng trước khi quyết định vị trí người mẫu.</figcaption>
+      </figure>
+      <div class="scout-list">
+        <div class="scout-row"><b>01</b><span>Mặt trời đang ở hướng nào?</span></div>
+        <div class="scout-row"><b>02</b><span>Vùng bóng râm có nhìn ra trời sáng không?</span></div>
+        <div class="scout-row"><b>03</b><span>Có tường/sàn sáng để hắt sáng?</span></div>
+        <div class="scout-row"><b>04</b><span>Có mặt tối để giảm phản xạ?</span></div>
+        <div class="scout-row"><b>05</b><span>Nền sáng hay tối hơn người mẫu?</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section paper">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Demo bắt buộc</h4><p>Giữ hướng người mẫu. Chụp sát mép shade, lùi sâu khoảng 1m và lùi sâu hơn. So mắt, contrast và background.</p>
+      <h4>Lưu ý</h4><p>Không dạy “shade = đẹp”. Shade quá sâu có thể làm mắt tối và background quá sáng.</p>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>02</b> Open shade</div><h2>Cùng là bóng râm.<br>Nhưng độ sâu khác nhau cho ảnh khác nhau.</h2></div>
+      <p class="section-lead">Mép bóng râm thường nhận nhiều ánh sáng từ bầu trời hơn. Đi sâu vào trong, ánh sáng giảm và direction có thể yếu dần.</p>
+    </div>
+    <div class="shade-grid">
+      <article class="shade-card"><img class="illustration-img" src="assets/shade-edge.webp" alt="Người mẫu đứng gần mép bóng râm, nhận ánh sáng từ vùng trời mở" loading="lazy" decoding="async" width="960" height="540"><h3>Sát mép bóng râm</h3><p>Nhiều ánh sáng từ bầu trời hơn; mặt và mắt rõ, ánh sáng vẫn dịu.</p></article>
+      <article class="shade-card"><img class="illustration-img" src="assets/shade-mid.webp" alt="Người mẫu đứng sâu hơn trong hành lang có mái che, ánh sáng dịu hơn" loading="lazy" decoding="async" width="960" height="540"><h3>Vào sâu vừa phải</h3><p>Ánh sáng dịu và dễ kiểm soát; cần so độ sáng của hậu cảnh.</p></article>
+      <article class="shade-card"><img class="illustration-img" src="assets/shade-deep.webp" alt="Người mẫu đứng rất sâu trong vùng bóng râm, thiếu sáng so với ngoài trời" loading="lazy" decoding="async" width="960" height="540"><h3>Bóng râm quá sâu</h3><p>Mắt và da dễ tối, trang phục mất chi tiết; phía ngoài sáng hơn nhiều.</p></article>
+    </div>
+  </section>
+
+  <section class="section paper-alt window-lesson-section">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Demo</h4><p>Dùng cửa sổ/cửa ra vào. Giữ người mẫu một vị trí và xoay front → 45° → side. Sau đó thay khoảng cách đến cửa.</p>
+      <h4>Nhắc lại Buổi 03</h4><p>Nguồn gần và lớn tương đối thường mềm hơn nhưng falloff nhanh hơn.</p>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>03</b> Cửa sổ & cửa ra vào</div><h2>Một cửa sổ.<br>Ba hướng sáng khác nhau.</h2></div>
+      <p class="section-lead">Đọc hướng sáng qua <strong>bóng trên mặt và trang phục</strong>. Quan sát ảnh, sau đó nhìn sơ đồ vị trí tương đối giữa cửa sổ và người mẫu.</p>
+    </div>
+    <div class="window-explain-grid">
+ <article class="window-explain-card">
+ <div class="window-explain-top"><span>01 / HƯỚNG SÁNG</span><strong>0°</strong></div>
+ <img class="window-explain-image" src="assets/window-front-clear.webp" alt="Ảnh minh hoạ người mẫu nhận nhiều ánh sáng từ phía trước mặt, vùng tối trên mặt ít" loading="lazy" decoding="async" width="960" height="534">
+ <div class="window-explain-copy"><h3>Nguồn sáng chính diện</h3><p>Nguồn sáng gần trục nhìn của khuôn mặt. Phần lớn mặt nhận sáng tương đối đều.</p></div>
+ <div class="window-plan" aria-label="Sơ đồ nhìn từ trên xuống: hướng ánh sáng 0 độ so với hướng mặt người mẫu">
+ <div class="window-plan-title"><span>SƠ ĐỒ HƯỚNG SÁNG</span><b>0°</b></div>
+ <svg viewBox="0 0 360 193" role="img" aria-label="Nguồn sáng từ cửa đến khuôn mặt của người mẫu, góc 0 độ">
+ <defs><marker id="lightArrow-1" markerWidth="8" markerHeight="8" refX="5" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#D18A12"/></marker></defs>
+ <rect x="1" y="1" width="358" height="191" rx="8" fill="#F7F3E9" stroke="#DFE4D6"/>
+ <path d="M166 117 Q203 140 240 117 L240 137 L166 137 Z" fill="#D3E7D9" stroke="#0F422D" stroke-width="1.7"/>
+ <circle cx="203" cy="95" r="25" fill="#E5BFA4" stroke="#0F422D" stroke-width="2"/>
+ <path d="M197 117 L203 125 L209 117" fill="#0F422D"/>
+ <text x="251" y="102" class="plan-label">MẪU</text>
+ <rect x="140" y="165" width="126" height="13" rx="3" fill="#F2D43D" stroke="#0F422D" stroke-width="2"/><text x="203" y="157" text-anchor="middle" class="plan-label">CỬA SỔ</text>
+ <line x1="203" y1="157" x2="203" y2="119" class="plan-ray" marker-end="url(#lightArrow-1)"/>
+ <g transform="translate(288 151)"><rect width="24" height="19" rx="3" fill="#0F422D"/><circle cx="12" cy="9" r="5.5" fill="#F7F3E9"/><rect x="5" y="-5" width="11" height="5" rx="1.5" fill="#0F422D"/></g>
+ <text x="276" y="184" class="plan-label">MÁY ẢNH</text>
+ </svg>
+ <div class="window-plan-key"><span><i class="light-key"></i> Nguồn sáng</span><span><i class="face-key"></i> Hướng mặt ↓</span></div>
+ </div>
+ <div class="window-explain-result"><strong>NHÌN VÀO ẢNH</strong><ul><li>Bóng trên má ít, da và màu trang phục dễ đọc.</li><li>Chiều sâu khuôn mặt nhẹ hơn.</li></ul></div>
+ </article>
+ <article class="window-explain-card">
+ <div class="window-explain-top"><span>02 / HƯỚNG SÁNG</span><strong>45°</strong></div>
+ <img class="window-explain-image" src="assets/window-angle-clear.webp" alt="Ảnh minh hoạ ánh sáng cửa sổ chéo 45 độ tạo vùng sáng và vùng tối vừa phải" loading="lazy" decoding="async" width="960" height="534">
+ <div class="window-explain-copy"><h3>Nguồn sáng chéo 45°</h3><p>Nguồn sáng lệch sang một bên. Bề mặt mặt và trang phục có vùng sáng – tối rõ hơn.</p></div>
+ <div class="window-plan" aria-label="Sơ đồ nhìn từ trên xuống: hướng ánh sáng 45 độ so với hướng mặt người mẫu">
+ <div class="window-plan-title"><span>SƠ ĐỒ HƯỚNG SÁNG</span><b>45°</b></div>
+ <svg viewBox="0 0 360 193" role="img" aria-label="Nguồn sáng từ cửa đến khuôn mặt của người mẫu, góc 45 độ">
+ <defs><marker id="lightArrow-2" markerWidth="8" markerHeight="8" refX="5" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#D18A12"/></marker></defs>
+ <rect x="1" y="1" width="358" height="191" rx="8" fill="#F7F3E9" stroke="#DFE4D6"/>
+ <path d="M166 117 Q203 140 240 117 L240 137 L166 137 Z" fill="#D3E7D9" stroke="#0F422D" stroke-width="1.7"/>
+ <circle cx="203" cy="95" r="25" fill="#E5BFA4" stroke="#0F422D" stroke-width="2"/>
+ <path d="M197 117 L203 125 L209 117" fill="#0F422D"/>
+ <text x="251" y="102" class="plan-label">MẪU</text>
+ <rect x="81" y="133" width="112" height="13" rx="3" transform="rotate(39 137 140)" fill="#F2D43D" stroke="#0F422D" stroke-width="2"/><text x="89" y="157" class="plan-label">CỬA SỔ</text>
+ <line x1="137" y1="141" x2="186" y2="114" class="plan-ray" marker-end="url(#lightArrow-2)"/>
+ <g transform="translate(288 151)"><rect width="24" height="19" rx="3" fill="#0F422D"/><circle cx="12" cy="9" r="5.5" fill="#F7F3E9"/><rect x="5" y="-5" width="11" height="5" rx="1.5" fill="#0F422D"/></g>
+ <text x="276" y="184" class="plan-label">MÁY ẢNH</text>
+ </svg>
+ <div class="window-plan-key"><span><i class="light-key"></i> Nguồn sáng</span><span><i class="face-key"></i> Hướng mặt ↓</span></div>
+ </div>
+ <div class="window-explain-result"><strong>NHÌN VÀO ẢNH</strong><ul><li>Một bên má sáng hơn, bên còn lại chuyển tối mềm.</li><li>Tạo hình khối nhưng vẫn giữ đủ chi tiết.</li></ul></div>
+ </article>
+ <article class="window-explain-card">
+ <div class="window-explain-top"><span>03 / HƯỚNG SÁNG</span><strong>90°</strong></div>
+ <img class="window-explain-image" src="assets/window-side-clear.webp" alt="Ảnh minh hoạ người mẫu dưới ánh sáng cửa sổ từ bên hông tạo chênh lệch sáng tối rõ" loading="lazy" decoding="async" width="960" height="534">
+ <div class="window-explain-copy"><h3>Nguồn sáng bên hông</h3><p>Nguồn sáng gần như vuông góc với hướng nhìn của khuôn mặt.</p></div>
+ <div class="window-plan" aria-label="Sơ đồ nhìn từ trên xuống: hướng ánh sáng 90 độ so với hướng mặt người mẫu">
+ <div class="window-plan-title"><span>SƠ ĐỒ HƯỚNG SÁNG</span><b>90°</b></div>
+ <svg viewBox="0 0 360 193" role="img" aria-label="Nguồn sáng từ cửa đến khuôn mặt của người mẫu, góc 90 độ">
+ <defs><marker id="lightArrow-3" markerWidth="8" markerHeight="8" refX="5" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#D18A12"/></marker></defs>
+ <rect x="1" y="1" width="358" height="191" rx="8" fill="#F7F3E9" stroke="#DFE4D6"/>
+ <path d="M166 117 Q203 140 240 117 L240 137 L166 137 Z" fill="#D3E7D9" stroke="#0F422D" stroke-width="1.7"/>
+ <circle cx="203" cy="95" r="25" fill="#E5BFA4" stroke="#0F422D" stroke-width="2"/>
+ <path d="M197 117 L203 125 L209 117" fill="#0F422D"/>
+ <text x="251" y="102" class="plan-label">MẪU</text>
+ <rect x="49" y="53" width="14" height="100" rx="3" fill="#F2D43D" stroke="#0F422D" stroke-width="2"/><text x="77" y="48" class="plan-label">CỬA SỔ</text>
+ <line x1="70" y1="100" x2="172" y2="100" class="plan-ray" marker-end="url(#lightArrow-3)"/>
+ <g transform="translate(288 151)"><rect width="24" height="19" rx="3" fill="#0F422D"/><circle cx="12" cy="9" r="5.5" fill="#F7F3E9"/><rect x="5" y="-5" width="11" height="5" rx="1.5" fill="#0F422D"/></g>
+ <text x="276" y="184" class="plan-label">MÁY ẢNH</text>
+ </svg>
+ <div class="window-plan-key"><span><i class="light-key"></i> Nguồn sáng</span><span><i class="face-key"></i> Hướng mặt ↓</span></div>
+ </div>
+ <div class="window-explain-result"><strong>NHÌN VÀO ẢNH</strong><ul><li>Sự phân chia sáng – tối rõ nhất.</li><li>Nếp vải và khối nổi hơn, cần kiểm tra vùng tối.</li></ul></div>
+ </article>
+ </div>
+ <div class="window-compare-note"><b>THỬ NGAY TẠI CỬA SỔ</b><p>Giữ người mẫu ở gần cùng một vị trí. Cho người mẫu xoay hướng mặt về phía cửa, rồi chéo 45°, rồi ngang 90°. Quan sát <strong>bóng trên má và nếp vải</strong> ở từng góc. Sơ đồ thể hiện góc ánh sáng <strong>tương đối với hướng mặt</strong>, không phải bản vẽ đúng vị trí cửa trong mỗi ảnh.</p></div>
+  </section>
+
+  <section class="section sand">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Cách dẫn dắt</h4><p>Không nói “tránh nắng gắt”. Cho học viên thử dùng profile face, quay lưng với nắng và tận dụng shadow hình học.</p>
+      <h4>Kiểm tra</h4><p>Highlight trên da, vải trắng và satin trước khi đánh giá mood.</p>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>04</b> Nắng trực tiếp</div><h2>Nắng gắt khó.<br>Không có nghĩa là xấu.</h2></div>
+      <p class="section-lead">Direct sun có contrast mạnh và cạnh bóng rõ. Thay vì tránh hoàn toàn, học viên cần biết khi nào biến nó thành yếu tố đồ họa.</p>
+    </div>
+    <div class="sun-grid">
+      <article class="sun-card"><img class="illustration-img" src="assets/direct-sun.webp" alt="Người mẫu trên sân thượng dưới nắng trực tiếp và bóng đổ kiến trúc sắc nét" loading="lazy" decoding="async" width="960" height="540"><h3>Đổi hướng mặt</h3><p>Cho người mẫu nhìn chếch khỏi nắng; giảm nheo mắt và chủ động đặt bóng.</p><strong>Ưu tiên: khuôn mặt + trang phục.</strong></article>
+      <article class="sun-card"><img class="illustration-img" src="assets/natural-bounce.webp" alt="Người mẫu và bức tường sáng với bóng lá cùng bóng kiến trúc có hình dạng rõ" loading="lazy" decoding="async" width="960" height="540"><h3>Dùng bóng đổ</h3><p>Tận dụng bóng của tường, cây và kiến trúc làm thành phần bố cục.</p><strong>Ưu tiên: hình học + nhịp thị giác.</strong></article>
+      <article class="sun-card"><img class="illustration-img" src="assets/window-side.webp" alt="Vải trắng ở vùng sáng gần cửa sổ, cần kiểm tra để tránh mất chi tiết vùng sáng" loading="lazy" decoding="async" width="960" height="540"><h3>Giữ chi tiết vùng sáng</h3><p>Kiểm tra vùng da và vải trắng sáng nhất qua histogram/cảnh báo cháy sáng.</p><strong>Ưu tiên: thông tin quan trọng.</strong></article>
+    </div>
+  </section>
+
+  <section class="section sky">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Demo</h4><p>Chụp cùng cảnh backlight với hai ưu tiên exposure khác nhau: một lần ưu tiên người mẫu, một lần ưu tiên background.</p>
+      <h4>Câu hỏi</h4><p>Nếu không thể giữ cả hai, thứ gì quan trọng hơn với mục đích ảnh này?</p>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>05</b> Backlight</div><h2>Đừng cố giữ mọi thứ đúng sáng cùng lúc.</h2></div>
+      <p class="section-lead">Backlight thường tạo chênh sáng lớn giữa người mẫu và hậu cảnh. Đây là bài học về lựa chọn ưu tiên, không phải tìm một exposure “chuẩn tuyệt đối”.</p>
+    </div>
+    <div class="backlight-stage">
+      <article class="exposure-panel bright-bg"><img class="illustration-img" src="assets/backlight-subject.webp" alt="Ngược sáng: người mẫu được ưu tiên phơi sáng, cảnh phía sau sáng mạnh" loading="lazy" decoding="async" width="960" height="540"><h3>Ưu tiên người mẫu</h3><p>Da và trang phục dễ đọc hơn nhưng trời hoặc cảnh phía sau có thể quá sáng.</p></article>
+      <article class="exposure-panel dark-subject"><img class="illustration-img" src="assets/backlight-background.webp" alt="Ngược sáng: giữ chi tiết hậu cảnh và bầu trời, người mẫu tối gần silhouette" loading="lazy" decoding="async" width="960" height="540"><h3>Ưu tiên hậu cảnh</h3><p>Giữ cảnh phía sau rõ hơn; người mẫu tối đi hoặc thành bóng dáng có chủ đích.</p></article>
+    </div>
+  </section>
+
+  <section class="section paper">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Demo</h4><p>Một nguồn tự nhiên 45°. So không fill → đứng cạnh tường trắng → đứng cạnh mặt tối/tấm đen.</p>
+      <h4>Lưu ý</h4><p>Fill quá mạnh có thể làm mất direction. Không phải cứ sáng shadow là tốt hơn.</p>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>06</b> Môi trường là modifier</div><h2>Không mang đèn vẫn điều khiển được contrast.</h2></div>
+      <p class="section-lead">Tường, sàn, cửa tối và bề mặt xung quanh có thể hoạt động như reflector hoặc negative fill tự nhiên.</p>
+    </div>
+    <div class="modifier-grid">
+      <article class="modifier env"><img class="illustration-img" src="assets/natural-bounce.webp" alt="Tường và mặt sàn sáng hắt ánh sáng trở lại người mẫu" loading="lazy" decoding="async" width="960" height="540"><h3>Hắt sáng tự nhiên</h3><p>Tường/sàn sáng trả ánh sáng vào chủ thể. Luôn kiểm tra màu bề mặt phản xạ.</p></article>
+      <article class="modifier white"><img class="illustration-img" src="assets/white-fill.webp" alt="Một tấm phản quang trắng bên cạnh người mẫu nâng phần tối của khuôn mặt" loading="lazy" decoding="async" width="960" height="540"><h3>Tấm hắt trắng</h3><p>Nâng vùng tối có kiểm soát mà không cần một nguồn đèn thứ hai.</p></article>
+      <article class="modifier black"><img class="illustration-img" src="assets/negative-fill.webp" alt="Tấm chắn đen cạnh người mẫu giảm ánh sáng phản xạ, tăng độ sâu phần tối" loading="lazy" decoding="async" width="960" height="540"><h3>Tấm chắn đen</h3><p>Giảm ánh sáng phản xạ phía tối để tăng tương phản và hình khối.</p></article>
+    </div>
+  </section>
+
+  <section class="section paper-alt">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Cách dẫn dắt</h4><p>Cho học viên nhìn cả subject và background trước khi đo sáng. Nếu chênh quá lớn, yêu cầu đổi vị trí trước khi đổi settings.</p>
+      <h4>Nguyên tắc</h4><p>Vấn đề ánh sáng đôi khi được giải quyết bằng 2 bước chân, không phải thêm thiết bị.</p>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>07</b> Chủ thể & hậu cảnh</div><h2>Độ sáng của nền cũng là một quyết định.</h2></div>
+      <p class="section-lead">Nếu người mẫu đúng sáng nhưng nền phá ảnh, exposure vẫn chưa được giải quyết ở cấp độ hình ảnh.</p>
+    </div>
+    <div class="balance">
+      <article class="balance-card"><img class="illustration-img" src="assets/backlight-subject.webp" alt="Ví dụ ưu tiên chủ thể khiến nền sau sáng hơn" loading="lazy" decoding="async" width="960" height="540"><h3>Ưu tiên chủ thể</h3><div class="meter" aria-hidden="true"><i></i></div><p>Trang phục dễ đọc nhưng có thể mất một phần chi tiết ở hậu cảnh sáng.</p></article>
+      <article class="balance-card"><img class="illustration-img" src="assets/backlight-background.webp" alt="Ví dụ ưu tiên hậu cảnh khiến chủ thể tối hơn" loading="lazy" decoding="async" width="960" height="540"><h3>Ưu tiên hậu cảnh</h3><div class="meter" aria-hidden="true"><i></i></div><p>Giữ vùng trời và phông nền, chấp nhận người mẫu tối hơn theo ý đồ.</p></article>
+    </div>
+  </section>
+
+  <section class="section sky">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Demo nhanh</h4><p>Đưa người mẫu cạnh cây xanh hoặc tường màu rồi so với mặt tường trung tính.</p>
+      <h4>Lưu ý</h4><p>RAW giúp chỉnh WB, nhưng color contamination do ánh sáng phản xạ từ bề mặt màu có thể không biến mất sạch chỉ bằng kéo nhiệt độ màu.</p>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>08</b> Màu môi trường</div><h2>Ánh sáng tự nhiên vẫn có thể bị ám màu.</h2></div>
+      <p class="section-lead">Màu của bề mặt xung quanh có thể phản xạ vào da và trang phục. Với fashion, màu vải sai có thể là lỗi quan trọng.</p>
+    </div>
+    <div class="color-grid">
+      <article class="color-card"><div class="tone-sample tone-green"><img class="illustration-img" src="assets/natural-bounce.webp" alt="Mô phỏng ánh sáng phản xạ cây xanh làm thay đổi cảm nhận màu trên da và áo" loading="lazy" decoding="async" width="960" height="540"></div><h3>Cây xanh</h3><p>Có thể tạo ám xanh ở vùng tối hoặc mặt dưới cằm.</p></article>
+      <article class="color-card"><div class="tone-sample tone-warm"><img class="illustration-img" src="assets/natural-bounce.webp" alt="Mô phỏng tường ấm phản xạ màu ấm lên da và áo trắng" loading="lazy" decoding="async" width="960" height="540"></div><h3>Tường màu ấm</h3><p>Dễ thấy trên da sáng và vải trắng.</p></article>
+      <article class="color-card"><div class="tone-sample tone-cool"><img class="illustration-img" src="assets/natural-bounce.webp" alt="Mô phỏng ánh sáng trời lạnh hơn trong vùng bóng râm" loading="lazy" decoding="async" width="960" height="540"></div><h3>Trời / kính</h3><p>Bóng râm có thể lạnh hơn vùng nắng trực tiếp.</p></article>
+      <article class="color-card"><div class="tone-sample tone-neutral"><img class="illustration-img" src="assets/natural-bounce.webp" alt="Mô phỏng ánh sáng trung tính trên người mẫu và trang phục" loading="lazy" decoding="async" width="960" height="540"></div><h3>Trung tính</h3><p>Dễ giữ màu da và màu trang phục ổn định hơn.</p></article>
+    </div>
+    <p class="illustration-footnote">Minh hoạ mô phỏng các xu hướng ám màu; mức độ thực tế tùy bề mặt và điều kiện ánh sáng.</p>
+  </section>
+
+  <section class="section dark">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Quy tắc thực hành</h4><p>Không đổi outfit. Không dùng flash. Học viên phải tự tìm từng vùng sáng trong cùng location hoặc khu vực nhỏ.</p>
+      <h4>Review</h4><p>Đặt 6 ảnh cạnh nhau và hỏi “vì sao chọn vị trí này?” trước khi hỏi settings.</p>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>09</b> Bài thực hành chính</div><h2>1 location.<br>6 điều kiện ánh sáng.</h2></div>
+      <p class="section-lead">Mục tiêu không phải tạo 6 ảnh giống nhau. Mục tiêu là học cách đổi vị trí để ánh sáng phục vụ một ý đồ khác nhau.</p>
+    </div>
+    <div class="practice-grid">
+      <article class="practice-card"><b>01</b><img class="illustration-img" src="assets/shade-edge.webp" alt="Vùng bóng râm mở ở mép mái che" loading="lazy" decoding="async" width="960" height="540"><h3>Open shade</h3><p>Tìm vùng bóng râm còn nhận nhiều ánh sáng từ trời.</p><strong>Mục tiêu: da và trang phục rõ.</strong></article>
+      <article class="practice-card"><b>02</b><img class="illustration-img" src="assets/window-angle.webp" alt="Người mẫu cạnh cửa sổ với ánh sáng chéo" loading="lazy" decoding="async" width="960" height="540"><h3>Cửa sổ / cửa ra vào</h3><p>Dùng nguồn lớn có hướng để tạo hình khối.</p><strong>Mục tiêu: ánh sáng mềm có hướng.</strong></article>
+      <article class="practice-card"><b>03</b><img class="illustration-img" src="assets/direct-sun.webp" alt="Nắng trực tiếp tạo bóng rõ trên người mẫu và bối cảnh" loading="lazy" decoding="async" width="960" height="540"><h3>Nắng trực tiếp</h3><p>Dùng ánh nắng và bóng đổ có chủ đích.</p><strong>Mục tiêu: tương phản rõ.</strong></article>
+      <article class="practice-card"><b>04</b><img class="illustration-img" src="assets/backlight-background.webp" alt="Nắng phía sau người mẫu tạo viền sáng" loading="lazy" decoding="async" width="960" height="540"><h3>Ánh sáng ngược</h3><p>Chọn ưu tiên giữa người mẫu và hậu cảnh.</p><strong>Mục tiêu: viền sáng / tách nền.</strong></article>
+      <article class="practice-card"><b>05</b><img class="illustration-img" src="assets/white-fill.webp" alt="Tấm hắt trắng phản xạ ánh sáng sang phía tối người mẫu" loading="lazy" decoding="async" width="960" height="540"><h3>Hắt sáng trắng</h3><p>Dùng tường sáng hoặc tấm phản quang để nâng vùng tối.</p><strong>Mục tiêu: giữ chi tiết vùng tối.</strong></article>
+      <article class="practice-card"><b>06</b><img class="illustration-img" src="assets/negative-fill.webp" alt="Tấm đen đặt cạnh người mẫu tạo vùng tối sâu hơn" loading="lazy" decoding="async" width="960" height="540"><h3>Chắn sáng đen</h3><p>Dùng mặt tối/tấm đen để giảm ánh sáng hắt lại.</p><strong>Mục tiêu: tăng chiều sâu.</strong></article>
+    </div>
+  </section>
+
+  <section class="section paper">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Cách dùng</h4><p>Đây là flow chuẩn khi ra location. Yêu cầu học viên làm theo thứ tự trước khi bắt đầu shooting.</p>
+      <h4>Điểm quan trọng</h4><p>“Di chuyển người mẫu” phải xuất hiện trước “đổi thông số” khi vấn đề chính là quality/direction của ánh sáng.</p>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>10</b> Workflow location</div><h2>Quan sát trước.<br>Cầm máy sau.</h2></div>
+      <p class="section-lead">Một workflow cố định giúp học viên ít phụ thuộc vào may mắn khi ánh sáng môi trường thay đổi.</p>
+    </div>
+    <div class="workflow">
+      <div class="workflow-step"><b>01</b><span>Xác định hướng mặt trời / nguồn chính.</span></div>
+      <div class="workflow-step"><b>02</b><span>Tìm open shade, bounce và negative fill.</span></div>
+      <div class="workflow-step"><b>03</b><span>Chọn background theo mức sáng và màu.</span></div>
+      <div class="workflow-step"><b>04</b><span>Đặt người mẫu rồi nhìn shadow trên mặt/vải.</span></div>
+      <div class="workflow-step"><b>05</b><span>Đo sáng, kiểm tra highlight và focus.</span></div>
+      <div class="workflow-step"><b>06</b><span>Dịch chuyển 0.5–2m và so trước khi chốt.</span></div>
+    </div>
+  </section>
+
+  <section class="section paper-alt">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Cách giao bài</h4><p>Không chỉ nộp ảnh người mẫu. Bài scouting phải có ảnh location không người để chứng minh học viên nhìn được vùng sáng.</p>
+      <h4>Chấm</h4><p>Ưu tiên khả năng chọn vị trí và giải thích trade-off hơn retouch.</p>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>11</b> Bài tập về nhà</div><h2>Tập nhìn location như một bản đồ ánh sáng.</h2></div>
+      <p class="section-lead">Không cần location đẹp. Cần location có đủ sự khác biệt để học viên đọc được ánh sáng.</p>
+    </div>
+    <div class="homework-grid">
+      <article class="homework"><b>01</b><h3>Light scouting sheet</h3><p>Chụp một location không có người và đánh dấu direct sun, open shade, bounce, negative fill, backlight và background tốt.</p></article>
+      <article class="homework"><b>02</b><h3>Open shade depth</h3><p>Chụp cùng người mẫu ở mép shade, sâu khoảng 1m và sâu hơn. So mắt, contrast và background.</p></article>
+      <article class="homework"><b>03</b><h3>Direct vs Backlight</h3><p>Cùng location, chụp một ảnh direct và một ảnh backlight. Ghi rõ ưu tiên exposure và phần bị mất chi tiết.</p></article>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Cách kết buổi</h4><p>Cho học viên chọn một location mới và nói trong 30 giây: đứng đâu, vì sao, background nào, ưu tiên highlight gì.</p>
+      <h4>Chuyển tiếp</h4><p>Buổi 06 sẽ chuyển từ “tận dụng nguồn có sẵn” sang “tự tạo và bố trí nguồn sáng nhân tạo”.</p>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>12</b> Kết quả cuối buổi</div><h2>Không còn đứng đâu cũng chụp.</h2></div>
+      <p class="section-lead">Sau Buổi 05, học viên phải biết di chuyển trong location để tìm quality và direction của ánh sáng trước khi nghĩ đến modifier hoặc flash.</p>
+    </div>
+    <div class="final-grid">
+      <div class="final-item"><b>01</b><h3>Scouting ánh sáng</h3><p>Nhìn location theo light zones thay vì chỉ theo background.</p></div>
+      <div class="final-item"><b>02</b><h3>Chọn vị trí người mẫu</h3><p>Biết mép shade, cửa sổ, direct sun và backlight khác nhau ra sao.</p></div>
+      <div class="final-item"><b>03</b><h3>Kiểm soát contrast</h3><p>Biết tận dụng bounce và negative fill từ môi trường.</p></div>
+      <div class="final-item"><b>04</b><h3>Giữ màu & chi tiết</h3><p>Biết kiểm tra highlight, background và color contamination.</p></div>
+    </div>
+    <div class="final-line">Đừng tìm background trước.<br>Hãy tìm ánh sáng trước.</div>
+  </section>
+</div>
+</body>
+</html>
