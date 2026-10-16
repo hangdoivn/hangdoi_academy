@@ -3,7 +3,7 @@
 
 **Đơn vị:** Hang Đôi Academy  
 **Khóa:** Nhiếp ảnh cơ bản — Thời trang  
-**Thời lượng:** 150 phút (140 phút nội dung và hoạt động, gồm 10 phút nghỉ)  
+**Thời lượng:** 150 phút (140 phút học tập/thực hành + 10 phút nghỉ)  
 **Đầu ra chính:** 1 bộ trang phục → 3 bảng màu khả thi → chọn 1 bảng để thử trên set  
 **Nguồn gốc:** Phát triển từ file Canva “Chọn Tone màu chủ đạo” do người dạy cung cấp: https://canva.link/buoi-7-tonemau
 
@@ -253,17 +253,17 @@ Tài liệu gốc nêu ba dạng pose/framing: **đứng – ngồi – cận**.
 ### 07 — CÁC CASE TỪ FILE CANVA (105–120)
 
 #### Case A: Thời trang vest/blazer — case chính
-**Brief:** chụp một bộ blazer đỏ/hồng đậm, ưu tiên độ rõ chất liệu và dáng.
+**Brief:** chụp một bộ blazer hồng-magenta cố định, ưu tiên độ rõ chất liệu và dáng.
 
-**A — Đơn sắc / trung tính:** Blazer đỏ rượu là chính; nền kem/xám nhẹ; makeup nâu-đỏ trầm; phụ kiện đen nhỏ.
+**A — Đơn sắc / trung tính:** Blazer hồng-magenta là chính; nền hồng bụi sáng hoặc kem; makeup hồng trầm; phụ kiện đen nhỏ.
 - Kết quả dự kiến: lịch sự, dễ đọc trang phục.
 - Rủi ro: nền và blazer cùng tối → cần tăng chênh độ sáng.
 
-**B — Bổ sung:** Blazer đỏ/hồng là chính; hậu cảnh xanh lá giảm bão hòa; makeup trung tính.
+**B — Bổ sung:** Vẫn là blazer hồng-magenta; hậu cảnh xanh lá giảm bão hòa; makeup trung tính.
 - Kết quả dự kiến: outfit bật hơn trên nền.
 - Rủi ro: xanh quá rực/ quá sáng có thể tranh điểm.
 
-**C — Bộ ba (chuyển thành creative editorial):** Outfit hồng-magenta; backdrop vàng nhạt; điểm nhấn cyan trên phụ kiện/đạo cụ.
+**C — Bộ ba (creative editorial):** Vẫn là blazer hồng-magenta; backdrop vàng nhạt; điểm nhấn cyan trên phụ kiện/đạo cụ.
 - Kết quả dự kiến: sáng tạo, nhiều năng lượng.
 - Rủi ro: ba màu cùng rực khiến ảnh giống minh họa đồ họa; tiết chế tỉ lệ.
 
