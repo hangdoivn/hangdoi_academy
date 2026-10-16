@@ -159,6 +159,44 @@
 @media(max-width:610px){.pose-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}.pose-tab:nth-child(2){border-right:0}.pose-tab:nth-child(-n+2){border-bottom:1px solid #27523B}.pose-tab[aria-selected="true"]{box-shadow:inset 0 -5px #154630}.pose-panel{padding:14px}.pose-panel-intro{display:block}.pose-panel-intro p{margin-top:12px}.pose-mini-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.pose-mini-top{font-size:8px;padding:8px}.pose-mini-top span:last-child{display:none}.pose-mini-visual img{height:180px}.pose-mini-content{padding:12px 10px}.pose-mini-content h3{font-size:17px}.pose-mini-content p{font-size:11px}.pose-mini-action{padding:10px 7px;font-size:9px}.pose-tip-dialog{width:100%;max-width:none;max-height:86dvh;margin:auto 0 0 0;box-shadow:none;border-radius:12px 12px 0 0}.pose-tip-modal-main{grid-template-columns:92px minmax(0,1fr);gap:12px;padding:12px;max-height:calc(86dvh - 140px)}.pose-tip-modal-copy h3{font-size:24px}.pose-tip-item p{font-size:12px}.pose-tip-modal-footer{padding:10px 12px}}
 @media(max-width:380px){.pose-mini-grid{grid-template-columns:1fr}.pose-mini-visual img{height:280px}}
 @media print{.pose-tabs{display:none!important}.pose-panel[hidden]{display:block!important}.pose-mini-grid{grid-template-columns:repeat(3,1fr)}.pose-tip-dialog{display:none!important}}
+
+/* Lesson 08 V5: photo-first posing + instructional vector layers independent of the photograph. */
+.pose-mini-visual{display:flex;align-items:center;justify-content:center;min-height:435px;padding:12px;background:#F0EDE7;overflow:hidden}
+.pose-v5-figure{position:relative;display:block;aspect-ratio:2/3;width:min(100%,274px);flex:0 0 auto;background:#F0EDE7}
+.pose-mini-visual .pose-v5-figure img{display:block;width:100%;height:100%;object-fit:contain;background:#F0EDE7}
+.pose-v5-overlay{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity .22s ease;color:#F2D43D;overflow:visible}
+.pose-mini-card:hover .pose-v5-overlay,.pose-mini-card:focus-within .pose-v5-overlay{opacity:1}
+.pose-v5-under,.pose-v5-line{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.pose-v5-under{stroke:#0F422D;stroke-width:8;opacity:.64}
+.pose-v5-line{stroke:#FFE65A;stroke-width:4;stroke-dasharray:700;stroke-dashoffset:700}
+.pose-v5-arrow{fill:none;stroke:#F26A3D;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:400;stroke-dashoffset:400;filter:drop-shadow(1px 1px 1px #0F422D77)}
+.pose-v5-ring{fill:#FFE65A22;stroke:#F26A3D;stroke-width:3;transform-box:fill-box;transform-origin:center;opacity:0}
+.pose-v5-dot{fill:#F26A3D;stroke:#FFFDF7;stroke-width:2;opacity:0}
+.pose-mini-card:hover .pose-v5-line,.pose-mini-card:focus-within .pose-v5-line,.is-guided .pose-v5-line{animation:poseV5Draw .68s cubic-bezier(.18,.72,.28,1) forwards}
+.pose-mini-card:hover .pose-v5-arrow,.pose-mini-card:focus-within .pose-v5-arrow,.is-guided .pose-v5-arrow{animation:poseV5Arrow .52s ease-out .2s forwards}
+.pose-mini-card:hover .pose-v5-dot,.pose-mini-card:focus-within .pose-v5-dot,.is-guided .pose-v5-dot{animation:poseV5Appear .2s ease .38s forwards}
+.pose-mini-card:hover .pose-v5-ring,.pose-mini-card:focus-within .pose-v5-ring,.is-guided .pose-v5-ring{animation:poseV5Pulse .55s ease-out .42s forwards}
+@keyframes poseV5Draw{to{stroke-dashoffset:0}}
+@keyframes poseV5Arrow{to{stroke-dashoffset:0}}
+@keyframes poseV5Appear{to{opacity:1}}
+@keyframes poseV5Pulse{0%{opacity:0;transform:scale(.4)}70%{opacity:1;transform:scale(1.24)}100%{opacity:1;transform:scale(1)}}
+.pose-mini-visual-hint{z-index:2}
+.pose-mini-top>span:last-child{font-size:9px;color:#376A4C}
+.pose-tip-dialog{width:min(810px,calc(100vw - 28px));max-height:92vh}
+.pose-tip-modal-main{grid-template-columns:minmax(200px,260px) minmax(0,1fr)}
+.pose-tip-modal-thumb{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:10px;min-width:0}
+.pose-tip-modal-stage{position:relative;display:block;aspect-ratio:2/3;max-width:100%;width:245px;background:#F0EDE7;border:1px solid #D4D8D0}
+.pose-tip-modal-stage #poseTipImage{width:100%;height:100%;object-fit:contain;display:block;background:#F0EDE7}
+.pose-tip-modal-stage #poseTipGuides{position:absolute;inset:0;pointer-events:none}
+.pose-tip-modal-stage .pose-v5-overlay{opacity:0}
+.pose-tip-modal-stage.is-guided .pose-v5-overlay{opacity:1}
+.pose-tip-toggle{border:1px solid #0F422D;background:#F2D43D;color:#0F422D;padding:9px 12px;width:100%;font-size:10px;font-weight:900;letter-spacing:.05em;cursor:pointer}
+.pose-tip-toggle[aria-pressed=false]{background:#FFFDF7}
+.pose-tip-instruction{font-size:10px;line-height:1.45;color:#61786A;text-align:center}
+@media(max-width:800px){.pose-mini-visual{min-height:420px}.pose-v5-figure{width:min(100%,275px)}.pose-tip-modal-main{grid-template-columns:1fr}.pose-tip-modal-stage{width:210px}.pose-tip-modal-thumb{width:100%}.pose-tip-dialog{max-height:92vh}}
+@media(prefers-reduced-motion:reduce){.pose-v5-overlay,.pose-v5-line,.pose-v5-arrow,.pose-v5-dot,.pose-v5-ring{animation:none!important;transition:none!important}.pose-mini-card:hover .pose-v5-line,.pose-mini-card:focus-within .pose-v5-line,.is-guided .pose-v5-line,.pose-mini-card:hover .pose-v5-arrow,.pose-mini-card:focus-within .pose-v5-arrow,.is-guided .pose-v5-arrow{stroke-dashoffset:0}.pose-mini-card:hover .pose-v5-ring,.pose-mini-card:focus-within .pose-v5-ring,.is-guided .pose-v5-ring,.pose-mini-card:hover .pose-v5-dot,.pose-mini-card:focus-within .pose-v5-dot,.is-guided .pose-v5-dot{opacity:1}}
+@media print{.pose-v5-overlay{display:none!important}.pose-mini-visual{min-height:0}.pose-v5-figure{width:165px}}
+
 </style></head><body>
 <header class="top"><div class="brand"><div class="brandmark">HĐ</div>HANG ĐÔI ACADEMY</div><span class="top-mid">LOOKBOOK PRODUCTION / BUỔI 08</span><div class="top-right"><span class="draft-pill">BẢN UI THỬ NGHIỆM</span><span>17 MỤC · MỞ RỘNG</span></div></header>
 <div class="hero"><div class="container"><div><div class="eyebrow">NHIẾP ẢNH THỜI TRANG · BUỔI 08</div><h1>HIỂU OUTFIT.<br>LÀM CHỦ SET.<br><em>RA QUYẾT ĐỊNH.</em></h1><p class="hero-summary">Một bộ ảnh thời trang không chỉ cần <strong>một tấm thật đẹp</strong>. Buổi học này giúp bạn chuyển brief thành <strong>shot list, chuỗi hình ảnh có nhiệm vụ rõ ràng và một quy trình kiểm tra trước khi kết thúc buổi chụp</strong>.</p><div class="hero-meta"><div><small>THỜI LƯỢNG</small><strong>150 phút</strong></div><div><small>TRỌNG TÂM</small><strong>Lookbook System</strong></div><div><small>BÀI THỰC HÀNH</small><strong>1 look / 6 ảnh</strong></div></div></div><div class="hero-visual"><div class="hero-main"><img class="" src="assets/asset-df8cdfba0ce57d.webp" alt="Ảnh toàn thân lookbook Thanh Nga" loading="eager" decoding="sync"></div><div class="hero-small"><img class="" src="assets/asset-264d055b64ad92.webp" alt="Cận cảnh trang phục Thanh Nga" loading="eager" decoding="sync"> <img class="" src="assets/asset-8c04873004b64c.webp" alt="Ảnh mặt sau trang phục Thanh Nga" loading="eager" decoding="sync"></div><span class="hero-index">01 LOOK / 03 VIEWS</span><div class="hero-dot">ONE<br>LOOK.<br>FULL SET.</div></div></div></div>
@@ -180,103 +218,183 @@
 <div class="pose-library-top"><div><span class="pose-library-label">POSE SELECTOR · HANG ĐÔI ACADEMY</span><strong>04 NHÓM <i>/</i> 20 POSE</strong></div><p>Chọn nhóm để xem danh sách động tác. Chạm ảnh hoặc nút <b>Xem tips</b> để mở hướng dẫn riêng cho từng pose.</p></div>
 <div class="pose-tabs" role="tablist" aria-label="Nhóm tạo dáng"><button type="button" class="pose-tab" role="tab" id="tab-pose-stand" aria-controls="panel-pose-stand" aria-selected="true" data-pose-tab="stand"><span class="pose-tab-no">01</span><span class="pose-tab-title">Đứng cơ bản</span><span class="pose-tab-count">06 POSE</span></button><button type="button" class="pose-tab" role="tab" id="tab-pose-motion" aria-controls="panel-pose-motion" aria-selected="false" data-pose-tab="motion"><span class="pose-tab-no">02</span><span class="pose-tab-title">Chuyển động</span><span class="pose-tab-count">04 POSE</span></button><button type="button" class="pose-tab" role="tab" id="tab-pose-seated" aria-controls="panel-pose-seated" aria-selected="false" data-pose-tab="seated"><span class="pose-tab-no">03</span><span class="pose-tab-title">Ngồi & tương tác</span><span class="pose-tab-count">06 POSE</span></button><button type="button" class="pose-tab" role="tab" id="tab-pose-hands" aria-controls="panel-pose-hands" aria-selected="false" data-pose-tab="hands"><span class="pose-tab-no">04</span><span class="pose-tab-title">Tay & chi tiết</span><span class="pose-tab-count">04 POSE</span></button></div>
 <div class="pose-panel" id="panel-pose-stand" role="tabpanel" aria-labelledby="tab-pose-stand" data-pose-panel="stand" ><div class="pose-panel-intro"><div><span class="pose-panel-kicker">BỘ POSING 01 / 6 ĐỘNG TÁC</span><h3>Đứng cơ bản</h3></div><p>6 pose chuẩn để chốt ảnh an toàn trước khi biến tấu.</p></div><div class="pose-mini-grid"><article class="pose-mini-card" data-pose-id="ST-01">
-<div class="pose-mini-top"><span>ST-01</span><span>ẢNH HƯỚNG DẪN</span></div>
-<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Đứng chính diện"><img src="assets/asset-fb80e3f6a9a520.webp" alt="Tư thế Đứng chính diện" width="320" height="430" loading="lazy" decoding="async"><span class="pose-mini-visual-hint">↗ TIPS</span></button>
+<div class="pose-mini-top"><span>ST-01</span><span>ẢNH SẠCH · TOÀN DÁNG</span></div>
+<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Đứng chính diện"><span class="pose-v5-figure"><img src="assets/pose-v5-st-01-clean.webp" alt="Tư thế Đứng chính diện" width="320" height="430" loading="lazy" decoding="async"><svg class="pose-v5-overlay" viewBox="0 0 360 540" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+ <path class="pose-v5-under" d="M109 116 L109 484"/><path class="pose-v5-line" d="M109 116 L109 484"/>
+ <path class="pose-v5-arrow" d="M98 165 L122 165 M98 462 L122 462"/>
+ <circle class="pose-v5-ring" cx="118" cy="462" r="11"/><circle class="pose-v5-dot" cx="118" cy="462" r="3.5"/>
+ </svg></span><span class="pose-mini-visual-hint">↗ TIPS + HƯỚNG DẪN</span></button>
 <div class="pose-mini-content"><span class="pose-mini-purpose">Ảnh chuẩn · Toàn thân</span><h3>Đứng chính diện</h3><p>Đọc trọn phom quần và thân áo.</p><button type="button" class="pose-mini-action" data-open-pose-tips>↗ XEM TIPS CHỈ ĐẠO <span aria-hidden="true">→</span></button></div>
 <template class="pose-tip-data"><div class="pose-tip-item"><strong>01 · CÂU CHỈ ĐẠO MẪU</strong><p>Đứng thẳng, vai thả lỏng, mắt nhìn ngang ống kính.</p></div><div class="pose-tip-item"><strong>02 · KIỂM TRA TRƯỚC KHI CHỤP</strong><p>Hai chân tách đủ để thấy ống quần; vạt và gấu không bị che.</p></div><div class="pose-tip-item danger"><strong>03 · LỖI CẦN TRÁNH</strong><p>Đứng gồng, khóa gối, tay áp quá sát hông.</p></div></template>
 </article><article class="pose-mini-card" data-pose-id="ST-02">
-<div class="pose-mini-top"><span>ST-02</span><span>ẢNH HƯỚNG DẪN</span></div>
-<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Nghiêng thân 45°"><img src="assets/asset-48c7e4b050e512.webp" alt="Tư thế Nghiêng thân 45°" width="320" height="430" loading="lazy" decoding="async"><span class="pose-mini-visual-hint">↗ TIPS</span></button>
+<div class="pose-mini-top"><span>ST-02</span><span>ẢNH SẠCH · TOÀN DÁNG</span></div>
+<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Nghiêng thân 45°"><span class="pose-v5-figure"><img src="assets/pose-v5-st-02-clean.webp" alt="Tư thế Nghiêng thân 45°" width="320" height="430" loading="lazy" decoding="async"><svg class="pose-v5-overlay" viewBox="0 0 360 540" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+ <path class="pose-v5-under" d="M246 154 Q303 215 244 256"/><path class="pose-v5-line" d="M246 154 Q303 215 244 256"/>
+ <path class="pose-v5-arrow" d="M247 154 L254 178 M244 256 L268 244"/>
+ <circle class="pose-v5-ring" cx="244" cy="256" r="11"/><circle class="pose-v5-dot" cx="244" cy="256" r="3.5"/>
+ </svg></span><span class="pose-mini-visual-hint">↗ TIPS + HƯỚNG DẪN</span></button>
 <div class="pose-mini-content"><span class="pose-mini-purpose">Phom nghiêng · Lookbook</span><h3>Nghiêng thân 45°</h3><p>Nhìn rõ độ ôm và chiều sâu trang phục.</p><button type="button" class="pose-mini-action" data-open-pose-tips>↗ XEM TIPS CHỈ ĐẠO <span aria-hidden="true">→</span></button></div>
 <template class="pose-tip-data"><div class="pose-tip-item"><strong>01 · CÂU CHỈ ĐẠO MẪU</strong><p>Xoay người khoảng một phần tư vòng, mặt quay nhẹ về máy.</p></div><div class="pose-tip-item"><strong>02 · KIỂM TRA TRƯỚC KHI CHỤP</strong><p>Đường vai, đường sườn và tay áo vẫn đọc được.</p></div><div class="pose-tip-item danger"><strong>03 · LỖI CẦN TRÁNH</strong><p>Xoay quá mạnh khiến áo và hai chân chồng nhau.</p></div></template>
 </article><article class="pose-mini-card" data-pose-id="ST-03">
-<div class="pose-mini-top"><span>ST-03</span><span>ẢNH HƯỚNG DẪN</span></div>
-<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Tay đặt nhẹ ở eo"><img src="assets/asset-fc1628c3b334bd.webp" alt="Tư thế Tay đặt nhẹ ở eo" width="320" height="430" loading="lazy" decoding="async"><span class="pose-mini-visual-hint">↗ TIPS</span></button>
+<div class="pose-mini-top"><span>ST-03</span><span>ẢNH SẠCH · TOÀN DÁNG</span></div>
+<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Tay đặt nhẹ ở eo"><span class="pose-v5-figure"><img src="assets/pose-v5-st-03-clean.webp" alt="Tư thế Tay đặt nhẹ ở eo" width="320" height="430" loading="lazy" decoding="async"><svg class="pose-v5-overlay" viewBox="0 0 360 540" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+ <path class="pose-v5-under" d="M81 267 Q114 227 158 255"/><path class="pose-v5-line" d="M81 267 Q114 227 158 255"/>
+ <path class="pose-v5-arrow" d="M78 265 L101 263"/>
+ <circle class="pose-v5-ring" cx="155" cy="255" r="11"/><circle class="pose-v5-dot" cx="155" cy="255" r="3.5"/>
+ </svg></span><span class="pose-mini-visual-hint">↗ TIPS + HƯỚNG DẪN</span></button>
 <div class="pose-mini-content"><span class="pose-mini-purpose">Nhấn đường cắt · Styling</span><h3>Tay đặt nhẹ ở eo</h3><p>Nhấn vị trí eo mà không làm méo sản phẩm.</p><button type="button" class="pose-mini-action" data-open-pose-tips>↗ XEM TIPS CHỈ ĐẠO <span aria-hidden="true">→</span></button></div>
 <template class="pose-tip-data"><div class="pose-tip-item"><strong>01 · CÂU CHỈ ĐẠO MẪU</strong><p>Đặt tay hờ lên hông; khuỷu tay mở vừa đủ.</p></div><div class="pose-tip-item"><strong>02 · KIỂM TRA TRƯỚC KHI CHỤP</strong><p>Eo quần, đai và túi vẫn rõ; ngón tay mềm.</p></div><div class="pose-tip-item danger"><strong>03 · LỖI CẦN TRÁNH</strong><p>Ép tay quá mạnh hoặc che thắt lưng và túi.</p></div></template>
 </article><article class="pose-mini-card" data-pose-id="ST-04">
-<div class="pose-mini-top"><span>ST-04</span><span>ẢNH HƯỚNG DẪN</span></div>
-<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Chạm cổ áo"><img src="assets/asset-f2f1358275f944.webp" alt="Tư thế Chạm cổ áo" width="320" height="430" loading="lazy" decoding="async"><span class="pose-mini-visual-hint">↗ TIPS</span></button>
+<div class="pose-mini-top"><span>ST-04</span><span>ẢNH SẠCH · TOÀN DÁNG</span></div>
+<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Chạm cổ áo"><span class="pose-v5-figure"><img src="assets/pose-v5-st-04-clean.webp" alt="Tư thế Chạm cổ áo" width="320" height="430" loading="lazy" decoding="async"><svg class="pose-v5-overlay" viewBox="0 0 360 540" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+ <path class="pose-v5-under" d="M248 189 Q216 166 181 186"/><path class="pose-v5-line" d="M248 189 Q216 166 181 186"/>
+ <path class="pose-v5-arrow" d="M184 177 L179 186 L190 187"/>
+ <circle class="pose-v5-ring" cx="184" cy="184" r="11"/><circle class="pose-v5-dot" cx="184" cy="184" r="3.5"/>
+ </svg></span><span class="pose-mini-visual-hint">↗ TIPS + HƯỚNG DẪN</span></button>
 <div class="pose-mini-content"><span class="pose-mini-purpose">Cổ áo · Chi tiết</span><h3>Chạm cổ áo</h3><p>Dẫn ánh nhìn đến cấu trúc cổ, vai và tay áo.</p><button type="button" class="pose-mini-action" data-open-pose-tips>↗ XEM TIPS CHỈ ĐẠO <span aria-hidden="true">→</span></button></div>
 <template class="pose-tip-data"><div class="pose-tip-item"><strong>01 · CÂU CHỈ ĐẠO MẪU</strong><p>Đưa đầu ngón tay chạm nhẹ đường cổ, thả vai.</p></div><div class="pose-tip-item"><strong>02 · KIỂM TRA TRƯỚC KHI CHỤP</strong><p>Cổ áo giữ đúng phom, không bị kéo nhăn.</p></div><div class="pose-tip-item danger"><strong>03 · LỖI CẦN TRÁNH</strong><p>Kéo vải hoặc che mất chi tiết cổ áo.</p></div></template>
 </article><article class="pose-mini-card" data-pose-id="ST-05">
-<div class="pose-mini-top"><span>ST-05</span><span>ẢNH HƯỚNG DẪN</span></div>
-<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Bước nhẹ"><img src="assets/asset-c60f9be11b2992.webp" alt="Tư thế Bước nhẹ" width="320" height="430" loading="lazy" decoding="async"><span class="pose-mini-visual-hint">↗ TIPS</span></button>
+<div class="pose-mini-top"><span>ST-05</span><span>ẢNH SẠCH · TOÀN DÁNG</span></div>
+<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Bước nhẹ"><span class="pose-v5-figure"><img src="assets/pose-v5-st-05-clean.webp" alt="Tư thế Bước nhẹ" width="320" height="430" loading="lazy" decoding="async"><svg class="pose-v5-overlay" viewBox="0 0 360 540" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+ <path class="pose-v5-under" d="M108 434 Q151 490 223 477"/><path class="pose-v5-line" d="M108 434 Q151 490 223 477"/>
+ <path class="pose-v5-arrow" d="M208 468 L225 476 L208 485"/>
+ <circle class="pose-v5-ring" cx="221" cy="476" r="11"/><circle class="pose-v5-dot" cx="221" cy="476" r="3.5"/>
+ </svg></span><span class="pose-mini-visual-hint">↗ TIPS + HƯỚNG DẪN</span></button>
 <div class="pose-mini-content"><span class="pose-mini-purpose">Tạo nhịp · Tự nhiên</span><h3>Bước nhẹ</h3><p>Tạo cảm giác đi mà dáng quần vẫn rõ.</p><button type="button" class="pose-mini-action" data-open-pose-tips>↗ XEM TIPS CHỈ ĐẠO <span aria-hidden="true">→</span></button></div>
 <template class="pose-tip-data"><div class="pose-tip-item"><strong>01 · CÂU CHỈ ĐẠO MẪU</strong><p>Bước một bước ngắn rồi giữ nhịp ở giữa bước.</p></div><div class="pose-tip-item"><strong>02 · KIỂM TRA TRƯỚC KHI CHỤP</strong><p>Ống quần có độ mở; giày và chân không bị che.</p></div><div class="pose-tip-item danger"><strong>03 · LỖI CẦN TRÁNH</strong><p>Bước quá dài khiến vải xoắn hoặc mất nét.</p></div></template>
 </article><article class="pose-mini-card" data-pose-id="ST-06">
-<div class="pose-mini-top"><span>ST-06</span><span>ẢNH HƯỚNG DẪN</span></div>
-<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Xoay vai"><img src="assets/asset-7474b36623ddd3.webp" alt="Tư thế Xoay vai" width="320" height="430" loading="lazy" decoding="async"><span class="pose-mini-visual-hint">↗ TIPS</span></button>
+<div class="pose-mini-top"><span>ST-06</span><span>ẢNH SẠCH · TOÀN DÁNG</span></div>
+<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Xoay vai"><span class="pose-v5-figure"><img src="assets/pose-v5-st-06-clean.webp" alt="Tư thế Xoay vai" width="320" height="430" loading="lazy" decoding="async"><svg class="pose-v5-overlay" viewBox="0 0 360 540" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+ <path class="pose-v5-under" d="M242 140 Q302 172 263 214"/><path class="pose-v5-line" d="M242 140 Q302 172 263 214"/>
+ <path class="pose-v5-arrow" d="M261 199 L264 215 L281 212"/>
+ <circle class="pose-v5-ring" cx="262" cy="214" r="11"/><circle class="pose-v5-dot" cx="262" cy="214" r="3.5"/>
+ </svg></span><span class="pose-mini-visual-hint">↗ TIPS + HƯỚNG DẪN</span></button>
 <div class="pose-mini-content"><span class="pose-mini-purpose">Dáng 3/4 · Editorial</span><h3>Xoay vai</h3><p>Tạo nhịp và chiều sâu từ đường vai.</p><button type="button" class="pose-mini-action" data-open-pose-tips>↗ XEM TIPS CHỈ ĐẠO <span aria-hidden="true">→</span></button></div>
 <template class="pose-tip-data"><div class="pose-tip-item"><strong>01 · CÂU CHỈ ĐẠO MẪU</strong><p>Giữ hông gần nguyên, xoay nhẹ vai và đầu ngược nhau.</p></div><div class="pose-tip-item"><strong>02 · KIỂM TRA TRƯỚC KHI CHỤP</strong><p>Đường vai gọn; chân vẫn tạo dáng rõ ràng.</p></div><div class="pose-tip-item danger"><strong>03 · LỖI CẦN TRÁNH</strong><p>Vặn thân quá mạnh hoặc mất cân bằng.</p></div></template>
 </article></div></div><div class="pose-panel" id="panel-pose-motion" role="tabpanel" aria-labelledby="tab-pose-motion" data-pose-panel="motion" hidden><div class="pose-panel-intro"><div><span class="pose-panel-kicker">BỘ POSING 02 / 4 ĐỘNG TÁC</span><h3>Chuyển động</h3></div><p>4 biến thể giúp ảnh có nhịp mà vẫn đọc được trang phục.</p></div><div class="pose-mini-grid"><article class="pose-mini-card" data-pose-id="MV-01">
 <div class="pose-mini-top"><span>MV-01</span><span>ẢNH NỘI BỘ</span></div>
-<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Nghiêng tạo đường chéo"><img src="assets/asset-39a9469a119da0.webp" alt="Tư thế Nghiêng tạo đường chéo" width="320" height="430" loading="lazy" decoding="async"><span class="pose-mini-visual-hint">↗ TIPS</span></button>
+<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Nghiêng tạo đường chéo"><span class="pose-v5-figure"><img src="assets/asset-39a9469a119da0.webp" alt="Tư thế Nghiêng tạo đường chéo" width="320" height="430" loading="lazy" decoding="async"><svg class="pose-v5-overlay" viewBox="0 0 360 540" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+ <path class="pose-v5-under" d="M90 418 Q174 381 250 275"/><path class="pose-v5-line" d="M90 418 Q174 381 250 275"/>
+ <path class="pose-v5-arrow" d="M225 279 L252 272 L247 297"/>
+ <circle class="pose-v5-ring" cx="250" cy="275" r="11"/><circle class="pose-v5-dot" cx="250" cy="275" r="3.5"/>
+ </svg></span><span class="pose-mini-visual-hint">↗ TIPS + HƯỚNG DẪN</span></button>
 <div class="pose-mini-content"><span class="pose-mini-purpose">Chuyển trọng tâm · Hero</span><h3>Nghiêng tạo đường chéo</h3><p>Tạo nhịp bằng trục cơ thể và chuyển trọng lượng.</p><button type="button" class="pose-mini-action" data-open-pose-tips>↗ XEM TIPS CHỈ ĐẠO <span aria-hidden="true">→</span></button></div>
 <template class="pose-tip-data"><div class="pose-tip-item"><strong>01 · CÂU CHỈ ĐẠO MẪU</strong><p>Dồn trọng lượng lên chân trụ, nghiêng nhẹ thân, mở một tay.</p></div><div class="pose-tip-item"><strong>02 · KIỂM TRA TRƯỚC KHI CHỤP</strong><p>Tay không che áo; chân trụ ổn định, gấu quần rõ.</p></div><div class="pose-tip-item danger"><strong>03 · LỖI CẦN TRÁNH</strong><p>Nghiêng quá mức làm dáng trang phục bị lệch.</p></div></template>
 </article><article class="pose-mini-card" data-pose-id="MV-02">
 <div class="pose-mini-top"><span>MV-02</span><span>ẢNH NỘI BỘ</span></div>
-<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Đổi hướng vai"><img src="assets/asset-270144250f326b.webp" alt="Tư thế Đổi hướng vai" width="320" height="430" loading="lazy" decoding="async"><span class="pose-mini-visual-hint">↗ TIPS</span></button>
+<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Đổi hướng vai"><span class="pose-v5-figure"><img src="assets/asset-270144250f326b.webp" alt="Tư thế Đổi hướng vai" width="320" height="430" loading="lazy" decoding="async"><svg class="pose-v5-overlay" viewBox="0 0 360 540" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+ <path class="pose-v5-under" d="M255 151 Q295 205 244 236"/><path class="pose-v5-line" d="M255 151 Q295 205 244 236"/>
+ <path class="pose-v5-arrow" d="M238 218 L246 237 L262 224"/>
+ <circle class="pose-v5-ring" cx="244" cy="236" r="11"/><circle class="pose-v5-dot" cx="244" cy="236" r="3.5"/>
+ </svg></span><span class="pose-mini-visual-hint">↗ TIPS + HƯỚNG DẪN</span></button>
 <div class="pose-mini-content"><span class="pose-mini-purpose">Chuyển động có điểm dừng</span><h3>Đổi hướng vai</h3><p>Biến động tác xoay thành một khung có nhịp.</p><button type="button" class="pose-mini-action" data-open-pose-tips>↗ XEM TIPS CHỈ ĐẠO <span aria-hidden="true">→</span></button></div>
 <template class="pose-tip-data"><div class="pose-tip-item"><strong>01 · CÂU CHỈ ĐẠO MẪU</strong><p>Đổi hướng vai, giữ mắt về một điểm, chờ vải ổn định.</p></div><div class="pose-tip-item"><strong>02 · KIỂM TRA TRƯỚC KHI CHỤP</strong><p>Tay và cổ áo không che nhau; nếp vải có nhịp.</p></div><div class="pose-tip-item danger"><strong>03 · LỖI CẦN TRÁNH</strong><p>Xoay liên tục không có khoảnh khắc dừng.</p></div></template>
 </article><article class="pose-mini-card" data-pose-id="MV-03">
 <div class="pose-mini-top"><span>MV-03</span><span>ẢNH NỘI BỘ</span></div>
-<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Tạo đường cong cơ thể"><img src="assets/asset-09df512c53cb71.webp" alt="Tư thế Tạo đường cong cơ thể" width="320" height="430" loading="lazy" decoding="async"><span class="pose-mini-visual-hint">↗ TIPS</span></button>
+<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Tạo đường cong cơ thể"><span class="pose-v5-figure"><img src="assets/asset-09df512c53cb71.webp" alt="Tư thế Tạo đường cong cơ thể" width="320" height="430" loading="lazy" decoding="async"><svg class="pose-v5-overlay" viewBox="0 0 360 540" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+ <path class="pose-v5-under" d="M75 387 Q185 336 276 221"/><path class="pose-v5-line" d="M75 387 Q185 336 276 221"/>
+ <path class="pose-v5-arrow" d="M249 226 L279 218 L272 248"/>
+ <circle class="pose-v5-ring" cx="277" cy="220" r="11"/><circle class="pose-v5-dot" cx="277" cy="220" r="3.5"/>
+ </svg></span><span class="pose-mini-visual-hint">↗ TIPS + HƯỚNG DẪN</span></button>
 <div class="pose-mini-content"><span class="pose-mini-purpose">Ảnh Hero · Năng lượng</span><h3>Tạo đường cong cơ thể</h3><p>Dùng cánh tay và chân tạo nhịp thị giác mạnh.</p><button type="button" class="pose-mini-action" data-open-pose-tips>↗ XEM TIPS CHỈ ĐẠO <span aria-hidden="true">→</span></button></div>
 <template class="pose-tip-data"><div class="pose-tip-item"><strong>01 · CÂU CHỈ ĐẠO MẪU</strong><p>Tạo hai hướng khác nhau cho tay và chân rồi giữ 1 nhịp.</p></div><div class="pose-tip-item"><strong>02 · KIỂM TRA TRƯỚC KHI CHỤP</strong><p>Đường cong có chủ ý và phần vải vẫn dễ nhận ra.</p></div><div class="pose-tip-item danger"><strong>03 · LỖI CẦN TRÁNH</strong><p>Tư thế phức tạp che mất sản phẩm.</p></div></template>
 </article><article class="pose-mini-card" data-pose-id="MV-04">
 <div class="pose-mini-top"><span>MV-04</span><span>ẢNH NỘI BỘ</span></div>
-<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Hạ trọng tâm"><img src="assets/asset-ebf690af28ccdb.webp" alt="Tư thế Hạ trọng tâm" width="320" height="430" loading="lazy" decoding="async"><span class="pose-mini-visual-hint">↗ TIPS</span></button>
+<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Hạ trọng tâm"><span class="pose-v5-figure"><img src="assets/asset-ebf690af28ccdb.webp" alt="Tư thế Hạ trọng tâm" width="320" height="430" loading="lazy" decoding="async"><svg class="pose-v5-overlay" viewBox="0 0 360 540" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+ <path class="pose-v5-under" d="M74 375 Q180 351 270 386"/><path class="pose-v5-line" d="M74 375 Q180 351 270 386"/>
+ <path class="pose-v5-arrow" d="M250 367 L272 386 L248 395"/>
+ <circle class="pose-v5-ring" cx="270" cy="386" r="11"/><circle class="pose-v5-dot" cx="270" cy="386" r="3.5"/>
+ </svg></span><span class="pose-mini-visual-hint">↗ TIPS + HƯỚNG DẪN</span></button>
 <div class="pose-mini-content"><span class="pose-mini-purpose">Thay đổi cao độ · Editorial</span><h3>Hạ trọng tâm</h3><p>Đổi đường nét bằng tư thế thấp và thế chân mở.</p><button type="button" class="pose-mini-action" data-open-pose-tips>↗ XEM TIPS CHỈ ĐẠO <span aria-hidden="true">→</span></button></div>
 <template class="pose-tip-data"><div class="pose-tip-item"><strong>01 · CÂU CHỈ ĐẠO MẪU</strong><p>Hạ trọng tâm chậm, đặt tay để cân bằng thay vì chống gồng.</p></div><div class="pose-tip-item"><strong>02 · KIỂM TRA TRƯỚC KHI CHỤP</strong><p>Phom quần không căng bất thường, áo không bị xoắn.</p></div><div class="pose-tip-item danger"><strong>03 · LỖI CẦN TRÁNH</strong><p>Gối che chi tiết, tay gồng hoặc nếp gãy mạnh.</p></div></template>
 </article></div></div><div class="pose-panel" id="panel-pose-seated" role="tabpanel" aria-labelledby="tab-pose-seated" data-pose-panel="seated" hidden><div class="pose-panel-intro"><div><span class="pose-panel-kicker">BỘ POSING 03 / 6 ĐỘNG TÁC</span><h3>Ngồi & tương tác</h3></div><p>6 dáng ngồi dùng ghế, bục và bàn như điểm tựa.</p></div><div class="pose-mini-grid"><article class="pose-mini-card" data-pose-id="SI-01">
-<div class="pose-mini-top"><span>SI-01</span><span>ẢNH HƯỚNG DẪN</span></div>
-<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Ngồi thẳng"><img src="assets/asset-1faa1ce514f540.webp" alt="Tư thế Ngồi thẳng" width="320" height="430" loading="lazy" decoding="async"><span class="pose-mini-visual-hint">↗ TIPS</span></button>
+<div class="pose-mini-top"><span>SI-01</span><span>ẢNH SẠCH · TOÀN DÁNG</span></div>
+<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Ngồi thẳng"><span class="pose-v5-figure"><img src="assets/pose-v5-si-01-clean.webp" alt="Tư thế Ngồi thẳng" width="320" height="430" loading="lazy" decoding="async"><svg class="pose-v5-overlay" viewBox="0 0 360 540" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+ <path class="pose-v5-under" d="M117 134 L125 289"/><path class="pose-v5-line" d="M117 134 L125 289"/>
+ <path class="pose-v5-arrow" d="M109 149 L129 149"/>
+ <circle class="pose-v5-ring" cx="124" cy="290" r="11"/><circle class="pose-v5-dot" cx="124" cy="290" r="3.5"/>
+ </svg></span><span class="pose-mini-visual-hint">↗ TIPS + HƯỚNG DẪN</span></button>
 <div class="pose-mini-content"><span class="pose-mini-purpose">Ảnh ngồi · Gọn dáng</span><h3>Ngồi thẳng</h3><p>Giữ dáng áo và cạp quần rõ khi ngồi.</p><button type="button" class="pose-mini-action" data-open-pose-tips>↗ XEM TIPS CHỈ ĐẠO <span aria-hidden="true">→</span></button></div>
 <template class="pose-tip-data"><div class="pose-tip-item"><strong>01 · CÂU CHỈ ĐẠO MẪU</strong><p>Ngồi gần mép bục, nâng thân, thả vai, tay đặt trên đùi.</p></div><div class="pose-tip-item"><strong>02 · KIỂM TRA TRƯỚC KHI CHỤP</strong><p>Vạt áo, cạp và đường chân không bị che.</p></div><div class="pose-tip-item danger"><strong>03 · LỖI CẦN TRÁNH</strong><p>Ngồi sụp lưng hoặc kẹp hai tay vào thân.</p></div></template>
 </article><article class="pose-mini-card" data-pose-id="SI-02">
-<div class="pose-mini-top"><span>SI-02</span><span>ẢNH HƯỚNG DẪN</span></div>
-<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Ngồi nghiêng 45°"><img src="assets/asset-edddbbd1b9f132.webp" alt="Tư thế Ngồi nghiêng 45°" width="320" height="430" loading="lazy" decoding="async"><span class="pose-mini-visual-hint">↗ TIPS</span></button>
+<div class="pose-mini-top"><span>SI-02</span><span>ẢNH SẠCH · TOÀN DÁNG</span></div>
+<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Ngồi nghiêng 45°"><span class="pose-v5-figure"><img src="assets/pose-v5-si-02-clean.webp" alt="Tư thế Ngồi nghiêng 45°" width="320" height="430" loading="lazy" decoding="async"><svg class="pose-v5-overlay" viewBox="0 0 360 540" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+ <path class="pose-v5-under" d="M245 165 Q271 208 236 255"/><path class="pose-v5-line" d="M245 165 Q271 208 236 255"/>
+ <path class="pose-v5-arrow" d="M235 231 L237 257 L256 245"/>
+ <circle class="pose-v5-ring" cx="237" cy="255" r="11"/><circle class="pose-v5-dot" cx="237" cy="255" r="3.5"/>
+ </svg></span><span class="pose-mini-visual-hint">↗ TIPS + HƯỚNG DẪN</span></button>
 <div class="pose-mini-content"><span class="pose-mini-purpose">Nhìn đường sườn · Phom</span><h3>Ngồi nghiêng 45°</h3><p>Tạo chiều sâu từ góc thân và hướng mặt.</p><button type="button" class="pose-mini-action" data-open-pose-tips>↗ XEM TIPS CHỈ ĐẠO <span aria-hidden="true">→</span></button></div>
 <template class="pose-tip-data"><div class="pose-tip-item"><strong>01 · CÂU CHỈ ĐẠO MẪU</strong><p>Xoay hông nhẹ, chống tay rất hờ lên đầu gối.</p></div><div class="pose-tip-item"><strong>02 · KIỂM TRA TRƯỚC KHI CHỤP</strong><p>Đường sườn, gối và ống quần tách rõ.</p></div><div class="pose-tip-item danger"><strong>03 · LỖI CẦN TRÁNH</strong><p>Tỳ khuỷu quá mạnh làm xô lệch cổ áo.</p></div></template>
 </article><article class="pose-mini-card" data-pose-id="SI-03">
-<div class="pose-mini-top"><span>SI-03</span><span>ẢNH HƯỚNG DẪN</span></div>
-<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Tựa ghế"><img src="assets/asset-de23e80d0766be.webp" alt="Tư thế Tựa ghế" width="320" height="430" loading="lazy" decoding="async"><span class="pose-mini-visual-hint">↗ TIPS</span></button>
+<div class="pose-mini-top"><span>SI-03</span><span>ẢNH SẠCH · TOÀN DÁNG</span></div>
+<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Tựa ghế"><span class="pose-v5-figure"><img src="assets/pose-v5-si-03-clean.webp" alt="Tư thế Tựa ghế" width="320" height="430" loading="lazy" decoding="async"><svg class="pose-v5-overlay" viewBox="0 0 360 540" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+ <path class="pose-v5-under" d="M77 249 Q108 221 153 235"/><path class="pose-v5-line" d="M77 249 Q108 221 153 235"/>
+ <path class="pose-v5-arrow" d="M139 222 L155 233 L139 247"/>
+ <circle class="pose-v5-ring" cx="153" cy="235" r="11"/><circle class="pose-v5-dot" cx="153" cy="235" r="3.5"/>
+ </svg></span><span class="pose-mini-visual-hint">↗ TIPS + HƯỚNG DẪN</span></button>
 <div class="pose-mini-content"><span class="pose-mini-purpose">Lifestyle · Hero</span><h3>Tựa ghế</h3><p>Dùng ghế như điểm tựa thay vì đạo cụ che đồ.</p><button type="button" class="pose-mini-action" data-open-pose-tips>↗ XEM TIPS CHỈ ĐẠO <span aria-hidden="true">→</span></button></div>
 <template class="pose-tip-data"><div class="pose-tip-item"><strong>01 · CÂU CHỈ ĐẠO MẪU</strong><p>Tựa hờ một tay; giữ ngực mở và cổ dài.</p></div><div class="pose-tip-item"><strong>02 · KIỂM TRA TRƯỚC KHI CHỤP</strong><p>Tay áo, eo, phần váy/quần không bị thành ghế che.</p></div><div class="pose-tip-item danger"><strong>03 · LỖI CẦN TRÁNH</strong><p>Ngả lưng quá sâu khiến cổ áo bị kéo lệch.</p></div></template>
 </article><article class="pose-mini-card" data-pose-id="SI-04">
-<div class="pose-mini-top"><span>SI-04</span><span>ẢNH HƯỚNG DẪN</span></div>
-<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Vắt chân nhẹ"><img src="assets/asset-9c8eea4a704855.webp" alt="Tư thế Vắt chân nhẹ" width="320" height="430" loading="lazy" decoding="async"><span class="pose-mini-visual-hint">↗ TIPS</span></button>
+<div class="pose-mini-top"><span>SI-04</span><span>ẢNH SẠCH · TOÀN DÁNG</span></div>
+<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Vắt chân nhẹ"><span class="pose-v5-figure"><img src="assets/pose-v5-si-04-clean.webp" alt="Tư thế Vắt chân nhẹ" width="320" height="430" loading="lazy" decoding="async"><svg class="pose-v5-overlay" viewBox="0 0 360 540" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+ <path class="pose-v5-under" d="M75 396 Q142 345 211 392"/><path class="pose-v5-line" d="M75 396 Q142 345 211 392"/>
+ <path class="pose-v5-arrow" d="M198 374 L213 393 L189 394"/>
+ <circle class="pose-v5-ring" cx="210" cy="391" r="11"/><circle class="pose-v5-dot" cx="210" cy="391" r="3.5"/>
+ </svg></span><span class="pose-mini-visual-hint">↗ TIPS + HƯỚNG DẪN</span></button>
 <div class="pose-mini-content"><span class="pose-mini-purpose">Tỷ lệ chân · Thanh lịch</span><h3>Vắt chân nhẹ</h3><p>Tạo nhịp chân nhưng vẫn đọc được phom quần.</p><button type="button" class="pose-mini-action" data-open-pose-tips>↗ XEM TIPS CHỈ ĐẠO <span aria-hidden="true">→</span></button></div>
 <template class="pose-tip-data"><div class="pose-tip-item"><strong>01 · CÂU CHỈ ĐẠO MẪU</strong><p>Vắt chéo nhẹ từ cổ chân hoặc đầu gối, giữ thân cao.</p></div><div class="pose-tip-item"><strong>02 · KIỂM TRA TRƯỚC KHI CHỤP</strong><p>Không làm ống quần vặn xoắn hay che gót.</p></div><div class="pose-tip-item danger"><strong>03 · LỖI CẦN TRÁNH</strong><p>Vắt chặt khiến nếp quần gãy và chân ngắn.</p></div></template>
 </article><article class="pose-mini-card" data-pose-id="SI-05">
-<div class="pose-mini-top"><span>SI-05</span><span>ẢNH HƯỚNG DẪN</span></div>
-<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Chống tay lên bàn"><img src="assets/asset-118e3c8b159c67.webp" alt="Tư thế Chống tay lên bàn" width="320" height="430" loading="lazy" decoding="async"><span class="pose-mini-visual-hint">↗ TIPS</span></button>
+<div class="pose-mini-top"><span>SI-05</span><span>ẢNH SẠCH · TOÀN DÁNG</span></div>
+<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Chống tay lên bàn"><span class="pose-v5-figure"><img src="assets/pose-v5-si-05-clean.webp" alt="Tư thế Chống tay lên bàn" width="320" height="430" loading="lazy" decoding="async"><svg class="pose-v5-overlay" viewBox="0 0 360 540" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+ <path class="pose-v5-under" d="M245 229 Q270 266 239 299"/><path class="pose-v5-line" d="M245 229 Q270 266 239 299"/>
+ <path class="pose-v5-arrow" d="M239 283 L237 301 L257 291"/>
+ <circle class="pose-v5-ring" cx="240" cy="299" r="11"/><circle class="pose-v5-dot" cx="240" cy="299" r="3.5"/>
+ </svg></span><span class="pose-mini-visual-hint">↗ TIPS + HƯỚNG DẪN</span></button>
 <div class="pose-mini-content"><span class="pose-mini-purpose">Tương tác bối cảnh</span><h3>Chống tay lên bàn</h3><p>Thêm điểm tựa tạo đường chéo và cảm giác tự nhiên.</p><button type="button" class="pose-mini-action" data-open-pose-tips>↗ XEM TIPS CHỈ ĐẠO <span aria-hidden="true">→</span></button></div>
 <template class="pose-tip-data"><div class="pose-tip-item"><strong>01 · CÂU CHỈ ĐẠO MẪU</strong><p>Đặt lòng bàn tay hờ lên cạnh bàn, hạ một vai vừa phải.</p></div><div class="pose-tip-item"><strong>02 · KIỂM TRA TRƯỚC KHI CHỤP</strong><p>Tay không kéo vai áo; đường chân có khoảng thở.</p></div><div class="pose-tip-item danger"><strong>03 · LỖI CẦN TRÁNH</strong><p>Đặt quá nhiều trọng lượng lên cổ tay.</p></div></template>
 </article><article class="pose-mini-card" data-pose-id="SI-06">
-<div class="pose-mini-top"><span>SI-06</span><span>ẢNH HƯỚNG DẪN</span></div>
-<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Nghiêng đầu nhẹ"><img src="assets/asset-8c56a7852cf0ca.webp" alt="Tư thế Nghiêng đầu nhẹ" width="320" height="430" loading="lazy" decoding="async"><span class="pose-mini-visual-hint">↗ TIPS</span></button>
+<div class="pose-mini-top"><span>SI-06</span><span>ẢNH SẠCH · TOÀN DÁNG</span></div>
+<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Nghiêng đầu nhẹ"><span class="pose-v5-figure"><img src="assets/pose-v5-si-06-clean.webp" alt="Tư thế Nghiêng đầu nhẹ" width="320" height="430" loading="lazy" decoding="async"><svg class="pose-v5-overlay" viewBox="0 0 360 540" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+ <path class="pose-v5-under" d="M235 126 Q278 160 249 202"/><path class="pose-v5-line" d="M235 126 Q278 160 249 202"/>
+ <path class="pose-v5-arrow" d="M245 185 L249 204 L270 199"/>
+ <circle class="pose-v5-ring" cx="250" cy="202" r="11"/><circle class="pose-v5-dot" cx="250" cy="202" r="3.5"/>
+ </svg></span><span class="pose-mini-visual-hint">↗ TIPS + HƯỚNG DẪN</span></button>
 <div class="pose-mini-content"><span class="pose-mini-purpose">Beauty-fashion · Cận</span><h3>Nghiêng đầu nhẹ</h3><p>Thêm cảm xúc nhưng không cần đổi tư thế lớn.</p><button type="button" class="pose-mini-action" data-open-pose-tips>↗ XEM TIPS CHỈ ĐẠO <span aria-hidden="true">→</span></button></div>
 <template class="pose-tip-data"><div class="pose-tip-item"><strong>01 · CÂU CHỈ ĐẠO MẪU</strong><p>Nghiêng đầu rất nhẹ và đưa tay gần má, tránh ép mặt.</p></div><div class="pose-tip-item"><strong>02 · KIỂM TRA TRƯỚC KHI CHỤP</strong><p>Cổ áo, tóc và bàn tay không che điểm thiết kế.</p></div><div class="pose-tip-item danger"><strong>03 · LỖI CẦN TRÁNH</strong><p>Tỳ tay làm biến dạng má, gập cổ quá sâu.</p></div></template>
 </article></div></div><div class="pose-panel" id="panel-pose-hands" role="tabpanel" aria-labelledby="tab-pose-hands" data-pose-panel="hands" hidden><div class="pose-panel-intro"><div><span class="pose-panel-kicker">BỘ POSING 04 / 4 ĐỘNG TÁC</span><h3>Tay & chi tiết</h3></div><p>4 động tác tay để xử lý phần cổ, eo, đường may và mặt sau.</p></div><div class="pose-mini-grid"><article class="pose-mini-card" data-pose-id="HD-01">
-<div class="pose-mini-top"><span>HD-01</span><span>ẢNH HƯỚNG DẪN</span></div>
-<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Tay chạm eo"><img src="assets/asset-fc1628c3b334bd.webp" alt="Tư thế Tay chạm eo" width="320" height="430" loading="lazy" decoding="async"><span class="pose-mini-visual-hint">↗ TIPS</span></button>
+<div class="pose-mini-top"><span>HD-01</span><span>ẢNH SẠCH · TOÀN DÁNG</span></div>
+<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Tay chạm eo"><span class="pose-v5-figure"><img src="assets/pose-v5-st-03-clean.webp" alt="Tư thế Tay chạm eo" width="320" height="430" loading="lazy" decoding="async"><svg class="pose-v5-overlay" viewBox="0 0 360 540" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+ <path class="pose-v5-under" d="M85 268 Q123 239 166 252"/><path class="pose-v5-line" d="M85 268 Q123 239 166 252"/>
+ <path class="pose-v5-arrow" d="M148 243 L168 253 L148 263"/>
+ <circle class="pose-v5-ring" cx="166" cy="252" r="11"/><circle class="pose-v5-dot" cx="166" cy="252" r="3.5"/>
+ </svg></span><span class="pose-mini-visual-hint">↗ TIPS + HƯỚNG DẪN</span></button>
 <div class="pose-mini-content"><span class="pose-mini-purpose">Vị trí eo · Túi quần</span><h3>Tay chạm eo</h3><p>Dẫn mắt về phần eo và cấu trúc dáng.</p><button type="button" class="pose-mini-action" data-open-pose-tips>↗ XEM TIPS CHỈ ĐẠO <span aria-hidden="true">→</span></button></div>
 <template class="pose-tip-data"><div class="pose-tip-item"><strong>01 · CÂU CHỈ ĐẠO MẪU</strong><p>Đặt tay hờ lên eo, ngón tách tự nhiên.</p></div><div class="pose-tip-item"><strong>02 · KIỂM TRA TRƯỚC KHI CHỤP</strong><p>Không che khóa, khuy, đai hoặc túi.</p></div><div class="pose-tip-item danger"><strong>03 · LỖI CẦN TRÁNH</strong><p>Bàn tay bấu mạnh, cổ tay gập cứng.</p></div></template>
 </article><article class="pose-mini-card" data-pose-id="HD-02">
-<div class="pose-mini-top"><span>HD-02</span><span>ẢNH HƯỚNG DẪN</span></div>
-<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Tay chạm cổ"><img src="assets/asset-f2f1358275f944.webp" alt="Tư thế Tay chạm cổ" width="320" height="430" loading="lazy" decoding="async"><span class="pose-mini-visual-hint">↗ TIPS</span></button>
+<div class="pose-mini-top"><span>HD-02</span><span>ẢNH SẠCH · TOÀN DÁNG</span></div>
+<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Tay chạm cổ"><span class="pose-v5-figure"><img src="assets/pose-v5-st-04-clean.webp" alt="Tư thế Tay chạm cổ" width="320" height="430" loading="lazy" decoding="async"><svg class="pose-v5-overlay" viewBox="0 0 360 540" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+ <path class="pose-v5-under" d="M245 178 Q205 154 180 183"/><path class="pose-v5-line" d="M245 178 Q205 154 180 183"/>
+ <path class="pose-v5-arrow" d="M183 168 L180 184 L196 181"/>
+ <circle class="pose-v5-ring" cx="180" cy="184" r="11"/><circle class="pose-v5-dot" cx="180" cy="184" r="3.5"/>
+ </svg></span><span class="pose-mini-visual-hint">↗ TIPS + HƯỚNG DẪN</span></button>
 <div class="pose-mini-content"><span class="pose-mini-purpose">Cổ áo · Thiết kế vai</span><h3>Tay chạm cổ</h3><p>Dẫn mắt lên cổ và đường vai trang phục.</p><button type="button" class="pose-mini-action" data-open-pose-tips>↗ XEM TIPS CHỈ ĐẠO <span aria-hidden="true">→</span></button></div>
 <template class="pose-tip-data"><div class="pose-tip-item"><strong>01 · CÂU CHỈ ĐẠO MẪU</strong><p>Chạm đầu ngón vào mép cổ mà không kéo vải.</p></div><div class="pose-tip-item"><strong>02 · KIỂM TRA TRƯỚC KHI CHỤP</strong><p>Cổ áo đứng form, tay áo không nhăn.</p></div><div class="pose-tip-item danger"><strong>03 · LỖI CẦN TRÁNH</strong><p>Ngón tay che mất đường cắt cổ áo.</p></div></template>
 </article><article class="pose-mini-card" data-pose-id="HD-03">
 <div class="pose-mini-top"><span>HD-03</span><span>ẢNH NỘI BỘ</span></div>
-<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Tay gần đường may"><img src="assets/asset-208c2f9d553959.webp" alt="Tư thế Tay gần đường may" width="320" height="430" loading="lazy" decoding="async"><span class="pose-mini-visual-hint">↗ TIPS</span></button>
+<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Tay gần đường may"><span class="pose-v5-figure"><img src="assets/asset-208c2f9d553959.webp" alt="Tư thế Tay gần đường may" width="320" height="430" loading="lazy" decoding="async"><svg class="pose-v5-overlay" viewBox="0 0 360 540" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+ <path class="pose-v5-under" d="M259 282 Q203 257 175 286"/><path class="pose-v5-line" d="M259 282 Q203 257 175 286"/>
+ <path class="pose-v5-arrow" d="M178 269 L174 288 L195 289"/>
+ <circle class="pose-v5-ring" cx="176" cy="288" r="11"/><circle class="pose-v5-dot" cx="176" cy="288" r="3.5"/>
+ </svg></span><span class="pose-mini-visual-hint">↗ TIPS + HƯỚNG DẪN</span></button>
 <div class="pose-mini-content"><span class="pose-mini-purpose">Chi tiết áo · Trung cảnh</span><h3>Tay gần đường may</h3><p>Tạo tương tác nhẹ với áo và đường may thân.</p><button type="button" class="pose-mini-action" data-open-pose-tips>↗ XEM TIPS CHỈ ĐẠO <span aria-hidden="true">→</span></button></div>
 <template class="pose-tip-data"><div class="pose-tip-item"><strong>01 · CÂU CHỈ ĐẠO MẪU</strong><p>Đưa một tay sát eo, thả ngón tay và hạ vai.</p></div><div class="pose-tip-item"><strong>02 · KIỂM TRA TRƯỚC KHI CHỤP</strong><p>Nếp bèo, cúc và đường may không bị che.</p></div><div class="pose-tip-item danger"><strong>03 · LỖI CẦN TRÁNH</strong><p>Tay che chi tiết hoặc tạo lực kéo lên vải.</p></div></template>
 </article><article class="pose-mini-card" data-pose-id="HD-04">
 <div class="pose-mini-top"><span>HD-04</span><span>ẢNH NỘI BỘ</span></div>
-<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Tay đặt sau lưng"><img src="assets/asset-84d13bf881137d.webp" alt="Tư thế Tay đặt sau lưng" width="320" height="430" loading="lazy" decoding="async"><span class="pose-mini-visual-hint">↗ TIPS</span></button>
+<button type="button" class="pose-mini-visual" data-open-pose-tips aria-label="Xem tips: Tay đặt sau lưng"><span class="pose-v5-figure"><img src="assets/asset-84d13bf881137d.webp" alt="Tư thế Tay đặt sau lưng" width="320" height="430" loading="lazy" decoding="async"><svg class="pose-v5-overlay" viewBox="0 0 360 540" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+ <path class="pose-v5-under" d="M248 349 Q217 389 183 396"/><path class="pose-v5-line" d="M248 349 Q217 389 183 396"/>
+ <path class="pose-v5-arrow" d="M190 381 L181 397 L201 400"/>
+ <circle class="pose-v5-ring" cx="185" cy="396" r="11"/><circle class="pose-v5-dot" cx="185" cy="396" r="3.5"/>
+ </svg></span><span class="pose-mini-visual-hint">↗ TIPS + HƯỚNG DẪN</span></button>
 <div class="pose-mini-content"><span class="pose-mini-purpose">Đường vai · Mặt sau</span><h3>Tay đặt sau lưng</h3><p>Tập trung vào mặt sau, vai và phần tay áo.</p><button type="button" class="pose-mini-action" data-open-pose-tips>↗ XEM TIPS CHỈ ĐẠO <span aria-hidden="true">→</span></button></div>
 <template class="pose-tip-data"><div class="pose-tip-item"><strong>01 · CÂU CHỈ ĐẠO MẪU</strong><p>Đưa hai tay nhẹ về phía sau, chỉ chạm nhau hờ.</p></div><div class="pose-tip-item"><strong>02 · KIỂM TRA TRƯỚC KHI CHỤP</strong><p>Đường vai, tay áo và chi tiết lưng vẫn đọc được.</p></div><div class="pose-tip-item danger"><strong>03 · LỖI CẦN TRÁNH</strong><p>Nắm tay quá chặt khiến vai nhô hoặc áo căng.</p></div></template>
 </article></div></div>
@@ -293,7 +411,7 @@
 
 <dialog id="poseTipDialog" class="pose-tip-dialog" aria-labelledby="poseTipTitle" aria-modal="true"><div class="pose-tip-modal">
 <div class="pose-tip-modal-top"><span id="poseTipCode">TIPS / POSE</span><button type="button" id="closePoseTips" aria-label="Đóng tips">✕</button></div>
-<div class="pose-tip-modal-main"><div class="pose-tip-modal-thumb"><img id="poseTipImage" alt="" width="160" height="215"></div><div class="pose-tip-modal-copy"><span id="poseTipCategory">BỘ TẠO DÁNG</span><h3 id="poseTipTitle">Tên động tác</h3><p id="poseTipGoal">Mục đích của pose.</p><div id="poseTipDetails"></div></div></div>
+<div class="pose-tip-modal-main"><div class="pose-tip-modal-thumb"><div class="pose-tip-modal-stage is-guided" id="poseTipStage"><img id="poseTipImage" alt="" width="360" height="540"><div id="poseTipGuides"></div></div><button type="button" class="pose-tip-toggle" id="togglePoseGuides" aria-pressed="true">ẨN / HIỆN HƯỚNG DẪN ↗</button><span class="pose-tip-instruction">Mũi tên chỉ là sơ đồ gợi ý; hãy kiểm tra động tác thật trên người mẫu.</span></div><div class="pose-tip-modal-copy"><span id="poseTipCategory">BỘ TẠO DÁNG</span><h3 id="poseTipTitle">Tên động tác</h3><p id="poseTipGoal">Mục đích của pose.</p><div id="poseTipDetails"></div></div></div>
 <div class="pose-tip-modal-footer"><span>MỘT ĐỘNG TÁC · MỘT LẦN KIỂM TRA</span><button type="button" id="poseTipsDone">ĐÃ HIỂU ✓</button></div>
 </div></dialog>
 <script>
@@ -346,10 +464,14 @@ function openPoseTips(trigger){
  document.getElementById('poseTipGoal').textContent=copy.querySelector('p').textContent;
  const source=card.querySelector('.pose-mini-visual img'),destination=document.getElementById('poseTipImage');destination.src=source.src;destination.alt=source.alt;
  document.getElementById('poseTipDetails').innerHTML=card.querySelector('.pose-tip-data').innerHTML;
+ document.getElementById('poseTipGuides').innerHTML=card.querySelector('.pose-v5-overlay').outerHTML;
+ document.getElementById('poseTipStage').classList.add('is-guided');
+ document.getElementById('togglePoseGuides').setAttribute('aria-pressed','true');
  if(typeof tipsDialog.showModal==='function')tipsDialog.showModal();
 }
 document.querySelectorAll('[data-open-pose-tips]').forEach(button=>button.addEventListener('click',()=>openPoseTips(button)));
 function closePoseTips(){tipsDialog.close();if(poseReturnFocus)poseReturnFocus.focus();}
+document.getElementById('togglePoseGuides').addEventListener('click',()=>{ const stage=document.getElementById('poseTipStage'); const on=stage.classList.toggle('is-guided');document.getElementById('togglePoseGuides').setAttribute('aria-pressed',String(on));});
 document.getElementById('closePoseTips').addEventListener('click',closePoseTips);
 document.getElementById('poseTipsDone').addEventListener('click',closePoseTips);
 tipsDialog.addEventListener('click',event=>{if(event.target===tipsDialog)closePoseTips();});
