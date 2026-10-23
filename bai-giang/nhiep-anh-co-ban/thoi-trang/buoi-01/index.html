@@ -1,0 +1,6700 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Buổi 01 — Tư duy Nhiếp ảnh Thời trang | Hang Đôi Academy</title>
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="https://academy.hangdoiproduction.com/bai-giang/nhiep-anh-co-ban/thoi-trang/buoi-01/">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f5f5f2;
+      color: #171717;
+    }
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 24px 96px;
+    }
+    .hero {
+      padding: 72px 0 54px;
+      border-bottom: 1px solid #d9d9d3;
+    }
+    .kicker {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    h1 {
+      max-width: 940px;
+      margin: 0;
+      font-size: clamp(44px, 7vw, 78px);
+      line-height: .96;
+      letter-spacing: -.05em;
+    }
+    .hero p {
+      max-width: 760px;
+      margin: 24px 0 0;
+      font-size: 20px;
+      line-height: 1.6;
+      color: #626262;
+    }
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 12px;
+      margin-top: 42px;
+    }
+    .meta div {
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #ecece7;
+      border-radius: 14px;
+    }
+    .meta span {
+      display: block;
+      font-size: 12px;
+      color: #777;
+      margin-bottom: 8px;
+    }
+    .meta strong { font-size: 21px; }
+    .section {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 28px;
+      padding: 68px 0;
+      border-bottom: 1px solid #d9d9d3;
+    }
+    .num {
+      font-size: 13px;
+      font-weight: 700;
+      color: #8a8a84;
+    }
+    h2 {
+      margin: 0 0 28px;
+      font-size: 36px;
+      letter-spacing: -.03em;
+    }
+    h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+    }
+    p { line-height: 1.65; }
+    .lead {
+      max-width: 800px;
+      margin: -10px 0 28px;
+      color: #646464;
+      font-size: 18px;
+    }
+    .grid-2, .grid-3, .grid-4 {
+      display: grid;
+      gap: 14px;
+    }
+    .grid-2 { grid-template-columns: repeat(2,1fr); }
+    .grid-3 { grid-template-columns: repeat(3,1fr); }
+    .grid-4 { grid-template-columns: repeat(4,1fr); }
+    .card {
+      padding: 22px;
+      background: #fff;
+      border: 1px solid #ecece7;
+      border-radius: 14px;
+    }
+    .card p {
+      margin: 0;
+      color: #666;
+    }
+    .card small {
+      display: block;
+      margin-top: 14px;
+      color: #888;
+      line-height: 1.5;
+    }
+    .highlight {
+      padding: 30px;
+      background: #171717;
+      color: #fff;
+      border-radius: 18px;
+      margin-bottom: 26px;
+    }
+    .highlight span {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .12em;
+    }
+    .highlight h3 {
+      margin: 14px 0 8px;
+      font-size: 30px;
+    }
+    .highlight p { margin: 0; color: #cfcfcf; }
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid #ecece7;
+      border-radius: 14px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+    }
+    th, td {
+      padding: 18px 20px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid #e8e8e3;
+      line-height: 1.5;
+    }
+    th {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      background: #fafaf8;
+    }
+    tr:last-child td { border-bottom: 0; }
+    .framework {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 14px;
+    }
+    .fw-card {
+      padding: 22px;
+      border-radius: 14px;
+      background: #fff;
+      border: 1px solid #ecece7;
+    }
+    .fw-card span {
+      display: block;
+      font-size: 12px;
+      color: #8a8a84;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .fw-card p { margin: 0; color: #666; }
+    .fw-card.wide { grid-column: span 2; }
+    .exercise {
+      padding: 28px;
+      margin-top: 24px;
+      border-radius: 16px;
+      background: #ecece7;
+    }
+    .exercise-label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .12em;
+    }
+    .exercise h3 {
+      margin: 12px 0;
+      font-size: 26px;
+    }
+    .shot-list {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .shot {
+      padding: 18px;
+      background: #fff;
+      border: 1px solid #e4e4df;
+      border-radius: 12px;
+    }
+    .shot strong { display: block; margin-bottom: 6px; }
+    .shot span { color: #777; font-size: 13px; }
+    .flow {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .flow span {
+      padding: 10px 14px;
+      border-radius: 100px;
+      background: #fff;
+      border: 1px solid #e7e7e2;
+      font-size: 14px;
+    }
+    .flow i { font-style: normal; color: #999; }
+    blockquote {
+      margin: 26px 0 0;
+      padding-left: 22px;
+      border-left: 3px solid #171717;
+      font-size: 25px;
+      line-height: 1.45;
+    }
+    .output-list {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 12px;
+    }
+    .output-list div {
+      padding: 20px;
+      border-radius: 12px;
+      background: #171717;
+      color: #fff;
+    }
+    .output-list span { color: #8f8f8f; margin-right: 10px; }
+    .note {
+      margin-top: 24px;
+      padding: 24px;
+      border-radius: 14px;
+      background: #fff;
+      border: 1px solid #ecece7;
+      color: #626262;
+    }
+    .teaching {
+      margin-top: 58px;
+      padding: 42px;
+      background: #171717;
+      color: #fff;
+      border-radius: 18px;
+    }
+    .teaching h2 { margin-bottom: 14px; }
+    .teaching p { max-width: 760px; color: #bdbdbd; }
+
+    .visual-ref {
+      margin-top: 26px;
+      padding: 22px;
+      background: #ecece7;
+      border-radius: 16px;
+    }
+    .visual-ref-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: end;
+      margin-bottom: 16px;
+    }
+    .visual-ref-head .label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #6f6f68;
+    }
+    .visual-ref-head p {
+      margin: 0;
+      max-width: 620px;
+      color: #666;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .pin-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 14px;
+      align-items: start;
+    }
+    .pin-grid.one {
+      grid-template-columns: 1fr;
+    }
+    .pin-card {
+      min-width: 0;
+      padding: 12px;
+      background: #fff;
+      border: 1px solid #e4e4df;
+      border-radius: 12px;
+    }
+    .pin-title {
+      margin: 0 0 10px;
+      font-size: 12px;
+      font-weight: 750;
+      color: #313131;
+    }
+    .pin-note {
+      margin: 10px 0 0;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #747474;
+    }
+    .pin-embed-wrap {
+      min-height: 280px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+    .ref-credit {
+      margin-top: 10px;
+      font-size: 11px;
+      color: #87877f;
+      line-height: 1.45;
+    }
+
+    /* ===== Academy lesson shell · Hero + Section 01 ===== */
+    :root {
+      --paper-0:#FFFDF7;
+      --paper-50:#F8F4EA;
+      --paper-100:#F2ECDF;
+      --paper-200:#E8DFD0;
+      --green-950:#0F422D;
+      --green-800:#176B43;
+      --green-700:#239653;
+      --green-100:#E8F4DF;
+      --yellow:#F2D43D;
+      --orange:#F26A3D;
+      --cobalt:#3450D8;
+      --ink:#173326;
+    }
+
+    body {
+      background: var(--paper-50);
+      color: var(--ink);
+    }
+
+    .page {
+      max-width: 1240px;
+      padding-top: 18px;
+    }
+
+    .lesson-nav {
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      border-bottom: 1px solid var(--paper-200);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .lesson-nav-path {
+      display:flex;
+      align-items:center;
+      gap:9px;
+      flex-wrap:wrap;
+    }
+
+    .lesson-nav-path span:not(:last-child)::after {
+      content:"/";
+      margin-left:9px;
+      color:#9A9A8D;
+    }
+
+    .lesson-nav-time {
+      padding: 8px 12px;
+      border: 1px solid var(--green-950);
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .hero.hero-v2 {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 7fr) minmax(320px, 5fr);
+      gap: 30px;
+      min-height: 690px;
+      padding: 52px 0 56px;
+      border-bottom: 0;
+      overflow: hidden;
+    }
+
+    .hero-copy {
+      position:relative;
+      z-index:2;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      min-width:0;
+      padding: 6px 0;
+    }
+
+    .hero-eyebrow {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:32px;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .hero-eyebrow::before {
+      content:"";
+      width:42px;
+      height:4px;
+      background:var(--orange);
+    }
+
+    .hero-v2 h1 {
+      max-width: 770px;
+      margin: 0;
+      color: var(--green-950);
+      font-size: clamp(66px, 8.4vw, 126px);
+      line-height: .82;
+      letter-spacing: -.075em;
+      font-weight: 900;
+    }
+
+    .hero-v2 h1 .line-small {
+      display:block;
+      margin-bottom:12px;
+      font-size:.33em;
+      line-height:1;
+      letter-spacing:-.035em;
+      color:var(--green-800);
+    }
+
+    .hero-v2 h1 .line-accent {
+      position:relative;
+      display:inline-block;
+    }
+
+    .hero-v2 h1 .line-accent::after {
+      content:"";
+      position:absolute;
+      left:2%;
+      right:-4%;
+      bottom:.02em;
+      height:.12em;
+      background:var(--yellow);
+      z-index:-1;
+      transform:rotate(-1deg);
+    }
+
+    .hero-intro {
+      max-width: 610px !important;
+      margin: 34px 0 0 !important;
+      color:#435A4D !important;
+      font-size:18px !important;
+      line-height:1.55 !important;
+    }
+
+    .hero-bottom {
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:24px;
+      align-items:end;
+      margin-top:54px;
+    }
+
+    .hero-principle {
+      max-width:510px;
+      padding-top:16px;
+      border-top:2px solid var(--green-950);
+      font-size:15px;
+      line-height:1.5;
+    }
+
+    .hero-principle strong {
+      display:block;
+      margin-bottom:7px;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.1em;
+    }
+
+    .hero-meta-strip {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      border:1px solid var(--green-950);
+      background:var(--paper-0);
+    }
+
+    .hero-meta-strip div {
+      min-height:90px;
+      padding:14px;
+      border-right:1px solid var(--green-950);
+    }
+
+    .hero-meta-strip div:last-child { border-right:0; }
+
+    .hero-meta-strip span {
+      display:block;
+      margin-bottom:12px;
+      color:#6B756F;
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:.1em;
+    }
+
+    .hero-meta-strip strong {
+      font-size:19px;
+      line-height:1.05;
+    }
+
+    .hero-visual {
+      position:relative;
+      min-height:560px;
+      align-self:center;
+    }
+
+    .hero-green-block {
+      position:absolute;
+      inset:26px 0 30px 44px;
+      background:var(--green-800);
+      border-radius: 48% 48% 8px 8px / 34% 34% 8px 8px;
+    }
+
+    .hero-pin {
+      position:absolute;
+      z-index:2;
+      top:0;
+      left:0;
+      right:34px;
+      min-height:510px;
+      padding:14px 14px 8px;
+      background:var(--paper-0);
+      border:2px solid var(--green-950);
+      box-shadow:12px 12px 0 rgba(15,66,45,.16);
+      overflow:hidden;
+    }
+
+    .hero-pin .pin-embed-wrap {
+      min-height:445px;
+      background:var(--paper-100);
+    }
+
+    .hero-pin-caption {
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      padding-top:10px;
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.04em;
+    }
+
+    .hero-sticker {
+      position:absolute;
+      z-index:3;
+      right:0;
+      top:62px;
+      width:118px;
+      height:118px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      background:var(--yellow);
+      border:2px solid var(--green-950);
+      border-radius:50%;
+      text-align:center;
+      font-size:12px;
+      font-weight:900;
+      line-height:1.1;
+      text-transform:uppercase;
+      transform:rotate(7deg);
+    }
+
+    .hero-session-no {
+      position:absolute;
+      right:4px;
+      bottom:-26px;
+      z-index:1;
+      color:var(--paper-100);
+      font-size:190px;
+      font-weight:900;
+      line-height:1;
+      letter-spacing:-.08em;
+      -webkit-text-stroke: 2px var(--green-950);
+    }
+
+    .section.section-objectives {
+      display:block;
+      position:relative;
+      margin: 0 -24px;
+      padding: 86px 24px 92px;
+      background: var(--green-950);
+      color:var(--paper-0);
+      border-bottom:0;
+      overflow:hidden;
+    }
+
+    .objective-layout {
+      display:grid;
+      grid-template-columns: minmax(260px,4fr) minmax(0,8fr);
+      gap:54px;
+      align-items:start;
+    }
+
+    .objective-heading {
+      position:sticky;
+      top:28px;
+    }
+
+    .objective-kicker {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:20px;
+      color:#CFE2D6;
+      font-size:11px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+    }
+
+    .objective-kicker b {
+      display:inline-flex;
+      width:32px;
+      height:32px;
+      align-items:center;
+      justify-content:center;
+      background:var(--yellow);
+      color:var(--green-950);
+      border-radius:50%;
+      font-size:12px;
+    }
+
+    .objective-heading h2 {
+      margin:0;
+      max-width:390px;
+      color:var(--paper-0);
+      font-size:clamp(48px,5.4vw,76px);
+      line-height:.9;
+      letter-spacing:-.055em;
+      font-weight:900;
+    }
+
+    .objective-heading p {
+      max-width:370px;
+      margin:24px 0 0;
+      color:#C4D4CA;
+      font-size:16px;
+      line-height:1.6;
+    }
+
+    .objective-core {
+      display:grid;
+      gap:0;
+      border-top:1px solid rgba(255,255,255,.28);
+    }
+
+    .objective-item {
+      display:grid;
+      grid-template-columns:74px minmax(160px,1.1fr) minmax(220px,1.4fr);
+      gap:18px;
+      align-items:center;
+      min-height:142px;
+      border-bottom:1px solid rgba(255,255,255,.28);
+    }
+
+    .objective-no {
+      color:var(--yellow);
+      font-size:42px;
+      font-weight:900;
+      line-height:1;
+      letter-spacing:-.05em;
+    }
+
+    .objective-item h3 {
+      margin:0;
+      color:var(--paper-0);
+      font-size:25px;
+      line-height:1.05;
+      letter-spacing:-.025em;
+    }
+
+    .objective-item p {
+      margin:0;
+      color:#C4D4CA;
+      font-size:15px;
+      line-height:1.55;
+    }
+
+    .objective-outcomes {
+      grid-column:2;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      margin-top:22px;
+    }
+
+    .objective-outcomes div {
+      min-height:106px;
+      padding:16px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.15);
+    }
+
+    .objective-outcomes span {
+      display:block;
+      margin-bottom:9px;
+      color:var(--yellow);
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .objective-outcomes strong {
+      font-size:15px;
+      line-height:1.35;
+      font-weight:700;
+    }
+
+    .section-objectives::after {
+      content:"MẮT";
+      position:absolute;
+      right:-26px;
+      bottom:-52px;
+      color:rgba(255,255,255,.035);
+      font-size:220px;
+      line-height:1;
+      font-weight:900;
+      letter-spacing:-.08em;
+      pointer-events:none;
+    }
+
+    /* ===== Gợi ý giảng viên: hover trên máy tính, chạm trên di động ===== */
+    .teacher-note {
+      position: relative;
+      display: inline-block;
+      z-index: 20;
+    }
+
+    .teacher-note summary {
+      list-style: none;
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(15,66,45,.32);
+      border-radius: 999px;
+      background: var(--paper-0);
+      color: var(--green-950);
+      font-size: 14px;
+      font-weight: 900;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 4px 12px rgba(15,66,45,.08);
+    }
+
+    .teacher-note summary::-webkit-details-marker { display:none; }
+
+    .teacher-note summary::before {
+      content: "i";
+      font-family: Georgia, serif;
+      font-style: italic;
+    }
+
+    .teacher-note summary:hover,
+    .teacher-note[open] summary {
+      background: var(--yellow);
+      border-color: var(--green-950);
+    }
+
+    .teacher-note-popover {
+      position: absolute;
+      top: 44px;
+      right: 0;
+      width: min(360px, 78vw);
+      padding: 18px;
+      background: var(--paper-0);
+      color: var(--green-950);
+      border: 1px solid var(--green-950);
+      box-shadow: 8px 8px 0 rgba(15,66,45,.12);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-5px);
+      transition: .16s ease;
+      pointer-events: none;
+    }
+
+    .teacher-note:hover .teacher-note-popover,
+    .teacher-note[open] .teacher-note-popover {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .teacher-note-popover::before {
+      content:"GỢI Ý GIẢNG VIÊN";
+      display:block;
+      margin-bottom:10px;
+      color: var(--green-700);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .12em;
+    }
+
+    .teacher-note-popover h4 {
+      margin: 14px 0 6px;
+      font-size: 13px;
+      line-height: 1.25;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    .teacher-note-popover h4:first-of-type { margin-top:0; }
+
+    .teacher-note-popover p,
+    .teacher-note-popover li {
+      margin:0;
+      color:#3F5549;
+      font-size:13px;
+      line-height:1.5;
+    }
+
+    .teacher-note-popover ul {
+      margin: 6px 0 0;
+      padding-left: 18px;
+    }
+
+    .teacher-note-inline {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+
+    .section-note-anchor {
+      position:absolute;
+      top:24px;
+      right:24px;
+    }
+
+    .hero-note-anchor {
+      position:absolute;
+      z-index:30;
+      top:22px;
+      right:6px;
+    }
+
+    .section-objectives .teacher-note summary {
+      background: rgba(255,255,255,.08);
+      color: var(--paper-0);
+      border-color: rgba(255,255,255,.35);
+      box-shadow:none;
+    }
+
+    .section-objectives .teacher-note summary:hover,
+    .section-objectives .teacher-note[open] summary {
+      background: var(--yellow);
+      color: var(--green-950);
+      border-color: var(--yellow);
+    }
+
+    @media (max-width:800px) {
+      .teacher-note-popover {
+        position: fixed;
+        left: 16px;
+        right: 16px;
+        top: auto;
+        bottom: 18px;
+        width: auto;
+        max-height: 58vh;
+        overflow:auto;
+        z-index: 99;
+      }
+      .hero-note-anchor { top: 8px; right: 0; }
+      .section-note-anchor { top:14px; right:16px; }
+    }
+
+    /* ===== Section 02 · Chân dung / Sản phẩm / Thời trang ===== */
+    .section.section-compare {
+      position:relative;
+      display:block;
+      margin:0 -24px;
+      padding:88px 24px 96px;
+      background:var(--paper-0);
+      border-bottom:1px solid var(--paper-200);
+      overflow:hidden;
+    }
+
+    .compare-head {
+      display:grid;
+      grid-template-columns:minmax(0,7fr) minmax(260px,5fr);
+      gap:42px;
+      align-items:end;
+      margin-bottom:44px;
+    }
+
+    .compare-kicker {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:18px;
+      color:var(--green-700);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .compare-kicker b {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      background:var(--orange);
+      color:var(--paper-0);
+      font-size:12px;
+    }
+
+    .compare-head h2 {
+      margin:0;
+      max-width:760px;
+      color:var(--green-950);
+      font-size:clamp(50px,6vw,84px);
+      line-height:.9;
+      letter-spacing:-.055em;
+      font-weight:900;
+    }
+
+    .compare-lead {
+      max-width:430px;
+      margin:0;
+      padding-top:18px;
+      border-top:2px solid var(--green-950);
+      color:#4E6257;
+      font-size:16px;
+      line-height:1.6;
+    }
+
+    .compare-stage {
+      position:relative;
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+      align-items:stretch;
+    }
+
+    .compare-panel {
+      position:relative;
+      min-height:560px;
+      display:flex;
+      flex-direction:column;
+      border:1px solid var(--green-950);
+      background:var(--paper-50);
+      overflow:hidden;
+    }
+
+    .compare-panel.is-fashion {
+      background:var(--green-950);
+      color:var(--paper-0);
+    }
+
+    .compare-panel-top {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 16px;
+      border-bottom:1px solid rgba(15,66,45,.28);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .compare-panel.is-fashion .compare-panel-top {
+      border-color:rgba(255,255,255,.2);
+    }
+
+    .compare-panel-top span:last-child {
+      color:#53655A;
+      font-weight:800;
+    }
+
+    .compare-panel.is-fashion .compare-panel-top span:last-child {
+      color:#AFC6B7;
+    }
+
+    .compare-photo {
+      position:relative;
+      min-height:330px;
+      background:var(--paper-100);
+      border-bottom:1px solid rgba(15,66,45,.18);
+      overflow:hidden;
+    }
+
+    .compare-panel.is-fashion .compare-photo {
+      border-color:rgba(255,255,255,.16);
+      background:#143F2E;
+    }
+
+    .compare-photo .pin-embed-wrap {
+      min-height:330px;
+      padding:0;
+      border-radius:0;
+      background:transparent;
+    }
+
+    .compare-body {
+      display:flex;
+      flex:1;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:24px;
+      padding:22px 20px 20px;
+    }
+
+    .compare-body h3 {
+      margin:0 0 10px;
+      color:inherit;
+      font-size:29px;
+      line-height:.95;
+      letter-spacing:-.04em;
+    }
+
+    .compare-body p {
+      margin:0;
+      color:#526359;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .compare-panel.is-fashion .compare-body p {
+      color:#C7D7CD;
+    }
+
+    .compare-focus {
+      display:grid;
+      gap:8px;
+      padding-top:16px;
+      border-top:1px solid rgba(15,66,45,.2);
+    }
+
+    .compare-panel.is-fashion .compare-focus {
+      border-color:rgba(255,255,255,.18);
+    }
+
+    .compare-focus span {
+      color:#53655A;
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+
+    .compare-panel.is-fashion .compare-focus span {
+      color:var(--yellow);
+    }
+
+    .compare-focus strong {
+      font-size:14px;
+      line-height:1.35;
+    }
+
+    .compare-equation {
+      position:relative;
+      display:grid;
+      grid-template-columns:1fr auto 1fr auto 1fr;
+      align-items:center;
+      gap:8px;
+      margin-top:24px;
+      padding:18px 20px;
+      border:1px solid var(--green-950);
+      background:var(--paper-50);
+    }
+
+    .compare-equation strong {
+      font-size:14px;
+      line-height:1.25;
+      text-align:center;
+    }
+
+    .compare-equation i {
+      color:var(--orange);
+      font-size:22px;
+      font-style:normal;
+      font-weight:900;
+    }
+
+    .compare-question {
+      margin-top:24px;
+      display:grid;
+      grid-template-columns:42px 1fr;
+      gap:14px;
+      align-items:start;
+      padding:20px 22px;
+      background:var(--cobalt);
+      color:white;
+    }
+
+    .compare-question b {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      background:var(--yellow);
+      color:var(--green-950);
+      font-size:20px;
+    }
+
+    .compare-question p {
+      margin:0;
+      font-size:18px;
+      line-height:1.45;
+      font-weight:750;
+    }
+
+    .compare-question small {
+      display:block;
+      margin-top:8px;
+      color:#D6DCF8;
+      font-size:12px;
+      line-height:1.5;
+      font-weight:500;
+    }
+
+    @media (max-width:800px) {
+      .section.section-compare {
+        margin:0 -16px;
+        padding:62px 16px 68px;
+      }
+
+      .compare-head {
+        grid-template-columns:1fr;
+        gap:24px;
+        margin-bottom:30px;
+      }
+
+      .compare-head h2 { font-size:52px; }
+
+      .compare-stage {
+        grid-template-columns:1fr;
+        gap:12px;
+      }
+
+      .compare-panel {
+        min-height:auto;
+      }
+
+      .compare-photo,
+      .compare-photo .pin-embed-wrap {
+        min-height:300px;
+      }
+
+      .compare-equation {
+        grid-template-columns:1fr;
+        text-align:left;
+      }
+
+      .compare-equation strong { text-align:left; }
+      .compare-equation i { transform:rotate(90deg); }
+    }
+
+    /* ===== Section 03 · 4 mục đích chụp thời trang ===== */
+    .section.section-types {
+      position:relative;
+      display:block;
+      margin:0 -24px;
+      padding:90px 24px 96px;
+      background:var(--paper-100);
+      border-bottom:1px solid var(--paper-200);
+      overflow:hidden;
+    }
+
+    .types-head {
+      display:grid;
+      grid-template-columns:minmax(0,7fr) minmax(260px,5fr);
+      gap:42px;
+      align-items:end;
+      margin-bottom:42px;
+    }
+
+    .types-kicker {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:18px;
+      color:var(--cobalt);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .types-kicker b {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      background:var(--cobalt);
+      color:white;
+      font-size:12px;
+    }
+
+    .types-head h2 {
+      margin:0;
+      max-width:760px;
+      color:var(--green-950);
+      font-size:clamp(50px,6vw,84px);
+      line-height:.9;
+      letter-spacing:-.055em;
+      font-weight:900;
+    }
+
+    .types-lead {
+      max-width:430px;
+      margin:0;
+      padding-top:18px;
+      border-top:2px solid var(--green-950);
+      color:#4E6257;
+      font-size:16px;
+      line-height:1.6;
+    }
+
+    .types-grid {
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:16px;
+    }
+
+    .type-card {
+      display:grid;
+      grid-template-columns:minmax(210px, .92fr) minmax(0,1.08fr);
+      min-height:360px;
+      border:1px solid var(--green-950);
+      background:var(--paper-0);
+      overflow:hidden;
+    }
+
+    .type-card:nth-child(2) {
+      background:var(--green-100);
+    }
+
+    .type-card:nth-child(3) {
+      background:#F7E4DC;
+    }
+
+    .type-card:nth-child(4) {
+      background:#E7EAFB;
+    }
+
+    .type-image {
+      min-height:360px;
+      background:var(--paper-200);
+      border-right:1px solid var(--green-950);
+      overflow:hidden;
+    }
+
+    .type-image .pin-embed-wrap {
+      min-height:360px;
+      border-radius:0;
+      background:transparent;
+    }
+
+    .type-copy {
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      padding:24px 22px;
+    }
+
+    .type-index {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:28px;
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+      color:#53655A;
+    }
+
+    .type-index b {
+      display:inline-flex;
+      width:34px;
+      height:34px;
+      align-items:center;
+      justify-content:center;
+      border:1px solid var(--green-950);
+      border-radius:50%;
+      color:var(--green-950);
+      font-size:12px;
+    }
+
+    .type-copy h3 {
+      margin:0 0 14px;
+      color:var(--green-950);
+      font-size:31px;
+      line-height:.95;
+      letter-spacing:-.045em;
+    }
+
+    .type-copy p {
+      margin:0;
+      color:#4E6257;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .type-signals {
+      display:grid;
+      gap:7px;
+      margin-top:24px;
+      padding-top:16px;
+      border-top:1px solid rgba(15,66,45,.22);
+    }
+
+    .type-signals span {
+      color:#53655A;
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+
+    .type-signals strong {
+      color:var(--green-950);
+      font-size:13px;
+      line-height:1.4;
+    }
+
+    .types-test {
+      display:grid;
+      grid-template-columns:minmax(0,5fr) minmax(260px,7fr);
+      gap:18px;
+      margin-top:24px;
+      padding:22px;
+      border:1px solid var(--green-950);
+      background:var(--green-950);
+      color:var(--paper-0);
+    }
+
+    .types-test-label {
+      display:flex;
+      align-items:flex-start;
+      gap:14px;
+    }
+
+    .types-test-label b {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:44px;
+      height:44px;
+      flex:0 0 auto;
+      border-radius:50%;
+      background:var(--yellow);
+      color:var(--green-950);
+      font-size:18px;
+    }
+
+    .types-test h3 {
+      margin:0 0 8px;
+      color:var(--paper-0);
+      font-size:25px;
+      line-height:1.05;
+      letter-spacing:-.03em;
+    }
+
+    .types-test p {
+      margin:0;
+      color:#C7D7CD;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .types-test-questions {
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      border-left:1px solid rgba(255,255,255,.2);
+    }
+
+    .types-test-questions div {
+      padding:12px 18px;
+      border-bottom:1px solid rgba(255,255,255,.14);
+    }
+
+    .types-test-questions div:nth-last-child(-n+2) {
+      border-bottom:0;
+    }
+
+    .types-test-questions strong {
+      display:block;
+      margin-bottom:5px;
+      color:var(--yellow);
+      font-size:11px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .types-test-questions span {
+      color:var(--paper-0);
+      font-size:13px;
+      line-height:1.45;
+    }
+
+    @media (max-width:800px) {
+      .section.section-types {
+        margin:0 -16px;
+        padding:62px 16px 68px;
+      }
+
+      .types-head {
+        grid-template-columns:1fr;
+        gap:24px;
+        margin-bottom:30px;
+      }
+
+      .types-head h2 { font-size:52px; }
+
+      .types-grid {
+        grid-template-columns:1fr;
+      }
+
+      .type-card {
+        grid-template-columns:1fr;
+      }
+
+      .type-image {
+        min-height:300px;
+        border-right:0;
+        border-bottom:1px solid var(--green-950);
+      }
+
+      .type-image .pin-embed-wrap { min-height:300px; }
+
+      .types-test {
+        grid-template-columns:1fr;
+      }
+
+      .types-test-questions {
+        grid-template-columns:1fr;
+        border-left:0;
+        border-top:1px solid rgba(255,255,255,.2);
+        margin-top:4px;
+      }
+
+      .types-test-questions div,
+      .types-test-questions div:nth-last-child(-n+2) {
+        border-bottom:1px solid rgba(255,255,255,.14);
+      }
+
+      .types-test-questions div:last-child { border-bottom:0; }
+    }
+
+    /* ===== Section 04 · Bản đồ đọc trang phục ===== */
+    .section.section-garment {
+      position:relative;
+      display:block;
+      margin:0 -24px;
+      padding:92px 24px 98px;
+      background:var(--paper-0);
+      border-bottom:1px solid var(--paper-200);
+      overflow:hidden;
+    }
+
+    .garment-head {
+      display:grid;
+      grid-template-columns:minmax(0,7fr) minmax(260px,5fr);
+      gap:42px;
+      align-items:end;
+      margin-bottom:42px;
+    }
+
+    .garment-kicker {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:18px;
+      color:var(--orange);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .garment-kicker b {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      background:var(--orange);
+      color:white;
+      font-size:12px;
+    }
+
+    .garment-head h2 {
+      margin:0;
+      max-width:760px;
+      color:var(--green-950);
+      font-size:clamp(50px,6vw,84px);
+      line-height:.9;
+      letter-spacing:-.055em;
+      font-weight:900;
+    }
+
+    .garment-lead {
+      max-width:430px;
+      margin:0;
+      padding-top:18px;
+      border-top:2px solid var(--green-950);
+      color:#4E6257;
+      font-size:16px;
+      line-height:1.6;
+    }
+
+    .garment-map {
+      display:grid;
+      grid-template-columns:minmax(190px,1fr) minmax(320px,1.5fr) minmax(190px,1fr);
+      gap:16px;
+      align-items:stretch;
+    }
+
+    .garment-side {
+      display:grid;
+      gap:16px;
+    }
+
+    .garment-point {
+      min-height:210px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      padding:20px;
+      border:1px solid var(--green-950);
+      background:var(--paper-50);
+    }
+
+    .garment-point.is-green {
+      background:var(--green-100);
+    }
+
+    .garment-point.is-orange {
+      background:#F7E4DC;
+    }
+
+    .garment-point.is-blue {
+      background:#E7EAFB;
+    }
+
+    .garment-point-top {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:24px;
+    }
+
+    .garment-point-top b {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:34px;
+      height:34px;
+      border:1px solid var(--green-950);
+      border-radius:50%;
+      color:var(--green-950);
+      font-size:12px;
+    }
+
+    .garment-point-top span {
+      color:#53655A;
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+
+    .garment-point h3 {
+      margin:0 0 10px;
+      color:var(--green-950);
+      font-size:28px;
+      line-height:.95;
+      letter-spacing:-.04em;
+    }
+
+    .garment-point p {
+      margin:0;
+      color:#4E6257;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .garment-visual {
+      position:relative;
+      min-height:436px;
+      border:1px solid var(--green-950);
+      background:var(--green-800);
+      overflow:hidden;
+    }
+
+    .garment-visual::before {
+      content:"";
+      position:absolute;
+      inset:18px;
+      border:1px solid rgba(255,255,255,.35);
+      pointer-events:none;
+      z-index:2;
+    }
+
+    .garment-visual .pin-embed-wrap {
+      min-height:436px;
+      border-radius:0;
+      background:transparent;
+    }
+
+    .garment-visual-label {
+      position:absolute;
+      left:18px;
+      right:18px;
+      bottom:18px;
+      z-index:3;
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      padding:12px 14px;
+      background:rgba(15,66,45,.92);
+      color:white;
+      border:1px solid rgba(255,255,255,.3);
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.04em;
+    }
+
+    .garment-check {
+      display:grid;
+      grid-template-columns:minmax(0,5fr) minmax(320px,7fr);
+      gap:18px;
+      margin-top:22px;
+      padding:22px;
+      border:1px solid var(--green-950);
+      background:var(--paper-100);
+    }
+
+    .garment-check-intro {
+      padding-right:18px;
+      border-right:1px solid rgba(15,66,45,.22);
+    }
+
+    .garment-check-intro span {
+      display:block;
+      margin-bottom:10px;
+      color:var(--green-700);
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+
+    .garment-check-intro h3 {
+      margin:0 0 10px;
+      color:var(--green-950);
+      font-size:26px;
+      line-height:1.02;
+      letter-spacing:-.03em;
+    }
+
+    .garment-check-intro p {
+      margin:0;
+      color:#526359;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .garment-checklist {
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:0;
+    }
+
+    .garment-checklist div {
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding:10px 14px;
+      border-bottom:1px solid rgba(15,66,45,.14);
+    }
+
+    .garment-checklist div:nth-last-child(-n+2) {
+      border-bottom:0;
+    }
+
+    .garment-checklist b {
+      color:var(--orange);
+      font-size:15px;
+      line-height:1.2;
+    }
+
+    .garment-checklist span {
+      color:var(--green-950);
+      font-size:13px;
+      line-height:1.45;
+    }
+
+    .garment-quote {
+      margin-top:22px;
+      padding:24px 28px;
+      background:var(--green-950);
+      color:var(--paper-0);
+      border-left:8px solid var(--yellow);
+      font-size:clamp(22px,2.5vw,34px);
+      line-height:1.28;
+      letter-spacing:-.025em;
+      font-weight:800;
+    }
+
+    @media (max-width:800px) {
+      .section.section-garment {
+        margin:0 -16px;
+        padding:62px 16px 68px;
+      }
+
+      .garment-head {
+        grid-template-columns:1fr;
+        gap:24px;
+        margin-bottom:30px;
+      }
+
+      .garment-head h2 { font-size:52px; }
+
+      .garment-map {
+        grid-template-columns:1fr;
+      }
+
+      .garment-side { grid-template-columns:1fr 1fr; }
+
+      .garment-visual {
+        order:-1;
+        min-height:420px;
+      }
+
+      .garment-visual .pin-embed-wrap { min-height:420px; }
+
+      .garment-check {
+        grid-template-columns:1fr;
+      }
+
+      .garment-check-intro {
+        padding-right:0;
+        padding-bottom:16px;
+        border-right:0;
+        border-bottom:1px solid rgba(15,66,45,.22);
+      }
+
+      .garment-checklist {
+        grid-template-columns:1fr;
+      }
+
+      .garment-checklist div,
+      .garment-checklist div:nth-last-child(-n+2) {
+        border-bottom:1px solid rgba(15,66,45,.14);
+      }
+
+      .garment-checklist div:last-child { border-bottom:0; }
+    }
+
+    /* ===== Section 05 · Góc máy & tỷ lệ cơ thể ===== */
+    .section.section-angle {
+      position:relative;
+      display:block;
+      margin:0 -24px;
+      padding:92px 24px 98px;
+      background:var(--green-950);
+      color:var(--paper-0);
+      border-bottom:0;
+      overflow:hidden;
+    }
+
+    .angle-head {
+      display:grid;
+      grid-template-columns:minmax(0,7fr) minmax(260px,5fr);
+      gap:42px;
+      align-items:end;
+      margin-bottom:42px;
+    }
+
+    .angle-kicker {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:18px;
+      color:var(--yellow);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .angle-kicker b {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      background:var(--yellow);
+      color:var(--green-950);
+      font-size:12px;
+    }
+
+    .angle-head h2 {
+      margin:0;
+      max-width:760px;
+      color:var(--paper-0);
+      font-size:clamp(50px,6vw,84px);
+      line-height:.9;
+      letter-spacing:-.055em;
+      font-weight:900;
+    }
+
+    .angle-lead {
+      max-width:430px;
+      margin:0;
+      padding-top:18px;
+      border-top:2px solid rgba(255,255,255,.7);
+      color:#C7D7CD;
+      font-size:16px;
+      line-height:1.6;
+    }
+
+    .angle-grid {
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+    }
+
+    .angle-card {
+      position:relative;
+      min-height:520px;
+      display:flex;
+      flex-direction:column;
+      border:1px solid rgba(255,255,255,.35);
+      background:rgba(255,255,255,.035);
+      overflow:hidden;
+    }
+
+    .angle-card.is-neutral {
+      background:var(--paper-0);
+      color:var(--green-950);
+      border-color:var(--yellow);
+      box-shadow:0 0 0 3px rgba(242,212,61,.15);
+    }
+
+    .angle-diagram {
+      position:relative;
+      min-height:280px;
+      border-bottom:1px solid rgba(255,255,255,.18);
+      overflow:hidden;
+    }
+
+    .angle-card.is-neutral .angle-diagram {
+      border-color:rgba(15,66,45,.18);
+      background:var(--paper-100);
+    }
+
+    .angle-horizon {
+      position:absolute;
+      left:18px;
+      right:18px;
+      top:50%;
+      border-top:1px dashed rgba(255,255,255,.28);
+    }
+
+    .angle-card.is-neutral .angle-horizon {
+      border-color:rgba(15,66,45,.22);
+    }
+
+    .angle-person {
+      position:absolute;
+      left:50%;
+      bottom:24px;
+      width:52px;
+      height:186px;
+      transform:translateX(-50%);
+    }
+
+    .angle-person::before {
+      content:"";
+      position:absolute;
+      top:0;
+      left:50%;
+      width:34px;
+      height:34px;
+      border:2px solid currentColor;
+      border-radius:50%;
+      transform:translateX(-50%);
+    }
+
+    .angle-person::after {
+      content:"";
+      position:absolute;
+      left:50%;
+      top:36px;
+      width:2px;
+      height:112px;
+      background:currentColor;
+      transform:translateX(-50%);
+      box-shadow:-24px 35px 0 -1px currentColor,24px 35px 0 -1px currentColor;
+    }
+
+    .angle-leg {
+      position:absolute;
+      bottom:0;
+      left:50%;
+      width:2px;
+      height:64px;
+      background:currentColor;
+      transform-origin:top;
+    }
+
+    .angle-leg.left { transform:translateX(-50%) rotate(10deg); }
+    .angle-leg.right { transform:translateX(-50%) rotate(-10deg); }
+
+    .angle-camera {
+      position:absolute;
+      right:34px;
+      width:54px;
+      height:36px;
+      border:2px solid currentColor;
+      border-radius:4px;
+    }
+
+    .angle-camera::before {
+      content:"";
+      position:absolute;
+      left:-16px;
+      top:9px;
+      width:14px;
+      height:14px;
+      border:2px solid currentColor;
+      border-right:0;
+    }
+
+    .angle-camera::after {
+      content:"";
+      position:absolute;
+      left:50%;
+      top:50%;
+      width:13px;
+      height:13px;
+      border:2px solid currentColor;
+      border-radius:50%;
+      transform:translate(-50%,-50%);
+    }
+
+    .angle-high .angle-camera { top:42px; }
+    .angle-eye .angle-camera { top:116px; }
+    .angle-low .angle-camera { bottom:40px; }
+
+    .angle-ray {
+      position:absolute;
+      right:82px;
+      width:155px;
+      height:1px;
+      background:currentColor;
+      transform-origin:right center;
+      opacity:.7;
+    }
+
+    .angle-high .angle-ray { top:74px; transform:rotate(15deg); }
+    .angle-eye .angle-ray { top:136px; transform:rotate(0deg); }
+    .angle-low .angle-ray { bottom:72px; transform:rotate(-15deg); }
+
+    .angle-copy {
+      display:flex;
+      flex:1;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:22px;
+      padding:20px;
+    }
+
+    .angle-copy-top span {
+      display:block;
+      margin-bottom:10px;
+      color:#AFC6B7;
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+
+    .angle-card.is-neutral .angle-copy-top span {
+      color:var(--green-700);
+    }
+
+    .angle-copy h3 {
+      margin:0 0 10px;
+      color:inherit;
+      font-size:29px;
+      line-height:.95;
+      letter-spacing:-.04em;
+    }
+
+    .angle-copy p {
+      margin:0;
+      color:#C7D7CD;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .angle-card.is-neutral .angle-copy p {
+      color:#526359;
+    }
+
+    .angle-effect {
+      display:grid;
+      gap:6px;
+      padding-top:14px;
+      border-top:1px solid rgba(255,255,255,.18);
+    }
+
+    .angle-card.is-neutral .angle-effect {
+      border-color:rgba(15,66,45,.18);
+    }
+
+    .angle-effect span {
+      color:var(--yellow);
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+
+    .angle-card.is-neutral .angle-effect span {
+      color:var(--orange);
+    }
+
+    .angle-effect strong {
+      font-size:13px;
+      line-height:1.4;
+    }
+
+    .angle-practice {
+      display:grid;
+      grid-template-columns:minmax(0,5fr) minmax(300px,7fr);
+      gap:18px;
+      margin-top:24px;
+      padding:22px;
+      border:1px solid rgba(255,255,255,.25);
+      background:rgba(255,255,255,.05);
+    }
+
+    .angle-practice h3 {
+      margin:0 0 8px;
+      color:var(--paper-0);
+      font-size:26px;
+      line-height:1.05;
+      letter-spacing:-.03em;
+    }
+
+    .angle-practice p {
+      margin:0;
+      color:#C7D7CD;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .angle-practice-steps {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+    }
+
+    .angle-practice-steps div {
+      min-height:96px;
+      padding:14px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.04);
+    }
+
+    .angle-practice-steps b {
+      display:block;
+      margin-bottom:8px;
+      color:var(--yellow);
+      font-size:11px;
+      letter-spacing:.08em;
+    }
+
+    .angle-practice-steps span {
+      color:var(--paper-0);
+      font-size:13px;
+      line-height:1.35;
+    }
+
+    .section-angle .teacher-note summary {
+      background:rgba(255,255,255,.08);
+      color:var(--paper-0);
+      border-color:rgba(255,255,255,.35);
+      box-shadow:none;
+    }
+
+    .section-angle .teacher-note summary:hover,
+    .section-angle .teacher-note[open] summary {
+      background:var(--yellow);
+      color:var(--green-950);
+      border-color:var(--yellow);
+    }
+
+    @media (max-width:800px) {
+      .section.section-angle {
+        margin:0 -16px;
+        padding:62px 16px 68px;
+      }
+
+      .angle-head {
+        grid-template-columns:1fr;
+        gap:24px;
+        margin-bottom:30px;
+      }
+
+      .angle-head h2 { font-size:52px; }
+
+      .angle-grid { grid-template-columns:1fr; }
+
+      .angle-card { min-height:auto; }
+
+      .angle-practice {
+        grid-template-columns:1fr;
+      }
+
+      .angle-practice-steps {
+        grid-template-columns:1fr;
+      }
+    }
+
+    /* ===== Section 06 · Tiêu cự & khoảng cách chụp ===== */
+    .section.section-focal {
+      position:relative;
+      display:block;
+      margin:0 -24px;
+      padding:92px 24px 98px;
+      background:var(--paper-50);
+      border-bottom:1px solid var(--paper-200);
+      overflow:hidden;
+    }
+
+    .focal-head {
+      display:grid;
+      grid-template-columns:minmax(0,7fr) minmax(260px,5fr);
+      gap:42px;
+      align-items:end;
+      margin-bottom:42px;
+    }
+
+    .focal-kicker {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:18px;
+      color:var(--cobalt);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .focal-kicker b {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      background:var(--cobalt);
+      color:white;
+      font-size:12px;
+    }
+
+    .focal-head h2 {
+      margin:0;
+      max-width:780px;
+      color:var(--green-950);
+      font-size:clamp(50px,6vw,84px);
+      line-height:.9;
+      letter-spacing:-.055em;
+      font-weight:900;
+    }
+
+    .focal-lead {
+      max-width:430px;
+      margin:0;
+      padding-top:18px;
+      border-top:2px solid var(--green-950);
+      color:#4E6257;
+      font-size:16px;
+      line-height:1.6;
+    }
+
+    .focal-rule {
+      display:grid;
+      grid-template-columns:minmax(220px,4fr) minmax(0,8fr);
+      gap:18px;
+      margin-bottom:24px;
+      padding:20px 22px;
+      border:1px solid var(--green-950);
+      background:var(--paper-0);
+    }
+
+    .focal-rule-label {
+      color:var(--orange);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+
+    .focal-rule p {
+      margin:0;
+      color:var(--green-950);
+      font-size:18px;
+      line-height:1.45;
+      font-weight:750;
+    }
+
+    .focal-stage {
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+      align-items:stretch;
+    }
+
+    .focal-card {
+      position:relative;
+      min-height:560px;
+      display:flex;
+      flex-direction:column;
+      border:1px solid var(--green-950);
+      background:var(--paper-0);
+      overflow:hidden;
+    }
+
+    .focal-card.is-mid {
+      background:var(--green-100);
+    }
+
+    .focal-card.is-long {
+      background:#E7EAFB;
+    }
+
+    .focal-visual {
+      position:relative;
+      min-height:300px;
+      border-bottom:1px solid var(--green-950);
+      overflow:hidden;
+    }
+
+    .focal-space {
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(to right, rgba(15,66,45,.08) 1px, transparent 1px) 0 0 / 40px 40px,
+        linear-gradient(to bottom, rgba(15,66,45,.08) 1px, transparent 1px) 0 0 / 40px 40px,
+        var(--paper-100);
+    }
+
+    .focal-card.is-mid .focal-space { background-color:#DFEFD7; }
+    .focal-card.is-long .focal-space { background-color:#DDE2F7; }
+
+    .focal-person {
+      position:absolute;
+      left:50%;
+      bottom:34px;
+      width:42px;
+      height:170px;
+      transform:translateX(-50%);
+      color:var(--green-950);
+    }
+
+    .focal-person::before {
+      content:"";
+      position:absolute;
+      top:0;
+      left:50%;
+      width:30px;
+      height:30px;
+      border:2px solid currentColor;
+      border-radius:50%;
+      transform:translateX(-50%);
+    }
+
+    .focal-person::after {
+      content:"";
+      position:absolute;
+      top:34px;
+      left:50%;
+      width:2px;
+      height:105px;
+      background:currentColor;
+      transform:translateX(-50%);
+      box-shadow:-20px 30px 0 -1px currentColor,20px 30px 0 -1px currentColor;
+    }
+
+    .focal-leg {
+      position:absolute;
+      bottom:0;
+      left:50%;
+      width:2px;
+      height:54px;
+      background:currentColor;
+      transform-origin:top;
+    }
+
+    .focal-leg.left { transform:translateX(-50%) rotate(10deg); }
+    .focal-leg.right { transform:translateX(-50%) rotate(-10deg); }
+
+    .focal-camera {
+      position:absolute;
+      bottom:58px;
+      height:34px;
+      border:2px solid var(--green-950);
+      border-radius:4px;
+    }
+
+    .focal-camera::before {
+      content:"";
+      position:absolute;
+      left:-13px;
+      top:8px;
+      width:11px;
+      height:14px;
+      border:2px solid var(--green-950);
+      border-right:0;
+    }
+
+    .focal-camera::after {
+      content:"";
+      position:absolute;
+      top:50%;
+      left:50%;
+      width:11px;
+      height:11px;
+      border:2px solid var(--green-950);
+      border-radius:50%;
+      transform:translate(-50%,-50%);
+    }
+
+    .focal-35 .focal-camera { right:28px; width:48px; }
+    .focal-50 .focal-camera { right:10px; width:48px; }
+    .focal-85 .focal-camera { right:-8px; width:48px; }
+
+    .focal-distance-line {
+      position:absolute;
+      bottom:28px;
+      height:1px;
+      border-top:1px dashed var(--green-950);
+    }
+
+    .focal-distance-line::before,
+    .focal-distance-line::after {
+      content:"";
+      position:absolute;
+      top:-4px;
+      width:7px;
+      height:7px;
+      border-top:1px solid var(--green-950);
+      border-right:1px solid var(--green-950);
+    }
+
+    .focal-distance-line::before {
+      left:0;
+      transform:rotate(-135deg);
+    }
+
+    .focal-distance-line::after {
+      right:0;
+      transform:rotate(45deg);
+    }
+
+    .focal-35 .focal-distance-line { left:51%; right:78px; }
+    .focal-50 .focal-distance-line { left:51%; right:58px; }
+    .focal-85 .focal-distance-line { left:51%; right:38px; }
+
+    .focal-distance-text {
+      position:absolute;
+      bottom:8px;
+      left:52%;
+      color:#53655A;
+      font-size:10px;
+      font-weight:800;
+      letter-spacing:.07em;
+      text-transform:uppercase;
+    }
+
+    .focal-body {
+      display:flex;
+      flex:1;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:22px;
+      padding:20px;
+    }
+
+    .focal-body-top span {
+      display:block;
+      margin-bottom:10px;
+      color:var(--green-700);
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+
+    .focal-body h3 {
+      margin:0 0 10px;
+      color:var(--green-950);
+      font-size:34px;
+      line-height:.95;
+      letter-spacing:-.05em;
+    }
+
+    .focal-body p {
+      margin:0;
+      color:#526359;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .focal-use {
+      display:grid;
+      gap:7px;
+      padding-top:14px;
+      border-top:1px solid rgba(15,66,45,.18);
+    }
+
+    .focal-use span {
+      color:var(--orange);
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+
+    .focal-use strong {
+      color:var(--green-950);
+      font-size:13px;
+      line-height:1.4;
+    }
+
+    .focal-compare {
+      display:grid;
+      grid-template-columns:minmax(0,5fr) minmax(300px,7fr);
+      gap:18px;
+      margin-top:24px;
+      padding:22px;
+      border:1px solid var(--green-950);
+      background:var(--green-950);
+      color:var(--paper-0);
+    }
+
+    .focal-compare h3 {
+      margin:0 0 8px;
+      color:var(--paper-0);
+      font-size:26px;
+      line-height:1.05;
+      letter-spacing:-.03em;
+    }
+
+    .focal-compare p {
+      margin:0;
+      color:#C7D7CD;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .focal-compare-steps {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+    }
+
+    .focal-compare-steps div {
+      min-height:105px;
+      padding:14px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.04);
+    }
+
+    .focal-compare-steps b {
+      display:block;
+      margin-bottom:8px;
+      color:var(--yellow);
+      font-size:11px;
+      letter-spacing:.08em;
+    }
+
+    .focal-compare-steps span {
+      color:var(--paper-0);
+      font-size:13px;
+      line-height:1.4;
+    }
+
+    @media (max-width:800px) {
+      .section.section-focal {
+        margin:0 -16px;
+        padding:62px 16px 68px;
+      }
+
+      .focal-head {
+        grid-template-columns:1fr;
+        gap:24px;
+        margin-bottom:30px;
+      }
+
+      .focal-head h2 { font-size:52px; }
+
+      .focal-rule {
+        grid-template-columns:1fr;
+        gap:10px;
+      }
+
+      .focal-stage { grid-template-columns:1fr; }
+
+      .focal-card { min-height:auto; }
+
+      .focal-compare { grid-template-columns:1fr; }
+
+      .focal-compare-steps { grid-template-columns:1fr; }
+    }
+
+    /* ===== Section 07 · Bố cục & cách lấy khung hình ===== */
+    .section.section-framing {
+      position:relative;
+      display:block;
+      margin:0 -24px;
+      padding:92px 24px 98px;
+      background:var(--paper-0);
+      border-bottom:1px solid var(--paper-200);
+      overflow:hidden;
+    }
+
+    .framing-head {
+      display:grid;
+      grid-template-columns:minmax(0,7fr) minmax(260px,5fr);
+      gap:42px;
+      align-items:end;
+      margin-bottom:42px;
+    }
+
+    .framing-kicker {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:18px;
+      color:var(--orange);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .framing-kicker b {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      background:var(--orange);
+      color:white;
+      font-size:12px;
+    }
+
+    .framing-head h2 {
+      margin:0;
+      max-width:780px;
+      color:var(--green-950);
+      font-size:clamp(50px,6vw,84px);
+      line-height:.9;
+      letter-spacing:-.055em;
+      font-weight:900;
+    }
+
+    .framing-lead {
+      max-width:430px;
+      margin:0;
+      padding-top:18px;
+      border-top:2px solid var(--green-950);
+      color:#4E6257;
+      font-size:16px;
+      line-height:1.6;
+    }
+
+    .framing-strip {
+      display:grid;
+      grid-template-columns:1.2fr 1fr 1fr .92fr .82fr;
+      min-height:460px;
+      border:1px solid var(--green-950);
+      background:var(--paper-50);
+      overflow:hidden;
+    }
+
+    .frame-type {
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      padding:16px;
+      border-right:1px solid var(--green-950);
+      overflow:hidden;
+    }
+
+    .frame-type:last-child { border-right:0; }
+
+    .frame-type:nth-child(2) { background:var(--green-100); }
+    .frame-type:nth-child(3) { background:#F7E4DC; }
+    .frame-type:nth-child(4) { background:#E7EAFB; }
+    .frame-type:nth-child(5) { background:var(--paper-100); }
+
+    .frame-type-top {
+      display:flex;
+      justify-content:space-between;
+      gap:8px;
+      color:#53655A;
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .frame-silhouette {
+      position:relative;
+      flex:1;
+      min-height:260px;
+      margin:10px 0 18px;
+      overflow:hidden;
+    }
+
+    .frame-body-figure {
+      position:absolute;
+      left:50%;
+      width:70px;
+      height:250px;
+      transform:translateX(-50%);
+      color:var(--green-950);
+    }
+
+    .frame-body-figure::before {
+      content:"";
+      position:absolute;
+      top:0;
+      left:50%;
+      width:34px;
+      height:34px;
+      border:2px solid currentColor;
+      border-radius:50%;
+      transform:translateX(-50%);
+    }
+
+    .frame-body-figure::after {
+      content:"";
+      position:absolute;
+      top:38px;
+      left:50%;
+      width:2px;
+      height:135px;
+      background:currentColor;
+      transform:translateX(-50%);
+      box-shadow:-25px 40px 0 -1px currentColor,25px 40px 0 -1px currentColor;
+    }
+
+    .frame-body-figure .leg {
+      position:absolute;
+      top:170px;
+      left:50%;
+      width:2px;
+      height:78px;
+      background:currentColor;
+      transform-origin:top;
+    }
+
+    .frame-body-figure .leg.left { transform:translateX(-50%) rotate(8deg); }
+    .frame-body-figure .leg.right { transform:translateX(-50%) rotate(-8deg); }
+
+    .frame-mask {
+      position:absolute;
+      inset:0;
+      border:2px solid var(--green-950);
+      background:rgba(255,255,255,.12);
+      pointer-events:none;
+    }
+
+    .frame-full .frame-body-figure { top:2px; }
+    .frame-three .frame-body-figure { top:16px; transform:translateX(-50%) scale(1.1); }
+    .frame-medium .frame-body-figure { top:28px; transform:translateX(-50%) scale(1.28); }
+    .frame-close .frame-body-figure { top:58px; transform:translateX(-50%) scale(1.62); }
+    .frame-detail .frame-body-figure { top:96px; transform:translateX(-50%) scale(2.05); }
+
+    .frame-copy h3 {
+      margin:0 0 8px;
+      color:var(--green-950);
+      font-size:23px;
+      line-height:.98;
+      letter-spacing:-.04em;
+    }
+
+    .frame-copy p {
+      margin:0;
+      color:#526359;
+      font-size:12.5px;
+      line-height:1.5;
+    }
+
+    .framing-question {
+      display:grid;
+      grid-template-columns:44px 1fr;
+      gap:14px;
+      align-items:start;
+      margin-top:22px;
+      padding:20px 22px;
+      background:var(--green-950);
+      color:var(--paper-0);
+    }
+
+    .framing-question b {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:44px;
+      height:44px;
+      border-radius:50%;
+      background:var(--yellow);
+      color:var(--green-950);
+      font-size:19px;
+    }
+
+    .framing-question p {
+      margin:0;
+      color:var(--paper-0);
+      font-size:19px;
+      line-height:1.42;
+      font-weight:750;
+    }
+
+    .framing-question small {
+      display:block;
+      margin-top:7px;
+      color:#C7D7CD;
+      font-size:12px;
+      line-height:1.45;
+      font-weight:500;
+    }
+
+    .framing-crop {
+      display:grid;
+      grid-template-columns:minmax(0,4fr) minmax(320px,8fr);
+      gap:18px;
+      margin-top:22px;
+      padding:20px 22px;
+      border:1px solid var(--green-950);
+      background:var(--paper-100);
+    }
+
+    .framing-crop h3 {
+      margin:0 0 8px;
+      color:var(--green-950);
+      font-size:25px;
+      line-height:1.05;
+      letter-spacing:-.03em;
+    }
+
+    .framing-crop p {
+      margin:0;
+      color:#526359;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .crop-zones {
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:8px;
+      align-items:end;
+    }
+
+    .crop-zone {
+      min-height:88px;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      padding:12px;
+      border:1px solid rgba(15,66,45,.22);
+      background:var(--paper-0);
+    }
+
+    .crop-zone b {
+      margin-bottom:6px;
+      color:var(--orange);
+      font-size:11px;
+    }
+
+    .crop-zone span {
+      color:var(--green-950);
+      font-size:12px;
+      line-height:1.35;
+    }
+
+    @media (max-width:800px) {
+      .section.section-framing {
+        margin:0 -16px;
+        padding:62px 16px 68px;
+      }
+
+      .framing-head {
+        grid-template-columns:1fr;
+        gap:24px;
+        margin-bottom:30px;
+      }
+
+      .framing-head h2 { font-size:52px; }
+
+      .framing-strip {
+        grid-template-columns:1fr;
+      }
+
+      .frame-type {
+        min-height:360px;
+        border-right:0;
+        border-bottom:1px solid var(--green-950);
+      }
+
+      .frame-type:last-child { border-bottom:0; }
+
+      .framing-crop { grid-template-columns:1fr; }
+
+      .crop-zones { grid-template-columns:1fr 1fr; }
+    }
+
+    /* ===== Section 08 · Tạo dáng & chuyển động ===== */
+    .section.section-pose {
+      position:relative;
+      display:block;
+      margin:0 -24px;
+      padding:92px 24px 98px;
+      background:var(--paper-100);
+      border-bottom:1px solid var(--paper-200);
+      overflow:hidden;
+    }
+
+    .pose-head {
+      display:grid;
+      grid-template-columns:minmax(0,7fr) minmax(260px,5fr);
+      gap:42px;
+      align-items:end;
+      margin-bottom:42px;
+    }
+
+    .pose-kicker {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:18px;
+      color:var(--green-700);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .pose-kicker b {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      background:var(--green-700);
+      color:white;
+      font-size:12px;
+    }
+
+    .pose-head h2 {
+      margin:0;
+      max-width:780px;
+      color:var(--green-950);
+      font-size:clamp(50px,6vw,84px);
+      line-height:.9;
+      letter-spacing:-.055em;
+      font-weight:900;
+    }
+
+    .pose-lead {
+      max-width:430px;
+      margin:0;
+      padding-top:18px;
+      border-top:2px solid var(--green-950);
+      color:#4E6257;
+      font-size:16px;
+      line-height:1.6;
+    }
+
+    .pose-sequence {
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:12px;
+      margin-bottom:24px;
+    }
+
+    .pose-step {
+      position:relative;
+      min-height:430px;
+      display:flex;
+      flex-direction:column;
+      border:1px solid var(--green-950);
+      background:var(--paper-0);
+      overflow:hidden;
+    }
+
+    .pose-step:nth-child(2) { background:var(--green-100); }
+    .pose-step:nth-child(3) { background:#F7E4DC; }
+    .pose-step:nth-child(4) { background:#E7EAFB; }
+
+    .pose-figure-zone {
+      position:relative;
+      min-height:250px;
+      border-bottom:1px solid var(--green-950);
+      overflow:hidden;
+    }
+
+    .pose-figure {
+      position:absolute;
+      left:50%;
+      bottom:26px;
+      width:90px;
+      height:205px;
+      transform:translateX(-50%);
+      color:var(--green-950);
+    }
+
+    .pose-head-dot {
+      position:absolute;
+      top:0;
+      left:50%;
+      width:34px;
+      height:34px;
+      border:2px solid currentColor;
+      border-radius:50%;
+      transform:translateX(-50%);
+    }
+
+    .pose-torso {
+      position:absolute;
+      left:50%;
+      top:38px;
+      width:2px;
+      height:96px;
+      background:currentColor;
+      transform-origin:top;
+    }
+
+    .pose-arm,
+    .pose-leg {
+      position:absolute;
+      width:2px;
+      background:currentColor;
+      transform-origin:top;
+    }
+
+    .pose-arm { top:57px; height:72px; }
+    .pose-leg { top:130px; height:74px; }
+
+    .pose-arm.left { left:50%; transform:rotate(16deg); }
+    .pose-arm.right { left:50%; transform:rotate(-16deg); }
+    .pose-leg.left { left:50%; transform:rotate(8deg); }
+    .pose-leg.right { left:50%; transform:rotate(-8deg); }
+
+    .pose-neutral .pose-torso { transform:translateX(-50%); }
+
+    .pose-shift .pose-torso { transform:translateX(-50%) rotate(-5deg); }
+    .pose-shift .pose-leg.left { transform:rotate(16deg); }
+    .pose-shift .pose-leg.right { transform:rotate(-3deg); }
+
+    .pose-hands .pose-arm.left { transform:rotate(42deg); height:66px; }
+    .pose-hands .pose-arm.right { transform:rotate(-6deg); }
+
+    .pose-move .pose-torso { transform:translateX(-50%) rotate(6deg); }
+    .pose-move .pose-arm.left { transform:rotate(56deg); }
+    .pose-move .pose-arm.right { transform:rotate(-30deg); }
+    .pose-move .pose-leg.left { transform:rotate(25deg); }
+    .pose-move .pose-leg.right { transform:rotate(-20deg); }
+
+    .pose-copy {
+      display:flex;
+      flex:1;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:18px;
+      padding:18px;
+    }
+
+    .pose-copy-top span {
+      display:block;
+      margin-bottom:8px;
+      color:#53655A;
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.09em;
+      text-transform:uppercase;
+    }
+
+    .pose-copy h3 {
+      margin:0 0 9px;
+      color:var(--green-950);
+      font-size:24px;
+      line-height:.98;
+      letter-spacing:-.035em;
+    }
+
+    .pose-copy p {
+      margin:0;
+      color:#526359;
+      font-size:13px;
+      line-height:1.5;
+    }
+
+    .pose-check {
+      padding-top:12px;
+      border-top:1px solid rgba(15,66,45,.18);
+      color:var(--green-950);
+      font-size:12px;
+      line-height:1.4;
+      font-weight:700;
+    }
+
+    .pose-direction {
+      display:grid;
+      grid-template-columns:minmax(0,5fr) minmax(320px,7fr);
+      gap:18px;
+      padding:22px;
+      border:1px solid var(--green-950);
+      background:var(--green-950);
+      color:var(--paper-0);
+    }
+
+    .pose-direction h3 {
+      margin:0 0 8px;
+      color:var(--paper-0);
+      font-size:26px;
+      line-height:1.05;
+      letter-spacing:-.03em;
+    }
+
+    .pose-direction p {
+      margin:0;
+      color:#C7D7CD;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .pose-say {
+      display:grid;
+      gap:8px;
+    }
+
+    .pose-say div {
+      padding:12px 14px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.04);
+    }
+
+    .pose-say b {
+      display:block;
+      margin-bottom:5px;
+      color:var(--yellow);
+      font-size:10px;
+      letter-spacing:.09em;
+      text-transform:uppercase;
+    }
+
+    .pose-say span {
+      color:var(--paper-0);
+      font-size:13px;
+      line-height:1.45;
+    }
+
+    .pose-practice {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      margin-top:20px;
+    }
+
+    .pose-practice div {
+      min-height:104px;
+      padding:15px;
+      border:1px solid var(--green-950);
+      background:var(--paper-0);
+    }
+
+    .pose-practice b {
+      display:block;
+      margin-bottom:8px;
+      color:var(--orange);
+      font-size:11px;
+      letter-spacing:.08em;
+    }
+
+    .pose-practice span {
+      color:var(--green-950);
+      font-size:13px;
+      line-height:1.4;
+    }
+
+    @media (max-width:800px) {
+      .section.section-pose {
+        margin:0 -16px;
+        padding:62px 16px 68px;
+      }
+
+      .pose-head {
+        grid-template-columns:1fr;
+        gap:24px;
+        margin-bottom:30px;
+      }
+
+      .pose-head h2 { font-size:52px; }
+
+      .pose-sequence { grid-template-columns:1fr 1fr; }
+
+      .pose-direction { grid-template-columns:1fr; }
+
+      .pose-practice { grid-template-columns:1fr; }
+    }
+
+    @media (max-width:560px) {
+      .pose-sequence { grid-template-columns:1fr; }
+    }
+
+    /* ===== Section 09 · Đọc ánh sáng ===== */
+    .section.section-light {
+      position:relative;
+      display:block;
+      margin:0 -24px;
+      padding:92px 24px 98px;
+      background:var(--green-950);
+      color:var(--paper-0);
+      border-bottom:0;
+      overflow:hidden;
+    }
+
+    .light-head {
+      display:grid;
+      grid-template-columns:minmax(0,7fr) minmax(260px,5fr);
+      gap:42px;
+      align-items:end;
+      margin-bottom:42px;
+    }
+
+    .light-kicker {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:18px;
+      color:var(--yellow);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .light-kicker b {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      background:var(--yellow);
+      color:var(--green-950);
+      font-size:12px;
+    }
+
+    .light-head h2 {
+      margin:0;
+      max-width:780px;
+      color:var(--paper-0);
+      font-size:clamp(50px,6vw,84px);
+      line-height:.9;
+      letter-spacing:-.055em;
+      font-weight:900;
+    }
+
+    .light-lead {
+      max-width:430px;
+      margin:0;
+      padding-top:18px;
+      border-top:2px solid rgba(255,255,255,.7);
+      color:#C7D7CD;
+      font-size:16px;
+      line-height:1.6;
+    }
+
+    .light-quality {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-bottom:18px;
+    }
+
+    .light-quality-card {
+      min-height:440px;
+      display:grid;
+      grid-template-columns:minmax(240px,1.05fr) minmax(0,.95fr);
+      border:1px solid rgba(255,255,255,.3);
+      overflow:hidden;
+    }
+
+    .light-quality-card.is-soft {
+      background:var(--paper-0);
+      color:var(--green-950);
+      border-color:var(--yellow);
+    }
+
+    .light-sim {
+      position:relative;
+      min-height:440px;
+      overflow:hidden;
+      background:#153F2F;
+    }
+
+    .light-quality-card.is-soft .light-sim {
+      background:var(--paper-100);
+    }
+
+    .light-face {
+      position:absolute;
+      left:50%;
+      top:50%;
+      width:150px;
+      height:200px;
+      border:2px solid currentColor;
+      border-radius:48% 48% 44% 44%;
+      transform:translate(-50%,-50%);
+      overflow:hidden;
+    }
+
+    .light-face::before {
+      content:"";
+      position:absolute;
+      inset:0 50% 0 0;
+      background:rgba(255,255,255,.42);
+    }
+
+    .hard-shadow {
+      position:absolute;
+      inset:0 0 0 50%;
+      background:rgba(0,0,0,.52);
+    }
+
+    .soft-shadow {
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg, rgba(255,255,255,.38) 0%, rgba(255,255,255,.2) 42%, rgba(15,66,45,.08) 65%, rgba(15,66,45,.18) 100%);
+    }
+
+    .light-source-mark {
+      position:absolute;
+      left:24px;
+      top:24px;
+      width:66px;
+      height:66px;
+      border:2px solid currentColor;
+      border-radius:50%;
+    }
+
+    .light-source-mark::after {
+      content:"";
+      position:absolute;
+      left:62px;
+      top:31px;
+      width:120px;
+      height:1px;
+      background:currentColor;
+      opacity:.55;
+    }
+
+    .light-quality-copy {
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:22px;
+      padding:24px 22px;
+      background:rgba(255,255,255,.04);
+    }
+
+    .light-quality-card.is-soft .light-quality-copy {
+      background:var(--paper-0);
+    }
+
+    .light-quality-copy span {
+      display:block;
+      margin-bottom:10px;
+      color:var(--yellow);
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+
+    .light-quality-card.is-soft .light-quality-copy span {
+      color:var(--orange);
+    }
+
+    .light-quality-copy h3 {
+      margin:0 0 10px;
+      color:inherit;
+      font-size:30px;
+      line-height:.96;
+      letter-spacing:-.04em;
+    }
+
+    .light-quality-copy p {
+      margin:0;
+      color:#C7D7CD;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .light-quality-card.is-soft .light-quality-copy p {
+      color:#526359;
+    }
+
+    .light-observe {
+      padding-top:14px;
+      border-top:1px solid rgba(255,255,255,.18);
+      font-size:13px;
+      line-height:1.4;
+      font-weight:700;
+    }
+
+    .light-quality-card.is-soft .light-observe {
+      border-color:rgba(15,66,45,.18);
+    }
+
+    .light-direction {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+      margin-top:18px;
+    }
+
+    .direction-card {
+      min-height:210px;
+      padding:18px;
+      border:1px solid rgba(255,255,255,.24);
+      background:rgba(255,255,255,.04);
+    }
+
+    .direction-card b {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:36px;
+      height:36px;
+      margin-bottom:18px;
+      border-radius:50%;
+      background:var(--yellow);
+      color:var(--green-950);
+      font-size:15px;
+    }
+
+    .direction-card h3 {
+      margin:0 0 8px;
+      color:var(--paper-0);
+      font-size:22px;
+      line-height:1;
+      letter-spacing:-.03em;
+    }
+
+    .direction-card p {
+      margin:0;
+      color:#C7D7CD;
+      font-size:13px;
+      line-height:1.5;
+    }
+
+    .light-question {
+      display:grid;
+      grid-template-columns:minmax(0,5fr) minmax(300px,7fr);
+      gap:18px;
+      margin-top:22px;
+      padding:22px;
+      border:1px solid rgba(255,255,255,.28);
+      background:rgba(255,255,255,.05);
+    }
+
+    .light-question h3 {
+      margin:0 0 8px;
+      color:var(--paper-0);
+      font-size:26px;
+      line-height:1.05;
+      letter-spacing:-.03em;
+    }
+
+    .light-question p {
+      margin:0;
+      color:#C7D7CD;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .light-question-list {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:8px;
+    }
+
+    .light-question-list div {
+      padding:12px 14px;
+      border:1px solid rgba(255,255,255,.16);
+      color:var(--paper-0);
+      font-size:13px;
+      line-height:1.4;
+    }
+
+    .section-light .teacher-note summary {
+      background:rgba(255,255,255,.08);
+      color:var(--paper-0);
+      border-color:rgba(255,255,255,.35);
+      box-shadow:none;
+    }
+
+    .section-light .teacher-note summary:hover,
+    .section-light .teacher-note[open] summary {
+      background:var(--yellow);
+      color:var(--green-950);
+      border-color:var(--yellow);
+    }
+
+    @media (max-width:800px) {
+      .section.section-light {
+        margin:0 -16px;
+        padding:62px 16px 68px;
+      }
+
+      .light-head {
+        grid-template-columns:1fr;
+        gap:24px;
+        margin-bottom:30px;
+      }
+
+      .light-head h2 { font-size:52px; }
+
+      .light-quality { grid-template-columns:1fr; }
+
+      .light-quality-card { grid-template-columns:1fr; }
+
+      .light-sim { min-height:320px; }
+
+      .light-direction { grid-template-columns:1fr; }
+
+      .light-question { grid-template-columns:1fr; }
+
+      .light-question-list { grid-template-columns:1fr; }
+    }
+
+    /* ===== Section 10 · Hậu cảnh & không gian ===== */
+    .section.section-bg {
+      position:relative;
+      display:block;
+      margin:0 -24px;
+      padding:92px 24px 98px;
+      background:var(--paper-0);
+      border-bottom:1px solid var(--paper-200);
+      overflow:hidden;
+    }
+
+    .bg-head {
+      display:grid;
+      grid-template-columns:minmax(0,7fr) minmax(260px,5fr);
+      gap:42px;
+      align-items:end;
+      margin-bottom:42px;
+    }
+
+    .bg-kicker {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:18px;
+      color:var(--cobalt);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .bg-kicker b {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      background:var(--cobalt);
+      color:white;
+      font-size:12px;
+    }
+
+    .bg-head h2 {
+      margin:0;
+      max-width:780px;
+      color:var(--green-950);
+      font-size:clamp(50px,6vw,84px);
+      line-height:.9;
+      letter-spacing:-.055em;
+      font-weight:900;
+    }
+
+    .bg-lead {
+      max-width:430px;
+      margin:0;
+      padding-top:18px;
+      border-top:2px solid var(--green-950);
+      color:#4E6257;
+      font-size:16px;
+      line-height:1.6;
+    }
+
+    .bg-principle {
+      display:grid;
+      grid-template-columns:minmax(0,4fr) minmax(0,8fr);
+      gap:18px;
+      margin-bottom:24px;
+      padding:20px 22px;
+      border:1px solid var(--green-950);
+      background:var(--paper-100);
+    }
+
+    .bg-principle span {
+      color:var(--orange);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+
+    .bg-principle p {
+      margin:0;
+      color:var(--green-950);
+      font-size:18px;
+      line-height:1.45;
+      font-weight:750;
+    }
+
+    .bg-grid {
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+    }
+
+    .bg-card {
+      min-height:520px;
+      display:flex;
+      flex-direction:column;
+      border:1px solid var(--green-950);
+      background:var(--paper-50);
+      overflow:hidden;
+    }
+
+    .bg-card:nth-child(2) { background:var(--green-100); }
+    .bg-card:nth-child(3) { background:#E7EAFB; }
+
+    .bg-visual {
+      position:relative;
+      min-height:315px;
+      overflow:hidden;
+      border-bottom:1px solid var(--green-950);
+    }
+
+    .bg-visual .pin-embed-wrap {
+      min-height:315px;
+      border-radius:0;
+      background:transparent;
+    }
+
+    .bg-label {
+      position:absolute;
+      left:12px;
+      bottom:12px;
+      padding:8px 10px;
+      background:rgba(15,66,45,.9);
+      color:white;
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .bg-copy {
+      display:flex;
+      flex:1;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:20px;
+      padding:20px;
+    }
+
+    .bg-copy h3 {
+      margin:0 0 10px;
+      color:var(--green-950);
+      font-size:28px;
+      line-height:.96;
+      letter-spacing:-.04em;
+    }
+
+    .bg-copy p {
+      margin:0;
+      color:#526359;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .bg-use {
+      display:grid;
+      gap:7px;
+      padding-top:14px;
+      border-top:1px solid rgba(15,66,45,.18);
+    }
+
+    .bg-use span {
+      color:var(--orange);
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+
+    .bg-use strong {
+      color:var(--green-950);
+      font-size:13px;
+      line-height:1.4;
+    }
+
+    .bg-check {
+      display:grid;
+      grid-template-columns:minmax(0,5fr) minmax(320px,7fr);
+      gap:18px;
+      margin-top:22px;
+      padding:22px;
+      border:1px solid var(--green-950);
+      background:var(--green-950);
+      color:var(--paper-0);
+    }
+
+    .bg-check h3 {
+      margin:0 0 8px;
+      color:var(--paper-0);
+      font-size:26px;
+      line-height:1.05;
+      letter-spacing:-.03em;
+    }
+
+    .bg-check p {
+      margin:0;
+      color:#C7D7CD;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .bg-check-list {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:8px;
+    }
+
+    .bg-check-list div {
+      padding:12px 14px;
+      border:1px solid rgba(255,255,255,.16);
+      color:var(--paper-0);
+      font-size:13px;
+      line-height:1.4;
+    }
+
+    .bg-badges {
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:10px;
+    }
+
+    .bg-badges span {
+      padding:7px 10px;
+      border:1px solid var(--green-950);
+      border-radius:999px;
+      color:var(--green-950);
+      background:var(--paper-0);
+      font-size:11px;
+      font-weight:800;
+    }
+
+    @media (max-width:800px) {
+      .section.section-bg {
+        margin:0 -16px;
+        padding:62px 16px 68px;
+      }
+
+      .bg-head {
+        grid-template-columns:1fr;
+        gap:24px;
+        margin-bottom:30px;
+      }
+
+      .bg-head h2 { font-size:52px; }
+
+      .bg-principle { grid-template-columns:1fr; }
+
+      .bg-grid { grid-template-columns:1fr; }
+
+      .bg-card { min-height:auto; }
+
+      .bg-check { grid-template-columns:1fr; }
+
+      .bg-check-list { grid-template-columns:1fr; }
+    }
+
+    /* ===== Section 11 · Khung phân tích ảnh theo lớp ===== */
+    .section.section-analysis {
+      position:relative;
+      display:block;
+      margin:0 -24px;
+      padding:92px 24px 98px;
+      background:var(--paper-50);
+      border-bottom:1px solid var(--paper-200);
+      overflow:hidden;
+    }
+
+    .analysis-head {
+      display:grid;
+      grid-template-columns:minmax(0,7fr) minmax(260px,5fr);
+      gap:42px;
+      align-items:end;
+      margin-bottom:42px;
+    }
+
+    .analysis-kicker {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:18px;
+      color:var(--green-700);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .analysis-kicker b {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      background:var(--green-700);
+      color:white;
+      font-size:12px;
+    }
+
+    .analysis-head h2 {
+      margin:0;
+      max-width:800px;
+      color:var(--green-950);
+      font-size:clamp(50px,6vw,84px);
+      line-height:.9;
+      letter-spacing:-.055em;
+      font-weight:900;
+    }
+
+    .analysis-lead {
+      max-width:430px;
+      margin:0;
+      padding-top:18px;
+      border-top:2px solid var(--green-950);
+      color:#4E6257;
+      font-size:16px;
+      line-height:1.6;
+    }
+
+    .analysis-layout {
+      display:grid;
+      grid-template-columns:minmax(300px,5fr) minmax(0,7fr);
+      gap:18px;
+      align-items:stretch;
+    }
+
+    .analysis-image {
+      position:relative;
+      min-height:720px;
+      border:1px solid var(--green-950);
+      background:var(--paper-100);
+      overflow:hidden;
+    }
+
+    .analysis-image .pin-embed-wrap {
+      min-height:720px;
+      border-radius:0;
+      background:transparent;
+    }
+
+    .analysis-image-label {
+      position:absolute;
+      left:16px;
+      right:16px;
+      bottom:16px;
+      z-index:3;
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      padding:12px 14px;
+      background:rgba(15,66,45,.92);
+      color:white;
+      border:1px solid rgba(255,255,255,.28);
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.04em;
+    }
+
+    .analysis-stack {
+      display:grid;
+      gap:10px;
+    }
+
+    .analysis-layer {
+      display:grid;
+      grid-template-columns:62px minmax(180px,1fr) minmax(0,1.45fr);
+      gap:16px;
+      align-items:center;
+      min-height:112px;
+      padding:14px 16px;
+      border:1px solid var(--green-950);
+      background:var(--paper-0);
+    }
+
+    .analysis-layer:nth-child(2) { background:var(--green-100); }
+    .analysis-layer:nth-child(3) { background:#F7E4DC; }
+    .analysis-layer:nth-child(4) { background:#E7EAFB; }
+    .analysis-layer:nth-child(5) { background:var(--paper-100); }
+    .analysis-layer:nth-child(6) { background:#EDF3EA; }
+    .analysis-layer:nth-child(7) { background:#F5EAE4; }
+    .analysis-layer:nth-child(8) { background:#EEF0FB; }
+
+    .analysis-layer.is-purpose {
+      background:var(--green-950);
+      color:var(--paper-0);
+      border-color:var(--green-950);
+    }
+
+    .analysis-no {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:48px;
+      height:48px;
+      border:1px solid var(--green-950);
+      border-radius:50%;
+      color:var(--green-950);
+      font-size:14px;
+      font-weight:900;
+    }
+
+    .analysis-layer.is-purpose .analysis-no {
+      background:var(--yellow);
+      color:var(--green-950);
+      border-color:var(--yellow);
+    }
+
+    .analysis-layer h3 {
+      margin:0;
+      color:inherit;
+      font-size:21px;
+      line-height:1;
+      letter-spacing:-.025em;
+    }
+
+    .analysis-layer p {
+      margin:0;
+      color:#526359;
+      font-size:13px;
+      line-height:1.48;
+    }
+
+    .analysis-layer.is-purpose p {
+      color:#C7D7CD;
+    }
+
+    .analysis-flow {
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:22px;
+    }
+
+    .analysis-flow span {
+      padding:9px 12px;
+      border:1px solid var(--green-950);
+      border-radius:999px;
+      background:var(--paper-0);
+      color:var(--green-950);
+      font-size:11px;
+      font-weight:800;
+    }
+
+    .analysis-question {
+      display:grid;
+      grid-template-columns:44px 1fr;
+      gap:14px;
+      align-items:start;
+      margin-top:22px;
+      padding:20px 22px;
+      background:var(--cobalt);
+      color:white;
+    }
+
+    .analysis-question b {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:44px;
+      height:44px;
+      border-radius:50%;
+      background:var(--yellow);
+      color:var(--green-950);
+      font-size:19px;
+    }
+
+    .analysis-question p {
+      margin:0;
+      color:white;
+      font-size:18px;
+      line-height:1.45;
+      font-weight:750;
+    }
+
+    .analysis-question small {
+      display:block;
+      margin-top:7px;
+      color:#D6DCF8;
+      font-size:12px;
+      line-height:1.45;
+      font-weight:500;
+    }
+
+    @media (max-width:800px) {
+      .section.section-analysis {
+        margin:0 -16px;
+        padding:62px 16px 68px;
+      }
+
+      .analysis-head {
+        grid-template-columns:1fr;
+        gap:24px;
+        margin-bottom:30px;
+      }
+
+      .analysis-head h2 { font-size:52px; }
+
+      .analysis-layout {
+        grid-template-columns:1fr;
+      }
+
+      .analysis-image {
+        min-height:500px;
+      }
+
+      .analysis-image .pin-embed-wrap {
+        min-height:500px;
+      }
+
+      .analysis-layer {
+        grid-template-columns:52px 1fr;
+        gap:12px;
+      }
+
+      .analysis-layer p {
+        grid-column:2;
+      }
+    }
+
+    /* ===== Section 12 · Bài thực hành 1 bộ trang phục / 6 khung hình ===== */
+    .section.section-practice {
+      position:relative;
+      display:block;
+      margin:0 -24px;
+      padding:92px 24px 98px;
+      background:var(--green-950);
+      color:var(--paper-0);
+      border-bottom:0;
+      overflow:hidden;
+    }
+
+    .practice-head {
+      display:grid;
+      grid-template-columns:minmax(0,7fr) minmax(260px,5fr);
+      gap:42px;
+      align-items:end;
+      margin-bottom:42px;
+    }
+
+    .practice-kicker {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:18px;
+      color:var(--yellow);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .practice-kicker b {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      background:var(--yellow);
+      color:var(--green-950);
+      font-size:12px;
+    }
+
+    .practice-head h2 {
+      margin:0;
+      max-width:820px;
+      color:var(--paper-0);
+      font-size:clamp(50px,6vw,84px);
+      line-height:.9;
+      letter-spacing:-.055em;
+      font-weight:900;
+    }
+
+    .practice-lead {
+      max-width:430px;
+      margin:0;
+      padding-top:18px;
+      border-top:2px solid rgba(255,255,255,.7);
+      color:#C7D7CD;
+      font-size:16px;
+      line-height:1.6;
+    }
+
+    .practice-setup {
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:10px;
+      margin-bottom:24px;
+    }
+
+    .practice-setup div {
+      min-height:88px;
+      padding:14px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.04);
+    }
+
+    .practice-setup span {
+      display:block;
+      margin-bottom:7px;
+      color:var(--yellow);
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.09em;
+      text-transform:uppercase;
+    }
+
+    .practice-setup strong {
+      color:var(--paper-0);
+      font-size:14px;
+      line-height:1.35;
+    }
+
+    .practice-grid {
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:12px;
+    }
+
+    .practice-shot {
+      min-height:260px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      padding:18px;
+      border:1px solid rgba(255,255,255,.26);
+      background:rgba(255,255,255,.045);
+    }
+
+    .practice-shot:nth-child(2),
+    .practice-shot:nth-child(5) {
+      background:rgba(242,212,61,.08);
+    }
+
+    .practice-shot:nth-child(3),
+    .practice-shot:nth-child(6) {
+      background:rgba(52,80,216,.12);
+    }
+
+    .practice-shot-top {
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:center;
+    }
+
+    .practice-shot-no {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:44px;
+      height:44px;
+      border:1px solid rgba(255,255,255,.35);
+      border-radius:50%;
+      color:var(--yellow);
+      font-size:14px;
+      font-weight:900;
+    }
+
+    .practice-shot-tag {
+      color:#B9CEC1;
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .practice-shot h3 {
+      margin:28px 0 10px;
+      color:var(--paper-0);
+      font-size:27px;
+      line-height:.98;
+      letter-spacing:-.04em;
+    }
+
+    .practice-shot p {
+      margin:0;
+      color:#C7D7CD;
+      font-size:13px;
+      line-height:1.5;
+    }
+
+    .practice-shot-goal {
+      margin-top:20px;
+      padding-top:13px;
+      border-top:1px solid rgba(255,255,255,.16);
+      color:var(--paper-0);
+      font-size:12px;
+      line-height:1.4;
+      font-weight:700;
+    }
+
+    .practice-before {
+      display:grid;
+      grid-template-columns:minmax(0,5fr) minmax(300px,7fr);
+      gap:18px;
+      margin-top:22px;
+      padding:22px;
+      background:var(--paper-0);
+      color:var(--green-950);
+      border:1px solid var(--yellow);
+    }
+
+    .practice-before h3 {
+      margin:0 0 8px;
+      color:var(--green-950);
+      font-size:26px;
+      line-height:1.05;
+      letter-spacing:-.03em;
+    }
+
+    .practice-before p {
+      margin:0;
+      color:#526359;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .practice-before-list {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:8px;
+    }
+
+    .practice-before-list div {
+      padding:12px 14px;
+      border:1px solid rgba(15,66,45,.16);
+      background:var(--paper-50);
+      color:var(--green-950);
+      font-size:13px;
+      line-height:1.4;
+    }
+
+    .practice-review {
+      display:grid;
+      grid-template-columns:minmax(0,4fr) minmax(300px,8fr);
+      gap:18px;
+      margin-top:22px;
+      padding:22px;
+      border:1px solid rgba(255,255,255,.25);
+      background:rgba(255,255,255,.05);
+    }
+
+    .practice-review h3 {
+      margin:0 0 8px;
+      color:var(--paper-0);
+      font-size:26px;
+      line-height:1.05;
+      letter-spacing:-.03em;
+    }
+
+    .practice-review p {
+      margin:0;
+      color:#C7D7CD;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .practice-review-q {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:8px;
+    }
+
+    .practice-review-q div {
+      padding:11px 13px;
+      border:1px solid rgba(255,255,255,.16);
+      color:var(--paper-0);
+      font-size:13px;
+      line-height:1.4;
+    }
+
+    .section-practice .teacher-note summary {
+      background:rgba(255,255,255,.08);
+      color:var(--paper-0);
+      border-color:rgba(255,255,255,.35);
+      box-shadow:none;
+    }
+
+    .section-practice .teacher-note summary:hover,
+    .section-practice .teacher-note[open] summary {
+      background:var(--yellow);
+      color:var(--green-950);
+      border-color:var(--yellow);
+    }
+
+    @media (max-width:800px) {
+      .section.section-practice {
+        margin:0 -16px;
+        padding:62px 16px 68px;
+      }
+
+      .practice-head {
+        grid-template-columns:1fr;
+        gap:24px;
+        margin-bottom:30px;
+      }
+
+      .practice-head h2 { font-size:52px; }
+
+      .practice-setup { grid-template-columns:1fr 1fr; }
+
+      .practice-grid { grid-template-columns:1fr; }
+
+      .practice-before,
+      .practice-review { grid-template-columns:1fr; }
+
+      .practice-before-list,
+      .practice-review-q { grid-template-columns:1fr; }
+    }
+
+    /* ===== Section 13 · Bài tập về nhà ===== */
+    .section.section-homework {
+      position:relative;
+      display:block;
+      margin:0 -24px;
+      padding:92px 24px 98px;
+      background:var(--paper-100);
+      border-bottom:1px solid var(--paper-200);
+      overflow:hidden;
+    }
+
+    .homework-head,
+    .result-head {
+      display:grid;
+      grid-template-columns:minmax(0,7fr) minmax(260px,5fr);
+      gap:42px;
+      align-items:end;
+      margin-bottom:42px;
+    }
+
+    .homework-kicker,
+    .result-kicker {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:18px;
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .homework-kicker { color:var(--orange); }
+    .result-kicker { color:var(--yellow); }
+
+    .homework-kicker b,
+    .result-kicker b {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      font-size:12px;
+    }
+
+    .homework-kicker b {
+      background:var(--orange);
+      color:white;
+    }
+
+    .result-kicker b {
+      background:var(--yellow);
+      color:var(--green-950);
+    }
+
+    .homework-head h2,
+    .result-head h2 {
+      margin:0;
+      max-width:820px;
+      font-size:clamp(50px,6vw,84px);
+      line-height:.9;
+      letter-spacing:-.055em;
+      font-weight:900;
+    }
+
+    .homework-head h2 { color:var(--green-950); }
+    .result-head h2 { color:var(--paper-0); }
+
+    .homework-lead,
+    .result-lead {
+      max-width:430px;
+      margin:0;
+      padding-top:18px;
+      font-size:16px;
+      line-height:1.6;
+    }
+
+    .homework-lead {
+      border-top:2px solid var(--green-950);
+      color:#4E6257;
+    }
+
+    .result-lead {
+      border-top:2px solid rgba(255,255,255,.7);
+      color:#C7D7CD;
+    }
+
+    .homework-grid {
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+    }
+
+    .homework-task {
+      min-height:350px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      padding:22px;
+      border:1px solid var(--green-950);
+      background:var(--paper-0);
+    }
+
+    .homework-task:nth-child(2) { background:var(--green-100); }
+    .homework-task:nth-child(3) { background:#E7EAFB; }
+
+    .homework-task-top {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+
+    .homework-task-no {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:46px;
+      height:46px;
+      border:1px solid var(--green-950);
+      border-radius:50%;
+      color:var(--green-950);
+      font-size:13px;
+      font-weight:900;
+    }
+
+    .homework-task-time {
+      color:#53655A;
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .homework-task h3 {
+      margin:34px 0 11px;
+      color:var(--green-950);
+      font-size:29px;
+      line-height:.96;
+      letter-spacing:-.04em;
+    }
+
+    .homework-task p {
+      margin:0;
+      color:#526359;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .homework-deliver {
+      margin-top:22px;
+      padding-top:14px;
+      border-top:1px solid rgba(15,66,45,.18);
+    }
+
+    .homework-deliver span {
+      display:block;
+      margin-bottom:6px;
+      color:var(--orange);
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.09em;
+      text-transform:uppercase;
+    }
+
+    .homework-deliver strong {
+      color:var(--green-950);
+      font-size:13px;
+      line-height:1.4;
+    }
+
+    .homework-rule {
+      display:grid;
+      grid-template-columns:44px 1fr;
+      gap:14px;
+      align-items:start;
+      margin-top:22px;
+      padding:20px 22px;
+      border:1px solid var(--green-950);
+      background:var(--paper-0);
+    }
+
+    .homework-rule b {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:44px;
+      height:44px;
+      border-radius:50%;
+      background:var(--yellow);
+      color:var(--green-950);
+      font-size:19px;
+    }
+
+    .homework-rule p {
+      margin:0;
+      color:var(--green-950);
+      font-size:17px;
+      line-height:1.45;
+      font-weight:750;
+    }
+
+    .homework-rule small {
+      display:block;
+      margin-top:7px;
+      color:#637369;
+      font-size:12px;
+      line-height:1.45;
+      font-weight:500;
+    }
+
+    /* ===== Section 14 · Kết quả cuối buổi ===== */
+    .section.section-result {
+      position:relative;
+      display:block;
+      margin:0 -24px;
+      padding:92px 24px 98px;
+      background:var(--green-950);
+      color:var(--paper-0);
+      border-bottom:0;
+      overflow:hidden;
+    }
+
+    .result-grid {
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      border:1px solid rgba(255,255,255,.28);
+    }
+
+    .result-item {
+      min-height:240px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      padding:20px;
+      border-right:1px solid rgba(255,255,255,.22);
+    }
+
+    .result-item:last-child { border-right:0; }
+
+    .result-item-no {
+      color:var(--yellow);
+      font-size:42px;
+      line-height:1;
+      font-weight:900;
+      letter-spacing:-.05em;
+    }
+
+    .result-item h3 {
+      margin:34px 0 8px;
+      color:var(--paper-0);
+      font-size:22px;
+      line-height:1.02;
+      letter-spacing:-.03em;
+    }
+
+    .result-item p {
+      margin:0;
+      color:#C7D7CD;
+      font-size:13px;
+      line-height:1.5;
+    }
+
+    .result-manifesto {
+      margin-top:28px;
+      padding:34px 0 0;
+      border-top:1px solid rgba(255,255,255,.28);
+    }
+
+    .result-manifesto span {
+      display:block;
+      margin-bottom:12px;
+      color:var(--yellow);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .result-manifesto strong {
+      display:block;
+      max-width:940px;
+      color:var(--paper-0);
+      font-size:clamp(36px,5vw,70px);
+      line-height:.95;
+      letter-spacing:-.055em;
+      font-weight:900;
+    }
+
+    .result-next {
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:28px;
+    }
+
+    .result-next span {
+      padding:9px 12px;
+      border:1px solid rgba(255,255,255,.25);
+      border-radius:999px;
+      color:var(--paper-0);
+      font-size:11px;
+      font-weight:800;
+    }
+
+    .section-result .teacher-note summary {
+      background:rgba(255,255,255,.08);
+      color:var(--paper-0);
+      border-color:rgba(255,255,255,.35);
+      box-shadow:none;
+    }
+
+    .section-result .teacher-note summary:hover,
+    .section-result .teacher-note[open] summary {
+      background:var(--yellow);
+      color:var(--green-950);
+      border-color:var(--yellow);
+    }
+
+    .teacher-end-note {
+      position:relative;
+      display:flex;
+      justify-content:flex-end;
+      margin:22px 0 0;
+    }
+
+    @media (max-width:800px) {
+      .section.section-homework,
+      .section.section-result {
+        margin:0 -16px;
+        padding:62px 16px 68px;
+      }
+
+      .homework-head,
+      .result-head {
+        grid-template-columns:1fr;
+        gap:24px;
+        margin-bottom:30px;
+      }
+
+      .homework-head h2,
+      .result-head h2 { font-size:52px; }
+
+      .homework-grid { grid-template-columns:1fr; }
+
+      .result-grid { grid-template-columns:1fr; }
+
+      .result-item {
+        min-height:190px;
+        border-right:0;
+        border-bottom:1px solid rgba(255,255,255,.22);
+      }
+
+      .result-item:last-child { border-bottom:0; }
+    }
+
+
+    /* ===== QA hardening · responsive, embeds, teacher notes ===== */
+    .pin-embed-wrap {
+      min-width:0;
+      isolation:isolate;
+    }
+
+    .pin-embed-wrap > span,
+    .pin-embed-wrap iframe {
+      max-width:100% !important;
+    }
+
+    .teacher-note summary {
+      position:relative;
+      z-index:2;
+    }
+
+    .teacher-note-popover {
+      z-index:3;
+    }
+
+    .analysis-layout {
+      align-items:start;
+    }
+
+    .analysis-image {
+      position:sticky;
+      top:24px;
+      align-self:start;
+    }
+
+    @media (max-width:1024px) and (min-width:801px) {
+      .compare-stage,
+      .angle-grid,
+      .focal-stage,
+      .bg-grid {
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+
+      .compare-panel:last-child,
+      .angle-card:last-child,
+      .focal-card:last-child,
+      .bg-card:last-child {
+        grid-column:span 2;
+      }
+
+      .framing-strip {
+        grid-template-columns:repeat(3,minmax(0,1fr));
+        gap:1px;
+        background:var(--green-950);
+      }
+
+      .frame-type {
+        border-right:0;
+        background:var(--paper-50);
+      }
+
+      .frame-type:nth-child(2) { background:var(--green-100); }
+      .frame-type:nth-child(3) { background:#F7E4DC; }
+      .frame-type:nth-child(4) { background:#E7EAFB; }
+      .frame-type:nth-child(5) {
+        grid-column:span 2;
+        background:var(--paper-100);
+      }
+
+      .pose-sequence,
+      .practice-grid,
+      .result-grid {
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+
+      .result-item {
+        border-right:1px solid rgba(255,255,255,.22);
+        border-bottom:1px solid rgba(255,255,255,.22);
+      }
+
+      .result-item:nth-child(2n) { border-right:0; }
+      .result-item:nth-last-child(-n+2) { border-bottom:0; }
+    }
+
+    @media (max-width:800px) {
+      .analysis-image {
+        position:relative;
+        top:auto;
+      }
+
+      .teacher-note-popover {
+        z-index:9999;
+        padding-bottom:max(18px, env(safe-area-inset-bottom));
+        box-shadow:0 18px 60px rgba(15,66,45,.28);
+      }
+
+      .teacher-note summary {
+        z-index:10000;
+      }
+    }
+
+    @media print {
+      .teacher-note,
+      .teacher-end-note {
+        display:none !important;
+      }
+    }
+
+    @media (max-width: 800px) {
+      .page { padding: 0 16px 64px; }
+      .lesson-nav { min-height:54px; }
+      .lesson-nav-time { display:none; }
+      .hero.hero-v2 {
+        grid-template-columns:1fr;
+        gap:34px;
+        min-height:auto;
+        padding:36px 0 52px;
+      }
+      .hero-v2 h1 { font-size:clamp(58px,18vw,92px); }
+      .hero-v2 h1 .line-small { font-size:.29em; margin-bottom:10px; }
+      .hero-intro { font-size:16px !important; }
+      .hero-bottom { grid-template-columns:1fr; margin-top:38px; }
+      .hero-meta-strip div { min-height:78px; padding:11px; }
+      .hero-meta-strip strong { font-size:16px; }
+      .hero-visual { min-height:500px; }
+      .hero-pin { right:24px; }
+      .hero-sticker { width:96px; height:96px; font-size:10px; }
+      .hero-session-no { font-size:130px; bottom:-18px; }
+      .section.section-objectives {
+        margin:0 -16px;
+        padding:62px 16px 68px;
+      }
+      .objective-layout { grid-template-columns:1fr; gap:38px; }
+      .objective-heading { position:static; }
+      .objective-heading h2 { font-size:52px; }
+      .objective-core { grid-column:1; }
+      .objective-item {
+        grid-template-columns:52px 1fr;
+        gap:14px;
+        padding:22px 0;
+      }
+      .objective-item p { grid-column:2; }
+      .objective-no { font-size:32px; }
+      .objective-outcomes {
+        grid-column:1;
+        grid-template-columns:1fr;
+      }
+      .meta, .grid-2, .grid-3, .grid-4, .framework, .shot-list, .output-list {
+        grid-template-columns: 1fr;
+      }
+      .section {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        padding: 48px 0;
+      }
+      .fw-card.wide { grid-column: auto; }
+      .teaching { padding: 28px; }
+      .pin-grid { grid-template-columns: 1fr; }
+      .visual-ref-head { display: block; }
+      .visual-ref-head p { margin-top: 8px; }
+      h2 { font-size: 30px; }
+    }
+  
+    /* ===== Ảnh nội bộ dùng trong bài giảng ===== */
+    .lesson-photo-wrap {
+      width:100%;
+      height:100%;
+      min-height:inherit;
+      overflow:hidden;
+      background:var(--paper-100);
+    }
+
+    .lesson-photo {
+      display:block;
+      width:100%;
+      height:100%;
+      min-height:inherit;
+      object-fit:cover;
+      object-position:center;
+    }
+
+    .lesson-photo-wrap.contain .lesson-photo {
+      object-fit:contain;
+      background:var(--paper-50);
+    }
+
+    .garment-mini-photo {
+      margin-top:14px;
+      height:104px;
+      overflow:hidden;
+      border:1px solid rgba(15,66,45,.22);
+      background:var(--paper-0);
+    }
+
+    .garment-mini-photo img {
+      display:block;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .pose-photo-pair {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin:0 0 24px;
+    }
+
+    .pose-photo-pair figure {
+      margin:0;
+      display:grid;
+      grid-template-columns:minmax(180px,.9fr) minmax(0,1.1fr);
+      min-height:260px;
+      border:1px solid var(--green-950);
+      background:var(--paper-0);
+      overflow:hidden;
+    }
+
+    .pose-photo-pair img {
+      display:block;
+      width:100%;
+      height:100%;
+      min-height:260px;
+      object-fit:cover;
+      border-right:1px solid var(--green-950);
+    }
+
+    .pose-photo-pair figcaption {
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      gap:8px;
+      padding:18px;
+      color:var(--green-950);
+    }
+
+    .pose-photo-pair figcaption strong {
+      font-size:22px;
+      line-height:1;
+      letter-spacing:-.03em;
+    }
+
+    .pose-photo-pair figcaption span {
+      color:#526359;
+      font-size:13px;
+      line-height:1.5;
+    }
+
+    @media (max-width:800px) {
+      .pose-photo-pair { grid-template-columns:1fr; }
+      .pose-photo-pair figure { grid-template-columns:1fr; }
+      .pose-photo-pair img {
+        height:340px;
+        border-right:0;
+        border-bottom:1px solid var(--green-950);
+      }
+    }
+
+  </style>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><style id="academy-logo-critical">
+header.site-header,header.site-header.scrolled{background:linear-gradient(90deg,#fffef9,#f5f7f1)!important;border-color:rgba(23,56,43,.12)!important}
+.site-header .nav-links a,.site-header.scrolled .nav-links a{color:#17382b!important}
+.brand-official,.p2-brand{display:inline-flex!important;align-items:center!important;width:200px!important;min-width:200px!important;height:40px!important;padding:0!important;border:0!important;background:none!important;background-image:none!important}
+.brand-official>*{opacity:1!important;visibility:visible!important}
+.brand-official .academy-logo-svg,.p2-brand .academy-logo-svg{display:block!important;width:200px!important;max-height:40px!important;height:auto!important;opacity:1!important;visibility:visible!important}
+footer .brand-official,.p2-footer-logo{width:220px!important;min-width:220px!important;height:48px!important}
+footer .academy-logo-svg,.p2-footer-logo .academy-logo-svg{display:block!important;width:220px!important;max-height:48px!important;height:auto!important;opacity:1!important;visibility:visible!important}
+footer .academy-logo-svg .cls-1,.p2-footer .academy-logo-svg .cls-1{fill:#fff!important}
+footer .academy-logo-svg .cls-2,.p2-footer .academy-logo-svg .cls-2{fill:#fcb415!important}
+@media(max-width:760px){.brand-official,.p2-brand{width:170px!important;min-width:170px!important;height:34px!important}.brand-official .academy-logo-svg,.p2-brand .academy-logo-svg{width:170px!important;max-height:34px!important}footer .brand-official,.p2-footer-logo{width:190px!important;min-width:190px!important;height:42px!important}footer .academy-logo-svg,.p2-footer-logo .academy-logo-svg{width:190px!important;max-height:42px!important}}
+</style></head>
+<body>
+<div class="page">
+  <nav class="lesson-nav" aria-label="Vị trí bài học">
+    <div class="lesson-nav-path">
+      <span>Nhiếp ảnh cơ bản</span>
+      <span>Thời trang</span>
+      <span>Buổi 01</span>
+    </div>
+    <div class="lesson-nav-time">150 phút</div>
+  </nav>
+
+  <header class="hero hero-v2">
+    <div class="hero-copy">
+      <div>
+        <div class="hero-eyebrow">Nhiếp ảnh ứng dụng trong thời trang</div>
+        <h1>
+          <span class="line-small">Buổi 01</span>
+          Tư duy<br>
+          nhiếp ảnh<br>
+          <span class="line-accent">thời trang</span>
+        </h1>
+        <p class="hero-intro">
+          Học cách nhìn trang phục, người mẫu và khung hình trước khi học sâu về thiết bị.
+          Mục tiêu của buổi đầu là biến cảm giác “ảnh đẹp” thành những yếu tố có thể quan sát,
+          giải thích và chủ động tạo ra.
+        </p>
+      </div>
+
+      <div class="hero-bottom">
+        <div class="hero-principle">
+          <strong>Nguyên tắc buổi học</strong>
+          Nhìn → gọi tên → dự đoán → chụp thử → so sánh → giải thích.
+        </div>
+
+        <div class="hero-meta-strip" aria-label="Thông tin buổi học">
+          <div><span>Thời lượng</span><strong>150<br>phút</strong></div>
+          <div><span>Bài chính</span><strong>1 bộ trang phục<br>/ 6 khung hình</strong></div>
+          <div><span>Trọng tâm</span><strong>Quan sát<br>+ thực hành</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-label="Ảnh tham khảo thời trang">
+      <div class="hero-note-anchor">
+        <details class="teacher-note">
+          <summary aria-label="Mở gợi ý giảng viên" title="Gợi ý giảng viên"></summary>
+          <div class="teacher-note-popover">
+            <h4>Cách mở bài</h4>
+            <p>Đừng giải thích ngay “nhiếp ảnh thời trang là gì”. Hãy cho học viên xem 2–3 ảnh và hỏi: “Bạn nhìn thấy người mẫu trước hay trang phục trước?”</p>
+
+            <h4>Câu chuyển ý</h4>
+            <p>“Buổi hôm nay không phải học thật nhiều kỹ thuật. Mục tiêu là học cách nhìn để những buổi sau biết mình đang điều khiển điều gì.”</p>
+
+            <h4>Lưu ý</h4>
+            <p>Tránh dùng các từ cảm tính như “đẹp”, “sang”, “có gu” mà không chỉ ra nguyên nhân thị giác cụ thể.</p>
+          </div>
+        </details>
+      </div>
+      <div class="hero-green-block"></div>
+      <div class="hero-pin">
+        <div class="pin-embed-wrap lesson-photo-wrap">
+          <img class="lesson-photo" src="https://drive.google.com/thumbnail?id=1OkPSJPoW43vkR0LZoYfycz8_3FMW6WL_&sz=w1600" alt="Thanh Nga — ảnh thời trang với góc máy thấp và tạo dáng">
+        </div>
+        <div class="hero-pin-caption">
+          <span>Ảnh nội bộ · Thanh Nga</span>
+          <span>Đọc dáng trang phục · tư thế · khung hình</span>
+        </div>
+      </div>
+      <div class="hero-sticker">Học bằng mắt trước</div>
+      <div class="hero-session-no">01</div>
+    </div>
+  </header>
+
+  <section class="section section-objectives">
+    <div class="section-note-anchor">
+      <details class="teacher-note">
+        <summary aria-label="Mở gợi ý giảng viên" title="Gợi ý giảng viên"></summary>
+        <div class="teacher-note-popover">
+          <h4>Cách dẫn dắt</h4>
+          <p>Đi lần lượt 3 năng lực. Sau mỗi năng lực, hỏi học viên đưa ra một ví dụ từ ảnh vừa xem thay vì chỉ nghe lý thuyết.</p>
+
+          <h4>Câu hỏi gợi mở</h4>
+          <ul>
+            <li>Nếu đổi người mẫu nhưng giữ nguyên bộ đồ, điều gì trong ảnh vẫn cần giữ?</li>
+            <li>Nâng máy cao hơn một chút thì tỷ lệ cơ thể thay đổi ra sao?</li>
+            <li>Trước khi bấm máy, người xem cần nhìn thấy gì đầu tiên?</li>
+          </ul>
+
+          <h4>Lưu ý chuyên môn</h4>
+          <p>Không đi sâu vào tiêu cự, ánh sáng hay tạo dáng ở phần này. Chỉ giới thiệu để học viên hình thành hệ quy chiếu; phần kỹ thuật sẽ học riêng ở các buổi sau.</p>
+        </div>
+      </details>
+    </div>
+    <div class="objective-layout">
+      <div class="objective-heading">
+        <div class="objective-kicker"><b>01</b> Mục tiêu buổi học</div>
+        <h2>Không học nhiều.<br>Học nhìn đúng.</h2>
+        <p>
+          Buổi đầu tập trung vào ba năng lực nền tảng. Khi nhìn đúng, những buổi sau về máy ảnh,
+          tiêu cự, ánh sáng và tạo dáng sẽ dễ liên kết và ứng dụng hơn.
+        </p>
+      </div>
+
+      <div class="objective-core">
+        <article class="objective-item">
+          <div class="objective-no">01</div>
+          <h3>Quan sát và phân tích trang phục</h3>
+          <p>
+            Nhận ra dáng tổng thể, bề mặt chất liệu, các lớp trang phục và chi tiết nào cần được giữ rõ trong ảnh.
+          </p>
+        </article>
+
+        <article class="objective-item">
+          <div class="objective-no">02</div>
+          <h3>Kiểm soát vị trí máy & khung hình</h3>
+          <p>
+            Hiểu việc nâng, hạ, tiến, lùi máy và thay đổi cách cắt khung sẽ làm tỷ lệ cơ thể và cách nhìn nhận bộ trang phục thay đổi ra sao.
+          </p>
+        </article>
+
+        <article class="objective-item">
+          <div class="objective-no">03</div>
+          <h3>Chụp có chủ đích</h3>
+          <p>
+            Trước mỗi lần bấm máy, nói được mình muốn người xem nhìn thấy gì và vì sao chọn góc máy, khung hình, cách tạo dáng đó.
+          </p>
+        </article>
+
+        <div class="objective-outcomes">
+          <div><span>Sau buổi học</span><strong>Phân biệt ảnh chân dung, ảnh sản phẩm và ảnh thời trang.</strong></div>
+          <div><span>Sau buổi học</span><strong>Tạo được 6 cách lấy khung hình khác nhau từ cùng một bộ trang phục.</strong></div>
+          <div><span>Sau buổi học</span><strong>Tự chỉ ra cách lấy khung nào hiệu quả và cách nào cần điều chỉnh.</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <section class="section section-compare">
+    <div class="section-note-anchor">
+      <details class="teacher-note">
+        <summary aria-label="Mở gợi ý giảng viên" title="Gợi ý giảng viên"></summary>
+        <div class="teacher-note-popover">
+          <h4>Cách dẫn dắt</h4>
+          <p>Cho học viên nhìn ba ảnh trước, chưa đọc tiêu đề. Hỏi: “Ảnh nào khiến bạn nhìn người trước? Ảnh nào khiến bạn nhìn sản phẩm trước? Ảnh nào cân bằng cả hai?”</p>
+
+          <h4>Câu hỏi gợi mở</h4>
+          <ul>
+            <li>Nếu thay bộ trang phục khác, bức ảnh này còn giữ nguyên ý nghĩa không?</li>
+            <li>Trong ảnh này, khuôn mặt hay trang phục đang được ưu tiên?</li>
+            <li>Nếu đây là ảnh bán hàng, thông tin sản phẩm đã đủ rõ chưa?</li>
+          </ul>
+
+          <h4>Lưu ý chuyên môn</h4>
+          <p>Không biến phần này thành phân loại cứng. Một ảnh có thể vừa mang tính chân dung vừa mang tính thời trang. Mục tiêu là giúp học viên nhận ra yếu tố nào đang được ưu tiên.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="compare-head">
+      <div>
+        <div class="compare-kicker"><b>02</b> Đọc mục đích của bức ảnh</div>
+        <h2>Người.<br>Sản phẩm.<br>Hay cả hai?</h2>
+      </div>
+      <p class="compare-lead">
+        Nhiếp ảnh thời trang không chỉ là chụp một người mặc quần áo đẹp.
+        Điều quan trọng là biết trong mỗi bức ảnh, <strong>người xem cần chú ý điều gì trước</strong>.
+      </p>
+    </div>
+
+    <div class="compare-stage">
+      <article class="compare-panel">
+        <div class="compare-panel-top">
+          <span>01 · Ảnh chân dung</span>
+          <span>Ưu tiên con người</span>
+        </div>
+        <div class="compare-photo">
+          <div class="pin-embed-wrap">
+            <a data-pin-do="embedPin" href="https://www.pinterest.com/pin/196258496237929627/"></a>
+          </div>
+        </div>
+        <div class="compare-body">
+          <div>
+            <h3>Nhìn người trước</h3>
+            <p>
+              Khuôn mặt, ánh mắt, cảm xúc và cá tính của nhân vật là phần giữ sự chú ý chính.
+              Trang phục có thể hỗ trợ nhưng không nhất thiết là thông tin quan trọng nhất.
+            </p>
+          </div>
+          <div class="compare-focus">
+            <span>Ưu tiên quan sát</span>
+            <strong>Gương mặt · cảm xúc · ánh mắt · cá tính</strong>
+          </div>
+        </div>
+      </article>
+
+      <article class="compare-panel">
+        <div class="compare-panel-top">
+          <span>02 · Ảnh sản phẩm</span>
+          <span>Ưu tiên thông tin</span>
+        </div>
+        <div class="compare-photo">
+          <div class="pin-embed-wrap">
+            <a data-pin-do="embedPin" href="https://www.pinterest.com/pin/692709986479212160/"></a>
+          </div>
+        </div>
+        <div class="compare-body">
+          <div>
+            <h3>Nhìn sản phẩm trước</h3>
+            <p>
+              Hình dáng, màu sắc, chất liệu và chi tiết sản phẩm cần được thể hiện rõ,
+              chính xác và dễ so sánh.
+            </p>
+          </div>
+          <div class="compare-focus">
+            <span>Ưu tiên quan sát</span>
+            <strong>Dáng tổng thể · màu sắc · chất liệu · chi tiết</strong>
+          </div>
+        </div>
+      </article>
+
+      <article class="compare-panel is-fashion">
+        <div class="compare-panel-top">
+          <span>03 · Ảnh thời trang</span>
+          <span>Cân bằng hai phía</span>
+        </div>
+        <div class="compare-photo">
+          <div class="pin-embed-wrap lesson-photo-wrap">
+          <img class="lesson-photo" src="https://drive.google.com/thumbnail?id=1OkPSJPoW43vkR0LZoYfycz8_3FMW6WL_&sz=w1600" alt="Thanh Nga — người mẫu và trang phục cùng tạo hình ảnh" loading="lazy">
+        </div>
+        </div>
+        <div class="compare-body">
+          <div>
+            <h3>Người làm nổi trang phục</h3>
+            <p>
+              Người mẫu, bộ trang phục, cách tạo dáng và bối cảnh cùng tạo nên hình ảnh.
+              Không phần nào đứng riêng: mọi yếu tố phải hỗ trợ cách người xem cảm nhận trang phục.
+            </p>
+          </div>
+          <div class="compare-focus">
+            <span>Ưu tiên quan sát</span>
+            <strong>Người mẫu · trang phục · tạo dáng · cách kể bằng hình ảnh</strong>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="compare-equation" aria-label="Ba yếu tố cần cân bằng trong ảnh thời trang">
+      <strong>Con người<br><small>Tư thế · biểu cảm · cá tính</small></strong>
+      <i>+</i>
+      <strong>Trang phục<br><small>Dáng · chất liệu · chi tiết</small></strong>
+      <i>+</i>
+      <strong>Cách thể hiện<br><small>Góc máy · ánh sáng · bối cảnh</small></strong>
+    </div>
+
+    <div class="compare-question">
+      <b>?</b>
+      <div>
+        <p>Nếu thay bộ trang phục khác, bức ảnh này có thay đổi ý nghĩa không?</p>
+        <small>Đây là câu hỏi nhanh để nhận ra trang phục đang đóng vai trò lớn đến mức nào trong bức ảnh.</small>
+      </div>
+    </div>
+  </section>
+
+    <section class="section section-types">
+    <div class="section-note-anchor">
+      <details class="teacher-note">
+        <summary aria-label="Mở gợi ý giảng viên" title="Gợi ý giảng viên"></summary>
+        <div class="teacher-note-popover">
+          <h4>Cách dẫn dắt</h4>
+          <p>Cho học viên nhìn 4 ảnh trước khi đọc tên. Yêu cầu đoán mục đích sử dụng của từng ảnh, rồi mới mở phần giải thích.</p>
+
+          <h4>Câu hỏi gợi mở</h4>
+          <ul>
+            <li>Ảnh này muốn người xem cảm nhận hay muốn người xem kiểm tra sản phẩm?</li>
+            <li>Mức độ tự do về tạo dáng và ánh sáng ở ảnh này cao hay thấp?</li>
+            <li>Nếu chụp cả một bộ sưu tập, ảnh có cần giữ sự đồng nhất không?</li>
+          </ul>
+
+          <h4>Lưu ý chuyên môn</h4>
+          <p>Đây là cách chia theo mục đích sử dụng phổ biến, không phải ranh giới tuyệt đối. Một bộ ảnh có thể nằm giữa hai nhóm.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="types-head">
+      <div>
+        <div class="types-kicker"><b>03</b> 4 mục đích chụp phổ biến</div>
+        <h2>Cùng là thời trang.<br>Nhưng mục tiêu khác nhau.</h2>
+      </div>
+      <p class="types-lead">
+        Trước khi chụp, cần biết bức ảnh được tạo ra để làm gì.
+        Mục đích sử dụng sẽ quyết định mức độ rõ sản phẩm, cách tạo dáng, ánh sáng và bối cảnh.
+      </p>
+    </div>
+
+    <div class="types-grid">
+      <article class="type-card">
+        <div class="type-image">
+          <div class="pin-embed-wrap lesson-photo-wrap">
+          <img class="lesson-photo" src="https://drive.google.com/thumbnail?id=1bs5qHwvEXoz6tanX4Br3zK8ZMWa8sjZh&sz=w1600" alt="XITA — ví dụ hình ảnh thời trang có bối cảnh" loading="lazy">
+        </div>
+        </div>
+        <div class="type-copy">
+          <div>
+            <div class="type-index"><span>Chiến dịch hình ảnh</span><b>01</b></div>
+            <h3>Tạo cảm xúc & hình ảnh thương hiệu</h3>
+            <p>
+              Trang phục vẫn quan trọng, nhưng bức ảnh còn phải truyền được tinh thần,
+              không khí và cách thương hiệu muốn được ghi nhớ.
+            </p>
+          </div>
+          <div class="type-signals">
+            <span>Dấu hiệu thường gặp</span>
+            <strong>Ý tưởng rõ · bối cảnh có chủ đích · tạo dáng mạnh · ánh sáng có cá tính</strong>
+          </div>
+        </div>
+      </article>
+
+      <article class="type-card">
+        <div class="type-image">
+          <div class="pin-embed-wrap lesson-photo-wrap contain">
+          <img class="lesson-photo" src="https://drive.google.com/thumbnail?id=1Ogkzs-THCub8oEF1a5YgRThL3C3InIhb&sz=w1600" alt="Thanh Nga — khung toàn thân dùng để minh họa bộ ảnh giới thiệu bộ sưu tập" loading="lazy">
+        </div>
+        </div>
+        <div class="type-copy">
+          <div>
+            <div class="type-index"><span>Bộ ảnh giới thiệu bộ sưu tập</span><b>02</b></div>
+            <h3>Trình bày nhiều bộ trang phục một cách đồng nhất</h3>
+            <p>
+              Mỗi bộ trang phục phải được nhìn rõ, nhưng toàn bộ loạt ảnh cũng cần giữ cùng một nhịp hình ảnh.
+            </p>
+          </div>
+          <div class="type-signals">
+            <span>Dấu hiệu thường gặp</span>
+            <strong>Khung hình ổn định · ánh sáng nhất quán · dáng tổng thể rõ · trình tự dễ theo dõi</strong>
+          </div>
+        </div>
+      </article>
+
+      <article class="type-card">
+        <div class="type-image">
+          <div class="pin-embed-wrap">
+            <a data-pin-do="embedPin" href="https://www.pinterest.com/pin/692709986479212160/"></a>
+          </div>
+        </div>
+        <div class="type-copy">
+          <div>
+            <div class="type-index"><span>Ảnh bán hàng trực tuyến</span><b>03</b></div>
+            <h3>Cho người xem thấy sản phẩm chính xác</h3>
+            <p>
+              Hình dáng, màu sắc, chất liệu và chi tiết cần được thể hiện rõ.
+              Cách chụp phải giúp người xem hình dung sản phẩm gần với thực tế nhất có thể.
+            </p>
+          </div>
+          <div class="type-signals">
+            <span>Dấu hiệu thường gặp</span>
+            <strong>Nền sạch · màu ổn định · ít gây nhiễu · dễ so sánh giữa các sản phẩm</strong>
+          </div>
+        </div>
+      </article>
+
+      <article class="type-card">
+        <div class="type-image">
+          <div class="pin-embed-wrap">
+            <a data-pin-do="embedPin" href="https://www.pinterest.com/pin/sunset-editorial-portrait-fashion-photography-in-palm-springs--272045633731231808/"></a>
+          </div>
+        </div>
+        <div class="type-copy">
+          <div>
+            <div class="type-index"><span>Ảnh thời trang biên tập</span><b>04</b></div>
+            <h3>Kể câu chuyện bằng hình ảnh</h3>
+            <p>
+              Đây là nhóm cho phép thử nghiệm mạnh hơn về góc máy, ánh sáng,
+              tạo dáng và bố cục để tạo một thế giới hình ảnh riêng.
+            </p>
+          </div>
+          <div class="type-signals">
+            <span>Dấu hiệu thường gặp</span>
+            <strong>Tính kể chuyện · bố cục thử nghiệm · tạo dáng giàu biểu cảm · hình ảnh có chất riêng</strong>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="types-test">
+      <div class="types-test-label">
+        <b>?</b>
+        <div>
+          <h3>Bài tập quan sát nhanh</h3>
+          <p>
+            Nhìn 8–10 ảnh và thử đoán chúng thuộc nhóm nào.
+            Không cần đúng tuyệt đối; quan trọng là giải thích được vì sao.
+          </p>
+        </div>
+      </div>
+
+      <div class="types-test-questions">
+        <div>
+          <strong>Chiến dịch</strong>
+          <span>Ảnh có đang cố tạo cảm xúc và hình ảnh thương hiệu không?</span>
+        </div>
+        <div>
+          <strong>Bộ sưu tập</strong>
+          <span>Ảnh có cần giữ sự đồng nhất với nhiều bộ trang phục khác không?</span>
+        </div>
+        <div>
+          <strong>Bán hàng</strong>
+          <span>Người xem có đủ thông tin để nhìn sản phẩm rõ và chính xác không?</span>
+        </div>
+        <div>
+          <strong>Biên tập</strong>
+          <span>Ảnh có đang ưu tiên câu chuyện và cách thể hiện thị giác không?</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <section class="section section-garment">
+    <div class="section-note-anchor">
+      <details class="teacher-note">
+        <summary aria-label="Mở gợi ý giảng viên" title="Gợi ý giảng viên"></summary>
+        <div class="teacher-note-popover">
+          <h4>Cách dẫn dắt</h4>
+          <p>Đừng cho học viên chụp ngay. Cho người mẫu đứng yên và yêu cầu học viên chỉ bằng mắt: đâu là phần quan trọng nhất của bộ trang phục, đâu là phần dễ mất dáng nhất.</p>
+
+          <h4>Câu hỏi gợi mở</h4>
+          <ul>
+            <li>Nếu đứng xa 3 mét, bạn còn nhìn thấy đặc điểm nào của bộ trang phục?</li>
+            <li>Phần chất liệu nào cần ánh sáng để nhìn rõ?</li>
+            <li>Tay hoặc tóc của người mẫu đang che chi tiết nào không?</li>
+          </ul>
+
+          <h4>Lưu ý chuyên môn</h4>
+          <p>Ưu tiên sửa trang phục ngay tại chỗ trước khi nghĩ đến chỉnh sửa hậu kỳ. Với người mới, hãy dạy nhìn dáng tổng thể trước rồi mới đến chi tiết nhỏ.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="garment-head">
+      <div>
+        <div class="garment-kicker"><b>04</b> Đọc trang phục trước khi bấm máy</div>
+        <h2>Trang phục cũng là một chủ thể.</h2>
+      </div>
+      <p class="garment-lead">
+        Không chỉ nhìn người mẫu. Hãy nhìn bộ trang phục như một vật thể có
+        <strong>dáng, chất liệu, nhiều lớp và chi tiết riêng</strong>.
+      </p>
+    </div>
+
+    <div class="garment-map">
+      <div class="garment-side">
+        <article class="garment-point is-green">
+          <div class="garment-point-top">
+            <span>Nhìn từ xa</span><b>01</b>
+          </div>
+          <div>
+            <h3>Dáng tổng thể</h3>
+            <p>
+              Nhìn vai, eo, chiều dài và độ rộng của bộ trang phục.
+              Khi thu nhỏ ảnh, tổng thể có còn đọc rõ không?
+            </p>
+          </div>
+        </article>
+
+        <article class="garment-point is-orange">
+          <div class="garment-point-top">
+            <span>Nhìn bề mặt</span><b>02</b>
+          </div>
+          <div>
+            <h3>Bề mặt chất liệu</h3>
+            <p>
+              Vải bóng, vải nhám, vải bò hay lụa phản ứng với ánh sáng khác nhau.
+              Chất liệu có đang hiện đúng đặc tính không?
+            </p>
+            <div class="garment-mini-photo">
+              <img src="https://drive.google.com/thumbnail?id=1cabovxTsJeavROHQw_BVKZBXjZ4tkPzT&sz=w1600" alt="Thanh Nga — ảnh cận bề mặt chất liệu trang phục" loading="lazy">
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="garment-visual">
+        <div class="pin-embed-wrap lesson-photo-wrap contain">
+          <img class="lesson-photo" src="https://drive.google.com/thumbnail?id=1Ogkzs-THCub8oEF1a5YgRThL3C3InIhb&sz=w1600" alt="Thanh Nga — quan sát dáng tổng thể trang phục" loading="lazy">
+        </div>
+        <div class="garment-visual-label">
+          <span>Ảnh nội bộ · Thanh Nga</span>
+          <span>Quan sát bộ trang phục trước khi quan sát máy ảnh</span>
+        </div>
+      </div>
+
+      <div class="garment-side">
+        <article class="garment-point is-blue">
+          <div class="garment-point-top">
+            <span>Nhìn quan hệ</span><b>03</b>
+          </div>
+          <div>
+            <h3>Các lớp trang phục</h3>
+            <p>
+              Áo ngoài và áo trong có tách nhau đủ rõ không?
+              Tóc, tay hoặc phụ kiện có làm các lớp bị nhập vào nhau không?
+            </p>
+          </div>
+        </article>
+
+        <article class="garment-point">
+          <div class="garment-point-top">
+            <span>Nhìn gần</span><b>04</b>
+          </div>
+          <div>
+            <h3>Chi tiết</h3>
+            <p>
+              Khuy, đường may, logo, khóa, túi và phụ kiện.
+              Chi tiết nào là điểm nhận biết cần phải thấy trong ảnh?
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="garment-check">
+      <div class="garment-check-intro">
+        <span>Kiểm tra trước khi chụp</span>
+        <h3>5 giây nhìn lại trang phục</h3>
+        <p>
+          Trước khi đưa máy lên mắt, kiểm tra nhanh những lỗi có thể làm bộ trang phục mất dáng hoặc mất thông tin.
+        </p>
+      </div>
+
+      <div class="garment-checklist">
+        <div><b>✓</b><span>Dáng tổng thể có đúng không?</span></div>
+        <div><b>✓</b><span>Quần áo có nếp nhăn bất thường không?</span></div>
+        <div><b>✓</b><span>Tay người mẫu có che eo, túi hoặc chi tiết không?</span></div>
+        <div><b>✓</b><span>Tóc có che cổ áo hoặc phụ kiện không?</span></div>
+        <div><b>✓</b><span>Các lớp trang phục có tách rõ khỏi nhau không?</span></div>
+        <div><b>✓</b><span>Chi tiết quan trọng đã quay về phía máy ảnh chưa?</span></div>
+      </div>
+    </div>
+
+    <div class="garment-quote">
+      Tạo dáng đẹp nhưng làm mất dáng trang phục thì vẫn chưa phải một khung hình tốt cho nhiếp ảnh thời trang.
+    </div>
+  </section>
+
+    <section class="section section-angle">
+    <div class="section-note-anchor">
+      <details class="teacher-note">
+        <summary aria-label="Mở gợi ý giảng viên" title="Gợi ý giảng viên"></summary>
+        <div class="teacher-note-popover">
+          <h4>Cách dẫn dắt</h4>
+          <p>Đặt người mẫu đứng yên. Chụp ba ảnh với cùng tiêu cự và gần cùng khung hình, chỉ thay đổi độ cao máy. Cho học viên xem ba ảnh cạnh nhau trước khi giải thích.</p>
+
+          <h4>Câu hỏi gợi mở</h4>
+          <ul>
+            <li>Ở ảnh nào chân trông dài hơn?</li>
+            <li>Ở ảnh nào phần đầu và vai có cảm giác lớn hơn?</li>
+            <li>Ảnh nào giữ tỷ lệ bộ trang phục gần trung tính nhất?</li>
+          </ul>
+
+          <h4>Lưu ý chuyên môn</h4>
+          <p>Không nói “góc thấp luôn đẹp hơn”. Góc máy là lựa chọn có chủ đích. Với ảnh bán hàng hoặc bộ sưu tập, tỷ lệ trung tính thường quan trọng hơn hiệu ứng kéo dài chân.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="angle-head">
+      <div>
+        <div class="angle-kicker"><b>05</b> Vị trí máy ảnh</div>
+        <h2>Chỉ cần nâng hoặc hạ máy, tỷ lệ đã khác.</h2>
+      </div>
+      <p class="angle-lead">
+        Góc máy thay đổi cách các phần cơ thể gần và xa máy được nhìn thấy.
+        Vì vậy cùng một người mẫu và một bộ trang phục có thể cho cảm giác hoàn toàn khác.
+      </p>
+    </div>
+
+    <div class="angle-grid">
+      <article class="angle-card angle-high">
+        <div class="angle-diagram">
+          <div class="angle-horizon"></div>
+          <div class="angle-person"><span class="angle-leg left"></span><span class="angle-leg right"></span></div>
+          <div class="angle-camera"></div>
+          <div class="angle-ray"></div>
+        </div>
+        <div class="angle-copy">
+          <div class="angle-copy-top">
+            <span>Máy cao hơn người mẫu</span>
+            <h3>Góc máy cao</h3>
+            <p>
+              Có thể làm phần đầu và thân trên nổi bật hơn, đồng thời khiến chân có cảm giác ngắn lại.
+            </p>
+          </div>
+          <div class="angle-effect">
+            <span>Cần để ý</span>
+            <strong>Dễ làm giảm cảm giác chiều cao nếu dùng cho ảnh toàn thân.</strong>
+          </div>
+        </div>
+      </article>
+
+      <article class="angle-card angle-eye is-neutral">
+        <div class="angle-diagram">
+          <div class="angle-horizon"></div>
+          <div class="angle-person"><span class="angle-leg left"></span><span class="angle-leg right"></span></div>
+          <div class="angle-camera"></div>
+          <div class="angle-ray"></div>
+        </div>
+        <div class="angle-copy">
+          <div class="angle-copy-top">
+            <span>Máy ngang tầm chủ thể</span>
+            <h3>Ngang tầm mắt</h3>
+            <p>
+              Tạo cảm giác trung tính, dễ quan sát tỷ lệ cơ thể và dáng tổng thể của bộ trang phục.
+            </p>
+          </div>
+          <div class="angle-effect">
+            <span>Phù hợp khi</span>
+            <strong>Cần trình bày trang phục rõ ràng và hạn chế phóng đại tỷ lệ.</strong>
+          </div>
+        </div>
+      </article>
+
+      <article class="angle-card angle-low">
+        <div class="angle-diagram">
+          <div class="angle-horizon"></div>
+          <div class="angle-person"><span class="angle-leg left"></span><span class="angle-leg right"></span></div>
+          <div class="angle-camera"></div>
+          <div class="angle-ray"></div>
+        </div>
+        <div class="angle-copy">
+          <div class="angle-copy-top">
+            <span>Máy thấp hơn người mẫu</span>
+            <h3>Góc máy thấp</h3>
+            <p>
+              Có thể làm chân có cảm giác dài hơn và tạo hình ảnh mạnh hơn, nhưng cũng dễ phóng đại phần gần máy.
+            </p>
+          </div>
+          <div class="angle-effect">
+            <span>Cần để ý</span>
+            <strong>Giày, chân hoặc phần dưới cơ thể có thể lớn hơn thực tế nếu máy quá gần.</strong>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="angle-practice">
+      <div>
+        <h3>Thực hành: cùng một người mẫu, ba độ cao máy</h3>
+        <p>
+          Giữ nguyên tư thế và tiêu cự. Cố gắng giữ khung hình gần giống nhau để chỉ quan sát tác động của độ cao máy.
+        </p>
+      </div>
+      <div class="angle-practice-steps">
+        <div><b>01</b><span>Máy ngang khoảng đầu hoặc vai</span></div>
+        <div><b>02</b><span>Máy ngang khoảng ngực hoặc eo</span></div>
+        <div><b>03</b><span>Máy ngang khoảng đầu gối</span></div>
+      </div>
+    </div>
+  </section>
+
+    <section class="section section-focal">
+    <div class="section-note-anchor">
+      <details class="teacher-note">
+        <summary aria-label="Mở gợi ý giảng viên" title="Gợi ý giảng viên"></summary>
+        <div class="teacher-note-popover">
+          <h4>Cách dẫn dắt</h4>
+          <p>Cho học viên chụp cùng một khung ba phần tư cơ thể ở 35mm, 50mm và 85mm. Yêu cầu người chụp tự tiến hoặc lùi để giữ khung hình gần giống nhau.</p>
+
+          <h4>Câu hỏi gợi mở</h4>
+          <ul>
+            <li>Khi đổi từ 35mm sang 85mm, bạn phải đứng gần hay xa hơn?</li>
+            <li>Hậu cảnh thay đổi cảm giác như thế nào?</li>
+            <li>Tỷ lệ phần gần máy và phần xa máy có thay đổi không?</li>
+          </ul>
+
+          <h4>Lưu ý chuyên môn</h4>
+          <p>Không dạy “35mm làm méo, 85mm không méo”. Phối cảnh phụ thuộc chủ yếu vào khoảng cách từ máy ảnh đến chủ thể. Tiêu cự thay đổi góc nhìn và khiến người chụp thường phải đổi khoảng cách để giữ cùng khung hình.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="focal-head">
+      <div>
+        <div class="focal-kicker"><b>06</b> Tiêu cự & khoảng cách</div>
+        <h2>Đổi tiêu cự.<br>Đổi luôn cách ta đứng.</h2>
+      </div>
+      <p class="focal-lead">
+        Nếu muốn giữ cùng một khung hình, dùng tiêu cự khác nhau sẽ khiến người chụp phải
+        <strong>tiến gần hoặc lùi xa</strong>. Khoảng cách đó làm cảm giác phối cảnh thay đổi.
+      </p>
+    </div>
+
+    <div class="focal-rule">
+      <div class="focal-rule-label">Điều cần nhớ</div>
+      <p>
+        Tiêu cự quyết định góc nhìn và độ phóng đại. 
+        <strong>Khoảng cách từ máy ảnh đến người mẫu mới là yếu tố làm phối cảnh thay đổi rõ nhất.</strong>
+      </p>
+    </div>
+
+    <div class="focal-stage">
+      <article class="focal-card focal-35">
+        <div class="focal-visual">
+          <div class="focal-space"></div>
+          <div class="focal-person"><span class="focal-leg left"></span><span class="focal-leg right"></span></div>
+          <div class="focal-camera"></div>
+          <div class="focal-distance-line"></div>
+          <div class="focal-distance-text">Đứng gần hơn</div>
+        </div>
+        <div class="focal-body">
+          <div class="focal-body-top">
+            <span>Góc nhìn rộng</span>
+            <h3>35mm</h3>
+            <p>
+              Thấy nhiều không gian xung quanh hơn. Khi tiến gần để giữ người mẫu đủ lớn trong khung,
+              sự khác biệt giữa phần gần và phần xa máy sẽ rõ hơn.
+            </p>
+          </div>
+          <div class="focal-use">
+            <span>Phù hợp khi</span>
+            <strong>Muốn có nhiều bối cảnh, cảm giác năng động hoặc nhấn môi trường xung quanh.</strong>
+          </div>
+        </div>
+      </article>
+
+      <article class="focal-card focal-50 is-mid">
+        <div class="focal-visual">
+          <div class="focal-space"></div>
+          <div class="focal-person"><span class="focal-leg left"></span><span class="focal-leg right"></span></div>
+          <div class="focal-camera"></div>
+          <div class="focal-distance-line"></div>
+          <div class="focal-distance-text">Khoảng cách vừa</div>
+        </div>
+        <div class="focal-body">
+          <div class="focal-body-top">
+            <span>Góc nhìn cân bằng</span>
+            <h3>50mm</h3>
+            <p>
+              Cân bằng giữa người mẫu và không gian. Khoảng cách chụp thường dễ kiểm soát,
+              phù hợp để học cách giữ tỷ lệ và bối cảnh ở mức tự nhiên.
+            </p>
+          </div>
+          <div class="focal-use">
+            <span>Phù hợp khi</span>
+            <strong>Cần một lựa chọn linh hoạt giữa người mẫu, trang phục và bối cảnh.</strong>
+          </div>
+        </div>
+      </article>
+
+      <article class="focal-card focal-85 is-long">
+        <div class="focal-visual">
+          <div class="focal-space"></div>
+          <div class="focal-person"><span class="focal-leg left"></span><span class="focal-leg right"></span></div>
+          <div class="focal-camera"></div>
+          <div class="focal-distance-line"></div>
+          <div class="focal-distance-text">Đứng xa hơn</div>
+        </div>
+        <div class="focal-body">
+          <div class="focal-body-top">
+            <span>Góc nhìn hẹp</span>
+            <h3>85mm</h3>
+            <p>
+              Người chụp phải lùi xa hơn để giữ cùng khung hình. Hậu cảnh có cảm giác gần chủ thể hơn
+              và tỷ lệ cơ thể thường dễ kiểm soát hơn.
+            </p>
+          </div>
+          <div class="focal-use">
+            <span>Phù hợp khi</span>
+            <strong>Muốn tập trung vào người mẫu, giảm bớt môi trường và tạo cảm giác nén không gian.</strong>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="focal-compare">
+      <div>
+        <h3>Thực hành: cùng một khung hình, ba tiêu cự</h3>
+        <p>
+          Giữ người mẫu đứng yên. Mỗi lần đổi tiêu cự, người chụp tự di chuyển để giữ khung ba phần tư cơ thể gần giống nhau.
+          Sau đó đặt ba ảnh cạnh nhau.
+        </p>
+      </div>
+
+      <div class="focal-compare-steps">
+        <div><b>35mm</b><span>Tiến gần hơn — nhìn nhiều không gian hơn</span></div>
+        <div><b>50mm</b><span>Khoảng cách vừa — cảm giác cân bằng</span></div>
+        <div><b>85mm</b><span>Lùi xa hơn — hậu cảnh có cảm giác gần lại</span></div>
+      </div>
+    </div>
+  </section>
+
+    <section class="section section-framing">
+    <div class="section-note-anchor">
+      <details class="teacher-note">
+        <summary aria-label="Mở gợi ý giảng viên" title="Gợi ý giảng viên"></summary>
+        <div class="teacher-note-popover">
+          <h4>Cách dẫn dắt</h4>
+          <p>Không bắt học viên nhớ tên trước. Hãy hỏi: “Nếu mục tiêu là cho người xem nhìn toàn bộ bộ trang phục, bạn sẽ lấy khung thế nào?” Sau đó mới gọi tên loại khung.</p>
+
+          <h4>Câu hỏi gợi mở</h4>
+          <ul>
+            <li>Khung này đang cho người xem thấy điều gì?</li>
+            <li>Nếu cắt gần hơn, thông tin nào mất đi?</li>
+            <li>Nếu cắt rộng hơn, chi tiết nào không còn đủ rõ?</li>
+          </ul>
+
+          <h4>Lưu ý chuyên môn</h4>
+          <p>Tránh biến quy tắc cắt khung thành luật cứng. Điều quan trọng là học viên hiểu mình đang giữ hay bỏ thông tin nào khỏi ảnh.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="framing-head">
+      <div>
+        <div class="framing-kicker"><b>07</b> Bố cục & cách lấy khung hình</div>
+        <h2>Mỗi khung hình trả lời một câu hỏi khác nhau.</h2>
+      </div>
+      <p class="framing-lead">
+        Đừng hỏi “khung nào đẹp hơn” trước. Hãy hỏi:
+        <strong>khung này đang giúp người xem nhìn thấy điều gì?</strong>
+      </p>
+    </div>
+
+    <div class="framing-strip">
+      <article class="frame-type frame-full">
+        <div class="frame-type-top"><span>01</span><span>Toàn thân</span></div>
+        <div class="frame-silhouette">
+          <div class="frame-body-figure"><span class="leg left"></span><span class="leg right"></span></div>
+          <div class="frame-mask"></div>
+        </div>
+        <div class="frame-copy">
+          <h3>Toàn thân</h3>
+          <p>Nhìn dáng tổng thể, chiều dài, giày và toàn bộ cách phối trang phục.</p>
+        </div>
+      </article>
+
+      <article class="frame-type frame-three">
+        <div class="frame-type-top"><span>02</span><span>Ba phần tư</span></div>
+        <div class="frame-silhouette">
+          <div class="frame-body-figure"><span class="leg left"></span><span class="leg right"></span></div>
+          <div class="frame-mask"></div>
+        </div>
+        <div class="frame-copy">
+          <h3>Ba phần tư</h3>
+          <p>Cân bằng giữa bộ trang phục, tư thế và biểu cảm người mẫu.</p>
+        </div>
+      </article>
+
+      <article class="frame-type frame-medium">
+        <div class="frame-type-top"><span>03</span><span>Trung cảnh</span></div>
+        <div class="frame-silhouette">
+          <div class="frame-body-figure"><span class="leg left"></span><span class="leg right"></span></div>
+          <div class="frame-mask"></div>
+        </div>
+        <div class="frame-copy">
+          <h3>Trung cảnh</h3>
+          <p>Tập trung nửa thân trên, áo khoác, cổ áo và phụ kiện.</p>
+        </div>
+      </article>
+
+      <article class="frame-type frame-close">
+        <div class="frame-type-top"><span>04</span><span>Cận cảnh</span></div>
+        <div class="frame-silhouette">
+          <div class="frame-body-figure"><span class="leg left"></span><span class="leg right"></span></div>
+          <div class="frame-mask"></div>
+        </div>
+        <div class="frame-copy">
+          <h3>Cận cảnh</h3>
+          <p>Nhấn gương mặt, kính, trang sức hoặc một vùng phối trang phục cụ thể.</p>
+        </div>
+      </article>
+
+      <article class="frame-type frame-detail">
+        <div class="frame-type-top"><span>05</span><span>Chi tiết</span></div>
+        <div class="frame-silhouette">
+          <div class="frame-body-figure"><span class="leg left"></span><span class="leg right"></span></div>
+          <div class="frame-mask"></div>
+        </div>
+        <div class="frame-copy">
+          <h3>Chi tiết</h3>
+          <p>Cho người xem nhìn kỹ chất liệu, đường may, logo, khóa hoặc phụ kiện.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="framing-question">
+      <b>?</b>
+      <div>
+        <p>Trước khi bấm máy, hãy nói: “Khung này để người xem nhìn thấy ______.”</p>
+        <small>Nếu không điền được chỗ trống, rất có thể bạn đang chụp theo thói quen chứ chưa có mục đích rõ.</small>
+      </div>
+    </div>
+
+    <div class="framing-crop">
+      <div>
+        <h3>Cắt khung có chủ đích</h3>
+        <p>
+          Tránh cắt ngẫu nhiên đúng vào các khớp lớn. Nếu phải cắt qua vùng cơ thể,
+          hãy chắc rằng cách cắt đó phục vụ bố cục và không làm cơ thể có cảm giác bị cụt.
+        </p>
+      </div>
+
+      <div class="crop-zones">
+        <div class="crop-zone"><b>✓</b><span>Cắt trên hoặc dưới khớp một khoảng rõ ràng</span></div>
+        <div class="crop-zone"><b>✓</b><span>Giữ đủ không gian cho phần trang phục quan trọng</span></div>
+        <div class="crop-zone"><b>!</b><span>Chú ý đầu gối, cổ tay, khuỷu tay, mắt cá chân</span></div>
+        <div class="crop-zone"><b>?</b><span>Luôn hỏi: phần nào đang bị loại khỏi câu chuyện?</span></div>
+      </div>
+    </div>
+  </section>
+
+    <section class="section section-pose">
+    <div class="section-note-anchor">
+      <details class="teacher-note">
+        <summary aria-label="Mở gợi ý giảng viên" title="Gợi ý giảng viên"></summary>
+        <div class="teacher-note-popover">
+          <h4>Cách dẫn dắt</h4>
+          <p>Cho người mẫu đứng ở tư thế trung tính trước. Sau đó chỉ thay một yếu tố mỗi lần: trọng tâm, vị trí tay, rồi chuyển động. Chụp sau mỗi thay đổi để so sánh.</p>
+
+          <h4>Câu hỏi gợi mở</h4>
+          <ul>
+            <li>Tư thế này có làm mất eo hoặc che túi không?</li>
+            <li>Tay người mẫu đang giúp hay đang che trang phục?</li>
+            <li>Khi người mẫu bước đi, phần vải nào bắt đầu chuyển động đẹp hơn?</li>
+          </ul>
+
+          <h4>Lưu ý chuyên môn</h4>
+          <p>Không dạy học viên thuộc nhiều tư thế. Mục tiêu là biết điều chỉnh cơ thể để giữ dáng tổng thể và làm rõ trang phục.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="pose-head">
+      <div>
+        <div class="pose-kicker"><b>08</b> Tạo dáng & chuyển động</div>
+        <h2>Tạo dáng để trang phục rõ hơn.</h2>
+      </div>
+      <p class="pose-lead">
+        Một tư thế tốt không chỉ làm người mẫu đẹp hơn.
+        Nó phải giúp <strong>dáng tổng thể, chất liệu và chi tiết trang phục</strong> được nhìn rõ hơn.
+      </p>
+    </div>
+
+    <div class="pose-sequence">
+      <article class="pose-step pose-neutral">
+        <div class="pose-figure-zone">
+          <div class="pose-figure">
+            <div class="pose-head-dot"></div>
+            <div class="pose-torso"></div>
+            <span class="pose-arm left"></span><span class="pose-arm right"></span>
+            <span class="pose-leg left"></span><span class="pose-leg right"></span>
+          </div>
+        </div>
+        <div class="pose-copy">
+          <div class="pose-copy-top">
+            <span>Bước 01</span>
+            <h3>Tư thế trung tính</h3>
+            <p>Dùng làm điểm bắt đầu để nhìn đúng dáng bộ trang phục trước khi thay đổi tư thế.</p>
+          </div>
+          <div class="pose-check">Kiểm tra: vai · eo · chiều dài · hai bên trang phục.</div>
+        </div>
+      </article>
+
+      <article class="pose-step pose-shift">
+        <div class="pose-figure-zone">
+          <div class="pose-figure">
+            <div class="pose-head-dot"></div>
+            <div class="pose-torso"></div>
+            <span class="pose-arm left"></span><span class="pose-arm right"></span>
+            <span class="pose-leg left"></span><span class="pose-leg right"></span>
+          </div>
+        </div>
+        <div class="pose-copy">
+          <div class="pose-copy-top">
+            <span>Bước 02</span>
+            <h3>Chuyển trọng tâm</h3>
+            <p>Đưa trọng lượng sang một chân giúp cơ thể bớt cứng và tạo đường nét tự nhiên hơn.</p>
+          </div>
+          <div class="pose-check">Kiểm tra: hông thay đổi thế nào? Quần hoặc váy có mất dáng không?</div>
+        </div>
+      </article>
+
+      <article class="pose-step pose-hands">
+        <div class="pose-figure-zone">
+          <div class="pose-figure">
+            <div class="pose-head-dot"></div>
+            <div class="pose-torso"></div>
+            <span class="pose-arm left"></span><span class="pose-arm right"></span>
+            <span class="pose-leg left"></span><span class="pose-leg right"></span>
+          </div>
+        </div>
+        <div class="pose-copy">
+          <div class="pose-copy-top">
+            <span>Bước 03</span>
+            <h3>Điều chỉnh tay</h3>
+            <p>Tay có thể mở khoảng trống quanh eo, làm rõ túi, tay áo hoặc phụ kiện.</p>
+          </div>
+          <div class="pose-check">Kiểm tra: tay đang hỗ trợ hay đang che chi tiết quan trọng?</div>
+        </div>
+      </article>
+
+      <article class="pose-step pose-move">
+        <div class="pose-figure-zone">
+          <div class="pose-figure">
+            <div class="pose-head-dot"></div>
+            <div class="pose-torso"></div>
+            <span class="pose-arm left"></span><span class="pose-arm right"></span>
+            <span class="pose-leg left"></span><span class="pose-leg right"></span>
+          </div>
+        </div>
+        <div class="pose-copy">
+          <div class="pose-copy-top">
+            <span>Bước 04</span>
+            <h3>Chuyển động nhẹ</h3>
+            <p>Bước đi, xoay vai hoặc xoay người giúp chất liệu và các lớp trang phục có độ sống.</p>
+          </div>
+          <div class="pose-check">Kiểm tra: chuyển động có làm bộ trang phục đẹp hơn hay chỉ làm ảnh rối hơn?</div>
+        </div>
+      </article>
+    </div>
+
+    <div class="pose-photo-pair" aria-label="Ví dụ tạo dáng thực tế">
+      <figure>
+        <img src="https://drive.google.com/thumbnail?id=1cBsFHtBeHVSr1Hh1qlYqBomrOBNkMKon&sz=w1600" alt="Thanh Nga — ví dụ chuyển trọng tâm khi tạo dáng" loading="lazy">
+        <figcaption>
+          <strong>Chuyển trọng tâm</strong>
+          <span>Dáng cơ thể thay đổi nhưng trang phục vẫn đọc rõ.</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="https://drive.google.com/thumbnail?id=1btBA73CHJnnMIE-ENfwSFHgceUMrryAY&sz=w1600" alt="XITA — ví dụ tạo dáng trong không gian thực tế" loading="lazy">
+        <figcaption>
+          <strong>Tạo dáng trong không gian</strong>
+          <span>Cơ thể tương tác với bối cảnh nhưng trang phục vẫn là điểm nhìn chính.</span>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="pose-direction">
+      <div>
+        <h3>Hướng dẫn người mẫu bằng điều cần nhìn thấy</h3>
+        <p>
+          Đừng nói “tạo dáng đẹp hơn”. Hãy nói chính xác bộ phận nào cần thay đổi và vì sao.
+        </p>
+      </div>
+
+      <div class="pose-say">
+        <div>
+          <b>Thay vì nói</b>
+          <span>“Tạo dáng thời trang hơn.”</span>
+        </div>
+        <div>
+          <b>Hãy nói</b>
+          <span>“Tách tay trái khỏi thân một chút để nhìn rõ phần eo.”</span>
+        </div>
+        <div>
+          <b>Hoặc</b>
+          <span>“Xoay vai phải ra sau để đường áo khoác hiện rõ hơn.”</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pose-practice">
+      <div><b>01 · Trung tính</b><span>Chụp một khung để làm mốc so sánh.</span></div>
+      <div><b>02 · Chuyển trọng tâm</b><span>Giữ gần như mọi thứ, chỉ đổi trọng tâm cơ thể.</span></div>
+      <div><b>03 · Chuyển động</b><span>Cho người mẫu bước hoặc xoay nhẹ và quan sát vải chuyển động.</span></div>
+    </div>
+  </section>
+
+    <section class="section section-light">
+    <div class="section-note-anchor">
+      <details class="teacher-note">
+        <summary aria-label="Mở gợi ý giảng viên" title="Gợi ý giảng viên"></summary>
+        <div class="teacher-note-popover">
+          <h4>Cách dẫn dắt</h4>
+          <p>Cho học viên xem hai ảnh có ánh sáng khác nhau và hỏi trước: “Bóng đổ ở ảnh nào sắc hơn?” Sau đó mới gọi tên ánh sáng cứng và ánh sáng mềm.</p>
+
+          <h4>Câu hỏi gợi mở</h4>
+          <ul>
+            <li>Bóng đổ nằm ở đâu?</li>
+            <li>Ranh giới giữa vùng sáng và vùng tối rõ hay mềm?</li>
+            <li>Chất liệu trang phục đang hiện rõ hơn hay bị mất chi tiết?</li>
+          </ul>
+
+          <h4>Lưu ý chuyên môn</h4>
+          <p>Không đi sâu vào cách bố trí đèn ở Buổi 01. Mục tiêu chỉ là đọc được chất lượng và hướng sáng. Phần thiết lập đèn sẽ học riêng.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="light-head">
+      <div>
+        <div class="light-kicker"><b>09</b> Đọc ánh sáng</div>
+        <h2>Chưa cần biết đặt đèn.<br>Trước tiên phải nhìn ra ánh sáng.</h2>
+      </div>
+      <p class="light-lead">
+        Hãy quan sát hai điều trước: <strong>bóng đổ sắc hay mềm</strong> và
+        <strong>ánh sáng đang đi từ hướng nào</strong>.
+      </p>
+    </div>
+
+    <div class="light-quality">
+      <article class="light-quality-card">
+        <div class="light-sim">
+          <div class="light-source-mark"></div>
+          <div class="light-face">
+            <div class="hard-shadow"></div>
+          </div>
+        </div>
+        <div class="light-quality-copy">
+          <div>
+            <span>Chất lượng ánh sáng</span>
+            <h3>Ánh sáng cứng</h3>
+            <p>
+              Ranh giới bóng đổ rõ, vùng sáng và vùng tối tách mạnh.
+              Có thể làm đường nét, nếp vải và bề mặt chất liệu nổi bật hơn.
+            </p>
+          </div>
+          <div class="light-observe">Quan sát: mép bóng đổ rõ · độ tương phản mạnh · hình ảnh dứt khoát.</div>
+        </div>
+      </article>
+
+      <article class="light-quality-card is-soft">
+        <div class="light-sim">
+          <div class="light-source-mark"></div>
+          <div class="light-face">
+            <div class="soft-shadow"></div>
+          </div>
+        </div>
+        <div class="light-quality-copy">
+          <div>
+            <span>Chất lượng ánh sáng</span>
+            <h3>Ánh sáng mềm</h3>
+            <p>
+              Vùng sáng chuyển sang vùng tối từ từ hơn.
+              Dễ kiểm soát da, dáng tổng thể và nhiều loại trang phục ở mức cơ bản.
+            </p>
+          </div>
+          <div class="light-observe">Quan sát: mép bóng mềm · chuyển vùng mượt · ít tương phản gắt.</div>
+        </div>
+      </article>
+    </div>
+
+    <div class="light-direction">
+      <article class="direction-card">
+        <b>→</b>
+        <h3>Ánh sáng từ phía trước</h3>
+        <p>Dễ nhìn rõ sản phẩm, nhưng hình ảnh có thể ít chiều sâu nếu ánh sáng quá đều.</p>
+      </article>
+
+      <article class="direction-card">
+        <b>↘</b>
+        <h3>Ánh sáng từ bên hông</h3>
+        <p>Tạo vùng sáng – tối rõ hơn, giúp nhìn hình khối và bề mặt chất liệu tốt hơn.</p>
+      </article>
+
+      <article class="direction-card">
+        <b>←</b>
+        <h3>Ánh sáng từ phía sau</h3>
+        <p>Có thể tạo viền sáng và tách người mẫu khỏi hậu cảnh, nhưng cần chú ý độ sáng mặt và trang phục.</p>
+      </article>
+    </div>
+
+    <div class="light-question">
+      <div>
+        <h3>4 câu hỏi để đọc ánh sáng</h3>
+        <p>
+          Khi nhìn một ảnh tham khảo, chưa cần đoán thiết bị. Chỉ cần trả lời bốn câu này trước.
+        </p>
+      </div>
+
+      <div class="light-question-list">
+        <div>01 · Ánh sáng đi từ hướng nào?</div>
+        <div>02 · Ánh sáng cứng hay mềm?</div>
+        <div>03 · Bóng đổ nằm ở đâu?</div>
+        <div>04 · Chất liệu trang phục đang rõ hay bị mất chi tiết?</div>
+      </div>
+    </div>
+  </section>
+
+    <section class="section section-bg">
+    <div class="section-note-anchor">
+      <details class="teacher-note">
+        <summary aria-label="Mở gợi ý giảng viên" title="Gợi ý giảng viên"></summary>
+        <div class="teacher-note-popover">
+          <h4>Cách dẫn dắt</h4>
+          <p>Cho học viên xem một ảnh có hậu cảnh đẹp nhưng rối và một ảnh đơn giản hơn. Hỏi: “Ảnh nào giúp bạn nhìn trang phục nhanh hơn?”</p>
+
+          <h4>Câu hỏi gợi mở</h4>
+          <ul>
+            <li>Màu hậu cảnh có nhập với trang phục không?</li>
+            <li>Có đường thẳng nào đi xuyên qua đầu hoặc cơ thể người mẫu không?</li>
+            <li>Hậu cảnh có quá nhiều chi tiết cạnh tranh với chủ thể không?</li>
+          </ul>
+
+          <h4>Lưu ý chuyên môn</h4>
+          <p>Không đánh đồng “hậu cảnh đẹp” với “hậu cảnh phù hợp”. Hậu cảnh tốt là hậu cảnh phục vụ mục tiêu bức ảnh và tạo đủ tách biệt cho chủ thể.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="bg-head">
+      <div>
+        <div class="bg-kicker"><b>10</b> Hậu cảnh & không gian</div>
+        <h2>Hậu cảnh đẹp chưa chắc là hậu cảnh tốt.</h2>
+      </div>
+      <p class="bg-lead">
+        Hậu cảnh phải giúp <strong>người mẫu và trang phục được nhìn rõ hơn</strong>,
+        chứ không trở thành một chủ thể khác đang tranh sự chú ý.
+      </p>
+    </div>
+
+    <div class="bg-principle">
+      <span>Nguyên tắc</span>
+      <p>
+        Chọn hậu cảnh dựa trên khả năng <strong>tạo tách biệt, hỗ trợ màu sắc và giữ hình ảnh sạch</strong> —
+        không chỉ dựa vào việc địa điểm có đẹp hay không.
+      </p>
+    </div>
+
+    <div class="bg-grid">
+      <article class="bg-card">
+        <div class="bg-visual">
+          <div class="pin-embed-wrap lesson-photo-wrap contain">
+          <img class="lesson-photo" src="https://drive.google.com/thumbnail?id=1Ogkzs-THCub8oEF1a5YgRThL3C3InIhb&sz=w1600" alt="Thanh Nga — phông nền tối giản" loading="lazy">
+        </div>
+          <div class="bg-label">Phông nền tối giản</div>
+        </div>
+        <div class="bg-copy">
+          <div>
+            <h3>Phông nền trong phòng chụp</h3>
+            <p>
+              Ít yếu tố gây nhiễu, dễ tập trung vào dáng tổng thể, màu sắc và chất liệu trang phục.
+            </p>
+          </div>
+          <div class="bg-use">
+            <span>Phù hợp khi</span>
+            <strong>Cần kiểm soát hình ảnh, giữ sự đồng nhất và trình bày sản phẩm rõ.</strong>
+          </div>
+        </div>
+      </article>
+
+      <article class="bg-card">
+        <div class="bg-visual">
+          <div class="pin-embed-wrap lesson-photo-wrap">
+          <img class="lesson-photo" src="https://drive.google.com/thumbnail?id=1bue2waUh4WlmuKXZ8iNw36AXFj7Vn9rz&sz=w1600" alt="XITA — người mẫu trong không gian kiến trúc" loading="lazy">
+        </div>
+          <div class="bg-label">Kiến trúc</div>
+        </div>
+        <div class="bg-copy">
+          <div>
+            <h3>Không gian kiến trúc</h3>
+            <p>
+              Đường nét, hình khối và tỷ lệ của không gian có thể hỗ trợ bố cục và làm hình ảnh có cấu trúc hơn.
+            </p>
+          </div>
+          <div class="bg-use">
+            <span>Phù hợp khi</span>
+            <strong>Muốn bối cảnh trở thành một phần của ngôn ngữ hình ảnh nhưng vẫn giữ trang phục nổi bật.</strong>
+          </div>
+        </div>
+      </article>
+
+      <article class="bg-card">
+        <div class="bg-visual">
+          <div class="pin-embed-wrap lesson-photo-wrap">
+          <img class="lesson-photo" src="https://drive.google.com/thumbnail?id=1bv2siusWxMHSphNlbbpPRYu1ZR960Gck&sz=w1600" alt="XITA — kiến trúc tạo đường dẫn và cảm giác tỷ lệ" loading="lazy">
+        </div>
+          <div class="bg-label">Đường phố / đời sống</div>
+        </div>
+        <div class="bg-copy">
+          <div>
+            <h3>Không gian đời sống</h3>
+            <p>
+              Tạo cảm giác thật, có bối cảnh sử dụng và nhiều năng lượng hơn, nhưng cũng dễ xuất hiện chi tiết gây nhiễu.
+            </p>
+          </div>
+          <div class="bg-use">
+            <span>Phù hợp khi</span>
+            <strong>Muốn trang phục sống trong một bối cảnh cụ thể thay vì tách khỏi môi trường.</strong>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="bg-check">
+      <div>
+        <h3>4 câu hỏi trước khi chọn hậu cảnh</h3>
+        <p>
+          Chỉ cần trả lời bốn câu này, học viên sẽ tránh được phần lớn lỗi hậu cảnh ở cấp độ cơ bản.
+        </p>
+      </div>
+
+      <div class="bg-check-list">
+        <div>01 · Trang phục có đủ tách khỏi hậu cảnh không?</div>
+        <div>02 · Màu sắc có hòa hợp hay bị nhập vào nhau?</div>
+        <div>03 · Có đường hoặc vật thể nào cắt qua đầu, vai, tay không?</div>
+        <div>04 · Chi tiết hậu cảnh có tranh sự chú ý với trang phục không?</div>
+      </div>
+    </div>
+
+    <div class="bg-badges">
+      <span>Tách chủ thể</span>
+      <span>Màu sắc</span>
+      <span>Đường nét</span>
+      <span>Mức độ chi tiết</span>
+      <span>Không gian âm</span>
+    </div>
+  </section>
+
+    <section class="section section-analysis">
+    <div class="section-note-anchor">
+      <details class="teacher-note">
+        <summary aria-label="Mở gợi ý giảng viên" title="Gợi ý giảng viên"></summary>
+        <div class="teacher-note-popover">
+          <h4>Cách dẫn dắt</h4>
+          <p>Chọn đúng một ảnh và phân tích từ trên xuống theo 9 bước. Không đổi ảnh giữa chừng. Mục tiêu là tập cho học viên một trình tự quan sát cố định.</p>
+
+          <h4>Câu hỏi gợi mở</h4>
+          <ul>
+            <li>Thứ đầu tiên bạn nhìn thấy là gì?</li>
+            <li>Yếu tố nào đang làm trang phục nổi bật nhất?</li>
+            <li>Nếu thay đổi góc máy hoặc hậu cảnh, cảm giác ảnh sẽ đổi ra sao?</li>
+          </ul>
+
+          <h4>Lưu ý chuyên môn</h4>
+          <p>Không cần ép học viên trả lời “đúng”. Quan trọng là mỗi nhận xét phải gắn với một yếu tố có thể nhìn thấy và giải thích được.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="analysis-head">
+      <div>
+        <div class="analysis-kicker"><b>11</b> Khung phân tích một ảnh</div>
+        <h2>Đọc ảnh theo từng lớp.<br>Không đoán cảm tính.</h2>
+      </div>
+      <p class="analysis-lead">
+        Khi xem một ảnh tham khảo, hãy đi từ <strong>thứ đang hiện ra trước mắt</strong>
+        đến <strong>mục đích sử dụng cuối cùng</strong>. Một trình tự cố định giúp việc phân tích trở nên rõ ràng hơn.
+      </p>
+    </div>
+
+    <div class="analysis-layout">
+      <div class="analysis-image">
+        <div class="pin-embed-wrap lesson-photo-wrap">
+          <img class="lesson-photo" src="https://drive.google.com/thumbnail?id=1btBA73CHJnnMIE-ENfwSFHgceUMrryAY&sz=w1600" alt="XITA — ảnh dùng để thực hành phân tích nhiều lớp" loading="lazy">
+        </div>
+        <div class="analysis-image-label">
+          <span>Ảnh nội bộ · XITA</span>
+          <span>Dùng một ảnh để đi hết 9 bước</span>
+        </div>
+      </div>
+
+      <div class="analysis-stack">
+        <article class="analysis-layer">
+          <div class="analysis-no">01</div>
+          <h3>Trang phục</h3>
+          <p>Dáng tổng thể, chất liệu, màu sắc và chi tiết nào đang cần được nhìn thấy?</p>
+        </article>
+
+        <article class="analysis-layer">
+          <div class="analysis-no">02</div>
+          <h3>Người mẫu</h3>
+          <p>Tư thế, ngôn ngữ cơ thể và biểu cảm đang hỗ trợ bộ trang phục như thế nào?</p>
+        </article>
+
+        <article class="analysis-layer">
+          <div class="analysis-no">03</div>
+          <h3>Góc máy</h3>
+          <p>Máy đang cao, ngang hay thấp hơn người mẫu? Tỷ lệ cơ thể thay đổi ra sao?</p>
+        </article>
+
+        <article class="analysis-layer">
+          <div class="analysis-no">04</div>
+          <h3>Tiêu cự & khoảng cách</h3>
+          <p>Ảnh có cảm giác góc rộng, tiêu cự tiêu chuẩn hay tiêu cự dài? Không gian bị mở rộng hay nén lại?</p>
+        </article>
+
+        <article class="analysis-layer">
+          <div class="analysis-no">05</div>
+          <h3>Khung hình</h3>
+          <p>Toàn thân, ba phần tư, trung cảnh, cận cảnh hay chi tiết? Thông tin nào đang được giữ lại?</p>
+        </article>
+
+        <article class="analysis-layer">
+          <div class="analysis-no">06</div>
+          <h3>Ánh sáng</h3>
+          <p>Ánh sáng cứng hay mềm? Đi từ hướng nào? Bóng đổ và bề mặt chất liệu đang hiện ra sao?</p>
+        </article>
+
+        <article class="analysis-layer">
+          <div class="analysis-no">07</div>
+          <h3>Hậu cảnh</h3>
+          <p>Hậu cảnh đang hỗ trợ, tạo tách biệt hay đang cạnh tranh với người mẫu và trang phục?</p>
+        </article>
+
+        <article class="analysis-layer">
+          <div class="analysis-no">08</div>
+          <h3>Màu sắc</h3>
+          <p>Màu trang phục, màu da và hậu cảnh có đang hoạt động cùng nhau hay gây xung đột?</p>
+        </article>
+
+        <article class="analysis-layer is-purpose">
+          <div class="analysis-no">09</div>
+          <h3>Mục đích sử dụng</h3>
+          <p>Ảnh này phù hợp với chiến dịch hình ảnh, bộ ảnh giới thiệu bộ sưu tập, ảnh bán hàng trực tuyến hay ảnh thời trang biên tập? Vì sao?</p>
+        </article>
+      </div>
+    </div>
+
+    <div class="analysis-flow" aria-label="Trình tự đọc ảnh">
+      <span>Trang phục</span>
+      <span>Người mẫu</span>
+      <span>Góc máy</span>
+      <span>Tiêu cự</span>
+      <span>Khung hình</span>
+      <span>Ánh sáng</span>
+      <span>Hậu cảnh</span>
+      <span>Màu sắc</span>
+      <span>Mục đích</span>
+    </div>
+
+    <div class="analysis-question">
+      <b>?</b>
+      <div>
+        <p>Không nói “ảnh này đẹp”. Hãy chỉ ra yếu tố nào khiến bạn thấy nó hiệu quả.</p>
+        <small>Mỗi nhận xét nên gắn với một thứ có thể nhìn thấy: trang phục, người mẫu, góc máy, ánh sáng, hậu cảnh hoặc màu sắc.</small>
+      </div>
+    </div>
+  </section>
+
+    <section class="section section-practice">
+    <div class="section-note-anchor">
+      <details class="teacher-note">
+        <summary aria-label="Mở gợi ý giảng viên" title="Gợi ý giảng viên"></summary>
+        <div class="teacher-note-popover">
+          <h4>Cách dẫn dắt</h4>
+          <p>Giữ nguyên bộ trang phục, người mẫu, vị trí và ánh sáng. Chỉ thay đổi góc máy, cách lấy khung hình và tạo dáng để học viên thấy rõ tác động của từng biến số.</p>
+
+          <h4>Câu hỏi trước mỗi khung</h4>
+          <ul>
+            <li>Tôi muốn người xem nhìn thấy gì?</li>
+            <li>Máy cần đặt ở đâu?</li>
+            <li>Tôi sẽ cắt khung ở đâu?</li>
+            <li>Người mẫu cần thay đổi gì?</li>
+          </ul>
+
+          <h4>Lưu ý chuyên môn</h4>
+          <p>Không cho chụp liên tục theo cảm tính. Mỗi khung phải có mục đích khác nhau. Sau khi đủ 6 ảnh mới đặt cạnh nhau để xem lại.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="practice-head">
+      <div>
+        <div class="practice-kicker"><b>12</b> Bài thực hành chính</div>
+        <h2>1 bộ trang phục.<br>6 khung hình.<br>6 mục đích khác nhau.</h2>
+      </div>
+      <p class="practice-lead">
+        Giữ gần như mọi thứ không đổi. Chỉ thay đổi cách đặt máy, lấy khung hình và hướng dẫn người mẫu
+        để nhìn rõ <strong>mỗi quyết định làm hình ảnh thay đổi ra sao</strong>.
+      </p>
+    </div>
+
+    <div class="practice-setup">
+      <div><span>Giữ nguyên</span><strong>1 người mẫu</strong></div>
+      <div><span>Giữ nguyên</span><strong>1 bộ trang phục</strong></div>
+      <div><span>Giữ nguyên</span><strong>1 bối cảnh</strong></div>
+      <div><span>Giữ nguyên</span><strong>1 điều kiện ánh sáng</strong></div>
+    </div>
+
+    <div class="practice-grid">
+      <article class="practice-shot">
+        <div class="practice-shot-top">
+          <div class="practice-shot-no">01</div>
+          <div class="practice-shot-tag">Mốc trung tính</div>
+        </div>
+        <div>
+          <h3>Toàn thân · ngang tầm</h3>
+          <p>Chụp một khung trung tính để nhìn đầy đủ dáng tổng thể và toàn bộ cách phối trang phục.</p>
+        </div>
+        <div class="practice-shot-goal">Mục tiêu: có một ảnh làm mốc để so sánh với các khung sau.</div>
+      </article>
+
+      <article class="practice-shot">
+        <div class="practice-shot-top">
+          <div class="practice-shot-no">02</div>
+          <div class="practice-shot-tag">Đổi độ cao máy</div>
+        </div>
+        <div>
+          <h3>Toàn thân · góc máy thấp</h3>
+          <p>Hạ máy xuống thấp hơn và giữ khung toàn thân để quan sát tỷ lệ chân và phần dưới cơ thể.</p>
+        </div>
+        <div class="practice-shot-goal">Mục tiêu: nhìn thấy tác động của vị trí máy lên tỷ lệ cơ thể.</div>
+      </article>
+
+      <article class="practice-shot">
+        <div class="practice-shot-top">
+          <div class="practice-shot-no">03</div>
+          <div class="practice-shot-tag">Đổi cách cắt khung</div>
+        </div>
+        <div>
+          <h3>Ba phần tư cơ thể</h3>
+          <p>Đưa khung gần hơn để cân bằng giữa trang phục, tư thế và biểu cảm người mẫu.</p>
+        </div>
+        <div class="practice-shot-goal">Mục tiêu: học cách bỏ bớt thông tin nhưng vẫn giữ được phần quan trọng.</div>
+      </article>
+
+      <article class="practice-shot">
+        <div class="practice-shot-top">
+          <div class="practice-shot-no">04</div>
+          <div class="practice-shot-tag">Tập trung nửa thân trên</div>
+        </div>
+        <div>
+          <h3>Trung cảnh</h3>
+          <p>Tập trung vào phần áo, cổ áo, tay áo, phụ kiện hoặc chi tiết phối ở nửa thân trên.</p>
+        </div>
+        <div class="practice-shot-goal">Mục tiêu: chọn vùng trang phục cần được nhìn rõ hơn.</div>
+      </article>
+
+      <article class="practice-shot">
+        <div class="practice-shot-top">
+          <div class="practice-shot-no">05</div>
+          <div class="practice-shot-tag">Đọc chi tiết</div>
+        </div>
+        <div>
+          <h3>Chi tiết</h3>
+          <p>Chọn một điểm: chất liệu, đường may, khóa, logo, túi hoặc phụ kiện và đưa nó thành chủ thể chính.</p>
+        </div>
+        <div class="practice-shot-goal">Mục tiêu: luyện khả năng nhìn và chọn chi tiết có giá trị.</div>
+      </article>
+
+      <article class="practice-shot">
+        <div class="practice-shot-top">
+          <div class="practice-shot-no">06</div>
+          <div class="practice-shot-tag">Thêm chuyển động</div>
+        </div>
+        <div>
+          <h3>Chuyển động</h3>
+          <p>Cho người mẫu bước, xoay hoặc di chuyển nhẹ để quan sát cách vải và các lớp trang phục phản ứng.</p>
+        </div>
+        <div class="practice-shot-goal">Mục tiêu: tạo độ sống mà vẫn giữ trang phục đọc được.</div>
+      </article>
+    </div>
+
+    <div class="practice-before">
+      <div>
+        <h3>Trước mỗi lần bấm máy</h3>
+        <p>
+          Học viên phải trả lời được bốn câu này. Nếu chưa trả lời được, chưa chụp.
+        </p>
+      </div>
+
+      <div class="practice-before-list">
+        <div>01 · Tôi muốn người xem nhìn thấy gì?</div>
+        <div>02 · Máy ảnh cần đặt ở đâu?</div>
+        <div>03 · Tôi sẽ cắt khung ở đâu?</div>
+        <div>04 · Người mẫu cần thay đổi gì?</div>
+      </div>
+    </div>
+
+    <div class="practice-review">
+      <div>
+        <h3>Đặt 6 ảnh cạnh nhau rồi mới đánh giá</h3>
+        <p>
+          Không hỏi “ảnh nào đẹp nhất” trước. Hãy so sánh bằng những điều đã học trong buổi.
+        </p>
+      </div>
+
+      <div class="practice-review-q">
+        <div>Khung nào cho thấy dáng tổng thể rõ nhất?</div>
+        <div>Khung nào làm tỷ lệ cơ thể thay đổi mạnh nhất?</div>
+        <div>Khung nào giúp nhìn chi tiết trang phục tốt nhất?</div>
+        <div>Khung nào làm mất thông tin quan trọng?</div>
+        <div>Tư thế nào hỗ trợ trang phục tốt nhất?</div>
+        <div>Nếu phải sửa một khung, bạn sẽ sửa điều gì trước?</div>
+      </div>
+    </div>
+  </section>
+
+    <section class="section section-homework">
+    <div class="section-note-anchor">
+      <details class="teacher-note">
+        <summary aria-label="Mở gợi ý giảng viên" title="Gợi ý giảng viên"></summary>
+        <div class="teacher-note-popover">
+          <h4>Cách giao bài</h4>
+          <p>Giải thích rõ rằng bài tập không chấm theo “ảnh đẹp”. Học viên cần cho thấy mình biết quan sát và giải thích lựa chọn.</p>
+
+          <h4>Cách xem bài buổi sau</h4>
+          <ul>
+            <li>Chọn 2 ảnh phân tích tốt nhất.</li>
+            <li>Chọn 1 ảnh tự chụp tốt nhất.</li>
+            <li>Chọn 1 ảnh cần sửa và tự nói cách sửa.</li>
+          </ul>
+
+          <h4>Lưu ý chuyên môn</h4>
+          <p>Không yêu cầu chỉnh màu nặng hoặc dùng hiệu ứng. Bài này tập trung vào quan sát, khung hình và khả năng giải thích.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="homework-head">
+      <div>
+        <div class="homework-kicker"><b>13</b> Bài tập về nhà</div>
+        <h2>Tiếp tục luyện mắt trước khi luyện máy.</h2>
+      </div>
+      <p class="homework-lead">
+        Bài tập sau buổi 01 tập trung vào hai việc:
+        <strong>phân tích ảnh có sẵn</strong> và <strong>tự tạo các khung hình có mục đích</strong>.
+      </p>
+    </div>
+
+    <div class="homework-grid">
+      <article class="homework-task">
+        <div class="homework-task-top">
+          <div class="homework-task-no">01</div>
+          <div class="homework-task-time">Phân tích</div>
+        </div>
+        <div>
+          <h3>10 ảnh tham khảo thời trang</h3>
+          <p>
+            Chọn 10 ảnh và phân tích theo khung 9 bước:
+            trang phục, người mẫu, góc máy, tiêu cự, khung hình, ánh sáng, hậu cảnh, màu sắc và mục đích.
+          </p>
+        </div>
+        <div class="homework-deliver">
+          <span>Cần nộp</span>
+          <strong>10 ảnh + ghi chú ngắn cho từng ảnh.</strong>
+        </div>
+      </article>
+
+      <article class="homework-task">
+        <div class="homework-task-top">
+          <div class="homework-task-no">02</div>
+          <div class="homework-task-time">Tự chụp</div>
+        </div>
+        <div>
+          <h3>1 bộ trang phục / 3 khung hình</h3>
+          <p>
+            Tự chụp cùng một bộ trang phục theo ba cách:
+            toàn thân, trung cảnh và chi tiết. Giữ điều kiện ánh sáng tương đối giống nhau.
+          </p>
+        </div>
+        <div class="homework-deliver">
+          <span>Cần nộp</span>
+          <strong>3 ảnh gốc hoặc chỉnh rất nhẹ, không dùng hiệu ứng mạnh.</strong>
+        </div>
+      </article>
+
+      <article class="homework-task">
+        <div class="homework-task-top">
+          <div class="homework-task-no">03</div>
+          <div class="homework-task-time">Tự ghi nhận</div>
+        </div>
+        <div>
+          <h3>1 trang ghi chú quan sát</h3>
+          <p>
+            Ghi lại điều bạn nhận thấy về góc máy, cách cắt khung, dáng trang phục và những lỗi mình thường bỏ qua khi chụp.
+          </p>
+        </div>
+        <div class="homework-deliver">
+          <span>Cần nộp</span>
+          <strong>1 trang ngắn, ưu tiên nhận xét cụ thể thay vì từ cảm tính.</strong>
+        </div>
+      </article>
+    </div>
+
+    <div class="homework-rule">
+      <b>!</b>
+      <div>
+        <p>Không dùng “đẹp”, “sang”, “nghệ” làm lời giải thích cuối cùng.</p>
+        <small>Nếu dùng những từ này, hãy nói tiếp: yếu tố nào trong góc máy, ánh sáng, trang phục, màu sắc hoặc bố cục tạo ra cảm giác đó?</small>
+      </div>
+    </div>
+  </section>
+
+    <section class="section section-result">
+    <div class="section-note-anchor">
+      <details class="teacher-note">
+        <summary aria-label="Mở gợi ý giảng viên" title="Gợi ý giảng viên"></summary>
+        <div class="teacher-note-popover">
+          <h4>Cách kết buổi</h4>
+          <p>Không tổng kết lại toàn bộ lý thuyết. Yêu cầu học viên tự nói 3 điều mình sẽ thay đổi ngay ở lần chụp tiếp theo.</p>
+
+          <h4>Câu hỏi kết buổi</h4>
+          <ul>
+            <li>Trước đây bạn thường bỏ qua điều gì khi chụp?</li>
+            <li>Từ giờ trước khi bấm máy bạn sẽ kiểm tra điều gì?</li>
+            <li>Trong 6 khung vừa chụp, khung nào giúp bạn hiểu bài rõ nhất?</li>
+          </ul>
+
+          <h4>Lưu ý</h4>
+          <p>Kết thúc bằng hành động cụ thể. Buổi 02 mới đi sâu vào làm chủ máy ảnh và phơi sáng.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="result-head">
+      <div>
+        <div class="result-kicker"><b>14</b> Kết quả cuối buổi</div>
+        <h2>Sau buổi 01, bạn phải nhìn ảnh khác đi.</h2>
+      </div>
+      <p class="result-lead">
+        Chưa cần chụp thật phức tạp. Điều quan trọng là bắt đầu biết
+        <strong>mình đang nhìn gì, thay đổi gì và vì sao</strong>.
+      </p>
+    </div>
+
+    <div class="result-grid">
+      <article class="result-item">
+        <div class="result-item-no">01</div>
+        <div>
+          <h3>Phân tích được ảnh</h3>
+          <p>Không dừng ở cảm giác đẹp/xấu; biết gọi tên các yếu tố tạo nên bức ảnh.</p>
+        </div>
+      </article>
+
+      <article class="result-item">
+        <div class="result-item-no">02</div>
+        <div>
+          <h3>Đọc được trang phục</h3>
+          <p>Nhìn dáng tổng thể, chất liệu, các lớp và chi tiết trước khi bấm máy.</p>
+        </div>
+      </article>
+
+      <article class="result-item">
+        <div class="result-item-no">03</div>
+        <div>
+          <h3>Chụp có mục đích</h3>
+          <p>Biết chọn vị trí máy, cách lấy khung và hướng dẫn người mẫu dựa trên điều muốn thể hiện.</p>
+        </div>
+      </article>
+
+      <article class="result-item">
+        <div class="result-item-no">04</div>
+        <div>
+          <h3>Tự xem lại ảnh</h3>
+          <p>Biết đặt các khung cạnh nhau, chỉ ra điều hiệu quả và điều cần sửa.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="result-manifesto">
+      <span>Điều cần mang sang buổi tiếp theo</span>
+      <strong>Nhìn đúng trước. Chụp có chủ đích sau.</strong>
+    </div>
+
+    <div class="result-next">
+      <span>Buổi 02</span>
+      <span>Làm chủ máy ảnh</span>
+      <span>Phơi sáng</span>
+      <span>Lấy nét</span>
+      <span>Cân bằng trắng</span>
+    </div>
+  </section>
+
+    <div class="teacher-end-note">
+    <details class="teacher-note">
+      <summary aria-label="Mở nguyên tắc giảng viên" title="Nguyên tắc giảng viên"></summary>
+      <div class="teacher-note-popover">
+        <h4>Nguyên tắc xuyên suốt Buổi 01</h4>
+        <p>Nhìn ảnh → tự nhận xét → gọi tên yếu tố → chụp thử → đặt cạnh nhau → tự giải thích kết quả.</p>
+        <h4>Điều cần tránh</h4>
+        <p>Không giảng lý thuyết dài trước khi học viên được nhìn hoặc thử. Mỗi phần nên kết thúc bằng một hành động quan sát hoặc chụp thực tế.</p>
+      </div>
+    </details>
+  </div>
+</div>
+  <script async defer src="https://assets.pinterest.com/js/pinit.js"></script>
+</body>
+</html>
