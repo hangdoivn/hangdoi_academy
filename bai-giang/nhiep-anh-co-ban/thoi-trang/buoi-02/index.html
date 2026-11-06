@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Buổi 02 — Làm chủ máy ảnh & Phơi sáng | Hang Đôi Academy</title>
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="https://academy.hangdoiproduction.com/bai-giang/nhiep-anh-co-ban/thoi-trang/buoi-02/">
+  <style>
+    *{box-sizing:border-box}
+    :root{
+      --paper-0:#FFFDF7;--paper-50:#F8F4EA;--paper-100:#F2ECDF;--paper-200:#E8DFD0;
+      --green-950:#0F422D;--green-800:#176B43;--green-700:#239653;--green-100:#E8F4DF;
+      --yellow:#F2D43D;--orange:#F26A3D;--cobalt:#3450D8;--ink:#173326;
+    }
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper-50);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    .page{max-width:1240px;margin:auto;padding:18px 24px 80px}
+    .lesson-nav{min-height:58px;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid var(--paper-200);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    .lesson-nav-path{display:flex;gap:9px;flex-wrap:wrap}.lesson-nav-path span:not(:last-child)::after{content:"/";margin-left:9px;color:#9A9A8D}
+    .lesson-nav-time{padding:8px 12px;border:1px solid var(--green-950);border-radius:999px}
+    .hero{position:relative;display:grid;grid-template-columns:minmax(0,7fr) minmax(320px,5fr);gap:34px;min-height:690px;padding:52px 0 62px;overflow:hidden}
+    .hero-copy{display:flex;flex-direction:column;justify-content:space-between;min-width:0}.eyebrow{display:flex;align-items:center;gap:12px;font-size:12px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}.eyebrow:before{content:"";width:42px;height:4px;background:var(--cobalt)}
+    h1{margin:30px 0 0;color:var(--green-950);font-size:clamp(64px,8.2vw,124px);line-height:.83;letter-spacing:-.075em;font-weight:900}
+    h1 small{display:block;margin-bottom:10px;color:var(--green-800);font-size:.33em;line-height:1;letter-spacing:-.03em}
+    .hero-intro{max-width:650px;margin:30px 0 0;color:#435A4D;font-size:18px;line-height:1.55}
+    .hero-bottom{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:end;margin-top:46px}.principle{padding-top:14px;border-top:2px solid var(--green-950);font-size:15px;line-height:1.55}.principle strong{display:block;margin-bottom:7px;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+    .hero-meta{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--green-950);background:var(--paper-0)}.hero-meta div{padding:13px;border-right:1px solid var(--green-950)}.hero-meta div:last-child{border:0}.hero-meta span{display:block;margin-bottom:10px;color:#66776D;font-size:10px;text-transform:uppercase;letter-spacing:.09em}.hero-meta strong{font-size:17px;line-height:1.05}
+    .hero-visual{position:relative;min-height:570px;align-self:center}.hero-block{position:absolute;inset:26px 0 28px 46px;background:var(--cobalt);border-radius:48% 48% 8px 8px/34% 34% 8px 8px}.hero-image{position:absolute;z-index:2;top:0;left:0;right:34px;height:520px;padding:13px;background:var(--paper-0);border:2px solid var(--green-950);box-shadow:12px 12px 0 rgba(15,66,45,.16)}.hero-image img{width:100%;height:462px;display:block;object-fit:cover;object-position:center 35%}.hero-caption{display:flex;justify-content:space-between;gap:10px;padding-top:8px;font-size:10px;font-weight:800}
+    .hero-sticker{position:absolute;z-index:3;right:0;top:58px;width:116px;height:116px;display:flex;align-items:center;justify-content:center;padding:16px;border:2px solid var(--green-950);border-radius:50%;background:var(--yellow);text-align:center;font-size:12px;font-weight:900;line-height:1.1;text-transform:uppercase;transform:rotate(6deg)}
+    .section{position:relative;margin:0 -24px;padding:86px 24px 92px;border-bottom:1px solid var(--paper-200);overflow:hidden}.paper{background:var(--paper-0)}.paper-alt{background:var(--paper-100)}.dark{background:var(--green-950);color:var(--paper-0)}.signal{background:#E7EAFB}
+    .section-head{display:grid;grid-template-columns:minmax(0,7fr) minmax(260px,5fr);gap:42px;align-items:end;margin-bottom:40px}.kicker{display:flex;align-items:center;gap:10px;margin-bottom:18px;color:var(--green-700);font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}.dark .kicker{color:var(--yellow)}.kicker b{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--green-700);color:white}.dark .kicker b{background:var(--yellow);color:var(--green-950)}
+    h2{margin:0;color:var(--green-950);font-size:clamp(48px,5.8vw,82px);line-height:.9;letter-spacing:-.055em}.dark h2{color:var(--paper-0)}.section-lead{max-width:430px;margin:0;padding-top:17px;border-top:2px solid var(--green-950);color:#506359;font-size:16px;line-height:1.6}.dark .section-lead{border-color:rgba(255,255,255,.7);color:#C7D7CD}
+    .teacher-note{position:relative;display:inline-block;z-index:20}.teacher-note summary{list-style:none;width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(15,66,45,.32);border-radius:999px;background:var(--paper-0);color:var(--green-950);font-size:14px;font-weight:900;cursor:pointer}.teacher-note summary::-webkit-details-marker{display:none}.teacher-note summary:before{content:"i";font-family:Georgia,serif;font-style:italic}.teacher-note summary:hover,.teacher-note[open] summary{background:var(--yellow)}.teacher-note-popover{position:absolute;top:44px;right:0;width:min(370px,78vw);padding:18px;background:var(--paper-0);color:var(--green-950);border:1px solid var(--green-950);box-shadow:8px 8px 0 rgba(15,66,45,.12);opacity:0;visibility:hidden;transform:translateY(-5px);transition:.16s;pointer-events:none;z-index:30}.teacher-note:hover .teacher-note-popover,.teacher-note[open] .teacher-note-popover{opacity:1;visibility:visible;transform:none;pointer-events:auto}.teacher-note-popover:before{content:"GỢI Ý GIẢNG VIÊN";display:block;margin-bottom:10px;color:var(--green-700);font-size:10px;font-weight:900;letter-spacing:.12em}.teacher-note-popover h4{margin:14px 0 6px;font-size:12px;letter-spacing:.05em;text-transform:uppercase}.teacher-note-popover h4:first-of-type{margin-top:0}.teacher-note-popover p,.teacher-note-popover li{margin:0;color:#3F5549;font-size:13px;line-height:1.5}.teacher-note-popover ul{margin:6px 0 0;padding-left:18px}.section-note{position:absolute;top:22px;right:24px}.dark .teacher-note summary{background:rgba(255,255,255,.08);color:white;border-color:rgba(255,255,255,.35)}.dark .teacher-note summary:hover,.dark .teacher-note[open] summary{background:var(--yellow);color:var(--green-950)}
+    .manifesto-grid{display:grid;grid-template-columns:minmax(260px,4fr) minmax(0,8fr);gap:54px}.manifesto-copy h2{position:sticky;top:30px}.three-control{display:grid;border-top:1px solid rgba(255,255,255,.25)}.control-row{display:grid;grid-template-columns:70px 1fr 1.15fr;gap:18px;align-items:center;min-height:138px;border-bottom:1px solid rgba(255,255,255,.25)}.control-row b{color:var(--yellow);font-size:40px}.control-row h3{margin:0;color:white;font-size:25px}.control-row p{margin:0;color:#C7D7CD;line-height:1.55}
+    .exposure-system{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.exp-card{min-height:380px;display:flex;flex-direction:column;justify-content:space-between;padding:22px;border:1px solid var(--green-950);background:var(--paper-0)}.exp-card:nth-child(2){background:var(--green-100)}.exp-card:nth-child(3){background:#E7EAFB}.exp-symbol{font-size:72px;line-height:1;font-weight:900;letter-spacing:-.08em;color:var(--green-950)}.exp-card span{display:block;margin-bottom:9px;color:var(--orange);font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase}.exp-card h3{margin:0 0 10px;font-size:27px;line-height:1}.exp-card p{margin:0;color:#53655A;font-size:14px;line-height:1.55}.exp-bottom{margin-top:22px;padding:18px 20px;border:1px solid var(--green-950);background:var(--green-950);color:white;font-size:18px;font-weight:750}
+    .shutter-ruler{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--green-950)}.shutter-step{min-height:250px;padding:18px;border-right:1px solid var(--green-950);background:var(--paper-0)}.shutter-step:last-child{border:0}.shutter-step:nth-child(4),.shutter-step:nth-child(5){background:var(--green-100)}.shutter-step strong{display:block;font-size:34px;letter-spacing:-.05em}.shutter-step span{display:block;margin-top:12px;color:#526359;font-size:13px;line-height:1.45}.motion-line{position:relative;height:64px;margin:28px 0 20px}.motion-dot{position:absolute;top:18px;width:22px;height:22px;border-radius:50%;background:var(--orange)}.motion-dot:before,.motion-dot:after{content:"";position:absolute;top:9px;height:4px;background:rgba(242,106,61,.25)}.slow .motion-dot:before{right:18px;width:78px}.slow .motion-dot:after{right:18px;width:42px;top:2px}.fast .motion-dot:before{right:18px;width:12px}
+    .aperture-stage{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}.aperture-visual{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;align-items:end;padding:24px;border:1px solid var(--green-950);background:var(--paper-0)}.ap-item{text-align:center}.ap-ring{margin:auto;display:grid;place-items:center;width:120px;height:120px;border-radius:50%;border:12px solid var(--green-950);background:var(--paper-100)}.ap-ring:after{content:"";display:block;border-radius:50%;background:var(--green-950)}.ap1:after{width:62px;height:62px}.ap2:after{width:48px;height:48px}.ap3:after{width:34px;height:34px}.ap4:after{width:20px;height:20px}.ap-item strong{display:block;margin-top:18px;font-size:20px}.ap-item small{display:block;margin-top:6px;color:#66776D}.aperture-note{display:flex;flex-direction:column;justify-content:space-between;padding:24px;border:1px solid var(--green-950);background:var(--green-950);color:white}.aperture-note h3{margin:0;font-size:30px}.aperture-note p{color:#C7D7CD;line-height:1.6}.aperture-note strong{color:var(--yellow);font-size:18px}
+    .iso-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.iso-card{min-height:230px;padding:18px;border:1px solid var(--green-950);background:var(--paper-0)}.iso-card:nth-child(3),.iso-card:nth-child(4){background:#F7E4DC}.iso-card strong{display:block;font-size:29px}.noise{height:76px;margin:24px 0;background-image:radial-gradient(circle,rgba(15,66,45,.5) 1px,transparent 1.5px);background-size:18px 18px}.n2{background-size:13px 13px}.n3{background-size:8px 8px}.n4{background-size:5px 5px}.iso-card p{margin:0;color:#526359;font-size:13px;line-height:1.5}
+    .histogram-box{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px}.histogram{position:relative;height:220px;padding:18px;border:1px solid var(--green-950);background:#17251F;overflow:hidden}.hist-bars{position:absolute;left:18px;right:18px;bottom:18px;height:160px;display:flex;align-items:end;gap:4px}.hist-bars i{flex:1;background:#E8F4DF;opacity:.9}.histogram.warn .hist-bars i:last-child,.histogram.warn .hist-bars i:nth-last-child(2){background:var(--yellow)}.hist-caption{position:absolute;left:18px;right:18px;top:16px;display:flex;justify-content:space-between;color:#C7D7CD;font-size:10px;text-transform:uppercase}
+    .mode-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.mode-card{min-height:310px;padding:20px;border:1px solid var(--green-950);background:var(--paper-0)}.mode-card.is-main{background:var(--cobalt);color:white}.mode-letter{font-size:62px;line-height:1;font-weight:900}.mode-card h3{margin:24px 0 8px;font-size:24px}.mode-card p{margin:0;color:#526359;font-size:13px;line-height:1.5}.mode-card.is-main p{color:#E1E5F9}
+    .wb-scale{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--green-950)}.wb{min-height:260px;padding:18px;border-right:1px solid var(--green-950)}.wb:last-child{border:0}.wb:nth-child(1){background:#DDE5FF}.wb:nth-child(2){background:#EEF0E4}.wb:nth-child(3){background:#FFF2D6}.wb:nth-child(4){background:#FFD9B9}.wb strong{display:block;font-size:30px}.wb h3{margin:28px 0 8px;font-size:20px}.wb p{margin:0;color:#526359;font-size:13px;line-height:1.5}
+    .focus-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.focus-card{min-height:330px;padding:20px;border:1px solid var(--green-950);background:var(--paper-0)}.focus-card:nth-child(2){background:var(--green-100)}.focus-reticle{position:relative;height:110px;margin-bottom:24px}.focus-reticle:before{content:"";position:absolute;left:50%;top:50%;width:76px;height:76px;border:2px solid var(--orange);transform:translate(-50%,-50%)}.focus-reticle:after{content:"";position:absolute;left:50%;top:50%;width:12px;height:12px;border-radius:50%;background:var(--orange);transform:translate(-50%,-50%)}.focus-card h3{font-size:25px}.focus-card p{color:#526359;line-height:1.55;font-size:13px}
+    .raw-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--green-950)}.raw-card{min-height:320px;padding:24px;background:var(--paper-0)}.raw-card+ .raw-card{border-left:1px solid var(--green-950);background:#E7EAFB}.raw-card strong{display:block;font-size:50px;letter-spacing:-.05em}.raw-card ul{margin:28px 0 0;padding-left:18px;color:#526359;line-height:1.8}
+    .setup-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.setup-card{min-height:390px;padding:22px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.04)}.setup-card b{color:var(--yellow);font-size:11px;letter-spacing:.1em}.setup-card h3{margin:22px 0 12px;color:white;font-size:28px;line-height:1}.setup-card p{color:#C7D7CD;line-height:1.55}.setup-list{margin-top:22px;border-top:1px solid rgba(255,255,255,.18)}.setup-list div{padding:10px 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:13px}.setup-list span{color:#9FB6A8;margin-right:8px}
+    .practice-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.practice-card{min-height:320px;padding:20px;border:1px solid var(--green-950);background:var(--paper-0)}.practice-card:nth-child(2){background:var(--green-100)}.practice-card:nth-child(3){background:#F7E4DC}.practice-card:nth-child(4){background:#E7EAFB}.practice-card b{display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;border:1px solid var(--green-950)}.practice-card h3{margin:32px 0 10px;font-size:24px;line-height:1}.practice-card p{color:#526359;font-size:13px;line-height:1.55}.practice-card strong{display:block;margin-top:20px;padding-top:12px;border-top:1px solid rgba(15,66,45,.18);font-size:12px;line-height:1.4}
+    .final-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid rgba(255,255,255,.25)}.final-item{min-height:220px;padding:20px;border-right:1px solid rgba(255,255,255,.18)}.final-item:last-child{border:0}.final-item b{color:var(--yellow);font-size:38px}.final-item h3{margin:30px 0 8px;color:white;font-size:21px}.final-item p{margin:0;color:#C7D7CD;font-size:13px;line-height:1.5}.final-line{margin-top:28px;padding-top:28px;border-top:1px solid rgba(255,255,255,.25);color:white;font-size:clamp(36px,5vw,66px);font-weight:900;line-height:.95;letter-spacing:-.05em}
+    .photo-ref{margin-top:20px;border:1px solid var(--green-950);background:var(--paper-0);overflow:hidden}.photo-ref img{width:100%;height:420px;display:block;object-fit:cover}.photo-ref figcaption{display:flex;justify-content:space-between;gap:12px;padding:10px 12px;color:#526359;font-size:11px;font-weight:800}
+    @media(max-width:1024px) and (min-width:801px){.exposure-system,.setup-grid{grid-template-columns:repeat(2,1fr)}.exp-card:last-child,.setup-card:last-child{grid-column:span 2}.shutter-ruler{grid-template-columns:repeat(3,1fr)}.shutter-step{border-bottom:1px solid var(--green-950)}.mode-grid,.practice-grid,.final-grid{grid-template-columns:repeat(2,1fr)}.final-item{border-bottom:1px solid rgba(255,255,255,.18)}}
+    @media(max-width:800px){
+      .page{padding:12px 16px 60px}.lesson-nav{font-size:10px}.hero{grid-template-columns:1fr;min-height:auto;padding:40px 0 54px}.hero h1{font-size:58px}.hero-bottom{grid-template-columns:1fr}.hero-visual{min-height:500px}.hero-image{right:26px;height:455px}.hero-image img{height:398px}
+      .section{margin:0 -16px;padding:62px 16px 68px}.section-head{grid-template-columns:1fr;gap:24px}.section h2{font-size:50px}.section-note{top:14px;right:16px}.teacher-note-popover{position:fixed;left:16px;right:16px;top:auto;bottom:18px;width:auto;max-height:58vh;overflow:auto;z-index:9999}
+      .manifesto-grid{grid-template-columns:1fr}.manifesto-copy h2{position:static}.control-row{grid-template-columns:52px 1fr}.control-row p{grid-column:2}
+      .exposure-system,.shutter-ruler,.aperture-stage,.iso-grid,.histogram-box,.mode-grid,.wb-scale,.focus-grid,.raw-grid,.setup-grid,.practice-grid,.final-grid{grid-template-columns:1fr}
+      .shutter-step,.wb{border-right:0;border-bottom:1px solid var(--green-950)}.shutter-step:last-child,.wb:last-child{border-bottom:0}.aperture-visual{grid-template-columns:repeat(2,1fr)}.raw-card+ .raw-card{border-left:0;border-top:1px solid var(--green-950)}.final-item{border-right:0;border-bottom:1px solid rgba(255,255,255,.18)}.final-item:last-child{border-bottom:0}
+      .photo-ref img{height:320px}
+    }
+    @media print{.teacher-note{display:none!important}}
+  </style>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><style id="academy-logo-critical">
+header.site-header,header.site-header.scrolled{background:linear-gradient(90deg,#fffef9,#f5f7f1)!important;border-color:rgba(23,56,43,.12)!important}
+.site-header .nav-links a,.site-header.scrolled .nav-links a{color:#17382b!important}
+.brand-official,.p2-brand{display:inline-flex!important;align-items:center!important;width:200px!important;min-width:200px!important;height:40px!important;padding:0!important;border:0!important;background:none!important;background-image:none!important}
+.brand-official>*{opacity:1!important;visibility:visible!important}
+.brand-official .academy-logo-svg,.p2-brand .academy-logo-svg{display:block!important;width:200px!important;max-height:40px!important;height:auto!important;opacity:1!important;visibility:visible!important}
+footer .brand-official,.p2-footer-logo{width:220px!important;min-width:220px!important;height:48px!important}
+footer .academy-logo-svg,.p2-footer-logo .academy-logo-svg{display:block!important;width:220px!important;max-height:48px!important;height:auto!important;opacity:1!important;visibility:visible!important}
+footer .academy-logo-svg .cls-1,.p2-footer .academy-logo-svg .cls-1{fill:#fff!important}
+footer .academy-logo-svg .cls-2,.p2-footer .academy-logo-svg .cls-2{fill:#fcb415!important}
+@media(max-width:760px){.brand-official,.p2-brand{width:170px!important;min-width:170px!important;height:34px!important}.brand-official .academy-logo-svg,.p2-brand .academy-logo-svg{width:170px!important;max-height:34px!important}footer .brand-official,.p2-footer-logo{width:190px!important;min-width:190px!important;height:42px!important}footer .academy-logo-svg,.p2-footer-logo .academy-logo-svg{width:190px!important;max-height:42px!important}}
+</style></head>
+<body>
+<div class="page">
+  <nav class="lesson-nav">
+    <div class="lesson-nav-path"><span>Nhiếp ảnh cơ bản</span><span>Thời trang</span><span>Buổi 02</span></div>
+    <div class="lesson-nav-time">150 phút</div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-copy">
+      <div>
+        <div class="eyebrow">Nhiếp ảnh ứng dụng trong thời trang</div>
+        <h1><small>Buổi 02</small>Làm chủ<br>máy ảnh.</h1>
+        <p class="hero-intro">Không học thông số để thuộc. Học cách chọn thông số dựa trên điều cần giữ đúng trong ảnh: <strong>độ sáng, chuyển động và vùng nét</strong>.</p>
+      </div>
+      <div class="hero-bottom">
+        <div class="principle"><strong>Nguyên tắc</strong>Muốn ảnh như thế nào → chọn biến số quan trọng nhất → khóa nó → cân phần còn lại → chụp → xem lại.</div>
+        <div class="hero-meta">
+          <div><span>Thời lượng</span><strong>150 phút</strong></div>
+          <div><span>Bài chính</span><strong>4 biến số / 8 ảnh</strong></div>
+          <div><span>Trọng tâm</span><strong>Kiểm soát máy</strong></div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-block"></div>
+      <div class="hero-image">
+        <img src="https://drive.google.com/thumbnail?id=1OkPSJPoW43vkR0LZoYfycz8_3FMW6WL_&sz=w1600" alt="Ảnh thời trang Thanh Nga dùng minh họa Buổi 02">
+        <div class="hero-caption"><span>Ảnh nội bộ · Thanh Nga</span><span>Kiểm soát máy để giữ đúng ý đồ</span></div>
+      </div>
+      <div class="hero-sticker">Không có<br>một thông số<br>chuẩn</div>
+    </div>
+  </header>
+
+  <section class="section dark">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Cách dẫn dắt</h4><p>Cho học viên mở máy và đọc to mode, tốc độ, khẩu độ, ISO, WB, focus mode trước khi giải thích bất kỳ khái niệm nào.</p>
+      <h4>Câu hỏi gợi mở</h4><ul><li>Nếu ảnh bị nhòe, bạn sẽ nhìn thông số nào trước?</li><li>Nếu áo và mặt không cùng nét, biến số nào cần xem?</li></ul>
+      <h4>Lưu ý</h4><p>Không biến phần mở đầu thành kiểm tra kiến thức. Mục tiêu là tạo thói quen kiểm tra trạng thái máy.</p>
+    </div></details></div>
+    <div class="manifesto-grid">
+      <div class="manifesto-copy"><div class="kicker"><b>01</b> Mục tiêu buổi học</div><h2>Một ảnh kỹ thuật đúng phải kiểm soát ba thứ.</h2></div>
+      <div class="three-control">
+        <div class="control-row"><b>01</b><h3>Độ sáng</h3><p>Đủ thông tin vùng sáng và vùng tối cho mục tiêu sử dụng.</p></div>
+        <div class="control-row"><b>02</b><h3>Chuyển động</h3><p>Đóng băng, giữ một chút chuyển động hay cố ý kéo nhòe.</p></div>
+        <div class="control-row"><b>03</b><h3>Vùng nét</h3><p>Mắt, toàn bộ trang phục hay cả người mẫu và bối cảnh cần được đọc rõ?</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section paper">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Cách dẫn dắt</h4><p>Đừng bắt đầu bằng định nghĩa tam giác phơi sáng. Hãy lấy một ảnh quá tối, một ảnh nhòe và một ảnh độ sâu trường ảnh quá mỏng để học viên gọi tên vấn đề trước.</p>
+      <h4>Lưu ý chuyên môn</h4><p>ISO không làm nhiều ánh sáng hơn đi vào cảm biến. Tránh mô tả ba biến số như ba “cửa ánh sáng” tương đương.</p>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>02</b> Phơi sáng</div><h2>Ba biến số.<br>Ba tác động khác nhau.</h2></div>
+      <p class="section-lead">Tốc độ và khẩu độ ảnh hưởng lượng ánh sáng ghi nhận. ISO điều chỉnh mức khuếch đại/độ sáng tín hiệu. Mỗi biến số còn tác động đến hình ảnh theo cách riêng.</p>
+    </div>
+    <div class="exposure-system">
+      <article class="exp-card"><div class="exp-symbol">1/</div><div><span>Thời gian</span><h3>Tốc độ màn trập</h3><p>Quyết định thời gian ghi nhận ánh sáng và cách chuyển động được thể hiện.</p></div></article>
+      <article class="exp-card"><div class="exp-symbol">ƒ/</div><div><span>Cửa khẩu</span><h3>Khẩu độ</h3><p>Ảnh hưởng lượng ánh sáng và độ sâu trường ảnh — phần nào trong không gian còn đủ nét.</p></div></article>
+      <article class="exp-card"><div class="exp-symbol">ISO</div><div><span>Tín hiệu</span><h3>Độ nhạy ISO</h3><p>Giúp đạt độ sáng mong muốn khi hai biến số kia đã bị ràng buộc, đổi lại chất lượng tín hiệu có thể giảm.</p></div></article>
+    </div>
+    <div class="exp-bottom">Không hỏi “thông số chuẩn là bao nhiêu?” → Hỏi “điều gì trong ảnh này phải được ưu tiên giữ đúng?”</div>
+  </section>
+
+  <section class="section paper-alt">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Demo</h4><p>Cho người mẫu bước qua cùng một vị trí. Chụp lần lượt 1/60 → 1/125 → 1/250 → 1/500 → 1/1000, bù sáng để các ảnh gần tương đương.</p>
+      <h4>Câu hỏi</h4><ul><li>Ở mốc nào mắt bắt đầu nét ổn định?</li><li>Ở mốc nào mép váy vẫn còn chuyển động?</li></ul>
+      <h4>Lưu ý</h4><p>Các mốc chỉ là điểm bắt đầu. Kết quả còn phụ thuộc tốc độ chuyển động, tiêu cự và cách cầm máy.</p>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>03</b> Tốc độ màn trập</div><h2>Nhanh hay chậm phụ thuộc vào chuyển động.</h2></div>
+      <p class="section-lead">Không có một tốc độ “đúng cho thời trang”. Tốc độ phải đủ để giữ hoặc cố ý thể hiện chuyển động theo mục tiêu.</p>
+    </div>
+    <div class="shutter-ruler">
+      <div class="shutter-step slow"><strong>1/60</strong><div class="motion-line"><i class="motion-dot"></i></div><span>Dễ thấy nhòe khi người mẫu bước hoặc tay chuyển động.</span></div>
+      <div class="shutter-step slow"><strong>1/125</strong><div class="motion-line"><i class="motion-dot"></i></div><span>Có thể dùng cho chủ thể khá tĩnh, nhưng cần kiểm tra kỹ chuyển động.</span></div>
+      <div class="shutter-step"><strong>1/250</strong><div class="motion-line"><i class="motion-dot"></i></div><span>Mốc bắt đầu thực dụng cho chuyển động nhẹ trong nhiều tình huống.</span></div>
+      <div class="shutter-step fast"><strong>1/500</strong><div class="motion-line"><i class="motion-dot"></i></div><span>Phù hợp hơn khi người mẫu bước, xoay hoặc vải chuyển động rõ.</span></div>
+      <div class="shutter-step fast"><strong>1/1000</strong><div class="motion-line"><i class="motion-dot"></i></div><span>Dùng khi cần đóng băng chuyển động mạnh hơn.</span></div>
+    </div>
+  </section>
+
+  <section class="section paper">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Demo</h4><p>Giữ nguyên vị trí máy và người mẫu. Chụp cùng khung ở khẩu mở và khẩu khép hơn. Zoom vào mắt, cổ áo, vai, tay áo.</p>
+      <h4>Câu hỏi</h4><ul><li>Phần nào mất nét trước?</li><li>Nếu đây là ảnh bán hàng/lookbook, lượng nét đó đã đủ chưa?</li></ul>
+      <h4>Lưu ý</h4><p>Độ sâu trường ảnh còn phụ thuộc tiêu cự, khoảng cách và kích thước cảm biến. Không trình bày khẩu độ như yếu tố duy nhất.</p>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>04</b> Khẩu độ</div><h2>Xóa phông không phải mục tiêu cuối cùng.</h2></div>
+      <p class="section-lead">Trong ảnh thời trang, khẩu độ phải giữ đủ lượng thông tin cần đọc: mắt, phom dáng, tay áo, phụ kiện và các lớp trang phục.</p>
+    </div>
+    <div class="aperture-stage">
+      <div class="aperture-visual">
+        <div class="ap-item"><div class="ap-ring ap1"></div><strong>f/1.8</strong><small>Vùng nét mỏng</small></div>
+        <div class="ap-item"><div class="ap-ring ap2"></div><strong>f/2.8</strong><small>Mỏng → vừa</small></div>
+        <div class="ap-item"><div class="ap-ring ap3"></div><strong>f/4</strong><small>Cân bằng</small></div>
+        <div class="ap-item"><div class="ap-ring ap4"></div><strong>f/5.6–8</strong><small>Giữ nhiều thông tin hơn</small></div>
+      </div>
+      <div class="aperture-note"><div><h3>Không mặc định f/1.4 = chuyên nghiệp.</h3><p>Khẩu độ phù hợp là khẩu độ giúp ảnh giữ đúng lượng thông tin mà mục tiêu chụp yêu cầu.</p></div><strong>Fashion cần trang phục được đọc rõ.</strong></div>
+    </div>
+  </section>
+
+  <section class="section signal">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Cách dẫn dắt</h4><p>Tạo tình huống thiếu sáng nhẹ. Yêu cầu học viên ưu tiên tốc độ và khẩu độ trước, rồi mới tăng ISO.</p>
+      <h4>Lưu ý</h4><p>Đừng làm học viên sợ ISO. Một ảnh hơi nhiễu nhưng đúng khoảnh khắc thường hữu dụng hơn ảnh ISO thấp nhưng nhòe.</p>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>05</b> ISO & biểu đồ sáng</div><h2>ISO là phương án cân bằng, không phải kẻ thù.</h2></div>
+      <p class="section-lead">Khi tốc độ và khẩu độ đã bị ràng buộc bởi mục tiêu hình ảnh, ISO giúp đưa độ sáng về mức sử dụng được.</p>
+    </div>
+    <div class="iso-grid">
+      <div class="iso-card"><strong>ISO 100</strong><div class="noise"></div><p>Tín hiệu sạch hơn trong điều kiện đủ sáng.</p></div>
+      <div class="iso-card"><strong>ISO 400</strong><div class="noise n2"></div><p>Tăng linh hoạt khi cần tốc độ nhanh hơn.</p></div>
+      <div class="iso-card"><strong>ISO 1600</strong><div class="noise n3"></div><p>Có thể bắt đầu thấy nhiễu rõ hơn tùy máy.</p></div>
+      <div class="iso-card"><strong>ISO 3200+</strong><div class="noise n4"></div><p>Dùng khi cần giữ khoảnh khắc và không còn nhiều lựa chọn ánh sáng.</p></div>
+    </div>
+    <div class="histogram-box">
+      <div class="histogram"><div class="hist-caption"><span>Tối</span><span>Sáng</span></div><div class="hist-bars"><i style="height:8%"></i><i style="height:15%"></i><i style="height:32%"></i><i style="height:58%"></i><i style="height:78%"></i><i style="height:62%"></i><i style="height:38%"></i><i style="height:20%"></i><i style="height:8%"></i></div></div>
+      <div class="histogram warn"><div class="hist-caption"><span>Tối</span><span>Có nguy cơ mất vùng sáng</span></div><div class="hist-bars"><i style="height:5%"></i><i style="height:8%"></i><i style="height:14%"></i><i style="height:22%"></i><i style="height:32%"></i><i style="height:48%"></i><i style="height:68%"></i><i style="height:88%"></i><i style="height:100%"></i></div></div>
+    </div>
+  </section>
+
+  <section class="section paper">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Cách dẫn dắt</h4><p>Đặt cùng một tình huống và hỏi học viên mode nào giúp giảm số thứ phải kiểm soát bằng tay nhưng vẫn giữ đúng ưu tiên.</p>
+      <h4>Lưu ý</h4><p>Tên mode khác nhau theo hãng: A/Av, S/Tv. Giải thích theo chức năng, không theo logo trên vòng xoay.</p>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>06</b> Chế độ chụp</div><h2>Chọn chế độ dựa trên thứ cần khóa.</h2></div>
+      <p class="section-lead">M không “chuyên nghiệp hơn” A/Av hay S/Tv. Chế độ tốt là chế độ giúp người chụp giữ đúng ưu tiên trong tình huống đó.</p>
+    </div>
+    <div class="mode-grid">
+      <article class="mode-card is-main"><div class="mode-letter">M</div><h3>Thủ công</h3><p>Khi ánh sáng ổn định và cần chuỗi ảnh nhất quán.</p></article>
+      <article class="mode-card"><div class="mode-letter">A</div><h3>A / Av</h3><p>Khóa khẩu độ khi độ sâu trường ảnh là ưu tiên, để máy thay đổi tốc độ theo ánh sáng.</p></article>
+      <article class="mode-card"><div class="mode-letter">S</div><h3>S / Tv</h3><p>Khóa tốc độ khi chuyển động là ưu tiên, để máy thay đổi khẩu độ nếu có thể.</p></article>
+      <article class="mode-card"><div class="mode-letter">ISO</div><h3>Auto ISO</h3><p>Hữu ích khi đã khóa tốc độ + khẩu độ nhưng ánh sáng thay đổi.</p></article>
+    </div>
+    <div class="exp-bottom" style="margin-top:18px;background:var(--paper-0);color:var(--green-950)">
+      <strong>Bù trừ phơi sáng:</strong> khi dùng A/Av hoặc S/Tv, dùng ±EV để yêu cầu máy cho ảnh sáng hoặc tối hơn mức đo sáng mặc định.
+    </div>
+  </section>
+
+  <section class="section paper-alt">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Demo</h4><p>Dùng cùng một nguồn sáng và cho học viên chuyển AWB → Kelvin cố định. Chụp 4–5 khung liên tục rồi so độ ổn định màu.</p>
+      <h4>Lưu ý</h4><p>Không bắt học thuộc nhiệt độ màu. Mục tiêu là hiểu thấp hơn thường cho hình ảnh mát hơn, cao hơn thường cho hình ảnh ấm hơn trong cách cài Kelvin.</p>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>07</b> Cân bằng trắng</div><h2>Một bộ ảnh không nên mỗi khung một màu.</h2></div>
+      <p class="section-lead">Cân bằng trắng ổn định giúp đánh giá màu da và màu trang phục chính xác hơn ngay từ lúc chụp.</p>
+    </div>
+    <div class="wb-scale">
+      <div class="wb"><strong>3200K</strong><h3>Mát hơn</h3><p>Thường dùng quanh nguồn tungsten hoặc khi cần cân lại ánh sáng rất ấm.</p></div>
+      <div class="wb"><strong>4500K</strong><h3>Trung gian</h3><p>Một vùng chuyển tiếp hữu ích khi nguồn sáng pha trộn.</p></div>
+      <div class="wb"><strong>5600K</strong><h3>Daylight</h3><p>Mốc quan sát phổ biến cho ánh sáng ban ngày / nguồn daylight.</p></div>
+      <div class="wb"><strong>6500K</strong><h3>Ấm hơn</h3><p>Thường tạo cảm giác ấm hơn khi đặt Kelvin cao trong cùng một nguồn sáng.</p></div>
+    </div>
+  </section>
+
+  <section class="section paper">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Demo</h4><p>Cho người mẫu đứng yên rồi bước về phía máy. So AF-S và AF-C. Sau đó bật Eye AF và xem khi nào máy mất mắt.</p>
+      <h4>Lưu ý</h4><p>Eye AF là công cụ hỗ trợ, không phải bảo đảm. Học viên vẫn phải zoom kiểm tra nét.</p>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>08</b> Lấy nét</div><h2>Chủ thể thay đổi → cách lấy nét cũng phải đổi.</h2></div>
+      <p class="section-lead">Một ảnh phơi sáng đúng nhưng lấy nét sai vẫn là ảnh lỗi. Chọn chế độ lấy nét theo trạng thái của người mẫu.</p>
+    </div>
+    <div class="focus-grid">
+      <article class="focus-card"><div class="focus-reticle"></div><h3>AF-S / One Shot</h3><p>Dùng khi chủ thể gần như đứng yên. Máy lấy nét rồi khóa ở khoảng cách đó.</p></article>
+      <article class="focus-card"><div class="focus-reticle"></div><h3>AF-C / Servo</h3><p>Dùng khi người mẫu bước, xoay hoặc thay đổi khoảng cách liên tục.</p></article>
+      <article class="focus-card"><div class="focus-reticle"></div><h3>Eye AF</h3><p>Tiện khi khuôn mặt là điểm chính, nhưng phải kiểm tra khi tóc, kính hoặc góc mặt làm máy nhận diện kém.</p></article>
+    </div>
+  </section>
+
+  <section class="section signal">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Cách dẫn dắt</h4><p>Cho học viên xem cùng một ảnh RAW và JPEG ở máy tính nếu có. Chỉ cần nói về dư địa chỉnh sáng/màu, không đi vào hậu kỳ.</p>
+      <h4>Lưu ý</h4><p>RAW không cứu được ảnh mất nét hoặc highlight cháy hoàn toàn.</p>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>09</b> Định dạng file</div><h2>RAW để giữ dư địa. JPEG để đi nhanh.</h2></div>
+      <p class="section-lead">Buổi này chỉ cần hiểu sự khác biệt trong workflow, chưa đi sâu vào xử lý RAW.</p>
+    </div>
+    <div class="raw-grid">
+      <div class="raw-card"><strong>RAW</strong><ul><li>Nhiều dữ liệu hơn</li><li>Dư địa chỉnh sáng/màu lớn hơn</li><li>File nặng</li><li>Cần hậu kỳ</li></ul></div>
+      <div class="raw-card"><strong>JPEG</strong><ul><li>Máy đã xử lý nhiều hơn</li><li>Nhẹ và gửi nhanh</li><li>Ít dư địa sửa mạnh</li><li>Phù hợp khi cần file dùng ngay</li></ul></div>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Cách dẫn dắt</h4><p>Không cho học viên chép ba bộ thông số. Hãy đưa tình huống trước rồi yêu cầu họ chọn ưu tiên; chỉ sau đó mới hiện khung thiết lập tham khảo.</p>
+      <h4>Lưu ý</h4><p>Thông số trong phần này là điểm bắt đầu, không phải công thức.</p>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>10</b> Ba tình huống thực tế</div><h2>Bắt đầu từ mục tiêu, không bắt đầu từ con số.</h2></div>
+      <p class="section-lead">Ba khung dưới đây giúp người mới có điểm xuất phát. Học viên vẫn phải xem lại ảnh và điều chỉnh theo ánh sáng thật.</p>
+    </div>
+    <div class="setup-grid">
+      <article class="setup-card"><b>01 · ĐỨNG YÊN / SET ỔN ĐỊNH</b><h3>Ưu tiên tính nhất quán.</h3><p>Dùng khi người mẫu đứng khá tĩnh và điều kiện sáng ít thay đổi.</p><div class="setup-list"><div><span>Mode</span>M</div><div><span>Tốc độ</span>đủ an toàn cho tiêu cự/chủ thể</div><div><span>Khẩu</span>khoảng f/4–f/8 tùy lượng nét</div><div><span>ISO</span>thấp nhất hợp lý</div><div><span>WB</span>cố định</div><div><span>Nếu dùng flash</span>giữ tốc độ trong giới hạn đồng bộ của hệ thống</div></div></article>
+      <article class="setup-card"><b>02 · ÁNH SÁNG TỰ NHIÊN</b><h3>Ưu tiên linh hoạt.</h3><p>Người mẫu thay đổi vị trí hoặc ánh sáng môi trường thay đổi.</p><div class="setup-list"><div><span>Mode</span>A/Av hoặc M + Auto ISO</div><div><span>Tốc độ</span>tránh tụt dưới mức an toàn</div><div><span>Khẩu</span>khoảng f/2.8–f/4 tùy mục tiêu</div><div><span>AF</span>AF-C + Eye AF</div></div></article>
+      <article class="setup-card"><b>03 · CHUYỂN ĐỘNG</b><h3>Ưu tiên đóng băng.</h3><p>Dùng cho bước đi, xoay váy hoặc chuyển động mạnh hơn.</p><div class="setup-list"><div><span>Mode</span>M + Auto ISO hoặc S/Tv</div><div><span>Tốc độ</span>~1/500–1/1000 làm điểm bắt đầu</div><div><span>AF</span>AF-C / tracking</div><div><span>Kiểm tra</span>mặt + mép trang phục</div></div></article>
+    </div>
+  </section>
+
+  <section class="section paper">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Quy tắc thực hành</h4><p>Mỗi cặp chỉ thay một biến số chính. Nếu phải bù sáng bằng biến số khác, nói rõ điều đó để học viên hiểu mình đang cô lập điều gì.</p>
+      <h4>Review</h4><p>Đặt hai ảnh cạnh nhau và hỏi “ngoài độ sáng, hình ảnh đã thay đổi điều gì?”.</p>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>11</b> Bài thực hành chính</div><h2>4 biến số.<br>8 khung hình.</h2></div>
+      <p class="section-lead">Giữ một người mẫu, một bộ trang phục và một bối cảnh. Mỗi cặp ảnh dùng để quan sát rõ một biến số của máy ảnh.</p>
+    </div>
+    <div class="practice-grid">
+      <article class="practice-card"><b>01</b><h3>Tốc độ</h3><p>Một ảnh tốc độ chậm hơn, một ảnh tốc độ nhanh hơn khi người mẫu cùng thực hiện một chuyển động.</p><strong>So: mức nhòe · mắt · mép vải.</strong></article>
+      <article class="practice-card"><b>02</b><h3>Khẩu độ</h3><p>Một ảnh khẩu mở, một ảnh khẩu khép hơn, giữ khung và khoảng cách gần giống nhau.</p><strong>So: mắt · cổ áo · tay · hậu cảnh.</strong></article>
+      <article class="practice-card"><b>03</b><h3>ISO</h3><p>Một ảnh ISO thấp và một ảnh ISO cao, bù thông số khác để độ sáng gần tương đương.</p><strong>Zoom 100%: nhiễu · chi tiết · màu.</strong></article>
+      <article class="practice-card"><b>04</b><h3>Cân bằng trắng</h3><p>Một ảnh mát hơn và một ảnh ấm hơn trong cùng nguồn sáng.</p><strong>So: da · màu vải · cảm giác tổng thể.</strong></article>
+    </div>
+  </section>
+
+  <section class="section paper-alt">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Cách giao bài</h4><p>Yêu cầu học viên gửi cả ảnh và thông số. Không chỉ nhận file ảnh cuối cùng.</p>
+      <h4>Lưu ý</h4><p>Chấm khả năng giải thích lựa chọn trước khi chấm độ đẹp của ảnh.</p>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>12</b> Bài tập về nhà</div><h2>3 tình huống.<br>3 thiết lập có lý do.</h2></div>
+      <p class="section-lead">Mục tiêu là biến thao tác máy thành quyết định có thể giải thích được.</p>
+    </div>
+    <div class="exposure-system">
+      <article class="exp-card"><div class="exp-symbol">01</div><div><span>Tĩnh</span><h3>Chủ thể đứng yên</h3><p>Ghi mode, tốc độ, khẩu độ, ISO, WB, focus mode và vì sao chọn.</p></div></article>
+      <article class="exp-card"><div class="exp-symbol">02</div><div><span>Nhẹ</span><h3>Chủ thể bước</h3><p>Chọn tốc độ để giữ khuôn mặt và trang phục theo mục tiêu.</p></div></article>
+      <article class="exp-card"><div class="exp-symbol">03</div><div><span>Mạnh</span><h3>Chuyển động nhanh hơn</h3><p>Tự chọn ưu tiên và giải thích trade-off giữa tốc độ, khẩu độ và ISO.</p></div></article>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <div class="section-note"><details class="teacher-note"><summary title="Gợi ý giảng viên"></summary><div class="teacher-note-popover">
+      <h4>Cách kết buổi</h4><p>Yêu cầu học viên nói lại 4 câu: khi nào tăng tốc độ, khi nào khép khẩu, khi nào tăng ISO, khi nào đổi focus mode.</p>
+      <h4>Chuyển sang Buổi 03</h4><p>Buổi sau mới đi sâu lens, tiêu cự và phối cảnh. Không kéo dài phần này sang lens.</p>
+    </div></details></div>
+    <div class="section-head">
+      <div><div class="kicker"><b>13</b> Kết quả cuối buổi</div><h2>Không còn xoay thông số theo cảm tính.</h2></div>
+      <p class="section-lead">Sau Buổi 02, học viên phải biết nhìn tình huống trước, chọn ưu tiên và giải thích vì sao máy được thiết lập như vậy.</p>
+    </div>
+    <div class="final-grid">
+      <div class="final-item"><b>01</b><h3>Kiểm soát chuyển động</h3><p>Biết chọn tốc độ theo mức độ chuyển động.</p></div>
+      <div class="final-item"><b>02</b><h3>Kiểm soát vùng nét</h3><p>Biết chọn khẩu độ theo lượng thông tin cần giữ.</p></div>
+      <div class="final-item"><b>03</b><h3>Cân độ sáng hợp lý</h3><p>Biết dùng ISO và histogram thay vì chỉ nhìn LCD bằng mắt.</p></div>
+      <div class="final-item"><b>04</b><h3>Thiết lập theo tình huống</h3><p>Biết chọn mode, WB và focus phù hợp với mục tiêu chụp.</p></div>
+    </div>
+    <div class="final-line">Mục tiêu trước.<br>Thông số sau.</div>
+  </section>
+</div>
+</body>
+</html>

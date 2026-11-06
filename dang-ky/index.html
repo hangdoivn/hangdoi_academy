@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Đăng ký học | Hang Đôi Academy</title>
+<meta name="description" content="Form đăng ký học viên Hang Đôi Academy. Chọn khóa học, để lại thông tin và Academy sẽ liên hệ xác nhận lớp, lịch học và bước tiếp theo.">
+<meta name="robots" content="noindex,follow">
+<meta name="theme-color" content="#0B2418">
+
+<link rel="stylesheet" href="/academy-tokens.css">
+<style>
+:root{--ink:#0b2418;--green:#0b6a3f;--paper:#f8f4ea;--white:#fffdf7;--line:rgba(11,36,24,.13);--muted:#647168;--soft:#eef5ef;--yellow:#f4c542;--red:#b42318}
+*{box-sizing:border-box}html{background:var(--paper)}body{margin:0;min-height:100vh;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit}button,input,select,textarea{font:inherit}.wrap{width:min(calc(100% - 36px),1080px);margin:auto}
+header{position:sticky;top:0;z-index:20;border-bottom:1px solid rgba(11,36,24,.08);background:rgba(248,244,234,.94);backdrop-filter:blur(14px)}.nav{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}.nav img{width:185px}.nav a:last-child{font-size:10px;font-weight:900;text-decoration:none}
+.page{display:grid;grid-template-columns:.78fr 1.22fr;gap:22px;padding:32px 0 72px;align-items:start}.intro{position:sticky;top:94px;padding:30px;border-radius:28px;background:var(--ink);color:#fff;overflow:hidden}.kicker{font-size:9px;font-weight:950;letter-spacing:.11em;color:#d6dfd9;text-transform:uppercase}.intro h1{margin:18px 0 0;font-size:clamp(48px,5vw,72px);line-height:.9;letter-spacing:-.065em}.intro h1 span{color:var(--yellow)}.intro p{margin:20px 0 0;color:rgba(255,255,255,.65);font-size:14px;line-height:1.65}.intro strong{color:#fff}.facts{display:grid;gap:8px;margin-top:26px}.fact{display:flex;justify-content:space-between;gap:14px;padding:13px 0;border-top:1px solid rgba(255,255,255,.1);font-size:10px}.fact span{color:rgba(255,255,255,.48)}.fact b{font-size:10px;text-align:right}.contact{margin-top:24px;font-size:10px;color:rgba(255,255,255,.5)}.contact a{color:#fff;font-weight:850;text-decoration:none}
+.panel{overflow:hidden;border:1px solid var(--line);border-radius:28px;background:var(--white);box-shadow:0 22px 70px rgba(11,36,24,.08)}.head{padding:28px 30px 22px;border-bottom:1px solid var(--line)}.step-label{font-size:9px;font-weight:950;letter-spacing:.1em;color:var(--green);text-transform:uppercase}.head h2{margin:9px 0 0;font-size:clamp(32px,3.5vw,48px);line-height:.95;letter-spacing:-.05em}.head p{max-width:650px;margin:11px 0 0;color:var(--muted);font-size:12px;line-height:1.6}.progress{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:20px}.bar{height:4px;border-radius:999px;background:#e1e4df}.bar.active,.bar.done{background:var(--green)}.bar.active{background:var(--yellow)}
+form{position:relative}.step{padding:28px 30px 30px;border:0;margin:0}.step[hidden]{display:none!important}.step-title{display:flex;align-items:center;gap:11px;margin-bottom:22px}.step-title b{width:38px;height:38px;display:grid;place-items:center;border-radius:50%;background:var(--ink);color:#fff;font-size:9px}.step-title span{font-size:18px;font-weight:900}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.field{min-width:0}.full{grid-column:1/-1}.label{display:block;margin-bottom:7px;font-size:11px;font-weight:850}.req:after{content:" *";color:var(--red)}input,select,textarea{width:100%;min-height:48px;border:1px solid #cfd3cb;border-radius:13px;background:#fff;color:var(--ink);padding:11px 13px;outline:none;font-size:13px}textarea{min-height:116px;resize:vertical;line-height:1.55}input:focus,select:focus,textarea:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(11,106,63,.09)}.help{display:block;margin-top:6px;color:var(--muted);font-size:9px;line-height:1.45}.course-meta{display:none;margin-top:10px;padding:13px 14px;border-radius:14px;background:var(--soft);color:#425449;font-size:10px;line-height:1.5}.course-meta.show{display:block}.course-meta strong{color:var(--green)}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:8px}.check{display:flex;align-items:center;gap:8px;min-height:48px;padding:10px 12px;border:1px solid var(--line);border-radius:13px;background:#fff;font-size:10.5px;font-weight:750}.check:has(input:checked){background:var(--soft);border-color:rgba(11,106,63,.3);color:var(--green)}.check input,.consent input{width:18px;height:18px;min-height:0;margin:0;accent-color:var(--green)}
+.notice{margin-top:20px;padding:15px;border-radius:15px;background:var(--soft);color:#46584e;font-size:10.5px;line-height:1.55}.consent{display:flex;gap:9px;align-items:flex-start;margin-top:12px;padding:12px;border:1px solid var(--line);border-radius:13px;background:#fff;color:#536158;font-size:10px;line-height:1.5}.consent strong{color:var(--ink)}
+.actions{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:18px 30px 24px;border-top:1px solid var(--line);background:#fbfaf5}.back{min-height:46px;padding:0 16px;border:1px solid var(--line);border-radius:999px;background:transparent;font-size:10px;font-weight:850}.back[hidden]{visibility:hidden}.status{max-width:300px;color:var(--muted);font-size:9px;line-height:1.4}.status.error{color:var(--red);font-weight:800}.next,.submit{min-width:190px;min-height:50px;border:0;border-radius:999px;background:var(--yellow);color:var(--ink);padding:0 18px;font-size:10px;font-weight:950;cursor:pointer}.submit{background:var(--green);color:#fff}.next:disabled,.submit:disabled{opacity:.55}.hp{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}.foot{padding:0 30px 25px;background:#fbfaf5;color:#8a948d;font-size:8px}.foot a{color:var(--green);font-weight:800;text-decoration:none}
+@media(max-width:850px){.page{grid-template-columns:1fr}.intro{position:relative;top:auto}.intro h1{font-size:56px}}
+@media(max-width:620px){.wrap{width:calc(100% - 28px)}.nav{min-height:58px}.nav img{width:150px}.nav a:last-child{font-size:8px}.page{padding:14px 0 34px;gap:12px}.intro{padding:20px 18px;border-radius:21px}.intro h1{font-size:48px}.intro p{font-size:12px}.panel{border-radius:21px}.head{padding:20px 18px 17px}.head h2{font-size:31px}.step{padding:20px 18px 22px}.grid,.checks{grid-template-columns:1fr}.full{grid-column:auto}input,select,textarea{font-size:16px}.actions{position:sticky;bottom:0;z-index:10;padding:12px 18px calc(12px + env(safe-area-inset-bottom));background:rgba(251,250,245,.96);backdrop-filter:blur(14px)}.status{display:none}.next,.submit{width:100%;min-height:54px}.back{min-width:92px}.foot{padding:10px 18px 18px}}
+</style>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><style id="academy-logo-critical">
+header.site-header,header.site-header.scrolled{background:linear-gradient(90deg,#fffef9,#f5f7f1)!important;border-color:rgba(23,56,43,.12)!important}
+.site-header .nav-links a,.site-header.scrolled .nav-links a{color:#17382b!important}
+.brand-official,.p2-brand{display:inline-flex!important;align-items:center!important;width:200px!important;min-width:200px!important;height:40px!important;padding:0!important;border:0!important;background:none!important;background-image:none!important}
+.brand-official>*{opacity:1!important;visibility:visible!important}
+.brand-official .academy-logo-svg,.p2-brand .academy-logo-svg{display:block!important;width:200px!important;max-height:40px!important;height:auto!important;opacity:1!important;visibility:visible!important}
+footer .brand-official,.p2-footer-logo{width:220px!important;min-width:220px!important;height:48px!important}
+footer .academy-logo-svg,.p2-footer-logo .academy-logo-svg{display:block!important;width:220px!important;max-height:48px!important;height:auto!important;opacity:1!important;visibility:visible!important}
+footer .academy-logo-svg .cls-1,.p2-footer .academy-logo-svg .cls-1{fill:#fff!important}
+footer .academy-logo-svg .cls-2,.p2-footer .academy-logo-svg .cls-2{fill:#fcb415!important}
+@media(max-width:760px){.brand-official,.p2-brand{width:170px!important;min-width:170px!important;height:34px!important}.brand-official .academy-logo-svg,.p2-brand .academy-logo-svg{width:170px!important;max-height:34px!important}footer .brand-official,.p2-footer-logo{width:190px!important;min-width:190px!important;height:42px!important}footer .academy-logo-svg,.p2-footer-logo .academy-logo-svg{width:190px!important;max-height:42px!important}}
+</style></head>
+<body>
+<header><div class="wrap nav"><a href="/" aria-label="Hang Đôi Academy"><img src="/logo-academy.svg" alt="Hang Đôi Academy"></a><a href="/khoa-hoc/">XEM CÁC KHÓA HỌC →</a></div></header>
+<main class="wrap page">
+  <aside class="intro">
+    <div class="kicker">Hang Đôi Academy · Đăng ký học</div>
+    <h1>ĐĂNG KÝ<br><span>HỌC.</span></h1>
+    <p>Chọn khóa học và để lại thông tin cơ bản. Academy sẽ liên hệ để <strong>xác nhận nhu cầu, lịch học và bước tiếp theo</strong>.</p>
+    <div class="facts">
+      <div class="fact"><span>Thời gian điền</span><b>Khoảng 2 phút</b></div>
+      <div class="fact"><span>Thanh toán</span><b>Không thanh toán trên form</b></div>
+      <div class="fact"><span>Hỗ trợ</span><b>Academy liên hệ trực tiếp</b></div>
+    </div>
+    <div class="contact">Cần hỏi trước? <a href="tel:+84888445997">0888 445 997</a></div>
+  </aside>
+
+  <section class="panel" aria-labelledby="formTitle">
+    <div class="head">
+      <div class="step-label" id="stepLabel">BƯỚC 01 / 02 · KHÓA HỌC & THÔNG TIN</div>
+      <h2 id="formTitle">Bạn muốn đăng ký khóa nào?</h2>
+      <p id="formDesc">Chọn khóa học trước. Nếu chưa chắc, chọn “Cần tư vấn” để Academy hỗ trợ.</p>
+      <div class="progress"><span class="bar active"></span><span class="bar"></span></div>
+    </div>
+
+    <form id="registrationForm" novalidate>
+      <div class="hp" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+
+      <fieldset class="step" data-step="0">
+        <div class="step-title"><b>01</b><span>Khóa học & thông tin học viên</span></div>
+        <div class="grid">
+          <div class="field full">
+            <label class="label req" for="courseSlug">Khóa học</label>
+            <select id="courseSlug" name="courseSlug" required>
+              <option value="">Chọn khóa học</option>
+              <option value="nhiep-anh-co-ban">Nhiếp ảnh cơ bản · 6.680.000đ · 12 buổi</option>
+              <option value="ky-thuat-nhiep-anh">Kỹ thuật nhiếp ảnh · 18.680.000đ</option>
+              <option value="ky-thuat-anh-sang">Kỹ thuật ánh sáng · 18.680.000đ</option>
+              <option value="chinh-sua-hinh-anh">Chỉnh sửa hình ảnh · 18.680.000đ</option>
+              <option value="nhiep-anh-toan-tap">Nhiếp ảnh toàn tập · 40.000.000đ</option>
+              <option value="media-career-program">Media Career Program · 40.000.000đ</option>
+              <option value="can-tu-van">Chưa chắc · cần Academy tư vấn</option>
+            </select>
+            <div class="course-meta" id="courseMeta"></div>
+          </div>
+          <div class="field"><label class="label req" for="fullName">Họ và tên</label><input id="fullName" name="fullName" autocomplete="name" placeholder="Nguyễn Văn A" required></div>
+          <div class="field"><label class="label req" for="phone">Số điện thoại</label><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="09xx xxx xxx" required></div>
+          <div class="field"><label class="label req" for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" placeholder="email@domain.com" required></div>
+          <div class="field"><label class="label" for="dateOfBirth">Ngày sinh</label><input id="dateOfBirth" name="dateOfBirth" type="date"></div>
+          <div class="field"><label class="label" for="city">Bạn hiện sống ở đâu?</label><input id="city" name="city" autocomplete="address-level2" placeholder="Ví dụ: Đà Nẵng"></div>
+          <div class="field"><label class="label" for="currentStatus">Hiện tại bạn đang</label><select id="currentStatus" name="currentStatus"><option value="">Không bắt buộc</option><option>Sinh viên</option><option>Mới tốt nghiệp</option><option>Đang đi làm</option><option>Freelancer</option><option>Đang tìm hướng mới</option><option>Khác</option></select></div>
+        </div>
+      </fieldset>
+
+      <fieldset class="step" data-step="1" hidden>
+        <div class="step-title"><b>02</b><span>Nhu cầu & lịch học</span></div>
+        <div class="grid">
+          <div class="field full"><label class="label" for="experienceLevel">Kinh nghiệm hiện tại</label><select id="experienceLevel" name="experienceLevel"><option value="">Chọn mức gần nhất</option><option>Chưa từng học / mới bắt đầu</option><option>Đang tự học</option><option>Đã chụp hoặc làm project cá nhân</option><option>Đã nhận freelance</option><option>Đã làm trong team / công ty</option></select></div>
+          <div class="field full"><label class="label req" for="learningGoal">Bạn muốn đạt được gì sau khóa học?</label><textarea id="learningGoal" name="learningGoal" required placeholder="Ví dụ: làm chủ máy ảnh, biết chụp người, xây portfolio, học để đi làm..."></textarea></div>
+          <div class="field"><label class="label" for="startTiming">Bạn muốn bắt đầu khi nào?</label><select id="startTiming" name="startTiming"><option value="">Không bắt buộc</option><option>Càng sớm càng tốt</option><option>Trong 1 tháng tới</option><option>Trong 1–3 tháng tới</option><option>Đang tìm hiểu trước</option></select></div>
+          <div class="field"><label class="label" for="contactTime">Khung giờ tiện liên hệ</label><select id="contactTime" name="contactTime"><option value="">Bất kỳ</option><option>Sáng</option><option>Chiều</option><option>Tối</option></select></div>
+          <div class="field full">
+            <label class="label">Khung thời gian học phù hợp</label>
+            <div class="checks" id="schedulePreferences">
+              <label class="check"><input type="checkbox" value="Ngày thường ban ngày">Ngày thường · ban ngày</label>
+              <label class="check"><input type="checkbox" value="Ngày thường buổi tối">Ngày thường · buổi tối</label>
+              <label class="check"><input type="checkbox" value="Cuối tuần">Cuối tuần</label>
+              <label class="check"><input type="checkbox" value="Linh hoạt theo lịch">Linh hoạt theo lịch</label>
+            </div>
+          </div>
+          <div class="field full"><label class="label" for="notes">Ghi chú thêm</label><textarea id="notes" name="notes" placeholder="Thiết bị đang có, lịch bận, điều bạn muốn Academy biết thêm..."></textarea></div>
+        </div>
+        <div class="notice">Gửi form này là <strong>đăng ký thông tin học viên</strong>. Academy sẽ liên hệ để xác nhận lớp và hướng dẫn bước tiếp theo. Form này không tự động phát sinh thanh toán.</div>
+        <label class="consent"><input id="privacyConsent" type="checkbox" required><span>Tôi đồng ý để Hang Đôi Academy lưu và xử lý thông tin trên để liên hệ, tư vấn và quản lý đăng ký học của tôi. <strong>Bắt buộc.</strong></span></label>
+        <label class="consent"><input id="marketingConsent" type="checkbox"><span>Tôi đồng ý nhận thêm thông tin về workshop, khóa học và hoạt động của Hang Đôi Academy. Không bắt buộc.</span></label>
+      </fieldset>
+
+      <div class="actions">
+        <button class="back" id="backBtn" type="button" hidden>← Quay lại</button>
+        <div id="status" class="status" aria-live="polite">Thông tin chỉ được gửi khi bạn bấm “Gửi đăng ký”.</div>
+        <button class="next" id="nextBtn" type="button">TIẾP TỤC →</button>
+        <button class="submit" id="submitBtn" type="submit" hidden>GỬI ĐĂNG KÝ →</button>
+      </div>
+    </form>
+    <div class="foot">Hang Đôi Academy · 98 Điện Biên Phủ, Đà Nẵng · <a href="tel:+84888445997">0888 445 997</a></div>
+  </section>
+</main>
+<script>
+const API="https://candidate-api-v2-production.up.railway.app";
+const params=new URLSearchParams(location.search);
+const form=document.getElementById("registrationForm");
+const steps=Array.from(document.querySelectorAll(".step"));
+const bars=Array.from(document.querySelectorAll(".bar"));
+const nextBtn=document.getElementById("nextBtn");
+const backBtn=document.getElementById("backBtn");
+const submitBtn=document.getElementById("submitBtn");
+const statusEl=document.getElementById("status");
+const courseEl=document.getElementById("courseSlug");
+const courseMeta=document.getElementById("courseMeta");
+const stepLabel=document.getElementById("stepLabel");
+const formTitle=document.getElementById("formTitle");
+const formDesc=document.getElementById("formDesc");
+let currentStep=0,submitting=false;
+
+const courses={
+ "nhiep-anh-co-ban":{name:"Nhiếp ảnh cơ bản",meta:"6.680.000đ · 12 buổi · dành cho người mới bắt đầu"},
+ "ky-thuat-nhiep-anh":{name:"Kỹ thuật nhiếp ảnh",meta:"18.680.000đ · lộ trình chuyên sâu"},
+ "ky-thuat-anh-sang":{name:"Kỹ thuật ánh sáng",meta:"18.680.000đ · lộ trình chuyên sâu"},
+ "chinh-sua-hinh-anh":{name:"Chỉnh sửa hình ảnh",meta:"18.680.000đ · lộ trình chuyên sâu"},
+ "nhiep-anh-toan-tap":{name:"Nhiếp ảnh toàn tập",meta:"40.000.000đ · lộ trình toàn diện"},
+ "media-career-program":{name:"Media Career Program",meta:"40.000.000đ · chương trình 4 tháng / 16 tuần"},
+ "can-tu-van":{name:"Cần tư vấn",meta:"Academy sẽ liên hệ để giúp bạn chọn lộ trình phù hợp"}
+};
+
+function checked(id){return Array.from(document.querySelectorAll("#"+id+" input:checked")).map(x=>x.value)}
+function updateCourse(){
+ const c=courses[courseEl.value];
+ if(!c){courseMeta.className="course-meta";courseMeta.textContent="";return}
+ courseMeta.innerHTML="<strong>"+c.name+"</strong> · "+c.meta;
+ courseMeta.className="course-meta show";
+}
+courseEl.addEventListener("change",updateCourse);
+const preselect=params.get("course");
+if(preselect&&courses[preselect]){courseEl.value=preselect;updateCourse()}
+
+function render(step){
+ currentStep=Math.max(0,Math.min(step,1));
+ steps.forEach((el,i)=>el.hidden=i!==currentStep);
+ bars.forEach((el,i)=>{el.classList.toggle("done",i<currentStep);el.classList.toggle("active",i===currentStep)});
+ backBtn.hidden=currentStep===0;nextBtn.hidden=currentStep===1;submitBtn.hidden=currentStep!==1;
+ if(currentStep===0){stepLabel.textContent="BƯỚC 01 / 02 · KHÓA HỌC & THÔNG TIN";formTitle.textContent="Bạn muốn đăng ký khóa nào?";formDesc.textContent="Chọn khóa học trước. Nếu chưa chắc, chọn “Cần tư vấn” để Academy hỗ trợ."}
+ else{stepLabel.textContent="BƯỚC 02 / 02 · NHU CẦU & LỊCH HỌC";formTitle.textContent="Cho Academy biết bạn cần gì.";formDesc.textContent="Một vài thông tin ngắn giúp team tư vấn đúng lớp và sắp xếp lịch phù hợp."}
+ statusEl.className="status";statusEl.textContent=currentStep===0?"Thông tin chỉ được gửi khi bạn bấm “Gửi đăng ký”.":"Kiểm tra lại rồi bấm “Gửi đăng ký”.";
+}
+function validate(){
+ for(const el of steps[currentStep].querySelectorAll("[required]")){if(!el.checkValidity()){el.reportValidity();el.focus();return false}}
+ return true;
+}
+nextBtn.onclick=()=>{if(validate())render(1)};
+backBtn.onclick=()=>render(0);
+
+form.addEventListener("submit",async e=>{
+ e.preventDefault();if(submitting||!validate())return;
+ submitting=true;submitBtn.disabled=true;statusEl.textContent="Đang gửi đăng ký…";
+ const f=new FormData(form);
+ const payload={
+  website:f.get("website"),courseSlug:f.get("courseSlug"),
+  fullName:f.get("fullName"),phone:f.get("phone"),email:f.get("email"),
+  dateOfBirth:f.get("dateOfBirth"),city:f.get("city"),currentStatus:f.get("currentStatus"),
+  experienceLevel:f.get("experienceLevel"),learningGoal:f.get("learningGoal"),
+  startTiming:f.get("startTiming"),contactTime:f.get("contactTime"),
+  schedulePreferences:checked("schedulePreferences"),notes:f.get("notes"),
+  privacyConsent:document.getElementById("privacyConsent").checked,
+  marketingConsent:document.getElementById("marketingConsent").checked,
+  utmSource:params.get("utm_source")||"",utmMedium:params.get("utm_medium")||"",
+  utmCampaign:params.get("utm_campaign")||"academy_registration",
+  utmContent:params.get("utm_content")||"",referrer:document.referrer||""
+ };
+ try{
+  const r=await fetch(API+"/v1/registrations",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+  const data=await r.json().catch(()=>({}));
+  if(!r.ok)throw new Error(data.error||"Chưa gửi được đăng ký.");
+  location.href="/dang-ky/cam-on/?code="+encodeURIComponent(data.registrationCode)+"&course="+encodeURIComponent(data.courseSlug||payload.courseSlug);
+ }catch(err){statusEl.className="status error";statusEl.textContent=err.message;submitBtn.disabled=false;submitting=false}
+});
+render(0);
+</script>
+</body>
+</html>
