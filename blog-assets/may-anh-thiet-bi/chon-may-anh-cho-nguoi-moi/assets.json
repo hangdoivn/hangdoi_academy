@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "article_slug": "chon-may-anh-cho-nguoi-moi",
+  "category_slug": "may-anh-thiet-bi",
+  "source": "Hang Đôi Academy",
+  "usage_rights_confirmed": true,
+  "cover": {
+    "file": "cover.png",
+    "alt": "Minh họa quy trình chọn máy ảnh cho người mới theo nhu cầu, body, ống kính và phụ kiện",
+    "type": "editorial"
+  },
+  "social": {
+    "file": "social-4x5.png",
+    "alt": "Minh họa quy trình chọn máy ảnh cho người mới theo nhu cầu, body, ống kính và phụ kiện",
+    "type": "editorial"
+  },
+  "guide": {
+    "file": "guide.png",
+    "alt": "Infographic bốn bước chọn bộ máy ảnh đầu tiên cho người mới",
+    "type": "editorial"
+  },
+  "first_party_status": "missing",
+  "first_party_needed": "Ảnh học viên thử hai body và được giảng viên tư vấn thiết bị tại Academy"
+}
